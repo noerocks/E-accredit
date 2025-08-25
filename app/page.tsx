@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { IBM_Plex_Serif } from "next/font/google";
+import Link from "next/link";
 
 const IBMPlexSerif = IBM_Plex_Serif({
   subsets: ["latin"],
@@ -11,7 +12,7 @@ export default function Home() {
     <div>
       <header className="bg-[#f9a602] px-10 h-[100px] flex justify-between items-center">
         <div className="flex space-x-2 items-center">
-          <div className="h-[70px] aspect-square rounded-full overflow-hidden">
+          <div className="h-[70px] aspect-square rounded-full overflow-hidden shadow-md shadow-black/50">
             <Image
               src={"/ctu-logo.png"}
               alt="ctu logo"
@@ -31,8 +32,15 @@ export default function Home() {
             <p className="text-lg">Accreditation System</p>
           </div>
         </div>
+        <div>
+          <Link href={"/register"}>
+            <button className="bg-[#282828] shadow-md shadow-black/30 hover:scale-101 cursor-pointer text-white px-5 py-2 rounded-md">
+              Log in
+            </button>
+          </Link>
+        </div>
       </header>
-      <nav className="sticky top-0 h-[40px] w-ful z-10 shadow-md shadow-gray-400">
+      <nav className="sticky top-0 h-[40px] w-full z-10 shadow-lg shadow-black/30">
         <ul className="flex space-x-20 justify-center items-center bg-[#282828] text-white h-full">
           <li>
             <a href="#">E-accredit</a>
@@ -40,8 +48,12 @@ export default function Home() {
           <li>
             <a href="#features">Features</a>
           </li>
-          <li>How it Works</li>
-          <li>About</li>
+          <li>
+            <a href="#how-it-works">How it Works</a>
+          </li>
+          <li>
+            <a href="#about">About</a>
+          </li>
         </ul>
       </nav>
       <section className="h-[calc(100vh-140px)]">
