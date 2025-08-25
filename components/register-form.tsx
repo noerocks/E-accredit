@@ -44,7 +44,9 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
       <Card>
         <CardHeader>
           <CardTitle className="text-xl">Register</CardTitle>
-          <CardDescription>Create your account</CardDescription>
+          <CardDescription>
+            An email will be sent confirming your account creation
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -93,7 +95,11 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
                   <FormItem>
                     <FormLabel>Phone Number</FormLabel>
                     <FormControl>
-                      <Input placeholder="09XXXXXXXXX" {...field} />
+                      <Input
+                        placeholder="09XXXXXXXXX"
+                        {...field}
+                        type="number"
+                      />
                     </FormControl>
                     <FormDescription>
                       Please enter your phone number
