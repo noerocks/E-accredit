@@ -1,10 +1,10 @@
 "use server";
 
 import { z } from "zod";
-import { registerFormSchema } from "./definitions";
+import { registerFormSchema } from "../definitions";
 import bcrypt from "bcrypt";
-import { prisma } from "./prisma";
-import { Prisma } from "./generated/prisma";
+import { prisma } from "../prisma";
+import { Prisma } from "../generated/prisma";
 
 export const register = async (values: z.infer<typeof registerFormSchema>) => {
   const result = registerFormSchema.safeParse(values);

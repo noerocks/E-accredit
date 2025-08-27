@@ -24,8 +24,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { cn } from "@/lib/utils";
 import { useTransition } from "react";
-import { register } from "@/lib/actions";
+import { register } from "@/lib/actions/authentication";
 import { toast } from "sonner";
+import Spinner from "./spinner";
+import { Divide } from "lucide-react";
 
 const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   const form = useForm<z.infer<typeof registerFormSchema>>({
@@ -175,7 +177,9 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
                   )}
                 />
               </div>
-              <Button>Sign up</Button>
+              <Button disabled={pending}>
+                {pending ? <Spinner message="Signing up..." /> : "Sign up"}
+              </Button>
               <p className="text-center">
                 Already had an account?{" "}
                 <Link href={"/login"} className="hover:underline">
