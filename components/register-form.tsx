@@ -17,7 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { registerFormSchema } from "@/lib/definitions";
+import { RegisterFormSchema } from "@/lib/zodDefinitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -30,8 +30,8 @@ import Spinner from "./spinner";
 import { Divide } from "lucide-react";
 
 const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
-  const form = useForm<z.infer<typeof registerFormSchema>>({
-    resolver: zodResolver(registerFormSchema),
+  const form = useForm<z.infer<typeof RegisterFormSchema>>({
+    resolver: zodResolver(RegisterFormSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -42,7 +42,7 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
     },
   });
   const [pending, startTransition] = useTransition();
-  const onSubmit = async (values: z.infer<typeof registerFormSchema>) => {
+  const onSubmit = async (values: z.infer<typeof RegisterFormSchema>) => {
     startTransition(async () => {
       const result = await register(values);
       if (result.status === "success") toast.success(result.message);

@@ -1,13 +1,13 @@
 "use server";
 
 import { z } from "zod";
-import { registerFormSchema } from "../definitions";
+import { RegisterFormSchema } from "../zodDefinitions";
 import bcrypt from "bcrypt";
 import { prisma } from "../prisma";
 import { Prisma } from "../generated/prisma";
 
-export const register = async (values: z.infer<typeof registerFormSchema>) => {
-  const result = registerFormSchema.safeParse(values);
+export const register = async (values: z.infer<typeof RegisterFormSchema>) => {
+  const result = RegisterFormSchema.safeParse(values);
   if (!result.success) {
     return { status: "error", message: "Invalid form data" };
   }
