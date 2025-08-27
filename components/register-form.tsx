@@ -23,6 +23,9 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { cn } from "@/lib/utils";
+import { useTransition } from "react";
+import { register } from "@/lib/actions";
+import { toast } from "sonner";
 
 const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   const form = useForm<z.infer<typeof registerFormSchema>>({
@@ -36,8 +39,12 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
       confirm: "",
     },
   });
-  const onSubmit = (values: z.infer<typeof registerFormSchema>) => {
-    console.log(values);
+  const [pemding, startTransition] = useTransition();
+  const onSubmit = async (values: z.infer<typeof registerFormSchema>) => {
+    startTransition(async () => {
+      const result = await register(values);
+      toast.success(result.message);
+    });
   };
   return (
     <div className={cn(className)} {...props}>
