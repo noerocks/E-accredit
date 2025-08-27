@@ -39,11 +39,12 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
       confirm: "",
     },
   });
-  const [pemding, startTransition] = useTransition();
+  const [pending, startTransition] = useTransition();
   const onSubmit = async (values: z.infer<typeof registerFormSchema>) => {
     startTransition(async () => {
       const result = await register(values);
-      toast.success(result.message);
+      if (result.status === "success") toast.success(result.message);
+      else toast.error(result.message);
     });
   };
   return (
@@ -69,7 +70,11 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
                     <FormItem className="flex-1">
                       <FormLabel>First Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="Juan" {...field} />
+                        <Input
+                          placeholder="Juan"
+                          {...field}
+                          autoComplete="off"
+                        />
                       </FormControl>
                       <FormDescription>
                         Please enter your first name
@@ -85,7 +90,11 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
                     <FormItem className="flex-1">
                       <FormLabel>Last Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="Dela Cruz" {...field} />
+                        <Input
+                          placeholder="Dela Cruz"
+                          {...field}
+                          autoComplete="off"
+                        />
                       </FormControl>
                       <FormDescription>
                         Please enter your last name
@@ -106,6 +115,7 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
                         placeholder="09XXXXXXXXX"
                         {...field}
                         type="number"
+                        autoComplete="off"
                       />
                     </FormControl>
                     <FormDescription>
@@ -122,7 +132,11 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="sample@gmail.com" {...field} />
+                      <Input
+                        placeholder="sample@gmail.com"
+                        {...field}
+                        autoComplete="off"
+                      />
                     </FormControl>
                     <FormDescription>Please enter your email</FormDescription>
                     <FormMessage />
@@ -137,7 +151,7 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
                     <FormItem className="flex-1">
                       <FormLabel>Password</FormLabel>
                       <FormControl>
-                        <Input {...field} type="password" />
+                        <Input {...field} type="password" autoComplete="off" />
                       </FormControl>
                       <FormDescription>
                         Please enter your password
@@ -153,7 +167,7 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
                     <FormItem className="flex-1">
                       <FormLabel>Confirm Password</FormLabel>
                       <FormControl>
-                        <Input {...field} type="password" />
+                        <Input {...field} type="password" autoComplete="off" />
                       </FormControl>
                       <FormDescription>Please confirm password</FormDescription>
                       <FormMessage />

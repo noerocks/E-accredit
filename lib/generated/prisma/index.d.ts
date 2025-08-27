@@ -890,7 +890,7 @@ export namespace Prisma {
     lastName: string | null
     phoneNumber: string | null
     email: string | null
-    password: string | null
+    hashedPassword: string | null
     photoURL: string | null
     address: string | null
     role: $Enums.Role | null
@@ -904,7 +904,7 @@ export namespace Prisma {
     lastName: string | null
     phoneNumber: string | null
     email: string | null
-    password: string | null
+    hashedPassword: string | null
     photoURL: string | null
     address: string | null
     role: $Enums.Role | null
@@ -918,7 +918,7 @@ export namespace Prisma {
     lastName: number
     phoneNumber: number
     email: number
-    password: number
+    hashedPassword: number
     photoURL: number
     address: number
     role: number
@@ -934,7 +934,7 @@ export namespace Prisma {
     lastName?: true
     phoneNumber?: true
     email?: true
-    password?: true
+    hashedPassword?: true
     photoURL?: true
     address?: true
     role?: true
@@ -948,7 +948,7 @@ export namespace Prisma {
     lastName?: true
     phoneNumber?: true
     email?: true
-    password?: true
+    hashedPassword?: true
     photoURL?: true
     address?: true
     role?: true
@@ -962,7 +962,7 @@ export namespace Prisma {
     lastName?: true
     phoneNumber?: true
     email?: true
-    password?: true
+    hashedPassword?: true
     photoURL?: true
     address?: true
     role?: true
@@ -1049,7 +1049,7 @@ export namespace Prisma {
     lastName: string
     phoneNumber: string
     email: string
-    password: string
+    hashedPassword: string
     photoURL: string | null
     address: string | null
     role: $Enums.Role
@@ -1080,7 +1080,7 @@ export namespace Prisma {
     lastName?: boolean
     phoneNumber?: boolean
     email?: boolean
-    password?: boolean
+    hashedPassword?: boolean
     photoURL?: boolean
     address?: boolean
     role?: boolean
@@ -1094,7 +1094,7 @@ export namespace Prisma {
     lastName?: boolean
     phoneNumber?: boolean
     email?: boolean
-    password?: boolean
+    hashedPassword?: boolean
     photoURL?: boolean
     address?: boolean
     role?: boolean
@@ -1108,7 +1108,7 @@ export namespace Prisma {
     lastName?: boolean
     phoneNumber?: boolean
     email?: boolean
-    password?: boolean
+    hashedPassword?: boolean
     photoURL?: boolean
     address?: boolean
     role?: boolean
@@ -1122,7 +1122,7 @@ export namespace Prisma {
     lastName?: boolean
     phoneNumber?: boolean
     email?: boolean
-    password?: boolean
+    hashedPassword?: boolean
     photoURL?: boolean
     address?: boolean
     role?: boolean
@@ -1130,7 +1130,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "phoneNumber" | "email" | "password" | "photoURL" | "address" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "phoneNumber" | "email" | "hashedPassword" | "photoURL" | "address" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1141,7 +1141,7 @@ export namespace Prisma {
       lastName: string
       phoneNumber: string
       email: string
-      password: string
+      hashedPassword: string
       photoURL: string | null
       address: string | null
       role: $Enums.Role
@@ -1575,7 +1575,7 @@ export namespace Prisma {
     readonly lastName: FieldRef<"User", 'String'>
     readonly phoneNumber: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
-    readonly password: FieldRef<"User", 'String'>
+    readonly hashedPassword: FieldRef<"User", 'String'>
     readonly photoURL: FieldRef<"User", 'String'>
     readonly address: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'Role'>
@@ -1967,7 +1967,7 @@ export namespace Prisma {
     lastName: 'lastName',
     phoneNumber: 'phoneNumber',
     email: 'email',
-    password: 'password',
+    hashedPassword: 'hashedPassword',
     photoURL: 'photoURL',
     address: 'address',
     role: 'role',
@@ -2075,7 +2075,7 @@ export namespace Prisma {
     lastName?: StringFilter<"User"> | string
     phoneNumber?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
-    password?: StringFilter<"User"> | string
+    hashedPassword?: StringFilter<"User"> | string
     photoURL?: StringNullableFilter<"User"> | string | null
     address?: StringNullableFilter<"User"> | string | null
     role?: EnumRoleFilter<"User"> | $Enums.Role
@@ -2089,7 +2089,7 @@ export namespace Prisma {
     lastName?: SortOrder
     phoneNumber?: SortOrder
     email?: SortOrder
-    password?: SortOrder
+    hashedPassword?: SortOrder
     photoURL?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     role?: SortOrder
@@ -2106,7 +2106,7 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     firstName?: StringFilter<"User"> | string
     lastName?: StringFilter<"User"> | string
-    password?: StringFilter<"User"> | string
+    hashedPassword?: StringFilter<"User"> | string
     photoURL?: StringNullableFilter<"User"> | string | null
     address?: StringNullableFilter<"User"> | string | null
     role?: EnumRoleFilter<"User"> | $Enums.Role
@@ -2120,7 +2120,7 @@ export namespace Prisma {
     lastName?: SortOrder
     phoneNumber?: SortOrder
     email?: SortOrder
-    password?: SortOrder
+    hashedPassword?: SortOrder
     photoURL?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     role?: SortOrder
@@ -2140,7 +2140,7 @@ export namespace Prisma {
     lastName?: StringWithAggregatesFilter<"User"> | string
     phoneNumber?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
-    password?: StringWithAggregatesFilter<"User"> | string
+    hashedPassword?: StringWithAggregatesFilter<"User"> | string
     photoURL?: StringNullableWithAggregatesFilter<"User"> | string | null
     address?: StringNullableWithAggregatesFilter<"User"> | string | null
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
@@ -2154,7 +2154,7 @@ export namespace Prisma {
     lastName: string
     phoneNumber: string
     email: string
-    password: string
+    hashedPassword: string
     photoURL?: string | null
     address?: string | null
     role?: $Enums.Role
@@ -2168,7 +2168,7 @@ export namespace Prisma {
     lastName: string
     phoneNumber: string
     email: string
-    password: string
+    hashedPassword: string
     photoURL?: string | null
     address?: string | null
     role?: $Enums.Role
@@ -2182,7 +2182,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
     photoURL?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
@@ -2196,7 +2196,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
     photoURL?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
@@ -2210,7 +2210,7 @@ export namespace Prisma {
     lastName: string
     phoneNumber: string
     email: string
-    password: string
+    hashedPassword: string
     photoURL?: string | null
     address?: string | null
     role?: $Enums.Role
@@ -2224,7 +2224,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
     photoURL?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
@@ -2238,7 +2238,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
     photoURL?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
@@ -2305,7 +2305,7 @@ export namespace Prisma {
     lastName?: SortOrder
     phoneNumber?: SortOrder
     email?: SortOrder
-    password?: SortOrder
+    hashedPassword?: SortOrder
     photoURL?: SortOrder
     address?: SortOrder
     role?: SortOrder
@@ -2319,7 +2319,7 @@ export namespace Prisma {
     lastName?: SortOrder
     phoneNumber?: SortOrder
     email?: SortOrder
-    password?: SortOrder
+    hashedPassword?: SortOrder
     photoURL?: SortOrder
     address?: SortOrder
     role?: SortOrder
@@ -2333,7 +2333,7 @@ export namespace Prisma {
     lastName?: SortOrder
     phoneNumber?: SortOrder
     email?: SortOrder
-    password?: SortOrder
+    hashedPassword?: SortOrder
     photoURL?: SortOrder
     address?: SortOrder
     role?: SortOrder
