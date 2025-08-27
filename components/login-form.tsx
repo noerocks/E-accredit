@@ -77,7 +77,10 @@ const LoginForm = ({ className, ...props }: React.ComponentProps<"div">) => {
                   <FormItem>
                     <div className="flex justify-between">
                       <FormLabel>Password</FormLabel>
-                      <Link href={"/login"} className="hover:underline">
+                      <Link
+                        href={"/login"}
+                        className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                      >
                         Forgot password?
                       </Link>
                     </div>
@@ -95,9 +98,12 @@ const LoginForm = ({ className, ...props }: React.ComponentProps<"div">) => {
                 {/* {pending ? <Spinner message="Signing up..." /> : "Sign up"} */}
                 Sign in
               </Button>
-              <p className="text-center     ">
+              <p className="text-center text-sm">
                 Don't have an account?{" "}
-                <Link href={"/register"} className="underline">
+                <Link
+                  href={"/register"}
+                  className="underline underline-offset-4"
+                >
                   Sign up
                 </Link>
               </p>

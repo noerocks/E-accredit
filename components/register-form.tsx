@@ -179,10 +179,10 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
               <Button disabled={pending}>
                 {pending ? <Spinner message="Signing up..." /> : "Sign up"}
               </Button>
-              <p className="text-center">
-                Already had an account?{" "}
-                <Link href={"/login"} className="underline">
-                  Log in
+              <p className="text-center text-sm">
+                Already have an account?{" "}
+                <Link href={"/login"} className="underline underline-offset-4">
+                  Sign in
                 </Link>
               </p>
             </form>
