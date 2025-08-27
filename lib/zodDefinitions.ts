@@ -23,3 +23,8 @@ export const RegisterFormSchema = z
     error: "Passwords don't match",
     path: ["confirm"],
   });
+
+export const LoginFormSchema = z.object({
+  email: z.email().min(1, "Required").trim(),
+  password: z.string().min(1, "Required").trim(),
+});

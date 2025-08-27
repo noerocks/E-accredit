@@ -27,7 +27,6 @@ import { useTransition } from "react";
 import { register } from "@/lib/actions/authentication";
 import { toast } from "sonner";
 import Spinner from "./spinner";
-import { Divide } from "lucide-react";
 
 const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   const form = useForm<z.infer<typeof RegisterFormSchema>>({
@@ -62,7 +61,7 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col gap-5"
+              className="flex flex-col gap-5 select-none"
             >
               <div className="flex gap-5 items-center">
                 <FormField
@@ -182,7 +181,7 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
               </Button>
               <p className="text-center">
                 Already had an account?{" "}
-                <Link href={"/login"} className="hover:underline">
+                <Link href={"/login"} className="underline">
                   Log in
                 </Link>
               </p>
