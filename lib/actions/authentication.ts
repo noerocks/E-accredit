@@ -5,6 +5,7 @@ import { LoginFormSchema, RegisterFormSchema } from "../zodDefinitions";
 import bcrypt from "bcrypt";
 import { prisma } from "../prisma";
 import { Prisma } from "../generated/prisma";
+import { createSession } from "./session";
 
 export const register = async (values: z.infer<typeof RegisterFormSchema>) => {
   const result = RegisterFormSchema.safeParse(values);
@@ -61,9 +62,14 @@ export const login = async ({
       status: "error",
       message: "Email is not registered.",
     };
-
   const passwordsMatch = await bcrypt.compare(password, user.hashedPassword);
   if (!passwordsMatch) return { status: "error", message: "Invalid password" };
+  await createSession({
+    id: user.id,
+    email: user.email,
+    role: user.role,
+    name: `${user.firstName} ${user.lastName}`,
+  });
   return {
     status: "success",
     message: "Login successful",

@@ -1,13 +1,7 @@
-enum Role {
-  ADMIN = "ADMIN",
-  USER = "USER",
-  PENDING = "PENDING",
-}
-
 export type SessionPayload = {
   id: string;
   email: string;
-  role: Role;
+  role: "ADMIN" | "USER" | "PENDING";
   name: string;
   expiresAt: Date;
 };
