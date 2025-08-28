@@ -44,8 +44,10 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   const onSubmit = async (values: z.infer<typeof RegisterFormSchema>) => {
     startTransition(async () => {
       const result = await register(values);
-      if (result.status === "success") toast.success(result.message);
-      else toast.error(result.message);
+      if (result.status === "success") {
+        toast.success(result.message);
+        toast.info("Please wait for the admin to accept your registration.");
+      } else toast.error(result.message);
     });
   };
   return (

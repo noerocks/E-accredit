@@ -33,7 +33,7 @@ export default function Home() {
           </div>
         </div>
         <div>
-          <Link href={"/register"}>
+          <Link href={"/login"}>
             <button className="bg-[#282828] shadow-md shadow-black/30 hover:scale-101 cursor-pointer text-white px-5 py-2 rounded-md">
               Log in
             </button>

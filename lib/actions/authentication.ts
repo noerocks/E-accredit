@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { RegisterFormSchema } from "../zodDefinitions";
+import { LoginFormSchema, RegisterFormSchema } from "../zodDefinitions";
 import bcrypt from "bcrypt";
 import { prisma } from "../prisma";
 import { Prisma } from "../generated/prisma";
@@ -40,4 +40,32 @@ export const register = async (values: z.infer<typeof RegisterFormSchema>) => {
       message: "Something went wrong.",
     };
   }
+};
+
+export const login = async ({
+  email,
+  password,
+}: z.infer<typeof LoginFormSchema>) => {
+  const result = LoginFormSchema.safeParse({ email, password });
+  if (!result.success) {
+    return {
+      status: "error",
+      message: "Invalid form data",
+    };
+  }
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
+  if (!user)
+    return {
+      status: "error",
+      message: "Email is not registered.",
+    };
+
+  const passwordsMatch = await bcrypt.compare(password, user.hashedPassword);
+  if (!passwordsMatch) return { status: "error", message: "Invalid password" };
+  return {
+    status: "success",
+    message: "Login successful",
+  };
 };

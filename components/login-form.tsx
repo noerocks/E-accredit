@@ -25,6 +25,9 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import Spinner from "./spinner";
 import Link from "next/link";
+import { useTransition } from "react";
+import { login } from "@/lib/actions/authentication";
+import { toast } from "sonner";
 
 const LoginForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   const form = useForm<z.infer<typeof LoginFormSchema>>({
@@ -34,8 +37,13 @@ const LoginForm = ({ className, ...props }: React.ComponentProps<"div">) => {
       password: "",
     },
   });
-  const onSubmit = async () => {
-    console.log("test");
+  const [pending, startTransition] = useTransition();
+  const onSubmit = async (values: z.infer<typeof LoginFormSchema>) => {
+    startTransition(async () => {
+      const result = await login(values);
+      if (result.status === "error") toast.error(result.message);
+      else toast.success(result.message);
+    });
   };
   return (
     <div className={cn(className)} {...props}>
@@ -94,9 +102,8 @@ const LoginForm = ({ className, ...props }: React.ComponentProps<"div">) => {
                   </FormItem>
                 )}
               />
-              <Button>
-                {/* {pending ? <Spinner message="Signing up..." /> : "Sign up"} */}
-                Sign in
+              <Button disabled={pending}>
+                {pending ? <Spinner message="Signing up..." /> : "Sign up"}
               </Button>
               <p className="text-center text-sm">
                 Don't have an account?{" "}
