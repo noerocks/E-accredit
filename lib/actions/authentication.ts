@@ -5,7 +5,7 @@ import { LoginFormSchema, RegisterFormSchema } from "../zodDefinitions";
 import bcrypt from "bcrypt";
 import { prisma } from "../prisma";
 import { Prisma } from "../generated/prisma";
-import { createSession } from "./session";
+import { createSession, deleteSession } from "./session";
 
 export const register = async (values: z.infer<typeof RegisterFormSchema>) => {
   const result = RegisterFormSchema.safeParse(values);
@@ -75,3 +75,7 @@ export const login = async ({
     message: "Login successful",
   };
 };
+
+export async function logout() {
+  await deleteSession();
+}
