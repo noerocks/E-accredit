@@ -1,7 +1,9 @@
+import { Role } from "./generated/prisma";
+
 export type SessionPayload = {
   id: string;
   email: string;
-  role: "ADMIN" | "USER" | "PENDING";
+  role: Role;
   name: string;
   expiresAt: Date;
 };
