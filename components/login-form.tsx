@@ -28,6 +28,7 @@ import Link from "next/link";
 import { useTransition } from "react";
 import { login } from "@/lib/action/authentication";
 import { toast } from "sonner";
+import Image from "next/image";
 
 const LoginForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   const form = useForm<z.infer<typeof LoginFormSchema>>({
@@ -47,13 +48,23 @@ const LoginForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   return (
     <div className={cn(className)} {...props}>
       <Card>
-        <CardHeader>
-          <CardTitle className="text-xl">Log in</CardTitle>
-          <CardDescription>
-            Welcome back! Please sign in to your account
+        <CardHeader className="flex flex-col items-center w-full">
+          <div className="rounded-full overflow-hidden">
+            <Image
+              src={"/ctu-logo.png"}
+              height={80}
+              width={80}
+              alt="ctu logo"
+            />
+          </div>
+          <CardTitle className="text-2xl text-center font-bold">
+            Welcome Back
+          </CardTitle>
+          <CardDescription className="text-center">
+            Log in to your E-accredit Account
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-10 py-5">
           <Form {...form}>
             <form
               className="flex flex-col gap-5 select-none"

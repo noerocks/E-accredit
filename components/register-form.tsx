@@ -53,8 +53,10 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
     <div className={cn(className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle className="text-xl">Register</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-2xl text-center font-bold">
+            Create your Account
+          </CardTitle>
+          <CardDescription className="text-center">
             An email will be sent confirming your account creation
           </CardDescription>
         </CardHeader>
@@ -62,7 +64,7 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col gap-5 select-none"
+              className="flex flex-col gap-5 select-none px-3"
             >
               <div className="flex gap-5 items-center">
                 <FormField

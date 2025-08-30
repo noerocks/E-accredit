@@ -8,7 +8,6 @@ import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/libra
 import { createSession } from "./session";
 import { redirect } from "next/navigation";
 import { accessControl } from "../access-control";
-import { isErrored } from "stream";
 
 export async function login({
   email,
