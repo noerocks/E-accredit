@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { LoginFormSchema } from "@/lib/zodDefinitions";
+import { LoginFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Card,
@@ -41,8 +41,7 @@ const LoginForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   const onSubmit = async (values: z.infer<typeof LoginFormSchema>) => {
     startTransition(async () => {
       const result = await login(values);
-      if (result.status === "error") toast.error(result.message);
-      else toast.success(result.message);
+      if (result?.status === "error") toast.error(result.message);
     });
   };
   return (

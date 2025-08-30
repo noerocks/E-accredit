@@ -1,11 +1,14 @@
 "use server";
 
 import { z } from "zod";
-import { LoginFormSchema, RegisterFormSchema } from "../zodDefinitions";
+import { LoginFormSchema, RegisterFormSchema } from "../zod-definitions";
 import { prisma } from "../prisma";
 import bcrypt from "bcrypt";
 import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/library";
 import { createSession } from "./session";
+import { redirect } from "next/navigation";
+import { accessControl } from "../access-control";
+import { isErrored } from "stream";
 
 export async function login({
   email,
@@ -37,10 +40,7 @@ export async function login({
     role: user.role,
     name: `${user.firstName} ${user.lastName}`,
   });
-  return {
-    status: "success",
-    message: "Login successful",
-  };
+  redirect(accessControl[user.role][0]);
 }
 
 export async function register({
