@@ -26,7 +26,7 @@ import { Button } from "./ui/button";
 import Spinner from "./spinner";
 import Link from "next/link";
 import { useTransition } from "react";
-import { login } from "@/lib/actions/authentication";
+import { login } from "@/lib/action/authentication";
 import { toast } from "sonner";
 
 const LoginForm = ({ className, ...props }: React.ComponentProps<"div">) => {

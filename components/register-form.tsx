@@ -24,7 +24,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { cn } from "@/lib/utils";
 import { useTransition } from "react";
-import { register } from "@/lib/actions/authentication";
+import { register } from "@/lib/action/authentication";
 import { toast } from "sonner";
 import Spinner from "./spinner";
 
@@ -46,7 +46,6 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
       const result = await register(values);
       if (result.status === "success") {
         toast.success(result.message);
-        toast.info("Please wait for the admin to accept your registration.");
       } else toast.error(result.message);
     });
   };
