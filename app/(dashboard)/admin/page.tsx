@@ -1,5 +1,5 @@
 const AdminHome = () => {
-  return <p>admin dashboard</p>;
+  return <p></p>;
 };
 
 export default AdminHome;

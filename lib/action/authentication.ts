@@ -5,7 +5,7 @@ import { LoginFormSchema, RegisterFormSchema } from "../zod-definitions";
 import { prisma } from "../prisma";
 import bcrypt from "bcrypt";
 import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/library";
-import { createSession } from "./session";
+import { createSession, deleteSession } from "./session";
 import { redirect } from "next/navigation";
 import { accessControl } from "../access-control";
 
@@ -102,4 +102,9 @@ export async function register({
       message: "Something went wrong",
     };
   }
+}
+
+export async function logout() {
+  await deleteSession();
+  redirect("/login");
 }
