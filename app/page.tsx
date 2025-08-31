@@ -29,7 +29,7 @@ export default function Home() {
               <span className="text-2xl">U</span>NIVERSITY -{" "}
               <span className="text-2xl">N</span>AGA
             </p>
-            <p className="text-lg">Accreditation System</p>
+            <p className="text-lg text-black">Accreditation System</p>
           </div>
         </div>
         <div>
@@ -56,13 +56,13 @@ export default function Home() {
           </li>
         </ul>
       </nav>
-      <section className="h-[calc(100vh-140px)]">
+      <section className="h-[calc(100vh-140px)] bg-white">
         <Image
           src={"/ctu-building.jpg"}
           alt="ctu naga building"
           width={1440}
           height={456}
-          className="w-full h-full object-cover object-[0%_90%] opacity-40"
+          className="w-full h-full object-cover object-[0%_90%] opacity-50"
         />
       </section>
       <section id="features" className="h-[calc(100vh-40px)]">

@@ -9,14 +9,13 @@ interface SpinnerProps {
 
 export default function Spinner({
   size = 24,
-  color = "text-white",
   className = "",
   message,
 }: SpinnerProps) {
   return (
     <div className="flex items-center space-x-2">
       <Loader
-        className={`animate-spin ${color} ${className}`}
+        className={`animate-spin  ${className}`}
         width={size}
         height={size}
       />

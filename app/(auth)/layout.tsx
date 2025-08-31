@@ -10,7 +10,7 @@ const AuthLayout = ({
 }>) => {
   return (
     <div className="min-h-svh flex justify-center items-center relative">
-      <div className="absolute top-0 left-0 p-5 flex items-center gap-2">
+      <div className="absolute top-0 left-0 p-5 flex items-center justify-between gap-2 w-full">
         <Link href="/">
           <Button variant="outline" size="icon">
             <Home />
