@@ -1,4 +1,4 @@
-import { FolderCheck, Landmark } from "lucide-react";
+import { FolderCheck, Landmark, LayoutDashboard, Users } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -16,6 +16,7 @@ import { getDisplayUser } from "@/lib/dal/user";
 
 const DashboardSidebar = async () => {
   const user = await getDisplayUser();
+  const data = {};
   return (
     <Sidebar>
       <SidebarHeader>
@@ -37,13 +38,34 @@ const DashboardSidebar = async () => {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
+          <SidebarGroupLabel>AMS</SidebarGroupLabel>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton size="lg" asChild>
+                <Link href={"/"}>
+                  <LayoutDashboard />
+                  <span>Dashboard</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton size="lg" asChild>
+                <Link href={"/admin/users"}>
+                  <Users />
+                  <span>Users</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
+        <SidebarGroup>
           <SidebarGroupLabel>CTU Naga Ext. Campus</SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton size="lg" asChild>
-                <Link href={"/admin/departments"}>
+                <Link href={"/admin/programs"}>
                   <Landmark />
-                  <span>Departments</span>
+                  <span>Programs</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

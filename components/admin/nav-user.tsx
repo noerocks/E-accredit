@@ -42,7 +42,8 @@ const NavUser = ({
                   <AvatarFallback className="rounded-lg">{`${user?.fullName
                     .split(" ")
                     .reduce(
-                      (initial, name) => (initial += name[0].toUpperCase()),
+                      (initial, name) =>
+                        (initial += name[0].toUpperCase()).slice(0, 3),
                       ""
                     )}`}</AvatarFallback>
                 </Avatar>
