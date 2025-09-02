@@ -10,7 +10,7 @@ const AdminLayout = async ({
       <DashboardSidebar />
       <SidebarInset className="flex flex-col">
         <DashboardHeader />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 bg-muted">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );

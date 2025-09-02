@@ -1,5 +1,5 @@
 const UserHome = () => {
-  return <p>user dashboard</p>;
+  return <p></p>;
 };
 
 export default UserHome;

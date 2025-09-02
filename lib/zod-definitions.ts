@@ -2,8 +2,8 @@ import { z } from "zod";
 
 export const RegisterFormSchema = z
   .object({
-    firstName: z.string().min(1, "Required").trim(),
-    lastName: z.string().min(1, "Required").trim(),
+    firstName: z.string().min(1, "This field is required").trim(),
+    lastName: z.string().min(1, "This field is required").trim(),
     phoneNumber: z
       .string()
       .length(11, "Must be 11 digits")
@@ -25,6 +25,12 @@ export const RegisterFormSchema = z
   });
 
 export const LoginFormSchema = z.object({
-  email: z.email().min(1, "Required").trim(),
-  password: z.string().min(1, "Required").trim(),
+  email: z.email().min(1, "This field is required").trim(),
+  password: z.string().min(1, "This field is required").trim(),
+});
+
+export const CreateProgramFormSchema = z.object({
+  name: z.string().min(1, "This field is required"),
+  code: z.string().min(1, "This field is required"),
+  department: z.string().min(1, "This field is required"),
 });

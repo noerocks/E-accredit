@@ -67,7 +67,7 @@ const LoginForm = ({ className, ...props }: React.ComponentProps<"div">) => {
         <CardContent className="px-10 py-5">
           <Form {...form}>
             <form
-              className="flex flex-col gap-5 select-none"
+              className="flex flex-col gap-5"
               onSubmit={form.handleSubmit(onSubmit)}
             >
               <FormField

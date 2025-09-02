@@ -1,9 +1,11 @@
-const DepartmentsPage = () => {
+import CreateProgramForm from "@/components/admin/create-program-form";
+
+const ProgramsPage = () => {
   return (
     <div>
-      <p>Programs</p>
+      <CreateProgramForm />
     </div>
   );
 };
 
-export default DepartmentsPage;
+export default ProgramsPage;

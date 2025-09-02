@@ -18,7 +18,7 @@ const DashboardSidebar = async () => {
   const user = await getDisplayUser();
   const data = {};
   return (
-    <Sidebar>
+    <Sidebar variant="inset">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -41,7 +41,7 @@ const DashboardSidebar = async () => {
           <SidebarGroupLabel>AMS</SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton size="lg" asChild>
+              <SidebarMenuButton asChild>
                 <Link href={"/"}>
                   <LayoutDashboard />
                   <span>Dashboard</span>
@@ -49,7 +49,7 @@ const DashboardSidebar = async () => {
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton size="lg" asChild>
+              <SidebarMenuButton asChild>
                 <Link href={"/admin/users"}>
                   <Users />
                   <span>Users</span>
@@ -62,7 +62,7 @@ const DashboardSidebar = async () => {
           <SidebarGroupLabel>CTU Naga Ext. Campus</SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton size="lg" asChild>
+              <SidebarMenuButton asChild>
                 <Link href={"/admin/programs"}>
                   <Landmark />
                   <span>Programs</span>
