@@ -18,6 +18,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Program
+ * 
+ */
+export type Program = $Result.DefaultSelection<Prisma.$ProgramPayload>
 
 /**
  * Enums
@@ -164,6 +169,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.program`: Exposes CRUD operations for the **Program** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Programs
+    * const programs = await prisma.program.findMany()
+    * ```
+    */
+  get program(): Prisma.ProgramDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -222,8 +237,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.15.0
-   * Query Engine version: 85179d7826409ee107a6ba334b5e305ae3fba9fb
+   * Prisma Client JS version: 6.14.0
+   * Query Engine version: 717184b7b35ea05dfa71a3236b7af656013e1e49
    */
   export type PrismaVersion = {
     client: string
@@ -604,7 +619,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User'
+    User: 'User',
+    Program: 'Program'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -623,7 +639,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user"
+      modelProps: "user" | "program"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -698,6 +714,80 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Program: {
+        payload: Prisma.$ProgramPayload<ExtArgs>
+        fields: Prisma.ProgramFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProgramFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProgramFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPayload>
+          }
+          findFirst: {
+            args: Prisma.ProgramFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProgramFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPayload>
+          }
+          findMany: {
+            args: Prisma.ProgramFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPayload>[]
+          }
+          create: {
+            args: Prisma.ProgramCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPayload>
+          }
+          createMany: {
+            args: Prisma.ProgramCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProgramCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPayload>[]
+          }
+          delete: {
+            args: Prisma.ProgramDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPayload>
+          }
+          update: {
+            args: Prisma.ProgramUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProgramDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProgramUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProgramUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProgramUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPayload>
+          }
+          aggregate: {
+            args: Prisma.ProgramAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProgram>
+          }
+          groupBy: {
+            args: Prisma.ProgramGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProgramGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProgramCountArgs<ExtArgs>
+            result: $Utils.Optional<ProgramCountAggregateOutputType> | number
           }
         }
       }
@@ -794,6 +884,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    program?: ProgramOmit
   }
 
   /* Types for Logging */
@@ -1948,6 +2039,1014 @@ export namespace Prisma {
 
 
   /**
+   * Model Program
+   */
+
+  export type AggregateProgram = {
+    _count: ProgramCountAggregateOutputType | null
+    _min: ProgramMinAggregateOutputType | null
+    _max: ProgramMaxAggregateOutputType | null
+  }
+
+  export type ProgramMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    code: string | null
+    department: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProgramMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    code: string | null
+    department: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProgramCountAggregateOutputType = {
+    id: number
+    name: number
+    code: number
+    department: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ProgramMinAggregateInputType = {
+    id?: true
+    name?: true
+    code?: true
+    department?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProgramMaxAggregateInputType = {
+    id?: true
+    name?: true
+    code?: true
+    department?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProgramCountAggregateInputType = {
+    id?: true
+    name?: true
+    code?: true
+    department?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ProgramAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Program to aggregate.
+     */
+    where?: ProgramWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Programs to fetch.
+     */
+    orderBy?: ProgramOrderByWithRelationInput | ProgramOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProgramWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Programs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Programs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Programs
+    **/
+    _count?: true | ProgramCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProgramMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProgramMaxAggregateInputType
+  }
+
+  export type GetProgramAggregateType<T extends ProgramAggregateArgs> = {
+        [P in keyof T & keyof AggregateProgram]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProgram[P]>
+      : GetScalarType<T[P], AggregateProgram[P]>
+  }
+
+
+
+
+  export type ProgramGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgramWhereInput
+    orderBy?: ProgramOrderByWithAggregationInput | ProgramOrderByWithAggregationInput[]
+    by: ProgramScalarFieldEnum[] | ProgramScalarFieldEnum
+    having?: ProgramScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProgramCountAggregateInputType | true
+    _min?: ProgramMinAggregateInputType
+    _max?: ProgramMaxAggregateInputType
+  }
+
+  export type ProgramGroupByOutputType = {
+    id: string
+    name: string
+    code: string
+    department: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ProgramCountAggregateOutputType | null
+    _min: ProgramMinAggregateOutputType | null
+    _max: ProgramMaxAggregateOutputType | null
+  }
+
+  type GetProgramGroupByPayload<T extends ProgramGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProgramGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProgramGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProgramGroupByOutputType[P]>
+            : GetScalarType<T[P], ProgramGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProgramSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    code?: boolean
+    department?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["program"]>
+
+  export type ProgramSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    code?: boolean
+    department?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["program"]>
+
+  export type ProgramSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    code?: boolean
+    department?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["program"]>
+
+  export type ProgramSelectScalar = {
+    id?: boolean
+    name?: boolean
+    code?: boolean
+    department?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ProgramOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "code" | "department" | "createdAt" | "updatedAt", ExtArgs["result"]["program"]>
+
+  export type $ProgramPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Program"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      code: string
+      department: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["program"]>
+    composites: {}
+  }
+
+  type ProgramGetPayload<S extends boolean | null | undefined | ProgramDefaultArgs> = $Result.GetResult<Prisma.$ProgramPayload, S>
+
+  type ProgramCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProgramFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProgramCountAggregateInputType | true
+    }
+
+  export interface ProgramDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Program'], meta: { name: 'Program' } }
+    /**
+     * Find zero or one Program that matches the filter.
+     * @param {ProgramFindUniqueArgs} args - Arguments to find a Program
+     * @example
+     * // Get one Program
+     * const program = await prisma.program.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProgramFindUniqueArgs>(args: SelectSubset<T, ProgramFindUniqueArgs<ExtArgs>>): Prisma__ProgramClient<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Program that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProgramFindUniqueOrThrowArgs} args - Arguments to find a Program
+     * @example
+     * // Get one Program
+     * const program = await prisma.program.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProgramFindUniqueOrThrowArgs>(args: SelectSubset<T, ProgramFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProgramClient<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Program that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgramFindFirstArgs} args - Arguments to find a Program
+     * @example
+     * // Get one Program
+     * const program = await prisma.program.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProgramFindFirstArgs>(args?: SelectSubset<T, ProgramFindFirstArgs<ExtArgs>>): Prisma__ProgramClient<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Program that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgramFindFirstOrThrowArgs} args - Arguments to find a Program
+     * @example
+     * // Get one Program
+     * const program = await prisma.program.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProgramFindFirstOrThrowArgs>(args?: SelectSubset<T, ProgramFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProgramClient<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Programs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgramFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Programs
+     * const programs = await prisma.program.findMany()
+     * 
+     * // Get first 10 Programs
+     * const programs = await prisma.program.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const programWithIdOnly = await prisma.program.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProgramFindManyArgs>(args?: SelectSubset<T, ProgramFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Program.
+     * @param {ProgramCreateArgs} args - Arguments to create a Program.
+     * @example
+     * // Create one Program
+     * const Program = await prisma.program.create({
+     *   data: {
+     *     // ... data to create a Program
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProgramCreateArgs>(args: SelectSubset<T, ProgramCreateArgs<ExtArgs>>): Prisma__ProgramClient<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Programs.
+     * @param {ProgramCreateManyArgs} args - Arguments to create many Programs.
+     * @example
+     * // Create many Programs
+     * const program = await prisma.program.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProgramCreateManyArgs>(args?: SelectSubset<T, ProgramCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Programs and returns the data saved in the database.
+     * @param {ProgramCreateManyAndReturnArgs} args - Arguments to create many Programs.
+     * @example
+     * // Create many Programs
+     * const program = await prisma.program.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Programs and only return the `id`
+     * const programWithIdOnly = await prisma.program.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProgramCreateManyAndReturnArgs>(args?: SelectSubset<T, ProgramCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Program.
+     * @param {ProgramDeleteArgs} args - Arguments to delete one Program.
+     * @example
+     * // Delete one Program
+     * const Program = await prisma.program.delete({
+     *   where: {
+     *     // ... filter to delete one Program
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProgramDeleteArgs>(args: SelectSubset<T, ProgramDeleteArgs<ExtArgs>>): Prisma__ProgramClient<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Program.
+     * @param {ProgramUpdateArgs} args - Arguments to update one Program.
+     * @example
+     * // Update one Program
+     * const program = await prisma.program.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProgramUpdateArgs>(args: SelectSubset<T, ProgramUpdateArgs<ExtArgs>>): Prisma__ProgramClient<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Programs.
+     * @param {ProgramDeleteManyArgs} args - Arguments to filter Programs to delete.
+     * @example
+     * // Delete a few Programs
+     * const { count } = await prisma.program.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProgramDeleteManyArgs>(args?: SelectSubset<T, ProgramDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Programs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgramUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Programs
+     * const program = await prisma.program.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProgramUpdateManyArgs>(args: SelectSubset<T, ProgramUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Programs and returns the data updated in the database.
+     * @param {ProgramUpdateManyAndReturnArgs} args - Arguments to update many Programs.
+     * @example
+     * // Update many Programs
+     * const program = await prisma.program.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Programs and only return the `id`
+     * const programWithIdOnly = await prisma.program.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProgramUpdateManyAndReturnArgs>(args: SelectSubset<T, ProgramUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Program.
+     * @param {ProgramUpsertArgs} args - Arguments to update or create a Program.
+     * @example
+     * // Update or create a Program
+     * const program = await prisma.program.upsert({
+     *   create: {
+     *     // ... data to create a Program
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Program we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProgramUpsertArgs>(args: SelectSubset<T, ProgramUpsertArgs<ExtArgs>>): Prisma__ProgramClient<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Programs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgramCountArgs} args - Arguments to filter Programs to count.
+     * @example
+     * // Count the number of Programs
+     * const count = await prisma.program.count({
+     *   where: {
+     *     // ... the filter for the Programs we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProgramCountArgs>(
+      args?: Subset<T, ProgramCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProgramCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Program.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgramAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProgramAggregateArgs>(args: Subset<T, ProgramAggregateArgs>): Prisma.PrismaPromise<GetProgramAggregateType<T>>
+
+    /**
+     * Group by Program.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgramGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProgramGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProgramGroupByArgs['orderBy'] }
+        : { orderBy?: ProgramGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProgramGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProgramGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Program model
+   */
+  readonly fields: ProgramFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Program.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProgramClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Program model
+   */
+  interface ProgramFieldRefs {
+    readonly id: FieldRef<"Program", 'String'>
+    readonly name: FieldRef<"Program", 'String'>
+    readonly code: FieldRef<"Program", 'String'>
+    readonly department: FieldRef<"Program", 'String'>
+    readonly createdAt: FieldRef<"Program", 'DateTime'>
+    readonly updatedAt: FieldRef<"Program", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Program findUnique
+   */
+  export type ProgramFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Program
+     */
+    select?: ProgramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Program
+     */
+    omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * Filter, which Program to fetch.
+     */
+    where: ProgramWhereUniqueInput
+  }
+
+  /**
+   * Program findUniqueOrThrow
+   */
+  export type ProgramFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Program
+     */
+    select?: ProgramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Program
+     */
+    omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * Filter, which Program to fetch.
+     */
+    where: ProgramWhereUniqueInput
+  }
+
+  /**
+   * Program findFirst
+   */
+  export type ProgramFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Program
+     */
+    select?: ProgramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Program
+     */
+    omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * Filter, which Program to fetch.
+     */
+    where?: ProgramWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Programs to fetch.
+     */
+    orderBy?: ProgramOrderByWithRelationInput | ProgramOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Programs.
+     */
+    cursor?: ProgramWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Programs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Programs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Programs.
+     */
+    distinct?: ProgramScalarFieldEnum | ProgramScalarFieldEnum[]
+  }
+
+  /**
+   * Program findFirstOrThrow
+   */
+  export type ProgramFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Program
+     */
+    select?: ProgramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Program
+     */
+    omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * Filter, which Program to fetch.
+     */
+    where?: ProgramWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Programs to fetch.
+     */
+    orderBy?: ProgramOrderByWithRelationInput | ProgramOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Programs.
+     */
+    cursor?: ProgramWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Programs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Programs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Programs.
+     */
+    distinct?: ProgramScalarFieldEnum | ProgramScalarFieldEnum[]
+  }
+
+  /**
+   * Program findMany
+   */
+  export type ProgramFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Program
+     */
+    select?: ProgramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Program
+     */
+    omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * Filter, which Programs to fetch.
+     */
+    where?: ProgramWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Programs to fetch.
+     */
+    orderBy?: ProgramOrderByWithRelationInput | ProgramOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Programs.
+     */
+    cursor?: ProgramWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Programs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Programs.
+     */
+    skip?: number
+    distinct?: ProgramScalarFieldEnum | ProgramScalarFieldEnum[]
+  }
+
+  /**
+   * Program create
+   */
+  export type ProgramCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Program
+     */
+    select?: ProgramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Program
+     */
+    omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Program.
+     */
+    data: XOR<ProgramCreateInput, ProgramUncheckedCreateInput>
+  }
+
+  /**
+   * Program createMany
+   */
+  export type ProgramCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Programs.
+     */
+    data: ProgramCreateManyInput | ProgramCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Program createManyAndReturn
+   */
+  export type ProgramCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Program
+     */
+    select?: ProgramSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Program
+     */
+    omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * The data used to create many Programs.
+     */
+    data: ProgramCreateManyInput | ProgramCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Program update
+   */
+  export type ProgramUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Program
+     */
+    select?: ProgramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Program
+     */
+    omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Program.
+     */
+    data: XOR<ProgramUpdateInput, ProgramUncheckedUpdateInput>
+    /**
+     * Choose, which Program to update.
+     */
+    where: ProgramWhereUniqueInput
+  }
+
+  /**
+   * Program updateMany
+   */
+  export type ProgramUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Programs.
+     */
+    data: XOR<ProgramUpdateManyMutationInput, ProgramUncheckedUpdateManyInput>
+    /**
+     * Filter which Programs to update
+     */
+    where?: ProgramWhereInput
+    /**
+     * Limit how many Programs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Program updateManyAndReturn
+   */
+  export type ProgramUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Program
+     */
+    select?: ProgramSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Program
+     */
+    omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * The data used to update Programs.
+     */
+    data: XOR<ProgramUpdateManyMutationInput, ProgramUncheckedUpdateManyInput>
+    /**
+     * Filter which Programs to update
+     */
+    where?: ProgramWhereInput
+    /**
+     * Limit how many Programs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Program upsert
+   */
+  export type ProgramUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Program
+     */
+    select?: ProgramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Program
+     */
+    omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Program to update in case it exists.
+     */
+    where: ProgramWhereUniqueInput
+    /**
+     * In case the Program found by the `where` argument doesn't exist, create a new Program with this data.
+     */
+    create: XOR<ProgramCreateInput, ProgramUncheckedCreateInput>
+    /**
+     * In case the Program was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProgramUpdateInput, ProgramUncheckedUpdateInput>
+  }
+
+  /**
+   * Program delete
+   */
+  export type ProgramDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Program
+     */
+    select?: ProgramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Program
+     */
+    omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * Filter which Program to delete.
+     */
+    where: ProgramWhereUniqueInput
+  }
+
+  /**
+   * Program deleteMany
+   */
+  export type ProgramDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Programs to delete
+     */
+    where?: ProgramWhereInput
+    /**
+     * Limit how many Programs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Program without action
+   */
+  export type ProgramDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Program
+     */
+    select?: ProgramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Program
+     */
+    omit?: ProgramOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -1976,6 +3075,18 @@ export namespace Prisma {
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const ProgramScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    code: 'code',
+    department: 'department',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ProgramScalarFieldEnum = (typeof ProgramScalarFieldEnum)[keyof typeof ProgramScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -2148,6 +3259,64 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
+  export type ProgramWhereInput = {
+    AND?: ProgramWhereInput | ProgramWhereInput[]
+    OR?: ProgramWhereInput[]
+    NOT?: ProgramWhereInput | ProgramWhereInput[]
+    id?: StringFilter<"Program"> | string
+    name?: StringFilter<"Program"> | string
+    code?: StringFilter<"Program"> | string
+    department?: StringFilter<"Program"> | string
+    createdAt?: DateTimeFilter<"Program"> | Date | string
+    updatedAt?: DateTimeFilter<"Program"> | Date | string
+  }
+
+  export type ProgramOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    department?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProgramWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name_code?: ProgramNameCodeCompoundUniqueInput
+    AND?: ProgramWhereInput | ProgramWhereInput[]
+    OR?: ProgramWhereInput[]
+    NOT?: ProgramWhereInput | ProgramWhereInput[]
+    name?: StringFilter<"Program"> | string
+    code?: StringFilter<"Program"> | string
+    department?: StringFilter<"Program"> | string
+    createdAt?: DateTimeFilter<"Program"> | Date | string
+    updatedAt?: DateTimeFilter<"Program"> | Date | string
+  }, "id" | "name_code">
+
+  export type ProgramOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    department?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ProgramCountOrderByAggregateInput
+    _max?: ProgramMaxOrderByAggregateInput
+    _min?: ProgramMinOrderByAggregateInput
+  }
+
+  export type ProgramScalarWhereWithAggregatesInput = {
+    AND?: ProgramScalarWhereWithAggregatesInput | ProgramScalarWhereWithAggregatesInput[]
+    OR?: ProgramScalarWhereWithAggregatesInput[]
+    NOT?: ProgramScalarWhereWithAggregatesInput | ProgramScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Program"> | string
+    name?: StringWithAggregatesFilter<"Program"> | string
+    code?: StringWithAggregatesFilter<"Program"> | string
+    department?: StringWithAggregatesFilter<"Program"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Program"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Program"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     firstName: string
@@ -2242,6 +3411,69 @@ export namespace Prisma {
     photoURL?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgramCreateInput = {
+    id?: string
+    name: string
+    code: string
+    department: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProgramUncheckedCreateInput = {
+    id?: string
+    name: string
+    code: string
+    department: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProgramUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgramUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgramCreateManyInput = {
+    id?: string
+    name: string
+    code: string
+    department: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProgramUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgramUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2399,6 +3631,38 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type ProgramNameCodeCompoundUniqueInput = {
+    name: string
+    code: string
+  }
+
+  export type ProgramCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    department?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProgramMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    department?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProgramMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    department?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {

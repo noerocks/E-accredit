@@ -27,9 +27,12 @@ import {
   SelectValue,
   SelectItem,
 } from "@/components/ui/select";
+import { createProgram } from "@/lib/action/program";
 import { CreateProgramFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const CreateProgramForm = () => {
@@ -41,12 +44,29 @@ const CreateProgramForm = () => {
       department: "",
     },
   });
-  const onSubmit = async () => {
-    console.log("test");
+  const [pending, startTransition] = useTransition();
+  const onSubmit = async (data: z.infer<typeof CreateProgramFormSchema>) => {
+    startTransition(async () => {
+      const result = await createProgram(data);
+      switch (result.status) {
+        case "success":
+          toast.success(result.message);
+          break;
+        case "error":
+          toast.error(result.message);
+          break;
+      }
+    });
   };
   return (
     <div>
-      <Dialog>
+      <Dialog
+        onOpenChange={(isOpen) => {
+          if (!isOpen) {
+            form.reset();
+          }
+        }}
+      >
         <DialogTrigger asChild>
           <Button>Create Program</Button>
         </DialogTrigger>
