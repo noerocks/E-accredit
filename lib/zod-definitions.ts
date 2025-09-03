@@ -17,7 +17,7 @@ export const RegisterFormSchema = z
       .regex(/[0-9]/, "At least one digit")
       .regex(/[^A-Z0-9a-z]/, "At least one special character")
       .trim(),
-    confirm: z.string().min(8, "Minimum 8 characters").trim(),
+    confirm: z.string().min(8, "Minimum 8 characters").trim().optional(),
   })
   .refine((data) => data.password === data.confirm, {
     error: "Passwords don't match",

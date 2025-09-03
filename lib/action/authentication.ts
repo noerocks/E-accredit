@@ -2,12 +2,12 @@
 
 import { z } from "zod";
 import { LoginFormSchema, RegisterFormSchema } from "../zod-definitions";
-import { prisma } from "../prisma";
 import bcrypt from "bcrypt";
 import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/library";
 import { createSession, deleteSession } from "./session";
 import { redirect } from "next/navigation";
 import { accessControl } from "../access-control";
+import { createUser, findByEmail } from "../dal/user";
 
 export async function login({
   email,
@@ -19,9 +19,7 @@ export async function login({
       status: "error",
       message: "Invalid form data",
     };
-  const user = await prisma.user.findUnique({
-    where: { email },
-  });
+  const user = await findByEmail(email);
   if (!user)
     return {
       status: "error",
@@ -65,10 +63,13 @@ export async function register({
     };
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
-    const newUser = await prisma.user.create({
-      data: { firstName, lastName, phoneNumber, email, hashedPassword },
+    await createUser({
+      firstName,
+      lastName,
+      phoneNumber,
+      email,
+      password: hashedPassword,
     });
-    console.log(newUser);
     return {
       status: "success",
       message: "Register successful",
@@ -85,7 +86,7 @@ export async function register({
           };
         case "email": {
           return {
-            status: "erorr",
+            status: "error",
             message: "Email is already taken",
           };
         }
