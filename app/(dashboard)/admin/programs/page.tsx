@@ -15,7 +15,7 @@ const ProgramsPage = async () => {
         <p className="text-2xl">Programs</p>
         <CreateProgramForm />
       </div>
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-5">
         {programs.map((program) => (
           <Card
             key={program.id}
