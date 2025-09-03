@@ -4,6 +4,7 @@ import { z } from "zod";
 import { CreateProgramFormSchema } from "../zod-definitions";
 import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/library";
 import { createProgram as createProgramDAL } from "../dal/program";
+import { revalidateTag } from "next/cache";
 
 export async function createProgram(
   data: z.infer<typeof CreateProgramFormSchema>
@@ -16,6 +17,7 @@ export async function createProgram(
     };
   try {
     await createProgramDAL(data);
+    revalidateTag("programs");
     return {
       status: "success",
       message: "Program created successfuly",

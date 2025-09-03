@@ -51,6 +51,7 @@ const CreateProgramForm = () => {
       switch (result.status) {
         case "success":
           toast.success(result.message);
+          form.reset();
           break;
         case "error":
           toast.error(result.message);

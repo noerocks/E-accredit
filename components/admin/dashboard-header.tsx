@@ -27,7 +27,7 @@ const DashboardHeader = () => {
       return withPaths;
     }, [] as { path: string; name: string }[]);
   return (
-    <header className="h-16 flex items-center justify-between gap-4 p-5 border-b bg-muted">
+    <header className="h-16 flex items-center justify-between gap-4 p-5 border-b">
       <div className="flex items-center gap-2">
         <SidebarTrigger />
         <Breadcrumb>

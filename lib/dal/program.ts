@@ -1,7 +1,9 @@
+import "server-only";
 import z from "zod";
 import { CreateProgramFormSchema } from "../zod-definitions";
 import { prisma } from "../prisma";
 import { verifySession } from "../action/session";
+import { unstable_cache } from "next/cache";
 
 export async function createProgram(
   data: z.infer<typeof CreateProgramFormSchema>
@@ -12,3 +14,14 @@ export async function createProgram(
   const newProgram = await prisma.program.create({ data });
   return newProgram;
 }
+
+export const getPrograms = unstable_cache(
+  async () => {
+    const programs = await prisma.program.findMany();
+    return programs;
+  },
+  ["programs"],
+  {
+    tags: ["programs"],
+  }
+);
