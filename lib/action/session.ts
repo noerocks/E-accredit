@@ -1,3 +1,4 @@
+import "server-only";
 import { cookies } from "next/headers";
 import { SessionPayload } from "../definitions";
 import { jwtVerify, SignJWT } from "jose";
@@ -21,7 +22,7 @@ export async function decrypt(session: string | undefined = "") {
     });
     return jwtVerifyResult.payload;
   } catch (error) {
-    console.log("Failed to verify session");
+    return null;
   }
 }
 
@@ -58,6 +59,7 @@ export async function updateSession() {
 }
 
 export async function verifySession() {
+  console.log("Verify session");
   const session = (await cookies()).get("session")?.value;
   const payload = (await decrypt(session)) as SessionPayload;
   if (!payload?.id) {
@@ -65,7 +67,7 @@ export async function verifySession() {
   }
   return {
     isAuth: true,
-    userID: payload?.id,
+    user: payload,
   };
 }
 

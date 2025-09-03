@@ -12,21 +12,23 @@ export default async function middleware(req: NextRequest) {
   const isPublicRoute = publicRoutes.includes(pathName);
   const payload = await decrypt(session);
   const role = payload?.role as Role;
-
   if (!session && !isPublicRoute) {
     return NextResponse.redirect(new URL("/login", req.nextUrl));
   }
-
-  if (session && isPublicRoute) {
+  if (session && !payload) {
+    console.log("session tampered");
+    const res = NextResponse.redirect(new URL("/login", req.nextUrl));
+    res.cookies.delete("session");
+    return res;
+  }
+  if (payload && isPublicRoute) {
     const authenticatedPath = accessControl[role][0];
     return NextResponse.redirect(new URL(authenticatedPath, req.nextUrl));
   }
-
-  if (session && !hasPermission(role, pathName)) {
+  if (payload && !hasPermission(role, pathName)) {
     const authorizedPath = accessControl[role][0];
     return NextResponse.redirect(new URL(authorizedPath, req.nextUrl));
   }
-
   return NextResponse.next();
 }
 

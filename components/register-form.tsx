@@ -41,12 +41,17 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<"div">) => {
     },
   });
   const [pending, startTransition] = useTransition();
-  const onSubmit = async (values: z.infer<typeof RegisterFormSchema>) => {
+  const onSubmit = async (data: z.infer<typeof RegisterFormSchema>) => {
     startTransition(async () => {
-      const result = await register(values);
-      if (result.status === "success") {
-        toast.success(result.message);
-      } else toast.error(result.message);
+      const result = await register(data);
+      switch (result.status) {
+        case "success":
+          toast.success(result.message);
+          break;
+        case "error":
+          toast.error(result.message);
+          break;
+      }
     });
   };
   return (

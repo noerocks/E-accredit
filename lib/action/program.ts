@@ -4,10 +4,14 @@ import { z } from "zod";
 import { CreateProgramFormSchema } from "../zod-definitions";
 import { prisma } from "../prisma";
 import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/library";
+import { verifySession } from "./session";
 
 export async function createProgram(
   data: z.infer<typeof CreateProgramFormSchema>
 ) {
+  const session = await verifySession();
+  if (!session) return null;
+  if (session.user.role !== "ADMIN") return null;
   const result = CreateProgramFormSchema.safeParse(data);
   if (!result.success)
     return {

@@ -1,6 +1,6 @@
 import CreateProgramForm from "@/components/admin/create-program-form";
 
-const ProgramsPage = () => {
+const ProgramsPage = async () => {
   return (
     <div>
       <CreateProgramForm />

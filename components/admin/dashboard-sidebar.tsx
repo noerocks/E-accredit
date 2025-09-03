@@ -16,7 +16,6 @@ import { getDisplayUser } from "@/lib/dal/user";
 
 const DashboardSidebar = async () => {
   const user = await getDisplayUser();
-  const data = {};
   return (
     <Sidebar variant="inset">
       <SidebarHeader>
@@ -42,7 +41,7 @@ const DashboardSidebar = async () => {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href={"/"}>
+                <Link href={"/admin"}>
                   <LayoutDashboard />
                   <span>Dashboard</span>
                 </Link>

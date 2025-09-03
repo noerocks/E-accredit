@@ -8,7 +8,7 @@ export const getDisplayUser = cache(async () => {
   if (!session) return null;
   try {
     const user = await prisma.user.findUnique({
-      where: { id: session?.userID },
+      where: { id: session.user.id },
     });
     if (!user) return null;
     return DisplayUserDTO(user);
