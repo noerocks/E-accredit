@@ -7,12 +7,10 @@ import { useDebounceCallback } from "@/hooks/custom-hooks";
 
 const Search = () => {
   const searchParams = useSearchParams();
-  console.log(searchParams.get("query"));
   const pathName = usePathname();
   const { replace } = useRouter();
 
   const handleChange = useDebounceCallback((term: string) => {
-    console.log(term);
     const params = new URLSearchParams(searchParams);
     if (term) {
       params.set("query", term);

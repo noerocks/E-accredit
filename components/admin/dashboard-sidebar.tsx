@@ -77,7 +77,7 @@ const DashboardSidebar = async () => {
           </SidebarMenu>
         </SidebarGroup>
         <SidebarGroup>
-          <SidebarGroupLabel>Instruments</SidebarGroupLabel>
+          <SidebarGroupLabel>Accreditation</SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>

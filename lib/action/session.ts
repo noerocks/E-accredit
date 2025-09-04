@@ -59,7 +59,6 @@ export async function updateSession() {
 }
 
 export async function verifySession() {
-  console.log("Verify session");
   const session = (await cookies()).get("session")?.value;
   const payload = (await decrypt(session)) as SessionPayload;
   if (!payload?.id) {
