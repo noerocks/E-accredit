@@ -2,9 +2,10 @@ import "server-only";
 import { cache } from "react";
 import { verifySession } from "../action/session";
 import { prisma } from "../prisma";
-import { DisplayUserDTO } from "../dto/user";
+import { userProfileDTO, usersDTO } from "../dto/user";
 import z from "zod";
 import { RegisterFormSchema } from "../zod-definitions";
+import { unstable_cache } from "next/cache";
 
 export async function findByEmail(email: string) {
   const user = await prisma.user.findUnique({
@@ -23,7 +24,7 @@ export async function createUser({
   return newUser;
 }
 
-export const getDisplayUser = cache(async () => {
+export const getUserProfile = cache(async () => {
   const session = await verifySession();
   if (!session) return null;
   try {
@@ -31,9 +32,25 @@ export const getDisplayUser = cache(async () => {
       where: { id: session.user.id },
     });
     if (!user) return null;
-    return DisplayUserDTO(user);
+    return userProfileDTO(user);
   } catch (error) {
     console.log("Failed to fetch user");
     return null;
   }
 });
+
+export const getUsers = unstable_cache(
+  async () => {
+    try {
+      const users = await prisma.user.findMany();
+      return usersDTO(users);
+    } catch (error) {
+      console.log("Failed to fetch users");
+      return null;
+    }
+  },
+  ["users"],
+  {
+    tags: ["users"],
+  }
+);

@@ -12,10 +12,10 @@ import {
 } from "../ui/sidebar";
 import Link from "next/link";
 import NavUser from "./nav-user";
-import { getDisplayUser } from "@/lib/dal/user";
+import { getUserProfile } from "@/lib/dal/user";
 
 const DashboardSidebar = async () => {
-  const user = await getDisplayUser();
+  const user = await getUserProfile();
   return (
     <Sidebar variant="inset">
       <SidebarHeader>

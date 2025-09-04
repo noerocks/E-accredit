@@ -10,8 +10,8 @@ import { getPrograms } from "@/lib/dal/program";
 const ProgramsPage = async () => {
   const programs = await getPrograms();
   return (
-    <div>
-      <div className="flex justify-between items-center mb-4 px-4">
+    <div className="max-w-3/4 mx-auto mt-10">
+      <div className="flex justify-between items-center mb-10 px-4">
         <p className="text-2xl">Programs</p>
         <CreateProgramForm />
       </div>

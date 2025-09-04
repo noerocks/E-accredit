@@ -30,6 +30,7 @@ import {
 import { createProgram } from "@/lib/action/program";
 import { CreateProgramFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Plus } from "lucide-react";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -69,7 +70,12 @@ const CreateProgramForm = () => {
         }}
       >
         <DialogTrigger asChild>
-          <Button>Create Program</Button>
+          <Button>
+            <span className="flex items-center gap-2">
+              New
+              <Plus />
+            </span>
+          </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>

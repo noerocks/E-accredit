@@ -8,9 +8,9 @@ const AdminLayout = async ({
   return (
     <SidebarProvider>
       <DashboardSidebar />
-      <SidebarInset className="flex flex-col overflow-hidden">
+      <SidebarInset className="flex flex-col overflow-auto">
         <DashboardHeader />
-        <main className="flex-1 bg-muted px-10 py-5">{children}</main>
+        <main className="flex-1 bg-muted">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );
