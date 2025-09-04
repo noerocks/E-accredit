@@ -3,6 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Input } from "../ui/input";
 import { Search as SearchIcon } from "lucide-react";
+import { useDebounceCallback } from "@/hooks/custom-hooks";
 
 const Search = () => {
   const searchParams = useSearchParams();
@@ -10,7 +11,8 @@ const Search = () => {
   const pathName = usePathname();
   const { replace } = useRouter();
 
-  const handleChange = (term: string) => {
+  const handleChange = useDebounceCallback((term: string) => {
+    console.log(term);
     const params = new URLSearchParams(searchParams);
     if (term) {
       params.set("query", term);
@@ -18,7 +20,7 @@ const Search = () => {
       params.delete("query");
     }
     replace(`${[pathName]}?${params.toString()}`);
-  };
+  }, 500);
 
   return (
     <div className="relative">
