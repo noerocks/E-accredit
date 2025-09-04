@@ -7,14 +7,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuGroup,
   DropdownMenuItem,
-} from "../ui/dropdown-menu";
+} from "../../ui/dropdown-menu";
 import {
   SidebarFooter,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "../ui/sidebar";
-import { AvatarImage, Avatar, AvatarFallback } from "../ui/avatar";
+} from "../../ui/sidebar";
+import { AvatarImage, Avatar, AvatarFallback } from "../../ui/avatar";
 import { ChevronsUpDown, LogOut } from "lucide-react";
 import { logout } from "@/lib/action/authentication";
 

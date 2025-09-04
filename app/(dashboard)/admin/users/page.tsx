@@ -1,5 +1,6 @@
-import Search from "@/components/admin/search";
-import UserTable from "@/components/admin/user-table";
+import Search from "@/components/admin/user/search";
+import UserTable from "@/components/admin/user/user-table";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getPendingUserCount } from "@/lib/dal/user";
 import { Plus } from "lucide-react";
@@ -29,12 +30,13 @@ const UsersPage = async (props: {
               </Button>
             </Link>
             {pendingCount ? (
-              <div className="absolute -top-3 -right-3 bg-destructive w-7 h-7 text-white text-[10px] leading-none flex items-center justify-center rounded-full border-4 border-muted">
+              <Badge
+                variant="destructive"
+                className="absolute -top-2 -right-2 h-5 min-w-5 rounded-full font-mono tabular-nums"
+              >
                 {pendingCount}
-              </div>
-            ) : (
-              <></>
-            )}
+              </Badge>
+            ) : null}
           </div>
         </div>
       </div>

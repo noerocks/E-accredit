@@ -1,4 +1,4 @@
-import CreateProgramForm from "@/components/admin/create-program-form";
+import CreateProgramForm from "@/components/admin/program/create-program-form";
 import {
   Card,
   CardDescription,

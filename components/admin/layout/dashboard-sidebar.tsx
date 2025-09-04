@@ -15,7 +15,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "../ui/sidebar";
+} from "../../ui/sidebar";
 import Link from "next/link";
 import NavUser from "./nav-user";
 import { getUserProfile } from "@/lib/dal/user";

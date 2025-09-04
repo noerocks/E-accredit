@@ -1,5 +1,5 @@
-import DashboardHeader from "@/components/admin/dashboard-header";
-import DashboardSidebar from "@/components/admin/dashboard-sidebar";
+import DashboardHeader from "@/components/admin/layout/dashboard-header";
+import DashboardSidebar from "@/components/admin/layout/dashboard-sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 const AdminLayout = async ({

@@ -68,3 +68,17 @@ export const getPendingUserCount = cache(async () => {
     return null;
   }
 });
+
+export const getPendingUsers = unstable_cache(async () => {
+  try {
+    const pendingUsers = await prisma.user.findMany({
+      where: {
+        role: "PENDING",
+      },
+    });
+    return usersDTO(pendingUsers);
+  } catch (error) {
+    console.log("Failed to fetch pending users");
+    return null;
+  }
+});

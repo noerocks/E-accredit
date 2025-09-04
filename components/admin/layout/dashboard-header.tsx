@@ -1,8 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { ModeToggle } from "../mode-toggle";
-import { SidebarTrigger } from "../ui/sidebar";
+import { ModeToggle } from "../../mode-toggle";
+import { SidebarTrigger } from "../../ui/sidebar";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -10,7 +10,7 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
   BreadcrumbPage,
-} from "../ui/breadcrumb";
+} from "../../ui/breadcrumb";
 import { Fragment } from "react";
 import Link from "next/link";
 
