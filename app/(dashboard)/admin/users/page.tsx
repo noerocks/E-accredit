@@ -1,89 +1,44 @@
+import Search from "@/components/admin/search";
+import UserTable from "@/components/admin/user-table";
 import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { getUsers } from "@/lib/dal/user";
-import { Pen, Plus, Trash } from "lucide-react";
+import { getPendingUserCount } from "@/lib/dal/user";
+import { Plus } from "lucide-react";
+import Link from "next/link";
 
-const UsersPage = async () => {
-  const users = await getUsers();
-  console.log(users);
+const UsersPage = async (props: {
+  searchParams?: Promise<{ query?: string; page?: string }>;
+}) => {
+  const searchParams = await props.searchParams;
+  const pendingCount = await getPendingUserCount();
   return (
     <div className="max-w-3/4 mx-auto mt-10">
-      <div className="flex items-center justify-between mb-10 px-4">
+      <div className="flex items-center justify-between mb-10">
         <p className="text-2xl">Users</p>
-        <Button>
-          <span className="flex items-center gap-2">
-            New
-            <Plus />
-          </span>
-        </Button>
+        <div className="flex items-center gap-2">
+          <Search />
+          <Button>
+            <span className="flex items-center gap-2">
+              <Plus />
+              New
+            </span>
+          </Button>
+          <div className="relative">
+            <Link href={"/admin/users/pending"}>
+              <Button variant="outline">
+                <span className="flex items-center gap-2">Requests</span>
+              </Button>
+            </Link>
+            {pendingCount ? (
+              <div className="absolute -top-3 -right-3 bg-destructive w-7 h-7 text-white text-[10px] leading-none flex items-center justify-center rounded-full border-4 border-muted">
+                {pendingCount}
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
+        </div>
       </div>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>First Name</TableHead>
-            <TableHead>Last Name</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Phone Number</TableHead>
-            <TableHead>Registration Date</TableHead>
-            <TableHead>Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {users?.map((user) => (
-            <TableRow key={user.id}>
-              <TableCell>{user.firstName}</TableCell>
-              <TableCell>{user.lastName}</TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>{user.phoneNumber}</TableCell>
-              <TableCell>
-                {new Date(user.registrationDate).toLocaleDateString("en-US", {
-                  weekday: "long",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </TableCell>
-              <TableCell>
-                <div className="flex items-center gap-2">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button className="bg-primary" size="icon">
-                        <Pen />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Edit User</p>
-                    </TooltipContent>
-                  </Tooltip>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button variant="destructive" size="icon" title="Delete">
-                        <Trash />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Delete User</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <UserTable query={searchParams?.query} />
     </div>
   );
 };

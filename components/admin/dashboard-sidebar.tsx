@@ -1,4 +1,10 @@
-import { FolderCheck, Landmark, LayoutDashboard, Users } from "lucide-react";
+import {
+  ClipboardCheck,
+  FolderCheck,
+  Landmark,
+  LayoutDashboard,
+  Users,
+} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -17,7 +23,7 @@ import { getUserProfile } from "@/lib/dal/user";
 const DashboardSidebar = async () => {
   const user = await getUserProfile();
   return (
-    <Sidebar variant="inset">
+    <Sidebar>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -65,6 +71,19 @@ const DashboardSidebar = async () => {
                 <Link href={"/admin/programs"}>
                   <Landmark />
                   <span>Programs</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Instruments</SidebarGroupLabel>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href={"/admin/instruments"}>
+                  <ClipboardCheck />
+                  <span>Instruments</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

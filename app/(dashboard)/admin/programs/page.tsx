@@ -11,7 +11,7 @@ const ProgramsPage = async () => {
   const programs = await getPrograms();
   return (
     <div className="max-w-3/4 mx-auto mt-10">
-      <div className="flex justify-between items-center mb-10 px-4">
+      <div className="flex justify-between items-center mb-10">
         <p className="text-2xl">Programs</p>
         <CreateProgramForm />
       </div>

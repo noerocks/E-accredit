@@ -72,8 +72,8 @@ const CreateProgramForm = () => {
         <DialogTrigger asChild>
           <Button>
             <span className="flex items-center gap-2">
-              New
               <Plus />
+              New
             </span>
           </Button>
         </DialogTrigger>

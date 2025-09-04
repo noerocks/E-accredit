@@ -54,3 +54,17 @@ export const getUsers = unstable_cache(
     tags: ["users"],
   }
 );
+
+export const getPendingUserCount = cache(async () => {
+  const session = await verifySession();
+  if (!session) return null;
+  try {
+    const count = await prisma.user.count({
+      where: { role: "PENDING" },
+    });
+    return count;
+  } catch (error) {
+    console.log("Failed to fetch pending user count");
+    return null;
+  }
+});
