@@ -2,13 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog } from "@/components/ui/dialog";
 import { TableBody, TableCell, TableRow } from "@/components/ui/table";
 import {
   Tooltip,
@@ -18,7 +12,7 @@ import {
 import { UsersDTO } from "@/lib/dto/user";
 import { UserPen, UserX } from "lucide-react";
 import { useState } from "react";
-import DeleteUserForm from "./delete-user-form";
+import DeleteUserForm from "./delete-user-dialog";
 
 const UserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
   const [open, setOpen] = useState(false);
@@ -96,23 +90,7 @@ const UserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
         ))}
       </TableBody>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>
-              {action === "edit" ? "Edit user" : "Delete User"}
-            </DialogTitle>
-            <DialogDescription>
-              {action === "edit"
-                ? ""
-                : "Are you sure you want to delete user? This action can't be undone!"}
-            </DialogDescription>
-          </DialogHeader>
-          {action === "edit" ? (
-            ""
-          ) : (
-            <DeleteUserForm selectedUser={selectedUser} />
-          )}
-        </DialogContent>
+        <DeleteUserForm selectedUser={selectedUser} />
       </Dialog>
     </>
   );

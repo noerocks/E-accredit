@@ -1,5 +1,13 @@
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { DialogClose, DialogFooter } from "@/components/ui/dialog";
+import {
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -11,10 +19,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { UsersDTO } from "@/lib/dto/user";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { TriangleAlert } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-const DeleteUserForm = ({
+const DeleteUserDialog = ({
   selectedUser,
 }: {
   selectedUser: UsersDTO | undefined;
@@ -42,7 +51,18 @@ const DeleteUserForm = ({
     console.log(data.userFullname);
   };
   return (
-    <>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Delete User</DialogTitle>
+        <DialogDescription>
+          Are you sure you want to delete this user?
+        </DialogDescription>
+        <Alert variant="destructive">
+          <TriangleAlert />
+          <AlertTitle>Warning!</AlertTitle>
+          <AlertDescription>This action can't be undone</AlertDescription>
+        </Alert>
+      </DialogHeader>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
@@ -70,8 +90,8 @@ const DeleteUserForm = ({
           </DialogFooter>
         </form>
       </Form>
-    </>
+    </DialogContent>
   );
 };
 
-export default DeleteUserForm;
+export default DeleteUserDialog;
