@@ -127,20 +127,21 @@ const CreateProgramForm = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Department</FormLabel>
-                    <FormControl>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
+
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
                         <SelectTrigger className="w-full">
                           <SelectValue placeholder="Select a department" />
                         </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Technology">Technology</SelectItem>
-                          <SelectItem value="Education">Education</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="Technology">Technology</SelectItem>
+                        <SelectItem value="Education">Education</SelectItem>
+                      </SelectContent>
+                    </Select>
                     <FormDescription>
                       Please select a Department
                     </FormDescription>

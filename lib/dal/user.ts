@@ -26,9 +26,9 @@ export async function createUser({
 
 export const getUserProfile = cache(
   async (): Promise<UserProfileDTO | null> => {
-    const session = await verifySession();
-    if (!session) return null;
     try {
+      const session = await verifySession();
+      if (!session) return null;
       const user = await prisma.user.findUnique({
         where: { id: session.user.id },
       });
@@ -70,9 +70,9 @@ export const getUsers = unstable_cache(
 );
 
 export const getPendingUserCount = cache(async () => {
-  const session = await verifySession();
-  if (!session) return null;
   try {
+    const session = await verifySession();
+    if (!session) return null;
     const count = await prisma.user.count({
       where: { role: "PENDING" },
     });
@@ -107,7 +107,7 @@ export const getPendingUsers = unstable_cache(
   },
   ["pendingUsers"],
   {
-    tags: ["pendingUsers"],
+    tags: ["users"],
   }
 );
 

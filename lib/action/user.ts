@@ -19,7 +19,6 @@ export async function rejectUser(
         message: "Unauthorized action",
       };
     }
-    revalidateTag("pendingUsers");
     revalidateTag("users");
     return {
       status: "success",

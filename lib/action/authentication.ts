@@ -72,7 +72,6 @@ export async function register({
       password: hashedPassword,
     });
     revalidateTag("users");
-    revalidateTag("pendingUsers");
     return {
       status: "success",
       message: "Register successful",

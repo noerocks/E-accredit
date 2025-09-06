@@ -34,3 +34,8 @@ export const CreateProgramFormSchema = z.object({
   code: z.string().min(1, "This field is required"),
   department: z.string().min(1, "This field is required"),
 });
+
+export const AcceptUserFormSchema = z.object({
+  role: z.string().min(1, "This field is required"),
+  program: z.string().min(1, "This field is required"),
+});

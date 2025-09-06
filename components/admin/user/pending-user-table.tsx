@@ -1,9 +1,11 @@
 import { Table, TableHead, TableHeader, TableRow } from "../../ui/table";
 import { getPendingUsers } from "@/lib/dal/user";
 import PendingUserTableBody from "./pending-user-table-body";
+import { getProgramNamesAndID } from "@/lib/dal/program";
 
 const PendingUserTable = async () => {
   const users = await getPendingUsers();
+  const programs = await getProgramNamesAndID();
   return (
     <Table className="border">
       <TableHeader>
@@ -17,7 +19,7 @@ const PendingUserTable = async () => {
           <TableHead>Actions</TableHead>
         </TableRow>
       </TableHeader>
-      <PendingUserTableBody users={users} />
+      <PendingUserTableBody users={users} programs={programs} />
     </Table>
   );
 };

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import {
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -36,12 +37,12 @@ const RejectUserDialog = ({
   return (
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Reject User</DialogTitle>
-        <p className="text-sm text-muted-foreground">
+        <DialogTitle className="text-center text-2xl">Reject User</DialogTitle>
+        <DialogDescription>
           Are you sure you want to reject{" "}
           <span className="dark:text-white text-black">{`${selectedUser?.firstName} ${selectedUser?.lastName}`}</span>
           ?
-        </p>
+        </DialogDescription>
         <Alert
           variant="destructive"
           className="bg-destructive/5 border-destructive"

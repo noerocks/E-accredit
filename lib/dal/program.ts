@@ -4,6 +4,7 @@ import { CreateProgramFormSchema } from "../zod-definitions";
 import { prisma } from "../prisma";
 import { verifySession } from "../action/session";
 import { unstable_cache } from "next/cache";
+import { ProgramsNamesAndIdDTO } from "../dto/programs";
 
 export async function createProgram(
   data: z.infer<typeof CreateProgramFormSchema>
@@ -21,6 +22,22 @@ export const getPrograms = unstable_cache(
     return programs;
   },
   ["programs"],
+  {
+    tags: ["programs"],
+  }
+);
+
+export const getProgramNamesAndID = unstable_cache(
+  async (): Promise<ProgramsNamesAndIdDTO[]> => {
+    const programs = await prisma.program.findMany({
+      select: {
+        name: true,
+        id: true,
+      },
+    });
+    return programs;
+  },
+  ["getProgramNamesAndID"],
   {
     tags: ["programs"],
   }
