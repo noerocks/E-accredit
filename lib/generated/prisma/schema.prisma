@@ -33,3 +33,14 @@ model User {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
+
+model Program {
+  id         String   @id @default(uuid())
+  name       String
+  code       String
+  department String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([name, code])
+}

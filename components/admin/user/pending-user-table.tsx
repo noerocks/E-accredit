@@ -14,7 +14,7 @@ const PendingUserTable = async () => {
           <TableHead>Email</TableHead>
           <TableHead>Phone Number</TableHead>
           <TableHead>Registration Date</TableHead>
-          <TableHead className="text-center">Actions</TableHead>
+          <TableHead>Actions</TableHead>
         </TableRow>
       </TableHeader>
       <PendingUserTableBody users={users} />
