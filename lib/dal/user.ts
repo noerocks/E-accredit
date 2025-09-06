@@ -6,7 +6,6 @@ import { UserProfileDTO, UsersDTO } from "../dto/user";
 import z from "zod";
 import { RegisterFormSchema } from "../zod-definitions";
 import { unstable_cache } from "next/cache";
-import { unauthorized } from "next/navigation";
 
 export async function findByEmail(email: string) {
   const user = await prisma.user.findUnique({

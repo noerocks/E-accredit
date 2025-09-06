@@ -16,7 +16,10 @@ datasource db {
 
 enum Role {
   ADMIN
-  USER
+  CHAIRPERSON
+  MEMBER
+  INTERNAL
+  EXTERNAL
   PENDING
 }
 

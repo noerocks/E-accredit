@@ -30,7 +30,10 @@ export type Program = $Result.DefaultSelection<Prisma.$ProgramPayload>
 export namespace $Enums {
   export const Role: {
   ADMIN: 'ADMIN',
-  USER: 'USER',
+  CHAIRPERSON: 'CHAIRPERSON',
+  MEMBER: 'MEMBER',
+  INTERNAL: 'INTERNAL',
+  EXTERNAL: 'EXTERNAL',
   PENDING: 'PENDING'
 };
 
