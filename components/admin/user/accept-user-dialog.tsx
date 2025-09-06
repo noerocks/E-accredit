@@ -8,7 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { UsersDTO } from "@/lib/dto/user";
-import { Info, Send } from "lucide-react";
+import { Info } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -30,6 +30,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { useTransition } from "react";
+import { acceptUser } from "@/lib/action/user";
+import { Role } from "@/lib/generated/prisma";
+import Spinner from "@/components/spinner";
+import { toast } from "sonner";
 
 const AcceptUserDialog = ({
   selectedUser,
@@ -42,8 +47,19 @@ const AcceptUserDialog = ({
       role: "",
     },
   });
+  const [pending, startTransition] = useTransition();
   const onSubmit = async (data: z.infer<typeof AcceptUserFormSchema>) => {
-    console.log(data);
+    startTransition(async () => {
+      const result = await acceptUser(selectedUser?.id, data.role as Role);
+      switch (result.status) {
+        case "success":
+          toast.success(result.message);
+          break;
+        case "error":
+          toast.error(result.message);
+          break;
+      }
+    });
   };
   return (
     <DialogContent>
@@ -52,7 +68,7 @@ const AcceptUserDialog = ({
         <DialogDescription>
           Assign role to{" "}
           <span className="dark:text-white text-black">{`${selectedUser?.firstName} ${selectedUser?.lastName}`}</span>{" "}
-          and designate a program
+          before confirming registration
         </DialogDescription>
         <Alert className="border border-blue-400 text-blue-400 bg-blue-400/5">
           <Info />
@@ -83,10 +99,10 @@ const AcceptUserDialog = ({
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="CHAIRPERSON">
-                      Taskforce Chairperson
+                    <SelectItem value="ACCREDITATION_OFFICER">
+                      Accreditation Officer
                     </SelectItem>
-                    <SelectItem value="MEMBER">Taskforce Member</SelectItem>
+                    <SelectItem value="ACCREDITOR">Accreditor</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormDescription>Please assign a role</FormDescription>
@@ -98,7 +114,9 @@ const AcceptUserDialog = ({
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
             </DialogClose>
-            <Button>Confirm</Button>
+            <Button>
+              {pending ? <Spinner message="Approving..." /> : "Confirm"}
+            </Button>
           </DialogFooter>
         </form>
       </Form>

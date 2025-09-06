@@ -6,6 +6,7 @@ import { UserProfileDTO, UsersDTO } from "../dto/user";
 import z from "zod";
 import { RegisterFormSchema } from "../zod-definitions";
 import { unstable_cache } from "next/cache";
+import { Role } from "../generated/prisma";
 
 export async function findByEmail(email: string) {
   const user = await prisma.user.findUnique({
@@ -117,6 +118,20 @@ export async function rejectUser(id: string) {
   const user = await prisma.user.delete({
     where: {
       id,
+    },
+  });
+  return user;
+}
+
+export async function updateRole(id: string, role: Role) {
+  const session = await verifySession();
+  if (session.user.role !== "ADMIN") return { unauthorized: true };
+  const user = await prisma.user.update({
+    where: {
+      id: id,
+    },
+    data: {
+      role,
     },
   });
   return user;
