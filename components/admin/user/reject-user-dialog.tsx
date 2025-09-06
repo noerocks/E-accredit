@@ -37,17 +37,20 @@ const RejectUserDialog = ({
     <DialogContent>
       <DialogHeader>
         <DialogTitle>Reject User</DialogTitle>
+        <p className="text-sm text-muted-foreground">
+          Are you sure you want to reject{" "}
+          <span className="dark:text-white text-black">{`${selectedUser?.firstName} ${selectedUser?.lastName}`}</span>
+          ?
+        </p>
+        <Alert
+          variant="destructive"
+          className="bg-destructive/5 border-destructive"
+        >
+          <TriangleAlert />
+          <AlertTitle>Warning!</AlertTitle>
+          <AlertDescription>This action can't be undone</AlertDescription>
+        </Alert>
       </DialogHeader>
-      <p className="text-sm text-muted-foreground">
-        Are you sure you want to reject{" "}
-        <span className="dark:text-white text-black">{`${selectedUser?.firstName} ${selectedUser?.lastName}`}</span>
-        ?
-      </p>
-      <Alert variant="destructive">
-        <TriangleAlert />
-        <AlertTitle>Warning!</AlertTitle>
-        <AlertDescription>This action can't be undone</AlertDescription>
-      </Alert>
       <form action={formAction}>
         <DialogFooter>
           <DialogClose asChild>

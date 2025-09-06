@@ -57,7 +57,10 @@ const DeleteUserDialog = ({
         <DialogDescription>
           Are you sure you want to delete this user?
         </DialogDescription>
-        <Alert variant="destructive">
+        <Alert
+          variant="destructive"
+          className="bg-destructive/5 border-destructive"
+        >
           <TriangleAlert />
           <AlertTitle>Warning!</AlertTitle>
           <AlertDescription>This action can't be undone</AlertDescription>

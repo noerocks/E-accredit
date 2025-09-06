@@ -12,7 +12,7 @@ import {
 import { UsersDTO } from "@/lib/dto/user";
 import { UserPen, UserX } from "lucide-react";
 import { useState } from "react";
-import DeleteUserForm from "./delete-user-dialog";
+import DeleteUserDialog from "./delete-user-dialog";
 
 const UserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
   const [open, setOpen] = useState(false);
@@ -53,7 +53,7 @@ const UserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
               {new Date(user.registrationDate).toLocaleTimeString("en-US")}
             </TableCell>
             <TableCell>
-              <div className="flex items-center gap-2 justify-center">
+              <div className="flex items-center gap-2">
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
@@ -90,7 +90,7 @@ const UserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
         ))}
       </TableBody>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DeleteUserForm selectedUser={selectedUser} />
+        <DeleteUserDialog selectedUser={selectedUser} />
       </Dialog>
     </>
   );

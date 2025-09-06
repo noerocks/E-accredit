@@ -12,6 +12,7 @@ import { UsersDTO } from "@/lib/dto/user";
 import { UserPlus, UserX } from "lucide-react";
 import { useState } from "react";
 import RejectUserDialog from "./reject-user-dialog";
+import AcceptUserDialog from "./accept-user-dialog";
 
 const PendingUserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
   const [open, setOpen] = useState(false);
@@ -85,7 +86,11 @@ const PendingUserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
         ))}
       </TableBody>
       <Dialog open={open} onOpenChange={setOpen}>
-        <RejectUserDialog selectedUser={selectedUser} />
+        {action === "accept" ? (
+          <AcceptUserDialog />
+        ) : (
+          <RejectUserDialog selectedUser={selectedUser} />
+        )}
       </Dialog>
     </>
   );
