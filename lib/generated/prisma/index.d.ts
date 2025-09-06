@@ -23,6 +23,11 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * 
  */
 export type Program = $Result.DefaultSelection<Prisma.$ProgramPayload>
+/**
+ * Model ProgramPersonnel
+ * 
+ */
+export type ProgramPersonnel = $Result.DefaultSelection<Prisma.$ProgramPersonnelPayload>
 
 /**
  * Enums
@@ -30,20 +35,30 @@ export type Program = $Result.DefaultSelection<Prisma.$ProgramPayload>
 export namespace $Enums {
   export const Role: {
   ADMIN: 'ADMIN',
-  CHAIRPERSON: 'CHAIRPERSON',
-  MEMBER: 'MEMBER',
-  INTERNAL: 'INTERNAL',
-  EXTERNAL: 'EXTERNAL',
+  ACCREDITATION_OFFICER: 'ACCREDITATION_OFFICER',
+  ACCREDITOR: 'ACCREDITOR',
   PENDING: 'PENDING'
 };
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const ProgramPosition: {
+  CHAIRPERSON: 'CHAIRPERSON',
+  MEMBER: 'MEMBER'
+};
+
+export type ProgramPosition = (typeof ProgramPosition)[keyof typeof ProgramPosition]
 
 }
 
 export type Role = $Enums.Role
 
 export const Role: typeof $Enums.Role
+
+export type ProgramPosition = $Enums.ProgramPosition
+
+export const ProgramPosition: typeof $Enums.ProgramPosition
 
 /**
  * ##  Prisma Client ʲˢ
@@ -182,6 +197,16 @@ export class PrismaClient<
     * ```
     */
   get program(): Prisma.ProgramDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.programPersonnel`: Exposes CRUD operations for the **ProgramPersonnel** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProgramPersonnels
+    * const programPersonnels = await prisma.programPersonnel.findMany()
+    * ```
+    */
+  get programPersonnel(): Prisma.ProgramPersonnelDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -623,7 +648,8 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    Program: 'Program'
+    Program: 'Program',
+    ProgramPersonnel: 'ProgramPersonnel'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -642,7 +668,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "program"
+      modelProps: "user" | "program" | "programPersonnel"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -794,6 +820,80 @@ export namespace Prisma {
           }
         }
       }
+      ProgramPersonnel: {
+        payload: Prisma.$ProgramPersonnelPayload<ExtArgs>
+        fields: Prisma.ProgramPersonnelFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProgramPersonnelFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPersonnelPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProgramPersonnelFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPersonnelPayload>
+          }
+          findFirst: {
+            args: Prisma.ProgramPersonnelFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPersonnelPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProgramPersonnelFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPersonnelPayload>
+          }
+          findMany: {
+            args: Prisma.ProgramPersonnelFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPersonnelPayload>[]
+          }
+          create: {
+            args: Prisma.ProgramPersonnelCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPersonnelPayload>
+          }
+          createMany: {
+            args: Prisma.ProgramPersonnelCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProgramPersonnelCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPersonnelPayload>[]
+          }
+          delete: {
+            args: Prisma.ProgramPersonnelDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPersonnelPayload>
+          }
+          update: {
+            args: Prisma.ProgramPersonnelUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPersonnelPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProgramPersonnelDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProgramPersonnelUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProgramPersonnelUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPersonnelPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProgramPersonnelUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgramPersonnelPayload>
+          }
+          aggregate: {
+            args: Prisma.ProgramPersonnelAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProgramPersonnel>
+          }
+          groupBy: {
+            args: Prisma.ProgramPersonnelGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProgramPersonnelGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProgramPersonnelCountArgs<ExtArgs>
+            result: $Utils.Optional<ProgramPersonnelCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -888,6 +988,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     program?: ProgramOmit
+    programPersonnel?: ProgramPersonnelOmit
   }
 
   /* Types for Logging */
@@ -962,6 +1063,67 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    programPersonnel: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    programPersonnel?: boolean | UserCountOutputTypeCountProgramPersonnelArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountProgramPersonnelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgramPersonnelWhereInput
+  }
+
+
+  /**
+   * Count Type ProgramCountOutputType
+   */
+
+  export type ProgramCountOutputType = {
+    programPersonnel: number
+  }
+
+  export type ProgramCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    programPersonnel?: boolean | ProgramCountOutputTypeCountProgramPersonnelArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ProgramCountOutputType without action
+   */
+  export type ProgramCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramCountOutputType
+     */
+    select?: ProgramCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProgramCountOutputType without action
+   */
+  export type ProgramCountOutputTypeCountProgramPersonnelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgramPersonnelWhereInput
+  }
 
 
   /**
@@ -1180,6 +1342,8 @@ export namespace Prisma {
     role?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    programPersonnel?: boolean | User$programPersonnelArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1225,10 +1389,18 @@ export namespace Prisma {
   }
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "phoneNumber" | "email" | "hashedPassword" | "photoURL" | "address" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    programPersonnel?: boolean | User$programPersonnelArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      programPersonnel: Prisma.$ProgramPersonnelPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       firstName: string
@@ -1635,6 +1807,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    programPersonnel<T extends User$programPersonnelArgs<ExtArgs> = {}>(args?: Subset<T, User$programPersonnelArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1692,6 +1865,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1710,6 +1887,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1727,6 +1908,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1776,6 +1961,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1824,6 +2013,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -1866,6 +2059,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to create a User.
      */
@@ -1914,6 +2111,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1981,6 +2182,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -2007,6 +2212,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -2027,6 +2236,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.programPersonnel
+   */
+  export type User$programPersonnelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnel
+     */
+    select?: ProgramPersonnelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgramPersonnel
+     */
+    omit?: ProgramPersonnelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramPersonnelInclude<ExtArgs> | null
+    where?: ProgramPersonnelWhereInput
+    orderBy?: ProgramPersonnelOrderByWithRelationInput | ProgramPersonnelOrderByWithRelationInput[]
+    cursor?: ProgramPersonnelWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProgramPersonnelScalarFieldEnum | ProgramPersonnelScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2038,6 +2271,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
   }
 
 
@@ -2213,6 +2450,8 @@ export namespace Prisma {
     department?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    programPersonnel?: boolean | Program$programPersonnelArgs<ExtArgs>
+    _count?: boolean | ProgramCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["program"]>
 
   export type ProgramSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2243,10 +2482,18 @@ export namespace Prisma {
   }
 
   export type ProgramOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "code" | "department" | "createdAt" | "updatedAt", ExtArgs["result"]["program"]>
+  export type ProgramInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    programPersonnel?: boolean | Program$programPersonnelArgs<ExtArgs>
+    _count?: boolean | ProgramCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ProgramIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ProgramIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $ProgramPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Program"
-    objects: {}
+    objects: {
+      programPersonnel: Prisma.$ProgramPersonnelPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
@@ -2648,6 +2895,7 @@ export namespace Prisma {
    */
   export interface Prisma__ProgramClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    programPersonnel<T extends Program$programPersonnelArgs<ExtArgs> = {}>(args?: Subset<T, Program$programPersonnelArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2700,6 +2948,10 @@ export namespace Prisma {
      */
     omit?: ProgramOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramInclude<ExtArgs> | null
+    /**
      * Filter, which Program to fetch.
      */
     where: ProgramWhereUniqueInput
@@ -2718,6 +2970,10 @@ export namespace Prisma {
      */
     omit?: ProgramOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramInclude<ExtArgs> | null
+    /**
      * Filter, which Program to fetch.
      */
     where: ProgramWhereUniqueInput
@@ -2735,6 +2991,10 @@ export namespace Prisma {
      * Omit specific fields from the Program
      */
     omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramInclude<ExtArgs> | null
     /**
      * Filter, which Program to fetch.
      */
@@ -2784,6 +3044,10 @@ export namespace Prisma {
      */
     omit?: ProgramOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramInclude<ExtArgs> | null
+    /**
      * Filter, which Program to fetch.
      */
     where?: ProgramWhereInput
@@ -2832,6 +3096,10 @@ export namespace Prisma {
      */
     omit?: ProgramOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramInclude<ExtArgs> | null
+    /**
      * Filter, which Programs to fetch.
      */
     where?: ProgramWhereInput
@@ -2874,6 +3142,10 @@ export namespace Prisma {
      * Omit specific fields from the Program
      */
     omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramInclude<ExtArgs> | null
     /**
      * The data needed to create a Program.
      */
@@ -2922,6 +3194,10 @@ export namespace Prisma {
      * Omit specific fields from the Program
      */
     omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramInclude<ExtArgs> | null
     /**
      * The data needed to update a Program.
      */
@@ -2989,6 +3265,10 @@ export namespace Prisma {
      */
     omit?: ProgramOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramInclude<ExtArgs> | null
+    /**
      * The filter to search for the Program to update in case it exists.
      */
     where: ProgramWhereUniqueInput
@@ -3015,6 +3295,10 @@ export namespace Prisma {
      */
     omit?: ProgramOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramInclude<ExtArgs> | null
+    /**
      * Filter which Program to delete.
      */
     where: ProgramWhereUniqueInput
@@ -3035,6 +3319,30 @@ export namespace Prisma {
   }
 
   /**
+   * Program.programPersonnel
+   */
+  export type Program$programPersonnelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnel
+     */
+    select?: ProgramPersonnelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgramPersonnel
+     */
+    omit?: ProgramPersonnelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramPersonnelInclude<ExtArgs> | null
+    where?: ProgramPersonnelWhereInput
+    orderBy?: ProgramPersonnelOrderByWithRelationInput | ProgramPersonnelOrderByWithRelationInput[]
+    cursor?: ProgramPersonnelWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProgramPersonnelScalarFieldEnum | ProgramPersonnelScalarFieldEnum[]
+  }
+
+  /**
    * Program without action
    */
   export type ProgramDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3046,6 +3354,1063 @@ export namespace Prisma {
      * Omit specific fields from the Program
      */
     omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProgramPersonnel
+   */
+
+  export type AggregateProgramPersonnel = {
+    _count: ProgramPersonnelCountAggregateOutputType | null
+    _min: ProgramPersonnelMinAggregateOutputType | null
+    _max: ProgramPersonnelMaxAggregateOutputType | null
+  }
+
+  export type ProgramPersonnelMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    programId: string | null
+    position: $Enums.ProgramPosition | null
+  }
+
+  export type ProgramPersonnelMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    programId: string | null
+    position: $Enums.ProgramPosition | null
+  }
+
+  export type ProgramPersonnelCountAggregateOutputType = {
+    id: number
+    userId: number
+    programId: number
+    position: number
+    _all: number
+  }
+
+
+  export type ProgramPersonnelMinAggregateInputType = {
+    id?: true
+    userId?: true
+    programId?: true
+    position?: true
+  }
+
+  export type ProgramPersonnelMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    programId?: true
+    position?: true
+  }
+
+  export type ProgramPersonnelCountAggregateInputType = {
+    id?: true
+    userId?: true
+    programId?: true
+    position?: true
+    _all?: true
+  }
+
+  export type ProgramPersonnelAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProgramPersonnel to aggregate.
+     */
+    where?: ProgramPersonnelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgramPersonnels to fetch.
+     */
+    orderBy?: ProgramPersonnelOrderByWithRelationInput | ProgramPersonnelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProgramPersonnelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgramPersonnels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgramPersonnels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProgramPersonnels
+    **/
+    _count?: true | ProgramPersonnelCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProgramPersonnelMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProgramPersonnelMaxAggregateInputType
+  }
+
+  export type GetProgramPersonnelAggregateType<T extends ProgramPersonnelAggregateArgs> = {
+        [P in keyof T & keyof AggregateProgramPersonnel]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProgramPersonnel[P]>
+      : GetScalarType<T[P], AggregateProgramPersonnel[P]>
+  }
+
+
+
+
+  export type ProgramPersonnelGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgramPersonnelWhereInput
+    orderBy?: ProgramPersonnelOrderByWithAggregationInput | ProgramPersonnelOrderByWithAggregationInput[]
+    by: ProgramPersonnelScalarFieldEnum[] | ProgramPersonnelScalarFieldEnum
+    having?: ProgramPersonnelScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProgramPersonnelCountAggregateInputType | true
+    _min?: ProgramPersonnelMinAggregateInputType
+    _max?: ProgramPersonnelMaxAggregateInputType
+  }
+
+  export type ProgramPersonnelGroupByOutputType = {
+    id: string
+    userId: string
+    programId: string
+    position: $Enums.ProgramPosition
+    _count: ProgramPersonnelCountAggregateOutputType | null
+    _min: ProgramPersonnelMinAggregateOutputType | null
+    _max: ProgramPersonnelMaxAggregateOutputType | null
+  }
+
+  type GetProgramPersonnelGroupByPayload<T extends ProgramPersonnelGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProgramPersonnelGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProgramPersonnelGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProgramPersonnelGroupByOutputType[P]>
+            : GetScalarType<T[P], ProgramPersonnelGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProgramPersonnelSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    programId?: boolean
+    position?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    program?: boolean | ProgramDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["programPersonnel"]>
+
+  export type ProgramPersonnelSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    programId?: boolean
+    position?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    program?: boolean | ProgramDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["programPersonnel"]>
+
+  export type ProgramPersonnelSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    programId?: boolean
+    position?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    program?: boolean | ProgramDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["programPersonnel"]>
+
+  export type ProgramPersonnelSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    programId?: boolean
+    position?: boolean
+  }
+
+  export type ProgramPersonnelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "programId" | "position", ExtArgs["result"]["programPersonnel"]>
+  export type ProgramPersonnelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    program?: boolean | ProgramDefaultArgs<ExtArgs>
+  }
+  export type ProgramPersonnelIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    program?: boolean | ProgramDefaultArgs<ExtArgs>
+  }
+  export type ProgramPersonnelIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    program?: boolean | ProgramDefaultArgs<ExtArgs>
+  }
+
+  export type $ProgramPersonnelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProgramPersonnel"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      program: Prisma.$ProgramPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      programId: string
+      position: $Enums.ProgramPosition
+    }, ExtArgs["result"]["programPersonnel"]>
+    composites: {}
+  }
+
+  type ProgramPersonnelGetPayload<S extends boolean | null | undefined | ProgramPersonnelDefaultArgs> = $Result.GetResult<Prisma.$ProgramPersonnelPayload, S>
+
+  type ProgramPersonnelCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProgramPersonnelFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProgramPersonnelCountAggregateInputType | true
+    }
+
+  export interface ProgramPersonnelDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProgramPersonnel'], meta: { name: 'ProgramPersonnel' } }
+    /**
+     * Find zero or one ProgramPersonnel that matches the filter.
+     * @param {ProgramPersonnelFindUniqueArgs} args - Arguments to find a ProgramPersonnel
+     * @example
+     * // Get one ProgramPersonnel
+     * const programPersonnel = await prisma.programPersonnel.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProgramPersonnelFindUniqueArgs>(args: SelectSubset<T, ProgramPersonnelFindUniqueArgs<ExtArgs>>): Prisma__ProgramPersonnelClient<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProgramPersonnel that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProgramPersonnelFindUniqueOrThrowArgs} args - Arguments to find a ProgramPersonnel
+     * @example
+     * // Get one ProgramPersonnel
+     * const programPersonnel = await prisma.programPersonnel.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProgramPersonnelFindUniqueOrThrowArgs>(args: SelectSubset<T, ProgramPersonnelFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProgramPersonnelClient<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProgramPersonnel that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgramPersonnelFindFirstArgs} args - Arguments to find a ProgramPersonnel
+     * @example
+     * // Get one ProgramPersonnel
+     * const programPersonnel = await prisma.programPersonnel.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProgramPersonnelFindFirstArgs>(args?: SelectSubset<T, ProgramPersonnelFindFirstArgs<ExtArgs>>): Prisma__ProgramPersonnelClient<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProgramPersonnel that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgramPersonnelFindFirstOrThrowArgs} args - Arguments to find a ProgramPersonnel
+     * @example
+     * // Get one ProgramPersonnel
+     * const programPersonnel = await prisma.programPersonnel.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProgramPersonnelFindFirstOrThrowArgs>(args?: SelectSubset<T, ProgramPersonnelFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProgramPersonnelClient<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProgramPersonnels that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgramPersonnelFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProgramPersonnels
+     * const programPersonnels = await prisma.programPersonnel.findMany()
+     * 
+     * // Get first 10 ProgramPersonnels
+     * const programPersonnels = await prisma.programPersonnel.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const programPersonnelWithIdOnly = await prisma.programPersonnel.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProgramPersonnelFindManyArgs>(args?: SelectSubset<T, ProgramPersonnelFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProgramPersonnel.
+     * @param {ProgramPersonnelCreateArgs} args - Arguments to create a ProgramPersonnel.
+     * @example
+     * // Create one ProgramPersonnel
+     * const ProgramPersonnel = await prisma.programPersonnel.create({
+     *   data: {
+     *     // ... data to create a ProgramPersonnel
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProgramPersonnelCreateArgs>(args: SelectSubset<T, ProgramPersonnelCreateArgs<ExtArgs>>): Prisma__ProgramPersonnelClient<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProgramPersonnels.
+     * @param {ProgramPersonnelCreateManyArgs} args - Arguments to create many ProgramPersonnels.
+     * @example
+     * // Create many ProgramPersonnels
+     * const programPersonnel = await prisma.programPersonnel.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProgramPersonnelCreateManyArgs>(args?: SelectSubset<T, ProgramPersonnelCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProgramPersonnels and returns the data saved in the database.
+     * @param {ProgramPersonnelCreateManyAndReturnArgs} args - Arguments to create many ProgramPersonnels.
+     * @example
+     * // Create many ProgramPersonnels
+     * const programPersonnel = await prisma.programPersonnel.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProgramPersonnels and only return the `id`
+     * const programPersonnelWithIdOnly = await prisma.programPersonnel.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProgramPersonnelCreateManyAndReturnArgs>(args?: SelectSubset<T, ProgramPersonnelCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProgramPersonnel.
+     * @param {ProgramPersonnelDeleteArgs} args - Arguments to delete one ProgramPersonnel.
+     * @example
+     * // Delete one ProgramPersonnel
+     * const ProgramPersonnel = await prisma.programPersonnel.delete({
+     *   where: {
+     *     // ... filter to delete one ProgramPersonnel
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProgramPersonnelDeleteArgs>(args: SelectSubset<T, ProgramPersonnelDeleteArgs<ExtArgs>>): Prisma__ProgramPersonnelClient<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProgramPersonnel.
+     * @param {ProgramPersonnelUpdateArgs} args - Arguments to update one ProgramPersonnel.
+     * @example
+     * // Update one ProgramPersonnel
+     * const programPersonnel = await prisma.programPersonnel.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProgramPersonnelUpdateArgs>(args: SelectSubset<T, ProgramPersonnelUpdateArgs<ExtArgs>>): Prisma__ProgramPersonnelClient<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProgramPersonnels.
+     * @param {ProgramPersonnelDeleteManyArgs} args - Arguments to filter ProgramPersonnels to delete.
+     * @example
+     * // Delete a few ProgramPersonnels
+     * const { count } = await prisma.programPersonnel.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProgramPersonnelDeleteManyArgs>(args?: SelectSubset<T, ProgramPersonnelDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProgramPersonnels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgramPersonnelUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProgramPersonnels
+     * const programPersonnel = await prisma.programPersonnel.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProgramPersonnelUpdateManyArgs>(args: SelectSubset<T, ProgramPersonnelUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProgramPersonnels and returns the data updated in the database.
+     * @param {ProgramPersonnelUpdateManyAndReturnArgs} args - Arguments to update many ProgramPersonnels.
+     * @example
+     * // Update many ProgramPersonnels
+     * const programPersonnel = await prisma.programPersonnel.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProgramPersonnels and only return the `id`
+     * const programPersonnelWithIdOnly = await prisma.programPersonnel.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProgramPersonnelUpdateManyAndReturnArgs>(args: SelectSubset<T, ProgramPersonnelUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProgramPersonnel.
+     * @param {ProgramPersonnelUpsertArgs} args - Arguments to update or create a ProgramPersonnel.
+     * @example
+     * // Update or create a ProgramPersonnel
+     * const programPersonnel = await prisma.programPersonnel.upsert({
+     *   create: {
+     *     // ... data to create a ProgramPersonnel
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProgramPersonnel we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProgramPersonnelUpsertArgs>(args: SelectSubset<T, ProgramPersonnelUpsertArgs<ExtArgs>>): Prisma__ProgramPersonnelClient<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProgramPersonnels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgramPersonnelCountArgs} args - Arguments to filter ProgramPersonnels to count.
+     * @example
+     * // Count the number of ProgramPersonnels
+     * const count = await prisma.programPersonnel.count({
+     *   where: {
+     *     // ... the filter for the ProgramPersonnels we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProgramPersonnelCountArgs>(
+      args?: Subset<T, ProgramPersonnelCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProgramPersonnelCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProgramPersonnel.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgramPersonnelAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProgramPersonnelAggregateArgs>(args: Subset<T, ProgramPersonnelAggregateArgs>): Prisma.PrismaPromise<GetProgramPersonnelAggregateType<T>>
+
+    /**
+     * Group by ProgramPersonnel.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgramPersonnelGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProgramPersonnelGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProgramPersonnelGroupByArgs['orderBy'] }
+        : { orderBy?: ProgramPersonnelGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProgramPersonnelGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProgramPersonnelGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProgramPersonnel model
+   */
+  readonly fields: ProgramPersonnelFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProgramPersonnel.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProgramPersonnelClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    program<T extends ProgramDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProgramDefaultArgs<ExtArgs>>): Prisma__ProgramClient<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProgramPersonnel model
+   */
+  interface ProgramPersonnelFieldRefs {
+    readonly id: FieldRef<"ProgramPersonnel", 'String'>
+    readonly userId: FieldRef<"ProgramPersonnel", 'String'>
+    readonly programId: FieldRef<"ProgramPersonnel", 'String'>
+    readonly position: FieldRef<"ProgramPersonnel", 'ProgramPosition'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProgramPersonnel findUnique
+   */
+  export type ProgramPersonnelFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnel
+     */
+    select?: ProgramPersonnelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgramPersonnel
+     */
+    omit?: ProgramPersonnelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramPersonnelInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgramPersonnel to fetch.
+     */
+    where: ProgramPersonnelWhereUniqueInput
+  }
+
+  /**
+   * ProgramPersonnel findUniqueOrThrow
+   */
+  export type ProgramPersonnelFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnel
+     */
+    select?: ProgramPersonnelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgramPersonnel
+     */
+    omit?: ProgramPersonnelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramPersonnelInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgramPersonnel to fetch.
+     */
+    where: ProgramPersonnelWhereUniqueInput
+  }
+
+  /**
+   * ProgramPersonnel findFirst
+   */
+  export type ProgramPersonnelFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnel
+     */
+    select?: ProgramPersonnelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgramPersonnel
+     */
+    omit?: ProgramPersonnelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramPersonnelInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgramPersonnel to fetch.
+     */
+    where?: ProgramPersonnelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgramPersonnels to fetch.
+     */
+    orderBy?: ProgramPersonnelOrderByWithRelationInput | ProgramPersonnelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProgramPersonnels.
+     */
+    cursor?: ProgramPersonnelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgramPersonnels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgramPersonnels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProgramPersonnels.
+     */
+    distinct?: ProgramPersonnelScalarFieldEnum | ProgramPersonnelScalarFieldEnum[]
+  }
+
+  /**
+   * ProgramPersonnel findFirstOrThrow
+   */
+  export type ProgramPersonnelFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnel
+     */
+    select?: ProgramPersonnelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgramPersonnel
+     */
+    omit?: ProgramPersonnelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramPersonnelInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgramPersonnel to fetch.
+     */
+    where?: ProgramPersonnelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgramPersonnels to fetch.
+     */
+    orderBy?: ProgramPersonnelOrderByWithRelationInput | ProgramPersonnelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProgramPersonnels.
+     */
+    cursor?: ProgramPersonnelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgramPersonnels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgramPersonnels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProgramPersonnels.
+     */
+    distinct?: ProgramPersonnelScalarFieldEnum | ProgramPersonnelScalarFieldEnum[]
+  }
+
+  /**
+   * ProgramPersonnel findMany
+   */
+  export type ProgramPersonnelFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnel
+     */
+    select?: ProgramPersonnelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgramPersonnel
+     */
+    omit?: ProgramPersonnelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramPersonnelInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgramPersonnels to fetch.
+     */
+    where?: ProgramPersonnelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgramPersonnels to fetch.
+     */
+    orderBy?: ProgramPersonnelOrderByWithRelationInput | ProgramPersonnelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProgramPersonnels.
+     */
+    cursor?: ProgramPersonnelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgramPersonnels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgramPersonnels.
+     */
+    skip?: number
+    distinct?: ProgramPersonnelScalarFieldEnum | ProgramPersonnelScalarFieldEnum[]
+  }
+
+  /**
+   * ProgramPersonnel create
+   */
+  export type ProgramPersonnelCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnel
+     */
+    select?: ProgramPersonnelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgramPersonnel
+     */
+    omit?: ProgramPersonnelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramPersonnelInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProgramPersonnel.
+     */
+    data: XOR<ProgramPersonnelCreateInput, ProgramPersonnelUncheckedCreateInput>
+  }
+
+  /**
+   * ProgramPersonnel createMany
+   */
+  export type ProgramPersonnelCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProgramPersonnels.
+     */
+    data: ProgramPersonnelCreateManyInput | ProgramPersonnelCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProgramPersonnel createManyAndReturn
+   */
+  export type ProgramPersonnelCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnel
+     */
+    select?: ProgramPersonnelSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgramPersonnel
+     */
+    omit?: ProgramPersonnelOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProgramPersonnels.
+     */
+    data: ProgramPersonnelCreateManyInput | ProgramPersonnelCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramPersonnelIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProgramPersonnel update
+   */
+  export type ProgramPersonnelUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnel
+     */
+    select?: ProgramPersonnelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgramPersonnel
+     */
+    omit?: ProgramPersonnelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramPersonnelInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProgramPersonnel.
+     */
+    data: XOR<ProgramPersonnelUpdateInput, ProgramPersonnelUncheckedUpdateInput>
+    /**
+     * Choose, which ProgramPersonnel to update.
+     */
+    where: ProgramPersonnelWhereUniqueInput
+  }
+
+  /**
+   * ProgramPersonnel updateMany
+   */
+  export type ProgramPersonnelUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProgramPersonnels.
+     */
+    data: XOR<ProgramPersonnelUpdateManyMutationInput, ProgramPersonnelUncheckedUpdateManyInput>
+    /**
+     * Filter which ProgramPersonnels to update
+     */
+    where?: ProgramPersonnelWhereInput
+    /**
+     * Limit how many ProgramPersonnels to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProgramPersonnel updateManyAndReturn
+   */
+  export type ProgramPersonnelUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnel
+     */
+    select?: ProgramPersonnelSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgramPersonnel
+     */
+    omit?: ProgramPersonnelOmit<ExtArgs> | null
+    /**
+     * The data used to update ProgramPersonnels.
+     */
+    data: XOR<ProgramPersonnelUpdateManyMutationInput, ProgramPersonnelUncheckedUpdateManyInput>
+    /**
+     * Filter which ProgramPersonnels to update
+     */
+    where?: ProgramPersonnelWhereInput
+    /**
+     * Limit how many ProgramPersonnels to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramPersonnelIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProgramPersonnel upsert
+   */
+  export type ProgramPersonnelUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnel
+     */
+    select?: ProgramPersonnelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgramPersonnel
+     */
+    omit?: ProgramPersonnelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramPersonnelInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProgramPersonnel to update in case it exists.
+     */
+    where: ProgramPersonnelWhereUniqueInput
+    /**
+     * In case the ProgramPersonnel found by the `where` argument doesn't exist, create a new ProgramPersonnel with this data.
+     */
+    create: XOR<ProgramPersonnelCreateInput, ProgramPersonnelUncheckedCreateInput>
+    /**
+     * In case the ProgramPersonnel was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProgramPersonnelUpdateInput, ProgramPersonnelUncheckedUpdateInput>
+  }
+
+  /**
+   * ProgramPersonnel delete
+   */
+  export type ProgramPersonnelDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnel
+     */
+    select?: ProgramPersonnelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgramPersonnel
+     */
+    omit?: ProgramPersonnelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramPersonnelInclude<ExtArgs> | null
+    /**
+     * Filter which ProgramPersonnel to delete.
+     */
+    where: ProgramPersonnelWhereUniqueInput
+  }
+
+  /**
+   * ProgramPersonnel deleteMany
+   */
+  export type ProgramPersonnelDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProgramPersonnels to delete
+     */
+    where?: ProgramPersonnelWhereInput
+    /**
+     * Limit how many ProgramPersonnels to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProgramPersonnel without action
+   */
+  export type ProgramPersonnelDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnel
+     */
+    select?: ProgramPersonnelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgramPersonnel
+     */
+    omit?: ProgramPersonnelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramPersonnelInclude<ExtArgs> | null
   }
 
 
@@ -3090,6 +4455,16 @@ export namespace Prisma {
   };
 
   export type ProgramScalarFieldEnum = (typeof ProgramScalarFieldEnum)[keyof typeof ProgramScalarFieldEnum]
+
+
+  export const ProgramPersonnelScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    programId: 'programId',
+    position: 'position'
+  };
+
+  export type ProgramPersonnelScalarFieldEnum = (typeof ProgramPersonnelScalarFieldEnum)[keyof typeof ProgramPersonnelScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3164,6 +4539,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'ProgramPosition'
+   */
+  export type EnumProgramPositionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProgramPosition'>
+    
+
+
+  /**
+   * Reference to a field of type 'ProgramPosition[]'
+   */
+  export type ListEnumProgramPositionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProgramPosition[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -3195,6 +4584,7 @@ export namespace Prisma {
     role?: EnumRoleFilter<"User"> | $Enums.Role
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    programPersonnel?: ProgramPersonnelListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -3209,6 +4599,7 @@ export namespace Prisma {
     role?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    programPersonnel?: ProgramPersonnelOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -3226,6 +4617,7 @@ export namespace Prisma {
     role?: EnumRoleFilter<"User"> | $Enums.Role
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    programPersonnel?: ProgramPersonnelListRelationFilter
   }, "id" | "phoneNumber" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -3272,6 +4664,7 @@ export namespace Prisma {
     department?: StringFilter<"Program"> | string
     createdAt?: DateTimeFilter<"Program"> | Date | string
     updatedAt?: DateTimeFilter<"Program"> | Date | string
+    programPersonnel?: ProgramPersonnelListRelationFilter
   }
 
   export type ProgramOrderByWithRelationInput = {
@@ -3281,6 +4674,7 @@ export namespace Prisma {
     department?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    programPersonnel?: ProgramPersonnelOrderByRelationAggregateInput
   }
 
   export type ProgramWhereUniqueInput = Prisma.AtLeast<{
@@ -3294,6 +4688,7 @@ export namespace Prisma {
     department?: StringFilter<"Program"> | string
     createdAt?: DateTimeFilter<"Program"> | Date | string
     updatedAt?: DateTimeFilter<"Program"> | Date | string
+    programPersonnel?: ProgramPersonnelListRelationFilter
   }, "id" | "name_code">
 
   export type ProgramOrderByWithAggregationInput = {
@@ -3320,6 +4715,60 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Program"> | Date | string
   }
 
+  export type ProgramPersonnelWhereInput = {
+    AND?: ProgramPersonnelWhereInput | ProgramPersonnelWhereInput[]
+    OR?: ProgramPersonnelWhereInput[]
+    NOT?: ProgramPersonnelWhereInput | ProgramPersonnelWhereInput[]
+    id?: StringFilter<"ProgramPersonnel"> | string
+    userId?: StringFilter<"ProgramPersonnel"> | string
+    programId?: StringFilter<"ProgramPersonnel"> | string
+    position?: EnumProgramPositionFilter<"ProgramPersonnel"> | $Enums.ProgramPosition
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
+  }
+
+  export type ProgramPersonnelOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    programId?: SortOrder
+    position?: SortOrder
+    user?: UserOrderByWithRelationInput
+    program?: ProgramOrderByWithRelationInput
+  }
+
+  export type ProgramPersonnelWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_programId_position?: ProgramPersonnelUserIdProgramIdPositionCompoundUniqueInput
+    AND?: ProgramPersonnelWhereInput | ProgramPersonnelWhereInput[]
+    OR?: ProgramPersonnelWhereInput[]
+    NOT?: ProgramPersonnelWhereInput | ProgramPersonnelWhereInput[]
+    userId?: StringFilter<"ProgramPersonnel"> | string
+    programId?: StringFilter<"ProgramPersonnel"> | string
+    position?: EnumProgramPositionFilter<"ProgramPersonnel"> | $Enums.ProgramPosition
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
+  }, "id" | "userId_programId_position">
+
+  export type ProgramPersonnelOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    programId?: SortOrder
+    position?: SortOrder
+    _count?: ProgramPersonnelCountOrderByAggregateInput
+    _max?: ProgramPersonnelMaxOrderByAggregateInput
+    _min?: ProgramPersonnelMinOrderByAggregateInput
+  }
+
+  export type ProgramPersonnelScalarWhereWithAggregatesInput = {
+    AND?: ProgramPersonnelScalarWhereWithAggregatesInput | ProgramPersonnelScalarWhereWithAggregatesInput[]
+    OR?: ProgramPersonnelScalarWhereWithAggregatesInput[]
+    NOT?: ProgramPersonnelScalarWhereWithAggregatesInput | ProgramPersonnelScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ProgramPersonnel"> | string
+    userId?: StringWithAggregatesFilter<"ProgramPersonnel"> | string
+    programId?: StringWithAggregatesFilter<"ProgramPersonnel"> | string
+    position?: EnumProgramPositionWithAggregatesFilter<"ProgramPersonnel"> | $Enums.ProgramPosition
+  }
+
   export type UserCreateInput = {
     id?: string
     firstName: string
@@ -3332,6 +4781,7 @@ export namespace Prisma {
     role?: $Enums.Role
     createdAt?: Date | string
     updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -3346,6 +4796,7 @@ export namespace Prisma {
     role?: $Enums.Role
     createdAt?: Date | string
     updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -3360,6 +4811,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -3374,6 +4826,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -3425,6 +4878,7 @@ export namespace Prisma {
     department: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelCreateNestedManyWithoutProgramInput
   }
 
   export type ProgramUncheckedCreateInput = {
@@ -3434,6 +4888,7 @@ export namespace Prisma {
     department: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutProgramInput
   }
 
   export type ProgramUpdateInput = {
@@ -3443,6 +4898,7 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUpdateManyWithoutProgramNestedInput
   }
 
   export type ProgramUncheckedUpdateInput = {
@@ -3452,6 +4908,7 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutProgramNestedInput
   }
 
   export type ProgramCreateManyInput = {
@@ -3479,6 +4936,53 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgramPersonnelCreateInput = {
+    id?: string
+    position: $Enums.ProgramPosition
+    user: UserCreateNestedOneWithoutProgramPersonnelInput
+    program: ProgramCreateNestedOneWithoutProgramPersonnelInput
+  }
+
+  export type ProgramPersonnelUncheckedCreateInput = {
+    id?: string
+    userId: string
+    programId: string
+    position: $Enums.ProgramPosition
+  }
+
+  export type ProgramPersonnelUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
+    user?: UserUpdateOneRequiredWithoutProgramPersonnelNestedInput
+    program?: ProgramUpdateOneRequiredWithoutProgramPersonnelNestedInput
+  }
+
+  export type ProgramPersonnelUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    programId?: StringFieldUpdateOperationsInput | string
+    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
+  }
+
+  export type ProgramPersonnelCreateManyInput = {
+    id?: string
+    userId: string
+    programId: string
+    position: $Enums.ProgramPosition
+  }
+
+  export type ProgramPersonnelUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
+  }
+
+  export type ProgramPersonnelUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    programId?: StringFieldUpdateOperationsInput | string
+    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3529,9 +5033,19 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type ProgramPersonnelListRelationFilter = {
+    every?: ProgramPersonnelWhereInput
+    some?: ProgramPersonnelWhereInput
+    none?: ProgramPersonnelWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type ProgramPersonnelOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -3668,6 +5182,74 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type EnumProgramPositionFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProgramPosition | EnumProgramPositionFieldRefInput<$PrismaModel>
+    in?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
+    not?: NestedEnumProgramPositionFilter<$PrismaModel> | $Enums.ProgramPosition
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type ProgramScalarRelationFilter = {
+    is?: ProgramWhereInput
+    isNot?: ProgramWhereInput
+  }
+
+  export type ProgramPersonnelUserIdProgramIdPositionCompoundUniqueInput = {
+    userId: string
+    programId: string
+    position: $Enums.ProgramPosition
+  }
+
+  export type ProgramPersonnelCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    programId?: SortOrder
+    position?: SortOrder
+  }
+
+  export type ProgramPersonnelMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    programId?: SortOrder
+    position?: SortOrder
+  }
+
+  export type ProgramPersonnelMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    programId?: SortOrder
+    position?: SortOrder
+  }
+
+  export type EnumProgramPositionWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProgramPosition | EnumProgramPositionFieldRefInput<$PrismaModel>
+    in?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
+    not?: NestedEnumProgramPositionWithAggregatesFilter<$PrismaModel> | $Enums.ProgramPosition
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProgramPositionFilter<$PrismaModel>
+    _max?: NestedEnumProgramPositionFilter<$PrismaModel>
+  }
+
+  export type ProgramPersonnelCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
+    createMany?: ProgramPersonnelCreateManyUserInputEnvelope
+    connect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+  }
+
+  export type ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
+    createMany?: ProgramPersonnelCreateManyUserInputEnvelope
+    connect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -3682,6 +5264,108 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type ProgramPersonnelUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
+    upsert?: ProgramPersonnelUpsertWithWhereUniqueWithoutUserInput | ProgramPersonnelUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProgramPersonnelCreateManyUserInputEnvelope
+    set?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    disconnect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    delete?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    connect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    update?: ProgramPersonnelUpdateWithWhereUniqueWithoutUserInput | ProgramPersonnelUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProgramPersonnelUpdateManyWithWhereWithoutUserInput | ProgramPersonnelUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProgramPersonnelScalarWhereInput | ProgramPersonnelScalarWhereInput[]
+  }
+
+  export type ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
+    upsert?: ProgramPersonnelUpsertWithWhereUniqueWithoutUserInput | ProgramPersonnelUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProgramPersonnelCreateManyUserInputEnvelope
+    set?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    disconnect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    delete?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    connect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    update?: ProgramPersonnelUpdateWithWhereUniqueWithoutUserInput | ProgramPersonnelUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProgramPersonnelUpdateManyWithWhereWithoutUserInput | ProgramPersonnelUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProgramPersonnelScalarWhereInput | ProgramPersonnelScalarWhereInput[]
+  }
+
+  export type ProgramPersonnelCreateNestedManyWithoutProgramInput = {
+    create?: XOR<ProgramPersonnelCreateWithoutProgramInput, ProgramPersonnelUncheckedCreateWithoutProgramInput> | ProgramPersonnelCreateWithoutProgramInput[] | ProgramPersonnelUncheckedCreateWithoutProgramInput[]
+    connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutProgramInput | ProgramPersonnelCreateOrConnectWithoutProgramInput[]
+    createMany?: ProgramPersonnelCreateManyProgramInputEnvelope
+    connect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+  }
+
+  export type ProgramPersonnelUncheckedCreateNestedManyWithoutProgramInput = {
+    create?: XOR<ProgramPersonnelCreateWithoutProgramInput, ProgramPersonnelUncheckedCreateWithoutProgramInput> | ProgramPersonnelCreateWithoutProgramInput[] | ProgramPersonnelUncheckedCreateWithoutProgramInput[]
+    connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutProgramInput | ProgramPersonnelCreateOrConnectWithoutProgramInput[]
+    createMany?: ProgramPersonnelCreateManyProgramInputEnvelope
+    connect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+  }
+
+  export type ProgramPersonnelUpdateManyWithoutProgramNestedInput = {
+    create?: XOR<ProgramPersonnelCreateWithoutProgramInput, ProgramPersonnelUncheckedCreateWithoutProgramInput> | ProgramPersonnelCreateWithoutProgramInput[] | ProgramPersonnelUncheckedCreateWithoutProgramInput[]
+    connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutProgramInput | ProgramPersonnelCreateOrConnectWithoutProgramInput[]
+    upsert?: ProgramPersonnelUpsertWithWhereUniqueWithoutProgramInput | ProgramPersonnelUpsertWithWhereUniqueWithoutProgramInput[]
+    createMany?: ProgramPersonnelCreateManyProgramInputEnvelope
+    set?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    disconnect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    delete?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    connect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    update?: ProgramPersonnelUpdateWithWhereUniqueWithoutProgramInput | ProgramPersonnelUpdateWithWhereUniqueWithoutProgramInput[]
+    updateMany?: ProgramPersonnelUpdateManyWithWhereWithoutProgramInput | ProgramPersonnelUpdateManyWithWhereWithoutProgramInput[]
+    deleteMany?: ProgramPersonnelScalarWhereInput | ProgramPersonnelScalarWhereInput[]
+  }
+
+  export type ProgramPersonnelUncheckedUpdateManyWithoutProgramNestedInput = {
+    create?: XOR<ProgramPersonnelCreateWithoutProgramInput, ProgramPersonnelUncheckedCreateWithoutProgramInput> | ProgramPersonnelCreateWithoutProgramInput[] | ProgramPersonnelUncheckedCreateWithoutProgramInput[]
+    connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutProgramInput | ProgramPersonnelCreateOrConnectWithoutProgramInput[]
+    upsert?: ProgramPersonnelUpsertWithWhereUniqueWithoutProgramInput | ProgramPersonnelUpsertWithWhereUniqueWithoutProgramInput[]
+    createMany?: ProgramPersonnelCreateManyProgramInputEnvelope
+    set?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    disconnect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    delete?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    connect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+    update?: ProgramPersonnelUpdateWithWhereUniqueWithoutProgramInput | ProgramPersonnelUpdateWithWhereUniqueWithoutProgramInput[]
+    updateMany?: ProgramPersonnelUpdateManyWithWhereWithoutProgramInput | ProgramPersonnelUpdateManyWithWhereWithoutProgramInput[]
+    deleteMany?: ProgramPersonnelScalarWhereInput | ProgramPersonnelScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutProgramPersonnelInput = {
+    create?: XOR<UserCreateWithoutProgramPersonnelInput, UserUncheckedCreateWithoutProgramPersonnelInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProgramPersonnelInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProgramCreateNestedOneWithoutProgramPersonnelInput = {
+    create?: XOR<ProgramCreateWithoutProgramPersonnelInput, ProgramUncheckedCreateWithoutProgramPersonnelInput>
+    connectOrCreate?: ProgramCreateOrConnectWithoutProgramPersonnelInput
+    connect?: ProgramWhereUniqueInput
+  }
+
+  export type EnumProgramPositionFieldUpdateOperationsInput = {
+    set?: $Enums.ProgramPosition
+  }
+
+  export type UserUpdateOneRequiredWithoutProgramPersonnelNestedInput = {
+    create?: XOR<UserCreateWithoutProgramPersonnelInput, UserUncheckedCreateWithoutProgramPersonnelInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProgramPersonnelInput
+    upsert?: UserUpsertWithoutProgramPersonnelInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProgramPersonnelInput, UserUpdateWithoutProgramPersonnelInput>, UserUncheckedUpdateWithoutProgramPersonnelInput>
+  }
+
+  export type ProgramUpdateOneRequiredWithoutProgramPersonnelNestedInput = {
+    create?: XOR<ProgramCreateWithoutProgramPersonnelInput, ProgramUncheckedCreateWithoutProgramPersonnelInput>
+    connectOrCreate?: ProgramCreateOrConnectWithoutProgramPersonnelInput
+    upsert?: ProgramUpsertWithoutProgramPersonnelInput
+    connect?: ProgramWhereUniqueInput
+    update?: XOR<XOR<ProgramUpdateToOneWithWhereWithoutProgramPersonnelInput, ProgramUpdateWithoutProgramPersonnelInput>, ProgramUncheckedUpdateWithoutProgramPersonnelInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3808,6 +5492,281 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumProgramPositionFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProgramPosition | EnumProgramPositionFieldRefInput<$PrismaModel>
+    in?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
+    not?: NestedEnumProgramPositionFilter<$PrismaModel> | $Enums.ProgramPosition
+  }
+
+  export type NestedEnumProgramPositionWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProgramPosition | EnumProgramPositionFieldRefInput<$PrismaModel>
+    in?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
+    not?: NestedEnumProgramPositionWithAggregatesFilter<$PrismaModel> | $Enums.ProgramPosition
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProgramPositionFilter<$PrismaModel>
+    _max?: NestedEnumProgramPositionFilter<$PrismaModel>
+  }
+
+  export type ProgramPersonnelCreateWithoutUserInput = {
+    id?: string
+    position: $Enums.ProgramPosition
+    program: ProgramCreateNestedOneWithoutProgramPersonnelInput
+  }
+
+  export type ProgramPersonnelUncheckedCreateWithoutUserInput = {
+    id?: string
+    programId: string
+    position: $Enums.ProgramPosition
+  }
+
+  export type ProgramPersonnelCreateOrConnectWithoutUserInput = {
+    where: ProgramPersonnelWhereUniqueInput
+    create: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProgramPersonnelCreateManyUserInputEnvelope = {
+    data: ProgramPersonnelCreateManyUserInput | ProgramPersonnelCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProgramPersonnelUpsertWithWhereUniqueWithoutUserInput = {
+    where: ProgramPersonnelWhereUniqueInput
+    update: XOR<ProgramPersonnelUpdateWithoutUserInput, ProgramPersonnelUncheckedUpdateWithoutUserInput>
+    create: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProgramPersonnelUpdateWithWhereUniqueWithoutUserInput = {
+    where: ProgramPersonnelWhereUniqueInput
+    data: XOR<ProgramPersonnelUpdateWithoutUserInput, ProgramPersonnelUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ProgramPersonnelUpdateManyWithWhereWithoutUserInput = {
+    where: ProgramPersonnelScalarWhereInput
+    data: XOR<ProgramPersonnelUpdateManyMutationInput, ProgramPersonnelUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ProgramPersonnelScalarWhereInput = {
+    AND?: ProgramPersonnelScalarWhereInput | ProgramPersonnelScalarWhereInput[]
+    OR?: ProgramPersonnelScalarWhereInput[]
+    NOT?: ProgramPersonnelScalarWhereInput | ProgramPersonnelScalarWhereInput[]
+    id?: StringFilter<"ProgramPersonnel"> | string
+    userId?: StringFilter<"ProgramPersonnel"> | string
+    programId?: StringFilter<"ProgramPersonnel"> | string
+    position?: EnumProgramPositionFilter<"ProgramPersonnel"> | $Enums.ProgramPosition
+  }
+
+  export type ProgramPersonnelCreateWithoutProgramInput = {
+    id?: string
+    position: $Enums.ProgramPosition
+    user: UserCreateNestedOneWithoutProgramPersonnelInput
+  }
+
+  export type ProgramPersonnelUncheckedCreateWithoutProgramInput = {
+    id?: string
+    userId: string
+    position: $Enums.ProgramPosition
+  }
+
+  export type ProgramPersonnelCreateOrConnectWithoutProgramInput = {
+    where: ProgramPersonnelWhereUniqueInput
+    create: XOR<ProgramPersonnelCreateWithoutProgramInput, ProgramPersonnelUncheckedCreateWithoutProgramInput>
+  }
+
+  export type ProgramPersonnelCreateManyProgramInputEnvelope = {
+    data: ProgramPersonnelCreateManyProgramInput | ProgramPersonnelCreateManyProgramInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProgramPersonnelUpsertWithWhereUniqueWithoutProgramInput = {
+    where: ProgramPersonnelWhereUniqueInput
+    update: XOR<ProgramPersonnelUpdateWithoutProgramInput, ProgramPersonnelUncheckedUpdateWithoutProgramInput>
+    create: XOR<ProgramPersonnelCreateWithoutProgramInput, ProgramPersonnelUncheckedCreateWithoutProgramInput>
+  }
+
+  export type ProgramPersonnelUpdateWithWhereUniqueWithoutProgramInput = {
+    where: ProgramPersonnelWhereUniqueInput
+    data: XOR<ProgramPersonnelUpdateWithoutProgramInput, ProgramPersonnelUncheckedUpdateWithoutProgramInput>
+  }
+
+  export type ProgramPersonnelUpdateManyWithWhereWithoutProgramInput = {
+    where: ProgramPersonnelScalarWhereInput
+    data: XOR<ProgramPersonnelUpdateManyMutationInput, ProgramPersonnelUncheckedUpdateManyWithoutProgramInput>
+  }
+
+  export type UserCreateWithoutProgramPersonnelInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUncheckedCreateWithoutProgramPersonnelInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutProgramPersonnelInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutProgramPersonnelInput, UserUncheckedCreateWithoutProgramPersonnelInput>
+  }
+
+  export type ProgramCreateWithoutProgramPersonnelInput = {
+    id?: string
+    name: string
+    code: string
+    department: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProgramUncheckedCreateWithoutProgramPersonnelInput = {
+    id?: string
+    name: string
+    code: string
+    department: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProgramCreateOrConnectWithoutProgramPersonnelInput = {
+    where: ProgramWhereUniqueInput
+    create: XOR<ProgramCreateWithoutProgramPersonnelInput, ProgramUncheckedCreateWithoutProgramPersonnelInput>
+  }
+
+  export type UserUpsertWithoutProgramPersonnelInput = {
+    update: XOR<UserUpdateWithoutProgramPersonnelInput, UserUncheckedUpdateWithoutProgramPersonnelInput>
+    create: XOR<UserCreateWithoutProgramPersonnelInput, UserUncheckedCreateWithoutProgramPersonnelInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutProgramPersonnelInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutProgramPersonnelInput, UserUncheckedUpdateWithoutProgramPersonnelInput>
+  }
+
+  export type UserUpdateWithoutProgramPersonnelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateWithoutProgramPersonnelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgramUpsertWithoutProgramPersonnelInput = {
+    update: XOR<ProgramUpdateWithoutProgramPersonnelInput, ProgramUncheckedUpdateWithoutProgramPersonnelInput>
+    create: XOR<ProgramCreateWithoutProgramPersonnelInput, ProgramUncheckedCreateWithoutProgramPersonnelInput>
+    where?: ProgramWhereInput
+  }
+
+  export type ProgramUpdateToOneWithWhereWithoutProgramPersonnelInput = {
+    where?: ProgramWhereInput
+    data: XOR<ProgramUpdateWithoutProgramPersonnelInput, ProgramUncheckedUpdateWithoutProgramPersonnelInput>
+  }
+
+  export type ProgramUpdateWithoutProgramPersonnelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgramUncheckedUpdateWithoutProgramPersonnelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgramPersonnelCreateManyUserInput = {
+    id?: string
+    programId: string
+    position: $Enums.ProgramPosition
+  }
+
+  export type ProgramPersonnelUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
+    program?: ProgramUpdateOneRequiredWithoutProgramPersonnelNestedInput
+  }
+
+  export type ProgramPersonnelUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    programId?: StringFieldUpdateOperationsInput | string
+    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
+  }
+
+  export type ProgramPersonnelUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    programId?: StringFieldUpdateOperationsInput | string
+    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
+  }
+
+  export type ProgramPersonnelCreateManyProgramInput = {
+    id?: string
+    userId: string
+    position: $Enums.ProgramPosition
+  }
+
+  export type ProgramPersonnelUpdateWithoutProgramInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
+    user?: UserUpdateOneRequiredWithoutProgramPersonnelNestedInput
+  }
+
+  export type ProgramPersonnelUncheckedUpdateWithoutProgramInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
+  }
+
+  export type ProgramPersonnelUncheckedUpdateManyWithoutProgramInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
   }
 
 

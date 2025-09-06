@@ -26,19 +26,3 @@ export const getPrograms = unstable_cache(
     tags: ["programs"],
   }
 );
-
-export const getProgramNamesAndID = unstable_cache(
-  async (): Promise<ProgramsNamesAndIdDTO[]> => {
-    const programs = await prisma.program.findMany({
-      select: {
-        name: true,
-        id: true,
-      },
-    });
-    return programs;
-  },
-  ["getProgramNamesAndID"],
-  {
-    tags: ["programs"],
-  }
-);

@@ -29,21 +29,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ProgramsNamesAndIdDTO } from "@/lib/dto/programs";
 import { Button } from "@/components/ui/button";
 
 const AcceptUserDialog = ({
   selectedUser,
-  programs,
 }: {
   selectedUser: UsersDTO | undefined;
-  programs: ProgramsNamesAndIdDTO[];
 }) => {
   const form = useForm<z.infer<typeof AcceptUserFormSchema>>({
     resolver: zodResolver(AcceptUserFormSchema),
     defaultValues: {
       role: "",
-      program: "",
     },
   });
   const onSubmit = async (data: z.infer<typeof AcceptUserFormSchema>) => {
@@ -94,34 +90,6 @@ const AcceptUserDialog = ({
                   </SelectContent>
                 </Select>
                 <FormDescription>Please assign a role</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="program"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Program</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select a program" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {programs.map((program) => (
-                      <SelectItem value={program.id} key={program.id}>
-                        {program.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormDescription>Please designate to a program</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
