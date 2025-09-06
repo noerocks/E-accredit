@@ -12,7 +12,7 @@ const ProgramsPage = async () => {
   return (
     <div className="max-w-3/4 mx-auto mt-10">
       <div className="flex justify-between items-center mb-10">
-        <p className="text-2xl">Programs</p>
+        <p className="text-3xl">Programs</p>
         <CreateProgramForm />
       </div>
       <div className="flex flex-wrap gap-5">

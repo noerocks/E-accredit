@@ -6,6 +6,7 @@ import { UserProfileDTO, UsersDTO } from "../dto/user";
 import z from "zod";
 import { RegisterFormSchema } from "../zod-definitions";
 import { unstable_cache } from "next/cache";
+import { unauthorized } from "next/navigation";
 
 export async function findByEmail(email: string) {
   const user = await prisma.user.findUnique({
@@ -104,5 +105,20 @@ export const getPendingUsers = unstable_cache(
       console.log("Failed to fetch pending users");
       return null;
     }
+  },
+  ["pendingUsers"],
+  {
+    tags: ["pendingUsers"],
   }
 );
+
+export async function rejectUser(id: string) {
+  const session = await verifySession();
+  if (session.user.role !== "ADMIN") return { unauthorized: true };
+  const user = await prisma.user.delete({
+    where: {
+      id,
+    },
+  });
+  return user;
+}

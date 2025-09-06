@@ -1,11 +1,11 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
+import Spinner from "@/components/spinner";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -15,12 +15,14 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { rejectUser } from "@/lib/action/user";
 import { UsersDTO } from "@/lib/dto/user";
-import { UserPen, UserX } from "lucide-react";
-import { useState } from "react";
-import DeleteUserForm from "./delete-user-form";
+import { DialogClose } from "@radix-ui/react-dialog";
+import { UserPlus, UserX } from "lucide-react";
+import { useActionState, useEffect, useState } from "react";
+import { toast } from "sonner";
 
-const UserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
+const PendingUserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
   const [open, setOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<UsersDTO | undefined>(
     undefined
@@ -36,6 +38,21 @@ const UserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
     setSelectedUser(user);
     setAction(action);
   };
+  console.log("test");
+  const [state, formAction, isPending] = useActionState(
+    rejectUser.bind(null, selectedUser?.id),
+    undefined
+  );
+  useEffect(() => {
+    switch (state?.status) {
+      case "success":
+        toast.success(state?.message);
+        break;
+      case "error":
+        toast.error(state?.message);
+        break;
+    }
+  }, [state]);
   return (
     <>
       <TableBody onClick={onClick}>
@@ -43,11 +60,7 @@ const UserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
           <TableRow key={user.id}>
             <TableCell>{user.firstName}</TableCell>
             <TableCell>{user.lastName}</TableCell>
-            <TableCell>
-              <Badge>
-                {user.role[0] + user.role.slice(1).toLocaleLowerCase()}
-              </Badge>
-            </TableCell>
+            <TableCell>{user.role}</TableCell>
             <TableCell>{user.email}</TableCell>
             <TableCell>{user.phoneNumber}</TableCell>
             <TableCell>
@@ -59,20 +72,20 @@ const UserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
               {new Date(user.registrationDate).toLocaleTimeString("en-US")}
             </TableCell>
             <TableCell>
-              <div className="flex items-center gap-2 justify-center">
+              <div className="flex items-center gap-2">
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
                       className="bg-blue-500 dark:bg-blue-600 text-white"
                       size="icon"
-                      data-action="edit"
+                      data-action="accept"
                       data-id={user.id}
                     >
-                      <UserPen />
+                      <UserPlus />
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Edit User</p>
+                    <p>Accept User</p>
                   </TooltipContent>
                 </Tooltip>
                 <Tooltip>
@@ -80,14 +93,14 @@ const UserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
                     <Button
                       variant="destructive"
                       size="icon"
-                      data-action="delete"
+                      data-action="reject"
                       data-id={user.id}
                     >
                       <UserX />
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Delete User</p>
+                    <p>Reject User</p>
                   </TooltipContent>
                 </Tooltip>
               </div>
@@ -98,24 +111,27 @@ const UserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>
-              {action === "edit" ? "Edit user" : "Delete User"}
-            </DialogTitle>
-            <DialogDescription>
-              {action === "edit"
-                ? ""
-                : "Are you sure you want to delete user? This action can't be undone!"}
-            </DialogDescription>
+            <DialogTitle>Reject User</DialogTitle>
           </DialogHeader>
-          {action === "edit" ? (
-            ""
-          ) : (
-            <DeleteUserForm selectedUser={selectedUser} />
-          )}
+          <p className="text-sm text-muted-foreground">
+            Are you sure you want to reject{" "}
+            <span className="dark:text-white text-black">{`${selectedUser?.firstName} ${selectedUser?.lastName}`}</span>
+            ? This action can't be undone!
+          </p>
+          <form action={formAction}>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DialogClose>
+              <Button variant="destructive">
+                {isPending ? <Spinner message="Rejecting..." /> : "Reject"}{" "}
+              </Button>
+            </DialogFooter>
+          </form>
         </DialogContent>
       </Dialog>
     </>
   );
 };
 
-export default UserTableBody;
+export default PendingUserTableBody;

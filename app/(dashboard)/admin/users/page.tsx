@@ -14,7 +14,7 @@ const UsersPage = async (props: {
   return (
     <div className="max-w-3/4 mx-auto mt-10">
       <div className="flex items-center justify-between mb-10">
-        <p className="text-2xl">Users</p>
+        <p className="text-3xl">Users</p>
         <div className="flex items-center gap-2">
           <Search />
           <Button>

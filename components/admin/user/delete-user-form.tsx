@@ -52,7 +52,7 @@ const DeleteUserForm = ({
               <FormItem className="mb-5">
                 <FormLabel className="text-muted-foreground text-sm">
                   To confirm, please type{" "}
-                  <span className="text-white">{`${selectedUser?.firstName} ${selectedUser?.lastName}`}</span>{" "}
+                  <span className="dark:text-white text-foreground">{`${selectedUser?.firstName} ${selectedUser?.lastName}`}</span>{" "}
                   below.
                 </FormLabel>
                 <FormControl>

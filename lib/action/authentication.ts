@@ -8,6 +8,7 @@ import { createSession, deleteSession } from "./session";
 import { redirect } from "next/navigation";
 import { accessControl } from "../access-control";
 import { createUser, findByEmail } from "../dal/user";
+import { revalidateTag } from "next/cache";
 
 export async function login({
   email,
@@ -70,6 +71,8 @@ export async function register({
       email,
       password: hashedPassword,
     });
+    revalidateTag("users");
+    revalidateTag("pendingUsers");
     return {
       status: "success",
       message: "Register successful",
