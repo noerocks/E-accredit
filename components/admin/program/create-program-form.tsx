@@ -82,7 +82,7 @@ const CreateProgramForm = () => {
             <DialogTitle className="text-center text-2xl">
               Add New Program
             </DialogTitle>
-            <DialogDescription className="text-center">
+            <DialogDescription>
               Create and register a new program by providing its details.
             </DialogDescription>
           </DialogHeader>

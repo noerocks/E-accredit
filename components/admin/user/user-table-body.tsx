@@ -39,7 +39,10 @@ const UserTableBody = ({ users }: { users: UsersDTO[] | null }) => {
             <TableCell>{user.lastName}</TableCell>
             <TableCell>
               <Badge>
-                {user.role[0] + user.role.slice(1).toLocaleLowerCase()}
+                {user.role
+                  .split("_")
+                  .map((word) => word[0] + word.slice(1).toLocaleLowerCase())
+                  .join(" ")}
               </Badge>
             </TableCell>
             <TableCell>{user.email}</TableCell>

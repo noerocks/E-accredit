@@ -19,7 +19,7 @@ const ProgramsPage = async () => {
         {programs.map((program) => (
           <Card
             key={program.id}
-            className="basis-[calc(25%-1rem)] grow-0 shrink"
+            className="basis-[calc(33.33%-1rem)] grow-0 shrink"
           >
             <CardHeader>
               <CardTitle>{program.code}</CardTitle>

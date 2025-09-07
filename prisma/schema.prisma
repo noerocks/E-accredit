@@ -59,7 +59,4 @@ model ProgramPersonnel {
   userId    String
   program   Program         @relation(fields: [programId], references: [id])
   programId String
-  position  ProgramPosition
-
-  @@unique([userId, programId, position])
 }

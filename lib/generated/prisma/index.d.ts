@@ -3375,21 +3375,18 @@ export namespace Prisma {
     id: string | null
     userId: string | null
     programId: string | null
-    position: $Enums.ProgramPosition | null
   }
 
   export type ProgramPersonnelMaxAggregateOutputType = {
     id: string | null
     userId: string | null
     programId: string | null
-    position: $Enums.ProgramPosition | null
   }
 
   export type ProgramPersonnelCountAggregateOutputType = {
     id: number
     userId: number
     programId: number
-    position: number
     _all: number
   }
 
@@ -3398,21 +3395,18 @@ export namespace Prisma {
     id?: true
     userId?: true
     programId?: true
-    position?: true
   }
 
   export type ProgramPersonnelMaxAggregateInputType = {
     id?: true
     userId?: true
     programId?: true
-    position?: true
   }
 
   export type ProgramPersonnelCountAggregateInputType = {
     id?: true
     userId?: true
     programId?: true
-    position?: true
     _all?: true
   }
 
@@ -3492,7 +3486,6 @@ export namespace Prisma {
     id: string
     userId: string
     programId: string
-    position: $Enums.ProgramPosition
     _count: ProgramPersonnelCountAggregateOutputType | null
     _min: ProgramPersonnelMinAggregateOutputType | null
     _max: ProgramPersonnelMaxAggregateOutputType | null
@@ -3516,7 +3509,6 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     programId?: boolean
-    position?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     program?: boolean | ProgramDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["programPersonnel"]>
@@ -3525,7 +3517,6 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     programId?: boolean
-    position?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     program?: boolean | ProgramDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["programPersonnel"]>
@@ -3534,7 +3525,6 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     programId?: boolean
-    position?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     program?: boolean | ProgramDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["programPersonnel"]>
@@ -3543,10 +3533,9 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     programId?: boolean
-    position?: boolean
   }
 
-  export type ProgramPersonnelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "programId" | "position", ExtArgs["result"]["programPersonnel"]>
+  export type ProgramPersonnelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "programId", ExtArgs["result"]["programPersonnel"]>
   export type ProgramPersonnelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     program?: boolean | ProgramDefaultArgs<ExtArgs>
@@ -3570,7 +3559,6 @@ export namespace Prisma {
       id: string
       userId: string
       programId: string
-      position: $Enums.ProgramPosition
     }, ExtArgs["result"]["programPersonnel"]>
     composites: {}
   }
@@ -3999,7 +3987,6 @@ export namespace Prisma {
     readonly id: FieldRef<"ProgramPersonnel", 'String'>
     readonly userId: FieldRef<"ProgramPersonnel", 'String'>
     readonly programId: FieldRef<"ProgramPersonnel", 'String'>
-    readonly position: FieldRef<"ProgramPersonnel", 'ProgramPosition'>
   }
     
 
@@ -4460,8 +4447,7 @@ export namespace Prisma {
   export const ProgramPersonnelScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    programId: 'programId',
-    position: 'position'
+    programId: 'programId'
   };
 
   export type ProgramPersonnelScalarFieldEnum = (typeof ProgramPersonnelScalarFieldEnum)[keyof typeof ProgramPersonnelScalarFieldEnum]
@@ -4535,20 +4521,6 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'ProgramPosition'
-   */
-  export type EnumProgramPositionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProgramPosition'>
-    
-
-
-  /**
-   * Reference to a field of type 'ProgramPosition[]'
-   */
-  export type ListEnumProgramPositionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProgramPosition[]'>
     
 
 
@@ -4722,7 +4694,6 @@ export namespace Prisma {
     id?: StringFilter<"ProgramPersonnel"> | string
     userId?: StringFilter<"ProgramPersonnel"> | string
     programId?: StringFilter<"ProgramPersonnel"> | string
-    position?: EnumProgramPositionFilter<"ProgramPersonnel"> | $Enums.ProgramPosition
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
   }
@@ -4731,29 +4702,25 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     programId?: SortOrder
-    position?: SortOrder
     user?: UserOrderByWithRelationInput
     program?: ProgramOrderByWithRelationInput
   }
 
   export type ProgramPersonnelWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    userId_programId_position?: ProgramPersonnelUserIdProgramIdPositionCompoundUniqueInput
     AND?: ProgramPersonnelWhereInput | ProgramPersonnelWhereInput[]
     OR?: ProgramPersonnelWhereInput[]
     NOT?: ProgramPersonnelWhereInput | ProgramPersonnelWhereInput[]
     userId?: StringFilter<"ProgramPersonnel"> | string
     programId?: StringFilter<"ProgramPersonnel"> | string
-    position?: EnumProgramPositionFilter<"ProgramPersonnel"> | $Enums.ProgramPosition
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
-  }, "id" | "userId_programId_position">
+  }, "id">
 
   export type ProgramPersonnelOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
     programId?: SortOrder
-    position?: SortOrder
     _count?: ProgramPersonnelCountOrderByAggregateInput
     _max?: ProgramPersonnelMaxOrderByAggregateInput
     _min?: ProgramPersonnelMinOrderByAggregateInput
@@ -4766,7 +4733,6 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"ProgramPersonnel"> | string
     userId?: StringWithAggregatesFilter<"ProgramPersonnel"> | string
     programId?: StringWithAggregatesFilter<"ProgramPersonnel"> | string
-    position?: EnumProgramPositionWithAggregatesFilter<"ProgramPersonnel"> | $Enums.ProgramPosition
   }
 
   export type UserCreateInput = {
@@ -4940,7 +4906,6 @@ export namespace Prisma {
 
   export type ProgramPersonnelCreateInput = {
     id?: string
-    position: $Enums.ProgramPosition
     user: UserCreateNestedOneWithoutProgramPersonnelInput
     program: ProgramCreateNestedOneWithoutProgramPersonnelInput
   }
@@ -4949,12 +4914,10 @@ export namespace Prisma {
     id?: string
     userId: string
     programId: string
-    position: $Enums.ProgramPosition
   }
 
   export type ProgramPersonnelUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
     user?: UserUpdateOneRequiredWithoutProgramPersonnelNestedInput
     program?: ProgramUpdateOneRequiredWithoutProgramPersonnelNestedInput
   }
@@ -4963,26 +4926,22 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
-    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
   }
 
   export type ProgramPersonnelCreateManyInput = {
     id?: string
     userId: string
     programId: string
-    position: $Enums.ProgramPosition
   }
 
   export type ProgramPersonnelUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
   }
 
   export type ProgramPersonnelUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
-    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -5182,13 +5141,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type EnumProgramPositionFilter<$PrismaModel = never> = {
-    equals?: $Enums.ProgramPosition | EnumProgramPositionFieldRefInput<$PrismaModel>
-    in?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
-    not?: NestedEnumProgramPositionFilter<$PrismaModel> | $Enums.ProgramPosition
-  }
-
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -5199,41 +5151,22 @@ export namespace Prisma {
     isNot?: ProgramWhereInput
   }
 
-  export type ProgramPersonnelUserIdProgramIdPositionCompoundUniqueInput = {
-    userId: string
-    programId: string
-    position: $Enums.ProgramPosition
-  }
-
   export type ProgramPersonnelCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     programId?: SortOrder
-    position?: SortOrder
   }
 
   export type ProgramPersonnelMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     programId?: SortOrder
-    position?: SortOrder
   }
 
   export type ProgramPersonnelMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     programId?: SortOrder
-    position?: SortOrder
-  }
-
-  export type EnumProgramPositionWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ProgramPosition | EnumProgramPositionFieldRefInput<$PrismaModel>
-    in?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
-    not?: NestedEnumProgramPositionWithAggregatesFilter<$PrismaModel> | $Enums.ProgramPosition
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumProgramPositionFilter<$PrismaModel>
-    _max?: NestedEnumProgramPositionFilter<$PrismaModel>
   }
 
   export type ProgramPersonnelCreateNestedManyWithoutUserInput = {
@@ -5346,10 +5279,6 @@ export namespace Prisma {
     create?: XOR<ProgramCreateWithoutProgramPersonnelInput, ProgramUncheckedCreateWithoutProgramPersonnelInput>
     connectOrCreate?: ProgramCreateOrConnectWithoutProgramPersonnelInput
     connect?: ProgramWhereUniqueInput
-  }
-
-  export type EnumProgramPositionFieldUpdateOperationsInput = {
-    set?: $Enums.ProgramPosition
   }
 
   export type UserUpdateOneRequiredWithoutProgramPersonnelNestedInput = {
@@ -5494,33 +5423,14 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedEnumProgramPositionFilter<$PrismaModel = never> = {
-    equals?: $Enums.ProgramPosition | EnumProgramPositionFieldRefInput<$PrismaModel>
-    in?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
-    not?: NestedEnumProgramPositionFilter<$PrismaModel> | $Enums.ProgramPosition
-  }
-
-  export type NestedEnumProgramPositionWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ProgramPosition | EnumProgramPositionFieldRefInput<$PrismaModel>
-    in?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ProgramPosition[] | ListEnumProgramPositionFieldRefInput<$PrismaModel>
-    not?: NestedEnumProgramPositionWithAggregatesFilter<$PrismaModel> | $Enums.ProgramPosition
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumProgramPositionFilter<$PrismaModel>
-    _max?: NestedEnumProgramPositionFilter<$PrismaModel>
-  }
-
   export type ProgramPersonnelCreateWithoutUserInput = {
     id?: string
-    position: $Enums.ProgramPosition
     program: ProgramCreateNestedOneWithoutProgramPersonnelInput
   }
 
   export type ProgramPersonnelUncheckedCreateWithoutUserInput = {
     id?: string
     programId: string
-    position: $Enums.ProgramPosition
   }
 
   export type ProgramPersonnelCreateOrConnectWithoutUserInput = {
@@ -5556,19 +5466,16 @@ export namespace Prisma {
     id?: StringFilter<"ProgramPersonnel"> | string
     userId?: StringFilter<"ProgramPersonnel"> | string
     programId?: StringFilter<"ProgramPersonnel"> | string
-    position?: EnumProgramPositionFilter<"ProgramPersonnel"> | $Enums.ProgramPosition
   }
 
   export type ProgramPersonnelCreateWithoutProgramInput = {
     id?: string
-    position: $Enums.ProgramPosition
     user: UserCreateNestedOneWithoutProgramPersonnelInput
   }
 
   export type ProgramPersonnelUncheckedCreateWithoutProgramInput = {
     id?: string
     userId: string
-    position: $Enums.ProgramPosition
   }
 
   export type ProgramPersonnelCreateOrConnectWithoutProgramInput = {
@@ -5724,49 +5631,41 @@ export namespace Prisma {
   export type ProgramPersonnelCreateManyUserInput = {
     id?: string
     programId: string
-    position: $Enums.ProgramPosition
   }
 
   export type ProgramPersonnelUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
     program?: ProgramUpdateOneRequiredWithoutProgramPersonnelNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
-    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
   }
 
   export type ProgramPersonnelUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
-    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
   }
 
   export type ProgramPersonnelCreateManyProgramInput = {
     id?: string
     userId: string
-    position: $Enums.ProgramPosition
   }
 
   export type ProgramPersonnelUpdateWithoutProgramInput = {
     id?: StringFieldUpdateOperationsInput | string
-    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
     user?: UserUpdateOneRequiredWithoutProgramPersonnelNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateWithoutProgramInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
   }
 
   export type ProgramPersonnelUncheckedUpdateManyWithoutProgramInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    position?: EnumProgramPositionFieldUpdateOperationsInput | $Enums.ProgramPosition
   }
 
 
