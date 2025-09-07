@@ -36,7 +36,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-const CreateProgramForm = () => {
+const CreateProgramDialog = () => {
   const form = useForm<z.infer<typeof CreateProgramFormSchema>>({
     resolver: zodResolver(CreateProgramFormSchema),
     defaultValues: {
@@ -163,4 +163,4 @@ const CreateProgramForm = () => {
   );
 };
 
-export default CreateProgramForm;
+export default CreateProgramDialog;

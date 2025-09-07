@@ -1,33 +1,24 @@
-import CreateProgramForm from "@/components/admin/program/create-program-form";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import CreateProgramDialog from "@/components/admin/program/create-program-dialog";
+import ProgramPersonnelList from "@/components/admin/program/program-personell-list";
+import ProgramsCards from "@/components/admin/program/programs-cards";
 import { getPrograms } from "@/lib/dal/program";
 
-const ProgramsPage = async () => {
+const ProgramsPage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ id: string }>;
+}) => {
+  const params = await searchParams;
   const programs = await getPrograms();
   return (
     <div className="max-w-3/4 mx-auto mt-10">
       <div className="flex justify-between items-center mb-10">
         <p className="text-3xl">Programs</p>
-        <CreateProgramForm />
+        <CreateProgramDialog />
       </div>
-      <div className="flex flex-wrap gap-5">
-        {programs.map((program) => (
-          <Card
-            key={program.id}
-            className="basis-[calc(33.33%-1rem)] grow-0 shrink"
-          >
-            <CardHeader>
-              <CardTitle>{program.code}</CardTitle>
-              <CardDescription>{program.name}</CardDescription>
-            </CardHeader>
-          </Card>
-        ))}
-      </div>
+      <ProgramsCards programs={programs}>
+        <ProgramPersonnelList params={params} />
+      </ProgramsCards>
     </div>
   );
 };
