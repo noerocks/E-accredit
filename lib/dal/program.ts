@@ -4,7 +4,7 @@ import { CreateProgramFormSchema } from "../zod-definitions";
 import { prisma } from "../prisma";
 import { verifySession } from "../action/session";
 import { unstable_cache } from "next/cache";
-import { Programs } from "../dto/programs";
+import { ProgramDTO } from "../dto/programs";
 
 export async function createProgram(
   data: z.infer<typeof CreateProgramFormSchema>
@@ -17,7 +17,7 @@ export async function createProgram(
 }
 
 export const getPrograms = unstable_cache(
-  async (): Promise<Programs[]> => {
+  async (): Promise<ProgramDTO[]> => {
     const programs = await prisma.program.findMany();
     return programs.map((program) => ({
       id: program.id,

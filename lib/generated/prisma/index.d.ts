@@ -3375,18 +3375,21 @@ export namespace Prisma {
     id: string | null
     userId: string | null
     programId: string | null
+    assignedAt: Date | null
   }
 
   export type ProgramPersonnelMaxAggregateOutputType = {
     id: string | null
     userId: string | null
     programId: string | null
+    assignedAt: Date | null
   }
 
   export type ProgramPersonnelCountAggregateOutputType = {
     id: number
     userId: number
     programId: number
+    assignedAt: number
     _all: number
   }
 
@@ -3395,18 +3398,21 @@ export namespace Prisma {
     id?: true
     userId?: true
     programId?: true
+    assignedAt?: true
   }
 
   export type ProgramPersonnelMaxAggregateInputType = {
     id?: true
     userId?: true
     programId?: true
+    assignedAt?: true
   }
 
   export type ProgramPersonnelCountAggregateInputType = {
     id?: true
     userId?: true
     programId?: true
+    assignedAt?: true
     _all?: true
   }
 
@@ -3486,6 +3492,7 @@ export namespace Prisma {
     id: string
     userId: string
     programId: string
+    assignedAt: Date
     _count: ProgramPersonnelCountAggregateOutputType | null
     _min: ProgramPersonnelMinAggregateOutputType | null
     _max: ProgramPersonnelMaxAggregateOutputType | null
@@ -3509,6 +3516,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     programId?: boolean
+    assignedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     program?: boolean | ProgramDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["programPersonnel"]>
@@ -3517,6 +3525,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     programId?: boolean
+    assignedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     program?: boolean | ProgramDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["programPersonnel"]>
@@ -3525,6 +3534,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     programId?: boolean
+    assignedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     program?: boolean | ProgramDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["programPersonnel"]>
@@ -3533,9 +3543,10 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     programId?: boolean
+    assignedAt?: boolean
   }
 
-  export type ProgramPersonnelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "programId", ExtArgs["result"]["programPersonnel"]>
+  export type ProgramPersonnelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "programId" | "assignedAt", ExtArgs["result"]["programPersonnel"]>
   export type ProgramPersonnelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     program?: boolean | ProgramDefaultArgs<ExtArgs>
@@ -3559,6 +3570,7 @@ export namespace Prisma {
       id: string
       userId: string
       programId: string
+      assignedAt: Date
     }, ExtArgs["result"]["programPersonnel"]>
     composites: {}
   }
@@ -3987,6 +3999,7 @@ export namespace Prisma {
     readonly id: FieldRef<"ProgramPersonnel", 'String'>
     readonly userId: FieldRef<"ProgramPersonnel", 'String'>
     readonly programId: FieldRef<"ProgramPersonnel", 'String'>
+    readonly assignedAt: FieldRef<"ProgramPersonnel", 'DateTime'>
   }
     
 
@@ -4447,7 +4460,8 @@ export namespace Prisma {
   export const ProgramPersonnelScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    programId: 'programId'
+    programId: 'programId',
+    assignedAt: 'assignedAt'
   };
 
   export type ProgramPersonnelScalarFieldEnum = (typeof ProgramPersonnelScalarFieldEnum)[keyof typeof ProgramPersonnelScalarFieldEnum]
@@ -4694,6 +4708,7 @@ export namespace Prisma {
     id?: StringFilter<"ProgramPersonnel"> | string
     userId?: StringFilter<"ProgramPersonnel"> | string
     programId?: StringFilter<"ProgramPersonnel"> | string
+    assignedAt?: DateTimeFilter<"ProgramPersonnel"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
   }
@@ -4702,6 +4717,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     programId?: SortOrder
+    assignedAt?: SortOrder
     user?: UserOrderByWithRelationInput
     program?: ProgramOrderByWithRelationInput
   }
@@ -4713,6 +4729,7 @@ export namespace Prisma {
     NOT?: ProgramPersonnelWhereInput | ProgramPersonnelWhereInput[]
     userId?: StringFilter<"ProgramPersonnel"> | string
     programId?: StringFilter<"ProgramPersonnel"> | string
+    assignedAt?: DateTimeFilter<"ProgramPersonnel"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
   }, "id">
@@ -4721,6 +4738,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     programId?: SortOrder
+    assignedAt?: SortOrder
     _count?: ProgramPersonnelCountOrderByAggregateInput
     _max?: ProgramPersonnelMaxOrderByAggregateInput
     _min?: ProgramPersonnelMinOrderByAggregateInput
@@ -4733,6 +4751,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"ProgramPersonnel"> | string
     userId?: StringWithAggregatesFilter<"ProgramPersonnel"> | string
     programId?: StringWithAggregatesFilter<"ProgramPersonnel"> | string
+    assignedAt?: DateTimeWithAggregatesFilter<"ProgramPersonnel"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -4906,6 +4925,7 @@ export namespace Prisma {
 
   export type ProgramPersonnelCreateInput = {
     id?: string
+    assignedAt?: Date | string
     user: UserCreateNestedOneWithoutProgramPersonnelInput
     program: ProgramCreateNestedOneWithoutProgramPersonnelInput
   }
@@ -4914,10 +4934,12 @@ export namespace Prisma {
     id?: string
     userId: string
     programId: string
+    assignedAt?: Date | string
   }
 
   export type ProgramPersonnelUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutProgramPersonnelNestedInput
     program?: ProgramUpdateOneRequiredWithoutProgramPersonnelNestedInput
   }
@@ -4926,22 +4948,26 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProgramPersonnelCreateManyInput = {
     id?: string
     userId: string
     programId: string
+    assignedAt?: Date | string
   }
 
   export type ProgramPersonnelUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProgramPersonnelUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -5155,18 +5181,21 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     programId?: SortOrder
+    assignedAt?: SortOrder
   }
 
   export type ProgramPersonnelMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     programId?: SortOrder
+    assignedAt?: SortOrder
   }
 
   export type ProgramPersonnelMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     programId?: SortOrder
+    assignedAt?: SortOrder
   }
 
   export type ProgramPersonnelCreateNestedManyWithoutUserInput = {
@@ -5425,12 +5454,14 @@ export namespace Prisma {
 
   export type ProgramPersonnelCreateWithoutUserInput = {
     id?: string
+    assignedAt?: Date | string
     program: ProgramCreateNestedOneWithoutProgramPersonnelInput
   }
 
   export type ProgramPersonnelUncheckedCreateWithoutUserInput = {
     id?: string
     programId: string
+    assignedAt?: Date | string
   }
 
   export type ProgramPersonnelCreateOrConnectWithoutUserInput = {
@@ -5466,16 +5497,19 @@ export namespace Prisma {
     id?: StringFilter<"ProgramPersonnel"> | string
     userId?: StringFilter<"ProgramPersonnel"> | string
     programId?: StringFilter<"ProgramPersonnel"> | string
+    assignedAt?: DateTimeFilter<"ProgramPersonnel"> | Date | string
   }
 
   export type ProgramPersonnelCreateWithoutProgramInput = {
     id?: string
+    assignedAt?: Date | string
     user: UserCreateNestedOneWithoutProgramPersonnelInput
   }
 
   export type ProgramPersonnelUncheckedCreateWithoutProgramInput = {
     id?: string
     userId: string
+    assignedAt?: Date | string
   }
 
   export type ProgramPersonnelCreateOrConnectWithoutProgramInput = {
@@ -5631,41 +5665,49 @@ export namespace Prisma {
   export type ProgramPersonnelCreateManyUserInput = {
     id?: string
     programId: string
+    assignedAt?: Date | string
   }
 
   export type ProgramPersonnelUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: ProgramUpdateOneRequiredWithoutProgramPersonnelNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProgramPersonnelUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProgramPersonnelCreateManyProgramInput = {
     id?: string
     userId: string
+    assignedAt?: Date | string
   }
 
   export type ProgramPersonnelUpdateWithoutProgramInput = {
     id?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutProgramPersonnelNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateWithoutProgramInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProgramPersonnelUncheckedUpdateManyWithoutProgramInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
