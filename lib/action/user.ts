@@ -14,7 +14,7 @@ export async function rejectUser(
   if (!userID) return { status: "error", message: "User id is required" };
   try {
     const user = await rejectUserDAL(userID);
-    if ("unauthorized" in user && user.unauthorized) {
+    if (user && "unauthorized" in user && user.unauthorized) {
       return {
         status: "error",
         message: "Unauthorized action",

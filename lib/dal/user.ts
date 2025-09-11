@@ -114,6 +114,7 @@ export const getPendingUsers = unstable_cache(
 
 export async function rejectUser(id: string) {
   const session = await verifySession();
+  if (!session) return null;
   if (session.user.role !== "ADMIN") return { unauthorized: true };
   const user = await prisma.user.delete({
     where: {
@@ -125,6 +126,7 @@ export async function rejectUser(id: string) {
 
 export async function updateRole(id: string, role: Role) {
   const session = await verifySession();
+  if (!session) return null;
   if (session.user.role !== "ADMIN") return { unauthorized: true };
   const user = await prisma.user.update({
     where: {

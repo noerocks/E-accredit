@@ -4724,6 +4724,7 @@ export namespace Prisma {
 
   export type ProgramPersonnelWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    userId_programId?: ProgramPersonnelUserIdProgramIdCompoundUniqueInput
     AND?: ProgramPersonnelWhereInput | ProgramPersonnelWhereInput[]
     OR?: ProgramPersonnelWhereInput[]
     NOT?: ProgramPersonnelWhereInput | ProgramPersonnelWhereInput[]
@@ -4732,7 +4733,7 @@ export namespace Prisma {
     assignedAt?: DateTimeFilter<"ProgramPersonnel"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
-  }, "id">
+  }, "id" | "userId_programId">
 
   export type ProgramPersonnelOrderByWithAggregationInput = {
     id?: SortOrder
@@ -5175,6 +5176,11 @@ export namespace Prisma {
   export type ProgramScalarRelationFilter = {
     is?: ProgramWhereInput
     isNot?: ProgramWhereInput
+  }
+
+  export type ProgramPersonnelUserIdProgramIdCompoundUniqueInput = {
+    userId: string
+    programId: string
   }
 
   export type ProgramPersonnelCountOrderByAggregateInput = {

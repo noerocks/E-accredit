@@ -5,6 +5,7 @@ import { DialogClose, DialogFooter } from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,11 +19,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tooltip, TooltipTrigger } from "@/components/ui/tooltip";
+import { AddProgramPersonnel } from "@/lib/action/program-personnel";
 import { UsersDTO } from "@/lib/dto/user";
 import { AddProgramPersonnelFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserPlus } from "lucide-react";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import z from "zod";
 
 const ProgramPersonnelList = ({
@@ -38,8 +42,19 @@ const ProgramPersonnelList = ({
       userId: "",
     },
   });
+  const [pending, startTransition] = useTransition();
   const onSubmit = (data: z.infer<typeof AddProgramPersonnelFormSchema>) => {
-    console.log(data);
+    startTransition(async () => {
+      const result = await AddProgramPersonnel.bind(null, params.id)(data);
+      switch (result?.status) {
+        case "success":
+          toast.success(result.message);
+          break;
+        case "error":
+          toast.error(result.message);
+          break;
+      }
+    });
   };
 
   return (
@@ -71,9 +86,12 @@ const ProgramPersonnelList = ({
                     ))}
                   </SelectContent>
                 </Select>
+                <FormDescription>
+                  Assign an accreditation officer to this program
+                </FormDescription>
                 <FormMessage />
                 <DialogFooter>
-                  <DialogClose>
+                  <DialogClose asChild>
                     <Button variant="outline">Cancel</Button>
                   </DialogClose>
                   <Tooltip>
