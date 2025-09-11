@@ -4,6 +4,7 @@ import z from "zod";
 import { createProgramPersonnel } from "../dal/program-personnel";
 import { AddProgramPersonnelFormSchema } from "../zod-definitions";
 import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/library";
+import { revalidateTag } from "next/cache";
 
 export async function AddProgramPersonnel(
   programId: string,
@@ -26,6 +27,7 @@ export async function AddProgramPersonnel(
         message: "Unauthorized action",
       };
     }
+    revalidateTag("programPersonnel");
     return {
       status: "success",
       message: "Program Personnel assigned successfuly",

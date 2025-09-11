@@ -97,7 +97,7 @@ const ProgramsCards = ({
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{`${selectedPogram?.code} Personnel`}</DialogTitle>
+            <DialogTitle className="text-2xl text-center">{`${selectedPogram?.code} Personnel`}</DialogTitle>
           </DialogHeader>
           {children}
         </DialogContent>

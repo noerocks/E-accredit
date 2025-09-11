@@ -60,4 +60,6 @@ model ProgramPersonnel {
   program    Program  @relation(fields: [programId], references: [id])
   programId  String
   assignedAt DateTime @default(now())
+
+  @@unique([userId, programId])
 }
