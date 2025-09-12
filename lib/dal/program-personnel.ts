@@ -2,6 +2,7 @@ import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
 import { ProgramPersonnelDTO } from "../dto/program-personnel";
 import { prisma } from "../prisma";
+import { unauthorized } from "next/navigation";
 
 export async function createProgramPersonnel(
   programId: string,
@@ -18,6 +19,18 @@ export async function createProgramPersonnel(
       program: {
         connect: { id: programId },
       },
+    },
+  });
+  return programPersonnel;
+}
+
+export async function deleteProgramPersonnelById(personnelId: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  if (session.user.role !== "ADMIN") return { unauthorized: true };
+  const programPersonnel = await prisma.programPersonnel.delete({
+    where: {
+      id: personnelId,
     },
   });
   return programPersonnel;
