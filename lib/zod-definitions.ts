@@ -42,3 +42,7 @@ export const AcceptUserFormSchema = z.object({
 export const AddProgramPersonnelFormSchema = z.object({
   userId: z.string().min(1, "This field is required"),
 });
+
+export const CreateInstrumentFormSchema = z.object({
+  name: z.string().min(1, "This field is required"),
+});
