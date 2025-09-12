@@ -26,6 +26,12 @@ enum ProgramPosition {
   MEMBER
 }
 
+enum Category {
+  SYSTEM
+  IMPLEMENTATION
+  OUTCOME
+}
+
 model User {
   id               String             @id @default(uuid())
   firstName        String
@@ -62,4 +68,36 @@ model ProgramPersonnel {
   assignedAt DateTime @default(now())
 
   @@unique([userId, programId])
+}
+
+model Instrument {
+  id   String @id @default(uuid())
+  name String
+  area Area[]
+}
+
+model Area {
+  id           Int         @id @default(autoincrement())
+  label        String
+  instrument   Instrument  @relation(fields: [instrumentId], references: [id])
+  instrumentId String
+  parameter    Parameter[]
+}
+
+model Parameter {
+  id        Int         @id @default(autoincrement())
+  label     String
+  area      Area        @relation(fields: [areaId], references: [id])
+  areaId    Int
+  indicator Indicator[]
+}
+
+model Indicator {
+  id          Int       @id @default(autoincrement())
+  label       String
+  description String
+  category    Category
+  evidence    String
+  parameter   Parameter @relation(fields: [parameterId], references: [id])
+  parameterId Int
 }

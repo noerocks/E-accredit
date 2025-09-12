@@ -2,8 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { removeProgramPersonnel } from "@/lib/action/program-personnel";
 import { ProgramPersonnelDTO } from "@/lib/dto/program-personnel";
+
 import { Minus } from "lucide-react";
 import { toast } from "sonner";
 
@@ -37,14 +43,19 @@ const ProgramPersonnel = ({
       {programPersonnel?.map((personnel) => (
         <div className="flex justify-between items-center" key={personnel.id}>
           <p className="text-sm">{`${personnel.user.firstName} ${personnel.user.lastName}`}</p>
-          <Button
-            variant="destructive"
-            className="h-6 w-6"
-            data-action="remove"
-            data-id={personnel.id}
-          >
-            <Minus />
-          </Button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="destructive"
+                className="h-6 w-6"
+                data-action="remove"
+                data-id={personnel.id}
+              >
+                <Minus />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Remove personnel</TooltipContent>
+          </Tooltip>
         </div>
       ))}
     </Card>

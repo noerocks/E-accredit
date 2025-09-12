@@ -28,6 +28,26 @@ export type Program = $Result.DefaultSelection<Prisma.$ProgramPayload>
  * 
  */
 export type ProgramPersonnel = $Result.DefaultSelection<Prisma.$ProgramPersonnelPayload>
+/**
+ * Model Instrument
+ * 
+ */
+export type Instrument = $Result.DefaultSelection<Prisma.$InstrumentPayload>
+/**
+ * Model Area
+ * 
+ */
+export type Area = $Result.DefaultSelection<Prisma.$AreaPayload>
+/**
+ * Model Parameter
+ * 
+ */
+export type Parameter = $Result.DefaultSelection<Prisma.$ParameterPayload>
+/**
+ * Model Indicator
+ * 
+ */
+export type Indicator = $Result.DefaultSelection<Prisma.$IndicatorPayload>
 
 /**
  * Enums
@@ -50,6 +70,15 @@ export const ProgramPosition: {
 
 export type ProgramPosition = (typeof ProgramPosition)[keyof typeof ProgramPosition]
 
+
+export const Category: {
+  SYSTEM: 'SYSTEM',
+  IMPLEMENTATION: 'IMPLEMENTATION',
+  OUTCOME: 'OUTCOME'
+};
+
+export type Category = (typeof Category)[keyof typeof Category]
+
 }
 
 export type Role = $Enums.Role
@@ -59,6 +88,10 @@ export const Role: typeof $Enums.Role
 export type ProgramPosition = $Enums.ProgramPosition
 
 export const ProgramPosition: typeof $Enums.ProgramPosition
+
+export type Category = $Enums.Category
+
+export const Category: typeof $Enums.Category
 
 /**
  * ##  Prisma Client ʲˢ
@@ -207,6 +240,46 @@ export class PrismaClient<
     * ```
     */
   get programPersonnel(): Prisma.ProgramPersonnelDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.instrument`: Exposes CRUD operations for the **Instrument** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Instruments
+    * const instruments = await prisma.instrument.findMany()
+    * ```
+    */
+  get instrument(): Prisma.InstrumentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.area`: Exposes CRUD operations for the **Area** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Areas
+    * const areas = await prisma.area.findMany()
+    * ```
+    */
+  get area(): Prisma.AreaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.parameter`: Exposes CRUD operations for the **Parameter** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Parameters
+    * const parameters = await prisma.parameter.findMany()
+    * ```
+    */
+  get parameter(): Prisma.ParameterDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.indicator`: Exposes CRUD operations for the **Indicator** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Indicators
+    * const indicators = await prisma.indicator.findMany()
+    * ```
+    */
+  get indicator(): Prisma.IndicatorDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -649,7 +722,11 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Program: 'Program',
-    ProgramPersonnel: 'ProgramPersonnel'
+    ProgramPersonnel: 'ProgramPersonnel',
+    Instrument: 'Instrument',
+    Area: 'Area',
+    Parameter: 'Parameter',
+    Indicator: 'Indicator'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -668,7 +745,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "program" | "programPersonnel"
+      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -894,6 +971,302 @@ export namespace Prisma {
           }
         }
       }
+      Instrument: {
+        payload: Prisma.$InstrumentPayload<ExtArgs>
+        fields: Prisma.InstrumentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InstrumentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InstrumentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentPayload>
+          }
+          findFirst: {
+            args: Prisma.InstrumentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InstrumentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentPayload>
+          }
+          findMany: {
+            args: Prisma.InstrumentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentPayload>[]
+          }
+          create: {
+            args: Prisma.InstrumentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentPayload>
+          }
+          createMany: {
+            args: Prisma.InstrumentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.InstrumentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentPayload>[]
+          }
+          delete: {
+            args: Prisma.InstrumentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentPayload>
+          }
+          update: {
+            args: Prisma.InstrumentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentPayload>
+          }
+          deleteMany: {
+            args: Prisma.InstrumentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InstrumentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.InstrumentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentPayload>[]
+          }
+          upsert: {
+            args: Prisma.InstrumentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentPayload>
+          }
+          aggregate: {
+            args: Prisma.InstrumentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInstrument>
+          }
+          groupBy: {
+            args: Prisma.InstrumentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InstrumentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.InstrumentCountArgs<ExtArgs>
+            result: $Utils.Optional<InstrumentCountAggregateOutputType> | number
+          }
+        }
+      }
+      Area: {
+        payload: Prisma.$AreaPayload<ExtArgs>
+        fields: Prisma.AreaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AreaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AreaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaPayload>
+          }
+          findFirst: {
+            args: Prisma.AreaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AreaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaPayload>
+          }
+          findMany: {
+            args: Prisma.AreaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaPayload>[]
+          }
+          create: {
+            args: Prisma.AreaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaPayload>
+          }
+          createMany: {
+            args: Prisma.AreaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AreaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaPayload>[]
+          }
+          delete: {
+            args: Prisma.AreaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaPayload>
+          }
+          update: {
+            args: Prisma.AreaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaPayload>
+          }
+          deleteMany: {
+            args: Prisma.AreaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AreaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AreaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaPayload>[]
+          }
+          upsert: {
+            args: Prisma.AreaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaPayload>
+          }
+          aggregate: {
+            args: Prisma.AreaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateArea>
+          }
+          groupBy: {
+            args: Prisma.AreaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AreaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AreaCountArgs<ExtArgs>
+            result: $Utils.Optional<AreaCountAggregateOutputType> | number
+          }
+        }
+      }
+      Parameter: {
+        payload: Prisma.$ParameterPayload<ExtArgs>
+        fields: Prisma.ParameterFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ParameterFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ParameterFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterPayload>
+          }
+          findFirst: {
+            args: Prisma.ParameterFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ParameterFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterPayload>
+          }
+          findMany: {
+            args: Prisma.ParameterFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterPayload>[]
+          }
+          create: {
+            args: Prisma.ParameterCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterPayload>
+          }
+          createMany: {
+            args: Prisma.ParameterCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ParameterCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterPayload>[]
+          }
+          delete: {
+            args: Prisma.ParameterDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterPayload>
+          }
+          update: {
+            args: Prisma.ParameterUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterPayload>
+          }
+          deleteMany: {
+            args: Prisma.ParameterDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ParameterUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ParameterUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterPayload>[]
+          }
+          upsert: {
+            args: Prisma.ParameterUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterPayload>
+          }
+          aggregate: {
+            args: Prisma.ParameterAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateParameter>
+          }
+          groupBy: {
+            args: Prisma.ParameterGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ParameterGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ParameterCountArgs<ExtArgs>
+            result: $Utils.Optional<ParameterCountAggregateOutputType> | number
+          }
+        }
+      }
+      Indicator: {
+        payload: Prisma.$IndicatorPayload<ExtArgs>
+        fields: Prisma.IndicatorFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.IndicatorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.IndicatorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorPayload>
+          }
+          findFirst: {
+            args: Prisma.IndicatorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.IndicatorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorPayload>
+          }
+          findMany: {
+            args: Prisma.IndicatorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorPayload>[]
+          }
+          create: {
+            args: Prisma.IndicatorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorPayload>
+          }
+          createMany: {
+            args: Prisma.IndicatorCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.IndicatorCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorPayload>[]
+          }
+          delete: {
+            args: Prisma.IndicatorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorPayload>
+          }
+          update: {
+            args: Prisma.IndicatorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorPayload>
+          }
+          deleteMany: {
+            args: Prisma.IndicatorDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.IndicatorUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.IndicatorUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorPayload>[]
+          }
+          upsert: {
+            args: Prisma.IndicatorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorPayload>
+          }
+          aggregate: {
+            args: Prisma.IndicatorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateIndicator>
+          }
+          groupBy: {
+            args: Prisma.IndicatorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<IndicatorGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.IndicatorCountArgs<ExtArgs>
+            result: $Utils.Optional<IndicatorCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -989,6 +1362,10 @@ export namespace Prisma {
     user?: UserOmit
     program?: ProgramOmit
     programPersonnel?: ProgramPersonnelOmit
+    instrument?: InstrumentOmit
+    area?: AreaOmit
+    parameter?: ParameterOmit
+    indicator?: IndicatorOmit
   }
 
   /* Types for Logging */
@@ -1123,6 +1500,99 @@ export namespace Prisma {
    */
   export type ProgramCountOutputTypeCountProgramPersonnelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProgramPersonnelWhereInput
+  }
+
+
+  /**
+   * Count Type InstrumentCountOutputType
+   */
+
+  export type InstrumentCountOutputType = {
+    area: number
+  }
+
+  export type InstrumentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    area?: boolean | InstrumentCountOutputTypeCountAreaArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * InstrumentCountOutputType without action
+   */
+  export type InstrumentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentCountOutputType
+     */
+    select?: InstrumentCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * InstrumentCountOutputType without action
+   */
+  export type InstrumentCountOutputTypeCountAreaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AreaWhereInput
+  }
+
+
+  /**
+   * Count Type AreaCountOutputType
+   */
+
+  export type AreaCountOutputType = {
+    parameter: number
+  }
+
+  export type AreaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parameter?: boolean | AreaCountOutputTypeCountParameterArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AreaCountOutputType without action
+   */
+  export type AreaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaCountOutputType
+     */
+    select?: AreaCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AreaCountOutputType without action
+   */
+  export type AreaCountOutputTypeCountParameterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParameterWhereInput
+  }
+
+
+  /**
+   * Count Type ParameterCountOutputType
+   */
+
+  export type ParameterCountOutputType = {
+    indicator: number
+  }
+
+  export type ParameterCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    indicator?: boolean | ParameterCountOutputTypeCountIndicatorArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ParameterCountOutputType without action
+   */
+  export type ParameterCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterCountOutputType
+     */
+    select?: ParameterCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ParameterCountOutputType without action
+   */
+  export type ParameterCountOutputTypeCountIndicatorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IndicatorWhereInput
   }
 
 
@@ -4415,6 +4885,4342 @@ export namespace Prisma {
 
 
   /**
+   * Model Instrument
+   */
+
+  export type AggregateInstrument = {
+    _count: InstrumentCountAggregateOutputType | null
+    _min: InstrumentMinAggregateOutputType | null
+    _max: InstrumentMaxAggregateOutputType | null
+  }
+
+  export type InstrumentMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+  }
+
+  export type InstrumentMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+  }
+
+  export type InstrumentCountAggregateOutputType = {
+    id: number
+    name: number
+    _all: number
+  }
+
+
+  export type InstrumentMinAggregateInputType = {
+    id?: true
+    name?: true
+  }
+
+  export type InstrumentMaxAggregateInputType = {
+    id?: true
+    name?: true
+  }
+
+  export type InstrumentCountAggregateInputType = {
+    id?: true
+    name?: true
+    _all?: true
+  }
+
+  export type InstrumentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Instrument to aggregate.
+     */
+    where?: InstrumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Instruments to fetch.
+     */
+    orderBy?: InstrumentOrderByWithRelationInput | InstrumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InstrumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Instruments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Instruments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Instruments
+    **/
+    _count?: true | InstrumentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InstrumentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InstrumentMaxAggregateInputType
+  }
+
+  export type GetInstrumentAggregateType<T extends InstrumentAggregateArgs> = {
+        [P in keyof T & keyof AggregateInstrument]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInstrument[P]>
+      : GetScalarType<T[P], AggregateInstrument[P]>
+  }
+
+
+
+
+  export type InstrumentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InstrumentWhereInput
+    orderBy?: InstrumentOrderByWithAggregationInput | InstrumentOrderByWithAggregationInput[]
+    by: InstrumentScalarFieldEnum[] | InstrumentScalarFieldEnum
+    having?: InstrumentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InstrumentCountAggregateInputType | true
+    _min?: InstrumentMinAggregateInputType
+    _max?: InstrumentMaxAggregateInputType
+  }
+
+  export type InstrumentGroupByOutputType = {
+    id: string
+    name: string
+    _count: InstrumentCountAggregateOutputType | null
+    _min: InstrumentMinAggregateOutputType | null
+    _max: InstrumentMaxAggregateOutputType | null
+  }
+
+  type GetInstrumentGroupByPayload<T extends InstrumentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InstrumentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InstrumentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InstrumentGroupByOutputType[P]>
+            : GetScalarType<T[P], InstrumentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InstrumentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    area?: boolean | Instrument$areaArgs<ExtArgs>
+    _count?: boolean | InstrumentCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["instrument"]>
+
+  export type InstrumentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+  }, ExtArgs["result"]["instrument"]>
+
+  export type InstrumentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+  }, ExtArgs["result"]["instrument"]>
+
+  export type InstrumentSelectScalar = {
+    id?: boolean
+    name?: boolean
+  }
+
+  export type InstrumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["instrument"]>
+  export type InstrumentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    area?: boolean | Instrument$areaArgs<ExtArgs>
+    _count?: boolean | InstrumentCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type InstrumentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type InstrumentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $InstrumentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Instrument"
+    objects: {
+      area: Prisma.$AreaPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+    }, ExtArgs["result"]["instrument"]>
+    composites: {}
+  }
+
+  type InstrumentGetPayload<S extends boolean | null | undefined | InstrumentDefaultArgs> = $Result.GetResult<Prisma.$InstrumentPayload, S>
+
+  type InstrumentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InstrumentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InstrumentCountAggregateInputType | true
+    }
+
+  export interface InstrumentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Instrument'], meta: { name: 'Instrument' } }
+    /**
+     * Find zero or one Instrument that matches the filter.
+     * @param {InstrumentFindUniqueArgs} args - Arguments to find a Instrument
+     * @example
+     * // Get one Instrument
+     * const instrument = await prisma.instrument.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InstrumentFindUniqueArgs>(args: SelectSubset<T, InstrumentFindUniqueArgs<ExtArgs>>): Prisma__InstrumentClient<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Instrument that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InstrumentFindUniqueOrThrowArgs} args - Arguments to find a Instrument
+     * @example
+     * // Get one Instrument
+     * const instrument = await prisma.instrument.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InstrumentFindUniqueOrThrowArgs>(args: SelectSubset<T, InstrumentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InstrumentClient<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Instrument that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InstrumentFindFirstArgs} args - Arguments to find a Instrument
+     * @example
+     * // Get one Instrument
+     * const instrument = await prisma.instrument.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InstrumentFindFirstArgs>(args?: SelectSubset<T, InstrumentFindFirstArgs<ExtArgs>>): Prisma__InstrumentClient<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Instrument that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InstrumentFindFirstOrThrowArgs} args - Arguments to find a Instrument
+     * @example
+     * // Get one Instrument
+     * const instrument = await prisma.instrument.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InstrumentFindFirstOrThrowArgs>(args?: SelectSubset<T, InstrumentFindFirstOrThrowArgs<ExtArgs>>): Prisma__InstrumentClient<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Instruments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InstrumentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Instruments
+     * const instruments = await prisma.instrument.findMany()
+     * 
+     * // Get first 10 Instruments
+     * const instruments = await prisma.instrument.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const instrumentWithIdOnly = await prisma.instrument.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InstrumentFindManyArgs>(args?: SelectSubset<T, InstrumentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Instrument.
+     * @param {InstrumentCreateArgs} args - Arguments to create a Instrument.
+     * @example
+     * // Create one Instrument
+     * const Instrument = await prisma.instrument.create({
+     *   data: {
+     *     // ... data to create a Instrument
+     *   }
+     * })
+     * 
+     */
+    create<T extends InstrumentCreateArgs>(args: SelectSubset<T, InstrumentCreateArgs<ExtArgs>>): Prisma__InstrumentClient<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Instruments.
+     * @param {InstrumentCreateManyArgs} args - Arguments to create many Instruments.
+     * @example
+     * // Create many Instruments
+     * const instrument = await prisma.instrument.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InstrumentCreateManyArgs>(args?: SelectSubset<T, InstrumentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Instruments and returns the data saved in the database.
+     * @param {InstrumentCreateManyAndReturnArgs} args - Arguments to create many Instruments.
+     * @example
+     * // Create many Instruments
+     * const instrument = await prisma.instrument.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Instruments and only return the `id`
+     * const instrumentWithIdOnly = await prisma.instrument.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends InstrumentCreateManyAndReturnArgs>(args?: SelectSubset<T, InstrumentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Instrument.
+     * @param {InstrumentDeleteArgs} args - Arguments to delete one Instrument.
+     * @example
+     * // Delete one Instrument
+     * const Instrument = await prisma.instrument.delete({
+     *   where: {
+     *     // ... filter to delete one Instrument
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InstrumentDeleteArgs>(args: SelectSubset<T, InstrumentDeleteArgs<ExtArgs>>): Prisma__InstrumentClient<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Instrument.
+     * @param {InstrumentUpdateArgs} args - Arguments to update one Instrument.
+     * @example
+     * // Update one Instrument
+     * const instrument = await prisma.instrument.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InstrumentUpdateArgs>(args: SelectSubset<T, InstrumentUpdateArgs<ExtArgs>>): Prisma__InstrumentClient<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Instruments.
+     * @param {InstrumentDeleteManyArgs} args - Arguments to filter Instruments to delete.
+     * @example
+     * // Delete a few Instruments
+     * const { count } = await prisma.instrument.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InstrumentDeleteManyArgs>(args?: SelectSubset<T, InstrumentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Instruments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InstrumentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Instruments
+     * const instrument = await prisma.instrument.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InstrumentUpdateManyArgs>(args: SelectSubset<T, InstrumentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Instruments and returns the data updated in the database.
+     * @param {InstrumentUpdateManyAndReturnArgs} args - Arguments to update many Instruments.
+     * @example
+     * // Update many Instruments
+     * const instrument = await prisma.instrument.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Instruments and only return the `id`
+     * const instrumentWithIdOnly = await prisma.instrument.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends InstrumentUpdateManyAndReturnArgs>(args: SelectSubset<T, InstrumentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Instrument.
+     * @param {InstrumentUpsertArgs} args - Arguments to update or create a Instrument.
+     * @example
+     * // Update or create a Instrument
+     * const instrument = await prisma.instrument.upsert({
+     *   create: {
+     *     // ... data to create a Instrument
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Instrument we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InstrumentUpsertArgs>(args: SelectSubset<T, InstrumentUpsertArgs<ExtArgs>>): Prisma__InstrumentClient<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Instruments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InstrumentCountArgs} args - Arguments to filter Instruments to count.
+     * @example
+     * // Count the number of Instruments
+     * const count = await prisma.instrument.count({
+     *   where: {
+     *     // ... the filter for the Instruments we want to count
+     *   }
+     * })
+    **/
+    count<T extends InstrumentCountArgs>(
+      args?: Subset<T, InstrumentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InstrumentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Instrument.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InstrumentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InstrumentAggregateArgs>(args: Subset<T, InstrumentAggregateArgs>): Prisma.PrismaPromise<GetInstrumentAggregateType<T>>
+
+    /**
+     * Group by Instrument.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InstrumentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InstrumentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InstrumentGroupByArgs['orderBy'] }
+        : { orderBy?: InstrumentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InstrumentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInstrumentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Instrument model
+   */
+  readonly fields: InstrumentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Instrument.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InstrumentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    area<T extends Instrument$areaArgs<ExtArgs> = {}>(args?: Subset<T, Instrument$areaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Instrument model
+   */
+  interface InstrumentFieldRefs {
+    readonly id: FieldRef<"Instrument", 'String'>
+    readonly name: FieldRef<"Instrument", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Instrument findUnique
+   */
+  export type InstrumentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Instrument
+     */
+    select?: InstrumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Instrument
+     */
+    omit?: InstrumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentInclude<ExtArgs> | null
+    /**
+     * Filter, which Instrument to fetch.
+     */
+    where: InstrumentWhereUniqueInput
+  }
+
+  /**
+   * Instrument findUniqueOrThrow
+   */
+  export type InstrumentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Instrument
+     */
+    select?: InstrumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Instrument
+     */
+    omit?: InstrumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentInclude<ExtArgs> | null
+    /**
+     * Filter, which Instrument to fetch.
+     */
+    where: InstrumentWhereUniqueInput
+  }
+
+  /**
+   * Instrument findFirst
+   */
+  export type InstrumentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Instrument
+     */
+    select?: InstrumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Instrument
+     */
+    omit?: InstrumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentInclude<ExtArgs> | null
+    /**
+     * Filter, which Instrument to fetch.
+     */
+    where?: InstrumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Instruments to fetch.
+     */
+    orderBy?: InstrumentOrderByWithRelationInput | InstrumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Instruments.
+     */
+    cursor?: InstrumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Instruments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Instruments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Instruments.
+     */
+    distinct?: InstrumentScalarFieldEnum | InstrumentScalarFieldEnum[]
+  }
+
+  /**
+   * Instrument findFirstOrThrow
+   */
+  export type InstrumentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Instrument
+     */
+    select?: InstrumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Instrument
+     */
+    omit?: InstrumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentInclude<ExtArgs> | null
+    /**
+     * Filter, which Instrument to fetch.
+     */
+    where?: InstrumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Instruments to fetch.
+     */
+    orderBy?: InstrumentOrderByWithRelationInput | InstrumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Instruments.
+     */
+    cursor?: InstrumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Instruments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Instruments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Instruments.
+     */
+    distinct?: InstrumentScalarFieldEnum | InstrumentScalarFieldEnum[]
+  }
+
+  /**
+   * Instrument findMany
+   */
+  export type InstrumentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Instrument
+     */
+    select?: InstrumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Instrument
+     */
+    omit?: InstrumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentInclude<ExtArgs> | null
+    /**
+     * Filter, which Instruments to fetch.
+     */
+    where?: InstrumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Instruments to fetch.
+     */
+    orderBy?: InstrumentOrderByWithRelationInput | InstrumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Instruments.
+     */
+    cursor?: InstrumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Instruments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Instruments.
+     */
+    skip?: number
+    distinct?: InstrumentScalarFieldEnum | InstrumentScalarFieldEnum[]
+  }
+
+  /**
+   * Instrument create
+   */
+  export type InstrumentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Instrument
+     */
+    select?: InstrumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Instrument
+     */
+    omit?: InstrumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Instrument.
+     */
+    data: XOR<InstrumentCreateInput, InstrumentUncheckedCreateInput>
+  }
+
+  /**
+   * Instrument createMany
+   */
+  export type InstrumentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Instruments.
+     */
+    data: InstrumentCreateManyInput | InstrumentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Instrument createManyAndReturn
+   */
+  export type InstrumentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Instrument
+     */
+    select?: InstrumentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Instrument
+     */
+    omit?: InstrumentOmit<ExtArgs> | null
+    /**
+     * The data used to create many Instruments.
+     */
+    data: InstrumentCreateManyInput | InstrumentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Instrument update
+   */
+  export type InstrumentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Instrument
+     */
+    select?: InstrumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Instrument
+     */
+    omit?: InstrumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Instrument.
+     */
+    data: XOR<InstrumentUpdateInput, InstrumentUncheckedUpdateInput>
+    /**
+     * Choose, which Instrument to update.
+     */
+    where: InstrumentWhereUniqueInput
+  }
+
+  /**
+   * Instrument updateMany
+   */
+  export type InstrumentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Instruments.
+     */
+    data: XOR<InstrumentUpdateManyMutationInput, InstrumentUncheckedUpdateManyInput>
+    /**
+     * Filter which Instruments to update
+     */
+    where?: InstrumentWhereInput
+    /**
+     * Limit how many Instruments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Instrument updateManyAndReturn
+   */
+  export type InstrumentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Instrument
+     */
+    select?: InstrumentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Instrument
+     */
+    omit?: InstrumentOmit<ExtArgs> | null
+    /**
+     * The data used to update Instruments.
+     */
+    data: XOR<InstrumentUpdateManyMutationInput, InstrumentUncheckedUpdateManyInput>
+    /**
+     * Filter which Instruments to update
+     */
+    where?: InstrumentWhereInput
+    /**
+     * Limit how many Instruments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Instrument upsert
+   */
+  export type InstrumentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Instrument
+     */
+    select?: InstrumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Instrument
+     */
+    omit?: InstrumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Instrument to update in case it exists.
+     */
+    where: InstrumentWhereUniqueInput
+    /**
+     * In case the Instrument found by the `where` argument doesn't exist, create a new Instrument with this data.
+     */
+    create: XOR<InstrumentCreateInput, InstrumentUncheckedCreateInput>
+    /**
+     * In case the Instrument was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InstrumentUpdateInput, InstrumentUncheckedUpdateInput>
+  }
+
+  /**
+   * Instrument delete
+   */
+  export type InstrumentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Instrument
+     */
+    select?: InstrumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Instrument
+     */
+    omit?: InstrumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentInclude<ExtArgs> | null
+    /**
+     * Filter which Instrument to delete.
+     */
+    where: InstrumentWhereUniqueInput
+  }
+
+  /**
+   * Instrument deleteMany
+   */
+  export type InstrumentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Instruments to delete
+     */
+    where?: InstrumentWhereInput
+    /**
+     * Limit how many Instruments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Instrument.area
+   */
+  export type Instrument$areaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Area
+     */
+    select?: AreaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Area
+     */
+    omit?: AreaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaInclude<ExtArgs> | null
+    where?: AreaWhereInput
+    orderBy?: AreaOrderByWithRelationInput | AreaOrderByWithRelationInput[]
+    cursor?: AreaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AreaScalarFieldEnum | AreaScalarFieldEnum[]
+  }
+
+  /**
+   * Instrument without action
+   */
+  export type InstrumentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Instrument
+     */
+    select?: InstrumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Instrument
+     */
+    omit?: InstrumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Area
+   */
+
+  export type AggregateArea = {
+    _count: AreaCountAggregateOutputType | null
+    _avg: AreaAvgAggregateOutputType | null
+    _sum: AreaSumAggregateOutputType | null
+    _min: AreaMinAggregateOutputType | null
+    _max: AreaMaxAggregateOutputType | null
+  }
+
+  export type AreaAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type AreaSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type AreaMinAggregateOutputType = {
+    id: number | null
+    label: string | null
+    instrumentId: string | null
+  }
+
+  export type AreaMaxAggregateOutputType = {
+    id: number | null
+    label: string | null
+    instrumentId: string | null
+  }
+
+  export type AreaCountAggregateOutputType = {
+    id: number
+    label: number
+    instrumentId: number
+    _all: number
+  }
+
+
+  export type AreaAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type AreaSumAggregateInputType = {
+    id?: true
+  }
+
+  export type AreaMinAggregateInputType = {
+    id?: true
+    label?: true
+    instrumentId?: true
+  }
+
+  export type AreaMaxAggregateInputType = {
+    id?: true
+    label?: true
+    instrumentId?: true
+  }
+
+  export type AreaCountAggregateInputType = {
+    id?: true
+    label?: true
+    instrumentId?: true
+    _all?: true
+  }
+
+  export type AreaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Area to aggregate.
+     */
+    where?: AreaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Areas to fetch.
+     */
+    orderBy?: AreaOrderByWithRelationInput | AreaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AreaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Areas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Areas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Areas
+    **/
+    _count?: true | AreaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AreaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AreaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AreaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AreaMaxAggregateInputType
+  }
+
+  export type GetAreaAggregateType<T extends AreaAggregateArgs> = {
+        [P in keyof T & keyof AggregateArea]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateArea[P]>
+      : GetScalarType<T[P], AggregateArea[P]>
+  }
+
+
+
+
+  export type AreaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AreaWhereInput
+    orderBy?: AreaOrderByWithAggregationInput | AreaOrderByWithAggregationInput[]
+    by: AreaScalarFieldEnum[] | AreaScalarFieldEnum
+    having?: AreaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AreaCountAggregateInputType | true
+    _avg?: AreaAvgAggregateInputType
+    _sum?: AreaSumAggregateInputType
+    _min?: AreaMinAggregateInputType
+    _max?: AreaMaxAggregateInputType
+  }
+
+  export type AreaGroupByOutputType = {
+    id: number
+    label: string
+    instrumentId: string
+    _count: AreaCountAggregateOutputType | null
+    _avg: AreaAvgAggregateOutputType | null
+    _sum: AreaSumAggregateOutputType | null
+    _min: AreaMinAggregateOutputType | null
+    _max: AreaMaxAggregateOutputType | null
+  }
+
+  type GetAreaGroupByPayload<T extends AreaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AreaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AreaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AreaGroupByOutputType[P]>
+            : GetScalarType<T[P], AreaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AreaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    label?: boolean
+    instrumentId?: boolean
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+    parameter?: boolean | Area$parameterArgs<ExtArgs>
+    _count?: boolean | AreaCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["area"]>
+
+  export type AreaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    label?: boolean
+    instrumentId?: boolean
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["area"]>
+
+  export type AreaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    label?: boolean
+    instrumentId?: boolean
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["area"]>
+
+  export type AreaSelectScalar = {
+    id?: boolean
+    label?: boolean
+    instrumentId?: boolean
+  }
+
+  export type AreaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "label" | "instrumentId", ExtArgs["result"]["area"]>
+  export type AreaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+    parameter?: boolean | Area$parameterArgs<ExtArgs>
+    _count?: boolean | AreaCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AreaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+  }
+  export type AreaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+  }
+
+  export type $AreaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Area"
+    objects: {
+      instrument: Prisma.$InstrumentPayload<ExtArgs>
+      parameter: Prisma.$ParameterPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      label: string
+      instrumentId: string
+    }, ExtArgs["result"]["area"]>
+    composites: {}
+  }
+
+  type AreaGetPayload<S extends boolean | null | undefined | AreaDefaultArgs> = $Result.GetResult<Prisma.$AreaPayload, S>
+
+  type AreaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AreaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AreaCountAggregateInputType | true
+    }
+
+  export interface AreaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Area'], meta: { name: 'Area' } }
+    /**
+     * Find zero or one Area that matches the filter.
+     * @param {AreaFindUniqueArgs} args - Arguments to find a Area
+     * @example
+     * // Get one Area
+     * const area = await prisma.area.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AreaFindUniqueArgs>(args: SelectSubset<T, AreaFindUniqueArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Area that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AreaFindUniqueOrThrowArgs} args - Arguments to find a Area
+     * @example
+     * // Get one Area
+     * const area = await prisma.area.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AreaFindUniqueOrThrowArgs>(args: SelectSubset<T, AreaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Area that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFindFirstArgs} args - Arguments to find a Area
+     * @example
+     * // Get one Area
+     * const area = await prisma.area.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AreaFindFirstArgs>(args?: SelectSubset<T, AreaFindFirstArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Area that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFindFirstOrThrowArgs} args - Arguments to find a Area
+     * @example
+     * // Get one Area
+     * const area = await prisma.area.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AreaFindFirstOrThrowArgs>(args?: SelectSubset<T, AreaFindFirstOrThrowArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Areas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Areas
+     * const areas = await prisma.area.findMany()
+     * 
+     * // Get first 10 Areas
+     * const areas = await prisma.area.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const areaWithIdOnly = await prisma.area.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AreaFindManyArgs>(args?: SelectSubset<T, AreaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Area.
+     * @param {AreaCreateArgs} args - Arguments to create a Area.
+     * @example
+     * // Create one Area
+     * const Area = await prisma.area.create({
+     *   data: {
+     *     // ... data to create a Area
+     *   }
+     * })
+     * 
+     */
+    create<T extends AreaCreateArgs>(args: SelectSubset<T, AreaCreateArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Areas.
+     * @param {AreaCreateManyArgs} args - Arguments to create many Areas.
+     * @example
+     * // Create many Areas
+     * const area = await prisma.area.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AreaCreateManyArgs>(args?: SelectSubset<T, AreaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Areas and returns the data saved in the database.
+     * @param {AreaCreateManyAndReturnArgs} args - Arguments to create many Areas.
+     * @example
+     * // Create many Areas
+     * const area = await prisma.area.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Areas and only return the `id`
+     * const areaWithIdOnly = await prisma.area.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AreaCreateManyAndReturnArgs>(args?: SelectSubset<T, AreaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Area.
+     * @param {AreaDeleteArgs} args - Arguments to delete one Area.
+     * @example
+     * // Delete one Area
+     * const Area = await prisma.area.delete({
+     *   where: {
+     *     // ... filter to delete one Area
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AreaDeleteArgs>(args: SelectSubset<T, AreaDeleteArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Area.
+     * @param {AreaUpdateArgs} args - Arguments to update one Area.
+     * @example
+     * // Update one Area
+     * const area = await prisma.area.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AreaUpdateArgs>(args: SelectSubset<T, AreaUpdateArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Areas.
+     * @param {AreaDeleteManyArgs} args - Arguments to filter Areas to delete.
+     * @example
+     * // Delete a few Areas
+     * const { count } = await prisma.area.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AreaDeleteManyArgs>(args?: SelectSubset<T, AreaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Areas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Areas
+     * const area = await prisma.area.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AreaUpdateManyArgs>(args: SelectSubset<T, AreaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Areas and returns the data updated in the database.
+     * @param {AreaUpdateManyAndReturnArgs} args - Arguments to update many Areas.
+     * @example
+     * // Update many Areas
+     * const area = await prisma.area.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Areas and only return the `id`
+     * const areaWithIdOnly = await prisma.area.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AreaUpdateManyAndReturnArgs>(args: SelectSubset<T, AreaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Area.
+     * @param {AreaUpsertArgs} args - Arguments to update or create a Area.
+     * @example
+     * // Update or create a Area
+     * const area = await prisma.area.upsert({
+     *   create: {
+     *     // ... data to create a Area
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Area we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AreaUpsertArgs>(args: SelectSubset<T, AreaUpsertArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Areas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaCountArgs} args - Arguments to filter Areas to count.
+     * @example
+     * // Count the number of Areas
+     * const count = await prisma.area.count({
+     *   where: {
+     *     // ... the filter for the Areas we want to count
+     *   }
+     * })
+    **/
+    count<T extends AreaCountArgs>(
+      args?: Subset<T, AreaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AreaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Area.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AreaAggregateArgs>(args: Subset<T, AreaAggregateArgs>): Prisma.PrismaPromise<GetAreaAggregateType<T>>
+
+    /**
+     * Group by Area.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AreaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AreaGroupByArgs['orderBy'] }
+        : { orderBy?: AreaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AreaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAreaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Area model
+   */
+  readonly fields: AreaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Area.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AreaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    instrument<T extends InstrumentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InstrumentDefaultArgs<ExtArgs>>): Prisma__InstrumentClient<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    parameter<T extends Area$parameterArgs<ExtArgs> = {}>(args?: Subset<T, Area$parameterArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Area model
+   */
+  interface AreaFieldRefs {
+    readonly id: FieldRef<"Area", 'Int'>
+    readonly label: FieldRef<"Area", 'String'>
+    readonly instrumentId: FieldRef<"Area", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Area findUnique
+   */
+  export type AreaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Area
+     */
+    select?: AreaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Area
+     */
+    omit?: AreaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaInclude<ExtArgs> | null
+    /**
+     * Filter, which Area to fetch.
+     */
+    where: AreaWhereUniqueInput
+  }
+
+  /**
+   * Area findUniqueOrThrow
+   */
+  export type AreaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Area
+     */
+    select?: AreaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Area
+     */
+    omit?: AreaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaInclude<ExtArgs> | null
+    /**
+     * Filter, which Area to fetch.
+     */
+    where: AreaWhereUniqueInput
+  }
+
+  /**
+   * Area findFirst
+   */
+  export type AreaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Area
+     */
+    select?: AreaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Area
+     */
+    omit?: AreaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaInclude<ExtArgs> | null
+    /**
+     * Filter, which Area to fetch.
+     */
+    where?: AreaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Areas to fetch.
+     */
+    orderBy?: AreaOrderByWithRelationInput | AreaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Areas.
+     */
+    cursor?: AreaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Areas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Areas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Areas.
+     */
+    distinct?: AreaScalarFieldEnum | AreaScalarFieldEnum[]
+  }
+
+  /**
+   * Area findFirstOrThrow
+   */
+  export type AreaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Area
+     */
+    select?: AreaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Area
+     */
+    omit?: AreaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaInclude<ExtArgs> | null
+    /**
+     * Filter, which Area to fetch.
+     */
+    where?: AreaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Areas to fetch.
+     */
+    orderBy?: AreaOrderByWithRelationInput | AreaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Areas.
+     */
+    cursor?: AreaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Areas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Areas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Areas.
+     */
+    distinct?: AreaScalarFieldEnum | AreaScalarFieldEnum[]
+  }
+
+  /**
+   * Area findMany
+   */
+  export type AreaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Area
+     */
+    select?: AreaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Area
+     */
+    omit?: AreaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaInclude<ExtArgs> | null
+    /**
+     * Filter, which Areas to fetch.
+     */
+    where?: AreaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Areas to fetch.
+     */
+    orderBy?: AreaOrderByWithRelationInput | AreaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Areas.
+     */
+    cursor?: AreaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Areas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Areas.
+     */
+    skip?: number
+    distinct?: AreaScalarFieldEnum | AreaScalarFieldEnum[]
+  }
+
+  /**
+   * Area create
+   */
+  export type AreaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Area
+     */
+    select?: AreaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Area
+     */
+    omit?: AreaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Area.
+     */
+    data: XOR<AreaCreateInput, AreaUncheckedCreateInput>
+  }
+
+  /**
+   * Area createMany
+   */
+  export type AreaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Areas.
+     */
+    data: AreaCreateManyInput | AreaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Area createManyAndReturn
+   */
+  export type AreaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Area
+     */
+    select?: AreaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Area
+     */
+    omit?: AreaOmit<ExtArgs> | null
+    /**
+     * The data used to create many Areas.
+     */
+    data: AreaCreateManyInput | AreaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Area update
+   */
+  export type AreaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Area
+     */
+    select?: AreaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Area
+     */
+    omit?: AreaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Area.
+     */
+    data: XOR<AreaUpdateInput, AreaUncheckedUpdateInput>
+    /**
+     * Choose, which Area to update.
+     */
+    where: AreaWhereUniqueInput
+  }
+
+  /**
+   * Area updateMany
+   */
+  export type AreaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Areas.
+     */
+    data: XOR<AreaUpdateManyMutationInput, AreaUncheckedUpdateManyInput>
+    /**
+     * Filter which Areas to update
+     */
+    where?: AreaWhereInput
+    /**
+     * Limit how many Areas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Area updateManyAndReturn
+   */
+  export type AreaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Area
+     */
+    select?: AreaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Area
+     */
+    omit?: AreaOmit<ExtArgs> | null
+    /**
+     * The data used to update Areas.
+     */
+    data: XOR<AreaUpdateManyMutationInput, AreaUncheckedUpdateManyInput>
+    /**
+     * Filter which Areas to update
+     */
+    where?: AreaWhereInput
+    /**
+     * Limit how many Areas to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Area upsert
+   */
+  export type AreaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Area
+     */
+    select?: AreaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Area
+     */
+    omit?: AreaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Area to update in case it exists.
+     */
+    where: AreaWhereUniqueInput
+    /**
+     * In case the Area found by the `where` argument doesn't exist, create a new Area with this data.
+     */
+    create: XOR<AreaCreateInput, AreaUncheckedCreateInput>
+    /**
+     * In case the Area was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AreaUpdateInput, AreaUncheckedUpdateInput>
+  }
+
+  /**
+   * Area delete
+   */
+  export type AreaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Area
+     */
+    select?: AreaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Area
+     */
+    omit?: AreaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaInclude<ExtArgs> | null
+    /**
+     * Filter which Area to delete.
+     */
+    where: AreaWhereUniqueInput
+  }
+
+  /**
+   * Area deleteMany
+   */
+  export type AreaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Areas to delete
+     */
+    where?: AreaWhereInput
+    /**
+     * Limit how many Areas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Area.parameter
+   */
+  export type Area$parameterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Parameter
+     */
+    select?: ParameterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Parameter
+     */
+    omit?: ParameterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterInclude<ExtArgs> | null
+    where?: ParameterWhereInput
+    orderBy?: ParameterOrderByWithRelationInput | ParameterOrderByWithRelationInput[]
+    cursor?: ParameterWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ParameterScalarFieldEnum | ParameterScalarFieldEnum[]
+  }
+
+  /**
+   * Area without action
+   */
+  export type AreaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Area
+     */
+    select?: AreaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Area
+     */
+    omit?: AreaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Parameter
+   */
+
+  export type AggregateParameter = {
+    _count: ParameterCountAggregateOutputType | null
+    _avg: ParameterAvgAggregateOutputType | null
+    _sum: ParameterSumAggregateOutputType | null
+    _min: ParameterMinAggregateOutputType | null
+    _max: ParameterMaxAggregateOutputType | null
+  }
+
+  export type ParameterAvgAggregateOutputType = {
+    id: number | null
+    areaId: number | null
+  }
+
+  export type ParameterSumAggregateOutputType = {
+    id: number | null
+    areaId: number | null
+  }
+
+  export type ParameterMinAggregateOutputType = {
+    id: number | null
+    label: string | null
+    areaId: number | null
+  }
+
+  export type ParameterMaxAggregateOutputType = {
+    id: number | null
+    label: string | null
+    areaId: number | null
+  }
+
+  export type ParameterCountAggregateOutputType = {
+    id: number
+    label: number
+    areaId: number
+    _all: number
+  }
+
+
+  export type ParameterAvgAggregateInputType = {
+    id?: true
+    areaId?: true
+  }
+
+  export type ParameterSumAggregateInputType = {
+    id?: true
+    areaId?: true
+  }
+
+  export type ParameterMinAggregateInputType = {
+    id?: true
+    label?: true
+    areaId?: true
+  }
+
+  export type ParameterMaxAggregateInputType = {
+    id?: true
+    label?: true
+    areaId?: true
+  }
+
+  export type ParameterCountAggregateInputType = {
+    id?: true
+    label?: true
+    areaId?: true
+    _all?: true
+  }
+
+  export type ParameterAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Parameter to aggregate.
+     */
+    where?: ParameterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Parameters to fetch.
+     */
+    orderBy?: ParameterOrderByWithRelationInput | ParameterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ParameterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Parameters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Parameters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Parameters
+    **/
+    _count?: true | ParameterCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ParameterAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ParameterSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ParameterMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ParameterMaxAggregateInputType
+  }
+
+  export type GetParameterAggregateType<T extends ParameterAggregateArgs> = {
+        [P in keyof T & keyof AggregateParameter]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateParameter[P]>
+      : GetScalarType<T[P], AggregateParameter[P]>
+  }
+
+
+
+
+  export type ParameterGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParameterWhereInput
+    orderBy?: ParameterOrderByWithAggregationInput | ParameterOrderByWithAggregationInput[]
+    by: ParameterScalarFieldEnum[] | ParameterScalarFieldEnum
+    having?: ParameterScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ParameterCountAggregateInputType | true
+    _avg?: ParameterAvgAggregateInputType
+    _sum?: ParameterSumAggregateInputType
+    _min?: ParameterMinAggregateInputType
+    _max?: ParameterMaxAggregateInputType
+  }
+
+  export type ParameterGroupByOutputType = {
+    id: number
+    label: string
+    areaId: number
+    _count: ParameterCountAggregateOutputType | null
+    _avg: ParameterAvgAggregateOutputType | null
+    _sum: ParameterSumAggregateOutputType | null
+    _min: ParameterMinAggregateOutputType | null
+    _max: ParameterMaxAggregateOutputType | null
+  }
+
+  type GetParameterGroupByPayload<T extends ParameterGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ParameterGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ParameterGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ParameterGroupByOutputType[P]>
+            : GetScalarType<T[P], ParameterGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ParameterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    label?: boolean
+    areaId?: boolean
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+    indicator?: boolean | Parameter$indicatorArgs<ExtArgs>
+    _count?: boolean | ParameterCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["parameter"]>
+
+  export type ParameterSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    label?: boolean
+    areaId?: boolean
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["parameter"]>
+
+  export type ParameterSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    label?: boolean
+    areaId?: boolean
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["parameter"]>
+
+  export type ParameterSelectScalar = {
+    id?: boolean
+    label?: boolean
+    areaId?: boolean
+  }
+
+  export type ParameterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "label" | "areaId", ExtArgs["result"]["parameter"]>
+  export type ParameterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+    indicator?: boolean | Parameter$indicatorArgs<ExtArgs>
+    _count?: boolean | ParameterCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ParameterIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+  }
+  export type ParameterIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+  }
+
+  export type $ParameterPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Parameter"
+    objects: {
+      area: Prisma.$AreaPayload<ExtArgs>
+      indicator: Prisma.$IndicatorPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      label: string
+      areaId: number
+    }, ExtArgs["result"]["parameter"]>
+    composites: {}
+  }
+
+  type ParameterGetPayload<S extends boolean | null | undefined | ParameterDefaultArgs> = $Result.GetResult<Prisma.$ParameterPayload, S>
+
+  type ParameterCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ParameterFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ParameterCountAggregateInputType | true
+    }
+
+  export interface ParameterDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Parameter'], meta: { name: 'Parameter' } }
+    /**
+     * Find zero or one Parameter that matches the filter.
+     * @param {ParameterFindUniqueArgs} args - Arguments to find a Parameter
+     * @example
+     * // Get one Parameter
+     * const parameter = await prisma.parameter.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ParameterFindUniqueArgs>(args: SelectSubset<T, ParameterFindUniqueArgs<ExtArgs>>): Prisma__ParameterClient<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Parameter that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ParameterFindUniqueOrThrowArgs} args - Arguments to find a Parameter
+     * @example
+     * // Get one Parameter
+     * const parameter = await prisma.parameter.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ParameterFindUniqueOrThrowArgs>(args: SelectSubset<T, ParameterFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ParameterClient<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Parameter that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParameterFindFirstArgs} args - Arguments to find a Parameter
+     * @example
+     * // Get one Parameter
+     * const parameter = await prisma.parameter.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ParameterFindFirstArgs>(args?: SelectSubset<T, ParameterFindFirstArgs<ExtArgs>>): Prisma__ParameterClient<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Parameter that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParameterFindFirstOrThrowArgs} args - Arguments to find a Parameter
+     * @example
+     * // Get one Parameter
+     * const parameter = await prisma.parameter.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ParameterFindFirstOrThrowArgs>(args?: SelectSubset<T, ParameterFindFirstOrThrowArgs<ExtArgs>>): Prisma__ParameterClient<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Parameters that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParameterFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Parameters
+     * const parameters = await prisma.parameter.findMany()
+     * 
+     * // Get first 10 Parameters
+     * const parameters = await prisma.parameter.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const parameterWithIdOnly = await prisma.parameter.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ParameterFindManyArgs>(args?: SelectSubset<T, ParameterFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Parameter.
+     * @param {ParameterCreateArgs} args - Arguments to create a Parameter.
+     * @example
+     * // Create one Parameter
+     * const Parameter = await prisma.parameter.create({
+     *   data: {
+     *     // ... data to create a Parameter
+     *   }
+     * })
+     * 
+     */
+    create<T extends ParameterCreateArgs>(args: SelectSubset<T, ParameterCreateArgs<ExtArgs>>): Prisma__ParameterClient<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Parameters.
+     * @param {ParameterCreateManyArgs} args - Arguments to create many Parameters.
+     * @example
+     * // Create many Parameters
+     * const parameter = await prisma.parameter.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ParameterCreateManyArgs>(args?: SelectSubset<T, ParameterCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Parameters and returns the data saved in the database.
+     * @param {ParameterCreateManyAndReturnArgs} args - Arguments to create many Parameters.
+     * @example
+     * // Create many Parameters
+     * const parameter = await prisma.parameter.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Parameters and only return the `id`
+     * const parameterWithIdOnly = await prisma.parameter.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ParameterCreateManyAndReturnArgs>(args?: SelectSubset<T, ParameterCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Parameter.
+     * @param {ParameterDeleteArgs} args - Arguments to delete one Parameter.
+     * @example
+     * // Delete one Parameter
+     * const Parameter = await prisma.parameter.delete({
+     *   where: {
+     *     // ... filter to delete one Parameter
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ParameterDeleteArgs>(args: SelectSubset<T, ParameterDeleteArgs<ExtArgs>>): Prisma__ParameterClient<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Parameter.
+     * @param {ParameterUpdateArgs} args - Arguments to update one Parameter.
+     * @example
+     * // Update one Parameter
+     * const parameter = await prisma.parameter.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ParameterUpdateArgs>(args: SelectSubset<T, ParameterUpdateArgs<ExtArgs>>): Prisma__ParameterClient<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Parameters.
+     * @param {ParameterDeleteManyArgs} args - Arguments to filter Parameters to delete.
+     * @example
+     * // Delete a few Parameters
+     * const { count } = await prisma.parameter.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ParameterDeleteManyArgs>(args?: SelectSubset<T, ParameterDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Parameters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParameterUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Parameters
+     * const parameter = await prisma.parameter.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ParameterUpdateManyArgs>(args: SelectSubset<T, ParameterUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Parameters and returns the data updated in the database.
+     * @param {ParameterUpdateManyAndReturnArgs} args - Arguments to update many Parameters.
+     * @example
+     * // Update many Parameters
+     * const parameter = await prisma.parameter.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Parameters and only return the `id`
+     * const parameterWithIdOnly = await prisma.parameter.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ParameterUpdateManyAndReturnArgs>(args: SelectSubset<T, ParameterUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Parameter.
+     * @param {ParameterUpsertArgs} args - Arguments to update or create a Parameter.
+     * @example
+     * // Update or create a Parameter
+     * const parameter = await prisma.parameter.upsert({
+     *   create: {
+     *     // ... data to create a Parameter
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Parameter we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ParameterUpsertArgs>(args: SelectSubset<T, ParameterUpsertArgs<ExtArgs>>): Prisma__ParameterClient<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Parameters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParameterCountArgs} args - Arguments to filter Parameters to count.
+     * @example
+     * // Count the number of Parameters
+     * const count = await prisma.parameter.count({
+     *   where: {
+     *     // ... the filter for the Parameters we want to count
+     *   }
+     * })
+    **/
+    count<T extends ParameterCountArgs>(
+      args?: Subset<T, ParameterCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ParameterCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Parameter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParameterAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ParameterAggregateArgs>(args: Subset<T, ParameterAggregateArgs>): Prisma.PrismaPromise<GetParameterAggregateType<T>>
+
+    /**
+     * Group by Parameter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParameterGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ParameterGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ParameterGroupByArgs['orderBy'] }
+        : { orderBy?: ParameterGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ParameterGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetParameterGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Parameter model
+   */
+  readonly fields: ParameterFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Parameter.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ParameterClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    area<T extends AreaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AreaDefaultArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    indicator<T extends Parameter$indicatorArgs<ExtArgs> = {}>(args?: Subset<T, Parameter$indicatorArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Parameter model
+   */
+  interface ParameterFieldRefs {
+    readonly id: FieldRef<"Parameter", 'Int'>
+    readonly label: FieldRef<"Parameter", 'String'>
+    readonly areaId: FieldRef<"Parameter", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Parameter findUnique
+   */
+  export type ParameterFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Parameter
+     */
+    select?: ParameterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Parameter
+     */
+    omit?: ParameterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterInclude<ExtArgs> | null
+    /**
+     * Filter, which Parameter to fetch.
+     */
+    where: ParameterWhereUniqueInput
+  }
+
+  /**
+   * Parameter findUniqueOrThrow
+   */
+  export type ParameterFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Parameter
+     */
+    select?: ParameterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Parameter
+     */
+    omit?: ParameterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterInclude<ExtArgs> | null
+    /**
+     * Filter, which Parameter to fetch.
+     */
+    where: ParameterWhereUniqueInput
+  }
+
+  /**
+   * Parameter findFirst
+   */
+  export type ParameterFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Parameter
+     */
+    select?: ParameterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Parameter
+     */
+    omit?: ParameterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterInclude<ExtArgs> | null
+    /**
+     * Filter, which Parameter to fetch.
+     */
+    where?: ParameterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Parameters to fetch.
+     */
+    orderBy?: ParameterOrderByWithRelationInput | ParameterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Parameters.
+     */
+    cursor?: ParameterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Parameters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Parameters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Parameters.
+     */
+    distinct?: ParameterScalarFieldEnum | ParameterScalarFieldEnum[]
+  }
+
+  /**
+   * Parameter findFirstOrThrow
+   */
+  export type ParameterFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Parameter
+     */
+    select?: ParameterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Parameter
+     */
+    omit?: ParameterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterInclude<ExtArgs> | null
+    /**
+     * Filter, which Parameter to fetch.
+     */
+    where?: ParameterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Parameters to fetch.
+     */
+    orderBy?: ParameterOrderByWithRelationInput | ParameterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Parameters.
+     */
+    cursor?: ParameterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Parameters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Parameters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Parameters.
+     */
+    distinct?: ParameterScalarFieldEnum | ParameterScalarFieldEnum[]
+  }
+
+  /**
+   * Parameter findMany
+   */
+  export type ParameterFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Parameter
+     */
+    select?: ParameterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Parameter
+     */
+    omit?: ParameterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterInclude<ExtArgs> | null
+    /**
+     * Filter, which Parameters to fetch.
+     */
+    where?: ParameterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Parameters to fetch.
+     */
+    orderBy?: ParameterOrderByWithRelationInput | ParameterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Parameters.
+     */
+    cursor?: ParameterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Parameters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Parameters.
+     */
+    skip?: number
+    distinct?: ParameterScalarFieldEnum | ParameterScalarFieldEnum[]
+  }
+
+  /**
+   * Parameter create
+   */
+  export type ParameterCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Parameter
+     */
+    select?: ParameterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Parameter
+     */
+    omit?: ParameterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Parameter.
+     */
+    data: XOR<ParameterCreateInput, ParameterUncheckedCreateInput>
+  }
+
+  /**
+   * Parameter createMany
+   */
+  export type ParameterCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Parameters.
+     */
+    data: ParameterCreateManyInput | ParameterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Parameter createManyAndReturn
+   */
+  export type ParameterCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Parameter
+     */
+    select?: ParameterSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Parameter
+     */
+    omit?: ParameterOmit<ExtArgs> | null
+    /**
+     * The data used to create many Parameters.
+     */
+    data: ParameterCreateManyInput | ParameterCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Parameter update
+   */
+  export type ParameterUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Parameter
+     */
+    select?: ParameterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Parameter
+     */
+    omit?: ParameterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Parameter.
+     */
+    data: XOR<ParameterUpdateInput, ParameterUncheckedUpdateInput>
+    /**
+     * Choose, which Parameter to update.
+     */
+    where: ParameterWhereUniqueInput
+  }
+
+  /**
+   * Parameter updateMany
+   */
+  export type ParameterUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Parameters.
+     */
+    data: XOR<ParameterUpdateManyMutationInput, ParameterUncheckedUpdateManyInput>
+    /**
+     * Filter which Parameters to update
+     */
+    where?: ParameterWhereInput
+    /**
+     * Limit how many Parameters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Parameter updateManyAndReturn
+   */
+  export type ParameterUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Parameter
+     */
+    select?: ParameterSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Parameter
+     */
+    omit?: ParameterOmit<ExtArgs> | null
+    /**
+     * The data used to update Parameters.
+     */
+    data: XOR<ParameterUpdateManyMutationInput, ParameterUncheckedUpdateManyInput>
+    /**
+     * Filter which Parameters to update
+     */
+    where?: ParameterWhereInput
+    /**
+     * Limit how many Parameters to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Parameter upsert
+   */
+  export type ParameterUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Parameter
+     */
+    select?: ParameterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Parameter
+     */
+    omit?: ParameterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Parameter to update in case it exists.
+     */
+    where: ParameterWhereUniqueInput
+    /**
+     * In case the Parameter found by the `where` argument doesn't exist, create a new Parameter with this data.
+     */
+    create: XOR<ParameterCreateInput, ParameterUncheckedCreateInput>
+    /**
+     * In case the Parameter was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ParameterUpdateInput, ParameterUncheckedUpdateInput>
+  }
+
+  /**
+   * Parameter delete
+   */
+  export type ParameterDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Parameter
+     */
+    select?: ParameterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Parameter
+     */
+    omit?: ParameterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterInclude<ExtArgs> | null
+    /**
+     * Filter which Parameter to delete.
+     */
+    where: ParameterWhereUniqueInput
+  }
+
+  /**
+   * Parameter deleteMany
+   */
+  export type ParameterDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Parameters to delete
+     */
+    where?: ParameterWhereInput
+    /**
+     * Limit how many Parameters to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Parameter.indicator
+   */
+  export type Parameter$indicatorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Indicator
+     */
+    select?: IndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Indicator
+     */
+    omit?: IndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorInclude<ExtArgs> | null
+    where?: IndicatorWhereInput
+    orderBy?: IndicatorOrderByWithRelationInput | IndicatorOrderByWithRelationInput[]
+    cursor?: IndicatorWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: IndicatorScalarFieldEnum | IndicatorScalarFieldEnum[]
+  }
+
+  /**
+   * Parameter without action
+   */
+  export type ParameterDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Parameter
+     */
+    select?: ParameterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Parameter
+     */
+    omit?: ParameterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Indicator
+   */
+
+  export type AggregateIndicator = {
+    _count: IndicatorCountAggregateOutputType | null
+    _avg: IndicatorAvgAggregateOutputType | null
+    _sum: IndicatorSumAggregateOutputType | null
+    _min: IndicatorMinAggregateOutputType | null
+    _max: IndicatorMaxAggregateOutputType | null
+  }
+
+  export type IndicatorAvgAggregateOutputType = {
+    id: number | null
+    parameterId: number | null
+  }
+
+  export type IndicatorSumAggregateOutputType = {
+    id: number | null
+    parameterId: number | null
+  }
+
+  export type IndicatorMinAggregateOutputType = {
+    id: number | null
+    label: string | null
+    description: string | null
+    category: $Enums.Category | null
+    evidence: string | null
+    parameterId: number | null
+  }
+
+  export type IndicatorMaxAggregateOutputType = {
+    id: number | null
+    label: string | null
+    description: string | null
+    category: $Enums.Category | null
+    evidence: string | null
+    parameterId: number | null
+  }
+
+  export type IndicatorCountAggregateOutputType = {
+    id: number
+    label: number
+    description: number
+    category: number
+    evidence: number
+    parameterId: number
+    _all: number
+  }
+
+
+  export type IndicatorAvgAggregateInputType = {
+    id?: true
+    parameterId?: true
+  }
+
+  export type IndicatorSumAggregateInputType = {
+    id?: true
+    parameterId?: true
+  }
+
+  export type IndicatorMinAggregateInputType = {
+    id?: true
+    label?: true
+    description?: true
+    category?: true
+    evidence?: true
+    parameterId?: true
+  }
+
+  export type IndicatorMaxAggregateInputType = {
+    id?: true
+    label?: true
+    description?: true
+    category?: true
+    evidence?: true
+    parameterId?: true
+  }
+
+  export type IndicatorCountAggregateInputType = {
+    id?: true
+    label?: true
+    description?: true
+    category?: true
+    evidence?: true
+    parameterId?: true
+    _all?: true
+  }
+
+  export type IndicatorAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Indicator to aggregate.
+     */
+    where?: IndicatorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Indicators to fetch.
+     */
+    orderBy?: IndicatorOrderByWithRelationInput | IndicatorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: IndicatorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Indicators from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Indicators.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Indicators
+    **/
+    _count?: true | IndicatorCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: IndicatorAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: IndicatorSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: IndicatorMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: IndicatorMaxAggregateInputType
+  }
+
+  export type GetIndicatorAggregateType<T extends IndicatorAggregateArgs> = {
+        [P in keyof T & keyof AggregateIndicator]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateIndicator[P]>
+      : GetScalarType<T[P], AggregateIndicator[P]>
+  }
+
+
+
+
+  export type IndicatorGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IndicatorWhereInput
+    orderBy?: IndicatorOrderByWithAggregationInput | IndicatorOrderByWithAggregationInput[]
+    by: IndicatorScalarFieldEnum[] | IndicatorScalarFieldEnum
+    having?: IndicatorScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: IndicatorCountAggregateInputType | true
+    _avg?: IndicatorAvgAggregateInputType
+    _sum?: IndicatorSumAggregateInputType
+    _min?: IndicatorMinAggregateInputType
+    _max?: IndicatorMaxAggregateInputType
+  }
+
+  export type IndicatorGroupByOutputType = {
+    id: number
+    label: string
+    description: string
+    category: $Enums.Category
+    evidence: string
+    parameterId: number
+    _count: IndicatorCountAggregateOutputType | null
+    _avg: IndicatorAvgAggregateOutputType | null
+    _sum: IndicatorSumAggregateOutputType | null
+    _min: IndicatorMinAggregateOutputType | null
+    _max: IndicatorMaxAggregateOutputType | null
+  }
+
+  type GetIndicatorGroupByPayload<T extends IndicatorGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<IndicatorGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof IndicatorGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], IndicatorGroupByOutputType[P]>
+            : GetScalarType<T[P], IndicatorGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type IndicatorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    label?: boolean
+    description?: boolean
+    category?: boolean
+    evidence?: boolean
+    parameterId?: boolean
+    parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["indicator"]>
+
+  export type IndicatorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    label?: boolean
+    description?: boolean
+    category?: boolean
+    evidence?: boolean
+    parameterId?: boolean
+    parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["indicator"]>
+
+  export type IndicatorSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    label?: boolean
+    description?: boolean
+    category?: boolean
+    evidence?: boolean
+    parameterId?: boolean
+    parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["indicator"]>
+
+  export type IndicatorSelectScalar = {
+    id?: boolean
+    label?: boolean
+    description?: boolean
+    category?: boolean
+    evidence?: boolean
+    parameterId?: boolean
+  }
+
+  export type IndicatorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "label" | "description" | "category" | "evidence" | "parameterId", ExtArgs["result"]["indicator"]>
+  export type IndicatorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+  }
+  export type IndicatorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+  }
+  export type IndicatorIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+  }
+
+  export type $IndicatorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Indicator"
+    objects: {
+      parameter: Prisma.$ParameterPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      label: string
+      description: string
+      category: $Enums.Category
+      evidence: string
+      parameterId: number
+    }, ExtArgs["result"]["indicator"]>
+    composites: {}
+  }
+
+  type IndicatorGetPayload<S extends boolean | null | undefined | IndicatorDefaultArgs> = $Result.GetResult<Prisma.$IndicatorPayload, S>
+
+  type IndicatorCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<IndicatorFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: IndicatorCountAggregateInputType | true
+    }
+
+  export interface IndicatorDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Indicator'], meta: { name: 'Indicator' } }
+    /**
+     * Find zero or one Indicator that matches the filter.
+     * @param {IndicatorFindUniqueArgs} args - Arguments to find a Indicator
+     * @example
+     * // Get one Indicator
+     * const indicator = await prisma.indicator.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends IndicatorFindUniqueArgs>(args: SelectSubset<T, IndicatorFindUniqueArgs<ExtArgs>>): Prisma__IndicatorClient<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Indicator that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {IndicatorFindUniqueOrThrowArgs} args - Arguments to find a Indicator
+     * @example
+     * // Get one Indicator
+     * const indicator = await prisma.indicator.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends IndicatorFindUniqueOrThrowArgs>(args: SelectSubset<T, IndicatorFindUniqueOrThrowArgs<ExtArgs>>): Prisma__IndicatorClient<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Indicator that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicatorFindFirstArgs} args - Arguments to find a Indicator
+     * @example
+     * // Get one Indicator
+     * const indicator = await prisma.indicator.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends IndicatorFindFirstArgs>(args?: SelectSubset<T, IndicatorFindFirstArgs<ExtArgs>>): Prisma__IndicatorClient<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Indicator that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicatorFindFirstOrThrowArgs} args - Arguments to find a Indicator
+     * @example
+     * // Get one Indicator
+     * const indicator = await prisma.indicator.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends IndicatorFindFirstOrThrowArgs>(args?: SelectSubset<T, IndicatorFindFirstOrThrowArgs<ExtArgs>>): Prisma__IndicatorClient<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Indicators that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicatorFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Indicators
+     * const indicators = await prisma.indicator.findMany()
+     * 
+     * // Get first 10 Indicators
+     * const indicators = await prisma.indicator.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const indicatorWithIdOnly = await prisma.indicator.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends IndicatorFindManyArgs>(args?: SelectSubset<T, IndicatorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Indicator.
+     * @param {IndicatorCreateArgs} args - Arguments to create a Indicator.
+     * @example
+     * // Create one Indicator
+     * const Indicator = await prisma.indicator.create({
+     *   data: {
+     *     // ... data to create a Indicator
+     *   }
+     * })
+     * 
+     */
+    create<T extends IndicatorCreateArgs>(args: SelectSubset<T, IndicatorCreateArgs<ExtArgs>>): Prisma__IndicatorClient<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Indicators.
+     * @param {IndicatorCreateManyArgs} args - Arguments to create many Indicators.
+     * @example
+     * // Create many Indicators
+     * const indicator = await prisma.indicator.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends IndicatorCreateManyArgs>(args?: SelectSubset<T, IndicatorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Indicators and returns the data saved in the database.
+     * @param {IndicatorCreateManyAndReturnArgs} args - Arguments to create many Indicators.
+     * @example
+     * // Create many Indicators
+     * const indicator = await prisma.indicator.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Indicators and only return the `id`
+     * const indicatorWithIdOnly = await prisma.indicator.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends IndicatorCreateManyAndReturnArgs>(args?: SelectSubset<T, IndicatorCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Indicator.
+     * @param {IndicatorDeleteArgs} args - Arguments to delete one Indicator.
+     * @example
+     * // Delete one Indicator
+     * const Indicator = await prisma.indicator.delete({
+     *   where: {
+     *     // ... filter to delete one Indicator
+     *   }
+     * })
+     * 
+     */
+    delete<T extends IndicatorDeleteArgs>(args: SelectSubset<T, IndicatorDeleteArgs<ExtArgs>>): Prisma__IndicatorClient<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Indicator.
+     * @param {IndicatorUpdateArgs} args - Arguments to update one Indicator.
+     * @example
+     * // Update one Indicator
+     * const indicator = await prisma.indicator.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends IndicatorUpdateArgs>(args: SelectSubset<T, IndicatorUpdateArgs<ExtArgs>>): Prisma__IndicatorClient<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Indicators.
+     * @param {IndicatorDeleteManyArgs} args - Arguments to filter Indicators to delete.
+     * @example
+     * // Delete a few Indicators
+     * const { count } = await prisma.indicator.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends IndicatorDeleteManyArgs>(args?: SelectSubset<T, IndicatorDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Indicators.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicatorUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Indicators
+     * const indicator = await prisma.indicator.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends IndicatorUpdateManyArgs>(args: SelectSubset<T, IndicatorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Indicators and returns the data updated in the database.
+     * @param {IndicatorUpdateManyAndReturnArgs} args - Arguments to update many Indicators.
+     * @example
+     * // Update many Indicators
+     * const indicator = await prisma.indicator.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Indicators and only return the `id`
+     * const indicatorWithIdOnly = await prisma.indicator.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends IndicatorUpdateManyAndReturnArgs>(args: SelectSubset<T, IndicatorUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Indicator.
+     * @param {IndicatorUpsertArgs} args - Arguments to update or create a Indicator.
+     * @example
+     * // Update or create a Indicator
+     * const indicator = await prisma.indicator.upsert({
+     *   create: {
+     *     // ... data to create a Indicator
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Indicator we want to update
+     *   }
+     * })
+     */
+    upsert<T extends IndicatorUpsertArgs>(args: SelectSubset<T, IndicatorUpsertArgs<ExtArgs>>): Prisma__IndicatorClient<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Indicators.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicatorCountArgs} args - Arguments to filter Indicators to count.
+     * @example
+     * // Count the number of Indicators
+     * const count = await prisma.indicator.count({
+     *   where: {
+     *     // ... the filter for the Indicators we want to count
+     *   }
+     * })
+    **/
+    count<T extends IndicatorCountArgs>(
+      args?: Subset<T, IndicatorCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], IndicatorCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Indicator.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicatorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends IndicatorAggregateArgs>(args: Subset<T, IndicatorAggregateArgs>): Prisma.PrismaPromise<GetIndicatorAggregateType<T>>
+
+    /**
+     * Group by Indicator.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicatorGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends IndicatorGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: IndicatorGroupByArgs['orderBy'] }
+        : { orderBy?: IndicatorGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, IndicatorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIndicatorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Indicator model
+   */
+  readonly fields: IndicatorFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Indicator.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__IndicatorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    parameter<T extends ParameterDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ParameterDefaultArgs<ExtArgs>>): Prisma__ParameterClient<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Indicator model
+   */
+  interface IndicatorFieldRefs {
+    readonly id: FieldRef<"Indicator", 'Int'>
+    readonly label: FieldRef<"Indicator", 'String'>
+    readonly description: FieldRef<"Indicator", 'String'>
+    readonly category: FieldRef<"Indicator", 'Category'>
+    readonly evidence: FieldRef<"Indicator", 'String'>
+    readonly parameterId: FieldRef<"Indicator", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Indicator findUnique
+   */
+  export type IndicatorFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Indicator
+     */
+    select?: IndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Indicator
+     */
+    omit?: IndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorInclude<ExtArgs> | null
+    /**
+     * Filter, which Indicator to fetch.
+     */
+    where: IndicatorWhereUniqueInput
+  }
+
+  /**
+   * Indicator findUniqueOrThrow
+   */
+  export type IndicatorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Indicator
+     */
+    select?: IndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Indicator
+     */
+    omit?: IndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorInclude<ExtArgs> | null
+    /**
+     * Filter, which Indicator to fetch.
+     */
+    where: IndicatorWhereUniqueInput
+  }
+
+  /**
+   * Indicator findFirst
+   */
+  export type IndicatorFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Indicator
+     */
+    select?: IndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Indicator
+     */
+    omit?: IndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorInclude<ExtArgs> | null
+    /**
+     * Filter, which Indicator to fetch.
+     */
+    where?: IndicatorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Indicators to fetch.
+     */
+    orderBy?: IndicatorOrderByWithRelationInput | IndicatorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Indicators.
+     */
+    cursor?: IndicatorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Indicators from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Indicators.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Indicators.
+     */
+    distinct?: IndicatorScalarFieldEnum | IndicatorScalarFieldEnum[]
+  }
+
+  /**
+   * Indicator findFirstOrThrow
+   */
+  export type IndicatorFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Indicator
+     */
+    select?: IndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Indicator
+     */
+    omit?: IndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorInclude<ExtArgs> | null
+    /**
+     * Filter, which Indicator to fetch.
+     */
+    where?: IndicatorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Indicators to fetch.
+     */
+    orderBy?: IndicatorOrderByWithRelationInput | IndicatorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Indicators.
+     */
+    cursor?: IndicatorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Indicators from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Indicators.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Indicators.
+     */
+    distinct?: IndicatorScalarFieldEnum | IndicatorScalarFieldEnum[]
+  }
+
+  /**
+   * Indicator findMany
+   */
+  export type IndicatorFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Indicator
+     */
+    select?: IndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Indicator
+     */
+    omit?: IndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorInclude<ExtArgs> | null
+    /**
+     * Filter, which Indicators to fetch.
+     */
+    where?: IndicatorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Indicators to fetch.
+     */
+    orderBy?: IndicatorOrderByWithRelationInput | IndicatorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Indicators.
+     */
+    cursor?: IndicatorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Indicators from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Indicators.
+     */
+    skip?: number
+    distinct?: IndicatorScalarFieldEnum | IndicatorScalarFieldEnum[]
+  }
+
+  /**
+   * Indicator create
+   */
+  export type IndicatorCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Indicator
+     */
+    select?: IndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Indicator
+     */
+    omit?: IndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Indicator.
+     */
+    data: XOR<IndicatorCreateInput, IndicatorUncheckedCreateInput>
+  }
+
+  /**
+   * Indicator createMany
+   */
+  export type IndicatorCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Indicators.
+     */
+    data: IndicatorCreateManyInput | IndicatorCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Indicator createManyAndReturn
+   */
+  export type IndicatorCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Indicator
+     */
+    select?: IndicatorSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Indicator
+     */
+    omit?: IndicatorOmit<ExtArgs> | null
+    /**
+     * The data used to create many Indicators.
+     */
+    data: IndicatorCreateManyInput | IndicatorCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Indicator update
+   */
+  export type IndicatorUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Indicator
+     */
+    select?: IndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Indicator
+     */
+    omit?: IndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Indicator.
+     */
+    data: XOR<IndicatorUpdateInput, IndicatorUncheckedUpdateInput>
+    /**
+     * Choose, which Indicator to update.
+     */
+    where: IndicatorWhereUniqueInput
+  }
+
+  /**
+   * Indicator updateMany
+   */
+  export type IndicatorUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Indicators.
+     */
+    data: XOR<IndicatorUpdateManyMutationInput, IndicatorUncheckedUpdateManyInput>
+    /**
+     * Filter which Indicators to update
+     */
+    where?: IndicatorWhereInput
+    /**
+     * Limit how many Indicators to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Indicator updateManyAndReturn
+   */
+  export type IndicatorUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Indicator
+     */
+    select?: IndicatorSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Indicator
+     */
+    omit?: IndicatorOmit<ExtArgs> | null
+    /**
+     * The data used to update Indicators.
+     */
+    data: XOR<IndicatorUpdateManyMutationInput, IndicatorUncheckedUpdateManyInput>
+    /**
+     * Filter which Indicators to update
+     */
+    where?: IndicatorWhereInput
+    /**
+     * Limit how many Indicators to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Indicator upsert
+   */
+  export type IndicatorUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Indicator
+     */
+    select?: IndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Indicator
+     */
+    omit?: IndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Indicator to update in case it exists.
+     */
+    where: IndicatorWhereUniqueInput
+    /**
+     * In case the Indicator found by the `where` argument doesn't exist, create a new Indicator with this data.
+     */
+    create: XOR<IndicatorCreateInput, IndicatorUncheckedCreateInput>
+    /**
+     * In case the Indicator was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<IndicatorUpdateInput, IndicatorUncheckedUpdateInput>
+  }
+
+  /**
+   * Indicator delete
+   */
+  export type IndicatorDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Indicator
+     */
+    select?: IndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Indicator
+     */
+    omit?: IndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorInclude<ExtArgs> | null
+    /**
+     * Filter which Indicator to delete.
+     */
+    where: IndicatorWhereUniqueInput
+  }
+
+  /**
+   * Indicator deleteMany
+   */
+  export type IndicatorDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Indicators to delete
+     */
+    where?: IndicatorWhereInput
+    /**
+     * Limit how many Indicators to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Indicator without action
+   */
+  export type IndicatorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Indicator
+     */
+    select?: IndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Indicator
+     */
+    omit?: IndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4465,6 +9271,44 @@ export namespace Prisma {
   };
 
   export type ProgramPersonnelScalarFieldEnum = (typeof ProgramPersonnelScalarFieldEnum)[keyof typeof ProgramPersonnelScalarFieldEnum]
+
+
+  export const InstrumentScalarFieldEnum: {
+    id: 'id',
+    name: 'name'
+  };
+
+  export type InstrumentScalarFieldEnum = (typeof InstrumentScalarFieldEnum)[keyof typeof InstrumentScalarFieldEnum]
+
+
+  export const AreaScalarFieldEnum: {
+    id: 'id',
+    label: 'label',
+    instrumentId: 'instrumentId'
+  };
+
+  export type AreaScalarFieldEnum = (typeof AreaScalarFieldEnum)[keyof typeof AreaScalarFieldEnum]
+
+
+  export const ParameterScalarFieldEnum: {
+    id: 'id',
+    label: 'label',
+    areaId: 'areaId'
+  };
+
+  export type ParameterScalarFieldEnum = (typeof ParameterScalarFieldEnum)[keyof typeof ParameterScalarFieldEnum]
+
+
+  export const IndicatorScalarFieldEnum: {
+    id: 'id',
+    label: 'label',
+    description: 'description',
+    category: 'category',
+    evidence: 'evidence',
+    parameterId: 'parameterId'
+  };
+
+  export type IndicatorScalarFieldEnum = (typeof IndicatorScalarFieldEnum)[keyof typeof IndicatorScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4549,6 +9393,34 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Category'
+   */
+  export type EnumCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Category'>
+    
+
+
+  /**
+   * Reference to a field of type 'Category[]'
+   */
+  export type ListEnumCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Category[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -4753,6 +9625,208 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"ProgramPersonnel"> | string
     programId?: StringWithAggregatesFilter<"ProgramPersonnel"> | string
     assignedAt?: DateTimeWithAggregatesFilter<"ProgramPersonnel"> | Date | string
+  }
+
+  export type InstrumentWhereInput = {
+    AND?: InstrumentWhereInput | InstrumentWhereInput[]
+    OR?: InstrumentWhereInput[]
+    NOT?: InstrumentWhereInput | InstrumentWhereInput[]
+    id?: StringFilter<"Instrument"> | string
+    name?: StringFilter<"Instrument"> | string
+    area?: AreaListRelationFilter
+  }
+
+  export type InstrumentOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    area?: AreaOrderByRelationAggregateInput
+  }
+
+  export type InstrumentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: InstrumentWhereInput | InstrumentWhereInput[]
+    OR?: InstrumentWhereInput[]
+    NOT?: InstrumentWhereInput | InstrumentWhereInput[]
+    name?: StringFilter<"Instrument"> | string
+    area?: AreaListRelationFilter
+  }, "id">
+
+  export type InstrumentOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    _count?: InstrumentCountOrderByAggregateInput
+    _max?: InstrumentMaxOrderByAggregateInput
+    _min?: InstrumentMinOrderByAggregateInput
+  }
+
+  export type InstrumentScalarWhereWithAggregatesInput = {
+    AND?: InstrumentScalarWhereWithAggregatesInput | InstrumentScalarWhereWithAggregatesInput[]
+    OR?: InstrumentScalarWhereWithAggregatesInput[]
+    NOT?: InstrumentScalarWhereWithAggregatesInput | InstrumentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Instrument"> | string
+    name?: StringWithAggregatesFilter<"Instrument"> | string
+  }
+
+  export type AreaWhereInput = {
+    AND?: AreaWhereInput | AreaWhereInput[]
+    OR?: AreaWhereInput[]
+    NOT?: AreaWhereInput | AreaWhereInput[]
+    id?: IntFilter<"Area"> | number
+    label?: StringFilter<"Area"> | string
+    instrumentId?: StringFilter<"Area"> | string
+    instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
+    parameter?: ParameterListRelationFilter
+  }
+
+  export type AreaOrderByWithRelationInput = {
+    id?: SortOrder
+    label?: SortOrder
+    instrumentId?: SortOrder
+    instrument?: InstrumentOrderByWithRelationInput
+    parameter?: ParameterOrderByRelationAggregateInput
+  }
+
+  export type AreaWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: AreaWhereInput | AreaWhereInput[]
+    OR?: AreaWhereInput[]
+    NOT?: AreaWhereInput | AreaWhereInput[]
+    label?: StringFilter<"Area"> | string
+    instrumentId?: StringFilter<"Area"> | string
+    instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
+    parameter?: ParameterListRelationFilter
+  }, "id">
+
+  export type AreaOrderByWithAggregationInput = {
+    id?: SortOrder
+    label?: SortOrder
+    instrumentId?: SortOrder
+    _count?: AreaCountOrderByAggregateInput
+    _avg?: AreaAvgOrderByAggregateInput
+    _max?: AreaMaxOrderByAggregateInput
+    _min?: AreaMinOrderByAggregateInput
+    _sum?: AreaSumOrderByAggregateInput
+  }
+
+  export type AreaScalarWhereWithAggregatesInput = {
+    AND?: AreaScalarWhereWithAggregatesInput | AreaScalarWhereWithAggregatesInput[]
+    OR?: AreaScalarWhereWithAggregatesInput[]
+    NOT?: AreaScalarWhereWithAggregatesInput | AreaScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Area"> | number
+    label?: StringWithAggregatesFilter<"Area"> | string
+    instrumentId?: StringWithAggregatesFilter<"Area"> | string
+  }
+
+  export type ParameterWhereInput = {
+    AND?: ParameterWhereInput | ParameterWhereInput[]
+    OR?: ParameterWhereInput[]
+    NOT?: ParameterWhereInput | ParameterWhereInput[]
+    id?: IntFilter<"Parameter"> | number
+    label?: StringFilter<"Parameter"> | string
+    areaId?: IntFilter<"Parameter"> | number
+    area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
+    indicator?: IndicatorListRelationFilter
+  }
+
+  export type ParameterOrderByWithRelationInput = {
+    id?: SortOrder
+    label?: SortOrder
+    areaId?: SortOrder
+    area?: AreaOrderByWithRelationInput
+    indicator?: IndicatorOrderByRelationAggregateInput
+  }
+
+  export type ParameterWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ParameterWhereInput | ParameterWhereInput[]
+    OR?: ParameterWhereInput[]
+    NOT?: ParameterWhereInput | ParameterWhereInput[]
+    label?: StringFilter<"Parameter"> | string
+    areaId?: IntFilter<"Parameter"> | number
+    area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
+    indicator?: IndicatorListRelationFilter
+  }, "id">
+
+  export type ParameterOrderByWithAggregationInput = {
+    id?: SortOrder
+    label?: SortOrder
+    areaId?: SortOrder
+    _count?: ParameterCountOrderByAggregateInput
+    _avg?: ParameterAvgOrderByAggregateInput
+    _max?: ParameterMaxOrderByAggregateInput
+    _min?: ParameterMinOrderByAggregateInput
+    _sum?: ParameterSumOrderByAggregateInput
+  }
+
+  export type ParameterScalarWhereWithAggregatesInput = {
+    AND?: ParameterScalarWhereWithAggregatesInput | ParameterScalarWhereWithAggregatesInput[]
+    OR?: ParameterScalarWhereWithAggregatesInput[]
+    NOT?: ParameterScalarWhereWithAggregatesInput | ParameterScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Parameter"> | number
+    label?: StringWithAggregatesFilter<"Parameter"> | string
+    areaId?: IntWithAggregatesFilter<"Parameter"> | number
+  }
+
+  export type IndicatorWhereInput = {
+    AND?: IndicatorWhereInput | IndicatorWhereInput[]
+    OR?: IndicatorWhereInput[]
+    NOT?: IndicatorWhereInput | IndicatorWhereInput[]
+    id?: IntFilter<"Indicator"> | number
+    label?: StringFilter<"Indicator"> | string
+    description?: StringFilter<"Indicator"> | string
+    category?: EnumCategoryFilter<"Indicator"> | $Enums.Category
+    evidence?: StringFilter<"Indicator"> | string
+    parameterId?: IntFilter<"Indicator"> | number
+    parameter?: XOR<ParameterScalarRelationFilter, ParameterWhereInput>
+  }
+
+  export type IndicatorOrderByWithRelationInput = {
+    id?: SortOrder
+    label?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    evidence?: SortOrder
+    parameterId?: SortOrder
+    parameter?: ParameterOrderByWithRelationInput
+  }
+
+  export type IndicatorWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: IndicatorWhereInput | IndicatorWhereInput[]
+    OR?: IndicatorWhereInput[]
+    NOT?: IndicatorWhereInput | IndicatorWhereInput[]
+    label?: StringFilter<"Indicator"> | string
+    description?: StringFilter<"Indicator"> | string
+    category?: EnumCategoryFilter<"Indicator"> | $Enums.Category
+    evidence?: StringFilter<"Indicator"> | string
+    parameterId?: IntFilter<"Indicator"> | number
+    parameter?: XOR<ParameterScalarRelationFilter, ParameterWhereInput>
+  }, "id">
+
+  export type IndicatorOrderByWithAggregationInput = {
+    id?: SortOrder
+    label?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    evidence?: SortOrder
+    parameterId?: SortOrder
+    _count?: IndicatorCountOrderByAggregateInput
+    _avg?: IndicatorAvgOrderByAggregateInput
+    _max?: IndicatorMaxOrderByAggregateInput
+    _min?: IndicatorMinOrderByAggregateInput
+    _sum?: IndicatorSumOrderByAggregateInput
+  }
+
+  export type IndicatorScalarWhereWithAggregatesInput = {
+    AND?: IndicatorScalarWhereWithAggregatesInput | IndicatorScalarWhereWithAggregatesInput[]
+    OR?: IndicatorScalarWhereWithAggregatesInput[]
+    NOT?: IndicatorScalarWhereWithAggregatesInput | IndicatorScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Indicator"> | number
+    label?: StringWithAggregatesFilter<"Indicator"> | string
+    description?: StringWithAggregatesFilter<"Indicator"> | string
+    category?: EnumCategoryWithAggregatesFilter<"Indicator"> | $Enums.Category
+    evidence?: StringWithAggregatesFilter<"Indicator"> | string
+    parameterId?: IntWithAggregatesFilter<"Indicator"> | number
   }
 
   export type UserCreateInput = {
@@ -4969,6 +10043,188 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InstrumentCreateInput = {
+    id?: string
+    name: string
+    area?: AreaCreateNestedManyWithoutInstrumentInput
+  }
+
+  export type InstrumentUncheckedCreateInput = {
+    id?: string
+    name: string
+    area?: AreaUncheckedCreateNestedManyWithoutInstrumentInput
+  }
+
+  export type InstrumentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    area?: AreaUpdateManyWithoutInstrumentNestedInput
+  }
+
+  export type InstrumentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    area?: AreaUncheckedUpdateManyWithoutInstrumentNestedInput
+  }
+
+  export type InstrumentCreateManyInput = {
+    id?: string
+    name: string
+  }
+
+  export type InstrumentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InstrumentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AreaCreateInput = {
+    label: string
+    instrument: InstrumentCreateNestedOneWithoutAreaInput
+    parameter?: ParameterCreateNestedManyWithoutAreaInput
+  }
+
+  export type AreaUncheckedCreateInput = {
+    id?: number
+    label: string
+    instrumentId: string
+    parameter?: ParameterUncheckedCreateNestedManyWithoutAreaInput
+  }
+
+  export type AreaUpdateInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    instrument?: InstrumentUpdateOneRequiredWithoutAreaNestedInput
+    parameter?: ParameterUpdateManyWithoutAreaNestedInput
+  }
+
+  export type AreaUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    instrumentId?: StringFieldUpdateOperationsInput | string
+    parameter?: ParameterUncheckedUpdateManyWithoutAreaNestedInput
+  }
+
+  export type AreaCreateManyInput = {
+    id?: number
+    label: string
+    instrumentId: string
+  }
+
+  export type AreaUpdateManyMutationInput = {
+    label?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AreaUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    instrumentId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ParameterCreateInput = {
+    label: string
+    area: AreaCreateNestedOneWithoutParameterInput
+    indicator?: IndicatorCreateNestedManyWithoutParameterInput
+  }
+
+  export type ParameterUncheckedCreateInput = {
+    id?: number
+    label: string
+    areaId: number
+    indicator?: IndicatorUncheckedCreateNestedManyWithoutParameterInput
+  }
+
+  export type ParameterUpdateInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    area?: AreaUpdateOneRequiredWithoutParameterNestedInput
+    indicator?: IndicatorUpdateManyWithoutParameterNestedInput
+  }
+
+  export type ParameterUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+    indicator?: IndicatorUncheckedUpdateManyWithoutParameterNestedInput
+  }
+
+  export type ParameterCreateManyInput = {
+    id?: number
+    label: string
+    areaId: number
+  }
+
+  export type ParameterUpdateManyMutationInput = {
+    label?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ParameterUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type IndicatorCreateInput = {
+    label: string
+    description: string
+    category: $Enums.Category
+    evidence: string
+    parameter: ParameterCreateNestedOneWithoutIndicatorInput
+  }
+
+  export type IndicatorUncheckedCreateInput = {
+    id?: number
+    label: string
+    description: string
+    category: $Enums.Category
+    evidence: string
+    parameterId: number
+  }
+
+  export type IndicatorUpdateInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+    evidence?: StringFieldUpdateOperationsInput | string
+    parameter?: ParameterUpdateOneRequiredWithoutIndicatorNestedInput
+  }
+
+  export type IndicatorUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+    evidence?: StringFieldUpdateOperationsInput | string
+    parameterId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type IndicatorCreateManyInput = {
+    id?: number
+    label: string
+    description: string
+    category: $Enums.Category
+    evidence: string
+    parameterId: number
+  }
+
+  export type IndicatorUpdateManyMutationInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+    evidence?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type IndicatorUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+    evidence?: StringFieldUpdateOperationsInput | string
+    parameterId?: IntFieldUpdateOperationsInput | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -5204,6 +10460,201 @@ export namespace Prisma {
     assignedAt?: SortOrder
   }
 
+  export type AreaListRelationFilter = {
+    every?: AreaWhereInput
+    some?: AreaWhereInput
+    none?: AreaWhereInput
+  }
+
+  export type AreaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type InstrumentCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type InstrumentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type InstrumentMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type InstrumentScalarRelationFilter = {
+    is?: InstrumentWhereInput
+    isNot?: InstrumentWhereInput
+  }
+
+  export type ParameterListRelationFilter = {
+    every?: ParameterWhereInput
+    some?: ParameterWhereInput
+    none?: ParameterWhereInput
+  }
+
+  export type ParameterOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AreaCountOrderByAggregateInput = {
+    id?: SortOrder
+    label?: SortOrder
+    instrumentId?: SortOrder
+  }
+
+  export type AreaAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type AreaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    label?: SortOrder
+    instrumentId?: SortOrder
+  }
+
+  export type AreaMinOrderByAggregateInput = {
+    id?: SortOrder
+    label?: SortOrder
+    instrumentId?: SortOrder
+  }
+
+  export type AreaSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type AreaScalarRelationFilter = {
+    is?: AreaWhereInput
+    isNot?: AreaWhereInput
+  }
+
+  export type IndicatorListRelationFilter = {
+    every?: IndicatorWhereInput
+    some?: IndicatorWhereInput
+    none?: IndicatorWhereInput
+  }
+
+  export type IndicatorOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ParameterCountOrderByAggregateInput = {
+    id?: SortOrder
+    label?: SortOrder
+    areaId?: SortOrder
+  }
+
+  export type ParameterAvgOrderByAggregateInput = {
+    id?: SortOrder
+    areaId?: SortOrder
+  }
+
+  export type ParameterMaxOrderByAggregateInput = {
+    id?: SortOrder
+    label?: SortOrder
+    areaId?: SortOrder
+  }
+
+  export type ParameterMinOrderByAggregateInput = {
+    id?: SortOrder
+    label?: SortOrder
+    areaId?: SortOrder
+  }
+
+  export type ParameterSumOrderByAggregateInput = {
+    id?: SortOrder
+    areaId?: SortOrder
+  }
+
+  export type EnumCategoryFilter<$PrismaModel = never> = {
+    equals?: $Enums.Category | EnumCategoryFieldRefInput<$PrismaModel>
+    in?: $Enums.Category[] | ListEnumCategoryFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Category[] | ListEnumCategoryFieldRefInput<$PrismaModel>
+    not?: NestedEnumCategoryFilter<$PrismaModel> | $Enums.Category
+  }
+
+  export type ParameterScalarRelationFilter = {
+    is?: ParameterWhereInput
+    isNot?: ParameterWhereInput
+  }
+
+  export type IndicatorCountOrderByAggregateInput = {
+    id?: SortOrder
+    label?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    evidence?: SortOrder
+    parameterId?: SortOrder
+  }
+
+  export type IndicatorAvgOrderByAggregateInput = {
+    id?: SortOrder
+    parameterId?: SortOrder
+  }
+
+  export type IndicatorMaxOrderByAggregateInput = {
+    id?: SortOrder
+    label?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    evidence?: SortOrder
+    parameterId?: SortOrder
+  }
+
+  export type IndicatorMinOrderByAggregateInput = {
+    id?: SortOrder
+    label?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    evidence?: SortOrder
+    parameterId?: SortOrder
+  }
+
+  export type IndicatorSumOrderByAggregateInput = {
+    id?: SortOrder
+    parameterId?: SortOrder
+  }
+
+  export type EnumCategoryWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Category | EnumCategoryFieldRefInput<$PrismaModel>
+    in?: $Enums.Category[] | ListEnumCategoryFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Category[] | ListEnumCategoryFieldRefInput<$PrismaModel>
+    not?: NestedEnumCategoryWithAggregatesFilter<$PrismaModel> | $Enums.Category
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCategoryFilter<$PrismaModel>
+    _max?: NestedEnumCategoryFilter<$PrismaModel>
+  }
+
   export type ProgramPersonnelCreateNestedManyWithoutUserInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
@@ -5332,6 +10783,186 @@ export namespace Prisma {
     update?: XOR<XOR<ProgramUpdateToOneWithWhereWithoutProgramPersonnelInput, ProgramUpdateWithoutProgramPersonnelInput>, ProgramUncheckedUpdateWithoutProgramPersonnelInput>
   }
 
+  export type AreaCreateNestedManyWithoutInstrumentInput = {
+    create?: XOR<AreaCreateWithoutInstrumentInput, AreaUncheckedCreateWithoutInstrumentInput> | AreaCreateWithoutInstrumentInput[] | AreaUncheckedCreateWithoutInstrumentInput[]
+    connectOrCreate?: AreaCreateOrConnectWithoutInstrumentInput | AreaCreateOrConnectWithoutInstrumentInput[]
+    createMany?: AreaCreateManyInstrumentInputEnvelope
+    connect?: AreaWhereUniqueInput | AreaWhereUniqueInput[]
+  }
+
+  export type AreaUncheckedCreateNestedManyWithoutInstrumentInput = {
+    create?: XOR<AreaCreateWithoutInstrumentInput, AreaUncheckedCreateWithoutInstrumentInput> | AreaCreateWithoutInstrumentInput[] | AreaUncheckedCreateWithoutInstrumentInput[]
+    connectOrCreate?: AreaCreateOrConnectWithoutInstrumentInput | AreaCreateOrConnectWithoutInstrumentInput[]
+    createMany?: AreaCreateManyInstrumentInputEnvelope
+    connect?: AreaWhereUniqueInput | AreaWhereUniqueInput[]
+  }
+
+  export type AreaUpdateManyWithoutInstrumentNestedInput = {
+    create?: XOR<AreaCreateWithoutInstrumentInput, AreaUncheckedCreateWithoutInstrumentInput> | AreaCreateWithoutInstrumentInput[] | AreaUncheckedCreateWithoutInstrumentInput[]
+    connectOrCreate?: AreaCreateOrConnectWithoutInstrumentInput | AreaCreateOrConnectWithoutInstrumentInput[]
+    upsert?: AreaUpsertWithWhereUniqueWithoutInstrumentInput | AreaUpsertWithWhereUniqueWithoutInstrumentInput[]
+    createMany?: AreaCreateManyInstrumentInputEnvelope
+    set?: AreaWhereUniqueInput | AreaWhereUniqueInput[]
+    disconnect?: AreaWhereUniqueInput | AreaWhereUniqueInput[]
+    delete?: AreaWhereUniqueInput | AreaWhereUniqueInput[]
+    connect?: AreaWhereUniqueInput | AreaWhereUniqueInput[]
+    update?: AreaUpdateWithWhereUniqueWithoutInstrumentInput | AreaUpdateWithWhereUniqueWithoutInstrumentInput[]
+    updateMany?: AreaUpdateManyWithWhereWithoutInstrumentInput | AreaUpdateManyWithWhereWithoutInstrumentInput[]
+    deleteMany?: AreaScalarWhereInput | AreaScalarWhereInput[]
+  }
+
+  export type AreaUncheckedUpdateManyWithoutInstrumentNestedInput = {
+    create?: XOR<AreaCreateWithoutInstrumentInput, AreaUncheckedCreateWithoutInstrumentInput> | AreaCreateWithoutInstrumentInput[] | AreaUncheckedCreateWithoutInstrumentInput[]
+    connectOrCreate?: AreaCreateOrConnectWithoutInstrumentInput | AreaCreateOrConnectWithoutInstrumentInput[]
+    upsert?: AreaUpsertWithWhereUniqueWithoutInstrumentInput | AreaUpsertWithWhereUniqueWithoutInstrumentInput[]
+    createMany?: AreaCreateManyInstrumentInputEnvelope
+    set?: AreaWhereUniqueInput | AreaWhereUniqueInput[]
+    disconnect?: AreaWhereUniqueInput | AreaWhereUniqueInput[]
+    delete?: AreaWhereUniqueInput | AreaWhereUniqueInput[]
+    connect?: AreaWhereUniqueInput | AreaWhereUniqueInput[]
+    update?: AreaUpdateWithWhereUniqueWithoutInstrumentInput | AreaUpdateWithWhereUniqueWithoutInstrumentInput[]
+    updateMany?: AreaUpdateManyWithWhereWithoutInstrumentInput | AreaUpdateManyWithWhereWithoutInstrumentInput[]
+    deleteMany?: AreaScalarWhereInput | AreaScalarWhereInput[]
+  }
+
+  export type InstrumentCreateNestedOneWithoutAreaInput = {
+    create?: XOR<InstrumentCreateWithoutAreaInput, InstrumentUncheckedCreateWithoutAreaInput>
+    connectOrCreate?: InstrumentCreateOrConnectWithoutAreaInput
+    connect?: InstrumentWhereUniqueInput
+  }
+
+  export type ParameterCreateNestedManyWithoutAreaInput = {
+    create?: XOR<ParameterCreateWithoutAreaInput, ParameterUncheckedCreateWithoutAreaInput> | ParameterCreateWithoutAreaInput[] | ParameterUncheckedCreateWithoutAreaInput[]
+    connectOrCreate?: ParameterCreateOrConnectWithoutAreaInput | ParameterCreateOrConnectWithoutAreaInput[]
+    createMany?: ParameterCreateManyAreaInputEnvelope
+    connect?: ParameterWhereUniqueInput | ParameterWhereUniqueInput[]
+  }
+
+  export type ParameterUncheckedCreateNestedManyWithoutAreaInput = {
+    create?: XOR<ParameterCreateWithoutAreaInput, ParameterUncheckedCreateWithoutAreaInput> | ParameterCreateWithoutAreaInput[] | ParameterUncheckedCreateWithoutAreaInput[]
+    connectOrCreate?: ParameterCreateOrConnectWithoutAreaInput | ParameterCreateOrConnectWithoutAreaInput[]
+    createMany?: ParameterCreateManyAreaInputEnvelope
+    connect?: ParameterWhereUniqueInput | ParameterWhereUniqueInput[]
+  }
+
+  export type InstrumentUpdateOneRequiredWithoutAreaNestedInput = {
+    create?: XOR<InstrumentCreateWithoutAreaInput, InstrumentUncheckedCreateWithoutAreaInput>
+    connectOrCreate?: InstrumentCreateOrConnectWithoutAreaInput
+    upsert?: InstrumentUpsertWithoutAreaInput
+    connect?: InstrumentWhereUniqueInput
+    update?: XOR<XOR<InstrumentUpdateToOneWithWhereWithoutAreaInput, InstrumentUpdateWithoutAreaInput>, InstrumentUncheckedUpdateWithoutAreaInput>
+  }
+
+  export type ParameterUpdateManyWithoutAreaNestedInput = {
+    create?: XOR<ParameterCreateWithoutAreaInput, ParameterUncheckedCreateWithoutAreaInput> | ParameterCreateWithoutAreaInput[] | ParameterUncheckedCreateWithoutAreaInput[]
+    connectOrCreate?: ParameterCreateOrConnectWithoutAreaInput | ParameterCreateOrConnectWithoutAreaInput[]
+    upsert?: ParameterUpsertWithWhereUniqueWithoutAreaInput | ParameterUpsertWithWhereUniqueWithoutAreaInput[]
+    createMany?: ParameterCreateManyAreaInputEnvelope
+    set?: ParameterWhereUniqueInput | ParameterWhereUniqueInput[]
+    disconnect?: ParameterWhereUniqueInput | ParameterWhereUniqueInput[]
+    delete?: ParameterWhereUniqueInput | ParameterWhereUniqueInput[]
+    connect?: ParameterWhereUniqueInput | ParameterWhereUniqueInput[]
+    update?: ParameterUpdateWithWhereUniqueWithoutAreaInput | ParameterUpdateWithWhereUniqueWithoutAreaInput[]
+    updateMany?: ParameterUpdateManyWithWhereWithoutAreaInput | ParameterUpdateManyWithWhereWithoutAreaInput[]
+    deleteMany?: ParameterScalarWhereInput | ParameterScalarWhereInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type ParameterUncheckedUpdateManyWithoutAreaNestedInput = {
+    create?: XOR<ParameterCreateWithoutAreaInput, ParameterUncheckedCreateWithoutAreaInput> | ParameterCreateWithoutAreaInput[] | ParameterUncheckedCreateWithoutAreaInput[]
+    connectOrCreate?: ParameterCreateOrConnectWithoutAreaInput | ParameterCreateOrConnectWithoutAreaInput[]
+    upsert?: ParameterUpsertWithWhereUniqueWithoutAreaInput | ParameterUpsertWithWhereUniqueWithoutAreaInput[]
+    createMany?: ParameterCreateManyAreaInputEnvelope
+    set?: ParameterWhereUniqueInput | ParameterWhereUniqueInput[]
+    disconnect?: ParameterWhereUniqueInput | ParameterWhereUniqueInput[]
+    delete?: ParameterWhereUniqueInput | ParameterWhereUniqueInput[]
+    connect?: ParameterWhereUniqueInput | ParameterWhereUniqueInput[]
+    update?: ParameterUpdateWithWhereUniqueWithoutAreaInput | ParameterUpdateWithWhereUniqueWithoutAreaInput[]
+    updateMany?: ParameterUpdateManyWithWhereWithoutAreaInput | ParameterUpdateManyWithWhereWithoutAreaInput[]
+    deleteMany?: ParameterScalarWhereInput | ParameterScalarWhereInput[]
+  }
+
+  export type AreaCreateNestedOneWithoutParameterInput = {
+    create?: XOR<AreaCreateWithoutParameterInput, AreaUncheckedCreateWithoutParameterInput>
+    connectOrCreate?: AreaCreateOrConnectWithoutParameterInput
+    connect?: AreaWhereUniqueInput
+  }
+
+  export type IndicatorCreateNestedManyWithoutParameterInput = {
+    create?: XOR<IndicatorCreateWithoutParameterInput, IndicatorUncheckedCreateWithoutParameterInput> | IndicatorCreateWithoutParameterInput[] | IndicatorUncheckedCreateWithoutParameterInput[]
+    connectOrCreate?: IndicatorCreateOrConnectWithoutParameterInput | IndicatorCreateOrConnectWithoutParameterInput[]
+    createMany?: IndicatorCreateManyParameterInputEnvelope
+    connect?: IndicatorWhereUniqueInput | IndicatorWhereUniqueInput[]
+  }
+
+  export type IndicatorUncheckedCreateNestedManyWithoutParameterInput = {
+    create?: XOR<IndicatorCreateWithoutParameterInput, IndicatorUncheckedCreateWithoutParameterInput> | IndicatorCreateWithoutParameterInput[] | IndicatorUncheckedCreateWithoutParameterInput[]
+    connectOrCreate?: IndicatorCreateOrConnectWithoutParameterInput | IndicatorCreateOrConnectWithoutParameterInput[]
+    createMany?: IndicatorCreateManyParameterInputEnvelope
+    connect?: IndicatorWhereUniqueInput | IndicatorWhereUniqueInput[]
+  }
+
+  export type AreaUpdateOneRequiredWithoutParameterNestedInput = {
+    create?: XOR<AreaCreateWithoutParameterInput, AreaUncheckedCreateWithoutParameterInput>
+    connectOrCreate?: AreaCreateOrConnectWithoutParameterInput
+    upsert?: AreaUpsertWithoutParameterInput
+    connect?: AreaWhereUniqueInput
+    update?: XOR<XOR<AreaUpdateToOneWithWhereWithoutParameterInput, AreaUpdateWithoutParameterInput>, AreaUncheckedUpdateWithoutParameterInput>
+  }
+
+  export type IndicatorUpdateManyWithoutParameterNestedInput = {
+    create?: XOR<IndicatorCreateWithoutParameterInput, IndicatorUncheckedCreateWithoutParameterInput> | IndicatorCreateWithoutParameterInput[] | IndicatorUncheckedCreateWithoutParameterInput[]
+    connectOrCreate?: IndicatorCreateOrConnectWithoutParameterInput | IndicatorCreateOrConnectWithoutParameterInput[]
+    upsert?: IndicatorUpsertWithWhereUniqueWithoutParameterInput | IndicatorUpsertWithWhereUniqueWithoutParameterInput[]
+    createMany?: IndicatorCreateManyParameterInputEnvelope
+    set?: IndicatorWhereUniqueInput | IndicatorWhereUniqueInput[]
+    disconnect?: IndicatorWhereUniqueInput | IndicatorWhereUniqueInput[]
+    delete?: IndicatorWhereUniqueInput | IndicatorWhereUniqueInput[]
+    connect?: IndicatorWhereUniqueInput | IndicatorWhereUniqueInput[]
+    update?: IndicatorUpdateWithWhereUniqueWithoutParameterInput | IndicatorUpdateWithWhereUniqueWithoutParameterInput[]
+    updateMany?: IndicatorUpdateManyWithWhereWithoutParameterInput | IndicatorUpdateManyWithWhereWithoutParameterInput[]
+    deleteMany?: IndicatorScalarWhereInput | IndicatorScalarWhereInput[]
+  }
+
+  export type IndicatorUncheckedUpdateManyWithoutParameterNestedInput = {
+    create?: XOR<IndicatorCreateWithoutParameterInput, IndicatorUncheckedCreateWithoutParameterInput> | IndicatorCreateWithoutParameterInput[] | IndicatorUncheckedCreateWithoutParameterInput[]
+    connectOrCreate?: IndicatorCreateOrConnectWithoutParameterInput | IndicatorCreateOrConnectWithoutParameterInput[]
+    upsert?: IndicatorUpsertWithWhereUniqueWithoutParameterInput | IndicatorUpsertWithWhereUniqueWithoutParameterInput[]
+    createMany?: IndicatorCreateManyParameterInputEnvelope
+    set?: IndicatorWhereUniqueInput | IndicatorWhereUniqueInput[]
+    disconnect?: IndicatorWhereUniqueInput | IndicatorWhereUniqueInput[]
+    delete?: IndicatorWhereUniqueInput | IndicatorWhereUniqueInput[]
+    connect?: IndicatorWhereUniqueInput | IndicatorWhereUniqueInput[]
+    update?: IndicatorUpdateWithWhereUniqueWithoutParameterInput | IndicatorUpdateWithWhereUniqueWithoutParameterInput[]
+    updateMany?: IndicatorUpdateManyWithWhereWithoutParameterInput | IndicatorUpdateManyWithWhereWithoutParameterInput[]
+    deleteMany?: IndicatorScalarWhereInput | IndicatorScalarWhereInput[]
+  }
+
+  export type ParameterCreateNestedOneWithoutIndicatorInput = {
+    create?: XOR<ParameterCreateWithoutIndicatorInput, ParameterUncheckedCreateWithoutIndicatorInput>
+    connectOrCreate?: ParameterCreateOrConnectWithoutIndicatorInput
+    connect?: ParameterWhereUniqueInput
+  }
+
+  export type EnumCategoryFieldUpdateOperationsInput = {
+    set?: $Enums.Category
+  }
+
+  export type ParameterUpdateOneRequiredWithoutIndicatorNestedInput = {
+    create?: XOR<ParameterCreateWithoutIndicatorInput, ParameterUncheckedCreateWithoutIndicatorInput>
+    connectOrCreate?: ParameterCreateOrConnectWithoutIndicatorInput
+    upsert?: ParameterUpsertWithoutIndicatorInput
+    connect?: ParameterWhereUniqueInput
+    update?: XOR<XOR<ParameterUpdateToOneWithWhereWithoutIndicatorInput, ParameterUpdateWithoutIndicatorInput>, ParameterUncheckedUpdateWithoutIndicatorInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -5456,6 +11087,50 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumCategoryFilter<$PrismaModel = never> = {
+    equals?: $Enums.Category | EnumCategoryFieldRefInput<$PrismaModel>
+    in?: $Enums.Category[] | ListEnumCategoryFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Category[] | ListEnumCategoryFieldRefInput<$PrismaModel>
+    not?: NestedEnumCategoryFilter<$PrismaModel> | $Enums.Category
+  }
+
+  export type NestedEnumCategoryWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Category | EnumCategoryFieldRefInput<$PrismaModel>
+    in?: $Enums.Category[] | ListEnumCategoryFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Category[] | ListEnumCategoryFieldRefInput<$PrismaModel>
+    not?: NestedEnumCategoryWithAggregatesFilter<$PrismaModel> | $Enums.Category
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCategoryFilter<$PrismaModel>
+    _max?: NestedEnumCategoryFilter<$PrismaModel>
   }
 
   export type ProgramPersonnelCreateWithoutUserInput = {
@@ -5668,6 +11343,263 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AreaCreateWithoutInstrumentInput = {
+    label: string
+    parameter?: ParameterCreateNestedManyWithoutAreaInput
+  }
+
+  export type AreaUncheckedCreateWithoutInstrumentInput = {
+    id?: number
+    label: string
+    parameter?: ParameterUncheckedCreateNestedManyWithoutAreaInput
+  }
+
+  export type AreaCreateOrConnectWithoutInstrumentInput = {
+    where: AreaWhereUniqueInput
+    create: XOR<AreaCreateWithoutInstrumentInput, AreaUncheckedCreateWithoutInstrumentInput>
+  }
+
+  export type AreaCreateManyInstrumentInputEnvelope = {
+    data: AreaCreateManyInstrumentInput | AreaCreateManyInstrumentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AreaUpsertWithWhereUniqueWithoutInstrumentInput = {
+    where: AreaWhereUniqueInput
+    update: XOR<AreaUpdateWithoutInstrumentInput, AreaUncheckedUpdateWithoutInstrumentInput>
+    create: XOR<AreaCreateWithoutInstrumentInput, AreaUncheckedCreateWithoutInstrumentInput>
+  }
+
+  export type AreaUpdateWithWhereUniqueWithoutInstrumentInput = {
+    where: AreaWhereUniqueInput
+    data: XOR<AreaUpdateWithoutInstrumentInput, AreaUncheckedUpdateWithoutInstrumentInput>
+  }
+
+  export type AreaUpdateManyWithWhereWithoutInstrumentInput = {
+    where: AreaScalarWhereInput
+    data: XOR<AreaUpdateManyMutationInput, AreaUncheckedUpdateManyWithoutInstrumentInput>
+  }
+
+  export type AreaScalarWhereInput = {
+    AND?: AreaScalarWhereInput | AreaScalarWhereInput[]
+    OR?: AreaScalarWhereInput[]
+    NOT?: AreaScalarWhereInput | AreaScalarWhereInput[]
+    id?: IntFilter<"Area"> | number
+    label?: StringFilter<"Area"> | string
+    instrumentId?: StringFilter<"Area"> | string
+  }
+
+  export type InstrumentCreateWithoutAreaInput = {
+    id?: string
+    name: string
+  }
+
+  export type InstrumentUncheckedCreateWithoutAreaInput = {
+    id?: string
+    name: string
+  }
+
+  export type InstrumentCreateOrConnectWithoutAreaInput = {
+    where: InstrumentWhereUniqueInput
+    create: XOR<InstrumentCreateWithoutAreaInput, InstrumentUncheckedCreateWithoutAreaInput>
+  }
+
+  export type ParameterCreateWithoutAreaInput = {
+    label: string
+    indicator?: IndicatorCreateNestedManyWithoutParameterInput
+  }
+
+  export type ParameterUncheckedCreateWithoutAreaInput = {
+    id?: number
+    label: string
+    indicator?: IndicatorUncheckedCreateNestedManyWithoutParameterInput
+  }
+
+  export type ParameterCreateOrConnectWithoutAreaInput = {
+    where: ParameterWhereUniqueInput
+    create: XOR<ParameterCreateWithoutAreaInput, ParameterUncheckedCreateWithoutAreaInput>
+  }
+
+  export type ParameterCreateManyAreaInputEnvelope = {
+    data: ParameterCreateManyAreaInput | ParameterCreateManyAreaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InstrumentUpsertWithoutAreaInput = {
+    update: XOR<InstrumentUpdateWithoutAreaInput, InstrumentUncheckedUpdateWithoutAreaInput>
+    create: XOR<InstrumentCreateWithoutAreaInput, InstrumentUncheckedCreateWithoutAreaInput>
+    where?: InstrumentWhereInput
+  }
+
+  export type InstrumentUpdateToOneWithWhereWithoutAreaInput = {
+    where?: InstrumentWhereInput
+    data: XOR<InstrumentUpdateWithoutAreaInput, InstrumentUncheckedUpdateWithoutAreaInput>
+  }
+
+  export type InstrumentUpdateWithoutAreaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InstrumentUncheckedUpdateWithoutAreaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ParameterUpsertWithWhereUniqueWithoutAreaInput = {
+    where: ParameterWhereUniqueInput
+    update: XOR<ParameterUpdateWithoutAreaInput, ParameterUncheckedUpdateWithoutAreaInput>
+    create: XOR<ParameterCreateWithoutAreaInput, ParameterUncheckedCreateWithoutAreaInput>
+  }
+
+  export type ParameterUpdateWithWhereUniqueWithoutAreaInput = {
+    where: ParameterWhereUniqueInput
+    data: XOR<ParameterUpdateWithoutAreaInput, ParameterUncheckedUpdateWithoutAreaInput>
+  }
+
+  export type ParameterUpdateManyWithWhereWithoutAreaInput = {
+    where: ParameterScalarWhereInput
+    data: XOR<ParameterUpdateManyMutationInput, ParameterUncheckedUpdateManyWithoutAreaInput>
+  }
+
+  export type ParameterScalarWhereInput = {
+    AND?: ParameterScalarWhereInput | ParameterScalarWhereInput[]
+    OR?: ParameterScalarWhereInput[]
+    NOT?: ParameterScalarWhereInput | ParameterScalarWhereInput[]
+    id?: IntFilter<"Parameter"> | number
+    label?: StringFilter<"Parameter"> | string
+    areaId?: IntFilter<"Parameter"> | number
+  }
+
+  export type AreaCreateWithoutParameterInput = {
+    label: string
+    instrument: InstrumentCreateNestedOneWithoutAreaInput
+  }
+
+  export type AreaUncheckedCreateWithoutParameterInput = {
+    id?: number
+    label: string
+    instrumentId: string
+  }
+
+  export type AreaCreateOrConnectWithoutParameterInput = {
+    where: AreaWhereUniqueInput
+    create: XOR<AreaCreateWithoutParameterInput, AreaUncheckedCreateWithoutParameterInput>
+  }
+
+  export type IndicatorCreateWithoutParameterInput = {
+    label: string
+    description: string
+    category: $Enums.Category
+    evidence: string
+  }
+
+  export type IndicatorUncheckedCreateWithoutParameterInput = {
+    id?: number
+    label: string
+    description: string
+    category: $Enums.Category
+    evidence: string
+  }
+
+  export type IndicatorCreateOrConnectWithoutParameterInput = {
+    where: IndicatorWhereUniqueInput
+    create: XOR<IndicatorCreateWithoutParameterInput, IndicatorUncheckedCreateWithoutParameterInput>
+  }
+
+  export type IndicatorCreateManyParameterInputEnvelope = {
+    data: IndicatorCreateManyParameterInput | IndicatorCreateManyParameterInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AreaUpsertWithoutParameterInput = {
+    update: XOR<AreaUpdateWithoutParameterInput, AreaUncheckedUpdateWithoutParameterInput>
+    create: XOR<AreaCreateWithoutParameterInput, AreaUncheckedCreateWithoutParameterInput>
+    where?: AreaWhereInput
+  }
+
+  export type AreaUpdateToOneWithWhereWithoutParameterInput = {
+    where?: AreaWhereInput
+    data: XOR<AreaUpdateWithoutParameterInput, AreaUncheckedUpdateWithoutParameterInput>
+  }
+
+  export type AreaUpdateWithoutParameterInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    instrument?: InstrumentUpdateOneRequiredWithoutAreaNestedInput
+  }
+
+  export type AreaUncheckedUpdateWithoutParameterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    instrumentId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type IndicatorUpsertWithWhereUniqueWithoutParameterInput = {
+    where: IndicatorWhereUniqueInput
+    update: XOR<IndicatorUpdateWithoutParameterInput, IndicatorUncheckedUpdateWithoutParameterInput>
+    create: XOR<IndicatorCreateWithoutParameterInput, IndicatorUncheckedCreateWithoutParameterInput>
+  }
+
+  export type IndicatorUpdateWithWhereUniqueWithoutParameterInput = {
+    where: IndicatorWhereUniqueInput
+    data: XOR<IndicatorUpdateWithoutParameterInput, IndicatorUncheckedUpdateWithoutParameterInput>
+  }
+
+  export type IndicatorUpdateManyWithWhereWithoutParameterInput = {
+    where: IndicatorScalarWhereInput
+    data: XOR<IndicatorUpdateManyMutationInput, IndicatorUncheckedUpdateManyWithoutParameterInput>
+  }
+
+  export type IndicatorScalarWhereInput = {
+    AND?: IndicatorScalarWhereInput | IndicatorScalarWhereInput[]
+    OR?: IndicatorScalarWhereInput[]
+    NOT?: IndicatorScalarWhereInput | IndicatorScalarWhereInput[]
+    id?: IntFilter<"Indicator"> | number
+    label?: StringFilter<"Indicator"> | string
+    description?: StringFilter<"Indicator"> | string
+    category?: EnumCategoryFilter<"Indicator"> | $Enums.Category
+    evidence?: StringFilter<"Indicator"> | string
+    parameterId?: IntFilter<"Indicator"> | number
+  }
+
+  export type ParameterCreateWithoutIndicatorInput = {
+    label: string
+    area: AreaCreateNestedOneWithoutParameterInput
+  }
+
+  export type ParameterUncheckedCreateWithoutIndicatorInput = {
+    id?: number
+    label: string
+    areaId: number
+  }
+
+  export type ParameterCreateOrConnectWithoutIndicatorInput = {
+    where: ParameterWhereUniqueInput
+    create: XOR<ParameterCreateWithoutIndicatorInput, ParameterUncheckedCreateWithoutIndicatorInput>
+  }
+
+  export type ParameterUpsertWithoutIndicatorInput = {
+    update: XOR<ParameterUpdateWithoutIndicatorInput, ParameterUncheckedUpdateWithoutIndicatorInput>
+    create: XOR<ParameterCreateWithoutIndicatorInput, ParameterUncheckedCreateWithoutIndicatorInput>
+    where?: ParameterWhereInput
+  }
+
+  export type ParameterUpdateToOneWithWhereWithoutIndicatorInput = {
+    where?: ParameterWhereInput
+    data: XOR<ParameterUpdateWithoutIndicatorInput, ParameterUncheckedUpdateWithoutIndicatorInput>
+  }
+
+  export type ParameterUpdateWithoutIndicatorInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    area?: AreaUpdateOneRequiredWithoutParameterNestedInput
+  }
+
+  export type ParameterUncheckedUpdateWithoutIndicatorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+  }
+
   export type ProgramPersonnelCreateManyUserInput = {
     id?: string
     programId: string
@@ -5714,6 +11646,79 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AreaCreateManyInstrumentInput = {
+    id?: number
+    label: string
+  }
+
+  export type AreaUpdateWithoutInstrumentInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    parameter?: ParameterUpdateManyWithoutAreaNestedInput
+  }
+
+  export type AreaUncheckedUpdateWithoutInstrumentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    parameter?: ParameterUncheckedUpdateManyWithoutAreaNestedInput
+  }
+
+  export type AreaUncheckedUpdateManyWithoutInstrumentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ParameterCreateManyAreaInput = {
+    id?: number
+    label: string
+  }
+
+  export type ParameterUpdateWithoutAreaInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    indicator?: IndicatorUpdateManyWithoutParameterNestedInput
+  }
+
+  export type ParameterUncheckedUpdateWithoutAreaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    indicator?: IndicatorUncheckedUpdateManyWithoutParameterNestedInput
+  }
+
+  export type ParameterUncheckedUpdateManyWithoutAreaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type IndicatorCreateManyParameterInput = {
+    id?: number
+    label: string
+    description: string
+    category: $Enums.Category
+    evidence: string
+  }
+
+  export type IndicatorUpdateWithoutParameterInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+    evidence?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type IndicatorUncheckedUpdateWithoutParameterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+    evidence?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type IndicatorUncheckedUpdateManyWithoutParameterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+    evidence?: StringFieldUpdateOperationsInput | string
   }
 
 
