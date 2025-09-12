@@ -9644,12 +9644,12 @@ export namespace Prisma {
 
   export type InstrumentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    name?: string
     AND?: InstrumentWhereInput | InstrumentWhereInput[]
     OR?: InstrumentWhereInput[]
     NOT?: InstrumentWhereInput | InstrumentWhereInput[]
-    name?: StringFilter<"Instrument"> | string
     area?: AreaListRelationFilter
-  }, "id">
+  }, "id" | "name">
 
   export type InstrumentOrderByWithAggregationInput = {
     id?: SortOrder

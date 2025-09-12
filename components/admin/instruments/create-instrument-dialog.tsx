@@ -22,10 +22,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { createInstrument } from "@/lib/action/instrument";
 import { CreateInstrumentFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Info, Plus } from "lucide-react";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import z from "zod";
 
 const CreateInstrumentDialog = () => {
@@ -35,8 +38,19 @@ const CreateInstrumentDialog = () => {
       name: "",
     },
   });
-  const onSubmit = (data: z.infer<typeof CreateInstrumentFormSchema>) => {
-    console.log("test");
+  const [pending, startTransition] = useTransition();
+  const onSubmit = async (data: z.infer<typeof CreateInstrumentFormSchema>) => {
+    startTransition(async () => {
+      const result = await createInstrument(data);
+      switch (result?.status) {
+        case "success":
+          toast.success(result.message);
+          break;
+        case "error":
+          toast.error(result.message);
+          break;
+      }
+    });
   };
   return (
     <Dialog>
