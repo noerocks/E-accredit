@@ -25,6 +25,7 @@ export async function createProgramPersonnel(
 
 export const getProgramPersonnelByProgramId = unstable_cache(
   async (programId: string): Promise<ProgramPersonnelDTO[] | null> => {
+    if (!programId) return null;
     const programPersonnel = await prisma.programPersonnel.findMany({
       where: {
         programId,
