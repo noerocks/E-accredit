@@ -2,7 +2,7 @@
 
 import z from "zod";
 import { CreateInstrumentFormSchema } from "../zod-definitions";
-import { CreateInstrument as createInstrumentDAL } from "../dal/instrument";
+import { createInstrument as createInstrumentDAL } from "../dal/instrument";
 import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/library";
 
 export async function createInstrument(
