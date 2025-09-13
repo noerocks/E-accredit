@@ -4897,16 +4897,19 @@ export namespace Prisma {
   export type InstrumentMinAggregateOutputType = {
     id: string | null
     name: string | null
+    accreditingBody: string | null
   }
 
   export type InstrumentMaxAggregateOutputType = {
     id: string | null
     name: string | null
+    accreditingBody: string | null
   }
 
   export type InstrumentCountAggregateOutputType = {
     id: number
     name: number
+    accreditingBody: number
     _all: number
   }
 
@@ -4914,16 +4917,19 @@ export namespace Prisma {
   export type InstrumentMinAggregateInputType = {
     id?: true
     name?: true
+    accreditingBody?: true
   }
 
   export type InstrumentMaxAggregateInputType = {
     id?: true
     name?: true
+    accreditingBody?: true
   }
 
   export type InstrumentCountAggregateInputType = {
     id?: true
     name?: true
+    accreditingBody?: true
     _all?: true
   }
 
@@ -5002,6 +5008,7 @@ export namespace Prisma {
   export type InstrumentGroupByOutputType = {
     id: string
     name: string
+    accreditingBody: string
     _count: InstrumentCountAggregateOutputType | null
     _min: InstrumentMinAggregateOutputType | null
     _max: InstrumentMaxAggregateOutputType | null
@@ -5024,6 +5031,7 @@ export namespace Prisma {
   export type InstrumentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    accreditingBody?: boolean
     area?: boolean | Instrument$areaArgs<ExtArgs>
     _count?: boolean | InstrumentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["instrument"]>
@@ -5031,19 +5039,22 @@ export namespace Prisma {
   export type InstrumentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    accreditingBody?: boolean
   }, ExtArgs["result"]["instrument"]>
 
   export type InstrumentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    accreditingBody?: boolean
   }, ExtArgs["result"]["instrument"]>
 
   export type InstrumentSelectScalar = {
     id?: boolean
     name?: boolean
+    accreditingBody?: boolean
   }
 
-  export type InstrumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["instrument"]>
+  export type InstrumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "accreditingBody", ExtArgs["result"]["instrument"]>
   export type InstrumentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     area?: boolean | Instrument$areaArgs<ExtArgs>
     _count?: boolean | InstrumentCountOutputTypeDefaultArgs<ExtArgs>
@@ -5059,6 +5070,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
+      accreditingBody: string
     }, ExtArgs["result"]["instrument"]>
     composites: {}
   }
@@ -5485,6 +5497,7 @@ export namespace Prisma {
   interface InstrumentFieldRefs {
     readonly id: FieldRef<"Instrument", 'String'>
     readonly name: FieldRef<"Instrument", 'String'>
+    readonly accreditingBody: FieldRef<"Instrument", 'String'>
   }
     
 
@@ -9275,7 +9288,8 @@ export namespace Prisma {
 
   export const InstrumentScalarFieldEnum: {
     id: 'id',
-    name: 'name'
+    name: 'name',
+    accreditingBody: 'accreditingBody'
   };
 
   export type InstrumentScalarFieldEnum = (typeof InstrumentScalarFieldEnum)[keyof typeof InstrumentScalarFieldEnum]
@@ -9633,27 +9647,32 @@ export namespace Prisma {
     NOT?: InstrumentWhereInput | InstrumentWhereInput[]
     id?: StringFilter<"Instrument"> | string
     name?: StringFilter<"Instrument"> | string
+    accreditingBody?: StringFilter<"Instrument"> | string
     area?: AreaListRelationFilter
   }
 
   export type InstrumentOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    accreditingBody?: SortOrder
     area?: AreaOrderByRelationAggregateInput
   }
 
   export type InstrumentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    name?: string
+    name_accreditingBody?: InstrumentNameAccreditingBodyCompoundUniqueInput
     AND?: InstrumentWhereInput | InstrumentWhereInput[]
     OR?: InstrumentWhereInput[]
     NOT?: InstrumentWhereInput | InstrumentWhereInput[]
+    name?: StringFilter<"Instrument"> | string
+    accreditingBody?: StringFilter<"Instrument"> | string
     area?: AreaListRelationFilter
-  }, "id" | "name">
+  }, "id" | "name_accreditingBody">
 
   export type InstrumentOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    accreditingBody?: SortOrder
     _count?: InstrumentCountOrderByAggregateInput
     _max?: InstrumentMaxOrderByAggregateInput
     _min?: InstrumentMinOrderByAggregateInput
@@ -9665,6 +9684,7 @@ export namespace Prisma {
     NOT?: InstrumentScalarWhereWithAggregatesInput | InstrumentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Instrument"> | string
     name?: StringWithAggregatesFilter<"Instrument"> | string
+    accreditingBody?: StringWithAggregatesFilter<"Instrument"> | string
   }
 
   export type AreaWhereInput = {
@@ -10048,40 +10068,47 @@ export namespace Prisma {
   export type InstrumentCreateInput = {
     id?: string
     name: string
+    accreditingBody: string
     area?: AreaCreateNestedManyWithoutInstrumentInput
   }
 
   export type InstrumentUncheckedCreateInput = {
     id?: string
     name: string
+    accreditingBody: string
     area?: AreaUncheckedCreateNestedManyWithoutInstrumentInput
   }
 
   export type InstrumentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    accreditingBody?: StringFieldUpdateOperationsInput | string
     area?: AreaUpdateManyWithoutInstrumentNestedInput
   }
 
   export type InstrumentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    accreditingBody?: StringFieldUpdateOperationsInput | string
     area?: AreaUncheckedUpdateManyWithoutInstrumentNestedInput
   }
 
   export type InstrumentCreateManyInput = {
     id?: string
     name: string
+    accreditingBody: string
   }
 
   export type InstrumentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    accreditingBody?: StringFieldUpdateOperationsInput | string
   }
 
   export type InstrumentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    accreditingBody?: StringFieldUpdateOperationsInput | string
   }
 
   export type AreaCreateInput = {
@@ -10470,19 +10497,27 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type InstrumentNameAccreditingBodyCompoundUniqueInput = {
+    name: string
+    accreditingBody: string
+  }
+
   export type InstrumentCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    accreditingBody?: SortOrder
   }
 
   export type InstrumentMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    accreditingBody?: SortOrder
   }
 
   export type InstrumentMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    accreditingBody?: SortOrder
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -11392,11 +11427,13 @@ export namespace Prisma {
   export type InstrumentCreateWithoutAreaInput = {
     id?: string
     name: string
+    accreditingBody: string
   }
 
   export type InstrumentUncheckedCreateWithoutAreaInput = {
     id?: string
     name: string
+    accreditingBody: string
   }
 
   export type InstrumentCreateOrConnectWithoutAreaInput = {
@@ -11439,11 +11476,13 @@ export namespace Prisma {
   export type InstrumentUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    accreditingBody?: StringFieldUpdateOperationsInput | string
   }
 
   export type InstrumentUncheckedUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    accreditingBody?: StringFieldUpdateOperationsInput | string
   }
 
   export type ParameterUpsertWithWhereUniqueWithoutAreaInput = {

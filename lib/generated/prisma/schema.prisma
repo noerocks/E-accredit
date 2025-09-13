@@ -71,9 +71,12 @@ model ProgramPersonnel {
 }
 
 model Instrument {
-  id   String @id @default(uuid())
-  name String @unique
-  area Area[]
+  id              String @id @default(uuid())
+  name            String
+  accreditingBody String
+  area            Area[]
+
+  @@unique([name, accreditingBody])
 }
 
 model Area {

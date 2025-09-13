@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, FolderOpen } from "lucide-react";
+import { FolderOpen } from "lucide-react";
+import Link from "next/link";
 
 const InstrumentCards = ({
   instruments,
@@ -18,9 +19,11 @@ const InstrumentCards = ({
             <CardTitle className="text-lg">{instrument.name}</CardTitle>
           </CardHeader>
           <CardFooter className="flex justify-end">
-            <Button size="icon">
-              <FolderOpen />
-            </Button>
+            <Link href={`/admin/instruments/${instrument.id}`}>
+              <Button size="icon">
+                <FolderOpen />
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       ))}
