@@ -23,6 +23,7 @@ const DashboardHeader = () => {
     .split("/")
     .filter((segment) => segment)
     .reduce((withPaths, segment, index) => {
+      if (withPaths[index - 1]?.name === instrumentName) return withPaths;
       const isInstrumentId =
         withPaths.some((p) => p.name === "Instruments") &&
         withPaths.length === index;
