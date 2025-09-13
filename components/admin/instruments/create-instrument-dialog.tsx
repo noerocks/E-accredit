@@ -36,6 +36,7 @@ const CreateInstrumentDialog = () => {
     resolver: zodResolver(CreateInstrumentFormSchema),
     defaultValues: {
       name: "",
+      accreditingBody: "",
     },
   });
   const [pending, startTransition] = useTransition();
@@ -80,7 +81,10 @@ const CreateInstrumentDialog = () => {
           </Alert>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-5"
+          >
             <FormField
               control={form.control}
               name="name"
@@ -90,7 +94,21 @@ const CreateInstrumentDialog = () => {
                   <FormControl>
                     <Input {...field} autoComplete="off" />
                   </FormControl>
-                  <FormDescription>{`Could be standard instrument names (e.g., AACCUP Master Survey Instrument)`}</FormDescription>
+                  <FormDescription>{`Could be standard instrument names (e.g., Master Survey Instrument)`}</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="accreditingBody"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Accrediting Body</FormLabel>
+                  <FormControl>
+                    <Input {...field} autoComplete="off" />
+                  </FormControl>
+                  <FormDescription>{`e.g., AACCUP`}</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

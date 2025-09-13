@@ -45,4 +45,5 @@ export const AddProgramPersonnelFormSchema = z.object({
 
 export const CreateInstrumentFormSchema = z.object({
   name: z.string().min(1, "This field is required"),
+  accreditingBody: z.string().min(1, "This field is required"),
 });

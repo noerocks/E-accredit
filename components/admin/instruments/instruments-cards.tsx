@@ -1,12 +1,18 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { FolderOpen } from "lucide-react";
 import Link from "next/link";
 
 const InstrumentCards = ({
   instruments,
 }: {
-  instruments: { id: string; name: string }[] | null;
+  instruments: { id: string; name: string; accreditingBody: string }[] | null;
 }) => {
   return (
     <div className="flex flex-wrap gap-5">
@@ -17,6 +23,7 @@ const InstrumentCards = ({
         >
           <CardHeader>
             <CardTitle className="text-lg">{instrument.name}</CardTitle>
+            <CardDescription>{instrument.accreditingBody}</CardDescription>
           </CardHeader>
           <CardFooter className="flex justify-end">
             <Link href={`/admin/instruments/${instrument.id}`}>
