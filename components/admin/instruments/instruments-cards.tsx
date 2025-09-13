@@ -27,7 +27,7 @@ const InstrumentCards = ({
           </CardHeader>
           <CardFooter className="flex justify-end">
             <Link href={`/admin/instruments/${instrument.id}`}>
-              <Button size="icon">
+              <Button size="icon" variant="outline">
                 <FolderOpen />
               </Button>
             </Link>
