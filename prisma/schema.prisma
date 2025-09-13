@@ -82,17 +82,19 @@ model Instrument {
 model Area {
   id           Int         @id @default(autoincrement())
   label        String
+  description  String
   instrument   Instrument  @relation(fields: [instrumentId], references: [id])
   instrumentId String
   parameter    Parameter[]
 }
 
 model Parameter {
-  id        Int         @id @default(autoincrement())
-  label     String
-  area      Area        @relation(fields: [areaId], references: [id])
-  areaId    Int
-  indicator Indicator[]
+  id          Int         @id @default(autoincrement())
+  label       String
+  description String
+  area        Area        @relation(fields: [areaId], references: [id])
+  areaId      Int
+  indicator   Indicator[]
 }
 
 model Indicator {
