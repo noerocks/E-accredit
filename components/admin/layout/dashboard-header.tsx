@@ -22,7 +22,7 @@ const DashboardHeader = () => {
     .split("/")
     .filter((segment) => segment)
     .reduce((withPaths, segment, index) => {
-      if (withPaths[index - 1]?.name === instrumentName) return withPaths;
+      if (withPaths.at(-1)?.name === instrumentName) return withPaths;
       const isInstrumentId =
         withPaths.some((p) => p.name === "Instruments") &&
         withPaths.length === index;
@@ -37,7 +37,7 @@ const DashboardHeader = () => {
       return withPaths;
     }, [] as { path: string; name: string }[]);
   return (
-    <header className="h-16 flex items-center justify-between gap-4 p-5 border-b">
+    <header className="h-16 flex items-center justify-between gap-4 p-5 border-b bg-muted">
       <div className="flex items-center gap-2">
         <SidebarTrigger />
         <Breadcrumb>
