@@ -17,9 +17,10 @@ import FileTree from "@/components/admin/instruments/file-tree";
 import { InstrumentDTO } from "@/lib/dto/instrument";
 import CreateAreaDialog from "./create-area-dialog";
 import { useSearchParams, useRouter, useParams } from "next/navigation";
-import { FilePlus2, Home, Settings } from "lucide-react";
+import { Home, Settings } from "lucide-react";
 import Link from "next/link";
 import CreateParameterDialog from "./create-parameter-dialog";
+import CreateIndicatorDialog from "./create-indicator-dialog";
 
 const InstrumentSidebar = ({
   instrument,
@@ -32,7 +33,7 @@ const InstrumentSidebar = ({
   return (
     <Sidebar collapsible="none" className="border-r overflow-auto w-[300px]">
       {params.areaId ? (
-        <SidebarHeader>
+        <SidebarHeader className="border-b">
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton className="hover:bg-transparent active:bg-transparent flex gap-2">
@@ -52,11 +53,11 @@ const InstrumentSidebar = ({
           </SidebarMenu>
         </SidebarHeader>
       ) : params.parameterId ? (
-        <SidebarHeader>
+        <SidebarHeader className="border-b">
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton className="hover:bg-background">
-                <FilePlus2 />
+              <SidebarMenuButton className="hover:bg-transparent active:bg-transparent flex gap-2">
+                <CreateIndicatorDialog />
                 <Settings />
               </SidebarMenuButton>
               <SidebarMenuAction asChild>

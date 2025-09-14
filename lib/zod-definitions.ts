@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { Category } from "./generated/prisma";
 
 export const RegisterFormSchema = z
   .object({
@@ -61,9 +62,33 @@ export const CreateAreaFormSchema = z.object({
 export const CreateParameterFormSchema = z.object({
   label: z
     .string()
-    .min(1, "This is field is required")
+    .min(1, "This field is required")
     .regex(/^Parameter/, 'Label should start with "Parameter"')
     .regex(/[A-Z]$/, "Parameter order should be expressed in capital letter")
     .regex(/^Parameter\s[A-Z]/, "Invalid Format"),
   description: z.string().min(1, "This field is required"),
 });
+
+export const CreateIndicatorFormSchema = z
+  .object({
+    label: z.string().min(1, "This field is required"),
+    description: z.string().min(1, "This field is required"),
+    category: z.enum(Category, "Please choose an existing category"),
+    evidence: z.string().min(1, "This field is required"),
+  })
+  .refine(
+    (data) => {
+      switch (data.category) {
+        case "SYSTEM":
+          return /S\.\d\.?\d?/.test(data.label);
+        case "IMPLEMENTATION":
+          return /I\.\d\.?\d?/.test(data.label);
+        case "OUTCOME":
+          return /O\.\d\.?\d?/.test(data.label);
+      }
+    },
+    {
+      error: "Please follow the naming covention for the chosen category",
+      path: ["label"],
+    }
+  );
