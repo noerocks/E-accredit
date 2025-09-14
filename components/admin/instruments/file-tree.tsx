@@ -12,7 +12,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { usePathname } from "next/navigation";
 
 type IndicatorGroup = { label: string; indicators: Indicator[] };
 
@@ -35,19 +34,18 @@ const isIndicatorGroup = (node: TreeNode): node is IndicatorGroup => {
 };
 
 const FileTree = ({ item }: { item: TreeNode }) => {
-  const path = usePathname();
   if (isArea(item) && "parameter" in item) {
     const parameters = item.parameter as Parameter[];
     return (
       <SidebarMenuItem>
         <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
-          <CollapsibleTrigger asChild>
-            <SidebarMenuButton>
+          <SidebarMenuButton data-id={item.id} data-type={"area"}>
+            <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
-              <Folder />
-              {item.label}
-            </SidebarMenuButton>
-          </CollapsibleTrigger>
+            </CollapsibleTrigger>
+            <Folder />
+            {item.label}
+          </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
               {parameters.map((parameter) => (
@@ -77,13 +75,13 @@ const FileTree = ({ item }: { item: TreeNode }) => {
     return (
       <SidebarMenuItem>
         <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
-          <CollapsibleTrigger asChild>
-            <SidebarMenuButton>
+          <SidebarMenuButton data-id={item.id} data-type={"parameter"}>
+            <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
-              <Folder />
-              {item.label}
-            </SidebarMenuButton>
-          </CollapsibleTrigger>
+            </CollapsibleTrigger>
+            <Folder />
+            {item.label}
+          </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
               {groupedIndicators.map((group, index) => (
@@ -99,13 +97,13 @@ const FileTree = ({ item }: { item: TreeNode }) => {
     return (
       <SidebarMenuItem>
         <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
-          <CollapsibleTrigger asChild>
-            <SidebarMenuButton>
+          <SidebarMenuButton>
+            <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
-              <Folder />
-              {item.label}
-            </SidebarMenuButton>
-          </CollapsibleTrigger>
+            </CollapsibleTrigger>
+            <Folder />
+            {item.label}
+          </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
               {item.indicators.map((indicator) => (
