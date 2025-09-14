@@ -12,6 +12,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { useParams } from "next/navigation";
 
 type IndicatorGroup = { label: string; indicators: Indicator[] };
 
@@ -34,12 +35,18 @@ const isIndicatorGroup = (node: TreeNode): node is IndicatorGroup => {
 };
 
 const FileTree = ({ item }: { item: TreeNode }) => {
+  const params = useParams();
+  console.log(params.parameterId);
   if (isArea(item) && "parameter" in item) {
     const parameters = item.parameter as Parameter[];
     return (
       <SidebarMenuItem>
         <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
-          <SidebarMenuButton data-id={item.id} data-type={"area"}>
+          <SidebarMenuButton
+            data-id={item.id}
+            data-type={"area"}
+            isActive={item.id === Number(params.areaId)}
+          >
             <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
             </CollapsibleTrigger>
@@ -75,7 +82,11 @@ const FileTree = ({ item }: { item: TreeNode }) => {
     return (
       <SidebarMenuItem>
         <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
-          <SidebarMenuButton data-id={item.id} data-type={"parameter"}>
+          <SidebarMenuButton
+            data-id={item.id}
+            data-type={"parameter"}
+            isActive={item.id === Number(params.parameterId)}
+          >
             <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
             </CollapsibleTrigger>
@@ -118,7 +129,11 @@ const FileTree = ({ item }: { item: TreeNode }) => {
   if (isIndicator(item)) {
     return (
       <SidebarMenuItem>
-        <SidebarMenuButton>
+        <SidebarMenuButton
+          data-id={item.id}
+          data-type={"indicator"}
+          isActive={item.id === Number(params.indicatorId)}
+        >
           <File />
           {item.label}
         </SidebarMenuButton>

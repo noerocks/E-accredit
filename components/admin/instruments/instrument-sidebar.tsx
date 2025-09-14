@@ -12,13 +12,13 @@ import {
 import FileTree from "@/components/admin/instruments/file-tree";
 import { InstrumentDTO } from "@/lib/dto/instrument";
 import CreateAreaDialog from "./create-area-dialog";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter, useParams } from "next/navigation";
 const InstrumentSidebar = ({
   instrument,
 }: {
   instrument: InstrumentDTO | null;
 }) => {
-  const pathname = usePathname();
+  const params = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
   return (
@@ -34,17 +34,11 @@ const InstrumentSidebar = ({
                 const button = target.closest<HTMLButtonElement>("[data-id]");
                 if (!button || target.tagName !== "BUTTON") return null;
                 const { id, type } = button.dataset;
-                switch (type) {
-                  case "area":
-                    router.replace(
-                      `${
-                        pathname.includes("area")
-                          ? pathname.slice(0, pathname.indexOf("/area"))
-                          : pathname
-                      }/area/${id}?${searchParams.toString()}`
-                    );
-                    break;
-                }
+                router.replace(
+                  `/admin/instruments/${String(
+                    params.id
+                  )}/${type}/${id}?${searchParams.toString()}`
+                );
               }}
             >
               {instrument?.area.map((item, index) => (
