@@ -20,13 +20,18 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { createNewParameter } from "@/lib/action/parameter";
 import { CreateParameterFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FolderPlus } from "lucide-react";
+import { useParams } from "next/navigation";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import z from "zod";
 
 const CreateParameterDialog = () => {
+  const { areaId } = useParams();
   const form = useForm<z.infer<typeof CreateParameterFormSchema>>({
     resolver: zodResolver(CreateParameterFormSchema),
     defaultValues: {
@@ -34,8 +39,19 @@ const CreateParameterDialog = () => {
       description: "",
     },
   });
+  const [pending, startTransition] = useTransition();
   const onSubmit = async (data: z.infer<typeof CreateParameterFormSchema>) => {
-    console.log(data);
+    startTransition(async () => {
+      const result = await createNewParameter(data, Number(areaId));
+      switch (result.status) {
+        case "success":
+          toast.success(result.message);
+          break;
+        case "error":
+          toast.error(result.message);
+          break;
+      }
+    });
   };
   return (
     <Dialog>
