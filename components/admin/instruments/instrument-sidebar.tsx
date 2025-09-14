@@ -6,13 +6,21 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuButton,
+  SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
 import FileTree from "@/components/admin/instruments/file-tree";
 import { InstrumentDTO } from "@/lib/dto/instrument";
 import CreateAreaDialog from "./create-area-dialog";
 import { useSearchParams, useRouter, useParams } from "next/navigation";
+import { FilePlus2, Home, Settings } from "lucide-react";
+import Link from "next/link";
+import CreateParameterDialog from "./create-parameter-dialog";
+
 const InstrumentSidebar = ({
   instrument,
 }: {
@@ -23,6 +31,47 @@ const InstrumentSidebar = ({
   const router = useRouter();
   return (
     <Sidebar collapsible="none" className="border-r overflow-auto w-[300px]">
+      {params.areaId ? (
+        <SidebarHeader>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton className="hover:bg-transparent active:bg-transparent flex gap-2">
+                <CreateParameterDialog />
+                <Settings />
+              </SidebarMenuButton>
+              <SidebarMenuAction asChild>
+                <Link
+                  href={`/admin/instruments/${
+                    params.id
+                  }?${searchParams.toString()}`}
+                >
+                  <Home />
+                </Link>
+              </SidebarMenuAction>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarHeader>
+      ) : params.parameterId ? (
+        <SidebarHeader>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton className="hover:bg-background">
+                <FilePlus2 />
+                <Settings />
+              </SidebarMenuButton>
+              <SidebarMenuAction asChild>
+                <Link
+                  href={`/admin/instruments/${
+                    params.id
+                  }?${searchParams.toString()}`}
+                >
+                  <Home />
+                </Link>
+              </SidebarMenuAction>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarHeader>
+      ) : null}
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Areas</SidebarGroupLabel>
