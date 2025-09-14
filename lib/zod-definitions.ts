@@ -57,3 +57,13 @@ export const CreateAreaFormSchema = z.object({
     .regex(/^Area\s[IVXLCDM]/, "Invalid Format"),
   description: z.string().min(1, "This is field is required"),
 });
+
+export const CreateParameterFormSchema = z.object({
+  label: z
+    .string()
+    .min(1, "This is field is required")
+    .regex(/^Parameter/, 'Label should start with "Parameter"')
+    .regex(/[A-Z]$/, "Parameter order should be expressed in capital letter")
+    .regex(/^Parameter\s[A-Z]/, "Invalid Format"),
+  description: z.string().min(1, "This field is required"),
+});

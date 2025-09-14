@@ -1,14 +1,42 @@
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { CreateParameterFormSchema } from "@/lib/zod-definitions";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FolderPlus } from "lucide-react";
+import { useForm } from "react-hook-form";
+import z from "zod";
 
 const CreateParameterDialog = () => {
+  const form = useForm<z.infer<typeof CreateParameterFormSchema>>({
+    resolver: zodResolver(CreateParameterFormSchema),
+    defaultValues: {
+      label: "",
+      description: "",
+    },
+  });
+  const onSubmit = async (data: z.infer<typeof CreateParameterFormSchema>) => {
+    console.log(data);
+  };
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -23,6 +51,49 @@ const CreateParameterDialog = () => {
             Create new parameter under this area
           </DialogDescription>
         </DialogHeader>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-5"
+          >
+            <FormField
+              control={form.control}
+              name="label"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Parameter Label</FormLabel>
+                  <FormControl>
+                    <Input autoComplete="off" {...field} />
+                  </FormControl>
+                  <FormDescription>e.g. Parameter A</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea autoComplete="off" {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    Please enter the description accordingly
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DialogClose>
+              <Button>Add</Button>
+            </DialogFooter>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );
