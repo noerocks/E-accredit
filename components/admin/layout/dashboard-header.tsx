@@ -18,7 +18,6 @@ const DashboardHeader = () => {
   const pathName = usePathname();
   const searchParams = useSearchParams();
   const instrumentName = searchParams.get("instrumentName");
-  console.log(instrumentName);
   const breadcrumbs = pathName
     .split("/")
     .filter((segment) => segment)

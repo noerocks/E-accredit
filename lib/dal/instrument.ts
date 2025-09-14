@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
 import { prisma } from "../prisma";
+import { InstrumentDTO } from "../dto/instrument";
 
 export async function createInstrument(name: string, accreditingBody: string) {
   const session = await verifySession();
@@ -27,3 +28,25 @@ export const getInstruments = unstable_cache(
     tags: ["instruments"],
   }
 );
+
+export const getInstrumentStructureById = async (
+  instrumentId: string
+): Promise<InstrumentDTO | null> => {
+  const instrument = await prisma.instrument.findUnique({
+    where: {
+      id: instrumentId,
+    },
+    include: {
+      area: {
+        include: {
+          parameter: {
+            include: {
+              indicator: true,
+            },
+          },
+        },
+      },
+    },
+  });
+  return instrument;
+};
