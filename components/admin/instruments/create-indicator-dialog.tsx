@@ -1,4 +1,5 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -28,13 +29,18 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { createNewIndicator } from "@/lib/action/indicator";
 import { CreateIndicatorFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FilePlus2 } from "lucide-react";
+import { useParams } from "next/navigation";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import z from "zod";
 
 const CreateIndicatorDialog = () => {
+  const { parameterId } = useParams();
   const form = useForm<z.infer<typeof CreateIndicatorFormSchema>>({
     resolver: zodResolver(CreateIndicatorFormSchema),
     defaultValues: {
@@ -49,8 +55,19 @@ const CreateIndicatorDialog = () => {
     { value: "IMPLEMENTATION", title: "Implementation" },
     { value: "OUTCOME", title: "Outcome/s" },
   ];
+  const [pending, startTransition] = useTransition();
   const onSubmit = async (data: z.infer<typeof CreateIndicatorFormSchema>) => {
-    console.log(data);
+    startTransition(async () => {
+      const result = await createNewIndicator(data, Number(parameterId));
+      switch (result.status) {
+        case "success":
+          toast.success(result.message);
+          break;
+        case "error":
+          toast.error(result.message);
+          break;
+      }
+    });
   };
   return (
     <Dialog>
