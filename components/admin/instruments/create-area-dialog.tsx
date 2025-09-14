@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Info, Plus } from "lucide-react";
 import { SidebarGroupAction } from "@/components/ui/sidebar";
-import { useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import z from "zod";
 import { useForm } from "react-hook-form";
 import { CreateAreaFormSchema } from "@/lib/zod-definitions";
@@ -30,8 +30,12 @@ import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { useTransition } from "react";
+import { createNewArea } from "@/lib/action/area";
+import { toast } from "sonner";
 
 const CreateAreaDialog = () => {
+  const { id: instrumentId } = useParams();
   const searchParams = useSearchParams();
   const instrument = searchParams.get("instrumentName");
   const form = useForm<z.infer<typeof CreateAreaFormSchema>>({
@@ -41,8 +45,19 @@ const CreateAreaDialog = () => {
       description: "",
     },
   });
+  const [pending, startTransition] = useTransition();
   const onSubmit = async (data: z.infer<typeof CreateAreaFormSchema>) => {
-    console.log(data);
+    startTransition(async () => {
+      const result = await createNewArea(data, instrumentId as string);
+      switch (result.status) {
+        case "success":
+          toast.success(result.message);
+          break;
+        case "error":
+          toast.error(result.message);
+          break;
+      }
+    });
   };
   return (
     <Dialog>

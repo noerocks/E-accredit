@@ -11,7 +11,6 @@ const InstrumentLayout = async ({
 }) => {
   const { id } = await params;
   const instrument = await getInstrumentStructureById(id);
-  console.log(instrument);
   return (
     <div className="flex h-full">
       <InstrumentSidebar instrument={instrument} />
