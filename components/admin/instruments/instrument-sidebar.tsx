@@ -2,6 +2,7 @@ import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
+  SidebarGroupAction,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
@@ -9,20 +10,18 @@ import {
 
 import FileTree from "@/components/admin/instruments/file-tree";
 import { InstrumentDTO } from "@/lib/dto/instrument";
-
+import CreateAreaDialog from "./create-area-dialog";
 const InstrumentSidebar = ({
   instrument,
 }: {
   instrument: InstrumentDTO | null;
 }) => {
   return (
-    <Sidebar
-      collapsible="none"
-      className="bg-muted border-r overflow-auto w-[300px]"
-    >
+    <Sidebar collapsible="none" className="border-r overflow-auto w-[300px]">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Areas</SidebarGroupLabel>
+          <CreateAreaDialog />
           <SidebarGroupContent>
             <SidebarMenu>
               {instrument?.area.map((item, index) => (

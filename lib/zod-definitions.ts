@@ -47,3 +47,13 @@ export const CreateInstrumentFormSchema = z.object({
   name: z.string().min(1, "This field is required"),
   accreditingBody: z.string().min(1, "This field is required"),
 });
+
+export const CreateAreaFormSchema = z.object({
+  label: z
+    .string()
+    .min(1, "This field is required")
+    .regex(/^Area/, 'Label should start with "Area"')
+    .regex(/[IVXLCDM]*$/, "Area number should be expressed in roman numerals")
+    .regex(/^Area\s[IVXLCDM]/, "Invalid Format"),
+  description: z.string().min(1, "This is field is required"),
+});

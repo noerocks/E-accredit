@@ -1,7 +1,7 @@
 const InstrumentPage = () => {
   return (
     <div>
-      <p>Instrument Page</p>
+      <p></p>
     </div>
   );
 };
