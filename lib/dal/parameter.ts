@@ -2,6 +2,7 @@ import z from "zod";
 import { CreateParameterFormSchema } from "../zod-definitions";
 import { verifySession } from "../action/session";
 import { prisma } from "../prisma";
+import { ParameterDTO } from "../dto/instrument";
 
 export async function createNewParameter(
   { label, description }: z.infer<typeof CreateParameterFormSchema>,
@@ -16,6 +17,20 @@ export async function createNewParameter(
       label,
       description,
       areaId,
+    },
+  });
+  return parameter;
+}
+
+export async function getParameterStructureById(
+  id: number
+): Promise<ParameterDTO | null> {
+  const parameter = await prisma.parameter.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      indicator: true,
     },
   });
   return parameter;

@@ -1,5 +1,10 @@
-const Indicator = () => {
-  return <p>Indicator</p>;
+const IndicatorPage = async ({
+  params,
+}: {
+  params: Promise<{ indicatorId: number }>;
+}) => {
+  const { indicatorId } = await params;
+  return <p>IndicatorPage</p>;
 };
 
-export default Indicator;
+export default IndicatorPage;

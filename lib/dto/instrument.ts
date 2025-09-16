@@ -4,4 +4,6 @@ export type InstrumentDTO = { area: AreaDTO[] } & Instrument;
 
 export type AreaDTO = { parameter: ParameterDTO[] } & Area;
 
-export type ParameterDTO = { indicator: Indicator[] } & Parameter;
+export type ParameterDTO = { indicator: IndicatorDTO[] } & Parameter;
+
+export type IndicatorDTO = Indicator;

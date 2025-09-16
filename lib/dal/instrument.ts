@@ -29,26 +29,24 @@ export const getInstruments = unstable_cache(
   }
 );
 
-export const getInstrumentStructureById = unstable_cache(
-  async (instrumentId: string): Promise<InstrumentDTO | null> => {
-    const instrument = await prisma.instrument.findUnique({
-      where: {
-        id: instrumentId,
-      },
-      include: {
-        area: {
-          include: {
-            parameter: {
-              include: {
-                indicator: true,
-              },
+export async function getInstrumentStructureById(
+  id: string
+): Promise<InstrumentDTO | null> {
+  const instrument = await prisma.instrument.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      area: {
+        include: {
+          parameter: {
+            include: {
+              indicator: true,
             },
           },
         },
       },
-    });
-    return instrument;
-  },
-  ["getInstrumentStructureById"],
-  { tags: ["instrumentStructure"] }
-);
+    },
+  });
+  return instrument;
+}

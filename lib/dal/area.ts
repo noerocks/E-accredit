@@ -2,6 +2,7 @@ import z from "zod";
 import { verifySession } from "../action/session";
 import { prisma } from "../prisma";
 import { CreateAreaFormSchema } from "../zod-definitions";
+import { AreaDTO } from "../dto/instrument";
 
 export async function createNewArea(
   { label, description }: z.infer<typeof CreateAreaFormSchema>,
@@ -16,6 +17,24 @@ export async function createNewArea(
       label,
       description,
       instrumentId,
+    },
+  });
+  return area;
+}
+
+export async function getAreaStructureById(
+  id: number
+): Promise<AreaDTO | null> {
+  const area = await prisma.area.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      parameter: {
+        include: {
+          indicator: true,
+        },
+      },
     },
   });
   return area;
