@@ -1,4 +1,4 @@
-import z from "zod";
+import z, { nullable } from "zod";
 import { verifySession } from "../action/session";
 import { prisma } from "../prisma";
 import { CreateAreaFormSchema } from "../zod-definitions";
@@ -35,6 +35,17 @@ export async function getAreaStructureById(
           indicator: true,
         },
       },
+    },
+  });
+  return area;
+}
+
+export async function getAreaById(id: number | undefined) {
+  const session = verifySession();
+  if (!session) return null;
+  const area = await prisma.area.findUnique({
+    where: {
+      id,
     },
   });
   return area;

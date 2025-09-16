@@ -50,3 +50,14 @@ export async function getInstrumentStructureById(
   });
   return instrument;
 }
+
+export async function getInstrumentById(id: string | undefined) {
+  const session = verifySession();
+  if (!session) return null;
+  const instrument = await prisma.instrument.findUnique({
+    where: {
+      id,
+    },
+  });
+  return instrument;
+}

@@ -35,6 +35,7 @@ const InstrumentPage = async ({
 
   return (
     <div className="w-3/4 mt-10 mx-auto flex flex-col gap-10">
+      <p className="text-3xl">Instrument</p>
       <Card>
         <CardContent className="flex flex-col gap-5">
           <p className="text-3xl">{instrument?.name}</p>
@@ -50,7 +51,7 @@ const InstrumentPage = async ({
         <p className="text-2xl text-foreground">Components</p>
         <div className="flex gap-5">
           {components.map((component, index) => (
-            <Card key={index} className="flex-1">
+            <Card key={index} className="flex-1 rounded-md">
               <CardContent className="flex items-center gap-5">
                 <div
                   className={clsx("p-4 rounded-full", {
@@ -76,6 +77,17 @@ const InstrumentPage = async ({
           ))}
         </div>
       </div>
+      <Alert className="bg-blue-400/10 border border-blue-400 text-blue-400">
+        <Info />
+        <AlertTitle>What is an Accreditation Instrument?</AlertTitle>
+        <AlertDescription className="text-blue-400">
+          An instrument is the official evaluation tool provided by the
+          accrediting body. It contains areas, parameters, and indicators used
+          to assess the quality and compliance of academic programs. Programs
+          are linked to instruments to ensure standardized evaluation and proper
+          documentation for accreditation.
+        </AlertDescription>
+      </Alert>
     </div>
   );
 };
