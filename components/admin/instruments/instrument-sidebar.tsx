@@ -37,47 +37,34 @@ const InstrumentSidebar = ({
       collapsible="none"
       className="border-r overflow-auto w-[300px] flex flex-col"
     >
-      {params.areaId ? (
-        <SidebarHeader className="border-b">
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton className="hover:bg-transparent active:bg-transparent flex gap-2">
-                <CreateParameterDialog />
-                <Settings />
-              </SidebarMenuButton>
-              <SidebarMenuAction asChild>
-                <Link
-                  href={`/admin/instruments/${
-                    params.id
-                  }?${searchParams.toString()}`}
-                >
-                  <Home />
-                </Link>
-              </SidebarMenuAction>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarHeader>
-      ) : params.parameterId ? (
-        <SidebarHeader className="border-b">
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton className="hover:bg-transparent active:bg-transparent flex gap-2">
-                <CreateIndicatorDialog />
-                <Settings />
-              </SidebarMenuButton>
-              <SidebarMenuAction asChild>
-                <Link
-                  href={`/admin/instruments/${
-                    params.id
-                  }?${searchParams.toString()}`}
-                >
-                  <Home />
-                </Link>
-              </SidebarMenuAction>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarHeader>
-      ) : null}
+      <SidebarHeader className="border-b">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton className="hover:bg-transparent active:bg-transparent flex gap-2">
+              {params.areaId ? (
+                <>
+                  <CreateParameterDialog />
+                  <Settings />
+                </>
+              ) : params.parameterId ? (
+                <>
+                  <CreateIndicatorDialog />
+                  <Settings />
+                </>
+              ) : null}
+            </SidebarMenuButton>
+            <SidebarMenuAction asChild>
+              <Link
+                href={`/admin/instruments/${
+                  params.id
+                }?${searchParams.toString()}`}
+              >
+                <Home />
+              </Link>
+            </SidebarMenuAction>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
       <SidebarContent>
         <ScrollArea className="h-full">
           <SidebarGroup>

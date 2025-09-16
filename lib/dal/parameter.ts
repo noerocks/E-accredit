@@ -25,12 +25,25 @@ export async function createNewParameter(
 export async function getParameterStructureById(
   id: number
 ): Promise<ParameterDTO | null> {
+  const session = verifySession();
+  if (!session) return null;
   const parameter = await prisma.parameter.findUnique({
     where: {
       id,
     },
     include: {
       indicator: true,
+    },
+  });
+  return parameter;
+}
+
+export async function getParameterById(id: number | undefined) {
+  const session = verifySession();
+  if (!session) return null;
+  const parameter = await prisma.parameter.findUnique({
+    where: {
+      id,
     },
   });
   return parameter;
