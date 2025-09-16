@@ -3,6 +3,7 @@
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -21,6 +22,7 @@ import { Home, Settings } from "lucide-react";
 import Link from "next/link";
 import CreateParameterDialog from "./create-parameter-dialog";
 import CreateIndicatorDialog from "./create-indicator-dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const InstrumentSidebar = ({
   instrument,
@@ -31,7 +33,10 @@ const InstrumentSidebar = ({
   const searchParams = useSearchParams();
   const router = useRouter();
   return (
-    <Sidebar collapsible="none" className="border-r overflow-auto w-[300px]">
+    <Sidebar
+      collapsible="none"
+      className="border-r overflow-auto w-[300px] flex flex-col"
+    >
       {params.areaId ? (
         <SidebarHeader className="border-b">
           <SidebarMenu>
@@ -74,30 +79,39 @@ const InstrumentSidebar = ({
         </SidebarHeader>
       ) : null}
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Areas</SidebarGroupLabel>
-          <CreateAreaDialog />
-          <SidebarGroupContent>
-            <SidebarMenu
-              onDoubleClick={(e) => {
-                const target = e.target as HTMLElement;
-                const button = target.closest<HTMLButtonElement>("[data-id]");
-                if (!button || target.tagName !== "BUTTON") return null;
-                const { id, type } = button.dataset;
-                router.replace(
-                  `/admin/instruments/${String(
-                    params.id
-                  )}/${type}/${id}?${searchParams.toString()}`
-                );
-              }}
-            >
-              {instrument?.area.map((item, index) => (
-                <FileTree key={index} item={item} />
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        <ScrollArea className="h-full">
+          <SidebarGroup>
+            <SidebarGroupLabel>Areas</SidebarGroupLabel>
+            <CreateAreaDialog />
+            <SidebarGroupContent>
+              <SidebarMenu
+                onDoubleClick={(e) => {
+                  const target = e.target as HTMLElement;
+                  const button = target.closest<HTMLButtonElement>("[data-id]");
+                  if (!button || target.tagName !== "BUTTON") return null;
+                  const { id, type } = button.dataset;
+                  router.replace(
+                    `/admin/instruments/${String(
+                      params.id
+                    )}/${type}/${id}?${searchParams.toString()}`
+                  );
+                }}
+              >
+                {instrument?.area.map((item, index) => (
+                  <FileTree key={index} item={item} />
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </ScrollArea>
       </SidebarContent>
+      <SidebarFooter className="border-t">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton className="hover:bg-transparent active:bg-transparent"></SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 };

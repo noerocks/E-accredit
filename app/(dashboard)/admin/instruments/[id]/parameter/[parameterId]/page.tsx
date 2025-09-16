@@ -81,18 +81,18 @@ const ParameterPage = async ({
             </Card>
           ))}
         </div>
-        <Alert className="bg-blue-400/10 border border-blue-400 text-blue-400">
-          <Info />
-          <AlertTitle>What is a Parameter?</AlertTitle>
-          <AlertDescription className="text-blue-400">
-            A parameter is a specific dimension or aspect under an area of the
-            instrument. It breaks down the area into more focused elements,
-            helping evaluators assess compliance in a structured way. Parameters
-            serve as guideposts to identify which indicators should be measured
-            and provide clarity on how each area will be evaluated.
-          </AlertDescription>
-        </Alert>
       </div>
+      <Alert className="bg-blue-400/10 border border-blue-400 text-blue-400">
+        <Info />
+        <AlertTitle>What is a Parameter?</AlertTitle>
+        <AlertDescription className="text-blue-400">
+          A parameter is a specific dimension or aspect under an area of the
+          instrument. It breaks down the area into more focused elements,
+          helping evaluators assess compliance in a structured way. Parameters
+          serve as guideposts to identify which indicators should be measured
+          and provide clarity on how each area will be evaluated.
+        </AlertDescription>
+      </Alert>
     </div>
   );
 };
