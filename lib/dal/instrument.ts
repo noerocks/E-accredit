@@ -61,3 +61,16 @@ export async function getInstrumentById(id: string | undefined) {
   });
   return instrument;
 }
+
+export async function deleteInstrument(id: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  if (!["ADMIN", "ACCREDITATION_OFFICER"].includes(session.user.role))
+    return { unauthorized: true };
+  const deletedInstrument = await prisma.instrument.delete({
+    where: {
+      id,
+    },
+  });
+  return deletedInstrument;
+}

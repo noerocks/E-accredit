@@ -5,6 +5,8 @@ import { CreateInstrumentFormSchema } from "../zod-definitions";
 import { createInstrument as createInstrumentDAL } from "../dal/instrument";
 import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/library";
 import { revalidateTag } from "next/cache";
+import { deleteInstrument as deletedInstrumentDAL } from "../dal/instrument";
+import { redirect } from "next/navigation";
 
 export async function createInstrument(
   data: z.infer<typeof CreateInstrumentFormSchema>
@@ -34,4 +36,13 @@ export async function createInstrument(
       message: "Something went wrong",
     };
   }
+}
+
+export async function deleteInstrument(id: string) {
+  if (!id) throw new Error("Instrument ID is required");
+  const result = await deletedInstrumentDAL(id);
+  if (result && "unauthorized" in result && result.unauthorized)
+    throw new Error("Unauthorized action");
+  revalidateTag("instruments");
+  redirect("/admin/instruments");
 }

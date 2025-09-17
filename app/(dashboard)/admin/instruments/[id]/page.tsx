@@ -1,16 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { getInstrumentStructureById } from "@/lib/dal/instrument";
-import {
-  CheckCircle,
-  ClipboardList,
-  Info,
-  Layers,
-  Pencil,
-  Trash,
-} from "lucide-react";
+import { CheckCircle, ClipboardList, Info, Layers, Pencil } from "lucide-react";
 import clsx from "clsx";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import DeleteInstrumentDialog from "@/components/admin/instruments/delete-instrument-dialog";
 
 const InstrumentPage = async ({
   params,
@@ -46,9 +40,9 @@ const InstrumentPage = async ({
               <Button variant="outline" size="icon">
                 <Pencil />
               </Button>
-              <Button variant="destructive" size="icon">
-                <Trash />
-              </Button>
+              <DeleteInstrumentDialog
+                instrument={{ id: instrument?.id, name: instrument?.name }}
+              />
             </div>
           </div>
         </CardContent>
