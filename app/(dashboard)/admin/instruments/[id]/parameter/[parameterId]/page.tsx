@@ -1,3 +1,4 @@
+import DeleteParameterDialog from "@/components/admin/parameter/delete-parameter-dialog";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent } from "@/components/ui/card";
 import { getAreaById } from "@/lib/dal/area";
@@ -47,8 +48,15 @@ const ParameterPage = async ({
           </p>
           <div className="flex justify-between items-center">
             <p className="text-foreground">{`${area?.label}: ${area?.description}`}</p>
-            <div>
+            <div className="flex items-center gap-2">
               <Pencil size={20} />
+              <DeleteParameterDialog
+                parameter={{
+                  id: parameter?.id,
+                  label: parameter?.label,
+                  areaId: parameter?.areaId,
+                }}
+              />
             </div>
           </div>
         </CardContent>

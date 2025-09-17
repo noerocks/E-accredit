@@ -48,3 +48,16 @@ export async function getParameterById(id: number | undefined) {
   });
   return parameter;
 }
+
+export async function deleteParameterById(id: number) {
+  const session = await verifySession();
+  if (!session) return null;
+  if (!["ADMIN", "ACCREDITATION_OFFICER"].includes(session.user.role))
+    return { unauthorized: true };
+  const deletedParameter = await prisma.parameter.delete({
+    where: {
+      id,
+    },
+  });
+  return deletedParameter;
+}
