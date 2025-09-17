@@ -1,3 +1,4 @@
+import DeleteIndicatorDialog from "@/components/admin/indicator/delete-indicator-dialog";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent } from "@/components/ui/card";
 import { getIndicatorById } from "@/lib/dal/indicator";
@@ -42,8 +43,15 @@ const IndicatorPage = async ({
           </p>
           <div className="flex justify-between items-center">
             <p className="text-foreground">{`${parameter?.label}: ${parameter?.description}`}</p>
-            <div>
+            <div className="flex items-center gap-2">
               <Pencil size={20} />
+              <DeleteIndicatorDialog
+                indicator={{
+                  id: indicator?.id,
+                  label: indicator?.label,
+                  parameterId: indicator?.parameterId,
+                }}
+              />
             </div>
           </div>
         </CardContent>

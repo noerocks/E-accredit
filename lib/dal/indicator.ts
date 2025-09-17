@@ -1,3 +1,5 @@
+"use server";
+
 import { z } from "zod";
 import { CreateIndicatorFormSchema } from "../zod-definitions";
 import { verifySession } from "../action/session";
@@ -40,4 +42,17 @@ export async function getIndicatorById(
     },
   });
   return indicator;
+}
+
+export async function deleteIndicatorById(id: number | undefined) {
+  const session = await verifySession();
+  if (!session) return null;
+  if (!["ADMIN", "ACCREDITATION_OFFICER"].includes(session.user.role))
+    return { unauthorized: true };
+  const deleteIndicator = await prisma.indicator.delete({
+    where: {
+      id,
+    },
+  });
+  return deleteIndicator;
 }

@@ -2,8 +2,12 @@
 
 import z from "zod";
 import { CreateIndicatorFormSchema } from "../zod-definitions";
-import { createNewIndicator as createNewIndicatorDAL } from "../dal/indicator";
+import {
+  createNewIndicator as createNewIndicatorDAL,
+  deleteIndicatorById,
+} from "../dal/indicator";
 import { revalidateTag } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function createNewIndicator(
   data: z.infer<typeof CreateIndicatorFormSchema>,
@@ -27,4 +31,26 @@ export async function createNewIndicator(
       message: "Something went wrong",
     };
   }
+}
+
+export async function deleteIndicator(
+  id: number,
+  {
+    instrumentId,
+    parameterId,
+    searchParams,
+  }: {
+    instrumentId: string | undefined;
+    parameterId: number | undefined;
+    searchParams: string;
+  }
+) {
+  if (!id) throw new Error("Instrument ID is required");
+  const result = await deleteIndicatorById(id);
+  if (result && "unauthorized" in result && result.unauthorized)
+    throw new Error("Unauthorized action");
+  revalidateTag("instruments");
+  redirect(
+    `/admin/instruments/${instrumentId}/parameter/${parameterId}?${searchParams}`
+  );
 }
