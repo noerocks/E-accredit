@@ -83,7 +83,7 @@ model Area {
   id           Int         @id @default(autoincrement())
   label        String
   description  String
-  instrument   Instrument  @relation(fields: [instrumentId], references: [id])
+  instrument   Instrument  @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
   instrumentId String
   parameter    Parameter[]
 }
@@ -92,7 +92,7 @@ model Parameter {
   id          Int         @id @default(autoincrement())
   label       String
   description String
-  area        Area        @relation(fields: [areaId], references: [id])
+  area        Area        @relation(fields: [areaId], references: [id], onDelete: Cascade)
   areaId      Int
   indicator   Indicator[]
 }
@@ -103,6 +103,6 @@ model Indicator {
   description String
   category    Category
   evidence    String
-  parameter   Parameter @relation(fields: [parameterId], references: [id])
+  parameter   Parameter @relation(fields: [parameterId], references: [id], onDelete: Cascade)
   parameterId Int
 }

@@ -3,13 +3,14 @@ import { getInstrumentStructureById } from "@/lib/dal/instrument";
 import {
   CheckCircle,
   ClipboardList,
-  Folder,
   Info,
   Layers,
-  Pen,
+  Pencil,
+  Trash,
 } from "lucide-react";
 import clsx from "clsx";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 
 const InstrumentPage = async ({
   params,
@@ -41,8 +42,13 @@ const InstrumentPage = async ({
           <p className="text-3xl">{instrument?.name}</p>
           <div className="flex justify-between items-center">
             <p className="text-foreground">{instrument?.accreditingBody}</p>
-            <div>
-              <Pen size={20} />
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="icon">
+                <Pencil />
+              </Button>
+              <Button variant="destructive" size="icon">
+                <Trash />
+              </Button>
             </div>
           </div>
         </CardContent>
