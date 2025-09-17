@@ -3,6 +3,7 @@ import { verifySession } from "../action/session";
 import { prisma } from "../prisma";
 import { CreateAreaFormSchema } from "../zod-definitions";
 import { AreaDTO } from "../dto/instrument";
+import { unauthorized } from "next/navigation";
 
 export async function createNewArea(
   { label, description }: z.infer<typeof CreateAreaFormSchema>,
@@ -49,4 +50,17 @@ export async function getAreaById(id: number | undefined) {
     },
   });
   return area;
+}
+
+export async function deleteAreaById(id: number) {
+  const session = await verifySession();
+  if (!session) return null;
+  if (!["ADMIN", "ACCREDITATION_OFFICER"].includes(session.user.role))
+    return { unauthorized: true };
+  const deleteArea = await prisma.area.delete({
+    where: {
+      id,
+    },
+  });
+  return deleteArea;
 }

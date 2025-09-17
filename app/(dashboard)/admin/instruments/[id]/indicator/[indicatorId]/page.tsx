@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { getIndicatorById } from "@/lib/dal/indicator";
 import { getParameterById } from "@/lib/dal/parameter";
 import clsx from "clsx";
-import { CheckCircle, Info, Pen, SearchCheck, Tag } from "lucide-react";
+import { CheckCircle, Info, Pencil, SearchCheck, Tag } from "lucide-react";
 
 const IndicatorPage = async ({
   params,
@@ -31,17 +31,19 @@ const IndicatorPage = async ({
 
   return (
     <div className="w-3/4 mt-10 mx-auto flex flex-col gap-10">
-      <p className="text-3xl">Indicator</p>
+      <p className="text-3xl flex items-center gap-2">
+        <CheckCircle />
+        Indicator
+      </p>
       <Card>
         <CardContent className="flex flex-col gap-5">
-          <p className="text-3xl flex items-center gap-2">
-            <CheckCircle />
+          <p className="text-3xl">
             {`${indicator?.label}: ${indicator?.description}`}
           </p>
           <div className="flex justify-between items-center">
             <p className="text-foreground">{`${parameter?.label}: ${parameter?.description}`}</p>
             <div>
-              <Pen size={20} />
+              <Pencil size={20} />
             </div>
           </div>
         </CardContent>

@@ -62,7 +62,7 @@ export async function getInstrumentById(id: string | undefined) {
   return instrument;
 }
 
-export async function deleteInstrument(id: string) {
+export async function deleteInstrumentById(id: string) {
   const session = await verifySession();
   if (!session) return null;
   if (!["ADMIN", "ACCREDITATION_OFFICER"].includes(session.user.role))

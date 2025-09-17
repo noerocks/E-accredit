@@ -2,8 +2,9 @@
 
 import z from "zod";
 import { CreateAreaFormSchema } from "../zod-definitions";
-import { createNewArea as createNewAreaDAL } from "../dal/area";
+import { createNewArea as createNewAreaDAL, deleteAreaById } from "../dal/area";
 import { revalidateTag } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function createNewArea(
   data: z.infer<typeof CreateAreaFormSchema>,
@@ -27,4 +28,19 @@ export async function createNewArea(
       message: "Something went wrong",
     };
   }
+}
+
+export async function deleteArea(
+  id: number,
+  {
+    instrumentId,
+    searchParams,
+  }: { instrumentId: string | undefined; searchParams: string }
+) {
+  if (!id) throw new Error("Instrument ID is required");
+  const result = await deleteAreaById(id);
+  if (result && "unauthorized" in result && result.unauthorized)
+    throw new Error("Unauthorized action");
+  revalidateTag("instruments");
+  redirect(`/admin/instruments/${instrumentId}?${searchParams}`);
 }

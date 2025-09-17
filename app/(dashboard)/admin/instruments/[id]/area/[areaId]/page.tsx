@@ -1,9 +1,10 @@
+import DeleteAreaDialog from "@/components/admin/area/delete-area-dialog";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent } from "@/components/ui/card";
 import { getAreaStructureById } from "@/lib/dal/area";
 import { getInstrumentById } from "@/lib/dal/instrument";
 import clsx from "clsx";
-import { CheckCircle, ClipboardList, Info, Layers, Pen } from "lucide-react";
+import { CheckCircle, ClipboardList, Info, Layers, Pencil } from "lucide-react";
 
 const AreaPage = async ({
   params,
@@ -24,17 +25,24 @@ const AreaPage = async ({
 
   return (
     <div className="w-3/4 mt-10 mx-auto flex flex-col gap-10">
-      <p className="text-3xl">Area</p>
+      <p className="text-3xl flex items-center gap-2">
+        <Layers />
+        Area
+      </p>
       <Card>
         <CardContent className="flex flex-col gap-5">
-          <p className="text-3xl flex items-center gap-2">
-            <Layers />
-            {`${area?.label}: ${area?.description}`}
-          </p>
+          <p className="text-3xl">{`${area?.label}: ${area?.description}`}</p>
           <div className="flex justify-between items-center">
             <p className="text-foreground">{instrument?.name}</p>
-            <div>
-              <Pen size={20} />
+            <div className="flex items-center gap-2">
+              <Pencil size={20} />
+              <DeleteAreaDialog
+                area={{
+                  id: area?.id,
+                  label: area?.label,
+                  instrumentId: area?.instrumentId,
+                }}
+              />
             </div>
           </div>
         </CardContent>

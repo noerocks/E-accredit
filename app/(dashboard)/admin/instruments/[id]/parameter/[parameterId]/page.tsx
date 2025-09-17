@@ -6,8 +6,7 @@ import clsx from "clsx";
 import {
   ClipboardList,
   Info,
-  Pen,
-  PlayCircle,
+  Pencil,
   Settings,
   Trophy,
   Zap,
@@ -37,17 +36,19 @@ const ParameterPage = async ({
   ];
   return (
     <div className="w-3/4 mt-10 mx-auto flex flex-col gap-10">
-      <p className="text-3xl">Parameter</p>
+      <p className="text-3xl flex items-center gap-2">
+        <ClipboardList />
+        Parameter
+      </p>
       <Card>
         <CardContent className="flex flex-col gap-5">
-          <p className="text-3xl flex items-center gap-2">
-            <ClipboardList />
+          <p className="text-3xl">
             {`${parameter?.label}: ${parameter?.description}`}
           </p>
           <div className="flex justify-between items-center">
             <p className="text-foreground">{`${area?.label}: ${area?.description}`}</p>
             <div>
-              <Pen size={20} />
+              <Pencil size={20} />
             </div>
           </div>
         </CardContent>

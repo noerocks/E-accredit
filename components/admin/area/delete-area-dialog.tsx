@@ -21,39 +21,48 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { deleteInstrument } from "@/lib/action/instrument";
+import { deleteArea } from "@/lib/action/area";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Trash, TriangleAlert } from "lucide-react";
+import { useParams, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
 
-const DeleteInstrumentDialog = ({
-  instrument,
+const DeleteAreaDialog = ({
+  area,
 }: {
-  instrument: { id: string | undefined; name: string | undefined };
+  area: {
+    id: number | undefined;
+    label: string | undefined;
+    instrumentId: string | undefined;
+  };
 }) => {
-  const DeleteInstrumentFormSchema = z
+  const searchParams = useSearchParams();
+  const DeleteAreaFormSchema = z
     .object({
-      name: z.string().min(1, "This field is required").trim(),
+      label: z.string().min(1, "This field is required").trim(),
     })
-    .refine((data) => data.name === instrument.name, {
-      message: "Instrument name does not match",
-      path: ["name"],
+    .refine((data) => data.label === area.label, {
+      message: "Instrument label does not match",
+      path: ["label"],
     });
-  const form = useForm<z.infer<typeof DeleteInstrumentFormSchema>>({
-    resolver: zodResolver(DeleteInstrumentFormSchema),
+  const form = useForm<z.infer<typeof DeleteAreaFormSchema>>({
+    resolver: zodResolver(DeleteAreaFormSchema),
     defaultValues: {
-      name: "",
+      label: "",
     },
   });
   const [pending, startTransition] = useTransition();
-  const onSubmit = async (data: z.infer<typeof DeleteInstrumentFormSchema>) => {
+  const onSubmit = async (data: z.infer<typeof DeleteAreaFormSchema>) => {
     startTransition(async () => {
-      if (!instrument.id) return;
+      if (!area.id) return;
       try {
-        await deleteInstrument(instrument.id);
+        await deleteArea(Number(area.id), {
+          instrumentId: area.instrumentId,
+          searchParams: searchParams.toString(),
+        });
       } catch (error) {
         const e = error as Error;
         if (e.message === "NEXT_REDIRECT") return;
@@ -71,11 +80,11 @@ const DeleteInstrumentDialog = ({
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-2xl text-center">
-            Delete Instrument
+            Delete Area
           </DialogTitle>
           <DialogDescription>
-            Are you sure you want to delete instrument? This action will delete
-            all the areas, parameters and indicators under this instrument.
+            Are you sure you want to delete area? This action will delete all
+            parameters and indicators under this area.
           </DialogDescription>
           <Alert
             variant="destructive"
@@ -90,12 +99,12 @@ const DeleteInstrumentDialog = ({
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
-              name="name"
+              name="label"
               render={({ field }) => (
                 <FormItem className="mb-5">
                   <FormLabel className="text-muted-foreground text-sm">
                     To confirm, please type
-                    <span className="dark:text-white text-foreground">{`${instrument.name}`}</span>{" "}
+                    <span className="dark:text-white text-foreground">{`${area.label}`}</span>{" "}
                     below.
                   </FormLabel>
                   <FormControl>
@@ -118,4 +127,4 @@ const DeleteInstrumentDialog = ({
   );
 };
 
-export default DeleteInstrumentDialog;
+export default DeleteAreaDialog;

@@ -16,12 +16,12 @@ import {
 
 import FileTree from "@/components/admin/instruments/file-tree";
 import { InstrumentDTO } from "@/lib/dto/instrument";
-import CreateAreaDialog from "./create-area-dialog";
+import CreateAreaDialog from "@/components/admin/area/create-area-dialog";
 import { useSearchParams, useRouter, useParams } from "next/navigation";
 import { Home, Settings } from "lucide-react";
 import Link from "next/link";
-import CreateParameterDialog from "./create-parameter-dialog";
-import CreateIndicatorDialog from "./create-indicator-dialog";
+import CreateParameterDialog from "@/components/admin/parameter/create-parameter-dialog";
+import CreateIndicatorDialog from "@/components/admin/indicator/create-indicator-dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const InstrumentSidebar = ({
