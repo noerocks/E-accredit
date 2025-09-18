@@ -77,9 +77,9 @@ const CreateAreaDialog = () => {
             <Info />
             <AlertTitle>Info</AlertTitle>
             <AlertDescription className="text-blue-400">
-              For standard instruments, please refer to the official instrument
-              provided by the accrediting body when writing the area
-              description.
+              An area with a weight of 0 will NOT be included in the overall
+              weighted mean calculations. However, for accreditation purposes,
+              no area may fall below the required mean score set for each level.
             </AlertDescription>
           </Alert>
         </DialogHeader>
@@ -125,7 +125,7 @@ const CreateAreaDialog = () => {
               name="weight"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel>Weight</FormLabel>
                   <FormControl>
                     <Input type="number" autoComplete="off" {...field} />
                   </FormControl>
