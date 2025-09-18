@@ -4898,18 +4898,24 @@ export namespace Prisma {
     id: string | null
     name: string | null
     accreditingBody: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type InstrumentMaxAggregateOutputType = {
     id: string | null
     name: string | null
     accreditingBody: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type InstrumentCountAggregateOutputType = {
     id: number
     name: number
     accreditingBody: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -4918,18 +4924,24 @@ export namespace Prisma {
     id?: true
     name?: true
     accreditingBody?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type InstrumentMaxAggregateInputType = {
     id?: true
     name?: true
     accreditingBody?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type InstrumentCountAggregateInputType = {
     id?: true
     name?: true
     accreditingBody?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -5009,6 +5021,8 @@ export namespace Prisma {
     id: string
     name: string
     accreditingBody: string
+    createdAt: Date
+    updatedAt: Date
     _count: InstrumentCountAggregateOutputType | null
     _min: InstrumentMinAggregateOutputType | null
     _max: InstrumentMaxAggregateOutputType | null
@@ -5032,6 +5046,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     accreditingBody?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     area?: boolean | Instrument$areaArgs<ExtArgs>
     _count?: boolean | InstrumentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["instrument"]>
@@ -5040,21 +5056,27 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     accreditingBody?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["instrument"]>
 
   export type InstrumentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     accreditingBody?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["instrument"]>
 
   export type InstrumentSelectScalar = {
     id?: boolean
     name?: boolean
     accreditingBody?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type InstrumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "accreditingBody", ExtArgs["result"]["instrument"]>
+  export type InstrumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "accreditingBody" | "createdAt" | "updatedAt", ExtArgs["result"]["instrument"]>
   export type InstrumentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     area?: boolean | Instrument$areaArgs<ExtArgs>
     _count?: boolean | InstrumentCountOutputTypeDefaultArgs<ExtArgs>
@@ -5071,6 +5093,8 @@ export namespace Prisma {
       id: string
       name: string
       accreditingBody: string
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["instrument"]>
     composites: {}
   }
@@ -5498,6 +5522,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Instrument", 'String'>
     readonly name: FieldRef<"Instrument", 'String'>
     readonly accreditingBody: FieldRef<"Instrument", 'String'>
+    readonly createdAt: FieldRef<"Instrument", 'DateTime'>
+    readonly updatedAt: FieldRef<"Instrument", 'DateTime'>
   }
     
 
@@ -5956,6 +5982,8 @@ export namespace Prisma {
     description: string | null
     weight: number | null
     instrumentId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type AreaMaxAggregateOutputType = {
@@ -5964,6 +5992,8 @@ export namespace Prisma {
     description: string | null
     weight: number | null
     instrumentId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type AreaCountAggregateOutputType = {
@@ -5972,6 +6002,8 @@ export namespace Prisma {
     description: number
     weight: number
     instrumentId: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -5992,6 +6024,8 @@ export namespace Prisma {
     description?: true
     weight?: true
     instrumentId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type AreaMaxAggregateInputType = {
@@ -6000,6 +6034,8 @@ export namespace Prisma {
     description?: true
     weight?: true
     instrumentId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type AreaCountAggregateInputType = {
@@ -6008,6 +6044,8 @@ export namespace Prisma {
     description?: true
     weight?: true
     instrumentId?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -6103,6 +6141,8 @@ export namespace Prisma {
     description: string
     weight: number
     instrumentId: string
+    createdAt: Date
+    updatedAt: Date
     _count: AreaCountAggregateOutputType | null
     _avg: AreaAvgAggregateOutputType | null
     _sum: AreaSumAggregateOutputType | null
@@ -6130,6 +6170,8 @@ export namespace Prisma {
     description?: boolean
     weight?: boolean
     instrumentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
     parameter?: boolean | Area$parameterArgs<ExtArgs>
     _count?: boolean | AreaCountOutputTypeDefaultArgs<ExtArgs>
@@ -6141,6 +6183,8 @@ export namespace Prisma {
     description?: boolean
     weight?: boolean
     instrumentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["area"]>
 
@@ -6150,6 +6194,8 @@ export namespace Prisma {
     description?: boolean
     weight?: boolean
     instrumentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["area"]>
 
@@ -6159,9 +6205,11 @@ export namespace Prisma {
     description?: boolean
     weight?: boolean
     instrumentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type AreaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "label" | "description" | "weight" | "instrumentId", ExtArgs["result"]["area"]>
+  export type AreaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "label" | "description" | "weight" | "instrumentId" | "createdAt" | "updatedAt", ExtArgs["result"]["area"]>
   export type AreaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
     parameter?: boolean | Area$parameterArgs<ExtArgs>
@@ -6186,6 +6234,8 @@ export namespace Prisma {
       description: string
       weight: number
       instrumentId: string
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["area"]>
     composites: {}
   }
@@ -6616,6 +6666,8 @@ export namespace Prisma {
     readonly description: FieldRef<"Area", 'String'>
     readonly weight: FieldRef<"Area", 'Int'>
     readonly instrumentId: FieldRef<"Area", 'String'>
+    readonly createdAt: FieldRef<"Area", 'DateTime'>
+    readonly updatedAt: FieldRef<"Area", 'DateTime'>
   }
     
 
@@ -7081,6 +7133,8 @@ export namespace Prisma {
     label: string | null
     description: string | null
     areaId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ParameterMaxAggregateOutputType = {
@@ -7088,6 +7142,8 @@ export namespace Prisma {
     label: string | null
     description: string | null
     areaId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ParameterCountAggregateOutputType = {
@@ -7095,6 +7151,8 @@ export namespace Prisma {
     label: number
     description: number
     areaId: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -7114,6 +7172,8 @@ export namespace Prisma {
     label?: true
     description?: true
     areaId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ParameterMaxAggregateInputType = {
@@ -7121,6 +7181,8 @@ export namespace Prisma {
     label?: true
     description?: true
     areaId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ParameterCountAggregateInputType = {
@@ -7128,6 +7190,8 @@ export namespace Prisma {
     label?: true
     description?: true
     areaId?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -7222,6 +7286,8 @@ export namespace Prisma {
     label: string
     description: string
     areaId: number
+    createdAt: Date
+    updatedAt: Date
     _count: ParameterCountAggregateOutputType | null
     _avg: ParameterAvgAggregateOutputType | null
     _sum: ParameterSumAggregateOutputType | null
@@ -7248,6 +7314,8 @@ export namespace Prisma {
     label?: boolean
     description?: boolean
     areaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     area?: boolean | AreaDefaultArgs<ExtArgs>
     indicator?: boolean | Parameter$indicatorArgs<ExtArgs>
     _count?: boolean | ParameterCountOutputTypeDefaultArgs<ExtArgs>
@@ -7258,6 +7326,8 @@ export namespace Prisma {
     label?: boolean
     description?: boolean
     areaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     area?: boolean | AreaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["parameter"]>
 
@@ -7266,6 +7336,8 @@ export namespace Prisma {
     label?: boolean
     description?: boolean
     areaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     area?: boolean | AreaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["parameter"]>
 
@@ -7274,9 +7346,11 @@ export namespace Prisma {
     label?: boolean
     description?: boolean
     areaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ParameterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "label" | "description" | "areaId", ExtArgs["result"]["parameter"]>
+  export type ParameterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "label" | "description" | "areaId" | "createdAt" | "updatedAt", ExtArgs["result"]["parameter"]>
   export type ParameterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     area?: boolean | AreaDefaultArgs<ExtArgs>
     indicator?: boolean | Parameter$indicatorArgs<ExtArgs>
@@ -7300,6 +7374,8 @@ export namespace Prisma {
       label: string
       description: string
       areaId: number
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["parameter"]>
     composites: {}
   }
@@ -7729,6 +7805,8 @@ export namespace Prisma {
     readonly label: FieldRef<"Parameter", 'String'>
     readonly description: FieldRef<"Parameter", 'String'>
     readonly areaId: FieldRef<"Parameter", 'Int'>
+    readonly createdAt: FieldRef<"Parameter", 'DateTime'>
+    readonly updatedAt: FieldRef<"Parameter", 'DateTime'>
   }
     
 
@@ -8196,6 +8274,8 @@ export namespace Prisma {
     category: $Enums.Category | null
     evidence: string | null
     parameterId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type IndicatorMaxAggregateOutputType = {
@@ -8205,6 +8285,8 @@ export namespace Prisma {
     category: $Enums.Category | null
     evidence: string | null
     parameterId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type IndicatorCountAggregateOutputType = {
@@ -8214,6 +8296,8 @@ export namespace Prisma {
     category: number
     evidence: number
     parameterId: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -8235,6 +8319,8 @@ export namespace Prisma {
     category?: true
     evidence?: true
     parameterId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type IndicatorMaxAggregateInputType = {
@@ -8244,6 +8330,8 @@ export namespace Prisma {
     category?: true
     evidence?: true
     parameterId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type IndicatorCountAggregateInputType = {
@@ -8253,6 +8341,8 @@ export namespace Prisma {
     category?: true
     evidence?: true
     parameterId?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -8349,6 +8439,8 @@ export namespace Prisma {
     category: $Enums.Category
     evidence: string
     parameterId: number
+    createdAt: Date
+    updatedAt: Date
     _count: IndicatorCountAggregateOutputType | null
     _avg: IndicatorAvgAggregateOutputType | null
     _sum: IndicatorSumAggregateOutputType | null
@@ -8377,6 +8469,8 @@ export namespace Prisma {
     category?: boolean
     evidence?: boolean
     parameterId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     parameter?: boolean | ParameterDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["indicator"]>
 
@@ -8387,6 +8481,8 @@ export namespace Prisma {
     category?: boolean
     evidence?: boolean
     parameterId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     parameter?: boolean | ParameterDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["indicator"]>
 
@@ -8397,6 +8493,8 @@ export namespace Prisma {
     category?: boolean
     evidence?: boolean
     parameterId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     parameter?: boolean | ParameterDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["indicator"]>
 
@@ -8407,9 +8505,11 @@ export namespace Prisma {
     category?: boolean
     evidence?: boolean
     parameterId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type IndicatorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "label" | "description" | "category" | "evidence" | "parameterId", ExtArgs["result"]["indicator"]>
+  export type IndicatorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "label" | "description" | "category" | "evidence" | "parameterId" | "createdAt" | "updatedAt", ExtArgs["result"]["indicator"]>
   export type IndicatorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parameter?: boolean | ParameterDefaultArgs<ExtArgs>
   }
@@ -8432,6 +8532,8 @@ export namespace Prisma {
       category: $Enums.Category
       evidence: string
       parameterId: number
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["indicator"]>
     composites: {}
   }
@@ -8862,6 +8964,8 @@ export namespace Prisma {
     readonly category: FieldRef<"Indicator", 'Category'>
     readonly evidence: FieldRef<"Indicator", 'String'>
     readonly parameterId: FieldRef<"Indicator", 'Int'>
+    readonly createdAt: FieldRef<"Indicator", 'DateTime'>
+    readonly updatedAt: FieldRef<"Indicator", 'DateTime'>
   }
     
 
@@ -9332,7 +9436,9 @@ export namespace Prisma {
   export const InstrumentScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    accreditingBody: 'accreditingBody'
+    accreditingBody: 'accreditingBody',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type InstrumentScalarFieldEnum = (typeof InstrumentScalarFieldEnum)[keyof typeof InstrumentScalarFieldEnum]
@@ -9343,7 +9449,9 @@ export namespace Prisma {
     label: 'label',
     description: 'description',
     weight: 'weight',
-    instrumentId: 'instrumentId'
+    instrumentId: 'instrumentId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type AreaScalarFieldEnum = (typeof AreaScalarFieldEnum)[keyof typeof AreaScalarFieldEnum]
@@ -9353,7 +9461,9 @@ export namespace Prisma {
     id: 'id',
     label: 'label',
     description: 'description',
-    areaId: 'areaId'
+    areaId: 'areaId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ParameterScalarFieldEnum = (typeof ParameterScalarFieldEnum)[keyof typeof ParameterScalarFieldEnum]
@@ -9365,7 +9475,9 @@ export namespace Prisma {
     description: 'description',
     category: 'category',
     evidence: 'evidence',
-    parameterId: 'parameterId'
+    parameterId: 'parameterId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type IndicatorScalarFieldEnum = (typeof IndicatorScalarFieldEnum)[keyof typeof IndicatorScalarFieldEnum]
@@ -9694,6 +9806,8 @@ export namespace Prisma {
     id?: StringFilter<"Instrument"> | string
     name?: StringFilter<"Instrument"> | string
     accreditingBody?: StringFilter<"Instrument"> | string
+    createdAt?: DateTimeFilter<"Instrument"> | Date | string
+    updatedAt?: DateTimeFilter<"Instrument"> | Date | string
     area?: AreaListRelationFilter
   }
 
@@ -9701,6 +9815,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     accreditingBody?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     area?: AreaOrderByRelationAggregateInput
   }
 
@@ -9712,6 +9828,8 @@ export namespace Prisma {
     NOT?: InstrumentWhereInput | InstrumentWhereInput[]
     name?: StringFilter<"Instrument"> | string
     accreditingBody?: StringFilter<"Instrument"> | string
+    createdAt?: DateTimeFilter<"Instrument"> | Date | string
+    updatedAt?: DateTimeFilter<"Instrument"> | Date | string
     area?: AreaListRelationFilter
   }, "id" | "name_accreditingBody">
 
@@ -9719,6 +9837,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     accreditingBody?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: InstrumentCountOrderByAggregateInput
     _max?: InstrumentMaxOrderByAggregateInput
     _min?: InstrumentMinOrderByAggregateInput
@@ -9731,6 +9851,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Instrument"> | string
     name?: StringWithAggregatesFilter<"Instrument"> | string
     accreditingBody?: StringWithAggregatesFilter<"Instrument"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Instrument"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Instrument"> | Date | string
   }
 
   export type AreaWhereInput = {
@@ -9742,6 +9864,8 @@ export namespace Prisma {
     description?: StringFilter<"Area"> | string
     weight?: IntFilter<"Area"> | number
     instrumentId?: StringFilter<"Area"> | string
+    createdAt?: DateTimeFilter<"Area"> | Date | string
+    updatedAt?: DateTimeFilter<"Area"> | Date | string
     instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
     parameter?: ParameterListRelationFilter
   }
@@ -9752,6 +9876,8 @@ export namespace Prisma {
     description?: SortOrder
     weight?: SortOrder
     instrumentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     instrument?: InstrumentOrderByWithRelationInput
     parameter?: ParameterOrderByRelationAggregateInput
   }
@@ -9765,6 +9891,8 @@ export namespace Prisma {
     description?: StringFilter<"Area"> | string
     weight?: IntFilter<"Area"> | number
     instrumentId?: StringFilter<"Area"> | string
+    createdAt?: DateTimeFilter<"Area"> | Date | string
+    updatedAt?: DateTimeFilter<"Area"> | Date | string
     instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
     parameter?: ParameterListRelationFilter
   }, "id">
@@ -9775,6 +9903,8 @@ export namespace Prisma {
     description?: SortOrder
     weight?: SortOrder
     instrumentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: AreaCountOrderByAggregateInput
     _avg?: AreaAvgOrderByAggregateInput
     _max?: AreaMaxOrderByAggregateInput
@@ -9791,6 +9921,8 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"Area"> | string
     weight?: IntWithAggregatesFilter<"Area"> | number
     instrumentId?: StringWithAggregatesFilter<"Area"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Area"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Area"> | Date | string
   }
 
   export type ParameterWhereInput = {
@@ -9801,6 +9933,8 @@ export namespace Prisma {
     label?: StringFilter<"Parameter"> | string
     description?: StringFilter<"Parameter"> | string
     areaId?: IntFilter<"Parameter"> | number
+    createdAt?: DateTimeFilter<"Parameter"> | Date | string
+    updatedAt?: DateTimeFilter<"Parameter"> | Date | string
     area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
     indicator?: IndicatorListRelationFilter
   }
@@ -9810,6 +9944,8 @@ export namespace Prisma {
     label?: SortOrder
     description?: SortOrder
     areaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     area?: AreaOrderByWithRelationInput
     indicator?: IndicatorOrderByRelationAggregateInput
   }
@@ -9822,6 +9958,8 @@ export namespace Prisma {
     label?: StringFilter<"Parameter"> | string
     description?: StringFilter<"Parameter"> | string
     areaId?: IntFilter<"Parameter"> | number
+    createdAt?: DateTimeFilter<"Parameter"> | Date | string
+    updatedAt?: DateTimeFilter<"Parameter"> | Date | string
     area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
     indicator?: IndicatorListRelationFilter
   }, "id">
@@ -9831,6 +9969,8 @@ export namespace Prisma {
     label?: SortOrder
     description?: SortOrder
     areaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ParameterCountOrderByAggregateInput
     _avg?: ParameterAvgOrderByAggregateInput
     _max?: ParameterMaxOrderByAggregateInput
@@ -9846,6 +9986,8 @@ export namespace Prisma {
     label?: StringWithAggregatesFilter<"Parameter"> | string
     description?: StringWithAggregatesFilter<"Parameter"> | string
     areaId?: IntWithAggregatesFilter<"Parameter"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Parameter"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Parameter"> | Date | string
   }
 
   export type IndicatorWhereInput = {
@@ -9858,6 +10000,8 @@ export namespace Prisma {
     category?: EnumCategoryFilter<"Indicator"> | $Enums.Category
     evidence?: StringFilter<"Indicator"> | string
     parameterId?: IntFilter<"Indicator"> | number
+    createdAt?: DateTimeFilter<"Indicator"> | Date | string
+    updatedAt?: DateTimeFilter<"Indicator"> | Date | string
     parameter?: XOR<ParameterScalarRelationFilter, ParameterWhereInput>
   }
 
@@ -9868,6 +10012,8 @@ export namespace Prisma {
     category?: SortOrder
     evidence?: SortOrder
     parameterId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     parameter?: ParameterOrderByWithRelationInput
   }
 
@@ -9881,6 +10027,8 @@ export namespace Prisma {
     category?: EnumCategoryFilter<"Indicator"> | $Enums.Category
     evidence?: StringFilter<"Indicator"> | string
     parameterId?: IntFilter<"Indicator"> | number
+    createdAt?: DateTimeFilter<"Indicator"> | Date | string
+    updatedAt?: DateTimeFilter<"Indicator"> | Date | string
     parameter?: XOR<ParameterScalarRelationFilter, ParameterWhereInput>
   }, "id">
 
@@ -9891,6 +10039,8 @@ export namespace Prisma {
     category?: SortOrder
     evidence?: SortOrder
     parameterId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: IndicatorCountOrderByAggregateInput
     _avg?: IndicatorAvgOrderByAggregateInput
     _max?: IndicatorMaxOrderByAggregateInput
@@ -9908,6 +10058,8 @@ export namespace Prisma {
     category?: EnumCategoryWithAggregatesFilter<"Indicator"> | $Enums.Category
     evidence?: StringWithAggregatesFilter<"Indicator"> | string
     parameterId?: IntWithAggregatesFilter<"Indicator"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Indicator"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Indicator"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -10130,6 +10282,8 @@ export namespace Prisma {
     id?: string
     name: string
     accreditingBody: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     area?: AreaCreateNestedManyWithoutInstrumentInput
   }
 
@@ -10137,6 +10291,8 @@ export namespace Prisma {
     id?: string
     name: string
     accreditingBody: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     area?: AreaUncheckedCreateNestedManyWithoutInstrumentInput
   }
 
@@ -10144,6 +10300,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     accreditingBody?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     area?: AreaUpdateManyWithoutInstrumentNestedInput
   }
 
@@ -10151,6 +10309,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     accreditingBody?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     area?: AreaUncheckedUpdateManyWithoutInstrumentNestedInput
   }
 
@@ -10158,24 +10318,32 @@ export namespace Prisma {
     id?: string
     name: string
     accreditingBody: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type InstrumentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     accreditingBody?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type InstrumentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     accreditingBody?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AreaCreateInput = {
     label: string
     description: string
     weight: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
     instrument: InstrumentCreateNestedOneWithoutAreaInput
     parameter?: ParameterCreateNestedManyWithoutAreaInput
   }
@@ -10186,6 +10354,8 @@ export namespace Prisma {
     description: string
     weight: number
     instrumentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     parameter?: ParameterUncheckedCreateNestedManyWithoutAreaInput
   }
 
@@ -10193,6 +10363,8 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     weight?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     instrument?: InstrumentUpdateOneRequiredWithoutAreaNestedInput
     parameter?: ParameterUpdateManyWithoutAreaNestedInput
   }
@@ -10203,6 +10375,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     weight?: IntFieldUpdateOperationsInput | number
     instrumentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parameter?: ParameterUncheckedUpdateManyWithoutAreaNestedInput
   }
 
@@ -10212,12 +10386,16 @@ export namespace Prisma {
     description: string
     weight: number
     instrumentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AreaUpdateManyMutationInput = {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     weight?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AreaUncheckedUpdateManyInput = {
@@ -10226,11 +10404,15 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     weight?: IntFieldUpdateOperationsInput | number
     instrumentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ParameterCreateInput = {
     label: string
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     area: AreaCreateNestedOneWithoutParameterInput
     indicator?: IndicatorCreateNestedManyWithoutParameterInput
   }
@@ -10240,12 +10422,16 @@ export namespace Prisma {
     label: string
     description: string
     areaId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
     indicator?: IndicatorUncheckedCreateNestedManyWithoutParameterInput
   }
 
   export type ParameterUpdateInput = {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     area?: AreaUpdateOneRequiredWithoutParameterNestedInput
     indicator?: IndicatorUpdateManyWithoutParameterNestedInput
   }
@@ -10255,6 +10441,8 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicator?: IndicatorUncheckedUpdateManyWithoutParameterNestedInput
   }
 
@@ -10263,11 +10451,15 @@ export namespace Prisma {
     label: string
     description: string
     areaId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ParameterUpdateManyMutationInput = {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ParameterUncheckedUpdateManyInput = {
@@ -10275,6 +10467,8 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IndicatorCreateInput = {
@@ -10282,6 +10476,8 @@ export namespace Prisma {
     description: string
     category: $Enums.Category
     evidence: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     parameter: ParameterCreateNestedOneWithoutIndicatorInput
   }
 
@@ -10292,6 +10488,8 @@ export namespace Prisma {
     category: $Enums.Category
     evidence: string
     parameterId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type IndicatorUpdateInput = {
@@ -10299,6 +10497,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     evidence?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parameter?: ParameterUpdateOneRequiredWithoutIndicatorNestedInput
   }
 
@@ -10309,6 +10509,8 @@ export namespace Prisma {
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     evidence?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IndicatorCreateManyInput = {
@@ -10318,6 +10520,8 @@ export namespace Prisma {
     category: $Enums.Category
     evidence: string
     parameterId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type IndicatorUpdateManyMutationInput = {
@@ -10325,6 +10529,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     evidence?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IndicatorUncheckedUpdateManyInput = {
@@ -10334,6 +10540,8 @@ export namespace Prisma {
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     evidence?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -10588,18 +10796,24 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     accreditingBody?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type InstrumentMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     accreditingBody?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type InstrumentMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     accreditingBody?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -10634,6 +10848,8 @@ export namespace Prisma {
     description?: SortOrder
     weight?: SortOrder
     instrumentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type AreaAvgOrderByAggregateInput = {
@@ -10647,6 +10863,8 @@ export namespace Prisma {
     description?: SortOrder
     weight?: SortOrder
     instrumentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type AreaMinOrderByAggregateInput = {
@@ -10655,6 +10873,8 @@ export namespace Prisma {
     description?: SortOrder
     weight?: SortOrder
     instrumentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type AreaSumOrderByAggregateInput = {
@@ -10698,6 +10918,8 @@ export namespace Prisma {
     label?: SortOrder
     description?: SortOrder
     areaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ParameterAvgOrderByAggregateInput = {
@@ -10710,6 +10932,8 @@ export namespace Prisma {
     label?: SortOrder
     description?: SortOrder
     areaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ParameterMinOrderByAggregateInput = {
@@ -10717,6 +10941,8 @@ export namespace Prisma {
     label?: SortOrder
     description?: SortOrder
     areaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ParameterSumOrderByAggregateInput = {
@@ -10743,6 +10969,8 @@ export namespace Prisma {
     category?: SortOrder
     evidence?: SortOrder
     parameterId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type IndicatorAvgOrderByAggregateInput = {
@@ -10757,6 +10985,8 @@ export namespace Prisma {
     category?: SortOrder
     evidence?: SortOrder
     parameterId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type IndicatorMinOrderByAggregateInput = {
@@ -10766,6 +10996,8 @@ export namespace Prisma {
     category?: SortOrder
     evidence?: SortOrder
     parameterId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type IndicatorSumOrderByAggregateInput = {
@@ -11475,6 +11707,8 @@ export namespace Prisma {
     label: string
     description: string
     weight: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
     parameter?: ParameterCreateNestedManyWithoutAreaInput
   }
 
@@ -11483,6 +11717,8 @@ export namespace Prisma {
     label: string
     description: string
     weight: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
     parameter?: ParameterUncheckedCreateNestedManyWithoutAreaInput
   }
 
@@ -11521,18 +11757,24 @@ export namespace Prisma {
     description?: StringFilter<"Area"> | string
     weight?: IntFilter<"Area"> | number
     instrumentId?: StringFilter<"Area"> | string
+    createdAt?: DateTimeFilter<"Area"> | Date | string
+    updatedAt?: DateTimeFilter<"Area"> | Date | string
   }
 
   export type InstrumentCreateWithoutAreaInput = {
     id?: string
     name: string
     accreditingBody: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type InstrumentUncheckedCreateWithoutAreaInput = {
     id?: string
     name: string
     accreditingBody: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type InstrumentCreateOrConnectWithoutAreaInput = {
@@ -11543,6 +11785,8 @@ export namespace Prisma {
   export type ParameterCreateWithoutAreaInput = {
     label: string
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     indicator?: IndicatorCreateNestedManyWithoutParameterInput
   }
 
@@ -11550,6 +11794,8 @@ export namespace Prisma {
     id?: number
     label: string
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     indicator?: IndicatorUncheckedCreateNestedManyWithoutParameterInput
   }
 
@@ -11578,12 +11824,16 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     accreditingBody?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type InstrumentUncheckedUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     accreditingBody?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ParameterUpsertWithWhereUniqueWithoutAreaInput = {
@@ -11610,12 +11860,16 @@ export namespace Prisma {
     label?: StringFilter<"Parameter"> | string
     description?: StringFilter<"Parameter"> | string
     areaId?: IntFilter<"Parameter"> | number
+    createdAt?: DateTimeFilter<"Parameter"> | Date | string
+    updatedAt?: DateTimeFilter<"Parameter"> | Date | string
   }
 
   export type AreaCreateWithoutParameterInput = {
     label: string
     description: string
     weight: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
     instrument: InstrumentCreateNestedOneWithoutAreaInput
   }
 
@@ -11625,6 +11879,8 @@ export namespace Prisma {
     description: string
     weight: number
     instrumentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AreaCreateOrConnectWithoutParameterInput = {
@@ -11637,6 +11893,8 @@ export namespace Prisma {
     description: string
     category: $Enums.Category
     evidence: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type IndicatorUncheckedCreateWithoutParameterInput = {
@@ -11645,6 +11903,8 @@ export namespace Prisma {
     description: string
     category: $Enums.Category
     evidence: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type IndicatorCreateOrConnectWithoutParameterInput = {
@@ -11672,6 +11932,8 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     weight?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     instrument?: InstrumentUpdateOneRequiredWithoutAreaNestedInput
   }
 
@@ -11681,6 +11943,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     weight?: IntFieldUpdateOperationsInput | number
     instrumentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IndicatorUpsertWithWhereUniqueWithoutParameterInput = {
@@ -11709,11 +11973,15 @@ export namespace Prisma {
     category?: EnumCategoryFilter<"Indicator"> | $Enums.Category
     evidence?: StringFilter<"Indicator"> | string
     parameterId?: IntFilter<"Indicator"> | number
+    createdAt?: DateTimeFilter<"Indicator"> | Date | string
+    updatedAt?: DateTimeFilter<"Indicator"> | Date | string
   }
 
   export type ParameterCreateWithoutIndicatorInput = {
     label: string
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     area: AreaCreateNestedOneWithoutParameterInput
   }
 
@@ -11722,6 +11990,8 @@ export namespace Prisma {
     label: string
     description: string
     areaId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ParameterCreateOrConnectWithoutIndicatorInput = {
@@ -11743,6 +12013,8 @@ export namespace Prisma {
   export type ParameterUpdateWithoutIndicatorInput = {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     area?: AreaUpdateOneRequiredWithoutParameterNestedInput
   }
 
@@ -11751,6 +12023,8 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProgramPersonnelCreateManyUserInput = {
@@ -11806,12 +12080,16 @@ export namespace Prisma {
     label: string
     description: string
     weight: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AreaUpdateWithoutInstrumentInput = {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     weight?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parameter?: ParameterUpdateManyWithoutAreaNestedInput
   }
 
@@ -11820,6 +12098,8 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     weight?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parameter?: ParameterUncheckedUpdateManyWithoutAreaNestedInput
   }
 
@@ -11828,17 +12108,23 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     weight?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ParameterCreateManyAreaInput = {
     id?: number
     label: string
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ParameterUpdateWithoutAreaInput = {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicator?: IndicatorUpdateManyWithoutParameterNestedInput
   }
 
@@ -11846,6 +12132,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicator?: IndicatorUncheckedUpdateManyWithoutParameterNestedInput
   }
 
@@ -11853,6 +12141,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IndicatorCreateManyParameterInput = {
@@ -11861,6 +12151,8 @@ export namespace Prisma {
     description: string
     category: $Enums.Category
     evidence: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type IndicatorUpdateWithoutParameterInput = {
@@ -11868,6 +12160,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     evidence?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IndicatorUncheckedUpdateWithoutParameterInput = {
@@ -11876,6 +12170,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     evidence?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IndicatorUncheckedUpdateManyWithoutParameterInput = {
@@ -11884,6 +12180,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     evidence?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

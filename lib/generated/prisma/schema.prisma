@@ -71,10 +71,12 @@ model ProgramPersonnel {
 }
 
 model Instrument {
-  id              String @id @default(uuid())
+  id              String   @id @default(uuid())
   name            String
   accreditingBody String
   area            Area[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
   @@unique([name, accreditingBody])
 }
@@ -87,6 +89,8 @@ model Area {
   instrument   Instrument  @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
   instrumentId String
   parameter    Parameter[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
 }
 
 model Parameter {
@@ -96,6 +100,8 @@ model Parameter {
   area        Area        @relation(fields: [areaId], references: [id], onDelete: Cascade)
   areaId      Int
   indicator   Indicator[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 }
 
 model Indicator {
@@ -106,4 +112,6 @@ model Indicator {
   evidence    String
   parameter   Parameter @relation(fields: [parameterId], references: [id], onDelete: Cascade)
   parameterId Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
