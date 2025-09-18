@@ -23,6 +23,7 @@ export async function createNewArea(
       message: "Area created successfuly",
     };
   } catch (error) {
+    console.log((error as Error).message);
     return {
       status: "error",
       message: "Something went wrong",

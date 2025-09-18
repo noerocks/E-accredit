@@ -43,6 +43,7 @@ const CreateAreaDialog = () => {
     defaultValues: {
       label: "",
       description: "",
+      weight: "0",
     },
   });
   const [pending, startTransition] = useTransition();
@@ -114,6 +115,22 @@ const CreateAreaDialog = () => {
                   </FormControl>
                   <FormDescription>
                     Please enter the description accordingly
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="weight"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Input type="number" autoComplete="off" {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    Please enter the weight for this area
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

@@ -58,6 +58,7 @@ export const CreateAreaFormSchema = z.object({
     .regex(/^Area\s[IVXLCDM]/, "Invalid Format")
     .trim(),
   description: z.string().min(1, "This is field is required").trim(),
+  weight: z.string().regex(/^\d+(\.\d+)?$/, "Invalid input"),
 });
 
 export const CreateParameterFormSchema = z.object({

@@ -83,6 +83,7 @@ model Area {
   id           Int         @id @default(autoincrement())
   label        String
   description  String
+  weight       Int
   instrument   Instrument  @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
   instrumentId String
   parameter    Parameter[]

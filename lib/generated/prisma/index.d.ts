@@ -5942,16 +5942,19 @@ export namespace Prisma {
 
   export type AreaAvgAggregateOutputType = {
     id: number | null
+    weight: number | null
   }
 
   export type AreaSumAggregateOutputType = {
     id: number | null
+    weight: number | null
   }
 
   export type AreaMinAggregateOutputType = {
     id: number | null
     label: string | null
     description: string | null
+    weight: number | null
     instrumentId: string | null
   }
 
@@ -5959,6 +5962,7 @@ export namespace Prisma {
     id: number | null
     label: string | null
     description: string | null
+    weight: number | null
     instrumentId: string | null
   }
 
@@ -5966,6 +5970,7 @@ export namespace Prisma {
     id: number
     label: number
     description: number
+    weight: number
     instrumentId: number
     _all: number
   }
@@ -5973,16 +5978,19 @@ export namespace Prisma {
 
   export type AreaAvgAggregateInputType = {
     id?: true
+    weight?: true
   }
 
   export type AreaSumAggregateInputType = {
     id?: true
+    weight?: true
   }
 
   export type AreaMinAggregateInputType = {
     id?: true
     label?: true
     description?: true
+    weight?: true
     instrumentId?: true
   }
 
@@ -5990,6 +5998,7 @@ export namespace Prisma {
     id?: true
     label?: true
     description?: true
+    weight?: true
     instrumentId?: true
   }
 
@@ -5997,6 +6006,7 @@ export namespace Prisma {
     id?: true
     label?: true
     description?: true
+    weight?: true
     instrumentId?: true
     _all?: true
   }
@@ -6091,6 +6101,7 @@ export namespace Prisma {
     id: number
     label: string
     description: string
+    weight: number
     instrumentId: string
     _count: AreaCountAggregateOutputType | null
     _avg: AreaAvgAggregateOutputType | null
@@ -6117,6 +6128,7 @@ export namespace Prisma {
     id?: boolean
     label?: boolean
     description?: boolean
+    weight?: boolean
     instrumentId?: boolean
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
     parameter?: boolean | Area$parameterArgs<ExtArgs>
@@ -6127,6 +6139,7 @@ export namespace Prisma {
     id?: boolean
     label?: boolean
     description?: boolean
+    weight?: boolean
     instrumentId?: boolean
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["area"]>
@@ -6135,6 +6148,7 @@ export namespace Prisma {
     id?: boolean
     label?: boolean
     description?: boolean
+    weight?: boolean
     instrumentId?: boolean
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["area"]>
@@ -6143,10 +6157,11 @@ export namespace Prisma {
     id?: boolean
     label?: boolean
     description?: boolean
+    weight?: boolean
     instrumentId?: boolean
   }
 
-  export type AreaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "label" | "description" | "instrumentId", ExtArgs["result"]["area"]>
+  export type AreaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "label" | "description" | "weight" | "instrumentId", ExtArgs["result"]["area"]>
   export type AreaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
     parameter?: boolean | Area$parameterArgs<ExtArgs>
@@ -6169,6 +6184,7 @@ export namespace Prisma {
       id: number
       label: string
       description: string
+      weight: number
       instrumentId: string
     }, ExtArgs["result"]["area"]>
     composites: {}
@@ -6598,6 +6614,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Area", 'Int'>
     readonly label: FieldRef<"Area", 'String'>
     readonly description: FieldRef<"Area", 'String'>
+    readonly weight: FieldRef<"Area", 'Int'>
     readonly instrumentId: FieldRef<"Area", 'String'>
   }
     
@@ -9325,6 +9342,7 @@ export namespace Prisma {
     id: 'id',
     label: 'label',
     description: 'description',
+    weight: 'weight',
     instrumentId: 'instrumentId'
   };
 
@@ -9722,6 +9740,7 @@ export namespace Prisma {
     id?: IntFilter<"Area"> | number
     label?: StringFilter<"Area"> | string
     description?: StringFilter<"Area"> | string
+    weight?: IntFilter<"Area"> | number
     instrumentId?: StringFilter<"Area"> | string
     instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
     parameter?: ParameterListRelationFilter
@@ -9731,6 +9750,7 @@ export namespace Prisma {
     id?: SortOrder
     label?: SortOrder
     description?: SortOrder
+    weight?: SortOrder
     instrumentId?: SortOrder
     instrument?: InstrumentOrderByWithRelationInput
     parameter?: ParameterOrderByRelationAggregateInput
@@ -9743,6 +9763,7 @@ export namespace Prisma {
     NOT?: AreaWhereInput | AreaWhereInput[]
     label?: StringFilter<"Area"> | string
     description?: StringFilter<"Area"> | string
+    weight?: IntFilter<"Area"> | number
     instrumentId?: StringFilter<"Area"> | string
     instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
     parameter?: ParameterListRelationFilter
@@ -9752,6 +9773,7 @@ export namespace Prisma {
     id?: SortOrder
     label?: SortOrder
     description?: SortOrder
+    weight?: SortOrder
     instrumentId?: SortOrder
     _count?: AreaCountOrderByAggregateInput
     _avg?: AreaAvgOrderByAggregateInput
@@ -9767,6 +9789,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Area"> | number
     label?: StringWithAggregatesFilter<"Area"> | string
     description?: StringWithAggregatesFilter<"Area"> | string
+    weight?: IntWithAggregatesFilter<"Area"> | number
     instrumentId?: StringWithAggregatesFilter<"Area"> | string
   }
 
@@ -10152,6 +10175,7 @@ export namespace Prisma {
   export type AreaCreateInput = {
     label: string
     description: string
+    weight: number
     instrument: InstrumentCreateNestedOneWithoutAreaInput
     parameter?: ParameterCreateNestedManyWithoutAreaInput
   }
@@ -10160,6 +10184,7 @@ export namespace Prisma {
     id?: number
     label: string
     description: string
+    weight: number
     instrumentId: string
     parameter?: ParameterUncheckedCreateNestedManyWithoutAreaInput
   }
@@ -10167,6 +10192,7 @@ export namespace Prisma {
   export type AreaUpdateInput = {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    weight?: IntFieldUpdateOperationsInput | number
     instrument?: InstrumentUpdateOneRequiredWithoutAreaNestedInput
     parameter?: ParameterUpdateManyWithoutAreaNestedInput
   }
@@ -10175,6 +10201,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    weight?: IntFieldUpdateOperationsInput | number
     instrumentId?: StringFieldUpdateOperationsInput | string
     parameter?: ParameterUncheckedUpdateManyWithoutAreaNestedInput
   }
@@ -10183,18 +10210,21 @@ export namespace Prisma {
     id?: number
     label: string
     description: string
+    weight: number
     instrumentId: string
   }
 
   export type AreaUpdateManyMutationInput = {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    weight?: IntFieldUpdateOperationsInput | number
   }
 
   export type AreaUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    weight?: IntFieldUpdateOperationsInput | number
     instrumentId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -10602,17 +10632,20 @@ export namespace Prisma {
     id?: SortOrder
     label?: SortOrder
     description?: SortOrder
+    weight?: SortOrder
     instrumentId?: SortOrder
   }
 
   export type AreaAvgOrderByAggregateInput = {
     id?: SortOrder
+    weight?: SortOrder
   }
 
   export type AreaMaxOrderByAggregateInput = {
     id?: SortOrder
     label?: SortOrder
     description?: SortOrder
+    weight?: SortOrder
     instrumentId?: SortOrder
   }
 
@@ -10620,11 +10653,13 @@ export namespace Prisma {
     id?: SortOrder
     label?: SortOrder
     description?: SortOrder
+    weight?: SortOrder
     instrumentId?: SortOrder
   }
 
   export type AreaSumOrderByAggregateInput = {
     id?: SortOrder
+    weight?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -10938,6 +10973,14 @@ export namespace Prisma {
     connect?: ParameterWhereUniqueInput | ParameterWhereUniqueInput[]
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type InstrumentUpdateOneRequiredWithoutAreaNestedInput = {
     create?: XOR<InstrumentCreateWithoutAreaInput, InstrumentUncheckedCreateWithoutAreaInput>
     connectOrCreate?: InstrumentCreateOrConnectWithoutAreaInput
@@ -10958,14 +11001,6 @@ export namespace Prisma {
     update?: ParameterUpdateWithWhereUniqueWithoutAreaInput | ParameterUpdateWithWhereUniqueWithoutAreaInput[]
     updateMany?: ParameterUpdateManyWithWhereWithoutAreaInput | ParameterUpdateManyWithWhereWithoutAreaInput[]
     deleteMany?: ParameterScalarWhereInput | ParameterScalarWhereInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type ParameterUncheckedUpdateManyWithoutAreaNestedInput = {
@@ -11439,6 +11474,7 @@ export namespace Prisma {
   export type AreaCreateWithoutInstrumentInput = {
     label: string
     description: string
+    weight: number
     parameter?: ParameterCreateNestedManyWithoutAreaInput
   }
 
@@ -11446,6 +11482,7 @@ export namespace Prisma {
     id?: number
     label: string
     description: string
+    weight: number
     parameter?: ParameterUncheckedCreateNestedManyWithoutAreaInput
   }
 
@@ -11482,6 +11519,7 @@ export namespace Prisma {
     id?: IntFilter<"Area"> | number
     label?: StringFilter<"Area"> | string
     description?: StringFilter<"Area"> | string
+    weight?: IntFilter<"Area"> | number
     instrumentId?: StringFilter<"Area"> | string
   }
 
@@ -11577,6 +11615,7 @@ export namespace Prisma {
   export type AreaCreateWithoutParameterInput = {
     label: string
     description: string
+    weight: number
     instrument: InstrumentCreateNestedOneWithoutAreaInput
   }
 
@@ -11584,6 +11623,7 @@ export namespace Prisma {
     id?: number
     label: string
     description: string
+    weight: number
     instrumentId: string
   }
 
@@ -11631,6 +11671,7 @@ export namespace Prisma {
   export type AreaUpdateWithoutParameterInput = {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    weight?: IntFieldUpdateOperationsInput | number
     instrument?: InstrumentUpdateOneRequiredWithoutAreaNestedInput
   }
 
@@ -11638,6 +11679,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    weight?: IntFieldUpdateOperationsInput | number
     instrumentId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -11763,11 +11805,13 @@ export namespace Prisma {
     id?: number
     label: string
     description: string
+    weight: number
   }
 
   export type AreaUpdateWithoutInstrumentInput = {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    weight?: IntFieldUpdateOperationsInput | number
     parameter?: ParameterUpdateManyWithoutAreaNestedInput
   }
 
@@ -11775,6 +11819,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    weight?: IntFieldUpdateOperationsInput | number
     parameter?: ParameterUncheckedUpdateManyWithoutAreaNestedInput
   }
 
@@ -11782,6 +11827,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    weight?: IntFieldUpdateOperationsInput | number
   }
 
   export type ParameterCreateManyAreaInput = {
