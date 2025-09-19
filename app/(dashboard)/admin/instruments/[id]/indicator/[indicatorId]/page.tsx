@@ -61,7 +61,7 @@ const IndicatorPage = async ({
         <div className="flex gap-5">
           {metadata.map((data, index) => (
             <Card key={index} className="flex-1 rounded-md">
-              <CardContent className="flex items-center gap-5">
+              <CardContent className="flex items-center gap-5 h-full">
                 <div
                   className={clsx("p-4 rounded-full", {
                     "bg-blue-400/30 text-blue-400": index === 0,
