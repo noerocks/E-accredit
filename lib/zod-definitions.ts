@@ -83,11 +83,11 @@ export const CreateIndicatorFormSchema = z
     (data) => {
       switch (data.category) {
         case "SYSTEM":
-          return /^S\.\d+\.?\d*$/.test(data.label);
+          return /^S\.\d+(\.?\d+)*$/.test(data.label);
         case "IMPLEMENTATION":
-          return /^I\.\d+\.?\d*$/.test(data.label);
+          return /^I\.\d+(\.?\d+)*$/.test(data.label);
         case "OUTCOME":
-          return /^O\.\d+\.?\d*$/.test(data.label);
+          return /^O\.\d+(\.?\d+)*$/.test(data.label);
       }
     },
     {
