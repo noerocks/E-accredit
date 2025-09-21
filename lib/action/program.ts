@@ -5,6 +5,7 @@ import { CreateProgramFormSchema } from "../zod-definitions";
 import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/library";
 import { createProgram as createProgramDAL } from "../dal/program";
 import { revalidateTag } from "next/cache";
+import { createFolder } from "./drive";
 
 export async function createProgram(
   data: z.infer<typeof CreateProgramFormSchema>
@@ -16,7 +17,9 @@ export async function createProgram(
       message: "Invalid form data",
     };
   try {
-    await createProgramDAL(data);
+    const folder = await createFolder(data.code);
+    if (!folder.id) throw new Error("Failed to create folder");
+    await createProgramDAL({ ...data, folderId: folder.id });
     revalidateTag("programs");
     return {
       status: "success",
@@ -31,7 +34,7 @@ export async function createProgram(
       };
     }
     return {
-      status: "error",
+      status: (error as Error).message,
       message: "Failed to create program",
     };
   }
