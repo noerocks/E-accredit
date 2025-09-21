@@ -48,6 +48,11 @@ export type Parameter = $Result.DefaultSelection<Prisma.$ParameterPayload>
  * 
  */
 export type Indicator = $Result.DefaultSelection<Prisma.$IndicatorPayload>
+/**
+ * Model Level
+ * 
+ */
+export type Level = $Result.DefaultSelection<Prisma.$LevelPayload>
 
 /**
  * Enums
@@ -56,19 +61,11 @@ export namespace $Enums {
   export const Role: {
   ADMIN: 'ADMIN',
   ACCREDITATION_OFFICER: 'ACCREDITATION_OFFICER',
-  ACCREDITOR: 'ACCREDITOR',
+  INTERNAL_ACCREDITOR: 'INTERNAL_ACCREDITOR',
   PENDING: 'PENDING'
 };
 
 export type Role = (typeof Role)[keyof typeof Role]
-
-
-export const ProgramPosition: {
-  CHAIRPERSON: 'CHAIRPERSON',
-  MEMBER: 'MEMBER'
-};
-
-export type ProgramPosition = (typeof ProgramPosition)[keyof typeof ProgramPosition]
 
 
 export const Category: {
@@ -84,10 +81,6 @@ export type Category = (typeof Category)[keyof typeof Category]
 export type Role = $Enums.Role
 
 export const Role: typeof $Enums.Role
-
-export type ProgramPosition = $Enums.ProgramPosition
-
-export const ProgramPosition: typeof $Enums.ProgramPosition
 
 export type Category = $Enums.Category
 
@@ -280,6 +273,16 @@ export class PrismaClient<
     * ```
     */
   get indicator(): Prisma.IndicatorDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.level`: Exposes CRUD operations for the **Level** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Levels
+    * const levels = await prisma.level.findMany()
+    * ```
+    */
+  get level(): Prisma.LevelDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -726,7 +729,8 @@ export namespace Prisma {
     Instrument: 'Instrument',
     Area: 'Area',
     Parameter: 'Parameter',
-    Indicator: 'Indicator'
+    Indicator: 'Indicator',
+    Level: 'Level'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -745,7 +749,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator"
+      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1267,6 +1271,80 @@ export namespace Prisma {
           }
         }
       }
+      Level: {
+        payload: Prisma.$LevelPayload<ExtArgs>
+        fields: Prisma.LevelFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LevelFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LevelFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelPayload>
+          }
+          findFirst: {
+            args: Prisma.LevelFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LevelFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelPayload>
+          }
+          findMany: {
+            args: Prisma.LevelFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelPayload>[]
+          }
+          create: {
+            args: Prisma.LevelCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelPayload>
+          }
+          createMany: {
+            args: Prisma.LevelCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LevelCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelPayload>[]
+          }
+          delete: {
+            args: Prisma.LevelDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelPayload>
+          }
+          update: {
+            args: Prisma.LevelUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelPayload>
+          }
+          deleteMany: {
+            args: Prisma.LevelDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LevelUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LevelUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelPayload>[]
+          }
+          upsert: {
+            args: Prisma.LevelUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelPayload>
+          }
+          aggregate: {
+            args: Prisma.LevelAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLevel>
+          }
+          groupBy: {
+            args: Prisma.LevelGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LevelGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LevelCountArgs<ExtArgs>
+            result: $Utils.Optional<LevelCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1366,6 +1444,7 @@ export namespace Prisma {
     area?: AreaOmit
     parameter?: ParameterOmit
     indicator?: IndicatorOmit
+    level?: LevelOmit
   }
 
   /* Types for Logging */
@@ -2765,6 +2844,7 @@ export namespace Prisma {
     department: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    folderId: string | null
   }
 
   export type ProgramMaxAggregateOutputType = {
@@ -2774,6 +2854,7 @@ export namespace Prisma {
     department: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    folderId: string | null
   }
 
   export type ProgramCountAggregateOutputType = {
@@ -2783,6 +2864,7 @@ export namespace Prisma {
     department: number
     createdAt: number
     updatedAt: number
+    folderId: number
     _all: number
   }
 
@@ -2794,6 +2876,7 @@ export namespace Prisma {
     department?: true
     createdAt?: true
     updatedAt?: true
+    folderId?: true
   }
 
   export type ProgramMaxAggregateInputType = {
@@ -2803,6 +2886,7 @@ export namespace Prisma {
     department?: true
     createdAt?: true
     updatedAt?: true
+    folderId?: true
   }
 
   export type ProgramCountAggregateInputType = {
@@ -2812,6 +2896,7 @@ export namespace Prisma {
     department?: true
     createdAt?: true
     updatedAt?: true
+    folderId?: true
     _all?: true
   }
 
@@ -2894,6 +2979,7 @@ export namespace Prisma {
     department: string
     createdAt: Date
     updatedAt: Date
+    folderId: string
     _count: ProgramCountAggregateOutputType | null
     _min: ProgramMinAggregateOutputType | null
     _max: ProgramMaxAggregateOutputType | null
@@ -2920,6 +3006,7 @@ export namespace Prisma {
     department?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    folderId?: boolean
     programPersonnel?: boolean | Program$programPersonnelArgs<ExtArgs>
     _count?: boolean | ProgramCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["program"]>
@@ -2931,6 +3018,7 @@ export namespace Prisma {
     department?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    folderId?: boolean
   }, ExtArgs["result"]["program"]>
 
   export type ProgramSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2940,6 +3028,7 @@ export namespace Prisma {
     department?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    folderId?: boolean
   }, ExtArgs["result"]["program"]>
 
   export type ProgramSelectScalar = {
@@ -2949,9 +3038,10 @@ export namespace Prisma {
     department?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    folderId?: boolean
   }
 
-  export type ProgramOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "code" | "department" | "createdAt" | "updatedAt", ExtArgs["result"]["program"]>
+  export type ProgramOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "code" | "department" | "createdAt" | "updatedAt" | "folderId", ExtArgs["result"]["program"]>
   export type ProgramInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     programPersonnel?: boolean | Program$programPersonnelArgs<ExtArgs>
     _count?: boolean | ProgramCountOutputTypeDefaultArgs<ExtArgs>
@@ -2971,6 +3061,7 @@ export namespace Prisma {
       department: string
       createdAt: Date
       updatedAt: Date
+      folderId: string
     }, ExtArgs["result"]["program"]>
     composites: {}
   }
@@ -3401,6 +3492,7 @@ export namespace Prisma {
     readonly department: FieldRef<"Program", 'String'>
     readonly createdAt: FieldRef<"Program", 'DateTime'>
     readonly updatedAt: FieldRef<"Program", 'DateTime'>
+    readonly folderId: FieldRef<"Program", 'String'>
   }
     
 
@@ -9381,6 +9473,1043 @@ export namespace Prisma {
 
 
   /**
+   * Model Level
+   */
+
+  export type AggregateLevel = {
+    _count: LevelCountAggregateOutputType | null
+    _avg: LevelAvgAggregateOutputType | null
+    _sum: LevelSumAggregateOutputType | null
+    _min: LevelMinAggregateOutputType | null
+    _max: LevelMaxAggregateOutputType | null
+  }
+
+  export type LevelAvgAggregateOutputType = {
+    rank: number | null
+    requiredGrandMean: Decimal | null
+    requiredAreaMean: Decimal | null
+  }
+
+  export type LevelSumAggregateOutputType = {
+    rank: number | null
+    requiredGrandMean: Decimal | null
+    requiredAreaMean: Decimal | null
+  }
+
+  export type LevelMinAggregateOutputType = {
+    id: string | null
+    rank: number | null
+    label: string | null
+    requiredGrandMean: Decimal | null
+    requiredAreaMean: Decimal | null
+  }
+
+  export type LevelMaxAggregateOutputType = {
+    id: string | null
+    rank: number | null
+    label: string | null
+    requiredGrandMean: Decimal | null
+    requiredAreaMean: Decimal | null
+  }
+
+  export type LevelCountAggregateOutputType = {
+    id: number
+    rank: number
+    label: number
+    requiredGrandMean: number
+    requiredAreaMean: number
+    _all: number
+  }
+
+
+  export type LevelAvgAggregateInputType = {
+    rank?: true
+    requiredGrandMean?: true
+    requiredAreaMean?: true
+  }
+
+  export type LevelSumAggregateInputType = {
+    rank?: true
+    requiredGrandMean?: true
+    requiredAreaMean?: true
+  }
+
+  export type LevelMinAggregateInputType = {
+    id?: true
+    rank?: true
+    label?: true
+    requiredGrandMean?: true
+    requiredAreaMean?: true
+  }
+
+  export type LevelMaxAggregateInputType = {
+    id?: true
+    rank?: true
+    label?: true
+    requiredGrandMean?: true
+    requiredAreaMean?: true
+  }
+
+  export type LevelCountAggregateInputType = {
+    id?: true
+    rank?: true
+    label?: true
+    requiredGrandMean?: true
+    requiredAreaMean?: true
+    _all?: true
+  }
+
+  export type LevelAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Level to aggregate.
+     */
+    where?: LevelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Levels to fetch.
+     */
+    orderBy?: LevelOrderByWithRelationInput | LevelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LevelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Levels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Levels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Levels
+    **/
+    _count?: true | LevelCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LevelAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LevelSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LevelMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LevelMaxAggregateInputType
+  }
+
+  export type GetLevelAggregateType<T extends LevelAggregateArgs> = {
+        [P in keyof T & keyof AggregateLevel]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLevel[P]>
+      : GetScalarType<T[P], AggregateLevel[P]>
+  }
+
+
+
+
+  export type LevelGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LevelWhereInput
+    orderBy?: LevelOrderByWithAggregationInput | LevelOrderByWithAggregationInput[]
+    by: LevelScalarFieldEnum[] | LevelScalarFieldEnum
+    having?: LevelScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LevelCountAggregateInputType | true
+    _avg?: LevelAvgAggregateInputType
+    _sum?: LevelSumAggregateInputType
+    _min?: LevelMinAggregateInputType
+    _max?: LevelMaxAggregateInputType
+  }
+
+  export type LevelGroupByOutputType = {
+    id: string
+    rank: number
+    label: string
+    requiredGrandMean: Decimal
+    requiredAreaMean: Decimal
+    _count: LevelCountAggregateOutputType | null
+    _avg: LevelAvgAggregateOutputType | null
+    _sum: LevelSumAggregateOutputType | null
+    _min: LevelMinAggregateOutputType | null
+    _max: LevelMaxAggregateOutputType | null
+  }
+
+  type GetLevelGroupByPayload<T extends LevelGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LevelGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LevelGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LevelGroupByOutputType[P]>
+            : GetScalarType<T[P], LevelGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LevelSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    rank?: boolean
+    label?: boolean
+    requiredGrandMean?: boolean
+    requiredAreaMean?: boolean
+  }, ExtArgs["result"]["level"]>
+
+  export type LevelSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    rank?: boolean
+    label?: boolean
+    requiredGrandMean?: boolean
+    requiredAreaMean?: boolean
+  }, ExtArgs["result"]["level"]>
+
+  export type LevelSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    rank?: boolean
+    label?: boolean
+    requiredGrandMean?: boolean
+    requiredAreaMean?: boolean
+  }, ExtArgs["result"]["level"]>
+
+  export type LevelSelectScalar = {
+    id?: boolean
+    rank?: boolean
+    label?: boolean
+    requiredGrandMean?: boolean
+    requiredAreaMean?: boolean
+  }
+
+  export type LevelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "rank" | "label" | "requiredGrandMean" | "requiredAreaMean", ExtArgs["result"]["level"]>
+
+  export type $LevelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Level"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      rank: number
+      label: string
+      requiredGrandMean: Prisma.Decimal
+      requiredAreaMean: Prisma.Decimal
+    }, ExtArgs["result"]["level"]>
+    composites: {}
+  }
+
+  type LevelGetPayload<S extends boolean | null | undefined | LevelDefaultArgs> = $Result.GetResult<Prisma.$LevelPayload, S>
+
+  type LevelCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LevelFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LevelCountAggregateInputType | true
+    }
+
+  export interface LevelDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Level'], meta: { name: 'Level' } }
+    /**
+     * Find zero or one Level that matches the filter.
+     * @param {LevelFindUniqueArgs} args - Arguments to find a Level
+     * @example
+     * // Get one Level
+     * const level = await prisma.level.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LevelFindUniqueArgs>(args: SelectSubset<T, LevelFindUniqueArgs<ExtArgs>>): Prisma__LevelClient<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Level that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LevelFindUniqueOrThrowArgs} args - Arguments to find a Level
+     * @example
+     * // Get one Level
+     * const level = await prisma.level.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LevelFindUniqueOrThrowArgs>(args: SelectSubset<T, LevelFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LevelClient<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Level that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelFindFirstArgs} args - Arguments to find a Level
+     * @example
+     * // Get one Level
+     * const level = await prisma.level.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LevelFindFirstArgs>(args?: SelectSubset<T, LevelFindFirstArgs<ExtArgs>>): Prisma__LevelClient<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Level that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelFindFirstOrThrowArgs} args - Arguments to find a Level
+     * @example
+     * // Get one Level
+     * const level = await prisma.level.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LevelFindFirstOrThrowArgs>(args?: SelectSubset<T, LevelFindFirstOrThrowArgs<ExtArgs>>): Prisma__LevelClient<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Levels that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Levels
+     * const levels = await prisma.level.findMany()
+     * 
+     * // Get first 10 Levels
+     * const levels = await prisma.level.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const levelWithIdOnly = await prisma.level.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LevelFindManyArgs>(args?: SelectSubset<T, LevelFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Level.
+     * @param {LevelCreateArgs} args - Arguments to create a Level.
+     * @example
+     * // Create one Level
+     * const Level = await prisma.level.create({
+     *   data: {
+     *     // ... data to create a Level
+     *   }
+     * })
+     * 
+     */
+    create<T extends LevelCreateArgs>(args: SelectSubset<T, LevelCreateArgs<ExtArgs>>): Prisma__LevelClient<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Levels.
+     * @param {LevelCreateManyArgs} args - Arguments to create many Levels.
+     * @example
+     * // Create many Levels
+     * const level = await prisma.level.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LevelCreateManyArgs>(args?: SelectSubset<T, LevelCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Levels and returns the data saved in the database.
+     * @param {LevelCreateManyAndReturnArgs} args - Arguments to create many Levels.
+     * @example
+     * // Create many Levels
+     * const level = await prisma.level.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Levels and only return the `id`
+     * const levelWithIdOnly = await prisma.level.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LevelCreateManyAndReturnArgs>(args?: SelectSubset<T, LevelCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Level.
+     * @param {LevelDeleteArgs} args - Arguments to delete one Level.
+     * @example
+     * // Delete one Level
+     * const Level = await prisma.level.delete({
+     *   where: {
+     *     // ... filter to delete one Level
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LevelDeleteArgs>(args: SelectSubset<T, LevelDeleteArgs<ExtArgs>>): Prisma__LevelClient<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Level.
+     * @param {LevelUpdateArgs} args - Arguments to update one Level.
+     * @example
+     * // Update one Level
+     * const level = await prisma.level.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LevelUpdateArgs>(args: SelectSubset<T, LevelUpdateArgs<ExtArgs>>): Prisma__LevelClient<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Levels.
+     * @param {LevelDeleteManyArgs} args - Arguments to filter Levels to delete.
+     * @example
+     * // Delete a few Levels
+     * const { count } = await prisma.level.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LevelDeleteManyArgs>(args?: SelectSubset<T, LevelDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Levels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Levels
+     * const level = await prisma.level.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LevelUpdateManyArgs>(args: SelectSubset<T, LevelUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Levels and returns the data updated in the database.
+     * @param {LevelUpdateManyAndReturnArgs} args - Arguments to update many Levels.
+     * @example
+     * // Update many Levels
+     * const level = await prisma.level.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Levels and only return the `id`
+     * const levelWithIdOnly = await prisma.level.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LevelUpdateManyAndReturnArgs>(args: SelectSubset<T, LevelUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Level.
+     * @param {LevelUpsertArgs} args - Arguments to update or create a Level.
+     * @example
+     * // Update or create a Level
+     * const level = await prisma.level.upsert({
+     *   create: {
+     *     // ... data to create a Level
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Level we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LevelUpsertArgs>(args: SelectSubset<T, LevelUpsertArgs<ExtArgs>>): Prisma__LevelClient<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Levels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelCountArgs} args - Arguments to filter Levels to count.
+     * @example
+     * // Count the number of Levels
+     * const count = await prisma.level.count({
+     *   where: {
+     *     // ... the filter for the Levels we want to count
+     *   }
+     * })
+    **/
+    count<T extends LevelCountArgs>(
+      args?: Subset<T, LevelCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LevelCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Level.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LevelAggregateArgs>(args: Subset<T, LevelAggregateArgs>): Prisma.PrismaPromise<GetLevelAggregateType<T>>
+
+    /**
+     * Group by Level.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LevelGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LevelGroupByArgs['orderBy'] }
+        : { orderBy?: LevelGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LevelGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLevelGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Level model
+   */
+  readonly fields: LevelFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Level.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LevelClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Level model
+   */
+  interface LevelFieldRefs {
+    readonly id: FieldRef<"Level", 'String'>
+    readonly rank: FieldRef<"Level", 'Int'>
+    readonly label: FieldRef<"Level", 'String'>
+    readonly requiredGrandMean: FieldRef<"Level", 'Decimal'>
+    readonly requiredAreaMean: FieldRef<"Level", 'Decimal'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Level findUnique
+   */
+  export type LevelFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Level
+     */
+    select?: LevelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Level
+     */
+    omit?: LevelOmit<ExtArgs> | null
+    /**
+     * Filter, which Level to fetch.
+     */
+    where: LevelWhereUniqueInput
+  }
+
+  /**
+   * Level findUniqueOrThrow
+   */
+  export type LevelFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Level
+     */
+    select?: LevelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Level
+     */
+    omit?: LevelOmit<ExtArgs> | null
+    /**
+     * Filter, which Level to fetch.
+     */
+    where: LevelWhereUniqueInput
+  }
+
+  /**
+   * Level findFirst
+   */
+  export type LevelFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Level
+     */
+    select?: LevelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Level
+     */
+    omit?: LevelOmit<ExtArgs> | null
+    /**
+     * Filter, which Level to fetch.
+     */
+    where?: LevelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Levels to fetch.
+     */
+    orderBy?: LevelOrderByWithRelationInput | LevelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Levels.
+     */
+    cursor?: LevelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Levels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Levels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Levels.
+     */
+    distinct?: LevelScalarFieldEnum | LevelScalarFieldEnum[]
+  }
+
+  /**
+   * Level findFirstOrThrow
+   */
+  export type LevelFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Level
+     */
+    select?: LevelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Level
+     */
+    omit?: LevelOmit<ExtArgs> | null
+    /**
+     * Filter, which Level to fetch.
+     */
+    where?: LevelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Levels to fetch.
+     */
+    orderBy?: LevelOrderByWithRelationInput | LevelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Levels.
+     */
+    cursor?: LevelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Levels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Levels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Levels.
+     */
+    distinct?: LevelScalarFieldEnum | LevelScalarFieldEnum[]
+  }
+
+  /**
+   * Level findMany
+   */
+  export type LevelFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Level
+     */
+    select?: LevelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Level
+     */
+    omit?: LevelOmit<ExtArgs> | null
+    /**
+     * Filter, which Levels to fetch.
+     */
+    where?: LevelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Levels to fetch.
+     */
+    orderBy?: LevelOrderByWithRelationInput | LevelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Levels.
+     */
+    cursor?: LevelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Levels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Levels.
+     */
+    skip?: number
+    distinct?: LevelScalarFieldEnum | LevelScalarFieldEnum[]
+  }
+
+  /**
+   * Level create
+   */
+  export type LevelCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Level
+     */
+    select?: LevelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Level
+     */
+    omit?: LevelOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Level.
+     */
+    data: XOR<LevelCreateInput, LevelUncheckedCreateInput>
+  }
+
+  /**
+   * Level createMany
+   */
+  export type LevelCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Levels.
+     */
+    data: LevelCreateManyInput | LevelCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Level createManyAndReturn
+   */
+  export type LevelCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Level
+     */
+    select?: LevelSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Level
+     */
+    omit?: LevelOmit<ExtArgs> | null
+    /**
+     * The data used to create many Levels.
+     */
+    data: LevelCreateManyInput | LevelCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Level update
+   */
+  export type LevelUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Level
+     */
+    select?: LevelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Level
+     */
+    omit?: LevelOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Level.
+     */
+    data: XOR<LevelUpdateInput, LevelUncheckedUpdateInput>
+    /**
+     * Choose, which Level to update.
+     */
+    where: LevelWhereUniqueInput
+  }
+
+  /**
+   * Level updateMany
+   */
+  export type LevelUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Levels.
+     */
+    data: XOR<LevelUpdateManyMutationInput, LevelUncheckedUpdateManyInput>
+    /**
+     * Filter which Levels to update
+     */
+    where?: LevelWhereInput
+    /**
+     * Limit how many Levels to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Level updateManyAndReturn
+   */
+  export type LevelUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Level
+     */
+    select?: LevelSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Level
+     */
+    omit?: LevelOmit<ExtArgs> | null
+    /**
+     * The data used to update Levels.
+     */
+    data: XOR<LevelUpdateManyMutationInput, LevelUncheckedUpdateManyInput>
+    /**
+     * Filter which Levels to update
+     */
+    where?: LevelWhereInput
+    /**
+     * Limit how many Levels to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Level upsert
+   */
+  export type LevelUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Level
+     */
+    select?: LevelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Level
+     */
+    omit?: LevelOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Level to update in case it exists.
+     */
+    where: LevelWhereUniqueInput
+    /**
+     * In case the Level found by the `where` argument doesn't exist, create a new Level with this data.
+     */
+    create: XOR<LevelCreateInput, LevelUncheckedCreateInput>
+    /**
+     * In case the Level was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LevelUpdateInput, LevelUncheckedUpdateInput>
+  }
+
+  /**
+   * Level delete
+   */
+  export type LevelDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Level
+     */
+    select?: LevelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Level
+     */
+    omit?: LevelOmit<ExtArgs> | null
+    /**
+     * Filter which Level to delete.
+     */
+    where: LevelWhereUniqueInput
+  }
+
+  /**
+   * Level deleteMany
+   */
+  export type LevelDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Levels to delete
+     */
+    where?: LevelWhereInput
+    /**
+     * Limit how many Levels to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Level without action
+   */
+  export type LevelDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Level
+     */
+    select?: LevelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Level
+     */
+    omit?: LevelOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9417,7 +10546,8 @@ export namespace Prisma {
     code: 'code',
     department: 'department',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    folderId: 'folderId'
   };
 
   export type ProgramScalarFieldEnum = (typeof ProgramScalarFieldEnum)[keyof typeof ProgramScalarFieldEnum]
@@ -9481,6 +10611,17 @@ export namespace Prisma {
   };
 
   export type IndicatorScalarFieldEnum = (typeof IndicatorScalarFieldEnum)[keyof typeof IndicatorScalarFieldEnum]
+
+
+  export const LevelScalarFieldEnum: {
+    id: 'id',
+    rank: 'rank',
+    label: 'label',
+    requiredGrandMean: 'requiredGrandMean',
+    requiredAreaMean: 'requiredAreaMean'
+  };
+
+  export type LevelScalarFieldEnum = (typeof LevelScalarFieldEnum)[keyof typeof LevelScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -9579,6 +10720,20 @@ export namespace Prisma {
    * Reference to a field of type 'Category[]'
    */
   export type ListEnumCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Category[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal'
+   */
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal[]'
+   */
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 
@@ -9694,6 +10849,7 @@ export namespace Prisma {
     department?: StringFilter<"Program"> | string
     createdAt?: DateTimeFilter<"Program"> | Date | string
     updatedAt?: DateTimeFilter<"Program"> | Date | string
+    folderId?: StringFilter<"Program"> | string
     programPersonnel?: ProgramPersonnelListRelationFilter
   }
 
@@ -9704,6 +10860,7 @@ export namespace Prisma {
     department?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    folderId?: SortOrder
     programPersonnel?: ProgramPersonnelOrderByRelationAggregateInput
   }
 
@@ -9718,6 +10875,7 @@ export namespace Prisma {
     department?: StringFilter<"Program"> | string
     createdAt?: DateTimeFilter<"Program"> | Date | string
     updatedAt?: DateTimeFilter<"Program"> | Date | string
+    folderId?: StringFilter<"Program"> | string
     programPersonnel?: ProgramPersonnelListRelationFilter
   }, "id" | "name_code">
 
@@ -9728,6 +10886,7 @@ export namespace Prisma {
     department?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    folderId?: SortOrder
     _count?: ProgramCountOrderByAggregateInput
     _max?: ProgramMaxOrderByAggregateInput
     _min?: ProgramMinOrderByAggregateInput
@@ -9743,6 +10902,7 @@ export namespace Prisma {
     department?: StringWithAggregatesFilter<"Program"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Program"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Program"> | Date | string
+    folderId?: StringWithAggregatesFilter<"Program"> | string
   }
 
   export type ProgramPersonnelWhereInput = {
@@ -10062,6 +11222,60 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Indicator"> | Date | string
   }
 
+  export type LevelWhereInput = {
+    AND?: LevelWhereInput | LevelWhereInput[]
+    OR?: LevelWhereInput[]
+    NOT?: LevelWhereInput | LevelWhereInput[]
+    id?: StringFilter<"Level"> | string
+    rank?: IntFilter<"Level"> | number
+    label?: StringFilter<"Level"> | string
+    requiredGrandMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
+    requiredAreaMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type LevelOrderByWithRelationInput = {
+    id?: SortOrder
+    rank?: SortOrder
+    label?: SortOrder
+    requiredGrandMean?: SortOrder
+    requiredAreaMean?: SortOrder
+  }
+
+  export type LevelWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: LevelWhereInput | LevelWhereInput[]
+    OR?: LevelWhereInput[]
+    NOT?: LevelWhereInput | LevelWhereInput[]
+    rank?: IntFilter<"Level"> | number
+    label?: StringFilter<"Level"> | string
+    requiredGrandMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
+    requiredAreaMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
+  }, "id">
+
+  export type LevelOrderByWithAggregationInput = {
+    id?: SortOrder
+    rank?: SortOrder
+    label?: SortOrder
+    requiredGrandMean?: SortOrder
+    requiredAreaMean?: SortOrder
+    _count?: LevelCountOrderByAggregateInput
+    _avg?: LevelAvgOrderByAggregateInput
+    _max?: LevelMaxOrderByAggregateInput
+    _min?: LevelMinOrderByAggregateInput
+    _sum?: LevelSumOrderByAggregateInput
+  }
+
+  export type LevelScalarWhereWithAggregatesInput = {
+    AND?: LevelScalarWhereWithAggregatesInput | LevelScalarWhereWithAggregatesInput[]
+    OR?: LevelScalarWhereWithAggregatesInput[]
+    NOT?: LevelScalarWhereWithAggregatesInput | LevelScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Level"> | string
+    rank?: IntWithAggregatesFilter<"Level"> | number
+    label?: StringWithAggregatesFilter<"Level"> | string
+    requiredGrandMean?: DecimalWithAggregatesFilter<"Level"> | Decimal | DecimalJsLike | number | string
+    requiredAreaMean?: DecimalWithAggregatesFilter<"Level"> | Decimal | DecimalJsLike | number | string
+  }
+
   export type UserCreateInput = {
     id?: string
     firstName: string
@@ -10171,6 +11385,7 @@ export namespace Prisma {
     department: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    folderId: string
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutProgramInput
   }
 
@@ -10181,6 +11396,7 @@ export namespace Prisma {
     department: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    folderId: string
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutProgramInput
   }
 
@@ -10191,6 +11407,7 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    folderId?: StringFieldUpdateOperationsInput | string
     programPersonnel?: ProgramPersonnelUpdateManyWithoutProgramNestedInput
   }
 
@@ -10201,6 +11418,7 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    folderId?: StringFieldUpdateOperationsInput | string
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutProgramNestedInput
   }
 
@@ -10211,6 +11429,7 @@ export namespace Prisma {
     department: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    folderId: string
   }
 
   export type ProgramUpdateManyMutationInput = {
@@ -10220,6 +11439,7 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProgramUncheckedUpdateManyInput = {
@@ -10229,6 +11449,7 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProgramPersonnelCreateInput = {
@@ -10544,6 +11765,62 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type LevelCreateInput = {
+    id?: string
+    rank: number
+    label: string
+    requiredGrandMean: Decimal | DecimalJsLike | number | string
+    requiredAreaMean: Decimal | DecimalJsLike | number | string
+  }
+
+  export type LevelUncheckedCreateInput = {
+    id?: string
+    rank: number
+    label: string
+    requiredGrandMean: Decimal | DecimalJsLike | number | string
+    requiredAreaMean: Decimal | DecimalJsLike | number | string
+  }
+
+  export type LevelUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rank?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type LevelUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rank?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type LevelCreateManyInput = {
+    id?: string
+    rank: number
+    label: string
+    requiredGrandMean: Decimal | DecimalJsLike | number | string
+    requiredAreaMean: Decimal | DecimalJsLike | number | string
+  }
+
+  export type LevelUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rank?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type LevelUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rank?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -10721,6 +11998,7 @@ export namespace Prisma {
     department?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    folderId?: SortOrder
   }
 
   export type ProgramMaxOrderByAggregateInput = {
@@ -10730,6 +12008,7 @@ export namespace Prisma {
     department?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    folderId?: SortOrder
   }
 
   export type ProgramMinOrderByAggregateInput = {
@@ -10739,6 +12018,7 @@ export namespace Prisma {
     department?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    folderId?: SortOrder
   }
 
   export type UserScalarRelationFilter = {
@@ -11013,6 +12293,69 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCategoryFilter<$PrismaModel>
     _max?: NestedEnumCategoryFilter<$PrismaModel>
+  }
+
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type LevelCountOrderByAggregateInput = {
+    id?: SortOrder
+    rank?: SortOrder
+    label?: SortOrder
+    requiredGrandMean?: SortOrder
+    requiredAreaMean?: SortOrder
+  }
+
+  export type LevelAvgOrderByAggregateInput = {
+    rank?: SortOrder
+    requiredGrandMean?: SortOrder
+    requiredAreaMean?: SortOrder
+  }
+
+  export type LevelMaxOrderByAggregateInput = {
+    id?: SortOrder
+    rank?: SortOrder
+    label?: SortOrder
+    requiredGrandMean?: SortOrder
+    requiredAreaMean?: SortOrder
+  }
+
+  export type LevelMinOrderByAggregateInput = {
+    id?: SortOrder
+    rank?: SortOrder
+    label?: SortOrder
+    requiredGrandMean?: SortOrder
+    requiredAreaMean?: SortOrder
+  }
+
+  export type LevelSumOrderByAggregateInput = {
+    rank?: SortOrder
+    requiredGrandMean?: SortOrder
+    requiredAreaMean?: SortOrder
+  }
+
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
   }
 
   export type ProgramPersonnelCreateNestedManyWithoutUserInput = {
@@ -11323,6 +12666,14 @@ export namespace Prisma {
     update?: XOR<XOR<ParameterUpdateToOneWithWhereWithoutIndicatorInput, ParameterUpdateWithoutIndicatorInput>, ParameterUncheckedUpdateWithoutIndicatorInput>
   }
 
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -11493,6 +12844,33 @@ export namespace Prisma {
     _max?: NestedEnumCategoryFilter<$PrismaModel>
   }
 
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
   export type ProgramPersonnelCreateWithoutUserInput = {
     id?: string
     assignedAt?: Date | string
@@ -11619,6 +12997,7 @@ export namespace Prisma {
     department: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    folderId: string
   }
 
   export type ProgramUncheckedCreateWithoutProgramPersonnelInput = {
@@ -11628,6 +13007,7 @@ export namespace Prisma {
     department: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    folderId: string
   }
 
   export type ProgramCreateOrConnectWithoutProgramPersonnelInput = {
@@ -11692,6 +13072,7 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProgramUncheckedUpdateWithoutProgramPersonnelInput = {
@@ -11701,6 +13082,7 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AreaCreateWithoutInstrumentInput = {

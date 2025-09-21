@@ -17,13 +17,8 @@ datasource db {
 enum Role {
   ADMIN
   ACCREDITATION_OFFICER
-  ACCREDITOR
+  INTERNAL_ACCREDITOR
   PENDING
-}
-
-enum ProgramPosition {
-  CHAIRPERSON
-  MEMBER
 }
 
 enum Category {
@@ -54,6 +49,7 @@ model Program {
   department       String
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
+  folderId         String
   programPersonnel ProgramPersonnel[]
 
   @@unique([name, code])
@@ -114,4 +110,12 @@ model Indicator {
   parameterId Int
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+}
+
+model Level {
+  id                String  @id @default(uuid())
+  rank              Int
+  label             String
+  requiredGrandMean Decimal
+  requiredAreaMean  Decimal
 }
