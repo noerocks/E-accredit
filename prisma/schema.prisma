@@ -32,6 +32,21 @@ enum Category {
   OUTCOME
 }
 
+enum Phase {
+  PHASE_ONE
+  PHASE_TWO
+}
+
+enum SurveyType {
+  FIRST
+  REVISIT
+}
+
+enum RatingType {
+  SELF_SURVEY
+  ACTUAL_SURVEY
+}
+
 model User {
   id               String             @id @default(uuid())
   firstName        String
@@ -55,42 +70,53 @@ model Program {
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
   programPersonnel ProgramPersonnel[]
+  accreditation    Accreditation?
 
   @@unique([name, code])
 }
 
 model ProgramPersonnel {
-  id         String   @id @default(uuid())
-  user       User     @relation(fields: [userId], references: [id])
-  userId     String
-  program    Program  @relation(fields: [programId], references: [id])
-  programId  String
-  assignedAt DateTime @default(now())
+  id              String            @id @default(uuid())
+  user            User              @relation(fields: [userId], references: [id])
+  userId          String
+  program         Program           @relation(fields: [programId], references: [id])
+  programId       String
+  assignedAt      DateTime          @default(now())
+  taskForce       TaskForce[]
+  taskForceMember TaskForceMember[]
 
   @@unique([userId, programId])
 }
 
 model Instrument {
-  id              String   @id @default(uuid())
-  name            String
-  accreditingBody String
-  area            Area[]
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id                   String                @id @default(uuid())
+  name                 String
+  accreditingBody      String
+  area                 Area[]
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  phaseOneRequirements PhaseOneRequirements?
+  phaseTwoRequirements PhaseTwoRequirements?
 
   @@unique([name, accreditingBody])
 }
 
 model Area {
-  id           Int         @id @default(autoincrement())
-  label        String
-  description  String
-  weight       Int
-  instrument   Instrument  @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
-  instrumentId String
-  parameter    Parameter[]
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
+  id                  Int                   @id @default(autoincrement())
+  label               String
+  description         String
+  weight              Int
+  instrument          Instrument            @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
+  instrumentId        String
+  parameter           Parameter[]
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  ppp                 PPP[]
+  complianceReport    ComplianceReport[]
+  narrativeProfile    NarrativeProfile[]
+  supportingDocuments SupportingDocuments[]
+  selfSurveys         SelfSurvey[]
+  taskForces          TaskForce[]
 }
 
 model Parameter {
@@ -105,13 +131,172 @@ model Parameter {
 }
 
 model Indicator {
-  id          Int       @id @default(autoincrement())
-  label       String
-  description String
-  category    Category
-  evidence    String
-  parameter   Parameter @relation(fields: [parameterId], references: [id], onDelete: Cascade)
-  parameterId Int
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id                Int        @id @default(autoincrement())
+  label             String
+  description       String
+  category          Category
+  evidence          String
+  parameter         Parameter  @relation(fields: [parameterId], references: [id], onDelete: Cascade)
+  parameterId       Int
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+  providedEvidences Evidence[]
+  ratings           Rating[]
+}
+
+model Level {
+  id                String          @id @default(uuid())
+  rank              Int
+  label             String
+  requiredGrandMean Decimal
+  requiredAreaMean  Decimal
+  accreditation     Accreditation[]
+}
+
+model Accreditation {
+  id           String        @id @default(uuid())
+  program      Program       @relation(fields: [programId], references: [id])
+  programId    String        @unique
+  level        Level         @relation(fields: [currentLevel], references: [id])
+  currentLevel String
+  phase        Phase
+  surveyVisits SurveyVisit[]
+}
+
+model SurveyVisit {
+  id                   String                @id @default(uuid())
+  type                 SurveyType
+  accreditation        Accreditation         @relation(fields: [accreditationId], references: [id])
+  accreditationId      String
+  affectedAreas        Int[]
+  phaseOneRequirements PhaseOneRequirements?
+  phaseTwoRequirements PhaseTwoRequirements?
+  actualSurveyDate     DateTime
+}
+
+model PhaseOneRequirements {
+  id                String             @id @default(uuid())
+  surveyVisit       SurveyVisit        @relation(fields: [surveyVisitId], references: [id])
+  surveyVisitId     String             @unique
+  instrument        Instrument         @relation(fields: [instrumentId], references: [id])
+  instrumentId      String             @unique
+  evidences         Evidence[]
+  ppp               PPP[]
+  complianceReports ComplianceReport[]
+  selfSurveys       SelfSurvey[]
+  taskForces        TaskForce[]
+}
+
+model PhaseTwoRequirements {
+  id                  String                @id @default(uuid())
+  surveyVisit         SurveyVisit           @relation(fields: [surveyVisitId], references: [id])
+  surveyVisitId       String                @unique
+  instrument          Instrument            @relation(fields: [instrumentId], references: [id])
+  instrumentId        String                @unique
+  complianceReports   ComplianceReport[]
+  narrativeProfiles   NarrativeProfile[]
+  supportingDocuments SupportingDocuments[]
+  taskForces          TaskForce[]
+}
+
+model TaskForce {
+  id                     String                @id @default(uuid())
+  area                   Area                  @relation(fields: [areaId], references: [id])
+  areaId                 Int
+  phaseOneRequirements   PhaseOneRequirements? @relation(fields: [phaseOneRequirementsId], references: [id])
+  phaseOneRequirementsId String?
+  phaseTwoRequirements   PhaseTwoRequirements? @relation(fields: [phaseTwoRequirementsId], references: [id])
+  phaseTwoRequirementsId String?
+  programPersonnel       ProgramPersonnel      @relation(fields: [chairPerson], references: [id])
+  chairPerson            String
+  members                TaskForceMember[]
+}
+
+model TaskForceMember {
+  id               String           @id @default(uuid())
+  taskForce        TaskForce        @relation(fields: [taskForceId], references: [id])
+  taskForceId      String
+  programPersonnel ProgramPersonnel @relation(fields: [personnelId], references: [id])
+  personnelId      String
+}
+
+model SelfSurvey {
+  id                     String               @id @default(uuid())
+  area                   Area                 @relation(fields: [areaId], references: [id])
+  areaId                 Int
+  phaseOneRequirements   PhaseOneRequirements @relation(fields: [phaseOneRequirementsId], references: [id])
+  phaseOneRequirementsId String
+  startAt                DateTime
+  rating                 Rating[]
+}
+
+model Document {
+  id                    String               @id @default(uuid())
+  name                  String
+  url                   String
+  evidence              Evidence?            @relation(fields: [evidenceId], references: [id])
+  evidenceId            String?
+  ppp                   PPP?                 @relation(fields: [pppId], references: [id])
+  pppId                 String?
+  complianceReport      ComplianceReport?    @relation(fields: [complienceReportId], references: [id])
+  complienceReportId    String?
+  narrativeProfile      NarrativeProfile?    @relation(fields: [narrativeProfileId], references: [id])
+  narrativeProfileId    String?
+  supportingDocuments   SupportingDocuments? @relation(fields: [supportingDocumentsId], references: [id])
+  supportingDocumentsId String?
+}
+
+model Rating {
+  id           String     @id @default(uuid())
+  indicator    Indicator  @relation(fields: [indicatorId], references: [id])
+  indicatorId  Int
+  selfSurvey   SelfSurvey @relation(fields: [selfSurveyId], references: [id])
+  selfSurveyId String
+}
+
+model Evidence {
+  id                     String               @id @default(uuid())
+  indicator              Indicator            @relation(fields: [indicatorId], references: [id])
+  indicatorId            Int
+  documents              Document[]
+  phaseOneRequirements   PhaseOneRequirements @relation(fields: [phaseOneRequirementsId], references: [id])
+  phaseOneRequirementsId String
+}
+
+model PPP {
+  id                     String               @id @default(uuid())
+  area                   Area                 @relation(fields: [areaId], references: [id])
+  areaId                 Int
+  documents              Document[]
+  phaseOneRequirements   PhaseOneRequirements @relation(fields: [phaseOneRequirementsId], references: [id])
+  phaseOneRequirementsId String
+}
+
+model ComplianceReport {
+  id                     String                @id @default(uuid())
+  area                   Area                  @relation(fields: [areaId], references: [id])
+  areaId                 Int
+  documents              Document[]
+  phaseOneRequirements   PhaseOneRequirements? @relation(fields: [phaseOneRequirementsId], references: [id])
+  phaseOneRequirementsId String?
+  phaseTwoRequirements   PhaseTwoRequirements? @relation(fields: [phaseTwoRequirementsId], references: [id])
+  phaseTwoRequirementsId String?
+}
+
+model NarrativeProfile {
+  id                     String               @id @default(uuid())
+  area                   Area                 @relation(fields: [areaId], references: [id])
+  areaId                 Int
+  documents              Document[]
+  phaseTwoRequirements   PhaseTwoRequirements @relation(fields: [phaseTwoRequirementsId], references: [id])
+  phaseTwoRequirementsId String
+}
+
+model SupportingDocuments {
+  id                     String               @id @default(uuid())
+  area                   Area                 @relation(fields: [areaId], references: [id])
+  areaId                 Int
+  documents              Document[]
+  phaseTwoRequirements   PhaseTwoRequirements @relation(fields: [phaseTwoRequirementsId], references: [id])
+  phaseTwoRequirementsId String
 }
