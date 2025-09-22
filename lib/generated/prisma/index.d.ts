@@ -18292,18 +18292,21 @@ export namespace Prisma {
   export type IndicatorFolderMinAggregateOutputType = {
     id: string | null
     parameterFolderId: string | null
+    folderId: string | null
     category: $Enums.Category | null
   }
 
   export type IndicatorFolderMaxAggregateOutputType = {
     id: string | null
     parameterFolderId: string | null
+    folderId: string | null
     category: $Enums.Category | null
   }
 
   export type IndicatorFolderCountAggregateOutputType = {
     id: number
     parameterFolderId: number
+    folderId: number
     category: number
     _all: number
   }
@@ -18312,18 +18315,21 @@ export namespace Prisma {
   export type IndicatorFolderMinAggregateInputType = {
     id?: true
     parameterFolderId?: true
+    folderId?: true
     category?: true
   }
 
   export type IndicatorFolderMaxAggregateInputType = {
     id?: true
     parameterFolderId?: true
+    folderId?: true
     category?: true
   }
 
   export type IndicatorFolderCountAggregateInputType = {
     id?: true
     parameterFolderId?: true
+    folderId?: true
     category?: true
     _all?: true
   }
@@ -18403,6 +18409,7 @@ export namespace Prisma {
   export type IndicatorFolderGroupByOutputType = {
     id: string
     parameterFolderId: string
+    folderId: string
     category: $Enums.Category
     _count: IndicatorFolderCountAggregateOutputType | null
     _min: IndicatorFolderMinAggregateOutputType | null
@@ -18426,6 +18433,7 @@ export namespace Prisma {
   export type IndicatorFolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     parameterFolderId?: boolean
+    folderId?: boolean
     category?: boolean
     parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
     evidenceFiles?: boolean | IndicatorFolder$evidenceFilesArgs<ExtArgs>
@@ -18435,6 +18443,7 @@ export namespace Prisma {
   export type IndicatorFolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     parameterFolderId?: boolean
+    folderId?: boolean
     category?: boolean
     parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["indicatorFolder"]>
@@ -18442,6 +18451,7 @@ export namespace Prisma {
   export type IndicatorFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     parameterFolderId?: boolean
+    folderId?: boolean
     category?: boolean
     parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["indicatorFolder"]>
@@ -18449,10 +18459,11 @@ export namespace Prisma {
   export type IndicatorFolderSelectScalar = {
     id?: boolean
     parameterFolderId?: boolean
+    folderId?: boolean
     category?: boolean
   }
 
-  export type IndicatorFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "parameterFolderId" | "category", ExtArgs["result"]["indicatorFolder"]>
+  export type IndicatorFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "parameterFolderId" | "folderId" | "category", ExtArgs["result"]["indicatorFolder"]>
   export type IndicatorFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
     evidenceFiles?: boolean | IndicatorFolder$evidenceFilesArgs<ExtArgs>
@@ -18474,6 +18485,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       parameterFolderId: string
+      folderId: string
       category: $Enums.Category
     }, ExtArgs["result"]["indicatorFolder"]>
     composites: {}
@@ -18902,6 +18914,7 @@ export namespace Prisma {
   interface IndicatorFolderFieldRefs {
     readonly id: FieldRef<"IndicatorFolder", 'String'>
     readonly parameterFolderId: FieldRef<"IndicatorFolder", 'String'>
+    readonly folderId: FieldRef<"IndicatorFolder", 'String'>
     readonly category: FieldRef<"IndicatorFolder", 'Category'>
   }
     
@@ -20630,6 +20643,7 @@ export namespace Prisma {
   export const IndicatorFolderScalarFieldEnum: {
     id: 'id',
     parameterFolderId: 'parameterFolderId',
+    folderId: 'folderId',
     category: 'category'
   };
 
@@ -21668,6 +21682,7 @@ export namespace Prisma {
     NOT?: IndicatorFolderWhereInput | IndicatorFolderWhereInput[]
     id?: StringFilter<"IndicatorFolder"> | string
     parameterFolderId?: StringFilter<"IndicatorFolder"> | string
+    folderId?: StringFilter<"IndicatorFolder"> | string
     category?: EnumCategoryFilter<"IndicatorFolder"> | $Enums.Category
     parameterFolder?: XOR<ParameterFolderScalarRelationFilter, ParameterFolderWhereInput>
     evidenceFiles?: EvidenceFileListRelationFilter
@@ -21676,6 +21691,7 @@ export namespace Prisma {
   export type IndicatorFolderOrderByWithRelationInput = {
     id?: SortOrder
     parameterFolderId?: SortOrder
+    folderId?: SortOrder
     category?: SortOrder
     parameterFolder?: ParameterFolderOrderByWithRelationInput
     evidenceFiles?: EvidenceFileOrderByRelationAggregateInput
@@ -21687,6 +21703,7 @@ export namespace Prisma {
     OR?: IndicatorFolderWhereInput[]
     NOT?: IndicatorFolderWhereInput | IndicatorFolderWhereInput[]
     parameterFolderId?: StringFilter<"IndicatorFolder"> | string
+    folderId?: StringFilter<"IndicatorFolder"> | string
     category?: EnumCategoryFilter<"IndicatorFolder"> | $Enums.Category
     parameterFolder?: XOR<ParameterFolderScalarRelationFilter, ParameterFolderWhereInput>
     evidenceFiles?: EvidenceFileListRelationFilter
@@ -21695,6 +21712,7 @@ export namespace Prisma {
   export type IndicatorFolderOrderByWithAggregationInput = {
     id?: SortOrder
     parameterFolderId?: SortOrder
+    folderId?: SortOrder
     category?: SortOrder
     _count?: IndicatorFolderCountOrderByAggregateInput
     _max?: IndicatorFolderMaxOrderByAggregateInput
@@ -21707,6 +21725,7 @@ export namespace Prisma {
     NOT?: IndicatorFolderScalarWhereWithAggregatesInput | IndicatorFolderScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"IndicatorFolder"> | string
     parameterFolderId?: StringWithAggregatesFilter<"IndicatorFolder"> | string
+    folderId?: StringWithAggregatesFilter<"IndicatorFolder"> | string
     category?: EnumCategoryWithAggregatesFilter<"IndicatorFolder"> | $Enums.Category
   }
 
@@ -22643,6 +22662,7 @@ export namespace Prisma {
 
   export type IndicatorFolderCreateInput = {
     id?: string
+    folderId: string
     category: $Enums.Category
     parameterFolder: ParameterFolderCreateNestedOneWithoutIndicatorFoldersInput
     evidenceFiles?: EvidenceFileCreateNestedManyWithoutIndicatorFolderInput
@@ -22651,12 +22671,14 @@ export namespace Prisma {
   export type IndicatorFolderUncheckedCreateInput = {
     id?: string
     parameterFolderId: string
+    folderId: string
     category: $Enums.Category
     evidenceFiles?: EvidenceFileUncheckedCreateNestedManyWithoutIndicatorFolderInput
   }
 
   export type IndicatorFolderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     parameterFolder?: ParameterFolderUpdateOneRequiredWithoutIndicatorFoldersNestedInput
     evidenceFiles?: EvidenceFileUpdateManyWithoutIndicatorFolderNestedInput
@@ -22665,6 +22687,7 @@ export namespace Prisma {
   export type IndicatorFolderUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     parameterFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     evidenceFiles?: EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderNestedInput
   }
@@ -22672,17 +22695,20 @@ export namespace Prisma {
   export type IndicatorFolderCreateManyInput = {
     id?: string
     parameterFolderId: string
+    folderId: string
     category: $Enums.Category
   }
 
   export type IndicatorFolderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   }
 
   export type IndicatorFolderUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     parameterFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   }
 
@@ -23582,18 +23608,21 @@ export namespace Prisma {
   export type IndicatorFolderCountOrderByAggregateInput = {
     id?: SortOrder
     parameterFolderId?: SortOrder
+    folderId?: SortOrder
     category?: SortOrder
   }
 
   export type IndicatorFolderMaxOrderByAggregateInput = {
     id?: SortOrder
     parameterFolderId?: SortOrder
+    folderId?: SortOrder
     category?: SortOrder
   }
 
   export type IndicatorFolderMinOrderByAggregateInput = {
     id?: SortOrder
     parameterFolderId?: SortOrder
+    folderId?: SortOrder
     category?: SortOrder
   }
 
@@ -26520,12 +26549,14 @@ export namespace Prisma {
 
   export type IndicatorFolderCreateWithoutParameterFolderInput = {
     id?: string
+    folderId: string
     category: $Enums.Category
     evidenceFiles?: EvidenceFileCreateNestedManyWithoutIndicatorFolderInput
   }
 
   export type IndicatorFolderUncheckedCreateWithoutParameterFolderInput = {
     id?: string
+    folderId: string
     category: $Enums.Category
     evidenceFiles?: EvidenceFileUncheckedCreateNestedManyWithoutIndicatorFolderInput
   }
@@ -26611,6 +26642,7 @@ export namespace Prisma {
     NOT?: IndicatorFolderScalarWhereInput | IndicatorFolderScalarWhereInput[]
     id?: StringFilter<"IndicatorFolder"> | string
     parameterFolderId?: StringFilter<"IndicatorFolder"> | string
+    folderId?: StringFilter<"IndicatorFolder"> | string
     category?: EnumCategoryFilter<"IndicatorFolder"> | $Enums.Category
   }
 
@@ -26732,6 +26764,7 @@ export namespace Prisma {
 
   export type IndicatorFolderCreateWithoutEvidenceFilesInput = {
     id?: string
+    folderId: string
     category: $Enums.Category
     parameterFolder: ParameterFolderCreateNestedOneWithoutIndicatorFoldersInput
   }
@@ -26739,6 +26772,7 @@ export namespace Prisma {
   export type IndicatorFolderUncheckedCreateWithoutEvidenceFilesInput = {
     id?: string
     parameterFolderId: string
+    folderId: string
     category: $Enums.Category
   }
 
@@ -26786,6 +26820,7 @@ export namespace Prisma {
 
   export type IndicatorFolderUpdateWithoutEvidenceFilesInput = {
     id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     parameterFolder?: ParameterFolderUpdateOneRequiredWithoutIndicatorFoldersNestedInput
   }
@@ -26793,6 +26828,7 @@ export namespace Prisma {
   export type IndicatorFolderUncheckedUpdateWithoutEvidenceFilesInput = {
     id?: StringFieldUpdateOperationsInput | string
     parameterFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   }
 
@@ -27221,23 +27257,27 @@ export namespace Prisma {
 
   export type IndicatorFolderCreateManyParameterFolderInput = {
     id?: string
+    folderId: string
     category: $Enums.Category
   }
 
   export type IndicatorFolderUpdateWithoutParameterFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     evidenceFiles?: EvidenceFileUpdateManyWithoutIndicatorFolderNestedInput
   }
 
   export type IndicatorFolderUncheckedUpdateWithoutParameterFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     evidenceFiles?: EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderNestedInput
   }
 
   export type IndicatorFolderUncheckedUpdateManyWithoutParameterFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   }
 

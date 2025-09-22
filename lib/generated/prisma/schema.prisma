@@ -126,6 +126,7 @@ model Level {
   id                String          @id @default(uuid())
   rank              Int
   label             String
+  phase             Phase
   requiredGrandMean Decimal
   requiredAreaMean  Decimal
   accreditations    Accreditation[]
@@ -148,7 +149,6 @@ model SurveyVisit {
   accreditationId      String
   level                Level                 @relation(fields: [targetLevel], references: [id])
   targetLevel          String
-  targetPhase          Phase?
   phaseOneRequirements PhaseOneRequirements?
 }
 
@@ -193,6 +193,7 @@ model IndicatorFolder {
   id                String          @id @default(uuid())
   parameterFolder   ParameterFolder @relation(fields: [parameterFolderId], references: [id])
   parameterFolderId String
+  folderId          String
   category          Category
   evidenceFiles     EvidenceFile[]
 }

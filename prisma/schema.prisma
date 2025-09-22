@@ -193,6 +193,7 @@ model IndicatorFolder {
   id                String          @id @default(uuid())
   parameterFolder   ParameterFolder @relation(fields: [parameterFolderId], references: [id])
   parameterFolderId String
+  folderId          String
   category          Category
   evidenceFiles     EvidenceFile[]
 }

@@ -18,13 +18,18 @@ export async function createProgram(
 
 export const getPrograms = unstable_cache(
   async (): Promise<ProgramDTO[]> => {
-    const programs = await prisma.program.findMany();
+    const programs = await prisma.program.findMany({
+      include: {
+        accreditation: true,
+      },
+    });
     return programs.map((program) => ({
       id: program.id,
       name: program.name,
       code: program.code,
       department: program.department,
       folderId: program.folderId,
+      accreditation: program.accreditation,
     }));
   },
   ["programs"],
