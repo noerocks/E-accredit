@@ -27,6 +27,11 @@ enum Category {
   OUTCOME
 }
 
+enum Phase {
+  PHASE_1
+  PHASE_2
+}
+
 model User {
   id               String             @id @default(uuid())
   firstName        String
@@ -51,6 +56,7 @@ model Program {
   updatedAt        DateTime           @updatedAt
   folderId         String
   programPersonnel ProgramPersonnel[]
+  accreditation    Accreditation?
 
   @@unique([name, code])
 }
@@ -67,55 +73,137 @@ model ProgramPersonnel {
 }
 
 model Instrument {
-  id              String   @id @default(uuid())
-  name            String
-  accreditingBody String
-  area            Area[]
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id                   String                 @id @default(uuid())
+  name                 String
+  accreditingBody      String
+  area                 Area[]
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  phaseOneRequirements PhaseOneRequirements[]
 
   @@unique([name, accreditingBody])
 }
 
 model Area {
-  id           Int         @id @default(autoincrement())
+  id           Int          @id @default(autoincrement())
   label        String
   description  String
   weight       Int
-  instrument   Instrument  @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
+  instrument   Instrument   @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
   instrumentId String
   parameter    Parameter[]
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  areaFolders  AreaFolder[]
 }
 
 model Parameter {
-  id          Int         @id @default(autoincrement())
-  label       String
-  description String
-  area        Area        @relation(fields: [areaId], references: [id], onDelete: Cascade)
-  areaId      Int
-  indicator   Indicator[]
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id               Int               @id @default(autoincrement())
+  label            String
+  description      String
+  area             Area              @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  areaId           Int
+  indicator        Indicator[]
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  parameterFolders ParameterFolder[]
 }
 
 model Indicator {
-  id          Int       @id @default(autoincrement())
-  label       String
-  description String
-  category    Category
-  evidence    String
-  parameter   Parameter @relation(fields: [parameterId], references: [id], onDelete: Cascade)
-  parameterId Int
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id            Int            @id @default(autoincrement())
+  label         String
+  description   String
+  category      Category
+  evidence      String
+  parameter     Parameter      @relation(fields: [parameterId], references: [id], onDelete: Cascade)
+  parameterId   Int
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  evidenceFiles EvidenceFile[]
 }
 
 model Level {
-  id                String  @id @default(uuid())
+  id                String          @id @default(uuid())
   rank              Int
   label             String
   requiredGrandMean Decimal
   requiredAreaMean  Decimal
+  accreditations    Accreditation[]
+  surveyVisits      SurveyVisit[]
+}
+
+model Accreditation {
+  id           String        @id @default(uuid())
+  program      Program       @relation(fields: [programId], references: [id])
+  programId    String        @unique
+  level        Level?        @relation(fields: [currentLevel], references: [id])
+  currentLevel String?
+  phase        Phase?
+  surveyVisits SurveyVisit[]
+}
+
+model SurveyVisit {
+  id                   String                @id @default(uuid())
+  accreditation        Accreditation         @relation(fields: [accreditationId], references: [id])
+  accreditationId      String
+  level                Level                 @relation(fields: [targetLevel], references: [id])
+  targetLevel          String
+  targetPhase          Phase?
+  phaseOneRequirements PhaseOneRequirements?
+}
+
+model PhaseOneRequirements {
+  id               String            @id @default(uuid())
+  surveyVisit      SurveyVisit       @relation(fields: [surveyVisitId], references: [id])
+  surveyVisitId    String            @unique
+  instrument       Instrument        @relation(fields: [instrumentId], references: [id])
+  instrumentId     String
+  instrumentFolder InstrumentFolder?
+}
+
+model InstrumentFolder {
+  id                     String               @id @default(uuid())
+  phaseOneRequirements   PhaseOneRequirements @relation(fields: [phaseOneRequirementsId], references: [id])
+  phaseOneRequirementsId String               @unique
+  folderId               String
+  areaFolders            AreaFolder[]
+}
+
+model AreaFolder {
+  id                 String            @id @default(uuid())
+  instrumentFolder   InstrumentFolder  @relation(fields: [instrumentFolderId], references: [id])
+  instrumentFolderId String
+  folderId           String
+  parameterFolders   ParameterFolder[]
+  area               Area              @relation(fields: [areaId], references: [id])
+  areaId             Int
+}
+
+model ParameterFolder {
+  id               String            @id @default(uuid())
+  areaFolder       AreaFolder        @relation(fields: [areaFolderId], references: [id])
+  areaFolderId     String
+  folderId         String
+  indicatorFolders IndicatorFolder[]
+  parameter        Parameter         @relation(fields: [parameterId], references: [id])
+  parameterId      Int
+}
+
+model IndicatorFolder {
+  id                String          @id @default(uuid())
+  parameterFolder   ParameterFolder @relation(fields: [parameterFolderId], references: [id])
+  parameterFolderId String
+  category          Category
+  evidenceFiles     EvidenceFile[]
+}
+
+model EvidenceFile {
+  id                String          @id @default(uuid())
+  indicatorFolder   IndicatorFolder @relation(fields: [indicatorFolderId], references: [id])
+  indicatorFolderId String
+  fileId            String
+  indicator         Indicator       @relation(fields: [indicatorId], references: [id])
+  indicatorId       Int
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
 }

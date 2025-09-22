@@ -24,6 +24,7 @@ export const getPrograms = unstable_cache(
       name: program.name,
       code: program.code,
       department: program.department,
+      folderId: program.folderId,
     }));
   },
   ["programs"],

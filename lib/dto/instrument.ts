@@ -7,3 +7,9 @@ export type AreaDTO = { parameter: ParameterDTO[] } & Area;
 export type ParameterDTO = { indicator: IndicatorDTO[] } & Parameter;
 
 export type IndicatorDTO = Indicator;
+
+export type InstrumentDisplayDTO = {
+  id: string;
+  name: string;
+  accreditingBody: string;
+};

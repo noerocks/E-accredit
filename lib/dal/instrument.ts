@@ -1,7 +1,8 @@
 import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
 import { prisma } from "../prisma";
-import { InstrumentDTO } from "../dto/instrument";
+import { InstrumentDisplayDTO, InstrumentDTO } from "../dto/instrument";
+import { Instrument } from "../generated/prisma";
 
 export async function createInstrument(name: string, accreditingBody: string) {
   const session = await verifySession();
@@ -17,11 +18,13 @@ export async function createInstrument(name: string, accreditingBody: string) {
 }
 
 export const getInstruments = unstable_cache(
-  async (): Promise<
-    { id: string; name: string; accreditingBody: string }[] | null
-  > => {
+  async (): Promise<InstrumentDisplayDTO[] | null> => {
     const instruments = await prisma.instrument.findMany();
-    return instruments;
+    return instruments.map((instrument) => ({
+      id: instrument.id,
+      name: instrument.name,
+      accreditingBody: instrument.accreditingBody,
+    }));
   },
   ["getInstruments"],
   {

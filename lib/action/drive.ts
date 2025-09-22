@@ -37,7 +37,7 @@ export async function createFolder(folderName: string, parentId?: string) {
     parents: ["1AzZ-9vHxTAni3UdUXZWMEn2b1nAKxPZy"],
   };
   if (parentId) {
-    fileMetadata.parents = ["1AzZ-9vHxTAni3UdUXZWMEn2b1nAKxPZ"];
+    fileMetadata.parents = [parentId];
   }
   const folder = await drive.files.create({
     requestBody: fileMetadata,

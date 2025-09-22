@@ -53,6 +53,46 @@ export type Indicator = $Result.DefaultSelection<Prisma.$IndicatorPayload>
  * 
  */
 export type Level = $Result.DefaultSelection<Prisma.$LevelPayload>
+/**
+ * Model Accreditation
+ * 
+ */
+export type Accreditation = $Result.DefaultSelection<Prisma.$AccreditationPayload>
+/**
+ * Model SurveyVisit
+ * 
+ */
+export type SurveyVisit = $Result.DefaultSelection<Prisma.$SurveyVisitPayload>
+/**
+ * Model PhaseOneRequirements
+ * 
+ */
+export type PhaseOneRequirements = $Result.DefaultSelection<Prisma.$PhaseOneRequirementsPayload>
+/**
+ * Model InstrumentFolder
+ * 
+ */
+export type InstrumentFolder = $Result.DefaultSelection<Prisma.$InstrumentFolderPayload>
+/**
+ * Model AreaFolder
+ * 
+ */
+export type AreaFolder = $Result.DefaultSelection<Prisma.$AreaFolderPayload>
+/**
+ * Model ParameterFolder
+ * 
+ */
+export type ParameterFolder = $Result.DefaultSelection<Prisma.$ParameterFolderPayload>
+/**
+ * Model IndicatorFolder
+ * 
+ */
+export type IndicatorFolder = $Result.DefaultSelection<Prisma.$IndicatorFolderPayload>
+/**
+ * Model EvidenceFile
+ * 
+ */
+export type EvidenceFile = $Result.DefaultSelection<Prisma.$EvidenceFilePayload>
 
 /**
  * Enums
@@ -76,6 +116,14 @@ export const Category: {
 
 export type Category = (typeof Category)[keyof typeof Category]
 
+
+export const Phase: {
+  PHASE_1: 'PHASE_1',
+  PHASE_2: 'PHASE_2'
+};
+
+export type Phase = (typeof Phase)[keyof typeof Phase]
+
 }
 
 export type Role = $Enums.Role
@@ -85,6 +133,10 @@ export const Role: typeof $Enums.Role
 export type Category = $Enums.Category
 
 export const Category: typeof $Enums.Category
+
+export type Phase = $Enums.Phase
+
+export const Phase: typeof $Enums.Phase
 
 /**
  * ##  Prisma Client ʲˢ
@@ -283,6 +335,86 @@ export class PrismaClient<
     * ```
     */
   get level(): Prisma.LevelDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.accreditation`: Exposes CRUD operations for the **Accreditation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Accreditations
+    * const accreditations = await prisma.accreditation.findMany()
+    * ```
+    */
+  get accreditation(): Prisma.AccreditationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.surveyVisit`: Exposes CRUD operations for the **SurveyVisit** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SurveyVisits
+    * const surveyVisits = await prisma.surveyVisit.findMany()
+    * ```
+    */
+  get surveyVisit(): Prisma.SurveyVisitDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.phaseOneRequirements`: Exposes CRUD operations for the **PhaseOneRequirements** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PhaseOneRequirements
+    * const phaseOneRequirements = await prisma.phaseOneRequirements.findMany()
+    * ```
+    */
+  get phaseOneRequirements(): Prisma.PhaseOneRequirementsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.instrumentFolder`: Exposes CRUD operations for the **InstrumentFolder** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InstrumentFolders
+    * const instrumentFolders = await prisma.instrumentFolder.findMany()
+    * ```
+    */
+  get instrumentFolder(): Prisma.InstrumentFolderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.areaFolder`: Exposes CRUD operations for the **AreaFolder** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AreaFolders
+    * const areaFolders = await prisma.areaFolder.findMany()
+    * ```
+    */
+  get areaFolder(): Prisma.AreaFolderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.parameterFolder`: Exposes CRUD operations for the **ParameterFolder** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ParameterFolders
+    * const parameterFolders = await prisma.parameterFolder.findMany()
+    * ```
+    */
+  get parameterFolder(): Prisma.ParameterFolderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.indicatorFolder`: Exposes CRUD operations for the **IndicatorFolder** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more IndicatorFolders
+    * const indicatorFolders = await prisma.indicatorFolder.findMany()
+    * ```
+    */
+  get indicatorFolder(): Prisma.IndicatorFolderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.evidenceFile`: Exposes CRUD operations for the **EvidenceFile** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EvidenceFiles
+    * const evidenceFiles = await prisma.evidenceFile.findMany()
+    * ```
+    */
+  get evidenceFile(): Prisma.EvidenceFileDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -730,7 +862,15 @@ export namespace Prisma {
     Area: 'Area',
     Parameter: 'Parameter',
     Indicator: 'Indicator',
-    Level: 'Level'
+    Level: 'Level',
+    Accreditation: 'Accreditation',
+    SurveyVisit: 'SurveyVisit',
+    PhaseOneRequirements: 'PhaseOneRequirements',
+    InstrumentFolder: 'InstrumentFolder',
+    AreaFolder: 'AreaFolder',
+    ParameterFolder: 'ParameterFolder',
+    IndicatorFolder: 'IndicatorFolder',
+    EvidenceFile: 'EvidenceFile'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -749,7 +889,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level"
+      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level" | "accreditation" | "surveyVisit" | "phaseOneRequirements" | "instrumentFolder" | "areaFolder" | "parameterFolder" | "indicatorFolder" | "evidenceFile"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1345,6 +1485,598 @@ export namespace Prisma {
           }
         }
       }
+      Accreditation: {
+        payload: Prisma.$AccreditationPayload<ExtArgs>
+        fields: Prisma.AccreditationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AccreditationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccreditationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AccreditationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccreditationPayload>
+          }
+          findFirst: {
+            args: Prisma.AccreditationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccreditationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AccreditationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccreditationPayload>
+          }
+          findMany: {
+            args: Prisma.AccreditationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccreditationPayload>[]
+          }
+          create: {
+            args: Prisma.AccreditationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccreditationPayload>
+          }
+          createMany: {
+            args: Prisma.AccreditationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AccreditationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccreditationPayload>[]
+          }
+          delete: {
+            args: Prisma.AccreditationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccreditationPayload>
+          }
+          update: {
+            args: Prisma.AccreditationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccreditationPayload>
+          }
+          deleteMany: {
+            args: Prisma.AccreditationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AccreditationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AccreditationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccreditationPayload>[]
+          }
+          upsert: {
+            args: Prisma.AccreditationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccreditationPayload>
+          }
+          aggregate: {
+            args: Prisma.AccreditationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAccreditation>
+          }
+          groupBy: {
+            args: Prisma.AccreditationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AccreditationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AccreditationCountArgs<ExtArgs>
+            result: $Utils.Optional<AccreditationCountAggregateOutputType> | number
+          }
+        }
+      }
+      SurveyVisit: {
+        payload: Prisma.$SurveyVisitPayload<ExtArgs>
+        fields: Prisma.SurveyVisitFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SurveyVisitFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyVisitPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SurveyVisitFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyVisitPayload>
+          }
+          findFirst: {
+            args: Prisma.SurveyVisitFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyVisitPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SurveyVisitFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyVisitPayload>
+          }
+          findMany: {
+            args: Prisma.SurveyVisitFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyVisitPayload>[]
+          }
+          create: {
+            args: Prisma.SurveyVisitCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyVisitPayload>
+          }
+          createMany: {
+            args: Prisma.SurveyVisitCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SurveyVisitCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyVisitPayload>[]
+          }
+          delete: {
+            args: Prisma.SurveyVisitDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyVisitPayload>
+          }
+          update: {
+            args: Prisma.SurveyVisitUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyVisitPayload>
+          }
+          deleteMany: {
+            args: Prisma.SurveyVisitDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SurveyVisitUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SurveyVisitUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyVisitPayload>[]
+          }
+          upsert: {
+            args: Prisma.SurveyVisitUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyVisitPayload>
+          }
+          aggregate: {
+            args: Prisma.SurveyVisitAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSurveyVisit>
+          }
+          groupBy: {
+            args: Prisma.SurveyVisitGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SurveyVisitGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SurveyVisitCountArgs<ExtArgs>
+            result: $Utils.Optional<SurveyVisitCountAggregateOutputType> | number
+          }
+        }
+      }
+      PhaseOneRequirements: {
+        payload: Prisma.$PhaseOneRequirementsPayload<ExtArgs>
+        fields: Prisma.PhaseOneRequirementsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PhaseOneRequirementsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseOneRequirementsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PhaseOneRequirementsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseOneRequirementsPayload>
+          }
+          findFirst: {
+            args: Prisma.PhaseOneRequirementsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseOneRequirementsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PhaseOneRequirementsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseOneRequirementsPayload>
+          }
+          findMany: {
+            args: Prisma.PhaseOneRequirementsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseOneRequirementsPayload>[]
+          }
+          create: {
+            args: Prisma.PhaseOneRequirementsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseOneRequirementsPayload>
+          }
+          createMany: {
+            args: Prisma.PhaseOneRequirementsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PhaseOneRequirementsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseOneRequirementsPayload>[]
+          }
+          delete: {
+            args: Prisma.PhaseOneRequirementsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseOneRequirementsPayload>
+          }
+          update: {
+            args: Prisma.PhaseOneRequirementsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseOneRequirementsPayload>
+          }
+          deleteMany: {
+            args: Prisma.PhaseOneRequirementsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PhaseOneRequirementsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PhaseOneRequirementsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseOneRequirementsPayload>[]
+          }
+          upsert: {
+            args: Prisma.PhaseOneRequirementsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseOneRequirementsPayload>
+          }
+          aggregate: {
+            args: Prisma.PhaseOneRequirementsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePhaseOneRequirements>
+          }
+          groupBy: {
+            args: Prisma.PhaseOneRequirementsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PhaseOneRequirementsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PhaseOneRequirementsCountArgs<ExtArgs>
+            result: $Utils.Optional<PhaseOneRequirementsCountAggregateOutputType> | number
+          }
+        }
+      }
+      InstrumentFolder: {
+        payload: Prisma.$InstrumentFolderPayload<ExtArgs>
+        fields: Prisma.InstrumentFolderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InstrumentFolderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentFolderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InstrumentFolderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentFolderPayload>
+          }
+          findFirst: {
+            args: Prisma.InstrumentFolderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentFolderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InstrumentFolderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentFolderPayload>
+          }
+          findMany: {
+            args: Prisma.InstrumentFolderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentFolderPayload>[]
+          }
+          create: {
+            args: Prisma.InstrumentFolderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentFolderPayload>
+          }
+          createMany: {
+            args: Prisma.InstrumentFolderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.InstrumentFolderCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentFolderPayload>[]
+          }
+          delete: {
+            args: Prisma.InstrumentFolderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentFolderPayload>
+          }
+          update: {
+            args: Prisma.InstrumentFolderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentFolderPayload>
+          }
+          deleteMany: {
+            args: Prisma.InstrumentFolderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InstrumentFolderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.InstrumentFolderUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentFolderPayload>[]
+          }
+          upsert: {
+            args: Prisma.InstrumentFolderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InstrumentFolderPayload>
+          }
+          aggregate: {
+            args: Prisma.InstrumentFolderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInstrumentFolder>
+          }
+          groupBy: {
+            args: Prisma.InstrumentFolderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InstrumentFolderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.InstrumentFolderCountArgs<ExtArgs>
+            result: $Utils.Optional<InstrumentFolderCountAggregateOutputType> | number
+          }
+        }
+      }
+      AreaFolder: {
+        payload: Prisma.$AreaFolderPayload<ExtArgs>
+        fields: Prisma.AreaFolderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AreaFolderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFolderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AreaFolderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFolderPayload>
+          }
+          findFirst: {
+            args: Prisma.AreaFolderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFolderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AreaFolderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFolderPayload>
+          }
+          findMany: {
+            args: Prisma.AreaFolderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFolderPayload>[]
+          }
+          create: {
+            args: Prisma.AreaFolderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFolderPayload>
+          }
+          createMany: {
+            args: Prisma.AreaFolderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AreaFolderCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFolderPayload>[]
+          }
+          delete: {
+            args: Prisma.AreaFolderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFolderPayload>
+          }
+          update: {
+            args: Prisma.AreaFolderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFolderPayload>
+          }
+          deleteMany: {
+            args: Prisma.AreaFolderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AreaFolderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AreaFolderUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFolderPayload>[]
+          }
+          upsert: {
+            args: Prisma.AreaFolderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFolderPayload>
+          }
+          aggregate: {
+            args: Prisma.AreaFolderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAreaFolder>
+          }
+          groupBy: {
+            args: Prisma.AreaFolderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AreaFolderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AreaFolderCountArgs<ExtArgs>
+            result: $Utils.Optional<AreaFolderCountAggregateOutputType> | number
+          }
+        }
+      }
+      ParameterFolder: {
+        payload: Prisma.$ParameterFolderPayload<ExtArgs>
+        fields: Prisma.ParameterFolderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ParameterFolderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterFolderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ParameterFolderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterFolderPayload>
+          }
+          findFirst: {
+            args: Prisma.ParameterFolderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterFolderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ParameterFolderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterFolderPayload>
+          }
+          findMany: {
+            args: Prisma.ParameterFolderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterFolderPayload>[]
+          }
+          create: {
+            args: Prisma.ParameterFolderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterFolderPayload>
+          }
+          createMany: {
+            args: Prisma.ParameterFolderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ParameterFolderCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterFolderPayload>[]
+          }
+          delete: {
+            args: Prisma.ParameterFolderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterFolderPayload>
+          }
+          update: {
+            args: Prisma.ParameterFolderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterFolderPayload>
+          }
+          deleteMany: {
+            args: Prisma.ParameterFolderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ParameterFolderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ParameterFolderUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterFolderPayload>[]
+          }
+          upsert: {
+            args: Prisma.ParameterFolderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParameterFolderPayload>
+          }
+          aggregate: {
+            args: Prisma.ParameterFolderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateParameterFolder>
+          }
+          groupBy: {
+            args: Prisma.ParameterFolderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ParameterFolderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ParameterFolderCountArgs<ExtArgs>
+            result: $Utils.Optional<ParameterFolderCountAggregateOutputType> | number
+          }
+        }
+      }
+      IndicatorFolder: {
+        payload: Prisma.$IndicatorFolderPayload<ExtArgs>
+        fields: Prisma.IndicatorFolderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.IndicatorFolderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorFolderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.IndicatorFolderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorFolderPayload>
+          }
+          findFirst: {
+            args: Prisma.IndicatorFolderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorFolderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.IndicatorFolderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorFolderPayload>
+          }
+          findMany: {
+            args: Prisma.IndicatorFolderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorFolderPayload>[]
+          }
+          create: {
+            args: Prisma.IndicatorFolderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorFolderPayload>
+          }
+          createMany: {
+            args: Prisma.IndicatorFolderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.IndicatorFolderCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorFolderPayload>[]
+          }
+          delete: {
+            args: Prisma.IndicatorFolderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorFolderPayload>
+          }
+          update: {
+            args: Prisma.IndicatorFolderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorFolderPayload>
+          }
+          deleteMany: {
+            args: Prisma.IndicatorFolderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.IndicatorFolderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.IndicatorFolderUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorFolderPayload>[]
+          }
+          upsert: {
+            args: Prisma.IndicatorFolderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndicatorFolderPayload>
+          }
+          aggregate: {
+            args: Prisma.IndicatorFolderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateIndicatorFolder>
+          }
+          groupBy: {
+            args: Prisma.IndicatorFolderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<IndicatorFolderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.IndicatorFolderCountArgs<ExtArgs>
+            result: $Utils.Optional<IndicatorFolderCountAggregateOutputType> | number
+          }
+        }
+      }
+      EvidenceFile: {
+        payload: Prisma.$EvidenceFilePayload<ExtArgs>
+        fields: Prisma.EvidenceFileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EvidenceFileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EvidenceFilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EvidenceFileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EvidenceFilePayload>
+          }
+          findFirst: {
+            args: Prisma.EvidenceFileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EvidenceFilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EvidenceFileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EvidenceFilePayload>
+          }
+          findMany: {
+            args: Prisma.EvidenceFileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EvidenceFilePayload>[]
+          }
+          create: {
+            args: Prisma.EvidenceFileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EvidenceFilePayload>
+          }
+          createMany: {
+            args: Prisma.EvidenceFileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EvidenceFileCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EvidenceFilePayload>[]
+          }
+          delete: {
+            args: Prisma.EvidenceFileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EvidenceFilePayload>
+          }
+          update: {
+            args: Prisma.EvidenceFileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EvidenceFilePayload>
+          }
+          deleteMany: {
+            args: Prisma.EvidenceFileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EvidenceFileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EvidenceFileUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EvidenceFilePayload>[]
+          }
+          upsert: {
+            args: Prisma.EvidenceFileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EvidenceFilePayload>
+          }
+          aggregate: {
+            args: Prisma.EvidenceFileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEvidenceFile>
+          }
+          groupBy: {
+            args: Prisma.EvidenceFileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EvidenceFileGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EvidenceFileCountArgs<ExtArgs>
+            result: $Utils.Optional<EvidenceFileCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1445,6 +2177,14 @@ export namespace Prisma {
     parameter?: ParameterOmit
     indicator?: IndicatorOmit
     level?: LevelOmit
+    accreditation?: AccreditationOmit
+    surveyVisit?: SurveyVisitOmit
+    phaseOneRequirements?: PhaseOneRequirementsOmit
+    instrumentFolder?: InstrumentFolderOmit
+    areaFolder?: AreaFolderOmit
+    parameterFolder?: ParameterFolderOmit
+    indicatorFolder?: IndicatorFolderOmit
+    evidenceFile?: EvidenceFileOmit
   }
 
   /* Types for Logging */
@@ -1588,10 +2328,12 @@ export namespace Prisma {
 
   export type InstrumentCountOutputType = {
     area: number
+    phaseOneRequirements: number
   }
 
   export type InstrumentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     area?: boolean | InstrumentCountOutputTypeCountAreaArgs
+    phaseOneRequirements?: boolean | InstrumentCountOutputTypeCountPhaseOneRequirementsArgs
   }
 
   // Custom InputTypes
@@ -1612,6 +2354,13 @@ export namespace Prisma {
     where?: AreaWhereInput
   }
 
+  /**
+   * InstrumentCountOutputType without action
+   */
+  export type InstrumentCountOutputTypeCountPhaseOneRequirementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PhaseOneRequirementsWhereInput
+  }
+
 
   /**
    * Count Type AreaCountOutputType
@@ -1619,10 +2368,12 @@ export namespace Prisma {
 
   export type AreaCountOutputType = {
     parameter: number
+    areaFolders: number
   }
 
   export type AreaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parameter?: boolean | AreaCountOutputTypeCountParameterArgs
+    areaFolders?: boolean | AreaCountOutputTypeCountAreaFoldersArgs
   }
 
   // Custom InputTypes
@@ -1643,6 +2394,13 @@ export namespace Prisma {
     where?: ParameterWhereInput
   }
 
+  /**
+   * AreaCountOutputType without action
+   */
+  export type AreaCountOutputTypeCountAreaFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AreaFolderWhereInput
+  }
+
 
   /**
    * Count Type ParameterCountOutputType
@@ -1650,10 +2408,12 @@ export namespace Prisma {
 
   export type ParameterCountOutputType = {
     indicator: number
+    parameterFolders: number
   }
 
   export type ParameterCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     indicator?: boolean | ParameterCountOutputTypeCountIndicatorArgs
+    parameterFolders?: boolean | ParameterCountOutputTypeCountParameterFoldersArgs
   }
 
   // Custom InputTypes
@@ -1672,6 +2432,239 @@ export namespace Prisma {
    */
   export type ParameterCountOutputTypeCountIndicatorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: IndicatorWhereInput
+  }
+
+  /**
+   * ParameterCountOutputType without action
+   */
+  export type ParameterCountOutputTypeCountParameterFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParameterFolderWhereInput
+  }
+
+
+  /**
+   * Count Type IndicatorCountOutputType
+   */
+
+  export type IndicatorCountOutputType = {
+    evidenceFiles: number
+  }
+
+  export type IndicatorCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    evidenceFiles?: boolean | IndicatorCountOutputTypeCountEvidenceFilesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * IndicatorCountOutputType without action
+   */
+  export type IndicatorCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorCountOutputType
+     */
+    select?: IndicatorCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * IndicatorCountOutputType without action
+   */
+  export type IndicatorCountOutputTypeCountEvidenceFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EvidenceFileWhereInput
+  }
+
+
+  /**
+   * Count Type LevelCountOutputType
+   */
+
+  export type LevelCountOutputType = {
+    accreditations: number
+    surveyVisits: number
+  }
+
+  export type LevelCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    accreditations?: boolean | LevelCountOutputTypeCountAccreditationsArgs
+    surveyVisits?: boolean | LevelCountOutputTypeCountSurveyVisitsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * LevelCountOutputType without action
+   */
+  export type LevelCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelCountOutputType
+     */
+    select?: LevelCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * LevelCountOutputType without action
+   */
+  export type LevelCountOutputTypeCountAccreditationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccreditationWhereInput
+  }
+
+  /**
+   * LevelCountOutputType without action
+   */
+  export type LevelCountOutputTypeCountSurveyVisitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SurveyVisitWhereInput
+  }
+
+
+  /**
+   * Count Type AccreditationCountOutputType
+   */
+
+  export type AccreditationCountOutputType = {
+    surveyVisits: number
+  }
+
+  export type AccreditationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surveyVisits?: boolean | AccreditationCountOutputTypeCountSurveyVisitsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AccreditationCountOutputType without action
+   */
+  export type AccreditationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccreditationCountOutputType
+     */
+    select?: AccreditationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AccreditationCountOutputType without action
+   */
+  export type AccreditationCountOutputTypeCountSurveyVisitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SurveyVisitWhereInput
+  }
+
+
+  /**
+   * Count Type InstrumentFolderCountOutputType
+   */
+
+  export type InstrumentFolderCountOutputType = {
+    areaFolders: number
+  }
+
+  export type InstrumentFolderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    areaFolders?: boolean | InstrumentFolderCountOutputTypeCountAreaFoldersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * InstrumentFolderCountOutputType without action
+   */
+  export type InstrumentFolderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentFolderCountOutputType
+     */
+    select?: InstrumentFolderCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * InstrumentFolderCountOutputType without action
+   */
+  export type InstrumentFolderCountOutputTypeCountAreaFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AreaFolderWhereInput
+  }
+
+
+  /**
+   * Count Type AreaFolderCountOutputType
+   */
+
+  export type AreaFolderCountOutputType = {
+    parameterFolders: number
+  }
+
+  export type AreaFolderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parameterFolders?: boolean | AreaFolderCountOutputTypeCountParameterFoldersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AreaFolderCountOutputType without action
+   */
+  export type AreaFolderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolderCountOutputType
+     */
+    select?: AreaFolderCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AreaFolderCountOutputType without action
+   */
+  export type AreaFolderCountOutputTypeCountParameterFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParameterFolderWhereInput
+  }
+
+
+  /**
+   * Count Type ParameterFolderCountOutputType
+   */
+
+  export type ParameterFolderCountOutputType = {
+    indicatorFolders: number
+  }
+
+  export type ParameterFolderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    indicatorFolders?: boolean | ParameterFolderCountOutputTypeCountIndicatorFoldersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ParameterFolderCountOutputType without action
+   */
+  export type ParameterFolderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolderCountOutputType
+     */
+    select?: ParameterFolderCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ParameterFolderCountOutputType without action
+   */
+  export type ParameterFolderCountOutputTypeCountIndicatorFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IndicatorFolderWhereInput
+  }
+
+
+  /**
+   * Count Type IndicatorFolderCountOutputType
+   */
+
+  export type IndicatorFolderCountOutputType = {
+    evidenceFiles: number
+  }
+
+  export type IndicatorFolderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    evidenceFiles?: boolean | IndicatorFolderCountOutputTypeCountEvidenceFilesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * IndicatorFolderCountOutputType without action
+   */
+  export type IndicatorFolderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorFolderCountOutputType
+     */
+    select?: IndicatorFolderCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * IndicatorFolderCountOutputType without action
+   */
+  export type IndicatorFolderCountOutputTypeCountEvidenceFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EvidenceFileWhereInput
   }
 
 
@@ -3008,6 +4001,7 @@ export namespace Prisma {
     updatedAt?: boolean
     folderId?: boolean
     programPersonnel?: boolean | Program$programPersonnelArgs<ExtArgs>
+    accreditation?: boolean | Program$accreditationArgs<ExtArgs>
     _count?: boolean | ProgramCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["program"]>
 
@@ -3044,6 +4038,7 @@ export namespace Prisma {
   export type ProgramOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "code" | "department" | "createdAt" | "updatedAt" | "folderId", ExtArgs["result"]["program"]>
   export type ProgramInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     programPersonnel?: boolean | Program$programPersonnelArgs<ExtArgs>
+    accreditation?: boolean | Program$accreditationArgs<ExtArgs>
     _count?: boolean | ProgramCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProgramIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3053,6 +4048,7 @@ export namespace Prisma {
     name: "Program"
     objects: {
       programPersonnel: Prisma.$ProgramPersonnelPayload<ExtArgs>[]
+      accreditation: Prisma.$AccreditationPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3457,6 +4453,7 @@ export namespace Prisma {
   export interface Prisma__ProgramClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     programPersonnel<T extends Program$programPersonnelArgs<ExtArgs> = {}>(args?: Subset<T, Program$programPersonnelArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    accreditation<T extends Program$accreditationArgs<ExtArgs> = {}>(args?: Subset<T, Program$accreditationArgs<ExtArgs>>): Prisma__AccreditationClient<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3902,6 +4899,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProgramPersonnelScalarFieldEnum | ProgramPersonnelScalarFieldEnum[]
+  }
+
+  /**
+   * Program.accreditation
+   */
+  export type Program$accreditationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Accreditation
+     */
+    select?: AccreditationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Accreditation
+     */
+    omit?: AccreditationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccreditationInclude<ExtArgs> | null
+    where?: AccreditationWhereInput
   }
 
   /**
@@ -5141,6 +6157,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     area?: boolean | Instrument$areaArgs<ExtArgs>
+    phaseOneRequirements?: boolean | Instrument$phaseOneRequirementsArgs<ExtArgs>
     _count?: boolean | InstrumentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["instrument"]>
 
@@ -5171,6 +6188,7 @@ export namespace Prisma {
   export type InstrumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "accreditingBody" | "createdAt" | "updatedAt", ExtArgs["result"]["instrument"]>
   export type InstrumentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     area?: boolean | Instrument$areaArgs<ExtArgs>
+    phaseOneRequirements?: boolean | Instrument$phaseOneRequirementsArgs<ExtArgs>
     _count?: boolean | InstrumentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type InstrumentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5180,6 +6198,7 @@ export namespace Prisma {
     name: "Instrument"
     objects: {
       area: Prisma.$AreaPayload<ExtArgs>[]
+      phaseOneRequirements: Prisma.$PhaseOneRequirementsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5582,6 +6601,7 @@ export namespace Prisma {
   export interface Prisma__InstrumentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     area<T extends Instrument$areaArgs<ExtArgs> = {}>(args?: Subset<T, Instrument$areaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    phaseOneRequirements<T extends Instrument$phaseOneRequirementsArgs<ExtArgs> = {}>(args?: Subset<T, Instrument$phaseOneRequirementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6028,6 +7048,30 @@ export namespace Prisma {
   }
 
   /**
+   * Instrument.phaseOneRequirements
+   */
+  export type Instrument$phaseOneRequirementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsInclude<ExtArgs> | null
+    where?: PhaseOneRequirementsWhereInput
+    orderBy?: PhaseOneRequirementsOrderByWithRelationInput | PhaseOneRequirementsOrderByWithRelationInput[]
+    cursor?: PhaseOneRequirementsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PhaseOneRequirementsScalarFieldEnum | PhaseOneRequirementsScalarFieldEnum[]
+  }
+
+  /**
    * Instrument without action
    */
   export type InstrumentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6266,6 +7310,7 @@ export namespace Prisma {
     updatedAt?: boolean
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
     parameter?: boolean | Area$parameterArgs<ExtArgs>
+    areaFolders?: boolean | Area$areaFoldersArgs<ExtArgs>
     _count?: boolean | AreaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["area"]>
 
@@ -6305,6 +7350,7 @@ export namespace Prisma {
   export type AreaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
     parameter?: boolean | Area$parameterArgs<ExtArgs>
+    areaFolders?: boolean | Area$areaFoldersArgs<ExtArgs>
     _count?: boolean | AreaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type AreaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6319,6 +7365,7 @@ export namespace Prisma {
     objects: {
       instrument: Prisma.$InstrumentPayload<ExtArgs>
       parameter: Prisma.$ParameterPayload<ExtArgs>[]
+      areaFolders: Prisma.$AreaFolderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -6724,6 +7771,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     instrument<T extends InstrumentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InstrumentDefaultArgs<ExtArgs>>): Prisma__InstrumentClient<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     parameter<T extends Area$parameterArgs<ExtArgs> = {}>(args?: Subset<T, Area$parameterArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    areaFolders<T extends Area$areaFoldersArgs<ExtArgs> = {}>(args?: Subset<T, Area$areaFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7180,6 +8228,30 @@ export namespace Prisma {
   }
 
   /**
+   * Area.areaFolders
+   */
+  export type Area$areaFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    where?: AreaFolderWhereInput
+    orderBy?: AreaFolderOrderByWithRelationInput | AreaFolderOrderByWithRelationInput[]
+    cursor?: AreaFolderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AreaFolderScalarFieldEnum | AreaFolderScalarFieldEnum[]
+  }
+
+  /**
    * Area without action
    */
   export type AreaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7410,6 +8482,7 @@ export namespace Prisma {
     updatedAt?: boolean
     area?: boolean | AreaDefaultArgs<ExtArgs>
     indicator?: boolean | Parameter$indicatorArgs<ExtArgs>
+    parameterFolders?: boolean | Parameter$parameterFoldersArgs<ExtArgs>
     _count?: boolean | ParameterCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["parameter"]>
 
@@ -7446,6 +8519,7 @@ export namespace Prisma {
   export type ParameterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     area?: boolean | AreaDefaultArgs<ExtArgs>
     indicator?: boolean | Parameter$indicatorArgs<ExtArgs>
+    parameterFolders?: boolean | Parameter$parameterFoldersArgs<ExtArgs>
     _count?: boolean | ParameterCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ParameterIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7460,6 +8534,7 @@ export namespace Prisma {
     objects: {
       area: Prisma.$AreaPayload<ExtArgs>
       indicator: Prisma.$IndicatorPayload<ExtArgs>[]
+      parameterFolders: Prisma.$ParameterFolderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -7864,6 +8939,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     area<T extends AreaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AreaDefaultArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     indicator<T extends Parameter$indicatorArgs<ExtArgs> = {}>(args?: Subset<T, Parameter$indicatorArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    parameterFolders<T extends Parameter$parameterFoldersArgs<ExtArgs> = {}>(args?: Subset<T, Parameter$parameterFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8319,6 +9395,30 @@ export namespace Prisma {
   }
 
   /**
+   * Parameter.parameterFolders
+   */
+  export type Parameter$parameterFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolder
+     */
+    select?: ParameterFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParameterFolder
+     */
+    omit?: ParameterFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterFolderInclude<ExtArgs> | null
+    where?: ParameterFolderWhereInput
+    orderBy?: ParameterFolderOrderByWithRelationInput | ParameterFolderOrderByWithRelationInput[]
+    cursor?: ParameterFolderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ParameterFolderScalarFieldEnum | ParameterFolderScalarFieldEnum[]
+  }
+
+  /**
    * Parameter without action
    */
   export type ParameterDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8564,6 +9664,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+    evidenceFiles?: boolean | Indicator$evidenceFilesArgs<ExtArgs>
+    _count?: boolean | IndicatorCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["indicator"]>
 
   export type IndicatorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8604,6 +9706,8 @@ export namespace Prisma {
   export type IndicatorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "label" | "description" | "category" | "evidence" | "parameterId" | "createdAt" | "updatedAt", ExtArgs["result"]["indicator"]>
   export type IndicatorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+    evidenceFiles?: boolean | Indicator$evidenceFilesArgs<ExtArgs>
+    _count?: boolean | IndicatorCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type IndicatorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parameter?: boolean | ParameterDefaultArgs<ExtArgs>
@@ -8616,6 +9720,7 @@ export namespace Prisma {
     name: "Indicator"
     objects: {
       parameter: Prisma.$ParameterPayload<ExtArgs>
+      evidenceFiles: Prisma.$EvidenceFilePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -9021,6 +10126,7 @@ export namespace Prisma {
   export interface Prisma__IndicatorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     parameter<T extends ParameterDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ParameterDefaultArgs<ExtArgs>>): Prisma__ParameterClient<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    evidenceFiles<T extends Indicator$evidenceFilesArgs<ExtArgs> = {}>(args?: Subset<T, Indicator$evidenceFilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9454,6 +10560,30 @@ export namespace Prisma {
   }
 
   /**
+   * Indicator.evidenceFiles
+   */
+  export type Indicator$evidenceFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileInclude<ExtArgs> | null
+    where?: EvidenceFileWhereInput
+    orderBy?: EvidenceFileOrderByWithRelationInput | EvidenceFileOrderByWithRelationInput[]
+    cursor?: EvidenceFileWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EvidenceFileScalarFieldEnum | EvidenceFileScalarFieldEnum[]
+  }
+
+  /**
    * Indicator without action
    */
   export type IndicatorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9500,6 +10630,7 @@ export namespace Prisma {
     id: string | null
     rank: number | null
     label: string | null
+    phase: $Enums.Phase | null
     requiredGrandMean: Decimal | null
     requiredAreaMean: Decimal | null
   }
@@ -9508,6 +10639,7 @@ export namespace Prisma {
     id: string | null
     rank: number | null
     label: string | null
+    phase: $Enums.Phase | null
     requiredGrandMean: Decimal | null
     requiredAreaMean: Decimal | null
   }
@@ -9516,6 +10648,7 @@ export namespace Prisma {
     id: number
     rank: number
     label: number
+    phase: number
     requiredGrandMean: number
     requiredAreaMean: number
     _all: number
@@ -9538,6 +10671,7 @@ export namespace Prisma {
     id?: true
     rank?: true
     label?: true
+    phase?: true
     requiredGrandMean?: true
     requiredAreaMean?: true
   }
@@ -9546,6 +10680,7 @@ export namespace Prisma {
     id?: true
     rank?: true
     label?: true
+    phase?: true
     requiredGrandMean?: true
     requiredAreaMean?: true
   }
@@ -9554,6 +10689,7 @@ export namespace Prisma {
     id?: true
     rank?: true
     label?: true
+    phase?: true
     requiredGrandMean?: true
     requiredAreaMean?: true
     _all?: true
@@ -9649,6 +10785,7 @@ export namespace Prisma {
     id: string
     rank: number
     label: string
+    phase: $Enums.Phase
     requiredGrandMean: Decimal
     requiredAreaMean: Decimal
     _count: LevelCountAggregateOutputType | null
@@ -9676,14 +10813,19 @@ export namespace Prisma {
     id?: boolean
     rank?: boolean
     label?: boolean
+    phase?: boolean
     requiredGrandMean?: boolean
     requiredAreaMean?: boolean
+    accreditations?: boolean | Level$accreditationsArgs<ExtArgs>
+    surveyVisits?: boolean | Level$surveyVisitsArgs<ExtArgs>
+    _count?: boolean | LevelCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["level"]>
 
   export type LevelSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     rank?: boolean
     label?: boolean
+    phase?: boolean
     requiredGrandMean?: boolean
     requiredAreaMean?: boolean
   }, ExtArgs["result"]["level"]>
@@ -9692,6 +10834,7 @@ export namespace Prisma {
     id?: boolean
     rank?: boolean
     label?: boolean
+    phase?: boolean
     requiredGrandMean?: boolean
     requiredAreaMean?: boolean
   }, ExtArgs["result"]["level"]>
@@ -9700,19 +10843,31 @@ export namespace Prisma {
     id?: boolean
     rank?: boolean
     label?: boolean
+    phase?: boolean
     requiredGrandMean?: boolean
     requiredAreaMean?: boolean
   }
 
-  export type LevelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "rank" | "label" | "requiredGrandMean" | "requiredAreaMean", ExtArgs["result"]["level"]>
+  export type LevelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "rank" | "label" | "phase" | "requiredGrandMean" | "requiredAreaMean", ExtArgs["result"]["level"]>
+  export type LevelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    accreditations?: boolean | Level$accreditationsArgs<ExtArgs>
+    surveyVisits?: boolean | Level$surveyVisitsArgs<ExtArgs>
+    _count?: boolean | LevelCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type LevelIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type LevelIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $LevelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Level"
-    objects: {}
+    objects: {
+      accreditations: Prisma.$AccreditationPayload<ExtArgs>[]
+      surveyVisits: Prisma.$SurveyVisitPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       rank: number
       label: string
+      phase: $Enums.Phase
       requiredGrandMean: Prisma.Decimal
       requiredAreaMean: Prisma.Decimal
     }, ExtArgs["result"]["level"]>
@@ -10109,6 +11264,8 @@ export namespace Prisma {
    */
   export interface Prisma__LevelClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    accreditations<T extends Level$accreditationsArgs<ExtArgs> = {}>(args?: Subset<T, Level$accreditationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    surveyVisits<T extends Level$surveyVisitsArgs<ExtArgs> = {}>(args?: Subset<T, Level$surveyVisitsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10141,6 +11298,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Level", 'String'>
     readonly rank: FieldRef<"Level", 'Int'>
     readonly label: FieldRef<"Level", 'String'>
+    readonly phase: FieldRef<"Level", 'Phase'>
     readonly requiredGrandMean: FieldRef<"Level", 'Decimal'>
     readonly requiredAreaMean: FieldRef<"Level", 'Decimal'>
   }
@@ -10160,6 +11318,10 @@ export namespace Prisma {
      */
     omit?: LevelOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelInclude<ExtArgs> | null
+    /**
      * Filter, which Level to fetch.
      */
     where: LevelWhereUniqueInput
@@ -10178,6 +11340,10 @@ export namespace Prisma {
      */
     omit?: LevelOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelInclude<ExtArgs> | null
+    /**
      * Filter, which Level to fetch.
      */
     where: LevelWhereUniqueInput
@@ -10195,6 +11361,10 @@ export namespace Prisma {
      * Omit specific fields from the Level
      */
     omit?: LevelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelInclude<ExtArgs> | null
     /**
      * Filter, which Level to fetch.
      */
@@ -10244,6 +11414,10 @@ export namespace Prisma {
      */
     omit?: LevelOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelInclude<ExtArgs> | null
+    /**
      * Filter, which Level to fetch.
      */
     where?: LevelWhereInput
@@ -10292,6 +11466,10 @@ export namespace Prisma {
      */
     omit?: LevelOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelInclude<ExtArgs> | null
+    /**
      * Filter, which Levels to fetch.
      */
     where?: LevelWhereInput
@@ -10334,6 +11512,10 @@ export namespace Prisma {
      * Omit specific fields from the Level
      */
     omit?: LevelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelInclude<ExtArgs> | null
     /**
      * The data needed to create a Level.
      */
@@ -10382,6 +11564,10 @@ export namespace Prisma {
      * Omit specific fields from the Level
      */
     omit?: LevelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelInclude<ExtArgs> | null
     /**
      * The data needed to update a Level.
      */
@@ -10449,6 +11635,10 @@ export namespace Prisma {
      */
     omit?: LevelOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelInclude<ExtArgs> | null
+    /**
      * The filter to search for the Level to update in case it exists.
      */
     where: LevelWhereUniqueInput
@@ -10475,6 +11665,10 @@ export namespace Prisma {
      */
     omit?: LevelOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelInclude<ExtArgs> | null
+    /**
      * Filter which Level to delete.
      */
     where: LevelWhereUniqueInput
@@ -10495,6 +11689,54 @@ export namespace Prisma {
   }
 
   /**
+   * Level.accreditations
+   */
+  export type Level$accreditationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Accreditation
+     */
+    select?: AccreditationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Accreditation
+     */
+    omit?: AccreditationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccreditationInclude<ExtArgs> | null
+    where?: AccreditationWhereInput
+    orderBy?: AccreditationOrderByWithRelationInput | AccreditationOrderByWithRelationInput[]
+    cursor?: AccreditationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AccreditationScalarFieldEnum | AccreditationScalarFieldEnum[]
+  }
+
+  /**
+   * Level.surveyVisits
+   */
+  export type Level$surveyVisitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    where?: SurveyVisitWhereInput
+    orderBy?: SurveyVisitOrderByWithRelationInput | SurveyVisitOrderByWithRelationInput[]
+    cursor?: SurveyVisitWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SurveyVisitScalarFieldEnum | SurveyVisitScalarFieldEnum[]
+  }
+
+  /**
    * Level without action
    */
   export type LevelDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10506,6 +11748,8709 @@ export namespace Prisma {
      * Omit specific fields from the Level
      */
     omit?: LevelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Accreditation
+   */
+
+  export type AggregateAccreditation = {
+    _count: AccreditationCountAggregateOutputType | null
+    _min: AccreditationMinAggregateOutputType | null
+    _max: AccreditationMaxAggregateOutputType | null
+  }
+
+  export type AccreditationMinAggregateOutputType = {
+    id: string | null
+    programId: string | null
+    currentLevel: string | null
+    phase: $Enums.Phase | null
+  }
+
+  export type AccreditationMaxAggregateOutputType = {
+    id: string | null
+    programId: string | null
+    currentLevel: string | null
+    phase: $Enums.Phase | null
+  }
+
+  export type AccreditationCountAggregateOutputType = {
+    id: number
+    programId: number
+    currentLevel: number
+    phase: number
+    _all: number
+  }
+
+
+  export type AccreditationMinAggregateInputType = {
+    id?: true
+    programId?: true
+    currentLevel?: true
+    phase?: true
+  }
+
+  export type AccreditationMaxAggregateInputType = {
+    id?: true
+    programId?: true
+    currentLevel?: true
+    phase?: true
+  }
+
+  export type AccreditationCountAggregateInputType = {
+    id?: true
+    programId?: true
+    currentLevel?: true
+    phase?: true
+    _all?: true
+  }
+
+  export type AccreditationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Accreditation to aggregate.
+     */
+    where?: AccreditationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Accreditations to fetch.
+     */
+    orderBy?: AccreditationOrderByWithRelationInput | AccreditationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AccreditationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Accreditations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Accreditations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Accreditations
+    **/
+    _count?: true | AccreditationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AccreditationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AccreditationMaxAggregateInputType
+  }
+
+  export type GetAccreditationAggregateType<T extends AccreditationAggregateArgs> = {
+        [P in keyof T & keyof AggregateAccreditation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAccreditation[P]>
+      : GetScalarType<T[P], AggregateAccreditation[P]>
+  }
+
+
+
+
+  export type AccreditationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccreditationWhereInput
+    orderBy?: AccreditationOrderByWithAggregationInput | AccreditationOrderByWithAggregationInput[]
+    by: AccreditationScalarFieldEnum[] | AccreditationScalarFieldEnum
+    having?: AccreditationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AccreditationCountAggregateInputType | true
+    _min?: AccreditationMinAggregateInputType
+    _max?: AccreditationMaxAggregateInputType
+  }
+
+  export type AccreditationGroupByOutputType = {
+    id: string
+    programId: string
+    currentLevel: string | null
+    phase: $Enums.Phase | null
+    _count: AccreditationCountAggregateOutputType | null
+    _min: AccreditationMinAggregateOutputType | null
+    _max: AccreditationMaxAggregateOutputType | null
+  }
+
+  type GetAccreditationGroupByPayload<T extends AccreditationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AccreditationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AccreditationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AccreditationGroupByOutputType[P]>
+            : GetScalarType<T[P], AccreditationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AccreditationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    programId?: boolean
+    currentLevel?: boolean
+    phase?: boolean
+    program?: boolean | ProgramDefaultArgs<ExtArgs>
+    level?: boolean | Accreditation$levelArgs<ExtArgs>
+    surveyVisits?: boolean | Accreditation$surveyVisitsArgs<ExtArgs>
+    _count?: boolean | AccreditationCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["accreditation"]>
+
+  export type AccreditationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    programId?: boolean
+    currentLevel?: boolean
+    phase?: boolean
+    program?: boolean | ProgramDefaultArgs<ExtArgs>
+    level?: boolean | Accreditation$levelArgs<ExtArgs>
+  }, ExtArgs["result"]["accreditation"]>
+
+  export type AccreditationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    programId?: boolean
+    currentLevel?: boolean
+    phase?: boolean
+    program?: boolean | ProgramDefaultArgs<ExtArgs>
+    level?: boolean | Accreditation$levelArgs<ExtArgs>
+  }, ExtArgs["result"]["accreditation"]>
+
+  export type AccreditationSelectScalar = {
+    id?: boolean
+    programId?: boolean
+    currentLevel?: boolean
+    phase?: boolean
+  }
+
+  export type AccreditationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "programId" | "currentLevel" | "phase", ExtArgs["result"]["accreditation"]>
+  export type AccreditationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    program?: boolean | ProgramDefaultArgs<ExtArgs>
+    level?: boolean | Accreditation$levelArgs<ExtArgs>
+    surveyVisits?: boolean | Accreditation$surveyVisitsArgs<ExtArgs>
+    _count?: boolean | AccreditationCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AccreditationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    program?: boolean | ProgramDefaultArgs<ExtArgs>
+    level?: boolean | Accreditation$levelArgs<ExtArgs>
+  }
+  export type AccreditationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    program?: boolean | ProgramDefaultArgs<ExtArgs>
+    level?: boolean | Accreditation$levelArgs<ExtArgs>
+  }
+
+  export type $AccreditationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Accreditation"
+    objects: {
+      program: Prisma.$ProgramPayload<ExtArgs>
+      level: Prisma.$LevelPayload<ExtArgs> | null
+      surveyVisits: Prisma.$SurveyVisitPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      programId: string
+      currentLevel: string | null
+      phase: $Enums.Phase | null
+    }, ExtArgs["result"]["accreditation"]>
+    composites: {}
+  }
+
+  type AccreditationGetPayload<S extends boolean | null | undefined | AccreditationDefaultArgs> = $Result.GetResult<Prisma.$AccreditationPayload, S>
+
+  type AccreditationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AccreditationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AccreditationCountAggregateInputType | true
+    }
+
+  export interface AccreditationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Accreditation'], meta: { name: 'Accreditation' } }
+    /**
+     * Find zero or one Accreditation that matches the filter.
+     * @param {AccreditationFindUniqueArgs} args - Arguments to find a Accreditation
+     * @example
+     * // Get one Accreditation
+     * const accreditation = await prisma.accreditation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AccreditationFindUniqueArgs>(args: SelectSubset<T, AccreditationFindUniqueArgs<ExtArgs>>): Prisma__AccreditationClient<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Accreditation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AccreditationFindUniqueOrThrowArgs} args - Arguments to find a Accreditation
+     * @example
+     * // Get one Accreditation
+     * const accreditation = await prisma.accreditation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AccreditationFindUniqueOrThrowArgs>(args: SelectSubset<T, AccreditationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AccreditationClient<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Accreditation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccreditationFindFirstArgs} args - Arguments to find a Accreditation
+     * @example
+     * // Get one Accreditation
+     * const accreditation = await prisma.accreditation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AccreditationFindFirstArgs>(args?: SelectSubset<T, AccreditationFindFirstArgs<ExtArgs>>): Prisma__AccreditationClient<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Accreditation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccreditationFindFirstOrThrowArgs} args - Arguments to find a Accreditation
+     * @example
+     * // Get one Accreditation
+     * const accreditation = await prisma.accreditation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AccreditationFindFirstOrThrowArgs>(args?: SelectSubset<T, AccreditationFindFirstOrThrowArgs<ExtArgs>>): Prisma__AccreditationClient<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Accreditations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccreditationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Accreditations
+     * const accreditations = await prisma.accreditation.findMany()
+     * 
+     * // Get first 10 Accreditations
+     * const accreditations = await prisma.accreditation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const accreditationWithIdOnly = await prisma.accreditation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AccreditationFindManyArgs>(args?: SelectSubset<T, AccreditationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Accreditation.
+     * @param {AccreditationCreateArgs} args - Arguments to create a Accreditation.
+     * @example
+     * // Create one Accreditation
+     * const Accreditation = await prisma.accreditation.create({
+     *   data: {
+     *     // ... data to create a Accreditation
+     *   }
+     * })
+     * 
+     */
+    create<T extends AccreditationCreateArgs>(args: SelectSubset<T, AccreditationCreateArgs<ExtArgs>>): Prisma__AccreditationClient<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Accreditations.
+     * @param {AccreditationCreateManyArgs} args - Arguments to create many Accreditations.
+     * @example
+     * // Create many Accreditations
+     * const accreditation = await prisma.accreditation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AccreditationCreateManyArgs>(args?: SelectSubset<T, AccreditationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Accreditations and returns the data saved in the database.
+     * @param {AccreditationCreateManyAndReturnArgs} args - Arguments to create many Accreditations.
+     * @example
+     * // Create many Accreditations
+     * const accreditation = await prisma.accreditation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Accreditations and only return the `id`
+     * const accreditationWithIdOnly = await prisma.accreditation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AccreditationCreateManyAndReturnArgs>(args?: SelectSubset<T, AccreditationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Accreditation.
+     * @param {AccreditationDeleteArgs} args - Arguments to delete one Accreditation.
+     * @example
+     * // Delete one Accreditation
+     * const Accreditation = await prisma.accreditation.delete({
+     *   where: {
+     *     // ... filter to delete one Accreditation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AccreditationDeleteArgs>(args: SelectSubset<T, AccreditationDeleteArgs<ExtArgs>>): Prisma__AccreditationClient<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Accreditation.
+     * @param {AccreditationUpdateArgs} args - Arguments to update one Accreditation.
+     * @example
+     * // Update one Accreditation
+     * const accreditation = await prisma.accreditation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AccreditationUpdateArgs>(args: SelectSubset<T, AccreditationUpdateArgs<ExtArgs>>): Prisma__AccreditationClient<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Accreditations.
+     * @param {AccreditationDeleteManyArgs} args - Arguments to filter Accreditations to delete.
+     * @example
+     * // Delete a few Accreditations
+     * const { count } = await prisma.accreditation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AccreditationDeleteManyArgs>(args?: SelectSubset<T, AccreditationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Accreditations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccreditationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Accreditations
+     * const accreditation = await prisma.accreditation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AccreditationUpdateManyArgs>(args: SelectSubset<T, AccreditationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Accreditations and returns the data updated in the database.
+     * @param {AccreditationUpdateManyAndReturnArgs} args - Arguments to update many Accreditations.
+     * @example
+     * // Update many Accreditations
+     * const accreditation = await prisma.accreditation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Accreditations and only return the `id`
+     * const accreditationWithIdOnly = await prisma.accreditation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AccreditationUpdateManyAndReturnArgs>(args: SelectSubset<T, AccreditationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Accreditation.
+     * @param {AccreditationUpsertArgs} args - Arguments to update or create a Accreditation.
+     * @example
+     * // Update or create a Accreditation
+     * const accreditation = await prisma.accreditation.upsert({
+     *   create: {
+     *     // ... data to create a Accreditation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Accreditation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AccreditationUpsertArgs>(args: SelectSubset<T, AccreditationUpsertArgs<ExtArgs>>): Prisma__AccreditationClient<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Accreditations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccreditationCountArgs} args - Arguments to filter Accreditations to count.
+     * @example
+     * // Count the number of Accreditations
+     * const count = await prisma.accreditation.count({
+     *   where: {
+     *     // ... the filter for the Accreditations we want to count
+     *   }
+     * })
+    **/
+    count<T extends AccreditationCountArgs>(
+      args?: Subset<T, AccreditationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AccreditationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Accreditation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccreditationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AccreditationAggregateArgs>(args: Subset<T, AccreditationAggregateArgs>): Prisma.PrismaPromise<GetAccreditationAggregateType<T>>
+
+    /**
+     * Group by Accreditation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccreditationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AccreditationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AccreditationGroupByArgs['orderBy'] }
+        : { orderBy?: AccreditationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AccreditationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAccreditationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Accreditation model
+   */
+  readonly fields: AccreditationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Accreditation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AccreditationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    program<T extends ProgramDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProgramDefaultArgs<ExtArgs>>): Prisma__ProgramClient<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    level<T extends Accreditation$levelArgs<ExtArgs> = {}>(args?: Subset<T, Accreditation$levelArgs<ExtArgs>>): Prisma__LevelClient<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    surveyVisits<T extends Accreditation$surveyVisitsArgs<ExtArgs> = {}>(args?: Subset<T, Accreditation$surveyVisitsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Accreditation model
+   */
+  interface AccreditationFieldRefs {
+    readonly id: FieldRef<"Accreditation", 'String'>
+    readonly programId: FieldRef<"Accreditation", 'String'>
+    readonly currentLevel: FieldRef<"Accreditation", 'String'>
+    readonly phase: FieldRef<"Accreditation", 'Phase'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Accreditation findUnique
+   */
+  export type AccreditationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Accreditation
+     */
+    select?: AccreditationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Accreditation
+     */
+    omit?: AccreditationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccreditationInclude<ExtArgs> | null
+    /**
+     * Filter, which Accreditation to fetch.
+     */
+    where: AccreditationWhereUniqueInput
+  }
+
+  /**
+   * Accreditation findUniqueOrThrow
+   */
+  export type AccreditationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Accreditation
+     */
+    select?: AccreditationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Accreditation
+     */
+    omit?: AccreditationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccreditationInclude<ExtArgs> | null
+    /**
+     * Filter, which Accreditation to fetch.
+     */
+    where: AccreditationWhereUniqueInput
+  }
+
+  /**
+   * Accreditation findFirst
+   */
+  export type AccreditationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Accreditation
+     */
+    select?: AccreditationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Accreditation
+     */
+    omit?: AccreditationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccreditationInclude<ExtArgs> | null
+    /**
+     * Filter, which Accreditation to fetch.
+     */
+    where?: AccreditationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Accreditations to fetch.
+     */
+    orderBy?: AccreditationOrderByWithRelationInput | AccreditationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Accreditations.
+     */
+    cursor?: AccreditationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Accreditations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Accreditations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Accreditations.
+     */
+    distinct?: AccreditationScalarFieldEnum | AccreditationScalarFieldEnum[]
+  }
+
+  /**
+   * Accreditation findFirstOrThrow
+   */
+  export type AccreditationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Accreditation
+     */
+    select?: AccreditationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Accreditation
+     */
+    omit?: AccreditationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccreditationInclude<ExtArgs> | null
+    /**
+     * Filter, which Accreditation to fetch.
+     */
+    where?: AccreditationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Accreditations to fetch.
+     */
+    orderBy?: AccreditationOrderByWithRelationInput | AccreditationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Accreditations.
+     */
+    cursor?: AccreditationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Accreditations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Accreditations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Accreditations.
+     */
+    distinct?: AccreditationScalarFieldEnum | AccreditationScalarFieldEnum[]
+  }
+
+  /**
+   * Accreditation findMany
+   */
+  export type AccreditationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Accreditation
+     */
+    select?: AccreditationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Accreditation
+     */
+    omit?: AccreditationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccreditationInclude<ExtArgs> | null
+    /**
+     * Filter, which Accreditations to fetch.
+     */
+    where?: AccreditationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Accreditations to fetch.
+     */
+    orderBy?: AccreditationOrderByWithRelationInput | AccreditationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Accreditations.
+     */
+    cursor?: AccreditationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Accreditations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Accreditations.
+     */
+    skip?: number
+    distinct?: AccreditationScalarFieldEnum | AccreditationScalarFieldEnum[]
+  }
+
+  /**
+   * Accreditation create
+   */
+  export type AccreditationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Accreditation
+     */
+    select?: AccreditationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Accreditation
+     */
+    omit?: AccreditationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccreditationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Accreditation.
+     */
+    data: XOR<AccreditationCreateInput, AccreditationUncheckedCreateInput>
+  }
+
+  /**
+   * Accreditation createMany
+   */
+  export type AccreditationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Accreditations.
+     */
+    data: AccreditationCreateManyInput | AccreditationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Accreditation createManyAndReturn
+   */
+  export type AccreditationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Accreditation
+     */
+    select?: AccreditationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Accreditation
+     */
+    omit?: AccreditationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Accreditations.
+     */
+    data: AccreditationCreateManyInput | AccreditationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccreditationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Accreditation update
+   */
+  export type AccreditationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Accreditation
+     */
+    select?: AccreditationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Accreditation
+     */
+    omit?: AccreditationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccreditationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Accreditation.
+     */
+    data: XOR<AccreditationUpdateInput, AccreditationUncheckedUpdateInput>
+    /**
+     * Choose, which Accreditation to update.
+     */
+    where: AccreditationWhereUniqueInput
+  }
+
+  /**
+   * Accreditation updateMany
+   */
+  export type AccreditationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Accreditations.
+     */
+    data: XOR<AccreditationUpdateManyMutationInput, AccreditationUncheckedUpdateManyInput>
+    /**
+     * Filter which Accreditations to update
+     */
+    where?: AccreditationWhereInput
+    /**
+     * Limit how many Accreditations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Accreditation updateManyAndReturn
+   */
+  export type AccreditationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Accreditation
+     */
+    select?: AccreditationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Accreditation
+     */
+    omit?: AccreditationOmit<ExtArgs> | null
+    /**
+     * The data used to update Accreditations.
+     */
+    data: XOR<AccreditationUpdateManyMutationInput, AccreditationUncheckedUpdateManyInput>
+    /**
+     * Filter which Accreditations to update
+     */
+    where?: AccreditationWhereInput
+    /**
+     * Limit how many Accreditations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccreditationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Accreditation upsert
+   */
+  export type AccreditationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Accreditation
+     */
+    select?: AccreditationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Accreditation
+     */
+    omit?: AccreditationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccreditationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Accreditation to update in case it exists.
+     */
+    where: AccreditationWhereUniqueInput
+    /**
+     * In case the Accreditation found by the `where` argument doesn't exist, create a new Accreditation with this data.
+     */
+    create: XOR<AccreditationCreateInput, AccreditationUncheckedCreateInput>
+    /**
+     * In case the Accreditation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AccreditationUpdateInput, AccreditationUncheckedUpdateInput>
+  }
+
+  /**
+   * Accreditation delete
+   */
+  export type AccreditationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Accreditation
+     */
+    select?: AccreditationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Accreditation
+     */
+    omit?: AccreditationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccreditationInclude<ExtArgs> | null
+    /**
+     * Filter which Accreditation to delete.
+     */
+    where: AccreditationWhereUniqueInput
+  }
+
+  /**
+   * Accreditation deleteMany
+   */
+  export type AccreditationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Accreditations to delete
+     */
+    where?: AccreditationWhereInput
+    /**
+     * Limit how many Accreditations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Accreditation.level
+   */
+  export type Accreditation$levelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Level
+     */
+    select?: LevelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Level
+     */
+    omit?: LevelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelInclude<ExtArgs> | null
+    where?: LevelWhereInput
+  }
+
+  /**
+   * Accreditation.surveyVisits
+   */
+  export type Accreditation$surveyVisitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    where?: SurveyVisitWhereInput
+    orderBy?: SurveyVisitOrderByWithRelationInput | SurveyVisitOrderByWithRelationInput[]
+    cursor?: SurveyVisitWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SurveyVisitScalarFieldEnum | SurveyVisitScalarFieldEnum[]
+  }
+
+  /**
+   * Accreditation without action
+   */
+  export type AccreditationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Accreditation
+     */
+    select?: AccreditationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Accreditation
+     */
+    omit?: AccreditationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccreditationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SurveyVisit
+   */
+
+  export type AggregateSurveyVisit = {
+    _count: SurveyVisitCountAggregateOutputType | null
+    _min: SurveyVisitMinAggregateOutputType | null
+    _max: SurveyVisitMaxAggregateOutputType | null
+  }
+
+  export type SurveyVisitMinAggregateOutputType = {
+    id: string | null
+    accreditationId: string | null
+    targetLevel: string | null
+  }
+
+  export type SurveyVisitMaxAggregateOutputType = {
+    id: string | null
+    accreditationId: string | null
+    targetLevel: string | null
+  }
+
+  export type SurveyVisitCountAggregateOutputType = {
+    id: number
+    accreditationId: number
+    targetLevel: number
+    _all: number
+  }
+
+
+  export type SurveyVisitMinAggregateInputType = {
+    id?: true
+    accreditationId?: true
+    targetLevel?: true
+  }
+
+  export type SurveyVisitMaxAggregateInputType = {
+    id?: true
+    accreditationId?: true
+    targetLevel?: true
+  }
+
+  export type SurveyVisitCountAggregateInputType = {
+    id?: true
+    accreditationId?: true
+    targetLevel?: true
+    _all?: true
+  }
+
+  export type SurveyVisitAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SurveyVisit to aggregate.
+     */
+    where?: SurveyVisitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SurveyVisits to fetch.
+     */
+    orderBy?: SurveyVisitOrderByWithRelationInput | SurveyVisitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SurveyVisitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SurveyVisits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SurveyVisits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SurveyVisits
+    **/
+    _count?: true | SurveyVisitCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SurveyVisitMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SurveyVisitMaxAggregateInputType
+  }
+
+  export type GetSurveyVisitAggregateType<T extends SurveyVisitAggregateArgs> = {
+        [P in keyof T & keyof AggregateSurveyVisit]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSurveyVisit[P]>
+      : GetScalarType<T[P], AggregateSurveyVisit[P]>
+  }
+
+
+
+
+  export type SurveyVisitGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SurveyVisitWhereInput
+    orderBy?: SurveyVisitOrderByWithAggregationInput | SurveyVisitOrderByWithAggregationInput[]
+    by: SurveyVisitScalarFieldEnum[] | SurveyVisitScalarFieldEnum
+    having?: SurveyVisitScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SurveyVisitCountAggregateInputType | true
+    _min?: SurveyVisitMinAggregateInputType
+    _max?: SurveyVisitMaxAggregateInputType
+  }
+
+  export type SurveyVisitGroupByOutputType = {
+    id: string
+    accreditationId: string
+    targetLevel: string
+    _count: SurveyVisitCountAggregateOutputType | null
+    _min: SurveyVisitMinAggregateOutputType | null
+    _max: SurveyVisitMaxAggregateOutputType | null
+  }
+
+  type GetSurveyVisitGroupByPayload<T extends SurveyVisitGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SurveyVisitGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SurveyVisitGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SurveyVisitGroupByOutputType[P]>
+            : GetScalarType<T[P], SurveyVisitGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SurveyVisitSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    accreditationId?: boolean
+    targetLevel?: boolean
+    accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
+    level?: boolean | LevelDefaultArgs<ExtArgs>
+    phaseOneRequirements?: boolean | SurveyVisit$phaseOneRequirementsArgs<ExtArgs>
+  }, ExtArgs["result"]["surveyVisit"]>
+
+  export type SurveyVisitSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    accreditationId?: boolean
+    targetLevel?: boolean
+    accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
+    level?: boolean | LevelDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["surveyVisit"]>
+
+  export type SurveyVisitSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    accreditationId?: boolean
+    targetLevel?: boolean
+    accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
+    level?: boolean | LevelDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["surveyVisit"]>
+
+  export type SurveyVisitSelectScalar = {
+    id?: boolean
+    accreditationId?: boolean
+    targetLevel?: boolean
+  }
+
+  export type SurveyVisitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accreditationId" | "targetLevel", ExtArgs["result"]["surveyVisit"]>
+  export type SurveyVisitInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
+    level?: boolean | LevelDefaultArgs<ExtArgs>
+    phaseOneRequirements?: boolean | SurveyVisit$phaseOneRequirementsArgs<ExtArgs>
+  }
+  export type SurveyVisitIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
+    level?: boolean | LevelDefaultArgs<ExtArgs>
+  }
+  export type SurveyVisitIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
+    level?: boolean | LevelDefaultArgs<ExtArgs>
+  }
+
+  export type $SurveyVisitPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SurveyVisit"
+    objects: {
+      accreditation: Prisma.$AccreditationPayload<ExtArgs>
+      level: Prisma.$LevelPayload<ExtArgs>
+      phaseOneRequirements: Prisma.$PhaseOneRequirementsPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      accreditationId: string
+      targetLevel: string
+    }, ExtArgs["result"]["surveyVisit"]>
+    composites: {}
+  }
+
+  type SurveyVisitGetPayload<S extends boolean | null | undefined | SurveyVisitDefaultArgs> = $Result.GetResult<Prisma.$SurveyVisitPayload, S>
+
+  type SurveyVisitCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SurveyVisitFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SurveyVisitCountAggregateInputType | true
+    }
+
+  export interface SurveyVisitDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SurveyVisit'], meta: { name: 'SurveyVisit' } }
+    /**
+     * Find zero or one SurveyVisit that matches the filter.
+     * @param {SurveyVisitFindUniqueArgs} args - Arguments to find a SurveyVisit
+     * @example
+     * // Get one SurveyVisit
+     * const surveyVisit = await prisma.surveyVisit.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SurveyVisitFindUniqueArgs>(args: SelectSubset<T, SurveyVisitFindUniqueArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SurveyVisit that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SurveyVisitFindUniqueOrThrowArgs} args - Arguments to find a SurveyVisit
+     * @example
+     * // Get one SurveyVisit
+     * const surveyVisit = await prisma.surveyVisit.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SurveyVisitFindUniqueOrThrowArgs>(args: SelectSubset<T, SurveyVisitFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SurveyVisit that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurveyVisitFindFirstArgs} args - Arguments to find a SurveyVisit
+     * @example
+     * // Get one SurveyVisit
+     * const surveyVisit = await prisma.surveyVisit.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SurveyVisitFindFirstArgs>(args?: SelectSubset<T, SurveyVisitFindFirstArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SurveyVisit that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurveyVisitFindFirstOrThrowArgs} args - Arguments to find a SurveyVisit
+     * @example
+     * // Get one SurveyVisit
+     * const surveyVisit = await prisma.surveyVisit.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SurveyVisitFindFirstOrThrowArgs>(args?: SelectSubset<T, SurveyVisitFindFirstOrThrowArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SurveyVisits that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurveyVisitFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SurveyVisits
+     * const surveyVisits = await prisma.surveyVisit.findMany()
+     * 
+     * // Get first 10 SurveyVisits
+     * const surveyVisits = await prisma.surveyVisit.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const surveyVisitWithIdOnly = await prisma.surveyVisit.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SurveyVisitFindManyArgs>(args?: SelectSubset<T, SurveyVisitFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SurveyVisit.
+     * @param {SurveyVisitCreateArgs} args - Arguments to create a SurveyVisit.
+     * @example
+     * // Create one SurveyVisit
+     * const SurveyVisit = await prisma.surveyVisit.create({
+     *   data: {
+     *     // ... data to create a SurveyVisit
+     *   }
+     * })
+     * 
+     */
+    create<T extends SurveyVisitCreateArgs>(args: SelectSubset<T, SurveyVisitCreateArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SurveyVisits.
+     * @param {SurveyVisitCreateManyArgs} args - Arguments to create many SurveyVisits.
+     * @example
+     * // Create many SurveyVisits
+     * const surveyVisit = await prisma.surveyVisit.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SurveyVisitCreateManyArgs>(args?: SelectSubset<T, SurveyVisitCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SurveyVisits and returns the data saved in the database.
+     * @param {SurveyVisitCreateManyAndReturnArgs} args - Arguments to create many SurveyVisits.
+     * @example
+     * // Create many SurveyVisits
+     * const surveyVisit = await prisma.surveyVisit.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SurveyVisits and only return the `id`
+     * const surveyVisitWithIdOnly = await prisma.surveyVisit.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SurveyVisitCreateManyAndReturnArgs>(args?: SelectSubset<T, SurveyVisitCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SurveyVisit.
+     * @param {SurveyVisitDeleteArgs} args - Arguments to delete one SurveyVisit.
+     * @example
+     * // Delete one SurveyVisit
+     * const SurveyVisit = await prisma.surveyVisit.delete({
+     *   where: {
+     *     // ... filter to delete one SurveyVisit
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SurveyVisitDeleteArgs>(args: SelectSubset<T, SurveyVisitDeleteArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SurveyVisit.
+     * @param {SurveyVisitUpdateArgs} args - Arguments to update one SurveyVisit.
+     * @example
+     * // Update one SurveyVisit
+     * const surveyVisit = await prisma.surveyVisit.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SurveyVisitUpdateArgs>(args: SelectSubset<T, SurveyVisitUpdateArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SurveyVisits.
+     * @param {SurveyVisitDeleteManyArgs} args - Arguments to filter SurveyVisits to delete.
+     * @example
+     * // Delete a few SurveyVisits
+     * const { count } = await prisma.surveyVisit.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SurveyVisitDeleteManyArgs>(args?: SelectSubset<T, SurveyVisitDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SurveyVisits.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurveyVisitUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SurveyVisits
+     * const surveyVisit = await prisma.surveyVisit.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SurveyVisitUpdateManyArgs>(args: SelectSubset<T, SurveyVisitUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SurveyVisits and returns the data updated in the database.
+     * @param {SurveyVisitUpdateManyAndReturnArgs} args - Arguments to update many SurveyVisits.
+     * @example
+     * // Update many SurveyVisits
+     * const surveyVisit = await prisma.surveyVisit.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SurveyVisits and only return the `id`
+     * const surveyVisitWithIdOnly = await prisma.surveyVisit.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SurveyVisitUpdateManyAndReturnArgs>(args: SelectSubset<T, SurveyVisitUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SurveyVisit.
+     * @param {SurveyVisitUpsertArgs} args - Arguments to update or create a SurveyVisit.
+     * @example
+     * // Update or create a SurveyVisit
+     * const surveyVisit = await prisma.surveyVisit.upsert({
+     *   create: {
+     *     // ... data to create a SurveyVisit
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SurveyVisit we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SurveyVisitUpsertArgs>(args: SelectSubset<T, SurveyVisitUpsertArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SurveyVisits.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurveyVisitCountArgs} args - Arguments to filter SurveyVisits to count.
+     * @example
+     * // Count the number of SurveyVisits
+     * const count = await prisma.surveyVisit.count({
+     *   where: {
+     *     // ... the filter for the SurveyVisits we want to count
+     *   }
+     * })
+    **/
+    count<T extends SurveyVisitCountArgs>(
+      args?: Subset<T, SurveyVisitCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SurveyVisitCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SurveyVisit.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurveyVisitAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SurveyVisitAggregateArgs>(args: Subset<T, SurveyVisitAggregateArgs>): Prisma.PrismaPromise<GetSurveyVisitAggregateType<T>>
+
+    /**
+     * Group by SurveyVisit.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurveyVisitGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SurveyVisitGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SurveyVisitGroupByArgs['orderBy'] }
+        : { orderBy?: SurveyVisitGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SurveyVisitGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSurveyVisitGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SurveyVisit model
+   */
+  readonly fields: SurveyVisitFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SurveyVisit.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SurveyVisitClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    accreditation<T extends AccreditationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AccreditationDefaultArgs<ExtArgs>>): Prisma__AccreditationClient<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    level<T extends LevelDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LevelDefaultArgs<ExtArgs>>): Prisma__LevelClient<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    phaseOneRequirements<T extends SurveyVisit$phaseOneRequirementsArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$phaseOneRequirementsArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SurveyVisit model
+   */
+  interface SurveyVisitFieldRefs {
+    readonly id: FieldRef<"SurveyVisit", 'String'>
+    readonly accreditationId: FieldRef<"SurveyVisit", 'String'>
+    readonly targetLevel: FieldRef<"SurveyVisit", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SurveyVisit findUnique
+   */
+  export type SurveyVisitFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    /**
+     * Filter, which SurveyVisit to fetch.
+     */
+    where: SurveyVisitWhereUniqueInput
+  }
+
+  /**
+   * SurveyVisit findUniqueOrThrow
+   */
+  export type SurveyVisitFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    /**
+     * Filter, which SurveyVisit to fetch.
+     */
+    where: SurveyVisitWhereUniqueInput
+  }
+
+  /**
+   * SurveyVisit findFirst
+   */
+  export type SurveyVisitFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    /**
+     * Filter, which SurveyVisit to fetch.
+     */
+    where?: SurveyVisitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SurveyVisits to fetch.
+     */
+    orderBy?: SurveyVisitOrderByWithRelationInput | SurveyVisitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SurveyVisits.
+     */
+    cursor?: SurveyVisitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SurveyVisits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SurveyVisits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SurveyVisits.
+     */
+    distinct?: SurveyVisitScalarFieldEnum | SurveyVisitScalarFieldEnum[]
+  }
+
+  /**
+   * SurveyVisit findFirstOrThrow
+   */
+  export type SurveyVisitFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    /**
+     * Filter, which SurveyVisit to fetch.
+     */
+    where?: SurveyVisitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SurveyVisits to fetch.
+     */
+    orderBy?: SurveyVisitOrderByWithRelationInput | SurveyVisitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SurveyVisits.
+     */
+    cursor?: SurveyVisitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SurveyVisits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SurveyVisits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SurveyVisits.
+     */
+    distinct?: SurveyVisitScalarFieldEnum | SurveyVisitScalarFieldEnum[]
+  }
+
+  /**
+   * SurveyVisit findMany
+   */
+  export type SurveyVisitFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    /**
+     * Filter, which SurveyVisits to fetch.
+     */
+    where?: SurveyVisitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SurveyVisits to fetch.
+     */
+    orderBy?: SurveyVisitOrderByWithRelationInput | SurveyVisitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SurveyVisits.
+     */
+    cursor?: SurveyVisitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SurveyVisits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SurveyVisits.
+     */
+    skip?: number
+    distinct?: SurveyVisitScalarFieldEnum | SurveyVisitScalarFieldEnum[]
+  }
+
+  /**
+   * SurveyVisit create
+   */
+  export type SurveyVisitCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SurveyVisit.
+     */
+    data: XOR<SurveyVisitCreateInput, SurveyVisitUncheckedCreateInput>
+  }
+
+  /**
+   * SurveyVisit createMany
+   */
+  export type SurveyVisitCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SurveyVisits.
+     */
+    data: SurveyVisitCreateManyInput | SurveyVisitCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SurveyVisit createManyAndReturn
+   */
+  export type SurveyVisitCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * The data used to create many SurveyVisits.
+     */
+    data: SurveyVisitCreateManyInput | SurveyVisitCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SurveyVisit update
+   */
+  export type SurveyVisitUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SurveyVisit.
+     */
+    data: XOR<SurveyVisitUpdateInput, SurveyVisitUncheckedUpdateInput>
+    /**
+     * Choose, which SurveyVisit to update.
+     */
+    where: SurveyVisitWhereUniqueInput
+  }
+
+  /**
+   * SurveyVisit updateMany
+   */
+  export type SurveyVisitUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SurveyVisits.
+     */
+    data: XOR<SurveyVisitUpdateManyMutationInput, SurveyVisitUncheckedUpdateManyInput>
+    /**
+     * Filter which SurveyVisits to update
+     */
+    where?: SurveyVisitWhereInput
+    /**
+     * Limit how many SurveyVisits to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SurveyVisit updateManyAndReturn
+   */
+  export type SurveyVisitUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * The data used to update SurveyVisits.
+     */
+    data: XOR<SurveyVisitUpdateManyMutationInput, SurveyVisitUncheckedUpdateManyInput>
+    /**
+     * Filter which SurveyVisits to update
+     */
+    where?: SurveyVisitWhereInput
+    /**
+     * Limit how many SurveyVisits to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SurveyVisit upsert
+   */
+  export type SurveyVisitUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SurveyVisit to update in case it exists.
+     */
+    where: SurveyVisitWhereUniqueInput
+    /**
+     * In case the SurveyVisit found by the `where` argument doesn't exist, create a new SurveyVisit with this data.
+     */
+    create: XOR<SurveyVisitCreateInput, SurveyVisitUncheckedCreateInput>
+    /**
+     * In case the SurveyVisit was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SurveyVisitUpdateInput, SurveyVisitUncheckedUpdateInput>
+  }
+
+  /**
+   * SurveyVisit delete
+   */
+  export type SurveyVisitDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    /**
+     * Filter which SurveyVisit to delete.
+     */
+    where: SurveyVisitWhereUniqueInput
+  }
+
+  /**
+   * SurveyVisit deleteMany
+   */
+  export type SurveyVisitDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SurveyVisits to delete
+     */
+    where?: SurveyVisitWhereInput
+    /**
+     * Limit how many SurveyVisits to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SurveyVisit.phaseOneRequirements
+   */
+  export type SurveyVisit$phaseOneRequirementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsInclude<ExtArgs> | null
+    where?: PhaseOneRequirementsWhereInput
+  }
+
+  /**
+   * SurveyVisit without action
+   */
+  export type SurveyVisitDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PhaseOneRequirements
+   */
+
+  export type AggregatePhaseOneRequirements = {
+    _count: PhaseOneRequirementsCountAggregateOutputType | null
+    _min: PhaseOneRequirementsMinAggregateOutputType | null
+    _max: PhaseOneRequirementsMaxAggregateOutputType | null
+  }
+
+  export type PhaseOneRequirementsMinAggregateOutputType = {
+    id: string | null
+    surveyVisitId: string | null
+    instrumentId: string | null
+  }
+
+  export type PhaseOneRequirementsMaxAggregateOutputType = {
+    id: string | null
+    surveyVisitId: string | null
+    instrumentId: string | null
+  }
+
+  export type PhaseOneRequirementsCountAggregateOutputType = {
+    id: number
+    surveyVisitId: number
+    instrumentId: number
+    _all: number
+  }
+
+
+  export type PhaseOneRequirementsMinAggregateInputType = {
+    id?: true
+    surveyVisitId?: true
+    instrumentId?: true
+  }
+
+  export type PhaseOneRequirementsMaxAggregateInputType = {
+    id?: true
+    surveyVisitId?: true
+    instrumentId?: true
+  }
+
+  export type PhaseOneRequirementsCountAggregateInputType = {
+    id?: true
+    surveyVisitId?: true
+    instrumentId?: true
+    _all?: true
+  }
+
+  export type PhaseOneRequirementsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PhaseOneRequirements to aggregate.
+     */
+    where?: PhaseOneRequirementsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseOneRequirements to fetch.
+     */
+    orderBy?: PhaseOneRequirementsOrderByWithRelationInput | PhaseOneRequirementsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PhaseOneRequirementsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseOneRequirements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseOneRequirements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PhaseOneRequirements
+    **/
+    _count?: true | PhaseOneRequirementsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PhaseOneRequirementsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PhaseOneRequirementsMaxAggregateInputType
+  }
+
+  export type GetPhaseOneRequirementsAggregateType<T extends PhaseOneRequirementsAggregateArgs> = {
+        [P in keyof T & keyof AggregatePhaseOneRequirements]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePhaseOneRequirements[P]>
+      : GetScalarType<T[P], AggregatePhaseOneRequirements[P]>
+  }
+
+
+
+
+  export type PhaseOneRequirementsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PhaseOneRequirementsWhereInput
+    orderBy?: PhaseOneRequirementsOrderByWithAggregationInput | PhaseOneRequirementsOrderByWithAggregationInput[]
+    by: PhaseOneRequirementsScalarFieldEnum[] | PhaseOneRequirementsScalarFieldEnum
+    having?: PhaseOneRequirementsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PhaseOneRequirementsCountAggregateInputType | true
+    _min?: PhaseOneRequirementsMinAggregateInputType
+    _max?: PhaseOneRequirementsMaxAggregateInputType
+  }
+
+  export type PhaseOneRequirementsGroupByOutputType = {
+    id: string
+    surveyVisitId: string
+    instrumentId: string
+    _count: PhaseOneRequirementsCountAggregateOutputType | null
+    _min: PhaseOneRequirementsMinAggregateOutputType | null
+    _max: PhaseOneRequirementsMaxAggregateOutputType | null
+  }
+
+  type GetPhaseOneRequirementsGroupByPayload<T extends PhaseOneRequirementsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PhaseOneRequirementsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PhaseOneRequirementsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PhaseOneRequirementsGroupByOutputType[P]>
+            : GetScalarType<T[P], PhaseOneRequirementsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PhaseOneRequirementsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    surveyVisitId?: boolean
+    instrumentId?: boolean
+    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+    instrumentFolder?: boolean | PhaseOneRequirements$instrumentFolderArgs<ExtArgs>
+  }, ExtArgs["result"]["phaseOneRequirements"]>
+
+  export type PhaseOneRequirementsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    surveyVisitId?: boolean
+    instrumentId?: boolean
+    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["phaseOneRequirements"]>
+
+  export type PhaseOneRequirementsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    surveyVisitId?: boolean
+    instrumentId?: boolean
+    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["phaseOneRequirements"]>
+
+  export type PhaseOneRequirementsSelectScalar = {
+    id?: boolean
+    surveyVisitId?: boolean
+    instrumentId?: boolean
+  }
+
+  export type PhaseOneRequirementsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "surveyVisitId" | "instrumentId", ExtArgs["result"]["phaseOneRequirements"]>
+  export type PhaseOneRequirementsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+    instrumentFolder?: boolean | PhaseOneRequirements$instrumentFolderArgs<ExtArgs>
+  }
+  export type PhaseOneRequirementsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+  }
+  export type PhaseOneRequirementsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+  }
+
+  export type $PhaseOneRequirementsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PhaseOneRequirements"
+    objects: {
+      surveyVisit: Prisma.$SurveyVisitPayload<ExtArgs>
+      instrument: Prisma.$InstrumentPayload<ExtArgs>
+      instrumentFolder: Prisma.$InstrumentFolderPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      surveyVisitId: string
+      instrumentId: string
+    }, ExtArgs["result"]["phaseOneRequirements"]>
+    composites: {}
+  }
+
+  type PhaseOneRequirementsGetPayload<S extends boolean | null | undefined | PhaseOneRequirementsDefaultArgs> = $Result.GetResult<Prisma.$PhaseOneRequirementsPayload, S>
+
+  type PhaseOneRequirementsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PhaseOneRequirementsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PhaseOneRequirementsCountAggregateInputType | true
+    }
+
+  export interface PhaseOneRequirementsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PhaseOneRequirements'], meta: { name: 'PhaseOneRequirements' } }
+    /**
+     * Find zero or one PhaseOneRequirements that matches the filter.
+     * @param {PhaseOneRequirementsFindUniqueArgs} args - Arguments to find a PhaseOneRequirements
+     * @example
+     * // Get one PhaseOneRequirements
+     * const phaseOneRequirements = await prisma.phaseOneRequirements.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PhaseOneRequirementsFindUniqueArgs>(args: SelectSubset<T, PhaseOneRequirementsFindUniqueArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PhaseOneRequirements that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PhaseOneRequirementsFindUniqueOrThrowArgs} args - Arguments to find a PhaseOneRequirements
+     * @example
+     * // Get one PhaseOneRequirements
+     * const phaseOneRequirements = await prisma.phaseOneRequirements.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PhaseOneRequirementsFindUniqueOrThrowArgs>(args: SelectSubset<T, PhaseOneRequirementsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PhaseOneRequirements that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseOneRequirementsFindFirstArgs} args - Arguments to find a PhaseOneRequirements
+     * @example
+     * // Get one PhaseOneRequirements
+     * const phaseOneRequirements = await prisma.phaseOneRequirements.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PhaseOneRequirementsFindFirstArgs>(args?: SelectSubset<T, PhaseOneRequirementsFindFirstArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PhaseOneRequirements that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseOneRequirementsFindFirstOrThrowArgs} args - Arguments to find a PhaseOneRequirements
+     * @example
+     * // Get one PhaseOneRequirements
+     * const phaseOneRequirements = await prisma.phaseOneRequirements.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PhaseOneRequirementsFindFirstOrThrowArgs>(args?: SelectSubset<T, PhaseOneRequirementsFindFirstOrThrowArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PhaseOneRequirements that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseOneRequirementsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PhaseOneRequirements
+     * const phaseOneRequirements = await prisma.phaseOneRequirements.findMany()
+     * 
+     * // Get first 10 PhaseOneRequirements
+     * const phaseOneRequirements = await prisma.phaseOneRequirements.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const phaseOneRequirementsWithIdOnly = await prisma.phaseOneRequirements.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PhaseOneRequirementsFindManyArgs>(args?: SelectSubset<T, PhaseOneRequirementsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PhaseOneRequirements.
+     * @param {PhaseOneRequirementsCreateArgs} args - Arguments to create a PhaseOneRequirements.
+     * @example
+     * // Create one PhaseOneRequirements
+     * const PhaseOneRequirements = await prisma.phaseOneRequirements.create({
+     *   data: {
+     *     // ... data to create a PhaseOneRequirements
+     *   }
+     * })
+     * 
+     */
+    create<T extends PhaseOneRequirementsCreateArgs>(args: SelectSubset<T, PhaseOneRequirementsCreateArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PhaseOneRequirements.
+     * @param {PhaseOneRequirementsCreateManyArgs} args - Arguments to create many PhaseOneRequirements.
+     * @example
+     * // Create many PhaseOneRequirements
+     * const phaseOneRequirements = await prisma.phaseOneRequirements.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PhaseOneRequirementsCreateManyArgs>(args?: SelectSubset<T, PhaseOneRequirementsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PhaseOneRequirements and returns the data saved in the database.
+     * @param {PhaseOneRequirementsCreateManyAndReturnArgs} args - Arguments to create many PhaseOneRequirements.
+     * @example
+     * // Create many PhaseOneRequirements
+     * const phaseOneRequirements = await prisma.phaseOneRequirements.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PhaseOneRequirements and only return the `id`
+     * const phaseOneRequirementsWithIdOnly = await prisma.phaseOneRequirements.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PhaseOneRequirementsCreateManyAndReturnArgs>(args?: SelectSubset<T, PhaseOneRequirementsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PhaseOneRequirements.
+     * @param {PhaseOneRequirementsDeleteArgs} args - Arguments to delete one PhaseOneRequirements.
+     * @example
+     * // Delete one PhaseOneRequirements
+     * const PhaseOneRequirements = await prisma.phaseOneRequirements.delete({
+     *   where: {
+     *     // ... filter to delete one PhaseOneRequirements
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PhaseOneRequirementsDeleteArgs>(args: SelectSubset<T, PhaseOneRequirementsDeleteArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PhaseOneRequirements.
+     * @param {PhaseOneRequirementsUpdateArgs} args - Arguments to update one PhaseOneRequirements.
+     * @example
+     * // Update one PhaseOneRequirements
+     * const phaseOneRequirements = await prisma.phaseOneRequirements.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PhaseOneRequirementsUpdateArgs>(args: SelectSubset<T, PhaseOneRequirementsUpdateArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PhaseOneRequirements.
+     * @param {PhaseOneRequirementsDeleteManyArgs} args - Arguments to filter PhaseOneRequirements to delete.
+     * @example
+     * // Delete a few PhaseOneRequirements
+     * const { count } = await prisma.phaseOneRequirements.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PhaseOneRequirementsDeleteManyArgs>(args?: SelectSubset<T, PhaseOneRequirementsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PhaseOneRequirements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseOneRequirementsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PhaseOneRequirements
+     * const phaseOneRequirements = await prisma.phaseOneRequirements.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PhaseOneRequirementsUpdateManyArgs>(args: SelectSubset<T, PhaseOneRequirementsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PhaseOneRequirements and returns the data updated in the database.
+     * @param {PhaseOneRequirementsUpdateManyAndReturnArgs} args - Arguments to update many PhaseOneRequirements.
+     * @example
+     * // Update many PhaseOneRequirements
+     * const phaseOneRequirements = await prisma.phaseOneRequirements.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PhaseOneRequirements and only return the `id`
+     * const phaseOneRequirementsWithIdOnly = await prisma.phaseOneRequirements.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PhaseOneRequirementsUpdateManyAndReturnArgs>(args: SelectSubset<T, PhaseOneRequirementsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PhaseOneRequirements.
+     * @param {PhaseOneRequirementsUpsertArgs} args - Arguments to update or create a PhaseOneRequirements.
+     * @example
+     * // Update or create a PhaseOneRequirements
+     * const phaseOneRequirements = await prisma.phaseOneRequirements.upsert({
+     *   create: {
+     *     // ... data to create a PhaseOneRequirements
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PhaseOneRequirements we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PhaseOneRequirementsUpsertArgs>(args: SelectSubset<T, PhaseOneRequirementsUpsertArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PhaseOneRequirements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseOneRequirementsCountArgs} args - Arguments to filter PhaseOneRequirements to count.
+     * @example
+     * // Count the number of PhaseOneRequirements
+     * const count = await prisma.phaseOneRequirements.count({
+     *   where: {
+     *     // ... the filter for the PhaseOneRequirements we want to count
+     *   }
+     * })
+    **/
+    count<T extends PhaseOneRequirementsCountArgs>(
+      args?: Subset<T, PhaseOneRequirementsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PhaseOneRequirementsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PhaseOneRequirements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseOneRequirementsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PhaseOneRequirementsAggregateArgs>(args: Subset<T, PhaseOneRequirementsAggregateArgs>): Prisma.PrismaPromise<GetPhaseOneRequirementsAggregateType<T>>
+
+    /**
+     * Group by PhaseOneRequirements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseOneRequirementsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PhaseOneRequirementsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PhaseOneRequirementsGroupByArgs['orderBy'] }
+        : { orderBy?: PhaseOneRequirementsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PhaseOneRequirementsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPhaseOneRequirementsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PhaseOneRequirements model
+   */
+  readonly fields: PhaseOneRequirementsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PhaseOneRequirements.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PhaseOneRequirementsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    surveyVisit<T extends SurveyVisitDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisitDefaultArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    instrument<T extends InstrumentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InstrumentDefaultArgs<ExtArgs>>): Prisma__InstrumentClient<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    instrumentFolder<T extends PhaseOneRequirements$instrumentFolderArgs<ExtArgs> = {}>(args?: Subset<T, PhaseOneRequirements$instrumentFolderArgs<ExtArgs>>): Prisma__InstrumentFolderClient<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PhaseOneRequirements model
+   */
+  interface PhaseOneRequirementsFieldRefs {
+    readonly id: FieldRef<"PhaseOneRequirements", 'String'>
+    readonly surveyVisitId: FieldRef<"PhaseOneRequirements", 'String'>
+    readonly instrumentId: FieldRef<"PhaseOneRequirements", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PhaseOneRequirements findUnique
+   */
+  export type PhaseOneRequirementsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseOneRequirements to fetch.
+     */
+    where: PhaseOneRequirementsWhereUniqueInput
+  }
+
+  /**
+   * PhaseOneRequirements findUniqueOrThrow
+   */
+  export type PhaseOneRequirementsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseOneRequirements to fetch.
+     */
+    where: PhaseOneRequirementsWhereUniqueInput
+  }
+
+  /**
+   * PhaseOneRequirements findFirst
+   */
+  export type PhaseOneRequirementsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseOneRequirements to fetch.
+     */
+    where?: PhaseOneRequirementsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseOneRequirements to fetch.
+     */
+    orderBy?: PhaseOneRequirementsOrderByWithRelationInput | PhaseOneRequirementsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PhaseOneRequirements.
+     */
+    cursor?: PhaseOneRequirementsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseOneRequirements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseOneRequirements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PhaseOneRequirements.
+     */
+    distinct?: PhaseOneRequirementsScalarFieldEnum | PhaseOneRequirementsScalarFieldEnum[]
+  }
+
+  /**
+   * PhaseOneRequirements findFirstOrThrow
+   */
+  export type PhaseOneRequirementsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseOneRequirements to fetch.
+     */
+    where?: PhaseOneRequirementsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseOneRequirements to fetch.
+     */
+    orderBy?: PhaseOneRequirementsOrderByWithRelationInput | PhaseOneRequirementsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PhaseOneRequirements.
+     */
+    cursor?: PhaseOneRequirementsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseOneRequirements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseOneRequirements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PhaseOneRequirements.
+     */
+    distinct?: PhaseOneRequirementsScalarFieldEnum | PhaseOneRequirementsScalarFieldEnum[]
+  }
+
+  /**
+   * PhaseOneRequirements findMany
+   */
+  export type PhaseOneRequirementsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseOneRequirements to fetch.
+     */
+    where?: PhaseOneRequirementsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseOneRequirements to fetch.
+     */
+    orderBy?: PhaseOneRequirementsOrderByWithRelationInput | PhaseOneRequirementsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PhaseOneRequirements.
+     */
+    cursor?: PhaseOneRequirementsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseOneRequirements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseOneRequirements.
+     */
+    skip?: number
+    distinct?: PhaseOneRequirementsScalarFieldEnum | PhaseOneRequirementsScalarFieldEnum[]
+  }
+
+  /**
+   * PhaseOneRequirements create
+   */
+  export type PhaseOneRequirementsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PhaseOneRequirements.
+     */
+    data: XOR<PhaseOneRequirementsCreateInput, PhaseOneRequirementsUncheckedCreateInput>
+  }
+
+  /**
+   * PhaseOneRequirements createMany
+   */
+  export type PhaseOneRequirementsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PhaseOneRequirements.
+     */
+    data: PhaseOneRequirementsCreateManyInput | PhaseOneRequirementsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PhaseOneRequirements createManyAndReturn
+   */
+  export type PhaseOneRequirementsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * The data used to create many PhaseOneRequirements.
+     */
+    data: PhaseOneRequirementsCreateManyInput | PhaseOneRequirementsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PhaseOneRequirements update
+   */
+  export type PhaseOneRequirementsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PhaseOneRequirements.
+     */
+    data: XOR<PhaseOneRequirementsUpdateInput, PhaseOneRequirementsUncheckedUpdateInput>
+    /**
+     * Choose, which PhaseOneRequirements to update.
+     */
+    where: PhaseOneRequirementsWhereUniqueInput
+  }
+
+  /**
+   * PhaseOneRequirements updateMany
+   */
+  export type PhaseOneRequirementsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PhaseOneRequirements.
+     */
+    data: XOR<PhaseOneRequirementsUpdateManyMutationInput, PhaseOneRequirementsUncheckedUpdateManyInput>
+    /**
+     * Filter which PhaseOneRequirements to update
+     */
+    where?: PhaseOneRequirementsWhereInput
+    /**
+     * Limit how many PhaseOneRequirements to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PhaseOneRequirements updateManyAndReturn
+   */
+  export type PhaseOneRequirementsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * The data used to update PhaseOneRequirements.
+     */
+    data: XOR<PhaseOneRequirementsUpdateManyMutationInput, PhaseOneRequirementsUncheckedUpdateManyInput>
+    /**
+     * Filter which PhaseOneRequirements to update
+     */
+    where?: PhaseOneRequirementsWhereInput
+    /**
+     * Limit how many PhaseOneRequirements to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PhaseOneRequirements upsert
+   */
+  export type PhaseOneRequirementsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PhaseOneRequirements to update in case it exists.
+     */
+    where: PhaseOneRequirementsWhereUniqueInput
+    /**
+     * In case the PhaseOneRequirements found by the `where` argument doesn't exist, create a new PhaseOneRequirements with this data.
+     */
+    create: XOR<PhaseOneRequirementsCreateInput, PhaseOneRequirementsUncheckedCreateInput>
+    /**
+     * In case the PhaseOneRequirements was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PhaseOneRequirementsUpdateInput, PhaseOneRequirementsUncheckedUpdateInput>
+  }
+
+  /**
+   * PhaseOneRequirements delete
+   */
+  export type PhaseOneRequirementsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsInclude<ExtArgs> | null
+    /**
+     * Filter which PhaseOneRequirements to delete.
+     */
+    where: PhaseOneRequirementsWhereUniqueInput
+  }
+
+  /**
+   * PhaseOneRequirements deleteMany
+   */
+  export type PhaseOneRequirementsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PhaseOneRequirements to delete
+     */
+    where?: PhaseOneRequirementsWhereInput
+    /**
+     * Limit how many PhaseOneRequirements to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PhaseOneRequirements.instrumentFolder
+   */
+  export type PhaseOneRequirements$instrumentFolderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentFolder
+     */
+    select?: InstrumentFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InstrumentFolder
+     */
+    omit?: InstrumentFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentFolderInclude<ExtArgs> | null
+    where?: InstrumentFolderWhereInput
+  }
+
+  /**
+   * PhaseOneRequirements without action
+   */
+  export type PhaseOneRequirementsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model InstrumentFolder
+   */
+
+  export type AggregateInstrumentFolder = {
+    _count: InstrumentFolderCountAggregateOutputType | null
+    _min: InstrumentFolderMinAggregateOutputType | null
+    _max: InstrumentFolderMaxAggregateOutputType | null
+  }
+
+  export type InstrumentFolderMinAggregateOutputType = {
+    id: string | null
+    phaseOneRequirementsId: string | null
+    folderId: string | null
+  }
+
+  export type InstrumentFolderMaxAggregateOutputType = {
+    id: string | null
+    phaseOneRequirementsId: string | null
+    folderId: string | null
+  }
+
+  export type InstrumentFolderCountAggregateOutputType = {
+    id: number
+    phaseOneRequirementsId: number
+    folderId: number
+    _all: number
+  }
+
+
+  export type InstrumentFolderMinAggregateInputType = {
+    id?: true
+    phaseOneRequirementsId?: true
+    folderId?: true
+  }
+
+  export type InstrumentFolderMaxAggregateInputType = {
+    id?: true
+    phaseOneRequirementsId?: true
+    folderId?: true
+  }
+
+  export type InstrumentFolderCountAggregateInputType = {
+    id?: true
+    phaseOneRequirementsId?: true
+    folderId?: true
+    _all?: true
+  }
+
+  export type InstrumentFolderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InstrumentFolder to aggregate.
+     */
+    where?: InstrumentFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InstrumentFolders to fetch.
+     */
+    orderBy?: InstrumentFolderOrderByWithRelationInput | InstrumentFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InstrumentFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InstrumentFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InstrumentFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned InstrumentFolders
+    **/
+    _count?: true | InstrumentFolderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InstrumentFolderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InstrumentFolderMaxAggregateInputType
+  }
+
+  export type GetInstrumentFolderAggregateType<T extends InstrumentFolderAggregateArgs> = {
+        [P in keyof T & keyof AggregateInstrumentFolder]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInstrumentFolder[P]>
+      : GetScalarType<T[P], AggregateInstrumentFolder[P]>
+  }
+
+
+
+
+  export type InstrumentFolderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InstrumentFolderWhereInput
+    orderBy?: InstrumentFolderOrderByWithAggregationInput | InstrumentFolderOrderByWithAggregationInput[]
+    by: InstrumentFolderScalarFieldEnum[] | InstrumentFolderScalarFieldEnum
+    having?: InstrumentFolderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InstrumentFolderCountAggregateInputType | true
+    _min?: InstrumentFolderMinAggregateInputType
+    _max?: InstrumentFolderMaxAggregateInputType
+  }
+
+  export type InstrumentFolderGroupByOutputType = {
+    id: string
+    phaseOneRequirementsId: string
+    folderId: string
+    _count: InstrumentFolderCountAggregateOutputType | null
+    _min: InstrumentFolderMinAggregateOutputType | null
+    _max: InstrumentFolderMaxAggregateOutputType | null
+  }
+
+  type GetInstrumentFolderGroupByPayload<T extends InstrumentFolderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InstrumentFolderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InstrumentFolderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InstrumentFolderGroupByOutputType[P]>
+            : GetScalarType<T[P], InstrumentFolderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InstrumentFolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    phaseOneRequirementsId?: boolean
+    folderId?: boolean
+    phaseOneRequirements?: boolean | PhaseOneRequirementsDefaultArgs<ExtArgs>
+    areaFolders?: boolean | InstrumentFolder$areaFoldersArgs<ExtArgs>
+    _count?: boolean | InstrumentFolderCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["instrumentFolder"]>
+
+  export type InstrumentFolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    phaseOneRequirementsId?: boolean
+    folderId?: boolean
+    phaseOneRequirements?: boolean | PhaseOneRequirementsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["instrumentFolder"]>
+
+  export type InstrumentFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    phaseOneRequirementsId?: boolean
+    folderId?: boolean
+    phaseOneRequirements?: boolean | PhaseOneRequirementsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["instrumentFolder"]>
+
+  export type InstrumentFolderSelectScalar = {
+    id?: boolean
+    phaseOneRequirementsId?: boolean
+    folderId?: boolean
+  }
+
+  export type InstrumentFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseOneRequirementsId" | "folderId", ExtArgs["result"]["instrumentFolder"]>
+  export type InstrumentFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phaseOneRequirements?: boolean | PhaseOneRequirementsDefaultArgs<ExtArgs>
+    areaFolders?: boolean | InstrumentFolder$areaFoldersArgs<ExtArgs>
+    _count?: boolean | InstrumentFolderCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type InstrumentFolderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phaseOneRequirements?: boolean | PhaseOneRequirementsDefaultArgs<ExtArgs>
+  }
+  export type InstrumentFolderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phaseOneRequirements?: boolean | PhaseOneRequirementsDefaultArgs<ExtArgs>
+  }
+
+  export type $InstrumentFolderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InstrumentFolder"
+    objects: {
+      phaseOneRequirements: Prisma.$PhaseOneRequirementsPayload<ExtArgs>
+      areaFolders: Prisma.$AreaFolderPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      phaseOneRequirementsId: string
+      folderId: string
+    }, ExtArgs["result"]["instrumentFolder"]>
+    composites: {}
+  }
+
+  type InstrumentFolderGetPayload<S extends boolean | null | undefined | InstrumentFolderDefaultArgs> = $Result.GetResult<Prisma.$InstrumentFolderPayload, S>
+
+  type InstrumentFolderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InstrumentFolderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InstrumentFolderCountAggregateInputType | true
+    }
+
+  export interface InstrumentFolderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InstrumentFolder'], meta: { name: 'InstrumentFolder' } }
+    /**
+     * Find zero or one InstrumentFolder that matches the filter.
+     * @param {InstrumentFolderFindUniqueArgs} args - Arguments to find a InstrumentFolder
+     * @example
+     * // Get one InstrumentFolder
+     * const instrumentFolder = await prisma.instrumentFolder.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InstrumentFolderFindUniqueArgs>(args: SelectSubset<T, InstrumentFolderFindUniqueArgs<ExtArgs>>): Prisma__InstrumentFolderClient<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one InstrumentFolder that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InstrumentFolderFindUniqueOrThrowArgs} args - Arguments to find a InstrumentFolder
+     * @example
+     * // Get one InstrumentFolder
+     * const instrumentFolder = await prisma.instrumentFolder.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InstrumentFolderFindUniqueOrThrowArgs>(args: SelectSubset<T, InstrumentFolderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InstrumentFolderClient<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InstrumentFolder that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InstrumentFolderFindFirstArgs} args - Arguments to find a InstrumentFolder
+     * @example
+     * // Get one InstrumentFolder
+     * const instrumentFolder = await prisma.instrumentFolder.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InstrumentFolderFindFirstArgs>(args?: SelectSubset<T, InstrumentFolderFindFirstArgs<ExtArgs>>): Prisma__InstrumentFolderClient<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InstrumentFolder that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InstrumentFolderFindFirstOrThrowArgs} args - Arguments to find a InstrumentFolder
+     * @example
+     * // Get one InstrumentFolder
+     * const instrumentFolder = await prisma.instrumentFolder.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InstrumentFolderFindFirstOrThrowArgs>(args?: SelectSubset<T, InstrumentFolderFindFirstOrThrowArgs<ExtArgs>>): Prisma__InstrumentFolderClient<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more InstrumentFolders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InstrumentFolderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all InstrumentFolders
+     * const instrumentFolders = await prisma.instrumentFolder.findMany()
+     * 
+     * // Get first 10 InstrumentFolders
+     * const instrumentFolders = await prisma.instrumentFolder.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const instrumentFolderWithIdOnly = await prisma.instrumentFolder.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InstrumentFolderFindManyArgs>(args?: SelectSubset<T, InstrumentFolderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a InstrumentFolder.
+     * @param {InstrumentFolderCreateArgs} args - Arguments to create a InstrumentFolder.
+     * @example
+     * // Create one InstrumentFolder
+     * const InstrumentFolder = await prisma.instrumentFolder.create({
+     *   data: {
+     *     // ... data to create a InstrumentFolder
+     *   }
+     * })
+     * 
+     */
+    create<T extends InstrumentFolderCreateArgs>(args: SelectSubset<T, InstrumentFolderCreateArgs<ExtArgs>>): Prisma__InstrumentFolderClient<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many InstrumentFolders.
+     * @param {InstrumentFolderCreateManyArgs} args - Arguments to create many InstrumentFolders.
+     * @example
+     * // Create many InstrumentFolders
+     * const instrumentFolder = await prisma.instrumentFolder.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InstrumentFolderCreateManyArgs>(args?: SelectSubset<T, InstrumentFolderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many InstrumentFolders and returns the data saved in the database.
+     * @param {InstrumentFolderCreateManyAndReturnArgs} args - Arguments to create many InstrumentFolders.
+     * @example
+     * // Create many InstrumentFolders
+     * const instrumentFolder = await prisma.instrumentFolder.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many InstrumentFolders and only return the `id`
+     * const instrumentFolderWithIdOnly = await prisma.instrumentFolder.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends InstrumentFolderCreateManyAndReturnArgs>(args?: SelectSubset<T, InstrumentFolderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a InstrumentFolder.
+     * @param {InstrumentFolderDeleteArgs} args - Arguments to delete one InstrumentFolder.
+     * @example
+     * // Delete one InstrumentFolder
+     * const InstrumentFolder = await prisma.instrumentFolder.delete({
+     *   where: {
+     *     // ... filter to delete one InstrumentFolder
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InstrumentFolderDeleteArgs>(args: SelectSubset<T, InstrumentFolderDeleteArgs<ExtArgs>>): Prisma__InstrumentFolderClient<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one InstrumentFolder.
+     * @param {InstrumentFolderUpdateArgs} args - Arguments to update one InstrumentFolder.
+     * @example
+     * // Update one InstrumentFolder
+     * const instrumentFolder = await prisma.instrumentFolder.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InstrumentFolderUpdateArgs>(args: SelectSubset<T, InstrumentFolderUpdateArgs<ExtArgs>>): Prisma__InstrumentFolderClient<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more InstrumentFolders.
+     * @param {InstrumentFolderDeleteManyArgs} args - Arguments to filter InstrumentFolders to delete.
+     * @example
+     * // Delete a few InstrumentFolders
+     * const { count } = await prisma.instrumentFolder.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InstrumentFolderDeleteManyArgs>(args?: SelectSubset<T, InstrumentFolderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InstrumentFolders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InstrumentFolderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many InstrumentFolders
+     * const instrumentFolder = await prisma.instrumentFolder.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InstrumentFolderUpdateManyArgs>(args: SelectSubset<T, InstrumentFolderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InstrumentFolders and returns the data updated in the database.
+     * @param {InstrumentFolderUpdateManyAndReturnArgs} args - Arguments to update many InstrumentFolders.
+     * @example
+     * // Update many InstrumentFolders
+     * const instrumentFolder = await prisma.instrumentFolder.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more InstrumentFolders and only return the `id`
+     * const instrumentFolderWithIdOnly = await prisma.instrumentFolder.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends InstrumentFolderUpdateManyAndReturnArgs>(args: SelectSubset<T, InstrumentFolderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one InstrumentFolder.
+     * @param {InstrumentFolderUpsertArgs} args - Arguments to update or create a InstrumentFolder.
+     * @example
+     * // Update or create a InstrumentFolder
+     * const instrumentFolder = await prisma.instrumentFolder.upsert({
+     *   create: {
+     *     // ... data to create a InstrumentFolder
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the InstrumentFolder we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InstrumentFolderUpsertArgs>(args: SelectSubset<T, InstrumentFolderUpsertArgs<ExtArgs>>): Prisma__InstrumentFolderClient<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of InstrumentFolders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InstrumentFolderCountArgs} args - Arguments to filter InstrumentFolders to count.
+     * @example
+     * // Count the number of InstrumentFolders
+     * const count = await prisma.instrumentFolder.count({
+     *   where: {
+     *     // ... the filter for the InstrumentFolders we want to count
+     *   }
+     * })
+    **/
+    count<T extends InstrumentFolderCountArgs>(
+      args?: Subset<T, InstrumentFolderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InstrumentFolderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a InstrumentFolder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InstrumentFolderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InstrumentFolderAggregateArgs>(args: Subset<T, InstrumentFolderAggregateArgs>): Prisma.PrismaPromise<GetInstrumentFolderAggregateType<T>>
+
+    /**
+     * Group by InstrumentFolder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InstrumentFolderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InstrumentFolderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InstrumentFolderGroupByArgs['orderBy'] }
+        : { orderBy?: InstrumentFolderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InstrumentFolderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInstrumentFolderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the InstrumentFolder model
+   */
+  readonly fields: InstrumentFolderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for InstrumentFolder.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InstrumentFolderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    phaseOneRequirements<T extends PhaseOneRequirementsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PhaseOneRequirementsDefaultArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    areaFolders<T extends InstrumentFolder$areaFoldersArgs<ExtArgs> = {}>(args?: Subset<T, InstrumentFolder$areaFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the InstrumentFolder model
+   */
+  interface InstrumentFolderFieldRefs {
+    readonly id: FieldRef<"InstrumentFolder", 'String'>
+    readonly phaseOneRequirementsId: FieldRef<"InstrumentFolder", 'String'>
+    readonly folderId: FieldRef<"InstrumentFolder", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * InstrumentFolder findUnique
+   */
+  export type InstrumentFolderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentFolder
+     */
+    select?: InstrumentFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InstrumentFolder
+     */
+    omit?: InstrumentFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which InstrumentFolder to fetch.
+     */
+    where: InstrumentFolderWhereUniqueInput
+  }
+
+  /**
+   * InstrumentFolder findUniqueOrThrow
+   */
+  export type InstrumentFolderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentFolder
+     */
+    select?: InstrumentFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InstrumentFolder
+     */
+    omit?: InstrumentFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which InstrumentFolder to fetch.
+     */
+    where: InstrumentFolderWhereUniqueInput
+  }
+
+  /**
+   * InstrumentFolder findFirst
+   */
+  export type InstrumentFolderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentFolder
+     */
+    select?: InstrumentFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InstrumentFolder
+     */
+    omit?: InstrumentFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which InstrumentFolder to fetch.
+     */
+    where?: InstrumentFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InstrumentFolders to fetch.
+     */
+    orderBy?: InstrumentFolderOrderByWithRelationInput | InstrumentFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InstrumentFolders.
+     */
+    cursor?: InstrumentFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InstrumentFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InstrumentFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InstrumentFolders.
+     */
+    distinct?: InstrumentFolderScalarFieldEnum | InstrumentFolderScalarFieldEnum[]
+  }
+
+  /**
+   * InstrumentFolder findFirstOrThrow
+   */
+  export type InstrumentFolderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentFolder
+     */
+    select?: InstrumentFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InstrumentFolder
+     */
+    omit?: InstrumentFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which InstrumentFolder to fetch.
+     */
+    where?: InstrumentFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InstrumentFolders to fetch.
+     */
+    orderBy?: InstrumentFolderOrderByWithRelationInput | InstrumentFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InstrumentFolders.
+     */
+    cursor?: InstrumentFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InstrumentFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InstrumentFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InstrumentFolders.
+     */
+    distinct?: InstrumentFolderScalarFieldEnum | InstrumentFolderScalarFieldEnum[]
+  }
+
+  /**
+   * InstrumentFolder findMany
+   */
+  export type InstrumentFolderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentFolder
+     */
+    select?: InstrumentFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InstrumentFolder
+     */
+    omit?: InstrumentFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which InstrumentFolders to fetch.
+     */
+    where?: InstrumentFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InstrumentFolders to fetch.
+     */
+    orderBy?: InstrumentFolderOrderByWithRelationInput | InstrumentFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing InstrumentFolders.
+     */
+    cursor?: InstrumentFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InstrumentFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InstrumentFolders.
+     */
+    skip?: number
+    distinct?: InstrumentFolderScalarFieldEnum | InstrumentFolderScalarFieldEnum[]
+  }
+
+  /**
+   * InstrumentFolder create
+   */
+  export type InstrumentFolderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentFolder
+     */
+    select?: InstrumentFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InstrumentFolder
+     */
+    omit?: InstrumentFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentFolderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a InstrumentFolder.
+     */
+    data: XOR<InstrumentFolderCreateInput, InstrumentFolderUncheckedCreateInput>
+  }
+
+  /**
+   * InstrumentFolder createMany
+   */
+  export type InstrumentFolderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many InstrumentFolders.
+     */
+    data: InstrumentFolderCreateManyInput | InstrumentFolderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * InstrumentFolder createManyAndReturn
+   */
+  export type InstrumentFolderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentFolder
+     */
+    select?: InstrumentFolderSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the InstrumentFolder
+     */
+    omit?: InstrumentFolderOmit<ExtArgs> | null
+    /**
+     * The data used to create many InstrumentFolders.
+     */
+    data: InstrumentFolderCreateManyInput | InstrumentFolderCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentFolderIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * InstrumentFolder update
+   */
+  export type InstrumentFolderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentFolder
+     */
+    select?: InstrumentFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InstrumentFolder
+     */
+    omit?: InstrumentFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentFolderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a InstrumentFolder.
+     */
+    data: XOR<InstrumentFolderUpdateInput, InstrumentFolderUncheckedUpdateInput>
+    /**
+     * Choose, which InstrumentFolder to update.
+     */
+    where: InstrumentFolderWhereUniqueInput
+  }
+
+  /**
+   * InstrumentFolder updateMany
+   */
+  export type InstrumentFolderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update InstrumentFolders.
+     */
+    data: XOR<InstrumentFolderUpdateManyMutationInput, InstrumentFolderUncheckedUpdateManyInput>
+    /**
+     * Filter which InstrumentFolders to update
+     */
+    where?: InstrumentFolderWhereInput
+    /**
+     * Limit how many InstrumentFolders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * InstrumentFolder updateManyAndReturn
+   */
+  export type InstrumentFolderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentFolder
+     */
+    select?: InstrumentFolderSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the InstrumentFolder
+     */
+    omit?: InstrumentFolderOmit<ExtArgs> | null
+    /**
+     * The data used to update InstrumentFolders.
+     */
+    data: XOR<InstrumentFolderUpdateManyMutationInput, InstrumentFolderUncheckedUpdateManyInput>
+    /**
+     * Filter which InstrumentFolders to update
+     */
+    where?: InstrumentFolderWhereInput
+    /**
+     * Limit how many InstrumentFolders to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentFolderIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * InstrumentFolder upsert
+   */
+  export type InstrumentFolderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentFolder
+     */
+    select?: InstrumentFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InstrumentFolder
+     */
+    omit?: InstrumentFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentFolderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the InstrumentFolder to update in case it exists.
+     */
+    where: InstrumentFolderWhereUniqueInput
+    /**
+     * In case the InstrumentFolder found by the `where` argument doesn't exist, create a new InstrumentFolder with this data.
+     */
+    create: XOR<InstrumentFolderCreateInput, InstrumentFolderUncheckedCreateInput>
+    /**
+     * In case the InstrumentFolder was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InstrumentFolderUpdateInput, InstrumentFolderUncheckedUpdateInput>
+  }
+
+  /**
+   * InstrumentFolder delete
+   */
+  export type InstrumentFolderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentFolder
+     */
+    select?: InstrumentFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InstrumentFolder
+     */
+    omit?: InstrumentFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentFolderInclude<ExtArgs> | null
+    /**
+     * Filter which InstrumentFolder to delete.
+     */
+    where: InstrumentFolderWhereUniqueInput
+  }
+
+  /**
+   * InstrumentFolder deleteMany
+   */
+  export type InstrumentFolderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InstrumentFolders to delete
+     */
+    where?: InstrumentFolderWhereInput
+    /**
+     * Limit how many InstrumentFolders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * InstrumentFolder.areaFolders
+   */
+  export type InstrumentFolder$areaFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    where?: AreaFolderWhereInput
+    orderBy?: AreaFolderOrderByWithRelationInput | AreaFolderOrderByWithRelationInput[]
+    cursor?: AreaFolderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AreaFolderScalarFieldEnum | AreaFolderScalarFieldEnum[]
+  }
+
+  /**
+   * InstrumentFolder without action
+   */
+  export type InstrumentFolderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InstrumentFolder
+     */
+    select?: InstrumentFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InstrumentFolder
+     */
+    omit?: InstrumentFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InstrumentFolderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AreaFolder
+   */
+
+  export type AggregateAreaFolder = {
+    _count: AreaFolderCountAggregateOutputType | null
+    _avg: AreaFolderAvgAggregateOutputType | null
+    _sum: AreaFolderSumAggregateOutputType | null
+    _min: AreaFolderMinAggregateOutputType | null
+    _max: AreaFolderMaxAggregateOutputType | null
+  }
+
+  export type AreaFolderAvgAggregateOutputType = {
+    areaId: number | null
+  }
+
+  export type AreaFolderSumAggregateOutputType = {
+    areaId: number | null
+  }
+
+  export type AreaFolderMinAggregateOutputType = {
+    id: string | null
+    instrumentFolderId: string | null
+    folderId: string | null
+    areaId: number | null
+  }
+
+  export type AreaFolderMaxAggregateOutputType = {
+    id: string | null
+    instrumentFolderId: string | null
+    folderId: string | null
+    areaId: number | null
+  }
+
+  export type AreaFolderCountAggregateOutputType = {
+    id: number
+    instrumentFolderId: number
+    folderId: number
+    areaId: number
+    _all: number
+  }
+
+
+  export type AreaFolderAvgAggregateInputType = {
+    areaId?: true
+  }
+
+  export type AreaFolderSumAggregateInputType = {
+    areaId?: true
+  }
+
+  export type AreaFolderMinAggregateInputType = {
+    id?: true
+    instrumentFolderId?: true
+    folderId?: true
+    areaId?: true
+  }
+
+  export type AreaFolderMaxAggregateInputType = {
+    id?: true
+    instrumentFolderId?: true
+    folderId?: true
+    areaId?: true
+  }
+
+  export type AreaFolderCountAggregateInputType = {
+    id?: true
+    instrumentFolderId?: true
+    folderId?: true
+    areaId?: true
+    _all?: true
+  }
+
+  export type AreaFolderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AreaFolder to aggregate.
+     */
+    where?: AreaFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AreaFolders to fetch.
+     */
+    orderBy?: AreaFolderOrderByWithRelationInput | AreaFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AreaFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AreaFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AreaFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AreaFolders
+    **/
+    _count?: true | AreaFolderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AreaFolderAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AreaFolderSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AreaFolderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AreaFolderMaxAggregateInputType
+  }
+
+  export type GetAreaFolderAggregateType<T extends AreaFolderAggregateArgs> = {
+        [P in keyof T & keyof AggregateAreaFolder]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAreaFolder[P]>
+      : GetScalarType<T[P], AggregateAreaFolder[P]>
+  }
+
+
+
+
+  export type AreaFolderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AreaFolderWhereInput
+    orderBy?: AreaFolderOrderByWithAggregationInput | AreaFolderOrderByWithAggregationInput[]
+    by: AreaFolderScalarFieldEnum[] | AreaFolderScalarFieldEnum
+    having?: AreaFolderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AreaFolderCountAggregateInputType | true
+    _avg?: AreaFolderAvgAggregateInputType
+    _sum?: AreaFolderSumAggregateInputType
+    _min?: AreaFolderMinAggregateInputType
+    _max?: AreaFolderMaxAggregateInputType
+  }
+
+  export type AreaFolderGroupByOutputType = {
+    id: string
+    instrumentFolderId: string
+    folderId: string
+    areaId: number
+    _count: AreaFolderCountAggregateOutputType | null
+    _avg: AreaFolderAvgAggregateOutputType | null
+    _sum: AreaFolderSumAggregateOutputType | null
+    _min: AreaFolderMinAggregateOutputType | null
+    _max: AreaFolderMaxAggregateOutputType | null
+  }
+
+  type GetAreaFolderGroupByPayload<T extends AreaFolderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AreaFolderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AreaFolderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AreaFolderGroupByOutputType[P]>
+            : GetScalarType<T[P], AreaFolderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AreaFolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    instrumentFolderId?: boolean
+    folderId?: boolean
+    areaId?: boolean
+    instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
+    parameterFolders?: boolean | AreaFolder$parameterFoldersArgs<ExtArgs>
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+    _count?: boolean | AreaFolderCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["areaFolder"]>
+
+  export type AreaFolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    instrumentFolderId?: boolean
+    folderId?: boolean
+    areaId?: boolean
+    instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["areaFolder"]>
+
+  export type AreaFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    instrumentFolderId?: boolean
+    folderId?: boolean
+    areaId?: boolean
+    instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["areaFolder"]>
+
+  export type AreaFolderSelectScalar = {
+    id?: boolean
+    instrumentFolderId?: boolean
+    folderId?: boolean
+    areaId?: boolean
+  }
+
+  export type AreaFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "instrumentFolderId" | "folderId" | "areaId", ExtArgs["result"]["areaFolder"]>
+  export type AreaFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
+    parameterFolders?: boolean | AreaFolder$parameterFoldersArgs<ExtArgs>
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+    _count?: boolean | AreaFolderCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AreaFolderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+  }
+  export type AreaFolderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+  }
+
+  export type $AreaFolderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AreaFolder"
+    objects: {
+      instrumentFolder: Prisma.$InstrumentFolderPayload<ExtArgs>
+      parameterFolders: Prisma.$ParameterFolderPayload<ExtArgs>[]
+      area: Prisma.$AreaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      instrumentFolderId: string
+      folderId: string
+      areaId: number
+    }, ExtArgs["result"]["areaFolder"]>
+    composites: {}
+  }
+
+  type AreaFolderGetPayload<S extends boolean | null | undefined | AreaFolderDefaultArgs> = $Result.GetResult<Prisma.$AreaFolderPayload, S>
+
+  type AreaFolderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AreaFolderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AreaFolderCountAggregateInputType | true
+    }
+
+  export interface AreaFolderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AreaFolder'], meta: { name: 'AreaFolder' } }
+    /**
+     * Find zero or one AreaFolder that matches the filter.
+     * @param {AreaFolderFindUniqueArgs} args - Arguments to find a AreaFolder
+     * @example
+     * // Get one AreaFolder
+     * const areaFolder = await prisma.areaFolder.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AreaFolderFindUniqueArgs>(args: SelectSubset<T, AreaFolderFindUniqueArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AreaFolder that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AreaFolderFindUniqueOrThrowArgs} args - Arguments to find a AreaFolder
+     * @example
+     * // Get one AreaFolder
+     * const areaFolder = await prisma.areaFolder.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AreaFolderFindUniqueOrThrowArgs>(args: SelectSubset<T, AreaFolderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AreaFolder that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFolderFindFirstArgs} args - Arguments to find a AreaFolder
+     * @example
+     * // Get one AreaFolder
+     * const areaFolder = await prisma.areaFolder.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AreaFolderFindFirstArgs>(args?: SelectSubset<T, AreaFolderFindFirstArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AreaFolder that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFolderFindFirstOrThrowArgs} args - Arguments to find a AreaFolder
+     * @example
+     * // Get one AreaFolder
+     * const areaFolder = await prisma.areaFolder.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AreaFolderFindFirstOrThrowArgs>(args?: SelectSubset<T, AreaFolderFindFirstOrThrowArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AreaFolders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFolderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AreaFolders
+     * const areaFolders = await prisma.areaFolder.findMany()
+     * 
+     * // Get first 10 AreaFolders
+     * const areaFolders = await prisma.areaFolder.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const areaFolderWithIdOnly = await prisma.areaFolder.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AreaFolderFindManyArgs>(args?: SelectSubset<T, AreaFolderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AreaFolder.
+     * @param {AreaFolderCreateArgs} args - Arguments to create a AreaFolder.
+     * @example
+     * // Create one AreaFolder
+     * const AreaFolder = await prisma.areaFolder.create({
+     *   data: {
+     *     // ... data to create a AreaFolder
+     *   }
+     * })
+     * 
+     */
+    create<T extends AreaFolderCreateArgs>(args: SelectSubset<T, AreaFolderCreateArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AreaFolders.
+     * @param {AreaFolderCreateManyArgs} args - Arguments to create many AreaFolders.
+     * @example
+     * // Create many AreaFolders
+     * const areaFolder = await prisma.areaFolder.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AreaFolderCreateManyArgs>(args?: SelectSubset<T, AreaFolderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AreaFolders and returns the data saved in the database.
+     * @param {AreaFolderCreateManyAndReturnArgs} args - Arguments to create many AreaFolders.
+     * @example
+     * // Create many AreaFolders
+     * const areaFolder = await prisma.areaFolder.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AreaFolders and only return the `id`
+     * const areaFolderWithIdOnly = await prisma.areaFolder.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AreaFolderCreateManyAndReturnArgs>(args?: SelectSubset<T, AreaFolderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AreaFolder.
+     * @param {AreaFolderDeleteArgs} args - Arguments to delete one AreaFolder.
+     * @example
+     * // Delete one AreaFolder
+     * const AreaFolder = await prisma.areaFolder.delete({
+     *   where: {
+     *     // ... filter to delete one AreaFolder
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AreaFolderDeleteArgs>(args: SelectSubset<T, AreaFolderDeleteArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AreaFolder.
+     * @param {AreaFolderUpdateArgs} args - Arguments to update one AreaFolder.
+     * @example
+     * // Update one AreaFolder
+     * const areaFolder = await prisma.areaFolder.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AreaFolderUpdateArgs>(args: SelectSubset<T, AreaFolderUpdateArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AreaFolders.
+     * @param {AreaFolderDeleteManyArgs} args - Arguments to filter AreaFolders to delete.
+     * @example
+     * // Delete a few AreaFolders
+     * const { count } = await prisma.areaFolder.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AreaFolderDeleteManyArgs>(args?: SelectSubset<T, AreaFolderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AreaFolders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFolderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AreaFolders
+     * const areaFolder = await prisma.areaFolder.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AreaFolderUpdateManyArgs>(args: SelectSubset<T, AreaFolderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AreaFolders and returns the data updated in the database.
+     * @param {AreaFolderUpdateManyAndReturnArgs} args - Arguments to update many AreaFolders.
+     * @example
+     * // Update many AreaFolders
+     * const areaFolder = await prisma.areaFolder.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AreaFolders and only return the `id`
+     * const areaFolderWithIdOnly = await prisma.areaFolder.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AreaFolderUpdateManyAndReturnArgs>(args: SelectSubset<T, AreaFolderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AreaFolder.
+     * @param {AreaFolderUpsertArgs} args - Arguments to update or create a AreaFolder.
+     * @example
+     * // Update or create a AreaFolder
+     * const areaFolder = await prisma.areaFolder.upsert({
+     *   create: {
+     *     // ... data to create a AreaFolder
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AreaFolder we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AreaFolderUpsertArgs>(args: SelectSubset<T, AreaFolderUpsertArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AreaFolders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFolderCountArgs} args - Arguments to filter AreaFolders to count.
+     * @example
+     * // Count the number of AreaFolders
+     * const count = await prisma.areaFolder.count({
+     *   where: {
+     *     // ... the filter for the AreaFolders we want to count
+     *   }
+     * })
+    **/
+    count<T extends AreaFolderCountArgs>(
+      args?: Subset<T, AreaFolderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AreaFolderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AreaFolder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFolderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AreaFolderAggregateArgs>(args: Subset<T, AreaFolderAggregateArgs>): Prisma.PrismaPromise<GetAreaFolderAggregateType<T>>
+
+    /**
+     * Group by AreaFolder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFolderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AreaFolderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AreaFolderGroupByArgs['orderBy'] }
+        : { orderBy?: AreaFolderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AreaFolderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAreaFolderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AreaFolder model
+   */
+  readonly fields: AreaFolderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AreaFolder.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AreaFolderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    instrumentFolder<T extends InstrumentFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InstrumentFolderDefaultArgs<ExtArgs>>): Prisma__InstrumentFolderClient<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    parameterFolders<T extends AreaFolder$parameterFoldersArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolder$parameterFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    area<T extends AreaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AreaDefaultArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AreaFolder model
+   */
+  interface AreaFolderFieldRefs {
+    readonly id: FieldRef<"AreaFolder", 'String'>
+    readonly instrumentFolderId: FieldRef<"AreaFolder", 'String'>
+    readonly folderId: FieldRef<"AreaFolder", 'String'>
+    readonly areaId: FieldRef<"AreaFolder", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AreaFolder findUnique
+   */
+  export type AreaFolderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaFolder to fetch.
+     */
+    where: AreaFolderWhereUniqueInput
+  }
+
+  /**
+   * AreaFolder findUniqueOrThrow
+   */
+  export type AreaFolderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaFolder to fetch.
+     */
+    where: AreaFolderWhereUniqueInput
+  }
+
+  /**
+   * AreaFolder findFirst
+   */
+  export type AreaFolderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaFolder to fetch.
+     */
+    where?: AreaFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AreaFolders to fetch.
+     */
+    orderBy?: AreaFolderOrderByWithRelationInput | AreaFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AreaFolders.
+     */
+    cursor?: AreaFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AreaFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AreaFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AreaFolders.
+     */
+    distinct?: AreaFolderScalarFieldEnum | AreaFolderScalarFieldEnum[]
+  }
+
+  /**
+   * AreaFolder findFirstOrThrow
+   */
+  export type AreaFolderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaFolder to fetch.
+     */
+    where?: AreaFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AreaFolders to fetch.
+     */
+    orderBy?: AreaFolderOrderByWithRelationInput | AreaFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AreaFolders.
+     */
+    cursor?: AreaFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AreaFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AreaFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AreaFolders.
+     */
+    distinct?: AreaFolderScalarFieldEnum | AreaFolderScalarFieldEnum[]
+  }
+
+  /**
+   * AreaFolder findMany
+   */
+  export type AreaFolderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaFolders to fetch.
+     */
+    where?: AreaFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AreaFolders to fetch.
+     */
+    orderBy?: AreaFolderOrderByWithRelationInput | AreaFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AreaFolders.
+     */
+    cursor?: AreaFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AreaFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AreaFolders.
+     */
+    skip?: number
+    distinct?: AreaFolderScalarFieldEnum | AreaFolderScalarFieldEnum[]
+  }
+
+  /**
+   * AreaFolder create
+   */
+  export type AreaFolderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AreaFolder.
+     */
+    data: XOR<AreaFolderCreateInput, AreaFolderUncheckedCreateInput>
+  }
+
+  /**
+   * AreaFolder createMany
+   */
+  export type AreaFolderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AreaFolders.
+     */
+    data: AreaFolderCreateManyInput | AreaFolderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AreaFolder createManyAndReturn
+   */
+  export type AreaFolderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * The data used to create many AreaFolders.
+     */
+    data: AreaFolderCreateManyInput | AreaFolderCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AreaFolder update
+   */
+  export type AreaFolderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AreaFolder.
+     */
+    data: XOR<AreaFolderUpdateInput, AreaFolderUncheckedUpdateInput>
+    /**
+     * Choose, which AreaFolder to update.
+     */
+    where: AreaFolderWhereUniqueInput
+  }
+
+  /**
+   * AreaFolder updateMany
+   */
+  export type AreaFolderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AreaFolders.
+     */
+    data: XOR<AreaFolderUpdateManyMutationInput, AreaFolderUncheckedUpdateManyInput>
+    /**
+     * Filter which AreaFolders to update
+     */
+    where?: AreaFolderWhereInput
+    /**
+     * Limit how many AreaFolders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AreaFolder updateManyAndReturn
+   */
+  export type AreaFolderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * The data used to update AreaFolders.
+     */
+    data: XOR<AreaFolderUpdateManyMutationInput, AreaFolderUncheckedUpdateManyInput>
+    /**
+     * Filter which AreaFolders to update
+     */
+    where?: AreaFolderWhereInput
+    /**
+     * Limit how many AreaFolders to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AreaFolder upsert
+   */
+  export type AreaFolderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AreaFolder to update in case it exists.
+     */
+    where: AreaFolderWhereUniqueInput
+    /**
+     * In case the AreaFolder found by the `where` argument doesn't exist, create a new AreaFolder with this data.
+     */
+    create: XOR<AreaFolderCreateInput, AreaFolderUncheckedCreateInput>
+    /**
+     * In case the AreaFolder was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AreaFolderUpdateInput, AreaFolderUncheckedUpdateInput>
+  }
+
+  /**
+   * AreaFolder delete
+   */
+  export type AreaFolderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    /**
+     * Filter which AreaFolder to delete.
+     */
+    where: AreaFolderWhereUniqueInput
+  }
+
+  /**
+   * AreaFolder deleteMany
+   */
+  export type AreaFolderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AreaFolders to delete
+     */
+    where?: AreaFolderWhereInput
+    /**
+     * Limit how many AreaFolders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AreaFolder.parameterFolders
+   */
+  export type AreaFolder$parameterFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolder
+     */
+    select?: ParameterFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParameterFolder
+     */
+    omit?: ParameterFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterFolderInclude<ExtArgs> | null
+    where?: ParameterFolderWhereInput
+    orderBy?: ParameterFolderOrderByWithRelationInput | ParameterFolderOrderByWithRelationInput[]
+    cursor?: ParameterFolderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ParameterFolderScalarFieldEnum | ParameterFolderScalarFieldEnum[]
+  }
+
+  /**
+   * AreaFolder without action
+   */
+  export type AreaFolderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ParameterFolder
+   */
+
+  export type AggregateParameterFolder = {
+    _count: ParameterFolderCountAggregateOutputType | null
+    _avg: ParameterFolderAvgAggregateOutputType | null
+    _sum: ParameterFolderSumAggregateOutputType | null
+    _min: ParameterFolderMinAggregateOutputType | null
+    _max: ParameterFolderMaxAggregateOutputType | null
+  }
+
+  export type ParameterFolderAvgAggregateOutputType = {
+    parameterId: number | null
+  }
+
+  export type ParameterFolderSumAggregateOutputType = {
+    parameterId: number | null
+  }
+
+  export type ParameterFolderMinAggregateOutputType = {
+    id: string | null
+    areaFolderId: string | null
+    folderId: string | null
+    parameterId: number | null
+  }
+
+  export type ParameterFolderMaxAggregateOutputType = {
+    id: string | null
+    areaFolderId: string | null
+    folderId: string | null
+    parameterId: number | null
+  }
+
+  export type ParameterFolderCountAggregateOutputType = {
+    id: number
+    areaFolderId: number
+    folderId: number
+    parameterId: number
+    _all: number
+  }
+
+
+  export type ParameterFolderAvgAggregateInputType = {
+    parameterId?: true
+  }
+
+  export type ParameterFolderSumAggregateInputType = {
+    parameterId?: true
+  }
+
+  export type ParameterFolderMinAggregateInputType = {
+    id?: true
+    areaFolderId?: true
+    folderId?: true
+    parameterId?: true
+  }
+
+  export type ParameterFolderMaxAggregateInputType = {
+    id?: true
+    areaFolderId?: true
+    folderId?: true
+    parameterId?: true
+  }
+
+  export type ParameterFolderCountAggregateInputType = {
+    id?: true
+    areaFolderId?: true
+    folderId?: true
+    parameterId?: true
+    _all?: true
+  }
+
+  export type ParameterFolderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ParameterFolder to aggregate.
+     */
+    where?: ParameterFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParameterFolders to fetch.
+     */
+    orderBy?: ParameterFolderOrderByWithRelationInput | ParameterFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ParameterFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParameterFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParameterFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ParameterFolders
+    **/
+    _count?: true | ParameterFolderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ParameterFolderAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ParameterFolderSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ParameterFolderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ParameterFolderMaxAggregateInputType
+  }
+
+  export type GetParameterFolderAggregateType<T extends ParameterFolderAggregateArgs> = {
+        [P in keyof T & keyof AggregateParameterFolder]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateParameterFolder[P]>
+      : GetScalarType<T[P], AggregateParameterFolder[P]>
+  }
+
+
+
+
+  export type ParameterFolderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParameterFolderWhereInput
+    orderBy?: ParameterFolderOrderByWithAggregationInput | ParameterFolderOrderByWithAggregationInput[]
+    by: ParameterFolderScalarFieldEnum[] | ParameterFolderScalarFieldEnum
+    having?: ParameterFolderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ParameterFolderCountAggregateInputType | true
+    _avg?: ParameterFolderAvgAggregateInputType
+    _sum?: ParameterFolderSumAggregateInputType
+    _min?: ParameterFolderMinAggregateInputType
+    _max?: ParameterFolderMaxAggregateInputType
+  }
+
+  export type ParameterFolderGroupByOutputType = {
+    id: string
+    areaFolderId: string
+    folderId: string
+    parameterId: number
+    _count: ParameterFolderCountAggregateOutputType | null
+    _avg: ParameterFolderAvgAggregateOutputType | null
+    _sum: ParameterFolderSumAggregateOutputType | null
+    _min: ParameterFolderMinAggregateOutputType | null
+    _max: ParameterFolderMaxAggregateOutputType | null
+  }
+
+  type GetParameterFolderGroupByPayload<T extends ParameterFolderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ParameterFolderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ParameterFolderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ParameterFolderGroupByOutputType[P]>
+            : GetScalarType<T[P], ParameterFolderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ParameterFolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    areaFolderId?: boolean
+    folderId?: boolean
+    parameterId?: boolean
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    indicatorFolders?: boolean | ParameterFolder$indicatorFoldersArgs<ExtArgs>
+    parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+    _count?: boolean | ParameterFolderCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["parameterFolder"]>
+
+  export type ParameterFolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    areaFolderId?: boolean
+    folderId?: boolean
+    parameterId?: boolean
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["parameterFolder"]>
+
+  export type ParameterFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    areaFolderId?: boolean
+    folderId?: boolean
+    parameterId?: boolean
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["parameterFolder"]>
+
+  export type ParameterFolderSelectScalar = {
+    id?: boolean
+    areaFolderId?: boolean
+    folderId?: boolean
+    parameterId?: boolean
+  }
+
+  export type ParameterFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "areaFolderId" | "folderId" | "parameterId", ExtArgs["result"]["parameterFolder"]>
+  export type ParameterFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    indicatorFolders?: boolean | ParameterFolder$indicatorFoldersArgs<ExtArgs>
+    parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+    _count?: boolean | ParameterFolderCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ParameterFolderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+  }
+  export type ParameterFolderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+  }
+
+  export type $ParameterFolderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ParameterFolder"
+    objects: {
+      areaFolder: Prisma.$AreaFolderPayload<ExtArgs>
+      indicatorFolders: Prisma.$IndicatorFolderPayload<ExtArgs>[]
+      parameter: Prisma.$ParameterPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      areaFolderId: string
+      folderId: string
+      parameterId: number
+    }, ExtArgs["result"]["parameterFolder"]>
+    composites: {}
+  }
+
+  type ParameterFolderGetPayload<S extends boolean | null | undefined | ParameterFolderDefaultArgs> = $Result.GetResult<Prisma.$ParameterFolderPayload, S>
+
+  type ParameterFolderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ParameterFolderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ParameterFolderCountAggregateInputType | true
+    }
+
+  export interface ParameterFolderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ParameterFolder'], meta: { name: 'ParameterFolder' } }
+    /**
+     * Find zero or one ParameterFolder that matches the filter.
+     * @param {ParameterFolderFindUniqueArgs} args - Arguments to find a ParameterFolder
+     * @example
+     * // Get one ParameterFolder
+     * const parameterFolder = await prisma.parameterFolder.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ParameterFolderFindUniqueArgs>(args: SelectSubset<T, ParameterFolderFindUniqueArgs<ExtArgs>>): Prisma__ParameterFolderClient<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ParameterFolder that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ParameterFolderFindUniqueOrThrowArgs} args - Arguments to find a ParameterFolder
+     * @example
+     * // Get one ParameterFolder
+     * const parameterFolder = await prisma.parameterFolder.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ParameterFolderFindUniqueOrThrowArgs>(args: SelectSubset<T, ParameterFolderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ParameterFolderClient<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ParameterFolder that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParameterFolderFindFirstArgs} args - Arguments to find a ParameterFolder
+     * @example
+     * // Get one ParameterFolder
+     * const parameterFolder = await prisma.parameterFolder.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ParameterFolderFindFirstArgs>(args?: SelectSubset<T, ParameterFolderFindFirstArgs<ExtArgs>>): Prisma__ParameterFolderClient<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ParameterFolder that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParameterFolderFindFirstOrThrowArgs} args - Arguments to find a ParameterFolder
+     * @example
+     * // Get one ParameterFolder
+     * const parameterFolder = await prisma.parameterFolder.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ParameterFolderFindFirstOrThrowArgs>(args?: SelectSubset<T, ParameterFolderFindFirstOrThrowArgs<ExtArgs>>): Prisma__ParameterFolderClient<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ParameterFolders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParameterFolderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ParameterFolders
+     * const parameterFolders = await prisma.parameterFolder.findMany()
+     * 
+     * // Get first 10 ParameterFolders
+     * const parameterFolders = await prisma.parameterFolder.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const parameterFolderWithIdOnly = await prisma.parameterFolder.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ParameterFolderFindManyArgs>(args?: SelectSubset<T, ParameterFolderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ParameterFolder.
+     * @param {ParameterFolderCreateArgs} args - Arguments to create a ParameterFolder.
+     * @example
+     * // Create one ParameterFolder
+     * const ParameterFolder = await prisma.parameterFolder.create({
+     *   data: {
+     *     // ... data to create a ParameterFolder
+     *   }
+     * })
+     * 
+     */
+    create<T extends ParameterFolderCreateArgs>(args: SelectSubset<T, ParameterFolderCreateArgs<ExtArgs>>): Prisma__ParameterFolderClient<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ParameterFolders.
+     * @param {ParameterFolderCreateManyArgs} args - Arguments to create many ParameterFolders.
+     * @example
+     * // Create many ParameterFolders
+     * const parameterFolder = await prisma.parameterFolder.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ParameterFolderCreateManyArgs>(args?: SelectSubset<T, ParameterFolderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ParameterFolders and returns the data saved in the database.
+     * @param {ParameterFolderCreateManyAndReturnArgs} args - Arguments to create many ParameterFolders.
+     * @example
+     * // Create many ParameterFolders
+     * const parameterFolder = await prisma.parameterFolder.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ParameterFolders and only return the `id`
+     * const parameterFolderWithIdOnly = await prisma.parameterFolder.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ParameterFolderCreateManyAndReturnArgs>(args?: SelectSubset<T, ParameterFolderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ParameterFolder.
+     * @param {ParameterFolderDeleteArgs} args - Arguments to delete one ParameterFolder.
+     * @example
+     * // Delete one ParameterFolder
+     * const ParameterFolder = await prisma.parameterFolder.delete({
+     *   where: {
+     *     // ... filter to delete one ParameterFolder
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ParameterFolderDeleteArgs>(args: SelectSubset<T, ParameterFolderDeleteArgs<ExtArgs>>): Prisma__ParameterFolderClient<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ParameterFolder.
+     * @param {ParameterFolderUpdateArgs} args - Arguments to update one ParameterFolder.
+     * @example
+     * // Update one ParameterFolder
+     * const parameterFolder = await prisma.parameterFolder.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ParameterFolderUpdateArgs>(args: SelectSubset<T, ParameterFolderUpdateArgs<ExtArgs>>): Prisma__ParameterFolderClient<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ParameterFolders.
+     * @param {ParameterFolderDeleteManyArgs} args - Arguments to filter ParameterFolders to delete.
+     * @example
+     * // Delete a few ParameterFolders
+     * const { count } = await prisma.parameterFolder.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ParameterFolderDeleteManyArgs>(args?: SelectSubset<T, ParameterFolderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ParameterFolders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParameterFolderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ParameterFolders
+     * const parameterFolder = await prisma.parameterFolder.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ParameterFolderUpdateManyArgs>(args: SelectSubset<T, ParameterFolderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ParameterFolders and returns the data updated in the database.
+     * @param {ParameterFolderUpdateManyAndReturnArgs} args - Arguments to update many ParameterFolders.
+     * @example
+     * // Update many ParameterFolders
+     * const parameterFolder = await prisma.parameterFolder.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ParameterFolders and only return the `id`
+     * const parameterFolderWithIdOnly = await prisma.parameterFolder.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ParameterFolderUpdateManyAndReturnArgs>(args: SelectSubset<T, ParameterFolderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ParameterFolder.
+     * @param {ParameterFolderUpsertArgs} args - Arguments to update or create a ParameterFolder.
+     * @example
+     * // Update or create a ParameterFolder
+     * const parameterFolder = await prisma.parameterFolder.upsert({
+     *   create: {
+     *     // ... data to create a ParameterFolder
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ParameterFolder we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ParameterFolderUpsertArgs>(args: SelectSubset<T, ParameterFolderUpsertArgs<ExtArgs>>): Prisma__ParameterFolderClient<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ParameterFolders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParameterFolderCountArgs} args - Arguments to filter ParameterFolders to count.
+     * @example
+     * // Count the number of ParameterFolders
+     * const count = await prisma.parameterFolder.count({
+     *   where: {
+     *     // ... the filter for the ParameterFolders we want to count
+     *   }
+     * })
+    **/
+    count<T extends ParameterFolderCountArgs>(
+      args?: Subset<T, ParameterFolderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ParameterFolderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ParameterFolder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParameterFolderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ParameterFolderAggregateArgs>(args: Subset<T, ParameterFolderAggregateArgs>): Prisma.PrismaPromise<GetParameterFolderAggregateType<T>>
+
+    /**
+     * Group by ParameterFolder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParameterFolderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ParameterFolderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ParameterFolderGroupByArgs['orderBy'] }
+        : { orderBy?: ParameterFolderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ParameterFolderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetParameterFolderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ParameterFolder model
+   */
+  readonly fields: ParameterFolderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ParameterFolder.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ParameterFolderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    areaFolder<T extends AreaFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolderDefaultArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    indicatorFolders<T extends ParameterFolder$indicatorFoldersArgs<ExtArgs> = {}>(args?: Subset<T, ParameterFolder$indicatorFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    parameter<T extends ParameterDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ParameterDefaultArgs<ExtArgs>>): Prisma__ParameterClient<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ParameterFolder model
+   */
+  interface ParameterFolderFieldRefs {
+    readonly id: FieldRef<"ParameterFolder", 'String'>
+    readonly areaFolderId: FieldRef<"ParameterFolder", 'String'>
+    readonly folderId: FieldRef<"ParameterFolder", 'String'>
+    readonly parameterId: FieldRef<"ParameterFolder", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ParameterFolder findUnique
+   */
+  export type ParameterFolderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolder
+     */
+    select?: ParameterFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParameterFolder
+     */
+    omit?: ParameterFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which ParameterFolder to fetch.
+     */
+    where: ParameterFolderWhereUniqueInput
+  }
+
+  /**
+   * ParameterFolder findUniqueOrThrow
+   */
+  export type ParameterFolderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolder
+     */
+    select?: ParameterFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParameterFolder
+     */
+    omit?: ParameterFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which ParameterFolder to fetch.
+     */
+    where: ParameterFolderWhereUniqueInput
+  }
+
+  /**
+   * ParameterFolder findFirst
+   */
+  export type ParameterFolderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolder
+     */
+    select?: ParameterFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParameterFolder
+     */
+    omit?: ParameterFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which ParameterFolder to fetch.
+     */
+    where?: ParameterFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParameterFolders to fetch.
+     */
+    orderBy?: ParameterFolderOrderByWithRelationInput | ParameterFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ParameterFolders.
+     */
+    cursor?: ParameterFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParameterFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParameterFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ParameterFolders.
+     */
+    distinct?: ParameterFolderScalarFieldEnum | ParameterFolderScalarFieldEnum[]
+  }
+
+  /**
+   * ParameterFolder findFirstOrThrow
+   */
+  export type ParameterFolderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolder
+     */
+    select?: ParameterFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParameterFolder
+     */
+    omit?: ParameterFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which ParameterFolder to fetch.
+     */
+    where?: ParameterFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParameterFolders to fetch.
+     */
+    orderBy?: ParameterFolderOrderByWithRelationInput | ParameterFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ParameterFolders.
+     */
+    cursor?: ParameterFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParameterFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParameterFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ParameterFolders.
+     */
+    distinct?: ParameterFolderScalarFieldEnum | ParameterFolderScalarFieldEnum[]
+  }
+
+  /**
+   * ParameterFolder findMany
+   */
+  export type ParameterFolderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolder
+     */
+    select?: ParameterFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParameterFolder
+     */
+    omit?: ParameterFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which ParameterFolders to fetch.
+     */
+    where?: ParameterFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParameterFolders to fetch.
+     */
+    orderBy?: ParameterFolderOrderByWithRelationInput | ParameterFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ParameterFolders.
+     */
+    cursor?: ParameterFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParameterFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParameterFolders.
+     */
+    skip?: number
+    distinct?: ParameterFolderScalarFieldEnum | ParameterFolderScalarFieldEnum[]
+  }
+
+  /**
+   * ParameterFolder create
+   */
+  export type ParameterFolderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolder
+     */
+    select?: ParameterFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParameterFolder
+     */
+    omit?: ParameterFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterFolderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ParameterFolder.
+     */
+    data: XOR<ParameterFolderCreateInput, ParameterFolderUncheckedCreateInput>
+  }
+
+  /**
+   * ParameterFolder createMany
+   */
+  export type ParameterFolderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ParameterFolders.
+     */
+    data: ParameterFolderCreateManyInput | ParameterFolderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ParameterFolder createManyAndReturn
+   */
+  export type ParameterFolderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolder
+     */
+    select?: ParameterFolderSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParameterFolder
+     */
+    omit?: ParameterFolderOmit<ExtArgs> | null
+    /**
+     * The data used to create many ParameterFolders.
+     */
+    data: ParameterFolderCreateManyInput | ParameterFolderCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterFolderIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ParameterFolder update
+   */
+  export type ParameterFolderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolder
+     */
+    select?: ParameterFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParameterFolder
+     */
+    omit?: ParameterFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterFolderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ParameterFolder.
+     */
+    data: XOR<ParameterFolderUpdateInput, ParameterFolderUncheckedUpdateInput>
+    /**
+     * Choose, which ParameterFolder to update.
+     */
+    where: ParameterFolderWhereUniqueInput
+  }
+
+  /**
+   * ParameterFolder updateMany
+   */
+  export type ParameterFolderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ParameterFolders.
+     */
+    data: XOR<ParameterFolderUpdateManyMutationInput, ParameterFolderUncheckedUpdateManyInput>
+    /**
+     * Filter which ParameterFolders to update
+     */
+    where?: ParameterFolderWhereInput
+    /**
+     * Limit how many ParameterFolders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParameterFolder updateManyAndReturn
+   */
+  export type ParameterFolderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolder
+     */
+    select?: ParameterFolderSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParameterFolder
+     */
+    omit?: ParameterFolderOmit<ExtArgs> | null
+    /**
+     * The data used to update ParameterFolders.
+     */
+    data: XOR<ParameterFolderUpdateManyMutationInput, ParameterFolderUncheckedUpdateManyInput>
+    /**
+     * Filter which ParameterFolders to update
+     */
+    where?: ParameterFolderWhereInput
+    /**
+     * Limit how many ParameterFolders to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterFolderIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ParameterFolder upsert
+   */
+  export type ParameterFolderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolder
+     */
+    select?: ParameterFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParameterFolder
+     */
+    omit?: ParameterFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterFolderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ParameterFolder to update in case it exists.
+     */
+    where: ParameterFolderWhereUniqueInput
+    /**
+     * In case the ParameterFolder found by the `where` argument doesn't exist, create a new ParameterFolder with this data.
+     */
+    create: XOR<ParameterFolderCreateInput, ParameterFolderUncheckedCreateInput>
+    /**
+     * In case the ParameterFolder was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ParameterFolderUpdateInput, ParameterFolderUncheckedUpdateInput>
+  }
+
+  /**
+   * ParameterFolder delete
+   */
+  export type ParameterFolderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolder
+     */
+    select?: ParameterFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParameterFolder
+     */
+    omit?: ParameterFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterFolderInclude<ExtArgs> | null
+    /**
+     * Filter which ParameterFolder to delete.
+     */
+    where: ParameterFolderWhereUniqueInput
+  }
+
+  /**
+   * ParameterFolder deleteMany
+   */
+  export type ParameterFolderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ParameterFolders to delete
+     */
+    where?: ParameterFolderWhereInput
+    /**
+     * Limit how many ParameterFolders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParameterFolder.indicatorFolders
+   */
+  export type ParameterFolder$indicatorFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorFolder
+     */
+    select?: IndicatorFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndicatorFolder
+     */
+    omit?: IndicatorFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorFolderInclude<ExtArgs> | null
+    where?: IndicatorFolderWhereInput
+    orderBy?: IndicatorFolderOrderByWithRelationInput | IndicatorFolderOrderByWithRelationInput[]
+    cursor?: IndicatorFolderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: IndicatorFolderScalarFieldEnum | IndicatorFolderScalarFieldEnum[]
+  }
+
+  /**
+   * ParameterFolder without action
+   */
+  export type ParameterFolderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParameterFolder
+     */
+    select?: ParameterFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParameterFolder
+     */
+    omit?: ParameterFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParameterFolderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model IndicatorFolder
+   */
+
+  export type AggregateIndicatorFolder = {
+    _count: IndicatorFolderCountAggregateOutputType | null
+    _min: IndicatorFolderMinAggregateOutputType | null
+    _max: IndicatorFolderMaxAggregateOutputType | null
+  }
+
+  export type IndicatorFolderMinAggregateOutputType = {
+    id: string | null
+    parameterFolderId: string | null
+    category: $Enums.Category | null
+  }
+
+  export type IndicatorFolderMaxAggregateOutputType = {
+    id: string | null
+    parameterFolderId: string | null
+    category: $Enums.Category | null
+  }
+
+  export type IndicatorFolderCountAggregateOutputType = {
+    id: number
+    parameterFolderId: number
+    category: number
+    _all: number
+  }
+
+
+  export type IndicatorFolderMinAggregateInputType = {
+    id?: true
+    parameterFolderId?: true
+    category?: true
+  }
+
+  export type IndicatorFolderMaxAggregateInputType = {
+    id?: true
+    parameterFolderId?: true
+    category?: true
+  }
+
+  export type IndicatorFolderCountAggregateInputType = {
+    id?: true
+    parameterFolderId?: true
+    category?: true
+    _all?: true
+  }
+
+  export type IndicatorFolderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which IndicatorFolder to aggregate.
+     */
+    where?: IndicatorFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IndicatorFolders to fetch.
+     */
+    orderBy?: IndicatorFolderOrderByWithRelationInput | IndicatorFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: IndicatorFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IndicatorFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IndicatorFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned IndicatorFolders
+    **/
+    _count?: true | IndicatorFolderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: IndicatorFolderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: IndicatorFolderMaxAggregateInputType
+  }
+
+  export type GetIndicatorFolderAggregateType<T extends IndicatorFolderAggregateArgs> = {
+        [P in keyof T & keyof AggregateIndicatorFolder]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateIndicatorFolder[P]>
+      : GetScalarType<T[P], AggregateIndicatorFolder[P]>
+  }
+
+
+
+
+  export type IndicatorFolderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IndicatorFolderWhereInput
+    orderBy?: IndicatorFolderOrderByWithAggregationInput | IndicatorFolderOrderByWithAggregationInput[]
+    by: IndicatorFolderScalarFieldEnum[] | IndicatorFolderScalarFieldEnum
+    having?: IndicatorFolderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: IndicatorFolderCountAggregateInputType | true
+    _min?: IndicatorFolderMinAggregateInputType
+    _max?: IndicatorFolderMaxAggregateInputType
+  }
+
+  export type IndicatorFolderGroupByOutputType = {
+    id: string
+    parameterFolderId: string
+    category: $Enums.Category
+    _count: IndicatorFolderCountAggregateOutputType | null
+    _min: IndicatorFolderMinAggregateOutputType | null
+    _max: IndicatorFolderMaxAggregateOutputType | null
+  }
+
+  type GetIndicatorFolderGroupByPayload<T extends IndicatorFolderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<IndicatorFolderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof IndicatorFolderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], IndicatorFolderGroupByOutputType[P]>
+            : GetScalarType<T[P], IndicatorFolderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type IndicatorFolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    parameterFolderId?: boolean
+    category?: boolean
+    parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
+    evidenceFiles?: boolean | IndicatorFolder$evidenceFilesArgs<ExtArgs>
+    _count?: boolean | IndicatorFolderCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["indicatorFolder"]>
+
+  export type IndicatorFolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    parameterFolderId?: boolean
+    category?: boolean
+    parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["indicatorFolder"]>
+
+  export type IndicatorFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    parameterFolderId?: boolean
+    category?: boolean
+    parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["indicatorFolder"]>
+
+  export type IndicatorFolderSelectScalar = {
+    id?: boolean
+    parameterFolderId?: boolean
+    category?: boolean
+  }
+
+  export type IndicatorFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "parameterFolderId" | "category", ExtArgs["result"]["indicatorFolder"]>
+  export type IndicatorFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
+    evidenceFiles?: boolean | IndicatorFolder$evidenceFilesArgs<ExtArgs>
+    _count?: boolean | IndicatorFolderCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type IndicatorFolderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
+  }
+  export type IndicatorFolderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
+  }
+
+  export type $IndicatorFolderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "IndicatorFolder"
+    objects: {
+      parameterFolder: Prisma.$ParameterFolderPayload<ExtArgs>
+      evidenceFiles: Prisma.$EvidenceFilePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      parameterFolderId: string
+      category: $Enums.Category
+    }, ExtArgs["result"]["indicatorFolder"]>
+    composites: {}
+  }
+
+  type IndicatorFolderGetPayload<S extends boolean | null | undefined | IndicatorFolderDefaultArgs> = $Result.GetResult<Prisma.$IndicatorFolderPayload, S>
+
+  type IndicatorFolderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<IndicatorFolderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: IndicatorFolderCountAggregateInputType | true
+    }
+
+  export interface IndicatorFolderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['IndicatorFolder'], meta: { name: 'IndicatorFolder' } }
+    /**
+     * Find zero or one IndicatorFolder that matches the filter.
+     * @param {IndicatorFolderFindUniqueArgs} args - Arguments to find a IndicatorFolder
+     * @example
+     * // Get one IndicatorFolder
+     * const indicatorFolder = await prisma.indicatorFolder.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends IndicatorFolderFindUniqueArgs>(args: SelectSubset<T, IndicatorFolderFindUniqueArgs<ExtArgs>>): Prisma__IndicatorFolderClient<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one IndicatorFolder that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {IndicatorFolderFindUniqueOrThrowArgs} args - Arguments to find a IndicatorFolder
+     * @example
+     * // Get one IndicatorFolder
+     * const indicatorFolder = await prisma.indicatorFolder.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends IndicatorFolderFindUniqueOrThrowArgs>(args: SelectSubset<T, IndicatorFolderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__IndicatorFolderClient<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first IndicatorFolder that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicatorFolderFindFirstArgs} args - Arguments to find a IndicatorFolder
+     * @example
+     * // Get one IndicatorFolder
+     * const indicatorFolder = await prisma.indicatorFolder.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends IndicatorFolderFindFirstArgs>(args?: SelectSubset<T, IndicatorFolderFindFirstArgs<ExtArgs>>): Prisma__IndicatorFolderClient<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first IndicatorFolder that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicatorFolderFindFirstOrThrowArgs} args - Arguments to find a IndicatorFolder
+     * @example
+     * // Get one IndicatorFolder
+     * const indicatorFolder = await prisma.indicatorFolder.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends IndicatorFolderFindFirstOrThrowArgs>(args?: SelectSubset<T, IndicatorFolderFindFirstOrThrowArgs<ExtArgs>>): Prisma__IndicatorFolderClient<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more IndicatorFolders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicatorFolderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all IndicatorFolders
+     * const indicatorFolders = await prisma.indicatorFolder.findMany()
+     * 
+     * // Get first 10 IndicatorFolders
+     * const indicatorFolders = await prisma.indicatorFolder.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const indicatorFolderWithIdOnly = await prisma.indicatorFolder.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends IndicatorFolderFindManyArgs>(args?: SelectSubset<T, IndicatorFolderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a IndicatorFolder.
+     * @param {IndicatorFolderCreateArgs} args - Arguments to create a IndicatorFolder.
+     * @example
+     * // Create one IndicatorFolder
+     * const IndicatorFolder = await prisma.indicatorFolder.create({
+     *   data: {
+     *     // ... data to create a IndicatorFolder
+     *   }
+     * })
+     * 
+     */
+    create<T extends IndicatorFolderCreateArgs>(args: SelectSubset<T, IndicatorFolderCreateArgs<ExtArgs>>): Prisma__IndicatorFolderClient<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many IndicatorFolders.
+     * @param {IndicatorFolderCreateManyArgs} args - Arguments to create many IndicatorFolders.
+     * @example
+     * // Create many IndicatorFolders
+     * const indicatorFolder = await prisma.indicatorFolder.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends IndicatorFolderCreateManyArgs>(args?: SelectSubset<T, IndicatorFolderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many IndicatorFolders and returns the data saved in the database.
+     * @param {IndicatorFolderCreateManyAndReturnArgs} args - Arguments to create many IndicatorFolders.
+     * @example
+     * // Create many IndicatorFolders
+     * const indicatorFolder = await prisma.indicatorFolder.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many IndicatorFolders and only return the `id`
+     * const indicatorFolderWithIdOnly = await prisma.indicatorFolder.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends IndicatorFolderCreateManyAndReturnArgs>(args?: SelectSubset<T, IndicatorFolderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a IndicatorFolder.
+     * @param {IndicatorFolderDeleteArgs} args - Arguments to delete one IndicatorFolder.
+     * @example
+     * // Delete one IndicatorFolder
+     * const IndicatorFolder = await prisma.indicatorFolder.delete({
+     *   where: {
+     *     // ... filter to delete one IndicatorFolder
+     *   }
+     * })
+     * 
+     */
+    delete<T extends IndicatorFolderDeleteArgs>(args: SelectSubset<T, IndicatorFolderDeleteArgs<ExtArgs>>): Prisma__IndicatorFolderClient<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one IndicatorFolder.
+     * @param {IndicatorFolderUpdateArgs} args - Arguments to update one IndicatorFolder.
+     * @example
+     * // Update one IndicatorFolder
+     * const indicatorFolder = await prisma.indicatorFolder.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends IndicatorFolderUpdateArgs>(args: SelectSubset<T, IndicatorFolderUpdateArgs<ExtArgs>>): Prisma__IndicatorFolderClient<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more IndicatorFolders.
+     * @param {IndicatorFolderDeleteManyArgs} args - Arguments to filter IndicatorFolders to delete.
+     * @example
+     * // Delete a few IndicatorFolders
+     * const { count } = await prisma.indicatorFolder.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends IndicatorFolderDeleteManyArgs>(args?: SelectSubset<T, IndicatorFolderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more IndicatorFolders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicatorFolderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many IndicatorFolders
+     * const indicatorFolder = await prisma.indicatorFolder.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends IndicatorFolderUpdateManyArgs>(args: SelectSubset<T, IndicatorFolderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more IndicatorFolders and returns the data updated in the database.
+     * @param {IndicatorFolderUpdateManyAndReturnArgs} args - Arguments to update many IndicatorFolders.
+     * @example
+     * // Update many IndicatorFolders
+     * const indicatorFolder = await prisma.indicatorFolder.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more IndicatorFolders and only return the `id`
+     * const indicatorFolderWithIdOnly = await prisma.indicatorFolder.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends IndicatorFolderUpdateManyAndReturnArgs>(args: SelectSubset<T, IndicatorFolderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one IndicatorFolder.
+     * @param {IndicatorFolderUpsertArgs} args - Arguments to update or create a IndicatorFolder.
+     * @example
+     * // Update or create a IndicatorFolder
+     * const indicatorFolder = await prisma.indicatorFolder.upsert({
+     *   create: {
+     *     // ... data to create a IndicatorFolder
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the IndicatorFolder we want to update
+     *   }
+     * })
+     */
+    upsert<T extends IndicatorFolderUpsertArgs>(args: SelectSubset<T, IndicatorFolderUpsertArgs<ExtArgs>>): Prisma__IndicatorFolderClient<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of IndicatorFolders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicatorFolderCountArgs} args - Arguments to filter IndicatorFolders to count.
+     * @example
+     * // Count the number of IndicatorFolders
+     * const count = await prisma.indicatorFolder.count({
+     *   where: {
+     *     // ... the filter for the IndicatorFolders we want to count
+     *   }
+     * })
+    **/
+    count<T extends IndicatorFolderCountArgs>(
+      args?: Subset<T, IndicatorFolderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], IndicatorFolderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a IndicatorFolder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicatorFolderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends IndicatorFolderAggregateArgs>(args: Subset<T, IndicatorFolderAggregateArgs>): Prisma.PrismaPromise<GetIndicatorFolderAggregateType<T>>
+
+    /**
+     * Group by IndicatorFolder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndicatorFolderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends IndicatorFolderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: IndicatorFolderGroupByArgs['orderBy'] }
+        : { orderBy?: IndicatorFolderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, IndicatorFolderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIndicatorFolderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the IndicatorFolder model
+   */
+  readonly fields: IndicatorFolderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for IndicatorFolder.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__IndicatorFolderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    parameterFolder<T extends ParameterFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ParameterFolderDefaultArgs<ExtArgs>>): Prisma__ParameterFolderClient<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    evidenceFiles<T extends IndicatorFolder$evidenceFilesArgs<ExtArgs> = {}>(args?: Subset<T, IndicatorFolder$evidenceFilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the IndicatorFolder model
+   */
+  interface IndicatorFolderFieldRefs {
+    readonly id: FieldRef<"IndicatorFolder", 'String'>
+    readonly parameterFolderId: FieldRef<"IndicatorFolder", 'String'>
+    readonly category: FieldRef<"IndicatorFolder", 'Category'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * IndicatorFolder findUnique
+   */
+  export type IndicatorFolderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorFolder
+     */
+    select?: IndicatorFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndicatorFolder
+     */
+    omit?: IndicatorFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which IndicatorFolder to fetch.
+     */
+    where: IndicatorFolderWhereUniqueInput
+  }
+
+  /**
+   * IndicatorFolder findUniqueOrThrow
+   */
+  export type IndicatorFolderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorFolder
+     */
+    select?: IndicatorFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndicatorFolder
+     */
+    omit?: IndicatorFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which IndicatorFolder to fetch.
+     */
+    where: IndicatorFolderWhereUniqueInput
+  }
+
+  /**
+   * IndicatorFolder findFirst
+   */
+  export type IndicatorFolderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorFolder
+     */
+    select?: IndicatorFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndicatorFolder
+     */
+    omit?: IndicatorFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which IndicatorFolder to fetch.
+     */
+    where?: IndicatorFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IndicatorFolders to fetch.
+     */
+    orderBy?: IndicatorFolderOrderByWithRelationInput | IndicatorFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for IndicatorFolders.
+     */
+    cursor?: IndicatorFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IndicatorFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IndicatorFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of IndicatorFolders.
+     */
+    distinct?: IndicatorFolderScalarFieldEnum | IndicatorFolderScalarFieldEnum[]
+  }
+
+  /**
+   * IndicatorFolder findFirstOrThrow
+   */
+  export type IndicatorFolderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorFolder
+     */
+    select?: IndicatorFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndicatorFolder
+     */
+    omit?: IndicatorFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which IndicatorFolder to fetch.
+     */
+    where?: IndicatorFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IndicatorFolders to fetch.
+     */
+    orderBy?: IndicatorFolderOrderByWithRelationInput | IndicatorFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for IndicatorFolders.
+     */
+    cursor?: IndicatorFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IndicatorFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IndicatorFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of IndicatorFolders.
+     */
+    distinct?: IndicatorFolderScalarFieldEnum | IndicatorFolderScalarFieldEnum[]
+  }
+
+  /**
+   * IndicatorFolder findMany
+   */
+  export type IndicatorFolderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorFolder
+     */
+    select?: IndicatorFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndicatorFolder
+     */
+    omit?: IndicatorFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which IndicatorFolders to fetch.
+     */
+    where?: IndicatorFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IndicatorFolders to fetch.
+     */
+    orderBy?: IndicatorFolderOrderByWithRelationInput | IndicatorFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing IndicatorFolders.
+     */
+    cursor?: IndicatorFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IndicatorFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IndicatorFolders.
+     */
+    skip?: number
+    distinct?: IndicatorFolderScalarFieldEnum | IndicatorFolderScalarFieldEnum[]
+  }
+
+  /**
+   * IndicatorFolder create
+   */
+  export type IndicatorFolderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorFolder
+     */
+    select?: IndicatorFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndicatorFolder
+     */
+    omit?: IndicatorFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorFolderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a IndicatorFolder.
+     */
+    data: XOR<IndicatorFolderCreateInput, IndicatorFolderUncheckedCreateInput>
+  }
+
+  /**
+   * IndicatorFolder createMany
+   */
+  export type IndicatorFolderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many IndicatorFolders.
+     */
+    data: IndicatorFolderCreateManyInput | IndicatorFolderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * IndicatorFolder createManyAndReturn
+   */
+  export type IndicatorFolderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorFolder
+     */
+    select?: IndicatorFolderSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndicatorFolder
+     */
+    omit?: IndicatorFolderOmit<ExtArgs> | null
+    /**
+     * The data used to create many IndicatorFolders.
+     */
+    data: IndicatorFolderCreateManyInput | IndicatorFolderCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorFolderIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * IndicatorFolder update
+   */
+  export type IndicatorFolderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorFolder
+     */
+    select?: IndicatorFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndicatorFolder
+     */
+    omit?: IndicatorFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorFolderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a IndicatorFolder.
+     */
+    data: XOR<IndicatorFolderUpdateInput, IndicatorFolderUncheckedUpdateInput>
+    /**
+     * Choose, which IndicatorFolder to update.
+     */
+    where: IndicatorFolderWhereUniqueInput
+  }
+
+  /**
+   * IndicatorFolder updateMany
+   */
+  export type IndicatorFolderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update IndicatorFolders.
+     */
+    data: XOR<IndicatorFolderUpdateManyMutationInput, IndicatorFolderUncheckedUpdateManyInput>
+    /**
+     * Filter which IndicatorFolders to update
+     */
+    where?: IndicatorFolderWhereInput
+    /**
+     * Limit how many IndicatorFolders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * IndicatorFolder updateManyAndReturn
+   */
+  export type IndicatorFolderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorFolder
+     */
+    select?: IndicatorFolderSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndicatorFolder
+     */
+    omit?: IndicatorFolderOmit<ExtArgs> | null
+    /**
+     * The data used to update IndicatorFolders.
+     */
+    data: XOR<IndicatorFolderUpdateManyMutationInput, IndicatorFolderUncheckedUpdateManyInput>
+    /**
+     * Filter which IndicatorFolders to update
+     */
+    where?: IndicatorFolderWhereInput
+    /**
+     * Limit how many IndicatorFolders to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorFolderIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * IndicatorFolder upsert
+   */
+  export type IndicatorFolderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorFolder
+     */
+    select?: IndicatorFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndicatorFolder
+     */
+    omit?: IndicatorFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorFolderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the IndicatorFolder to update in case it exists.
+     */
+    where: IndicatorFolderWhereUniqueInput
+    /**
+     * In case the IndicatorFolder found by the `where` argument doesn't exist, create a new IndicatorFolder with this data.
+     */
+    create: XOR<IndicatorFolderCreateInput, IndicatorFolderUncheckedCreateInput>
+    /**
+     * In case the IndicatorFolder was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<IndicatorFolderUpdateInput, IndicatorFolderUncheckedUpdateInput>
+  }
+
+  /**
+   * IndicatorFolder delete
+   */
+  export type IndicatorFolderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorFolder
+     */
+    select?: IndicatorFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndicatorFolder
+     */
+    omit?: IndicatorFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorFolderInclude<ExtArgs> | null
+    /**
+     * Filter which IndicatorFolder to delete.
+     */
+    where: IndicatorFolderWhereUniqueInput
+  }
+
+  /**
+   * IndicatorFolder deleteMany
+   */
+  export type IndicatorFolderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which IndicatorFolders to delete
+     */
+    where?: IndicatorFolderWhereInput
+    /**
+     * Limit how many IndicatorFolders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * IndicatorFolder.evidenceFiles
+   */
+  export type IndicatorFolder$evidenceFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileInclude<ExtArgs> | null
+    where?: EvidenceFileWhereInput
+    orderBy?: EvidenceFileOrderByWithRelationInput | EvidenceFileOrderByWithRelationInput[]
+    cursor?: EvidenceFileWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EvidenceFileScalarFieldEnum | EvidenceFileScalarFieldEnum[]
+  }
+
+  /**
+   * IndicatorFolder without action
+   */
+  export type IndicatorFolderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndicatorFolder
+     */
+    select?: IndicatorFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndicatorFolder
+     */
+    omit?: IndicatorFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndicatorFolderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EvidenceFile
+   */
+
+  export type AggregateEvidenceFile = {
+    _count: EvidenceFileCountAggregateOutputType | null
+    _avg: EvidenceFileAvgAggregateOutputType | null
+    _sum: EvidenceFileSumAggregateOutputType | null
+    _min: EvidenceFileMinAggregateOutputType | null
+    _max: EvidenceFileMaxAggregateOutputType | null
+  }
+
+  export type EvidenceFileAvgAggregateOutputType = {
+    indicatorId: number | null
+  }
+
+  export type EvidenceFileSumAggregateOutputType = {
+    indicatorId: number | null
+  }
+
+  export type EvidenceFileMinAggregateOutputType = {
+    id: string | null
+    indicatorFolderId: string | null
+    fileId: string | null
+    indicatorId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EvidenceFileMaxAggregateOutputType = {
+    id: string | null
+    indicatorFolderId: string | null
+    fileId: string | null
+    indicatorId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EvidenceFileCountAggregateOutputType = {
+    id: number
+    indicatorFolderId: number
+    fileId: number
+    indicatorId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type EvidenceFileAvgAggregateInputType = {
+    indicatorId?: true
+  }
+
+  export type EvidenceFileSumAggregateInputType = {
+    indicatorId?: true
+  }
+
+  export type EvidenceFileMinAggregateInputType = {
+    id?: true
+    indicatorFolderId?: true
+    fileId?: true
+    indicatorId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EvidenceFileMaxAggregateInputType = {
+    id?: true
+    indicatorFolderId?: true
+    fileId?: true
+    indicatorId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EvidenceFileCountAggregateInputType = {
+    id?: true
+    indicatorFolderId?: true
+    fileId?: true
+    indicatorId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type EvidenceFileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EvidenceFile to aggregate.
+     */
+    where?: EvidenceFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EvidenceFiles to fetch.
+     */
+    orderBy?: EvidenceFileOrderByWithRelationInput | EvidenceFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EvidenceFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EvidenceFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EvidenceFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EvidenceFiles
+    **/
+    _count?: true | EvidenceFileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EvidenceFileAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EvidenceFileSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EvidenceFileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EvidenceFileMaxAggregateInputType
+  }
+
+  export type GetEvidenceFileAggregateType<T extends EvidenceFileAggregateArgs> = {
+        [P in keyof T & keyof AggregateEvidenceFile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEvidenceFile[P]>
+      : GetScalarType<T[P], AggregateEvidenceFile[P]>
+  }
+
+
+
+
+  export type EvidenceFileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EvidenceFileWhereInput
+    orderBy?: EvidenceFileOrderByWithAggregationInput | EvidenceFileOrderByWithAggregationInput[]
+    by: EvidenceFileScalarFieldEnum[] | EvidenceFileScalarFieldEnum
+    having?: EvidenceFileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EvidenceFileCountAggregateInputType | true
+    _avg?: EvidenceFileAvgAggregateInputType
+    _sum?: EvidenceFileSumAggregateInputType
+    _min?: EvidenceFileMinAggregateInputType
+    _max?: EvidenceFileMaxAggregateInputType
+  }
+
+  export type EvidenceFileGroupByOutputType = {
+    id: string
+    indicatorFolderId: string
+    fileId: string
+    indicatorId: number
+    createdAt: Date
+    updatedAt: Date
+    _count: EvidenceFileCountAggregateOutputType | null
+    _avg: EvidenceFileAvgAggregateOutputType | null
+    _sum: EvidenceFileSumAggregateOutputType | null
+    _min: EvidenceFileMinAggregateOutputType | null
+    _max: EvidenceFileMaxAggregateOutputType | null
+  }
+
+  type GetEvidenceFileGroupByPayload<T extends EvidenceFileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EvidenceFileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EvidenceFileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EvidenceFileGroupByOutputType[P]>
+            : GetScalarType<T[P], EvidenceFileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EvidenceFileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    indicatorFolderId?: boolean
+    fileId?: boolean
+    indicatorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    indicatorFolder?: boolean | IndicatorFolderDefaultArgs<ExtArgs>
+    indicator?: boolean | IndicatorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["evidenceFile"]>
+
+  export type EvidenceFileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    indicatorFolderId?: boolean
+    fileId?: boolean
+    indicatorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    indicatorFolder?: boolean | IndicatorFolderDefaultArgs<ExtArgs>
+    indicator?: boolean | IndicatorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["evidenceFile"]>
+
+  export type EvidenceFileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    indicatorFolderId?: boolean
+    fileId?: boolean
+    indicatorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    indicatorFolder?: boolean | IndicatorFolderDefaultArgs<ExtArgs>
+    indicator?: boolean | IndicatorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["evidenceFile"]>
+
+  export type EvidenceFileSelectScalar = {
+    id?: boolean
+    indicatorFolderId?: boolean
+    fileId?: boolean
+    indicatorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type EvidenceFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "indicatorFolderId" | "fileId" | "indicatorId" | "createdAt" | "updatedAt", ExtArgs["result"]["evidenceFile"]>
+  export type EvidenceFileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    indicatorFolder?: boolean | IndicatorFolderDefaultArgs<ExtArgs>
+    indicator?: boolean | IndicatorDefaultArgs<ExtArgs>
+  }
+  export type EvidenceFileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    indicatorFolder?: boolean | IndicatorFolderDefaultArgs<ExtArgs>
+    indicator?: boolean | IndicatorDefaultArgs<ExtArgs>
+  }
+  export type EvidenceFileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    indicatorFolder?: boolean | IndicatorFolderDefaultArgs<ExtArgs>
+    indicator?: boolean | IndicatorDefaultArgs<ExtArgs>
+  }
+
+  export type $EvidenceFilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EvidenceFile"
+    objects: {
+      indicatorFolder: Prisma.$IndicatorFolderPayload<ExtArgs>
+      indicator: Prisma.$IndicatorPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      indicatorFolderId: string
+      fileId: string
+      indicatorId: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["evidenceFile"]>
+    composites: {}
+  }
+
+  type EvidenceFileGetPayload<S extends boolean | null | undefined | EvidenceFileDefaultArgs> = $Result.GetResult<Prisma.$EvidenceFilePayload, S>
+
+  type EvidenceFileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EvidenceFileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EvidenceFileCountAggregateInputType | true
+    }
+
+  export interface EvidenceFileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EvidenceFile'], meta: { name: 'EvidenceFile' } }
+    /**
+     * Find zero or one EvidenceFile that matches the filter.
+     * @param {EvidenceFileFindUniqueArgs} args - Arguments to find a EvidenceFile
+     * @example
+     * // Get one EvidenceFile
+     * const evidenceFile = await prisma.evidenceFile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EvidenceFileFindUniqueArgs>(args: SelectSubset<T, EvidenceFileFindUniqueArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EvidenceFile that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EvidenceFileFindUniqueOrThrowArgs} args - Arguments to find a EvidenceFile
+     * @example
+     * // Get one EvidenceFile
+     * const evidenceFile = await prisma.evidenceFile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EvidenceFileFindUniqueOrThrowArgs>(args: SelectSubset<T, EvidenceFileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EvidenceFile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EvidenceFileFindFirstArgs} args - Arguments to find a EvidenceFile
+     * @example
+     * // Get one EvidenceFile
+     * const evidenceFile = await prisma.evidenceFile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EvidenceFileFindFirstArgs>(args?: SelectSubset<T, EvidenceFileFindFirstArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EvidenceFile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EvidenceFileFindFirstOrThrowArgs} args - Arguments to find a EvidenceFile
+     * @example
+     * // Get one EvidenceFile
+     * const evidenceFile = await prisma.evidenceFile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EvidenceFileFindFirstOrThrowArgs>(args?: SelectSubset<T, EvidenceFileFindFirstOrThrowArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EvidenceFiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EvidenceFileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EvidenceFiles
+     * const evidenceFiles = await prisma.evidenceFile.findMany()
+     * 
+     * // Get first 10 EvidenceFiles
+     * const evidenceFiles = await prisma.evidenceFile.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const evidenceFileWithIdOnly = await prisma.evidenceFile.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EvidenceFileFindManyArgs>(args?: SelectSubset<T, EvidenceFileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EvidenceFile.
+     * @param {EvidenceFileCreateArgs} args - Arguments to create a EvidenceFile.
+     * @example
+     * // Create one EvidenceFile
+     * const EvidenceFile = await prisma.evidenceFile.create({
+     *   data: {
+     *     // ... data to create a EvidenceFile
+     *   }
+     * })
+     * 
+     */
+    create<T extends EvidenceFileCreateArgs>(args: SelectSubset<T, EvidenceFileCreateArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EvidenceFiles.
+     * @param {EvidenceFileCreateManyArgs} args - Arguments to create many EvidenceFiles.
+     * @example
+     * // Create many EvidenceFiles
+     * const evidenceFile = await prisma.evidenceFile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EvidenceFileCreateManyArgs>(args?: SelectSubset<T, EvidenceFileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EvidenceFiles and returns the data saved in the database.
+     * @param {EvidenceFileCreateManyAndReturnArgs} args - Arguments to create many EvidenceFiles.
+     * @example
+     * // Create many EvidenceFiles
+     * const evidenceFile = await prisma.evidenceFile.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EvidenceFiles and only return the `id`
+     * const evidenceFileWithIdOnly = await prisma.evidenceFile.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EvidenceFileCreateManyAndReturnArgs>(args?: SelectSubset<T, EvidenceFileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EvidenceFile.
+     * @param {EvidenceFileDeleteArgs} args - Arguments to delete one EvidenceFile.
+     * @example
+     * // Delete one EvidenceFile
+     * const EvidenceFile = await prisma.evidenceFile.delete({
+     *   where: {
+     *     // ... filter to delete one EvidenceFile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EvidenceFileDeleteArgs>(args: SelectSubset<T, EvidenceFileDeleteArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EvidenceFile.
+     * @param {EvidenceFileUpdateArgs} args - Arguments to update one EvidenceFile.
+     * @example
+     * // Update one EvidenceFile
+     * const evidenceFile = await prisma.evidenceFile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EvidenceFileUpdateArgs>(args: SelectSubset<T, EvidenceFileUpdateArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EvidenceFiles.
+     * @param {EvidenceFileDeleteManyArgs} args - Arguments to filter EvidenceFiles to delete.
+     * @example
+     * // Delete a few EvidenceFiles
+     * const { count } = await prisma.evidenceFile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EvidenceFileDeleteManyArgs>(args?: SelectSubset<T, EvidenceFileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EvidenceFiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EvidenceFileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EvidenceFiles
+     * const evidenceFile = await prisma.evidenceFile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EvidenceFileUpdateManyArgs>(args: SelectSubset<T, EvidenceFileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EvidenceFiles and returns the data updated in the database.
+     * @param {EvidenceFileUpdateManyAndReturnArgs} args - Arguments to update many EvidenceFiles.
+     * @example
+     * // Update many EvidenceFiles
+     * const evidenceFile = await prisma.evidenceFile.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EvidenceFiles and only return the `id`
+     * const evidenceFileWithIdOnly = await prisma.evidenceFile.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EvidenceFileUpdateManyAndReturnArgs>(args: SelectSubset<T, EvidenceFileUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EvidenceFile.
+     * @param {EvidenceFileUpsertArgs} args - Arguments to update or create a EvidenceFile.
+     * @example
+     * // Update or create a EvidenceFile
+     * const evidenceFile = await prisma.evidenceFile.upsert({
+     *   create: {
+     *     // ... data to create a EvidenceFile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EvidenceFile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EvidenceFileUpsertArgs>(args: SelectSubset<T, EvidenceFileUpsertArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EvidenceFiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EvidenceFileCountArgs} args - Arguments to filter EvidenceFiles to count.
+     * @example
+     * // Count the number of EvidenceFiles
+     * const count = await prisma.evidenceFile.count({
+     *   where: {
+     *     // ... the filter for the EvidenceFiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends EvidenceFileCountArgs>(
+      args?: Subset<T, EvidenceFileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EvidenceFileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EvidenceFile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EvidenceFileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EvidenceFileAggregateArgs>(args: Subset<T, EvidenceFileAggregateArgs>): Prisma.PrismaPromise<GetEvidenceFileAggregateType<T>>
+
+    /**
+     * Group by EvidenceFile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EvidenceFileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EvidenceFileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EvidenceFileGroupByArgs['orderBy'] }
+        : { orderBy?: EvidenceFileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EvidenceFileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEvidenceFileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EvidenceFile model
+   */
+  readonly fields: EvidenceFileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EvidenceFile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EvidenceFileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    indicatorFolder<T extends IndicatorFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, IndicatorFolderDefaultArgs<ExtArgs>>): Prisma__IndicatorFolderClient<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    indicator<T extends IndicatorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, IndicatorDefaultArgs<ExtArgs>>): Prisma__IndicatorClient<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EvidenceFile model
+   */
+  interface EvidenceFileFieldRefs {
+    readonly id: FieldRef<"EvidenceFile", 'String'>
+    readonly indicatorFolderId: FieldRef<"EvidenceFile", 'String'>
+    readonly fileId: FieldRef<"EvidenceFile", 'String'>
+    readonly indicatorId: FieldRef<"EvidenceFile", 'Int'>
+    readonly createdAt: FieldRef<"EvidenceFile", 'DateTime'>
+    readonly updatedAt: FieldRef<"EvidenceFile", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EvidenceFile findUnique
+   */
+  export type EvidenceFileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileInclude<ExtArgs> | null
+    /**
+     * Filter, which EvidenceFile to fetch.
+     */
+    where: EvidenceFileWhereUniqueInput
+  }
+
+  /**
+   * EvidenceFile findUniqueOrThrow
+   */
+  export type EvidenceFileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileInclude<ExtArgs> | null
+    /**
+     * Filter, which EvidenceFile to fetch.
+     */
+    where: EvidenceFileWhereUniqueInput
+  }
+
+  /**
+   * EvidenceFile findFirst
+   */
+  export type EvidenceFileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileInclude<ExtArgs> | null
+    /**
+     * Filter, which EvidenceFile to fetch.
+     */
+    where?: EvidenceFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EvidenceFiles to fetch.
+     */
+    orderBy?: EvidenceFileOrderByWithRelationInput | EvidenceFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EvidenceFiles.
+     */
+    cursor?: EvidenceFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EvidenceFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EvidenceFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EvidenceFiles.
+     */
+    distinct?: EvidenceFileScalarFieldEnum | EvidenceFileScalarFieldEnum[]
+  }
+
+  /**
+   * EvidenceFile findFirstOrThrow
+   */
+  export type EvidenceFileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileInclude<ExtArgs> | null
+    /**
+     * Filter, which EvidenceFile to fetch.
+     */
+    where?: EvidenceFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EvidenceFiles to fetch.
+     */
+    orderBy?: EvidenceFileOrderByWithRelationInput | EvidenceFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EvidenceFiles.
+     */
+    cursor?: EvidenceFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EvidenceFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EvidenceFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EvidenceFiles.
+     */
+    distinct?: EvidenceFileScalarFieldEnum | EvidenceFileScalarFieldEnum[]
+  }
+
+  /**
+   * EvidenceFile findMany
+   */
+  export type EvidenceFileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileInclude<ExtArgs> | null
+    /**
+     * Filter, which EvidenceFiles to fetch.
+     */
+    where?: EvidenceFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EvidenceFiles to fetch.
+     */
+    orderBy?: EvidenceFileOrderByWithRelationInput | EvidenceFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EvidenceFiles.
+     */
+    cursor?: EvidenceFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EvidenceFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EvidenceFiles.
+     */
+    skip?: number
+    distinct?: EvidenceFileScalarFieldEnum | EvidenceFileScalarFieldEnum[]
+  }
+
+  /**
+   * EvidenceFile create
+   */
+  export type EvidenceFileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EvidenceFile.
+     */
+    data: XOR<EvidenceFileCreateInput, EvidenceFileUncheckedCreateInput>
+  }
+
+  /**
+   * EvidenceFile createMany
+   */
+  export type EvidenceFileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EvidenceFiles.
+     */
+    data: EvidenceFileCreateManyInput | EvidenceFileCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EvidenceFile createManyAndReturn
+   */
+  export type EvidenceFileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * The data used to create many EvidenceFiles.
+     */
+    data: EvidenceFileCreateManyInput | EvidenceFileCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EvidenceFile update
+   */
+  export type EvidenceFileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EvidenceFile.
+     */
+    data: XOR<EvidenceFileUpdateInput, EvidenceFileUncheckedUpdateInput>
+    /**
+     * Choose, which EvidenceFile to update.
+     */
+    where: EvidenceFileWhereUniqueInput
+  }
+
+  /**
+   * EvidenceFile updateMany
+   */
+  export type EvidenceFileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EvidenceFiles.
+     */
+    data: XOR<EvidenceFileUpdateManyMutationInput, EvidenceFileUncheckedUpdateManyInput>
+    /**
+     * Filter which EvidenceFiles to update
+     */
+    where?: EvidenceFileWhereInput
+    /**
+     * Limit how many EvidenceFiles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EvidenceFile updateManyAndReturn
+   */
+  export type EvidenceFileUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * The data used to update EvidenceFiles.
+     */
+    data: XOR<EvidenceFileUpdateManyMutationInput, EvidenceFileUncheckedUpdateManyInput>
+    /**
+     * Filter which EvidenceFiles to update
+     */
+    where?: EvidenceFileWhereInput
+    /**
+     * Limit how many EvidenceFiles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EvidenceFile upsert
+   */
+  export type EvidenceFileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EvidenceFile to update in case it exists.
+     */
+    where: EvidenceFileWhereUniqueInput
+    /**
+     * In case the EvidenceFile found by the `where` argument doesn't exist, create a new EvidenceFile with this data.
+     */
+    create: XOR<EvidenceFileCreateInput, EvidenceFileUncheckedCreateInput>
+    /**
+     * In case the EvidenceFile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EvidenceFileUpdateInput, EvidenceFileUncheckedUpdateInput>
+  }
+
+  /**
+   * EvidenceFile delete
+   */
+  export type EvidenceFileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileInclude<ExtArgs> | null
+    /**
+     * Filter which EvidenceFile to delete.
+     */
+    where: EvidenceFileWhereUniqueInput
+  }
+
+  /**
+   * EvidenceFile deleteMany
+   */
+  export type EvidenceFileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EvidenceFiles to delete
+     */
+    where?: EvidenceFileWhereInput
+    /**
+     * Limit how many EvidenceFiles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EvidenceFile without action
+   */
+  export type EvidenceFileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileInclude<ExtArgs> | null
   }
 
 
@@ -10617,11 +20562,90 @@ export namespace Prisma {
     id: 'id',
     rank: 'rank',
     label: 'label',
+    phase: 'phase',
     requiredGrandMean: 'requiredGrandMean',
     requiredAreaMean: 'requiredAreaMean'
   };
 
   export type LevelScalarFieldEnum = (typeof LevelScalarFieldEnum)[keyof typeof LevelScalarFieldEnum]
+
+
+  export const AccreditationScalarFieldEnum: {
+    id: 'id',
+    programId: 'programId',
+    currentLevel: 'currentLevel',
+    phase: 'phase'
+  };
+
+  export type AccreditationScalarFieldEnum = (typeof AccreditationScalarFieldEnum)[keyof typeof AccreditationScalarFieldEnum]
+
+
+  export const SurveyVisitScalarFieldEnum: {
+    id: 'id',
+    accreditationId: 'accreditationId',
+    targetLevel: 'targetLevel'
+  };
+
+  export type SurveyVisitScalarFieldEnum = (typeof SurveyVisitScalarFieldEnum)[keyof typeof SurveyVisitScalarFieldEnum]
+
+
+  export const PhaseOneRequirementsScalarFieldEnum: {
+    id: 'id',
+    surveyVisitId: 'surveyVisitId',
+    instrumentId: 'instrumentId'
+  };
+
+  export type PhaseOneRequirementsScalarFieldEnum = (typeof PhaseOneRequirementsScalarFieldEnum)[keyof typeof PhaseOneRequirementsScalarFieldEnum]
+
+
+  export const InstrumentFolderScalarFieldEnum: {
+    id: 'id',
+    phaseOneRequirementsId: 'phaseOneRequirementsId',
+    folderId: 'folderId'
+  };
+
+  export type InstrumentFolderScalarFieldEnum = (typeof InstrumentFolderScalarFieldEnum)[keyof typeof InstrumentFolderScalarFieldEnum]
+
+
+  export const AreaFolderScalarFieldEnum: {
+    id: 'id',
+    instrumentFolderId: 'instrumentFolderId',
+    folderId: 'folderId',
+    areaId: 'areaId'
+  };
+
+  export type AreaFolderScalarFieldEnum = (typeof AreaFolderScalarFieldEnum)[keyof typeof AreaFolderScalarFieldEnum]
+
+
+  export const ParameterFolderScalarFieldEnum: {
+    id: 'id',
+    areaFolderId: 'areaFolderId',
+    folderId: 'folderId',
+    parameterId: 'parameterId'
+  };
+
+  export type ParameterFolderScalarFieldEnum = (typeof ParameterFolderScalarFieldEnum)[keyof typeof ParameterFolderScalarFieldEnum]
+
+
+  export const IndicatorFolderScalarFieldEnum: {
+    id: 'id',
+    parameterFolderId: 'parameterFolderId',
+    category: 'category'
+  };
+
+  export type IndicatorFolderScalarFieldEnum = (typeof IndicatorFolderScalarFieldEnum)[keyof typeof IndicatorFolderScalarFieldEnum]
+
+
+  export const EvidenceFileScalarFieldEnum: {
+    id: 'id',
+    indicatorFolderId: 'indicatorFolderId',
+    fileId: 'fileId',
+    indicatorId: 'indicatorId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type EvidenceFileScalarFieldEnum = (typeof EvidenceFileScalarFieldEnum)[keyof typeof EvidenceFileScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -10720,6 +20744,20 @@ export namespace Prisma {
    * Reference to a field of type 'Category[]'
    */
   export type ListEnumCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Category[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Phase'
+   */
+  export type EnumPhaseFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Phase'>
+    
+
+
+  /**
+   * Reference to a field of type 'Phase[]'
+   */
+  export type ListEnumPhaseFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Phase[]'>
     
 
 
@@ -10851,6 +20889,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Program"> | Date | string
     folderId?: StringFilter<"Program"> | string
     programPersonnel?: ProgramPersonnelListRelationFilter
+    accreditation?: XOR<AccreditationNullableScalarRelationFilter, AccreditationWhereInput> | null
   }
 
   export type ProgramOrderByWithRelationInput = {
@@ -10862,6 +20901,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     folderId?: SortOrder
     programPersonnel?: ProgramPersonnelOrderByRelationAggregateInput
+    accreditation?: AccreditationOrderByWithRelationInput
   }
 
   export type ProgramWhereUniqueInput = Prisma.AtLeast<{
@@ -10877,6 +20917,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Program"> | Date | string
     folderId?: StringFilter<"Program"> | string
     programPersonnel?: ProgramPersonnelListRelationFilter
+    accreditation?: XOR<AccreditationNullableScalarRelationFilter, AccreditationWhereInput> | null
   }, "id" | "name_code">
 
   export type ProgramOrderByWithAggregationInput = {
@@ -10969,6 +21010,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Instrument"> | Date | string
     updatedAt?: DateTimeFilter<"Instrument"> | Date | string
     area?: AreaListRelationFilter
+    phaseOneRequirements?: PhaseOneRequirementsListRelationFilter
   }
 
   export type InstrumentOrderByWithRelationInput = {
@@ -10978,6 +21020,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     area?: AreaOrderByRelationAggregateInput
+    phaseOneRequirements?: PhaseOneRequirementsOrderByRelationAggregateInput
   }
 
   export type InstrumentWhereUniqueInput = Prisma.AtLeast<{
@@ -10991,6 +21034,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Instrument"> | Date | string
     updatedAt?: DateTimeFilter<"Instrument"> | Date | string
     area?: AreaListRelationFilter
+    phaseOneRequirements?: PhaseOneRequirementsListRelationFilter
   }, "id" | "name_accreditingBody">
 
   export type InstrumentOrderByWithAggregationInput = {
@@ -11028,6 +21072,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Area"> | Date | string
     instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
     parameter?: ParameterListRelationFilter
+    areaFolders?: AreaFolderListRelationFilter
   }
 
   export type AreaOrderByWithRelationInput = {
@@ -11040,6 +21085,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     instrument?: InstrumentOrderByWithRelationInput
     parameter?: ParameterOrderByRelationAggregateInput
+    areaFolders?: AreaFolderOrderByRelationAggregateInput
   }
 
   export type AreaWhereUniqueInput = Prisma.AtLeast<{
@@ -11055,6 +21101,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Area"> | Date | string
     instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
     parameter?: ParameterListRelationFilter
+    areaFolders?: AreaFolderListRelationFilter
   }, "id">
 
   export type AreaOrderByWithAggregationInput = {
@@ -11097,6 +21144,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Parameter"> | Date | string
     area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
     indicator?: IndicatorListRelationFilter
+    parameterFolders?: ParameterFolderListRelationFilter
   }
 
   export type ParameterOrderByWithRelationInput = {
@@ -11108,6 +21156,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     area?: AreaOrderByWithRelationInput
     indicator?: IndicatorOrderByRelationAggregateInput
+    parameterFolders?: ParameterFolderOrderByRelationAggregateInput
   }
 
   export type ParameterWhereUniqueInput = Prisma.AtLeast<{
@@ -11122,6 +21171,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Parameter"> | Date | string
     area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
     indicator?: IndicatorListRelationFilter
+    parameterFolders?: ParameterFolderListRelationFilter
   }, "id">
 
   export type ParameterOrderByWithAggregationInput = {
@@ -11163,6 +21213,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Indicator"> | Date | string
     updatedAt?: DateTimeFilter<"Indicator"> | Date | string
     parameter?: XOR<ParameterScalarRelationFilter, ParameterWhereInput>
+    evidenceFiles?: EvidenceFileListRelationFilter
   }
 
   export type IndicatorOrderByWithRelationInput = {
@@ -11175,6 +21226,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     parameter?: ParameterOrderByWithRelationInput
+    evidenceFiles?: EvidenceFileOrderByRelationAggregateInput
   }
 
   export type IndicatorWhereUniqueInput = Prisma.AtLeast<{
@@ -11190,6 +21242,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Indicator"> | Date | string
     updatedAt?: DateTimeFilter<"Indicator"> | Date | string
     parameter?: XOR<ParameterScalarRelationFilter, ParameterWhereInput>
+    evidenceFiles?: EvidenceFileListRelationFilter
   }, "id">
 
   export type IndicatorOrderByWithAggregationInput = {
@@ -11229,16 +21282,22 @@ export namespace Prisma {
     id?: StringFilter<"Level"> | string
     rank?: IntFilter<"Level"> | number
     label?: StringFilter<"Level"> | string
+    phase?: EnumPhaseFilter<"Level"> | $Enums.Phase
     requiredGrandMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
+    accreditations?: AccreditationListRelationFilter
+    surveyVisits?: SurveyVisitListRelationFilter
   }
 
   export type LevelOrderByWithRelationInput = {
     id?: SortOrder
     rank?: SortOrder
     label?: SortOrder
+    phase?: SortOrder
     requiredGrandMean?: SortOrder
     requiredAreaMean?: SortOrder
+    accreditations?: AccreditationOrderByRelationAggregateInput
+    surveyVisits?: SurveyVisitOrderByRelationAggregateInput
   }
 
   export type LevelWhereUniqueInput = Prisma.AtLeast<{
@@ -11248,14 +21307,18 @@ export namespace Prisma {
     NOT?: LevelWhereInput | LevelWhereInput[]
     rank?: IntFilter<"Level"> | number
     label?: StringFilter<"Level"> | string
+    phase?: EnumPhaseFilter<"Level"> | $Enums.Phase
     requiredGrandMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
+    accreditations?: AccreditationListRelationFilter
+    surveyVisits?: SurveyVisitListRelationFilter
   }, "id">
 
   export type LevelOrderByWithAggregationInput = {
     id?: SortOrder
     rank?: SortOrder
     label?: SortOrder
+    phase?: SortOrder
     requiredGrandMean?: SortOrder
     requiredAreaMean?: SortOrder
     _count?: LevelCountOrderByAggregateInput
@@ -11272,8 +21335,444 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Level"> | string
     rank?: IntWithAggregatesFilter<"Level"> | number
     label?: StringWithAggregatesFilter<"Level"> | string
+    phase?: EnumPhaseWithAggregatesFilter<"Level"> | $Enums.Phase
     requiredGrandMean?: DecimalWithAggregatesFilter<"Level"> | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalWithAggregatesFilter<"Level"> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type AccreditationWhereInput = {
+    AND?: AccreditationWhereInput | AccreditationWhereInput[]
+    OR?: AccreditationWhereInput[]
+    NOT?: AccreditationWhereInput | AccreditationWhereInput[]
+    id?: StringFilter<"Accreditation"> | string
+    programId?: StringFilter<"Accreditation"> | string
+    currentLevel?: StringNullableFilter<"Accreditation"> | string | null
+    phase?: EnumPhaseNullableFilter<"Accreditation"> | $Enums.Phase | null
+    program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
+    level?: XOR<LevelNullableScalarRelationFilter, LevelWhereInput> | null
+    surveyVisits?: SurveyVisitListRelationFilter
+  }
+
+  export type AccreditationOrderByWithRelationInput = {
+    id?: SortOrder
+    programId?: SortOrder
+    currentLevel?: SortOrderInput | SortOrder
+    phase?: SortOrderInput | SortOrder
+    program?: ProgramOrderByWithRelationInput
+    level?: LevelOrderByWithRelationInput
+    surveyVisits?: SurveyVisitOrderByRelationAggregateInput
+  }
+
+  export type AccreditationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    programId?: string
+    AND?: AccreditationWhereInput | AccreditationWhereInput[]
+    OR?: AccreditationWhereInput[]
+    NOT?: AccreditationWhereInput | AccreditationWhereInput[]
+    currentLevel?: StringNullableFilter<"Accreditation"> | string | null
+    phase?: EnumPhaseNullableFilter<"Accreditation"> | $Enums.Phase | null
+    program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
+    level?: XOR<LevelNullableScalarRelationFilter, LevelWhereInput> | null
+    surveyVisits?: SurveyVisitListRelationFilter
+  }, "id" | "programId">
+
+  export type AccreditationOrderByWithAggregationInput = {
+    id?: SortOrder
+    programId?: SortOrder
+    currentLevel?: SortOrderInput | SortOrder
+    phase?: SortOrderInput | SortOrder
+    _count?: AccreditationCountOrderByAggregateInput
+    _max?: AccreditationMaxOrderByAggregateInput
+    _min?: AccreditationMinOrderByAggregateInput
+  }
+
+  export type AccreditationScalarWhereWithAggregatesInput = {
+    AND?: AccreditationScalarWhereWithAggregatesInput | AccreditationScalarWhereWithAggregatesInput[]
+    OR?: AccreditationScalarWhereWithAggregatesInput[]
+    NOT?: AccreditationScalarWhereWithAggregatesInput | AccreditationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Accreditation"> | string
+    programId?: StringWithAggregatesFilter<"Accreditation"> | string
+    currentLevel?: StringNullableWithAggregatesFilter<"Accreditation"> | string | null
+    phase?: EnumPhaseNullableWithAggregatesFilter<"Accreditation"> | $Enums.Phase | null
+  }
+
+  export type SurveyVisitWhereInput = {
+    AND?: SurveyVisitWhereInput | SurveyVisitWhereInput[]
+    OR?: SurveyVisitWhereInput[]
+    NOT?: SurveyVisitWhereInput | SurveyVisitWhereInput[]
+    id?: StringFilter<"SurveyVisit"> | string
+    accreditationId?: StringFilter<"SurveyVisit"> | string
+    targetLevel?: StringFilter<"SurveyVisit"> | string
+    accreditation?: XOR<AccreditationScalarRelationFilter, AccreditationWhereInput>
+    level?: XOR<LevelScalarRelationFilter, LevelWhereInput>
+    phaseOneRequirements?: XOR<PhaseOneRequirementsNullableScalarRelationFilter, PhaseOneRequirementsWhereInput> | null
+  }
+
+  export type SurveyVisitOrderByWithRelationInput = {
+    id?: SortOrder
+    accreditationId?: SortOrder
+    targetLevel?: SortOrder
+    accreditation?: AccreditationOrderByWithRelationInput
+    level?: LevelOrderByWithRelationInput
+    phaseOneRequirements?: PhaseOneRequirementsOrderByWithRelationInput
+  }
+
+  export type SurveyVisitWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SurveyVisitWhereInput | SurveyVisitWhereInput[]
+    OR?: SurveyVisitWhereInput[]
+    NOT?: SurveyVisitWhereInput | SurveyVisitWhereInput[]
+    accreditationId?: StringFilter<"SurveyVisit"> | string
+    targetLevel?: StringFilter<"SurveyVisit"> | string
+    accreditation?: XOR<AccreditationScalarRelationFilter, AccreditationWhereInput>
+    level?: XOR<LevelScalarRelationFilter, LevelWhereInput>
+    phaseOneRequirements?: XOR<PhaseOneRequirementsNullableScalarRelationFilter, PhaseOneRequirementsWhereInput> | null
+  }, "id">
+
+  export type SurveyVisitOrderByWithAggregationInput = {
+    id?: SortOrder
+    accreditationId?: SortOrder
+    targetLevel?: SortOrder
+    _count?: SurveyVisitCountOrderByAggregateInput
+    _max?: SurveyVisitMaxOrderByAggregateInput
+    _min?: SurveyVisitMinOrderByAggregateInput
+  }
+
+  export type SurveyVisitScalarWhereWithAggregatesInput = {
+    AND?: SurveyVisitScalarWhereWithAggregatesInput | SurveyVisitScalarWhereWithAggregatesInput[]
+    OR?: SurveyVisitScalarWhereWithAggregatesInput[]
+    NOT?: SurveyVisitScalarWhereWithAggregatesInput | SurveyVisitScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SurveyVisit"> | string
+    accreditationId?: StringWithAggregatesFilter<"SurveyVisit"> | string
+    targetLevel?: StringWithAggregatesFilter<"SurveyVisit"> | string
+  }
+
+  export type PhaseOneRequirementsWhereInput = {
+    AND?: PhaseOneRequirementsWhereInput | PhaseOneRequirementsWhereInput[]
+    OR?: PhaseOneRequirementsWhereInput[]
+    NOT?: PhaseOneRequirementsWhereInput | PhaseOneRequirementsWhereInput[]
+    id?: StringFilter<"PhaseOneRequirements"> | string
+    surveyVisitId?: StringFilter<"PhaseOneRequirements"> | string
+    instrumentId?: StringFilter<"PhaseOneRequirements"> | string
+    surveyVisit?: XOR<SurveyVisitScalarRelationFilter, SurveyVisitWhereInput>
+    instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
+    instrumentFolder?: XOR<InstrumentFolderNullableScalarRelationFilter, InstrumentFolderWhereInput> | null
+  }
+
+  export type PhaseOneRequirementsOrderByWithRelationInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrder
+    instrumentId?: SortOrder
+    surveyVisit?: SurveyVisitOrderByWithRelationInput
+    instrument?: InstrumentOrderByWithRelationInput
+    instrumentFolder?: InstrumentFolderOrderByWithRelationInput
+  }
+
+  export type PhaseOneRequirementsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    surveyVisitId?: string
+    AND?: PhaseOneRequirementsWhereInput | PhaseOneRequirementsWhereInput[]
+    OR?: PhaseOneRequirementsWhereInput[]
+    NOT?: PhaseOneRequirementsWhereInput | PhaseOneRequirementsWhereInput[]
+    instrumentId?: StringFilter<"PhaseOneRequirements"> | string
+    surveyVisit?: XOR<SurveyVisitScalarRelationFilter, SurveyVisitWhereInput>
+    instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
+    instrumentFolder?: XOR<InstrumentFolderNullableScalarRelationFilter, InstrumentFolderWhereInput> | null
+  }, "id" | "surveyVisitId">
+
+  export type PhaseOneRequirementsOrderByWithAggregationInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrder
+    instrumentId?: SortOrder
+    _count?: PhaseOneRequirementsCountOrderByAggregateInput
+    _max?: PhaseOneRequirementsMaxOrderByAggregateInput
+    _min?: PhaseOneRequirementsMinOrderByAggregateInput
+  }
+
+  export type PhaseOneRequirementsScalarWhereWithAggregatesInput = {
+    AND?: PhaseOneRequirementsScalarWhereWithAggregatesInput | PhaseOneRequirementsScalarWhereWithAggregatesInput[]
+    OR?: PhaseOneRequirementsScalarWhereWithAggregatesInput[]
+    NOT?: PhaseOneRequirementsScalarWhereWithAggregatesInput | PhaseOneRequirementsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PhaseOneRequirements"> | string
+    surveyVisitId?: StringWithAggregatesFilter<"PhaseOneRequirements"> | string
+    instrumentId?: StringWithAggregatesFilter<"PhaseOneRequirements"> | string
+  }
+
+  export type InstrumentFolderWhereInput = {
+    AND?: InstrumentFolderWhereInput | InstrumentFolderWhereInput[]
+    OR?: InstrumentFolderWhereInput[]
+    NOT?: InstrumentFolderWhereInput | InstrumentFolderWhereInput[]
+    id?: StringFilter<"InstrumentFolder"> | string
+    phaseOneRequirementsId?: StringFilter<"InstrumentFolder"> | string
+    folderId?: StringFilter<"InstrumentFolder"> | string
+    phaseOneRequirements?: XOR<PhaseOneRequirementsScalarRelationFilter, PhaseOneRequirementsWhereInput>
+    areaFolders?: AreaFolderListRelationFilter
+  }
+
+  export type InstrumentFolderOrderByWithRelationInput = {
+    id?: SortOrder
+    phaseOneRequirementsId?: SortOrder
+    folderId?: SortOrder
+    phaseOneRequirements?: PhaseOneRequirementsOrderByWithRelationInput
+    areaFolders?: AreaFolderOrderByRelationAggregateInput
+  }
+
+  export type InstrumentFolderWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    phaseOneRequirementsId?: string
+    AND?: InstrumentFolderWhereInput | InstrumentFolderWhereInput[]
+    OR?: InstrumentFolderWhereInput[]
+    NOT?: InstrumentFolderWhereInput | InstrumentFolderWhereInput[]
+    folderId?: StringFilter<"InstrumentFolder"> | string
+    phaseOneRequirements?: XOR<PhaseOneRequirementsScalarRelationFilter, PhaseOneRequirementsWhereInput>
+    areaFolders?: AreaFolderListRelationFilter
+  }, "id" | "phaseOneRequirementsId">
+
+  export type InstrumentFolderOrderByWithAggregationInput = {
+    id?: SortOrder
+    phaseOneRequirementsId?: SortOrder
+    folderId?: SortOrder
+    _count?: InstrumentFolderCountOrderByAggregateInput
+    _max?: InstrumentFolderMaxOrderByAggregateInput
+    _min?: InstrumentFolderMinOrderByAggregateInput
+  }
+
+  export type InstrumentFolderScalarWhereWithAggregatesInput = {
+    AND?: InstrumentFolderScalarWhereWithAggregatesInput | InstrumentFolderScalarWhereWithAggregatesInput[]
+    OR?: InstrumentFolderScalarWhereWithAggregatesInput[]
+    NOT?: InstrumentFolderScalarWhereWithAggregatesInput | InstrumentFolderScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"InstrumentFolder"> | string
+    phaseOneRequirementsId?: StringWithAggregatesFilter<"InstrumentFolder"> | string
+    folderId?: StringWithAggregatesFilter<"InstrumentFolder"> | string
+  }
+
+  export type AreaFolderWhereInput = {
+    AND?: AreaFolderWhereInput | AreaFolderWhereInput[]
+    OR?: AreaFolderWhereInput[]
+    NOT?: AreaFolderWhereInput | AreaFolderWhereInput[]
+    id?: StringFilter<"AreaFolder"> | string
+    instrumentFolderId?: StringFilter<"AreaFolder"> | string
+    folderId?: StringFilter<"AreaFolder"> | string
+    areaId?: IntFilter<"AreaFolder"> | number
+    instrumentFolder?: XOR<InstrumentFolderScalarRelationFilter, InstrumentFolderWhereInput>
+    parameterFolders?: ParameterFolderListRelationFilter
+    area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
+  }
+
+  export type AreaFolderOrderByWithRelationInput = {
+    id?: SortOrder
+    instrumentFolderId?: SortOrder
+    folderId?: SortOrder
+    areaId?: SortOrder
+    instrumentFolder?: InstrumentFolderOrderByWithRelationInput
+    parameterFolders?: ParameterFolderOrderByRelationAggregateInput
+    area?: AreaOrderByWithRelationInput
+  }
+
+  export type AreaFolderWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AreaFolderWhereInput | AreaFolderWhereInput[]
+    OR?: AreaFolderWhereInput[]
+    NOT?: AreaFolderWhereInput | AreaFolderWhereInput[]
+    instrumentFolderId?: StringFilter<"AreaFolder"> | string
+    folderId?: StringFilter<"AreaFolder"> | string
+    areaId?: IntFilter<"AreaFolder"> | number
+    instrumentFolder?: XOR<InstrumentFolderScalarRelationFilter, InstrumentFolderWhereInput>
+    parameterFolders?: ParameterFolderListRelationFilter
+    area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
+  }, "id">
+
+  export type AreaFolderOrderByWithAggregationInput = {
+    id?: SortOrder
+    instrumentFolderId?: SortOrder
+    folderId?: SortOrder
+    areaId?: SortOrder
+    _count?: AreaFolderCountOrderByAggregateInput
+    _avg?: AreaFolderAvgOrderByAggregateInput
+    _max?: AreaFolderMaxOrderByAggregateInput
+    _min?: AreaFolderMinOrderByAggregateInput
+    _sum?: AreaFolderSumOrderByAggregateInput
+  }
+
+  export type AreaFolderScalarWhereWithAggregatesInput = {
+    AND?: AreaFolderScalarWhereWithAggregatesInput | AreaFolderScalarWhereWithAggregatesInput[]
+    OR?: AreaFolderScalarWhereWithAggregatesInput[]
+    NOT?: AreaFolderScalarWhereWithAggregatesInput | AreaFolderScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AreaFolder"> | string
+    instrumentFolderId?: StringWithAggregatesFilter<"AreaFolder"> | string
+    folderId?: StringWithAggregatesFilter<"AreaFolder"> | string
+    areaId?: IntWithAggregatesFilter<"AreaFolder"> | number
+  }
+
+  export type ParameterFolderWhereInput = {
+    AND?: ParameterFolderWhereInput | ParameterFolderWhereInput[]
+    OR?: ParameterFolderWhereInput[]
+    NOT?: ParameterFolderWhereInput | ParameterFolderWhereInput[]
+    id?: StringFilter<"ParameterFolder"> | string
+    areaFolderId?: StringFilter<"ParameterFolder"> | string
+    folderId?: StringFilter<"ParameterFolder"> | string
+    parameterId?: IntFilter<"ParameterFolder"> | number
+    areaFolder?: XOR<AreaFolderScalarRelationFilter, AreaFolderWhereInput>
+    indicatorFolders?: IndicatorFolderListRelationFilter
+    parameter?: XOR<ParameterScalarRelationFilter, ParameterWhereInput>
+  }
+
+  export type ParameterFolderOrderByWithRelationInput = {
+    id?: SortOrder
+    areaFolderId?: SortOrder
+    folderId?: SortOrder
+    parameterId?: SortOrder
+    areaFolder?: AreaFolderOrderByWithRelationInput
+    indicatorFolders?: IndicatorFolderOrderByRelationAggregateInput
+    parameter?: ParameterOrderByWithRelationInput
+  }
+
+  export type ParameterFolderWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ParameterFolderWhereInput | ParameterFolderWhereInput[]
+    OR?: ParameterFolderWhereInput[]
+    NOT?: ParameterFolderWhereInput | ParameterFolderWhereInput[]
+    areaFolderId?: StringFilter<"ParameterFolder"> | string
+    folderId?: StringFilter<"ParameterFolder"> | string
+    parameterId?: IntFilter<"ParameterFolder"> | number
+    areaFolder?: XOR<AreaFolderScalarRelationFilter, AreaFolderWhereInput>
+    indicatorFolders?: IndicatorFolderListRelationFilter
+    parameter?: XOR<ParameterScalarRelationFilter, ParameterWhereInput>
+  }, "id">
+
+  export type ParameterFolderOrderByWithAggregationInput = {
+    id?: SortOrder
+    areaFolderId?: SortOrder
+    folderId?: SortOrder
+    parameterId?: SortOrder
+    _count?: ParameterFolderCountOrderByAggregateInput
+    _avg?: ParameterFolderAvgOrderByAggregateInput
+    _max?: ParameterFolderMaxOrderByAggregateInput
+    _min?: ParameterFolderMinOrderByAggregateInput
+    _sum?: ParameterFolderSumOrderByAggregateInput
+  }
+
+  export type ParameterFolderScalarWhereWithAggregatesInput = {
+    AND?: ParameterFolderScalarWhereWithAggregatesInput | ParameterFolderScalarWhereWithAggregatesInput[]
+    OR?: ParameterFolderScalarWhereWithAggregatesInput[]
+    NOT?: ParameterFolderScalarWhereWithAggregatesInput | ParameterFolderScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ParameterFolder"> | string
+    areaFolderId?: StringWithAggregatesFilter<"ParameterFolder"> | string
+    folderId?: StringWithAggregatesFilter<"ParameterFolder"> | string
+    parameterId?: IntWithAggregatesFilter<"ParameterFolder"> | number
+  }
+
+  export type IndicatorFolderWhereInput = {
+    AND?: IndicatorFolderWhereInput | IndicatorFolderWhereInput[]
+    OR?: IndicatorFolderWhereInput[]
+    NOT?: IndicatorFolderWhereInput | IndicatorFolderWhereInput[]
+    id?: StringFilter<"IndicatorFolder"> | string
+    parameterFolderId?: StringFilter<"IndicatorFolder"> | string
+    category?: EnumCategoryFilter<"IndicatorFolder"> | $Enums.Category
+    parameterFolder?: XOR<ParameterFolderScalarRelationFilter, ParameterFolderWhereInput>
+    evidenceFiles?: EvidenceFileListRelationFilter
+  }
+
+  export type IndicatorFolderOrderByWithRelationInput = {
+    id?: SortOrder
+    parameterFolderId?: SortOrder
+    category?: SortOrder
+    parameterFolder?: ParameterFolderOrderByWithRelationInput
+    evidenceFiles?: EvidenceFileOrderByRelationAggregateInput
+  }
+
+  export type IndicatorFolderWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: IndicatorFolderWhereInput | IndicatorFolderWhereInput[]
+    OR?: IndicatorFolderWhereInput[]
+    NOT?: IndicatorFolderWhereInput | IndicatorFolderWhereInput[]
+    parameterFolderId?: StringFilter<"IndicatorFolder"> | string
+    category?: EnumCategoryFilter<"IndicatorFolder"> | $Enums.Category
+    parameterFolder?: XOR<ParameterFolderScalarRelationFilter, ParameterFolderWhereInput>
+    evidenceFiles?: EvidenceFileListRelationFilter
+  }, "id">
+
+  export type IndicatorFolderOrderByWithAggregationInput = {
+    id?: SortOrder
+    parameterFolderId?: SortOrder
+    category?: SortOrder
+    _count?: IndicatorFolderCountOrderByAggregateInput
+    _max?: IndicatorFolderMaxOrderByAggregateInput
+    _min?: IndicatorFolderMinOrderByAggregateInput
+  }
+
+  export type IndicatorFolderScalarWhereWithAggregatesInput = {
+    AND?: IndicatorFolderScalarWhereWithAggregatesInput | IndicatorFolderScalarWhereWithAggregatesInput[]
+    OR?: IndicatorFolderScalarWhereWithAggregatesInput[]
+    NOT?: IndicatorFolderScalarWhereWithAggregatesInput | IndicatorFolderScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"IndicatorFolder"> | string
+    parameterFolderId?: StringWithAggregatesFilter<"IndicatorFolder"> | string
+    category?: EnumCategoryWithAggregatesFilter<"IndicatorFolder"> | $Enums.Category
+  }
+
+  export type EvidenceFileWhereInput = {
+    AND?: EvidenceFileWhereInput | EvidenceFileWhereInput[]
+    OR?: EvidenceFileWhereInput[]
+    NOT?: EvidenceFileWhereInput | EvidenceFileWhereInput[]
+    id?: StringFilter<"EvidenceFile"> | string
+    indicatorFolderId?: StringFilter<"EvidenceFile"> | string
+    fileId?: StringFilter<"EvidenceFile"> | string
+    indicatorId?: IntFilter<"EvidenceFile"> | number
+    createdAt?: DateTimeFilter<"EvidenceFile"> | Date | string
+    updatedAt?: DateTimeFilter<"EvidenceFile"> | Date | string
+    indicatorFolder?: XOR<IndicatorFolderScalarRelationFilter, IndicatorFolderWhereInput>
+    indicator?: XOR<IndicatorScalarRelationFilter, IndicatorWhereInput>
+  }
+
+  export type EvidenceFileOrderByWithRelationInput = {
+    id?: SortOrder
+    indicatorFolderId?: SortOrder
+    fileId?: SortOrder
+    indicatorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    indicatorFolder?: IndicatorFolderOrderByWithRelationInput
+    indicator?: IndicatorOrderByWithRelationInput
+  }
+
+  export type EvidenceFileWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EvidenceFileWhereInput | EvidenceFileWhereInput[]
+    OR?: EvidenceFileWhereInput[]
+    NOT?: EvidenceFileWhereInput | EvidenceFileWhereInput[]
+    indicatorFolderId?: StringFilter<"EvidenceFile"> | string
+    fileId?: StringFilter<"EvidenceFile"> | string
+    indicatorId?: IntFilter<"EvidenceFile"> | number
+    createdAt?: DateTimeFilter<"EvidenceFile"> | Date | string
+    updatedAt?: DateTimeFilter<"EvidenceFile"> | Date | string
+    indicatorFolder?: XOR<IndicatorFolderScalarRelationFilter, IndicatorFolderWhereInput>
+    indicator?: XOR<IndicatorScalarRelationFilter, IndicatorWhereInput>
+  }, "id">
+
+  export type EvidenceFileOrderByWithAggregationInput = {
+    id?: SortOrder
+    indicatorFolderId?: SortOrder
+    fileId?: SortOrder
+    indicatorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: EvidenceFileCountOrderByAggregateInput
+    _avg?: EvidenceFileAvgOrderByAggregateInput
+    _max?: EvidenceFileMaxOrderByAggregateInput
+    _min?: EvidenceFileMinOrderByAggregateInput
+    _sum?: EvidenceFileSumOrderByAggregateInput
+  }
+
+  export type EvidenceFileScalarWhereWithAggregatesInput = {
+    AND?: EvidenceFileScalarWhereWithAggregatesInput | EvidenceFileScalarWhereWithAggregatesInput[]
+    OR?: EvidenceFileScalarWhereWithAggregatesInput[]
+    NOT?: EvidenceFileScalarWhereWithAggregatesInput | EvidenceFileScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EvidenceFile"> | string
+    indicatorFolderId?: StringWithAggregatesFilter<"EvidenceFile"> | string
+    fileId?: StringWithAggregatesFilter<"EvidenceFile"> | string
+    indicatorId?: IntWithAggregatesFilter<"EvidenceFile"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"EvidenceFile"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"EvidenceFile"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -11387,6 +21886,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     folderId: string
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutProgramInput
+    accreditation?: AccreditationCreateNestedOneWithoutProgramInput
   }
 
   export type ProgramUncheckedCreateInput = {
@@ -11398,6 +21898,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     folderId: string
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutProgramInput
+    accreditation?: AccreditationUncheckedCreateNestedOneWithoutProgramInput
   }
 
   export type ProgramUpdateInput = {
@@ -11409,6 +21910,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     folderId?: StringFieldUpdateOperationsInput | string
     programPersonnel?: ProgramPersonnelUpdateManyWithoutProgramNestedInput
+    accreditation?: AccreditationUpdateOneWithoutProgramNestedInput
   }
 
   export type ProgramUncheckedUpdateInput = {
@@ -11420,6 +21922,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     folderId?: StringFieldUpdateOperationsInput | string
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutProgramNestedInput
+    accreditation?: AccreditationUncheckedUpdateOneWithoutProgramNestedInput
   }
 
   export type ProgramCreateManyInput = {
@@ -11506,6 +22009,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     area?: AreaCreateNestedManyWithoutInstrumentInput
+    phaseOneRequirements?: PhaseOneRequirementsCreateNestedManyWithoutInstrumentInput
   }
 
   export type InstrumentUncheckedCreateInput = {
@@ -11515,6 +22019,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     area?: AreaUncheckedCreateNestedManyWithoutInstrumentInput
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedManyWithoutInstrumentInput
   }
 
   export type InstrumentUpdateInput = {
@@ -11524,6 +22029,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     area?: AreaUpdateManyWithoutInstrumentNestedInput
+    phaseOneRequirements?: PhaseOneRequirementsUpdateManyWithoutInstrumentNestedInput
   }
 
   export type InstrumentUncheckedUpdateInput = {
@@ -11533,6 +22039,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     area?: AreaUncheckedUpdateManyWithoutInstrumentNestedInput
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateManyWithoutInstrumentNestedInput
   }
 
   export type InstrumentCreateManyInput = {
@@ -11567,6 +22074,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     instrument: InstrumentCreateNestedOneWithoutAreaInput
     parameter?: ParameterCreateNestedManyWithoutAreaInput
+    areaFolders?: AreaFolderCreateNestedManyWithoutAreaInput
   }
 
   export type AreaUncheckedCreateInput = {
@@ -11578,6 +22086,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     parameter?: ParameterUncheckedCreateNestedManyWithoutAreaInput
+    areaFolders?: AreaFolderUncheckedCreateNestedManyWithoutAreaInput
   }
 
   export type AreaUpdateInput = {
@@ -11588,6 +22097,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     instrument?: InstrumentUpdateOneRequiredWithoutAreaNestedInput
     parameter?: ParameterUpdateManyWithoutAreaNestedInput
+    areaFolders?: AreaFolderUpdateManyWithoutAreaNestedInput
   }
 
   export type AreaUncheckedUpdateInput = {
@@ -11599,6 +22109,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parameter?: ParameterUncheckedUpdateManyWithoutAreaNestedInput
+    areaFolders?: AreaFolderUncheckedUpdateManyWithoutAreaNestedInput
   }
 
   export type AreaCreateManyInput = {
@@ -11636,6 +22147,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     area: AreaCreateNestedOneWithoutParameterInput
     indicator?: IndicatorCreateNestedManyWithoutParameterInput
+    parameterFolders?: ParameterFolderCreateNestedManyWithoutParameterInput
   }
 
   export type ParameterUncheckedCreateInput = {
@@ -11646,6 +22158,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     indicator?: IndicatorUncheckedCreateNestedManyWithoutParameterInput
+    parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutParameterInput
   }
 
   export type ParameterUpdateInput = {
@@ -11655,6 +22168,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     area?: AreaUpdateOneRequiredWithoutParameterNestedInput
     indicator?: IndicatorUpdateManyWithoutParameterNestedInput
+    parameterFolders?: ParameterFolderUpdateManyWithoutParameterNestedInput
   }
 
   export type ParameterUncheckedUpdateInput = {
@@ -11665,6 +22179,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicator?: IndicatorUncheckedUpdateManyWithoutParameterNestedInput
+    parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutParameterNestedInput
   }
 
   export type ParameterCreateManyInput = {
@@ -11700,6 +22215,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     parameter: ParameterCreateNestedOneWithoutIndicatorInput
+    evidenceFiles?: EvidenceFileCreateNestedManyWithoutIndicatorInput
   }
 
   export type IndicatorUncheckedCreateInput = {
@@ -11711,6 +22227,7 @@ export namespace Prisma {
     parameterId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    evidenceFiles?: EvidenceFileUncheckedCreateNestedManyWithoutIndicatorInput
   }
 
   export type IndicatorUpdateInput = {
@@ -11721,6 +22238,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parameter?: ParameterUpdateOneRequiredWithoutIndicatorNestedInput
+    evidenceFiles?: EvidenceFileUpdateManyWithoutIndicatorNestedInput
   }
 
   export type IndicatorUncheckedUpdateInput = {
@@ -11732,6 +22250,7 @@ export namespace Prisma {
     parameterId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidenceFiles?: EvidenceFileUncheckedUpdateManyWithoutIndicatorNestedInput
   }
 
   export type IndicatorCreateManyInput = {
@@ -11769,38 +22288,51 @@ export namespace Prisma {
     id?: string
     rank: number
     label: string
+    phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
+    accreditations?: AccreditationCreateNestedManyWithoutLevelInput
+    surveyVisits?: SurveyVisitCreateNestedManyWithoutLevelInput
   }
 
   export type LevelUncheckedCreateInput = {
     id?: string
     rank: number
     label: string
+    phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
+    accreditations?: AccreditationUncheckedCreateNestedManyWithoutLevelInput
+    surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutLevelInput
   }
 
   export type LevelUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
     label?: StringFieldUpdateOperationsInput | string
+    phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    accreditations?: AccreditationUpdateManyWithoutLevelNestedInput
+    surveyVisits?: SurveyVisitUpdateManyWithoutLevelNestedInput
   }
 
   export type LevelUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
     label?: StringFieldUpdateOperationsInput | string
+    phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    accreditations?: AccreditationUncheckedUpdateManyWithoutLevelNestedInput
+    surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutLevelNestedInput
   }
 
   export type LevelCreateManyInput = {
     id?: string
     rank: number
     label: string
+    phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
   }
@@ -11809,6 +22341,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
     label?: StringFieldUpdateOperationsInput | string
+    phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
@@ -11817,8 +22350,401 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
     label?: StringFieldUpdateOperationsInput | string
+    phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type AccreditationCreateInput = {
+    id?: string
+    phase?: $Enums.Phase | null
+    program: ProgramCreateNestedOneWithoutAccreditationInput
+    level?: LevelCreateNestedOneWithoutAccreditationsInput
+    surveyVisits?: SurveyVisitCreateNestedManyWithoutAccreditationInput
+  }
+
+  export type AccreditationUncheckedCreateInput = {
+    id?: string
+    programId: string
+    currentLevel?: string | null
+    phase?: $Enums.Phase | null
+    surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutAccreditationInput
+  }
+
+  export type AccreditationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
+    program?: ProgramUpdateOneRequiredWithoutAccreditationNestedInput
+    level?: LevelUpdateOneWithoutAccreditationsNestedInput
+    surveyVisits?: SurveyVisitUpdateManyWithoutAccreditationNestedInput
+  }
+
+  export type AccreditationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    programId?: StringFieldUpdateOperationsInput | string
+    currentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
+    surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutAccreditationNestedInput
+  }
+
+  export type AccreditationCreateManyInput = {
+    id?: string
+    programId: string
+    currentLevel?: string | null
+    phase?: $Enums.Phase | null
+  }
+
+  export type AccreditationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
+  }
+
+  export type AccreditationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    programId?: StringFieldUpdateOperationsInput | string
+    currentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
+  }
+
+  export type SurveyVisitCreateInput = {
+    id?: string
+    accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
+    level: LevelCreateNestedOneWithoutSurveyVisitsInput
+    phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitUncheckedCreateInput = {
+    id?: string
+    accreditationId: string
+    targetLevel: string
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
+  }
+
+  export type SurveyVisitUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accreditationId?: StringFieldUpdateOperationsInput | string
+    targetLevel?: StringFieldUpdateOperationsInput | string
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+  }
+
+  export type SurveyVisitCreateManyInput = {
+    id?: string
+    accreditationId: string
+    targetLevel: string
+  }
+
+  export type SurveyVisitUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SurveyVisitUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accreditationId?: StringFieldUpdateOperationsInput | string
+    targetLevel?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PhaseOneRequirementsCreateInput = {
+    id?: string
+    surveyVisit: SurveyVisitCreateNestedOneWithoutPhaseOneRequirementsInput
+    instrument: InstrumentCreateNestedOneWithoutPhaseOneRequirementsInput
+    instrumentFolder?: InstrumentFolderCreateNestedOneWithoutPhaseOneRequirementsInput
+  }
+
+  export type PhaseOneRequirementsUncheckedCreateInput = {
+    id?: string
+    surveyVisitId: string
+    instrumentId: string
+    instrumentFolder?: InstrumentFolderUncheckedCreateNestedOneWithoutPhaseOneRequirementsInput
+  }
+
+  export type PhaseOneRequirementsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisit?: SurveyVisitUpdateOneRequiredWithoutPhaseOneRequirementsNestedInput
+    instrument?: InstrumentUpdateOneRequiredWithoutPhaseOneRequirementsNestedInput
+    instrumentFolder?: InstrumentFolderUpdateOneWithoutPhaseOneRequirementsNestedInput
+  }
+
+  export type PhaseOneRequirementsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: StringFieldUpdateOperationsInput | string
+    instrumentId?: StringFieldUpdateOperationsInput | string
+    instrumentFolder?: InstrumentFolderUncheckedUpdateOneWithoutPhaseOneRequirementsNestedInput
+  }
+
+  export type PhaseOneRequirementsCreateManyInput = {
+    id?: string
+    surveyVisitId: string
+    instrumentId: string
+  }
+
+  export type PhaseOneRequirementsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PhaseOneRequirementsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: StringFieldUpdateOperationsInput | string
+    instrumentId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InstrumentFolderCreateInput = {
+    id?: string
+    folderId: string
+    phaseOneRequirements: PhaseOneRequirementsCreateNestedOneWithoutInstrumentFolderInput
+    areaFolders?: AreaFolderCreateNestedManyWithoutInstrumentFolderInput
+  }
+
+  export type InstrumentFolderUncheckedCreateInput = {
+    id?: string
+    phaseOneRequirementsId: string
+    folderId: string
+    areaFolders?: AreaFolderUncheckedCreateNestedManyWithoutInstrumentFolderInput
+  }
+
+  export type InstrumentFolderUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    phaseOneRequirements?: PhaseOneRequirementsUpdateOneRequiredWithoutInstrumentFolderNestedInput
+    areaFolders?: AreaFolderUpdateManyWithoutInstrumentFolderNestedInput
+  }
+
+  export type InstrumentFolderUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseOneRequirementsId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaFolders?: AreaFolderUncheckedUpdateManyWithoutInstrumentFolderNestedInput
+  }
+
+  export type InstrumentFolderCreateManyInput = {
+    id?: string
+    phaseOneRequirementsId: string
+    folderId: string
+  }
+
+  export type InstrumentFolderUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InstrumentFolderUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseOneRequirementsId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AreaFolderCreateInput = {
+    id?: string
+    folderId: string
+    instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
+    parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
+    area: AreaCreateNestedOneWithoutAreaFoldersInput
+  }
+
+  export type AreaFolderUncheckedCreateInput = {
+    id?: string
+    instrumentFolderId: string
+    folderId: string
+    areaId: number
+    parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
+  }
+
+  export type AreaFolderUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
+    parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
+    area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
+  }
+
+  export type AreaFolderUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instrumentFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+    parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
+  }
+
+  export type AreaFolderCreateManyInput = {
+    id?: string
+    instrumentFolderId: string
+    folderId: string
+    areaId: number
+  }
+
+  export type AreaFolderUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AreaFolderUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instrumentFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ParameterFolderCreateInput = {
+    id?: string
+    folderId: string
+    areaFolder: AreaFolderCreateNestedOneWithoutParameterFoldersInput
+    indicatorFolders?: IndicatorFolderCreateNestedManyWithoutParameterFolderInput
+    parameter: ParameterCreateNestedOneWithoutParameterFoldersInput
+  }
+
+  export type ParameterFolderUncheckedCreateInput = {
+    id?: string
+    areaFolderId: string
+    folderId: string
+    parameterId: number
+    indicatorFolders?: IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput
+  }
+
+  export type ParameterFolderUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaFolder?: AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput
+    indicatorFolders?: IndicatorFolderUpdateManyWithoutParameterFolderNestedInput
+    parameter?: ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput
+  }
+
+  export type ParameterFolderUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    parameterId?: IntFieldUpdateOperationsInput | number
+    indicatorFolders?: IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput
+  }
+
+  export type ParameterFolderCreateManyInput = {
+    id?: string
+    areaFolderId: string
+    folderId: string
+    parameterId: number
+  }
+
+  export type ParameterFolderUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ParameterFolderUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    parameterId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type IndicatorFolderCreateInput = {
+    id?: string
+    category: $Enums.Category
+    parameterFolder: ParameterFolderCreateNestedOneWithoutIndicatorFoldersInput
+    evidenceFiles?: EvidenceFileCreateNestedManyWithoutIndicatorFolderInput
+  }
+
+  export type IndicatorFolderUncheckedCreateInput = {
+    id?: string
+    parameterFolderId: string
+    category: $Enums.Category
+    evidenceFiles?: EvidenceFileUncheckedCreateNestedManyWithoutIndicatorFolderInput
+  }
+
+  export type IndicatorFolderUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+    parameterFolder?: ParameterFolderUpdateOneRequiredWithoutIndicatorFoldersNestedInput
+    evidenceFiles?: EvidenceFileUpdateManyWithoutIndicatorFolderNestedInput
+  }
+
+  export type IndicatorFolderUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    parameterFolderId?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+    evidenceFiles?: EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderNestedInput
+  }
+
+  export type IndicatorFolderCreateManyInput = {
+    id?: string
+    parameterFolderId: string
+    category: $Enums.Category
+  }
+
+  export type IndicatorFolderUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+  }
+
+  export type IndicatorFolderUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    parameterFolderId?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+  }
+
+  export type EvidenceFileCreateInput = {
+    id?: string
+    fileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
+    indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
+  }
+
+  export type EvidenceFileUncheckedCreateInput = {
+    id?: string
+    indicatorFolderId: string
+    fileId: string
+    indicatorId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EvidenceFileUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
+    indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
+  }
+
+  export type EvidenceFileUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    indicatorFolderId?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    indicatorId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EvidenceFileCreateManyInput = {
+    id?: string
+    indicatorFolderId: string
+    fileId: string
+    indicatorId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EvidenceFileUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EvidenceFileUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    indicatorFolderId?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    indicatorId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -11986,6 +22912,11 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type AccreditationNullableScalarRelationFilter = {
+    is?: AccreditationWhereInput | null
+    isNot?: AccreditationWhereInput | null
+  }
+
   export type ProgramNameCodeCompoundUniqueInput = {
     name: string
     code: string
@@ -12063,7 +22994,17 @@ export namespace Prisma {
     none?: AreaWhereInput
   }
 
+  export type PhaseOneRequirementsListRelationFilter = {
+    every?: PhaseOneRequirementsWhereInput
+    some?: PhaseOneRequirementsWhereInput
+    none?: PhaseOneRequirementsWhereInput
+  }
+
   export type AreaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PhaseOneRequirementsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12118,7 +23059,17 @@ export namespace Prisma {
     none?: ParameterWhereInput
   }
 
+  export type AreaFolderListRelationFilter = {
+    every?: AreaFolderWhereInput
+    some?: AreaFolderWhereInput
+    none?: AreaFolderWhereInput
+  }
+
   export type ParameterOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AreaFolderOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12189,7 +23140,17 @@ export namespace Prisma {
     none?: IndicatorWhereInput
   }
 
+  export type ParameterFolderListRelationFilter = {
+    every?: ParameterFolderWhereInput
+    some?: ParameterFolderWhereInput
+    none?: ParameterFolderWhereInput
+  }
+
   export type IndicatorOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ParameterFolderOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12240,6 +23201,16 @@ export namespace Prisma {
   export type ParameterScalarRelationFilter = {
     is?: ParameterWhereInput
     isNot?: ParameterWhereInput
+  }
+
+  export type EvidenceFileListRelationFilter = {
+    every?: EvidenceFileWhereInput
+    some?: EvidenceFileWhereInput
+    none?: EvidenceFileWhereInput
+  }
+
+  export type EvidenceFileOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type IndicatorCountOrderByAggregateInput = {
@@ -12295,6 +23266,13 @@ export namespace Prisma {
     _max?: NestedEnumCategoryFilter<$PrismaModel>
   }
 
+  export type EnumPhaseFilter<$PrismaModel = never> = {
+    equals?: $Enums.Phase | EnumPhaseFieldRefInput<$PrismaModel>
+    in?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel>
+    not?: NestedEnumPhaseFilter<$PrismaModel> | $Enums.Phase
+  }
+
   export type DecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -12306,10 +23284,31 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
+  export type AccreditationListRelationFilter = {
+    every?: AccreditationWhereInput
+    some?: AccreditationWhereInput
+    none?: AccreditationWhereInput
+  }
+
+  export type SurveyVisitListRelationFilter = {
+    every?: SurveyVisitWhereInput
+    some?: SurveyVisitWhereInput
+    none?: SurveyVisitWhereInput
+  }
+
+  export type AccreditationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SurveyVisitOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type LevelCountOrderByAggregateInput = {
     id?: SortOrder
     rank?: SortOrder
     label?: SortOrder
+    phase?: SortOrder
     requiredGrandMean?: SortOrder
     requiredAreaMean?: SortOrder
   }
@@ -12324,6 +23323,7 @@ export namespace Prisma {
     id?: SortOrder
     rank?: SortOrder
     label?: SortOrder
+    phase?: SortOrder
     requiredGrandMean?: SortOrder
     requiredAreaMean?: SortOrder
   }
@@ -12332,6 +23332,7 @@ export namespace Prisma {
     id?: SortOrder
     rank?: SortOrder
     label?: SortOrder
+    phase?: SortOrder
     requiredGrandMean?: SortOrder
     requiredAreaMean?: SortOrder
   }
@@ -12340,6 +23341,16 @@ export namespace Prisma {
     rank?: SortOrder
     requiredGrandMean?: SortOrder
     requiredAreaMean?: SortOrder
+  }
+
+  export type EnumPhaseWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Phase | EnumPhaseFieldRefInput<$PrismaModel>
+    in?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel>
+    not?: NestedEnumPhaseWithAggregatesFilter<$PrismaModel> | $Enums.Phase
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPhaseFilter<$PrismaModel>
+    _max?: NestedEnumPhaseFilter<$PrismaModel>
   }
 
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -12356,6 +23367,279 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type EnumPhaseNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Phase | EnumPhaseFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumPhaseNullableFilter<$PrismaModel> | $Enums.Phase | null
+  }
+
+  export type LevelNullableScalarRelationFilter = {
+    is?: LevelWhereInput | null
+    isNot?: LevelWhereInput | null
+  }
+
+  export type AccreditationCountOrderByAggregateInput = {
+    id?: SortOrder
+    programId?: SortOrder
+    currentLevel?: SortOrder
+    phase?: SortOrder
+  }
+
+  export type AccreditationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    programId?: SortOrder
+    currentLevel?: SortOrder
+    phase?: SortOrder
+  }
+
+  export type AccreditationMinOrderByAggregateInput = {
+    id?: SortOrder
+    programId?: SortOrder
+    currentLevel?: SortOrder
+    phase?: SortOrder
+  }
+
+  export type EnumPhaseNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Phase | EnumPhaseFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumPhaseNullableWithAggregatesFilter<$PrismaModel> | $Enums.Phase | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumPhaseNullableFilter<$PrismaModel>
+    _max?: NestedEnumPhaseNullableFilter<$PrismaModel>
+  }
+
+  export type AccreditationScalarRelationFilter = {
+    is?: AccreditationWhereInput
+    isNot?: AccreditationWhereInput
+  }
+
+  export type LevelScalarRelationFilter = {
+    is?: LevelWhereInput
+    isNot?: LevelWhereInput
+  }
+
+  export type PhaseOneRequirementsNullableScalarRelationFilter = {
+    is?: PhaseOneRequirementsWhereInput | null
+    isNot?: PhaseOneRequirementsWhereInput | null
+  }
+
+  export type SurveyVisitCountOrderByAggregateInput = {
+    id?: SortOrder
+    accreditationId?: SortOrder
+    targetLevel?: SortOrder
+  }
+
+  export type SurveyVisitMaxOrderByAggregateInput = {
+    id?: SortOrder
+    accreditationId?: SortOrder
+    targetLevel?: SortOrder
+  }
+
+  export type SurveyVisitMinOrderByAggregateInput = {
+    id?: SortOrder
+    accreditationId?: SortOrder
+    targetLevel?: SortOrder
+  }
+
+  export type SurveyVisitScalarRelationFilter = {
+    is?: SurveyVisitWhereInput
+    isNot?: SurveyVisitWhereInput
+  }
+
+  export type InstrumentFolderNullableScalarRelationFilter = {
+    is?: InstrumentFolderWhereInput | null
+    isNot?: InstrumentFolderWhereInput | null
+  }
+
+  export type PhaseOneRequirementsCountOrderByAggregateInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrder
+    instrumentId?: SortOrder
+  }
+
+  export type PhaseOneRequirementsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrder
+    instrumentId?: SortOrder
+  }
+
+  export type PhaseOneRequirementsMinOrderByAggregateInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrder
+    instrumentId?: SortOrder
+  }
+
+  export type PhaseOneRequirementsScalarRelationFilter = {
+    is?: PhaseOneRequirementsWhereInput
+    isNot?: PhaseOneRequirementsWhereInput
+  }
+
+  export type InstrumentFolderCountOrderByAggregateInput = {
+    id?: SortOrder
+    phaseOneRequirementsId?: SortOrder
+    folderId?: SortOrder
+  }
+
+  export type InstrumentFolderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    phaseOneRequirementsId?: SortOrder
+    folderId?: SortOrder
+  }
+
+  export type InstrumentFolderMinOrderByAggregateInput = {
+    id?: SortOrder
+    phaseOneRequirementsId?: SortOrder
+    folderId?: SortOrder
+  }
+
+  export type InstrumentFolderScalarRelationFilter = {
+    is?: InstrumentFolderWhereInput
+    isNot?: InstrumentFolderWhereInput
+  }
+
+  export type AreaFolderCountOrderByAggregateInput = {
+    id?: SortOrder
+    instrumentFolderId?: SortOrder
+    folderId?: SortOrder
+    areaId?: SortOrder
+  }
+
+  export type AreaFolderAvgOrderByAggregateInput = {
+    areaId?: SortOrder
+  }
+
+  export type AreaFolderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    instrumentFolderId?: SortOrder
+    folderId?: SortOrder
+    areaId?: SortOrder
+  }
+
+  export type AreaFolderMinOrderByAggregateInput = {
+    id?: SortOrder
+    instrumentFolderId?: SortOrder
+    folderId?: SortOrder
+    areaId?: SortOrder
+  }
+
+  export type AreaFolderSumOrderByAggregateInput = {
+    areaId?: SortOrder
+  }
+
+  export type AreaFolderScalarRelationFilter = {
+    is?: AreaFolderWhereInput
+    isNot?: AreaFolderWhereInput
+  }
+
+  export type IndicatorFolderListRelationFilter = {
+    every?: IndicatorFolderWhereInput
+    some?: IndicatorFolderWhereInput
+    none?: IndicatorFolderWhereInput
+  }
+
+  export type IndicatorFolderOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ParameterFolderCountOrderByAggregateInput = {
+    id?: SortOrder
+    areaFolderId?: SortOrder
+    folderId?: SortOrder
+    parameterId?: SortOrder
+  }
+
+  export type ParameterFolderAvgOrderByAggregateInput = {
+    parameterId?: SortOrder
+  }
+
+  export type ParameterFolderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    areaFolderId?: SortOrder
+    folderId?: SortOrder
+    parameterId?: SortOrder
+  }
+
+  export type ParameterFolderMinOrderByAggregateInput = {
+    id?: SortOrder
+    areaFolderId?: SortOrder
+    folderId?: SortOrder
+    parameterId?: SortOrder
+  }
+
+  export type ParameterFolderSumOrderByAggregateInput = {
+    parameterId?: SortOrder
+  }
+
+  export type ParameterFolderScalarRelationFilter = {
+    is?: ParameterFolderWhereInput
+    isNot?: ParameterFolderWhereInput
+  }
+
+  export type IndicatorFolderCountOrderByAggregateInput = {
+    id?: SortOrder
+    parameterFolderId?: SortOrder
+    category?: SortOrder
+  }
+
+  export type IndicatorFolderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    parameterFolderId?: SortOrder
+    category?: SortOrder
+  }
+
+  export type IndicatorFolderMinOrderByAggregateInput = {
+    id?: SortOrder
+    parameterFolderId?: SortOrder
+    category?: SortOrder
+  }
+
+  export type IndicatorFolderScalarRelationFilter = {
+    is?: IndicatorFolderWhereInput
+    isNot?: IndicatorFolderWhereInput
+  }
+
+  export type IndicatorScalarRelationFilter = {
+    is?: IndicatorWhereInput
+    isNot?: IndicatorWhereInput
+  }
+
+  export type EvidenceFileCountOrderByAggregateInput = {
+    id?: SortOrder
+    indicatorFolderId?: SortOrder
+    fileId?: SortOrder
+    indicatorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EvidenceFileAvgOrderByAggregateInput = {
+    indicatorId?: SortOrder
+  }
+
+  export type EvidenceFileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    indicatorFolderId?: SortOrder
+    fileId?: SortOrder
+    indicatorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EvidenceFileMinOrderByAggregateInput = {
+    id?: SortOrder
+    indicatorFolderId?: SortOrder
+    fileId?: SortOrder
+    indicatorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EvidenceFileSumOrderByAggregateInput = {
+    indicatorId?: SortOrder
   }
 
   export type ProgramPersonnelCreateNestedManyWithoutUserInput = {
@@ -12423,11 +23707,23 @@ export namespace Prisma {
     connect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
   }
 
+  export type AccreditationCreateNestedOneWithoutProgramInput = {
+    create?: XOR<AccreditationCreateWithoutProgramInput, AccreditationUncheckedCreateWithoutProgramInput>
+    connectOrCreate?: AccreditationCreateOrConnectWithoutProgramInput
+    connect?: AccreditationWhereUniqueInput
+  }
+
   export type ProgramPersonnelUncheckedCreateNestedManyWithoutProgramInput = {
     create?: XOR<ProgramPersonnelCreateWithoutProgramInput, ProgramPersonnelUncheckedCreateWithoutProgramInput> | ProgramPersonnelCreateWithoutProgramInput[] | ProgramPersonnelUncheckedCreateWithoutProgramInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutProgramInput | ProgramPersonnelCreateOrConnectWithoutProgramInput[]
     createMany?: ProgramPersonnelCreateManyProgramInputEnvelope
     connect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+  }
+
+  export type AccreditationUncheckedCreateNestedOneWithoutProgramInput = {
+    create?: XOR<AccreditationCreateWithoutProgramInput, AccreditationUncheckedCreateWithoutProgramInput>
+    connectOrCreate?: AccreditationCreateOrConnectWithoutProgramInput
+    connect?: AccreditationWhereUniqueInput
   }
 
   export type ProgramPersonnelUpdateManyWithoutProgramNestedInput = {
@@ -12444,6 +23740,16 @@ export namespace Prisma {
     deleteMany?: ProgramPersonnelScalarWhereInput | ProgramPersonnelScalarWhereInput[]
   }
 
+  export type AccreditationUpdateOneWithoutProgramNestedInput = {
+    create?: XOR<AccreditationCreateWithoutProgramInput, AccreditationUncheckedCreateWithoutProgramInput>
+    connectOrCreate?: AccreditationCreateOrConnectWithoutProgramInput
+    upsert?: AccreditationUpsertWithoutProgramInput
+    disconnect?: AccreditationWhereInput | boolean
+    delete?: AccreditationWhereInput | boolean
+    connect?: AccreditationWhereUniqueInput
+    update?: XOR<XOR<AccreditationUpdateToOneWithWhereWithoutProgramInput, AccreditationUpdateWithoutProgramInput>, AccreditationUncheckedUpdateWithoutProgramInput>
+  }
+
   export type ProgramPersonnelUncheckedUpdateManyWithoutProgramNestedInput = {
     create?: XOR<ProgramPersonnelCreateWithoutProgramInput, ProgramPersonnelUncheckedCreateWithoutProgramInput> | ProgramPersonnelCreateWithoutProgramInput[] | ProgramPersonnelUncheckedCreateWithoutProgramInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutProgramInput | ProgramPersonnelCreateOrConnectWithoutProgramInput[]
@@ -12456,6 +23762,16 @@ export namespace Prisma {
     update?: ProgramPersonnelUpdateWithWhereUniqueWithoutProgramInput | ProgramPersonnelUpdateWithWhereUniqueWithoutProgramInput[]
     updateMany?: ProgramPersonnelUpdateManyWithWhereWithoutProgramInput | ProgramPersonnelUpdateManyWithWhereWithoutProgramInput[]
     deleteMany?: ProgramPersonnelScalarWhereInput | ProgramPersonnelScalarWhereInput[]
+  }
+
+  export type AccreditationUncheckedUpdateOneWithoutProgramNestedInput = {
+    create?: XOR<AccreditationCreateWithoutProgramInput, AccreditationUncheckedCreateWithoutProgramInput>
+    connectOrCreate?: AccreditationCreateOrConnectWithoutProgramInput
+    upsert?: AccreditationUpsertWithoutProgramInput
+    disconnect?: AccreditationWhereInput | boolean
+    delete?: AccreditationWhereInput | boolean
+    connect?: AccreditationWhereUniqueInput
+    update?: XOR<XOR<AccreditationUpdateToOneWithWhereWithoutProgramInput, AccreditationUpdateWithoutProgramInput>, AccreditationUncheckedUpdateWithoutProgramInput>
   }
 
   export type UserCreateNestedOneWithoutProgramPersonnelInput = {
@@ -12493,11 +23809,25 @@ export namespace Prisma {
     connect?: AreaWhereUniqueInput | AreaWhereUniqueInput[]
   }
 
+  export type PhaseOneRequirementsCreateNestedManyWithoutInstrumentInput = {
+    create?: XOR<PhaseOneRequirementsCreateWithoutInstrumentInput, PhaseOneRequirementsUncheckedCreateWithoutInstrumentInput> | PhaseOneRequirementsCreateWithoutInstrumentInput[] | PhaseOneRequirementsUncheckedCreateWithoutInstrumentInput[]
+    connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutInstrumentInput | PhaseOneRequirementsCreateOrConnectWithoutInstrumentInput[]
+    createMany?: PhaseOneRequirementsCreateManyInstrumentInputEnvelope
+    connect?: PhaseOneRequirementsWhereUniqueInput | PhaseOneRequirementsWhereUniqueInput[]
+  }
+
   export type AreaUncheckedCreateNestedManyWithoutInstrumentInput = {
     create?: XOR<AreaCreateWithoutInstrumentInput, AreaUncheckedCreateWithoutInstrumentInput> | AreaCreateWithoutInstrumentInput[] | AreaUncheckedCreateWithoutInstrumentInput[]
     connectOrCreate?: AreaCreateOrConnectWithoutInstrumentInput | AreaCreateOrConnectWithoutInstrumentInput[]
     createMany?: AreaCreateManyInstrumentInputEnvelope
     connect?: AreaWhereUniqueInput | AreaWhereUniqueInput[]
+  }
+
+  export type PhaseOneRequirementsUncheckedCreateNestedManyWithoutInstrumentInput = {
+    create?: XOR<PhaseOneRequirementsCreateWithoutInstrumentInput, PhaseOneRequirementsUncheckedCreateWithoutInstrumentInput> | PhaseOneRequirementsCreateWithoutInstrumentInput[] | PhaseOneRequirementsUncheckedCreateWithoutInstrumentInput[]
+    connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutInstrumentInput | PhaseOneRequirementsCreateOrConnectWithoutInstrumentInput[]
+    createMany?: PhaseOneRequirementsCreateManyInstrumentInputEnvelope
+    connect?: PhaseOneRequirementsWhereUniqueInput | PhaseOneRequirementsWhereUniqueInput[]
   }
 
   export type AreaUpdateManyWithoutInstrumentNestedInput = {
@@ -12514,6 +23844,20 @@ export namespace Prisma {
     deleteMany?: AreaScalarWhereInput | AreaScalarWhereInput[]
   }
 
+  export type PhaseOneRequirementsUpdateManyWithoutInstrumentNestedInput = {
+    create?: XOR<PhaseOneRequirementsCreateWithoutInstrumentInput, PhaseOneRequirementsUncheckedCreateWithoutInstrumentInput> | PhaseOneRequirementsCreateWithoutInstrumentInput[] | PhaseOneRequirementsUncheckedCreateWithoutInstrumentInput[]
+    connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutInstrumentInput | PhaseOneRequirementsCreateOrConnectWithoutInstrumentInput[]
+    upsert?: PhaseOneRequirementsUpsertWithWhereUniqueWithoutInstrumentInput | PhaseOneRequirementsUpsertWithWhereUniqueWithoutInstrumentInput[]
+    createMany?: PhaseOneRequirementsCreateManyInstrumentInputEnvelope
+    set?: PhaseOneRequirementsWhereUniqueInput | PhaseOneRequirementsWhereUniqueInput[]
+    disconnect?: PhaseOneRequirementsWhereUniqueInput | PhaseOneRequirementsWhereUniqueInput[]
+    delete?: PhaseOneRequirementsWhereUniqueInput | PhaseOneRequirementsWhereUniqueInput[]
+    connect?: PhaseOneRequirementsWhereUniqueInput | PhaseOneRequirementsWhereUniqueInput[]
+    update?: PhaseOneRequirementsUpdateWithWhereUniqueWithoutInstrumentInput | PhaseOneRequirementsUpdateWithWhereUniqueWithoutInstrumentInput[]
+    updateMany?: PhaseOneRequirementsUpdateManyWithWhereWithoutInstrumentInput | PhaseOneRequirementsUpdateManyWithWhereWithoutInstrumentInput[]
+    deleteMany?: PhaseOneRequirementsScalarWhereInput | PhaseOneRequirementsScalarWhereInput[]
+  }
+
   export type AreaUncheckedUpdateManyWithoutInstrumentNestedInput = {
     create?: XOR<AreaCreateWithoutInstrumentInput, AreaUncheckedCreateWithoutInstrumentInput> | AreaCreateWithoutInstrumentInput[] | AreaUncheckedCreateWithoutInstrumentInput[]
     connectOrCreate?: AreaCreateOrConnectWithoutInstrumentInput | AreaCreateOrConnectWithoutInstrumentInput[]
@@ -12526,6 +23870,20 @@ export namespace Prisma {
     update?: AreaUpdateWithWhereUniqueWithoutInstrumentInput | AreaUpdateWithWhereUniqueWithoutInstrumentInput[]
     updateMany?: AreaUpdateManyWithWhereWithoutInstrumentInput | AreaUpdateManyWithWhereWithoutInstrumentInput[]
     deleteMany?: AreaScalarWhereInput | AreaScalarWhereInput[]
+  }
+
+  export type PhaseOneRequirementsUncheckedUpdateManyWithoutInstrumentNestedInput = {
+    create?: XOR<PhaseOneRequirementsCreateWithoutInstrumentInput, PhaseOneRequirementsUncheckedCreateWithoutInstrumentInput> | PhaseOneRequirementsCreateWithoutInstrumentInput[] | PhaseOneRequirementsUncheckedCreateWithoutInstrumentInput[]
+    connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutInstrumentInput | PhaseOneRequirementsCreateOrConnectWithoutInstrumentInput[]
+    upsert?: PhaseOneRequirementsUpsertWithWhereUniqueWithoutInstrumentInput | PhaseOneRequirementsUpsertWithWhereUniqueWithoutInstrumentInput[]
+    createMany?: PhaseOneRequirementsCreateManyInstrumentInputEnvelope
+    set?: PhaseOneRequirementsWhereUniqueInput | PhaseOneRequirementsWhereUniqueInput[]
+    disconnect?: PhaseOneRequirementsWhereUniqueInput | PhaseOneRequirementsWhereUniqueInput[]
+    delete?: PhaseOneRequirementsWhereUniqueInput | PhaseOneRequirementsWhereUniqueInput[]
+    connect?: PhaseOneRequirementsWhereUniqueInput | PhaseOneRequirementsWhereUniqueInput[]
+    update?: PhaseOneRequirementsUpdateWithWhereUniqueWithoutInstrumentInput | PhaseOneRequirementsUpdateWithWhereUniqueWithoutInstrumentInput[]
+    updateMany?: PhaseOneRequirementsUpdateManyWithWhereWithoutInstrumentInput | PhaseOneRequirementsUpdateManyWithWhereWithoutInstrumentInput[]
+    deleteMany?: PhaseOneRequirementsScalarWhereInput | PhaseOneRequirementsScalarWhereInput[]
   }
 
   export type InstrumentCreateNestedOneWithoutAreaInput = {
@@ -12541,11 +23899,25 @@ export namespace Prisma {
     connect?: ParameterWhereUniqueInput | ParameterWhereUniqueInput[]
   }
 
+  export type AreaFolderCreateNestedManyWithoutAreaInput = {
+    create?: XOR<AreaFolderCreateWithoutAreaInput, AreaFolderUncheckedCreateWithoutAreaInput> | AreaFolderCreateWithoutAreaInput[] | AreaFolderUncheckedCreateWithoutAreaInput[]
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutAreaInput | AreaFolderCreateOrConnectWithoutAreaInput[]
+    createMany?: AreaFolderCreateManyAreaInputEnvelope
+    connect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+  }
+
   export type ParameterUncheckedCreateNestedManyWithoutAreaInput = {
     create?: XOR<ParameterCreateWithoutAreaInput, ParameterUncheckedCreateWithoutAreaInput> | ParameterCreateWithoutAreaInput[] | ParameterUncheckedCreateWithoutAreaInput[]
     connectOrCreate?: ParameterCreateOrConnectWithoutAreaInput | ParameterCreateOrConnectWithoutAreaInput[]
     createMany?: ParameterCreateManyAreaInputEnvelope
     connect?: ParameterWhereUniqueInput | ParameterWhereUniqueInput[]
+  }
+
+  export type AreaFolderUncheckedCreateNestedManyWithoutAreaInput = {
+    create?: XOR<AreaFolderCreateWithoutAreaInput, AreaFolderUncheckedCreateWithoutAreaInput> | AreaFolderCreateWithoutAreaInput[] | AreaFolderUncheckedCreateWithoutAreaInput[]
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutAreaInput | AreaFolderCreateOrConnectWithoutAreaInput[]
+    createMany?: AreaFolderCreateManyAreaInputEnvelope
+    connect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -12578,6 +23950,20 @@ export namespace Prisma {
     deleteMany?: ParameterScalarWhereInput | ParameterScalarWhereInput[]
   }
 
+  export type AreaFolderUpdateManyWithoutAreaNestedInput = {
+    create?: XOR<AreaFolderCreateWithoutAreaInput, AreaFolderUncheckedCreateWithoutAreaInput> | AreaFolderCreateWithoutAreaInput[] | AreaFolderUncheckedCreateWithoutAreaInput[]
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutAreaInput | AreaFolderCreateOrConnectWithoutAreaInput[]
+    upsert?: AreaFolderUpsertWithWhereUniqueWithoutAreaInput | AreaFolderUpsertWithWhereUniqueWithoutAreaInput[]
+    createMany?: AreaFolderCreateManyAreaInputEnvelope
+    set?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    disconnect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    delete?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    connect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    update?: AreaFolderUpdateWithWhereUniqueWithoutAreaInput | AreaFolderUpdateWithWhereUniqueWithoutAreaInput[]
+    updateMany?: AreaFolderUpdateManyWithWhereWithoutAreaInput | AreaFolderUpdateManyWithWhereWithoutAreaInput[]
+    deleteMany?: AreaFolderScalarWhereInput | AreaFolderScalarWhereInput[]
+  }
+
   export type ParameterUncheckedUpdateManyWithoutAreaNestedInput = {
     create?: XOR<ParameterCreateWithoutAreaInput, ParameterUncheckedCreateWithoutAreaInput> | ParameterCreateWithoutAreaInput[] | ParameterUncheckedCreateWithoutAreaInput[]
     connectOrCreate?: ParameterCreateOrConnectWithoutAreaInput | ParameterCreateOrConnectWithoutAreaInput[]
@@ -12590,6 +23976,20 @@ export namespace Prisma {
     update?: ParameterUpdateWithWhereUniqueWithoutAreaInput | ParameterUpdateWithWhereUniqueWithoutAreaInput[]
     updateMany?: ParameterUpdateManyWithWhereWithoutAreaInput | ParameterUpdateManyWithWhereWithoutAreaInput[]
     deleteMany?: ParameterScalarWhereInput | ParameterScalarWhereInput[]
+  }
+
+  export type AreaFolderUncheckedUpdateManyWithoutAreaNestedInput = {
+    create?: XOR<AreaFolderCreateWithoutAreaInput, AreaFolderUncheckedCreateWithoutAreaInput> | AreaFolderCreateWithoutAreaInput[] | AreaFolderUncheckedCreateWithoutAreaInput[]
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutAreaInput | AreaFolderCreateOrConnectWithoutAreaInput[]
+    upsert?: AreaFolderUpsertWithWhereUniqueWithoutAreaInput | AreaFolderUpsertWithWhereUniqueWithoutAreaInput[]
+    createMany?: AreaFolderCreateManyAreaInputEnvelope
+    set?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    disconnect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    delete?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    connect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    update?: AreaFolderUpdateWithWhereUniqueWithoutAreaInput | AreaFolderUpdateWithWhereUniqueWithoutAreaInput[]
+    updateMany?: AreaFolderUpdateManyWithWhereWithoutAreaInput | AreaFolderUpdateManyWithWhereWithoutAreaInput[]
+    deleteMany?: AreaFolderScalarWhereInput | AreaFolderScalarWhereInput[]
   }
 
   export type AreaCreateNestedOneWithoutParameterInput = {
@@ -12605,11 +24005,25 @@ export namespace Prisma {
     connect?: IndicatorWhereUniqueInput | IndicatorWhereUniqueInput[]
   }
 
+  export type ParameterFolderCreateNestedManyWithoutParameterInput = {
+    create?: XOR<ParameterFolderCreateWithoutParameterInput, ParameterFolderUncheckedCreateWithoutParameterInput> | ParameterFolderCreateWithoutParameterInput[] | ParameterFolderUncheckedCreateWithoutParameterInput[]
+    connectOrCreate?: ParameterFolderCreateOrConnectWithoutParameterInput | ParameterFolderCreateOrConnectWithoutParameterInput[]
+    createMany?: ParameterFolderCreateManyParameterInputEnvelope
+    connect?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+  }
+
   export type IndicatorUncheckedCreateNestedManyWithoutParameterInput = {
     create?: XOR<IndicatorCreateWithoutParameterInput, IndicatorUncheckedCreateWithoutParameterInput> | IndicatorCreateWithoutParameterInput[] | IndicatorUncheckedCreateWithoutParameterInput[]
     connectOrCreate?: IndicatorCreateOrConnectWithoutParameterInput | IndicatorCreateOrConnectWithoutParameterInput[]
     createMany?: IndicatorCreateManyParameterInputEnvelope
     connect?: IndicatorWhereUniqueInput | IndicatorWhereUniqueInput[]
+  }
+
+  export type ParameterFolderUncheckedCreateNestedManyWithoutParameterInput = {
+    create?: XOR<ParameterFolderCreateWithoutParameterInput, ParameterFolderUncheckedCreateWithoutParameterInput> | ParameterFolderCreateWithoutParameterInput[] | ParameterFolderUncheckedCreateWithoutParameterInput[]
+    connectOrCreate?: ParameterFolderCreateOrConnectWithoutParameterInput | ParameterFolderCreateOrConnectWithoutParameterInput[]
+    createMany?: ParameterFolderCreateManyParameterInputEnvelope
+    connect?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
   }
 
   export type AreaUpdateOneRequiredWithoutParameterNestedInput = {
@@ -12634,6 +24048,20 @@ export namespace Prisma {
     deleteMany?: IndicatorScalarWhereInput | IndicatorScalarWhereInput[]
   }
 
+  export type ParameterFolderUpdateManyWithoutParameterNestedInput = {
+    create?: XOR<ParameterFolderCreateWithoutParameterInput, ParameterFolderUncheckedCreateWithoutParameterInput> | ParameterFolderCreateWithoutParameterInput[] | ParameterFolderUncheckedCreateWithoutParameterInput[]
+    connectOrCreate?: ParameterFolderCreateOrConnectWithoutParameterInput | ParameterFolderCreateOrConnectWithoutParameterInput[]
+    upsert?: ParameterFolderUpsertWithWhereUniqueWithoutParameterInput | ParameterFolderUpsertWithWhereUniqueWithoutParameterInput[]
+    createMany?: ParameterFolderCreateManyParameterInputEnvelope
+    set?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    disconnect?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    delete?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    connect?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    update?: ParameterFolderUpdateWithWhereUniqueWithoutParameterInput | ParameterFolderUpdateWithWhereUniqueWithoutParameterInput[]
+    updateMany?: ParameterFolderUpdateManyWithWhereWithoutParameterInput | ParameterFolderUpdateManyWithWhereWithoutParameterInput[]
+    deleteMany?: ParameterFolderScalarWhereInput | ParameterFolderScalarWhereInput[]
+  }
+
   export type IndicatorUncheckedUpdateManyWithoutParameterNestedInput = {
     create?: XOR<IndicatorCreateWithoutParameterInput, IndicatorUncheckedCreateWithoutParameterInput> | IndicatorCreateWithoutParameterInput[] | IndicatorUncheckedCreateWithoutParameterInput[]
     connectOrCreate?: IndicatorCreateOrConnectWithoutParameterInput | IndicatorCreateOrConnectWithoutParameterInput[]
@@ -12648,10 +24076,38 @@ export namespace Prisma {
     deleteMany?: IndicatorScalarWhereInput | IndicatorScalarWhereInput[]
   }
 
+  export type ParameterFolderUncheckedUpdateManyWithoutParameterNestedInput = {
+    create?: XOR<ParameterFolderCreateWithoutParameterInput, ParameterFolderUncheckedCreateWithoutParameterInput> | ParameterFolderCreateWithoutParameterInput[] | ParameterFolderUncheckedCreateWithoutParameterInput[]
+    connectOrCreate?: ParameterFolderCreateOrConnectWithoutParameterInput | ParameterFolderCreateOrConnectWithoutParameterInput[]
+    upsert?: ParameterFolderUpsertWithWhereUniqueWithoutParameterInput | ParameterFolderUpsertWithWhereUniqueWithoutParameterInput[]
+    createMany?: ParameterFolderCreateManyParameterInputEnvelope
+    set?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    disconnect?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    delete?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    connect?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    update?: ParameterFolderUpdateWithWhereUniqueWithoutParameterInput | ParameterFolderUpdateWithWhereUniqueWithoutParameterInput[]
+    updateMany?: ParameterFolderUpdateManyWithWhereWithoutParameterInput | ParameterFolderUpdateManyWithWhereWithoutParameterInput[]
+    deleteMany?: ParameterFolderScalarWhereInput | ParameterFolderScalarWhereInput[]
+  }
+
   export type ParameterCreateNestedOneWithoutIndicatorInput = {
     create?: XOR<ParameterCreateWithoutIndicatorInput, ParameterUncheckedCreateWithoutIndicatorInput>
     connectOrCreate?: ParameterCreateOrConnectWithoutIndicatorInput
     connect?: ParameterWhereUniqueInput
+  }
+
+  export type EvidenceFileCreateNestedManyWithoutIndicatorInput = {
+    create?: XOR<EvidenceFileCreateWithoutIndicatorInput, EvidenceFileUncheckedCreateWithoutIndicatorInput> | EvidenceFileCreateWithoutIndicatorInput[] | EvidenceFileUncheckedCreateWithoutIndicatorInput[]
+    connectOrCreate?: EvidenceFileCreateOrConnectWithoutIndicatorInput | EvidenceFileCreateOrConnectWithoutIndicatorInput[]
+    createMany?: EvidenceFileCreateManyIndicatorInputEnvelope
+    connect?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+  }
+
+  export type EvidenceFileUncheckedCreateNestedManyWithoutIndicatorInput = {
+    create?: XOR<EvidenceFileCreateWithoutIndicatorInput, EvidenceFileUncheckedCreateWithoutIndicatorInput> | EvidenceFileCreateWithoutIndicatorInput[] | EvidenceFileUncheckedCreateWithoutIndicatorInput[]
+    connectOrCreate?: EvidenceFileCreateOrConnectWithoutIndicatorInput | EvidenceFileCreateOrConnectWithoutIndicatorInput[]
+    createMany?: EvidenceFileCreateManyIndicatorInputEnvelope
+    connect?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
   }
 
   export type EnumCategoryFieldUpdateOperationsInput = {
@@ -12666,12 +24122,604 @@ export namespace Prisma {
     update?: XOR<XOR<ParameterUpdateToOneWithWhereWithoutIndicatorInput, ParameterUpdateWithoutIndicatorInput>, ParameterUncheckedUpdateWithoutIndicatorInput>
   }
 
+  export type EvidenceFileUpdateManyWithoutIndicatorNestedInput = {
+    create?: XOR<EvidenceFileCreateWithoutIndicatorInput, EvidenceFileUncheckedCreateWithoutIndicatorInput> | EvidenceFileCreateWithoutIndicatorInput[] | EvidenceFileUncheckedCreateWithoutIndicatorInput[]
+    connectOrCreate?: EvidenceFileCreateOrConnectWithoutIndicatorInput | EvidenceFileCreateOrConnectWithoutIndicatorInput[]
+    upsert?: EvidenceFileUpsertWithWhereUniqueWithoutIndicatorInput | EvidenceFileUpsertWithWhereUniqueWithoutIndicatorInput[]
+    createMany?: EvidenceFileCreateManyIndicatorInputEnvelope
+    set?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    disconnect?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    delete?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    connect?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    update?: EvidenceFileUpdateWithWhereUniqueWithoutIndicatorInput | EvidenceFileUpdateWithWhereUniqueWithoutIndicatorInput[]
+    updateMany?: EvidenceFileUpdateManyWithWhereWithoutIndicatorInput | EvidenceFileUpdateManyWithWhereWithoutIndicatorInput[]
+    deleteMany?: EvidenceFileScalarWhereInput | EvidenceFileScalarWhereInput[]
+  }
+
+  export type EvidenceFileUncheckedUpdateManyWithoutIndicatorNestedInput = {
+    create?: XOR<EvidenceFileCreateWithoutIndicatorInput, EvidenceFileUncheckedCreateWithoutIndicatorInput> | EvidenceFileCreateWithoutIndicatorInput[] | EvidenceFileUncheckedCreateWithoutIndicatorInput[]
+    connectOrCreate?: EvidenceFileCreateOrConnectWithoutIndicatorInput | EvidenceFileCreateOrConnectWithoutIndicatorInput[]
+    upsert?: EvidenceFileUpsertWithWhereUniqueWithoutIndicatorInput | EvidenceFileUpsertWithWhereUniqueWithoutIndicatorInput[]
+    createMany?: EvidenceFileCreateManyIndicatorInputEnvelope
+    set?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    disconnect?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    delete?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    connect?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    update?: EvidenceFileUpdateWithWhereUniqueWithoutIndicatorInput | EvidenceFileUpdateWithWhereUniqueWithoutIndicatorInput[]
+    updateMany?: EvidenceFileUpdateManyWithWhereWithoutIndicatorInput | EvidenceFileUpdateManyWithWhereWithoutIndicatorInput[]
+    deleteMany?: EvidenceFileScalarWhereInput | EvidenceFileScalarWhereInput[]
+  }
+
+  export type AccreditationCreateNestedManyWithoutLevelInput = {
+    create?: XOR<AccreditationCreateWithoutLevelInput, AccreditationUncheckedCreateWithoutLevelInput> | AccreditationCreateWithoutLevelInput[] | AccreditationUncheckedCreateWithoutLevelInput[]
+    connectOrCreate?: AccreditationCreateOrConnectWithoutLevelInput | AccreditationCreateOrConnectWithoutLevelInput[]
+    createMany?: AccreditationCreateManyLevelInputEnvelope
+    connect?: AccreditationWhereUniqueInput | AccreditationWhereUniqueInput[]
+  }
+
+  export type SurveyVisitCreateNestedManyWithoutLevelInput = {
+    create?: XOR<SurveyVisitCreateWithoutLevelInput, SurveyVisitUncheckedCreateWithoutLevelInput> | SurveyVisitCreateWithoutLevelInput[] | SurveyVisitUncheckedCreateWithoutLevelInput[]
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutLevelInput | SurveyVisitCreateOrConnectWithoutLevelInput[]
+    createMany?: SurveyVisitCreateManyLevelInputEnvelope
+    connect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+  }
+
+  export type AccreditationUncheckedCreateNestedManyWithoutLevelInput = {
+    create?: XOR<AccreditationCreateWithoutLevelInput, AccreditationUncheckedCreateWithoutLevelInput> | AccreditationCreateWithoutLevelInput[] | AccreditationUncheckedCreateWithoutLevelInput[]
+    connectOrCreate?: AccreditationCreateOrConnectWithoutLevelInput | AccreditationCreateOrConnectWithoutLevelInput[]
+    createMany?: AccreditationCreateManyLevelInputEnvelope
+    connect?: AccreditationWhereUniqueInput | AccreditationWhereUniqueInput[]
+  }
+
+  export type SurveyVisitUncheckedCreateNestedManyWithoutLevelInput = {
+    create?: XOR<SurveyVisitCreateWithoutLevelInput, SurveyVisitUncheckedCreateWithoutLevelInput> | SurveyVisitCreateWithoutLevelInput[] | SurveyVisitUncheckedCreateWithoutLevelInput[]
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutLevelInput | SurveyVisitCreateOrConnectWithoutLevelInput[]
+    createMany?: SurveyVisitCreateManyLevelInputEnvelope
+    connect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+  }
+
+  export type EnumPhaseFieldUpdateOperationsInput = {
+    set?: $Enums.Phase
+  }
+
   export type DecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string
     increment?: Decimal | DecimalJsLike | number | string
     decrement?: Decimal | DecimalJsLike | number | string
     multiply?: Decimal | DecimalJsLike | number | string
     divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type AccreditationUpdateManyWithoutLevelNestedInput = {
+    create?: XOR<AccreditationCreateWithoutLevelInput, AccreditationUncheckedCreateWithoutLevelInput> | AccreditationCreateWithoutLevelInput[] | AccreditationUncheckedCreateWithoutLevelInput[]
+    connectOrCreate?: AccreditationCreateOrConnectWithoutLevelInput | AccreditationCreateOrConnectWithoutLevelInput[]
+    upsert?: AccreditationUpsertWithWhereUniqueWithoutLevelInput | AccreditationUpsertWithWhereUniqueWithoutLevelInput[]
+    createMany?: AccreditationCreateManyLevelInputEnvelope
+    set?: AccreditationWhereUniqueInput | AccreditationWhereUniqueInput[]
+    disconnect?: AccreditationWhereUniqueInput | AccreditationWhereUniqueInput[]
+    delete?: AccreditationWhereUniqueInput | AccreditationWhereUniqueInput[]
+    connect?: AccreditationWhereUniqueInput | AccreditationWhereUniqueInput[]
+    update?: AccreditationUpdateWithWhereUniqueWithoutLevelInput | AccreditationUpdateWithWhereUniqueWithoutLevelInput[]
+    updateMany?: AccreditationUpdateManyWithWhereWithoutLevelInput | AccreditationUpdateManyWithWhereWithoutLevelInput[]
+    deleteMany?: AccreditationScalarWhereInput | AccreditationScalarWhereInput[]
+  }
+
+  export type SurveyVisitUpdateManyWithoutLevelNestedInput = {
+    create?: XOR<SurveyVisitCreateWithoutLevelInput, SurveyVisitUncheckedCreateWithoutLevelInput> | SurveyVisitCreateWithoutLevelInput[] | SurveyVisitUncheckedCreateWithoutLevelInput[]
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutLevelInput | SurveyVisitCreateOrConnectWithoutLevelInput[]
+    upsert?: SurveyVisitUpsertWithWhereUniqueWithoutLevelInput | SurveyVisitUpsertWithWhereUniqueWithoutLevelInput[]
+    createMany?: SurveyVisitCreateManyLevelInputEnvelope
+    set?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    disconnect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    delete?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    connect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    update?: SurveyVisitUpdateWithWhereUniqueWithoutLevelInput | SurveyVisitUpdateWithWhereUniqueWithoutLevelInput[]
+    updateMany?: SurveyVisitUpdateManyWithWhereWithoutLevelInput | SurveyVisitUpdateManyWithWhereWithoutLevelInput[]
+    deleteMany?: SurveyVisitScalarWhereInput | SurveyVisitScalarWhereInput[]
+  }
+
+  export type AccreditationUncheckedUpdateManyWithoutLevelNestedInput = {
+    create?: XOR<AccreditationCreateWithoutLevelInput, AccreditationUncheckedCreateWithoutLevelInput> | AccreditationCreateWithoutLevelInput[] | AccreditationUncheckedCreateWithoutLevelInput[]
+    connectOrCreate?: AccreditationCreateOrConnectWithoutLevelInput | AccreditationCreateOrConnectWithoutLevelInput[]
+    upsert?: AccreditationUpsertWithWhereUniqueWithoutLevelInput | AccreditationUpsertWithWhereUniqueWithoutLevelInput[]
+    createMany?: AccreditationCreateManyLevelInputEnvelope
+    set?: AccreditationWhereUniqueInput | AccreditationWhereUniqueInput[]
+    disconnect?: AccreditationWhereUniqueInput | AccreditationWhereUniqueInput[]
+    delete?: AccreditationWhereUniqueInput | AccreditationWhereUniqueInput[]
+    connect?: AccreditationWhereUniqueInput | AccreditationWhereUniqueInput[]
+    update?: AccreditationUpdateWithWhereUniqueWithoutLevelInput | AccreditationUpdateWithWhereUniqueWithoutLevelInput[]
+    updateMany?: AccreditationUpdateManyWithWhereWithoutLevelInput | AccreditationUpdateManyWithWhereWithoutLevelInput[]
+    deleteMany?: AccreditationScalarWhereInput | AccreditationScalarWhereInput[]
+  }
+
+  export type SurveyVisitUncheckedUpdateManyWithoutLevelNestedInput = {
+    create?: XOR<SurveyVisitCreateWithoutLevelInput, SurveyVisitUncheckedCreateWithoutLevelInput> | SurveyVisitCreateWithoutLevelInput[] | SurveyVisitUncheckedCreateWithoutLevelInput[]
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutLevelInput | SurveyVisitCreateOrConnectWithoutLevelInput[]
+    upsert?: SurveyVisitUpsertWithWhereUniqueWithoutLevelInput | SurveyVisitUpsertWithWhereUniqueWithoutLevelInput[]
+    createMany?: SurveyVisitCreateManyLevelInputEnvelope
+    set?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    disconnect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    delete?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    connect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    update?: SurveyVisitUpdateWithWhereUniqueWithoutLevelInput | SurveyVisitUpdateWithWhereUniqueWithoutLevelInput[]
+    updateMany?: SurveyVisitUpdateManyWithWhereWithoutLevelInput | SurveyVisitUpdateManyWithWhereWithoutLevelInput[]
+    deleteMany?: SurveyVisitScalarWhereInput | SurveyVisitScalarWhereInput[]
+  }
+
+  export type ProgramCreateNestedOneWithoutAccreditationInput = {
+    create?: XOR<ProgramCreateWithoutAccreditationInput, ProgramUncheckedCreateWithoutAccreditationInput>
+    connectOrCreate?: ProgramCreateOrConnectWithoutAccreditationInput
+    connect?: ProgramWhereUniqueInput
+  }
+
+  export type LevelCreateNestedOneWithoutAccreditationsInput = {
+    create?: XOR<LevelCreateWithoutAccreditationsInput, LevelUncheckedCreateWithoutAccreditationsInput>
+    connectOrCreate?: LevelCreateOrConnectWithoutAccreditationsInput
+    connect?: LevelWhereUniqueInput
+  }
+
+  export type SurveyVisitCreateNestedManyWithoutAccreditationInput = {
+    create?: XOR<SurveyVisitCreateWithoutAccreditationInput, SurveyVisitUncheckedCreateWithoutAccreditationInput> | SurveyVisitCreateWithoutAccreditationInput[] | SurveyVisitUncheckedCreateWithoutAccreditationInput[]
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutAccreditationInput | SurveyVisitCreateOrConnectWithoutAccreditationInput[]
+    createMany?: SurveyVisitCreateManyAccreditationInputEnvelope
+    connect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+  }
+
+  export type SurveyVisitUncheckedCreateNestedManyWithoutAccreditationInput = {
+    create?: XOR<SurveyVisitCreateWithoutAccreditationInput, SurveyVisitUncheckedCreateWithoutAccreditationInput> | SurveyVisitCreateWithoutAccreditationInput[] | SurveyVisitUncheckedCreateWithoutAccreditationInput[]
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutAccreditationInput | SurveyVisitCreateOrConnectWithoutAccreditationInput[]
+    createMany?: SurveyVisitCreateManyAccreditationInputEnvelope
+    connect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+  }
+
+  export type NullableEnumPhaseFieldUpdateOperationsInput = {
+    set?: $Enums.Phase | null
+  }
+
+  export type ProgramUpdateOneRequiredWithoutAccreditationNestedInput = {
+    create?: XOR<ProgramCreateWithoutAccreditationInput, ProgramUncheckedCreateWithoutAccreditationInput>
+    connectOrCreate?: ProgramCreateOrConnectWithoutAccreditationInput
+    upsert?: ProgramUpsertWithoutAccreditationInput
+    connect?: ProgramWhereUniqueInput
+    update?: XOR<XOR<ProgramUpdateToOneWithWhereWithoutAccreditationInput, ProgramUpdateWithoutAccreditationInput>, ProgramUncheckedUpdateWithoutAccreditationInput>
+  }
+
+  export type LevelUpdateOneWithoutAccreditationsNestedInput = {
+    create?: XOR<LevelCreateWithoutAccreditationsInput, LevelUncheckedCreateWithoutAccreditationsInput>
+    connectOrCreate?: LevelCreateOrConnectWithoutAccreditationsInput
+    upsert?: LevelUpsertWithoutAccreditationsInput
+    disconnect?: LevelWhereInput | boolean
+    delete?: LevelWhereInput | boolean
+    connect?: LevelWhereUniqueInput
+    update?: XOR<XOR<LevelUpdateToOneWithWhereWithoutAccreditationsInput, LevelUpdateWithoutAccreditationsInput>, LevelUncheckedUpdateWithoutAccreditationsInput>
+  }
+
+  export type SurveyVisitUpdateManyWithoutAccreditationNestedInput = {
+    create?: XOR<SurveyVisitCreateWithoutAccreditationInput, SurveyVisitUncheckedCreateWithoutAccreditationInput> | SurveyVisitCreateWithoutAccreditationInput[] | SurveyVisitUncheckedCreateWithoutAccreditationInput[]
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutAccreditationInput | SurveyVisitCreateOrConnectWithoutAccreditationInput[]
+    upsert?: SurveyVisitUpsertWithWhereUniqueWithoutAccreditationInput | SurveyVisitUpsertWithWhereUniqueWithoutAccreditationInput[]
+    createMany?: SurveyVisitCreateManyAccreditationInputEnvelope
+    set?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    disconnect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    delete?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    connect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    update?: SurveyVisitUpdateWithWhereUniqueWithoutAccreditationInput | SurveyVisitUpdateWithWhereUniqueWithoutAccreditationInput[]
+    updateMany?: SurveyVisitUpdateManyWithWhereWithoutAccreditationInput | SurveyVisitUpdateManyWithWhereWithoutAccreditationInput[]
+    deleteMany?: SurveyVisitScalarWhereInput | SurveyVisitScalarWhereInput[]
+  }
+
+  export type SurveyVisitUncheckedUpdateManyWithoutAccreditationNestedInput = {
+    create?: XOR<SurveyVisitCreateWithoutAccreditationInput, SurveyVisitUncheckedCreateWithoutAccreditationInput> | SurveyVisitCreateWithoutAccreditationInput[] | SurveyVisitUncheckedCreateWithoutAccreditationInput[]
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutAccreditationInput | SurveyVisitCreateOrConnectWithoutAccreditationInput[]
+    upsert?: SurveyVisitUpsertWithWhereUniqueWithoutAccreditationInput | SurveyVisitUpsertWithWhereUniqueWithoutAccreditationInput[]
+    createMany?: SurveyVisitCreateManyAccreditationInputEnvelope
+    set?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    disconnect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    delete?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    connect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
+    update?: SurveyVisitUpdateWithWhereUniqueWithoutAccreditationInput | SurveyVisitUpdateWithWhereUniqueWithoutAccreditationInput[]
+    updateMany?: SurveyVisitUpdateManyWithWhereWithoutAccreditationInput | SurveyVisitUpdateManyWithWhereWithoutAccreditationInput[]
+    deleteMany?: SurveyVisitScalarWhereInput | SurveyVisitScalarWhereInput[]
+  }
+
+  export type AccreditationCreateNestedOneWithoutSurveyVisitsInput = {
+    create?: XOR<AccreditationCreateWithoutSurveyVisitsInput, AccreditationUncheckedCreateWithoutSurveyVisitsInput>
+    connectOrCreate?: AccreditationCreateOrConnectWithoutSurveyVisitsInput
+    connect?: AccreditationWhereUniqueInput
+  }
+
+  export type LevelCreateNestedOneWithoutSurveyVisitsInput = {
+    create?: XOR<LevelCreateWithoutSurveyVisitsInput, LevelUncheckedCreateWithoutSurveyVisitsInput>
+    connectOrCreate?: LevelCreateOrConnectWithoutSurveyVisitsInput
+    connect?: LevelWhereUniqueInput
+  }
+
+  export type PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput = {
+    create?: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
+    connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutSurveyVisitInput
+    connect?: PhaseOneRequirementsWhereUniqueInput
+  }
+
+  export type PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput = {
+    create?: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
+    connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutSurveyVisitInput
+    connect?: PhaseOneRequirementsWhereUniqueInput
+  }
+
+  export type AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput = {
+    create?: XOR<AccreditationCreateWithoutSurveyVisitsInput, AccreditationUncheckedCreateWithoutSurveyVisitsInput>
+    connectOrCreate?: AccreditationCreateOrConnectWithoutSurveyVisitsInput
+    upsert?: AccreditationUpsertWithoutSurveyVisitsInput
+    connect?: AccreditationWhereUniqueInput
+    update?: XOR<XOR<AccreditationUpdateToOneWithWhereWithoutSurveyVisitsInput, AccreditationUpdateWithoutSurveyVisitsInput>, AccreditationUncheckedUpdateWithoutSurveyVisitsInput>
+  }
+
+  export type LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput = {
+    create?: XOR<LevelCreateWithoutSurveyVisitsInput, LevelUncheckedCreateWithoutSurveyVisitsInput>
+    connectOrCreate?: LevelCreateOrConnectWithoutSurveyVisitsInput
+    upsert?: LevelUpsertWithoutSurveyVisitsInput
+    connect?: LevelWhereUniqueInput
+    update?: XOR<XOR<LevelUpdateToOneWithWhereWithoutSurveyVisitsInput, LevelUpdateWithoutSurveyVisitsInput>, LevelUncheckedUpdateWithoutSurveyVisitsInput>
+  }
+
+  export type PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput = {
+    create?: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
+    connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutSurveyVisitInput
+    upsert?: PhaseOneRequirementsUpsertWithoutSurveyVisitInput
+    disconnect?: PhaseOneRequirementsWhereInput | boolean
+    delete?: PhaseOneRequirementsWhereInput | boolean
+    connect?: PhaseOneRequirementsWhereUniqueInput
+    update?: XOR<XOR<PhaseOneRequirementsUpdateToOneWithWhereWithoutSurveyVisitInput, PhaseOneRequirementsUpdateWithoutSurveyVisitInput>, PhaseOneRequirementsUncheckedUpdateWithoutSurveyVisitInput>
+  }
+
+  export type PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput = {
+    create?: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
+    connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutSurveyVisitInput
+    upsert?: PhaseOneRequirementsUpsertWithoutSurveyVisitInput
+    disconnect?: PhaseOneRequirementsWhereInput | boolean
+    delete?: PhaseOneRequirementsWhereInput | boolean
+    connect?: PhaseOneRequirementsWhereUniqueInput
+    update?: XOR<XOR<PhaseOneRequirementsUpdateToOneWithWhereWithoutSurveyVisitInput, PhaseOneRequirementsUpdateWithoutSurveyVisitInput>, PhaseOneRequirementsUncheckedUpdateWithoutSurveyVisitInput>
+  }
+
+  export type SurveyVisitCreateNestedOneWithoutPhaseOneRequirementsInput = {
+    create?: XOR<SurveyVisitCreateWithoutPhaseOneRequirementsInput, SurveyVisitUncheckedCreateWithoutPhaseOneRequirementsInput>
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutPhaseOneRequirementsInput
+    connect?: SurveyVisitWhereUniqueInput
+  }
+
+  export type InstrumentCreateNestedOneWithoutPhaseOneRequirementsInput = {
+    create?: XOR<InstrumentCreateWithoutPhaseOneRequirementsInput, InstrumentUncheckedCreateWithoutPhaseOneRequirementsInput>
+    connectOrCreate?: InstrumentCreateOrConnectWithoutPhaseOneRequirementsInput
+    connect?: InstrumentWhereUniqueInput
+  }
+
+  export type InstrumentFolderCreateNestedOneWithoutPhaseOneRequirementsInput = {
+    create?: XOR<InstrumentFolderCreateWithoutPhaseOneRequirementsInput, InstrumentFolderUncheckedCreateWithoutPhaseOneRequirementsInput>
+    connectOrCreate?: InstrumentFolderCreateOrConnectWithoutPhaseOneRequirementsInput
+    connect?: InstrumentFolderWhereUniqueInput
+  }
+
+  export type InstrumentFolderUncheckedCreateNestedOneWithoutPhaseOneRequirementsInput = {
+    create?: XOR<InstrumentFolderCreateWithoutPhaseOneRequirementsInput, InstrumentFolderUncheckedCreateWithoutPhaseOneRequirementsInput>
+    connectOrCreate?: InstrumentFolderCreateOrConnectWithoutPhaseOneRequirementsInput
+    connect?: InstrumentFolderWhereUniqueInput
+  }
+
+  export type SurveyVisitUpdateOneRequiredWithoutPhaseOneRequirementsNestedInput = {
+    create?: XOR<SurveyVisitCreateWithoutPhaseOneRequirementsInput, SurveyVisitUncheckedCreateWithoutPhaseOneRequirementsInput>
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutPhaseOneRequirementsInput
+    upsert?: SurveyVisitUpsertWithoutPhaseOneRequirementsInput
+    connect?: SurveyVisitWhereUniqueInput
+    update?: XOR<XOR<SurveyVisitUpdateToOneWithWhereWithoutPhaseOneRequirementsInput, SurveyVisitUpdateWithoutPhaseOneRequirementsInput>, SurveyVisitUncheckedUpdateWithoutPhaseOneRequirementsInput>
+  }
+
+  export type InstrumentUpdateOneRequiredWithoutPhaseOneRequirementsNestedInput = {
+    create?: XOR<InstrumentCreateWithoutPhaseOneRequirementsInput, InstrumentUncheckedCreateWithoutPhaseOneRequirementsInput>
+    connectOrCreate?: InstrumentCreateOrConnectWithoutPhaseOneRequirementsInput
+    upsert?: InstrumentUpsertWithoutPhaseOneRequirementsInput
+    connect?: InstrumentWhereUniqueInput
+    update?: XOR<XOR<InstrumentUpdateToOneWithWhereWithoutPhaseOneRequirementsInput, InstrumentUpdateWithoutPhaseOneRequirementsInput>, InstrumentUncheckedUpdateWithoutPhaseOneRequirementsInput>
+  }
+
+  export type InstrumentFolderUpdateOneWithoutPhaseOneRequirementsNestedInput = {
+    create?: XOR<InstrumentFolderCreateWithoutPhaseOneRequirementsInput, InstrumentFolderUncheckedCreateWithoutPhaseOneRequirementsInput>
+    connectOrCreate?: InstrumentFolderCreateOrConnectWithoutPhaseOneRequirementsInput
+    upsert?: InstrumentFolderUpsertWithoutPhaseOneRequirementsInput
+    disconnect?: InstrumentFolderWhereInput | boolean
+    delete?: InstrumentFolderWhereInput | boolean
+    connect?: InstrumentFolderWhereUniqueInput
+    update?: XOR<XOR<InstrumentFolderUpdateToOneWithWhereWithoutPhaseOneRequirementsInput, InstrumentFolderUpdateWithoutPhaseOneRequirementsInput>, InstrumentFolderUncheckedUpdateWithoutPhaseOneRequirementsInput>
+  }
+
+  export type InstrumentFolderUncheckedUpdateOneWithoutPhaseOneRequirementsNestedInput = {
+    create?: XOR<InstrumentFolderCreateWithoutPhaseOneRequirementsInput, InstrumentFolderUncheckedCreateWithoutPhaseOneRequirementsInput>
+    connectOrCreate?: InstrumentFolderCreateOrConnectWithoutPhaseOneRequirementsInput
+    upsert?: InstrumentFolderUpsertWithoutPhaseOneRequirementsInput
+    disconnect?: InstrumentFolderWhereInput | boolean
+    delete?: InstrumentFolderWhereInput | boolean
+    connect?: InstrumentFolderWhereUniqueInput
+    update?: XOR<XOR<InstrumentFolderUpdateToOneWithWhereWithoutPhaseOneRequirementsInput, InstrumentFolderUpdateWithoutPhaseOneRequirementsInput>, InstrumentFolderUncheckedUpdateWithoutPhaseOneRequirementsInput>
+  }
+
+  export type PhaseOneRequirementsCreateNestedOneWithoutInstrumentFolderInput = {
+    create?: XOR<PhaseOneRequirementsCreateWithoutInstrumentFolderInput, PhaseOneRequirementsUncheckedCreateWithoutInstrumentFolderInput>
+    connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutInstrumentFolderInput
+    connect?: PhaseOneRequirementsWhereUniqueInput
+  }
+
+  export type AreaFolderCreateNestedManyWithoutInstrumentFolderInput = {
+    create?: XOR<AreaFolderCreateWithoutInstrumentFolderInput, AreaFolderUncheckedCreateWithoutInstrumentFolderInput> | AreaFolderCreateWithoutInstrumentFolderInput[] | AreaFolderUncheckedCreateWithoutInstrumentFolderInput[]
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutInstrumentFolderInput | AreaFolderCreateOrConnectWithoutInstrumentFolderInput[]
+    createMany?: AreaFolderCreateManyInstrumentFolderInputEnvelope
+    connect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+  }
+
+  export type AreaFolderUncheckedCreateNestedManyWithoutInstrumentFolderInput = {
+    create?: XOR<AreaFolderCreateWithoutInstrumentFolderInput, AreaFolderUncheckedCreateWithoutInstrumentFolderInput> | AreaFolderCreateWithoutInstrumentFolderInput[] | AreaFolderUncheckedCreateWithoutInstrumentFolderInput[]
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutInstrumentFolderInput | AreaFolderCreateOrConnectWithoutInstrumentFolderInput[]
+    createMany?: AreaFolderCreateManyInstrumentFolderInputEnvelope
+    connect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+  }
+
+  export type PhaseOneRequirementsUpdateOneRequiredWithoutInstrumentFolderNestedInput = {
+    create?: XOR<PhaseOneRequirementsCreateWithoutInstrumentFolderInput, PhaseOneRequirementsUncheckedCreateWithoutInstrumentFolderInput>
+    connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutInstrumentFolderInput
+    upsert?: PhaseOneRequirementsUpsertWithoutInstrumentFolderInput
+    connect?: PhaseOneRequirementsWhereUniqueInput
+    update?: XOR<XOR<PhaseOneRequirementsUpdateToOneWithWhereWithoutInstrumentFolderInput, PhaseOneRequirementsUpdateWithoutInstrumentFolderInput>, PhaseOneRequirementsUncheckedUpdateWithoutInstrumentFolderInput>
+  }
+
+  export type AreaFolderUpdateManyWithoutInstrumentFolderNestedInput = {
+    create?: XOR<AreaFolderCreateWithoutInstrumentFolderInput, AreaFolderUncheckedCreateWithoutInstrumentFolderInput> | AreaFolderCreateWithoutInstrumentFolderInput[] | AreaFolderUncheckedCreateWithoutInstrumentFolderInput[]
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutInstrumentFolderInput | AreaFolderCreateOrConnectWithoutInstrumentFolderInput[]
+    upsert?: AreaFolderUpsertWithWhereUniqueWithoutInstrumentFolderInput | AreaFolderUpsertWithWhereUniqueWithoutInstrumentFolderInput[]
+    createMany?: AreaFolderCreateManyInstrumentFolderInputEnvelope
+    set?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    disconnect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    delete?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    connect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    update?: AreaFolderUpdateWithWhereUniqueWithoutInstrumentFolderInput | AreaFolderUpdateWithWhereUniqueWithoutInstrumentFolderInput[]
+    updateMany?: AreaFolderUpdateManyWithWhereWithoutInstrumentFolderInput | AreaFolderUpdateManyWithWhereWithoutInstrumentFolderInput[]
+    deleteMany?: AreaFolderScalarWhereInput | AreaFolderScalarWhereInput[]
+  }
+
+  export type AreaFolderUncheckedUpdateManyWithoutInstrumentFolderNestedInput = {
+    create?: XOR<AreaFolderCreateWithoutInstrumentFolderInput, AreaFolderUncheckedCreateWithoutInstrumentFolderInput> | AreaFolderCreateWithoutInstrumentFolderInput[] | AreaFolderUncheckedCreateWithoutInstrumentFolderInput[]
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutInstrumentFolderInput | AreaFolderCreateOrConnectWithoutInstrumentFolderInput[]
+    upsert?: AreaFolderUpsertWithWhereUniqueWithoutInstrumentFolderInput | AreaFolderUpsertWithWhereUniqueWithoutInstrumentFolderInput[]
+    createMany?: AreaFolderCreateManyInstrumentFolderInputEnvelope
+    set?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    disconnect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    delete?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    connect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+    update?: AreaFolderUpdateWithWhereUniqueWithoutInstrumentFolderInput | AreaFolderUpdateWithWhereUniqueWithoutInstrumentFolderInput[]
+    updateMany?: AreaFolderUpdateManyWithWhereWithoutInstrumentFolderInput | AreaFolderUpdateManyWithWhereWithoutInstrumentFolderInput[]
+    deleteMany?: AreaFolderScalarWhereInput | AreaFolderScalarWhereInput[]
+  }
+
+  export type InstrumentFolderCreateNestedOneWithoutAreaFoldersInput = {
+    create?: XOR<InstrumentFolderCreateWithoutAreaFoldersInput, InstrumentFolderUncheckedCreateWithoutAreaFoldersInput>
+    connectOrCreate?: InstrumentFolderCreateOrConnectWithoutAreaFoldersInput
+    connect?: InstrumentFolderWhereUniqueInput
+  }
+
+  export type ParameterFolderCreateNestedManyWithoutAreaFolderInput = {
+    create?: XOR<ParameterFolderCreateWithoutAreaFolderInput, ParameterFolderUncheckedCreateWithoutAreaFolderInput> | ParameterFolderCreateWithoutAreaFolderInput[] | ParameterFolderUncheckedCreateWithoutAreaFolderInput[]
+    connectOrCreate?: ParameterFolderCreateOrConnectWithoutAreaFolderInput | ParameterFolderCreateOrConnectWithoutAreaFolderInput[]
+    createMany?: ParameterFolderCreateManyAreaFolderInputEnvelope
+    connect?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+  }
+
+  export type AreaCreateNestedOneWithoutAreaFoldersInput = {
+    create?: XOR<AreaCreateWithoutAreaFoldersInput, AreaUncheckedCreateWithoutAreaFoldersInput>
+    connectOrCreate?: AreaCreateOrConnectWithoutAreaFoldersInput
+    connect?: AreaWhereUniqueInput
+  }
+
+  export type ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput = {
+    create?: XOR<ParameterFolderCreateWithoutAreaFolderInput, ParameterFolderUncheckedCreateWithoutAreaFolderInput> | ParameterFolderCreateWithoutAreaFolderInput[] | ParameterFolderUncheckedCreateWithoutAreaFolderInput[]
+    connectOrCreate?: ParameterFolderCreateOrConnectWithoutAreaFolderInput | ParameterFolderCreateOrConnectWithoutAreaFolderInput[]
+    createMany?: ParameterFolderCreateManyAreaFolderInputEnvelope
+    connect?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+  }
+
+  export type InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput = {
+    create?: XOR<InstrumentFolderCreateWithoutAreaFoldersInput, InstrumentFolderUncheckedCreateWithoutAreaFoldersInput>
+    connectOrCreate?: InstrumentFolderCreateOrConnectWithoutAreaFoldersInput
+    upsert?: InstrumentFolderUpsertWithoutAreaFoldersInput
+    connect?: InstrumentFolderWhereUniqueInput
+    update?: XOR<XOR<InstrumentFolderUpdateToOneWithWhereWithoutAreaFoldersInput, InstrumentFolderUpdateWithoutAreaFoldersInput>, InstrumentFolderUncheckedUpdateWithoutAreaFoldersInput>
+  }
+
+  export type ParameterFolderUpdateManyWithoutAreaFolderNestedInput = {
+    create?: XOR<ParameterFolderCreateWithoutAreaFolderInput, ParameterFolderUncheckedCreateWithoutAreaFolderInput> | ParameterFolderCreateWithoutAreaFolderInput[] | ParameterFolderUncheckedCreateWithoutAreaFolderInput[]
+    connectOrCreate?: ParameterFolderCreateOrConnectWithoutAreaFolderInput | ParameterFolderCreateOrConnectWithoutAreaFolderInput[]
+    upsert?: ParameterFolderUpsertWithWhereUniqueWithoutAreaFolderInput | ParameterFolderUpsertWithWhereUniqueWithoutAreaFolderInput[]
+    createMany?: ParameterFolderCreateManyAreaFolderInputEnvelope
+    set?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    disconnect?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    delete?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    connect?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    update?: ParameterFolderUpdateWithWhereUniqueWithoutAreaFolderInput | ParameterFolderUpdateWithWhereUniqueWithoutAreaFolderInput[]
+    updateMany?: ParameterFolderUpdateManyWithWhereWithoutAreaFolderInput | ParameterFolderUpdateManyWithWhereWithoutAreaFolderInput[]
+    deleteMany?: ParameterFolderScalarWhereInput | ParameterFolderScalarWhereInput[]
+  }
+
+  export type AreaUpdateOneRequiredWithoutAreaFoldersNestedInput = {
+    create?: XOR<AreaCreateWithoutAreaFoldersInput, AreaUncheckedCreateWithoutAreaFoldersInput>
+    connectOrCreate?: AreaCreateOrConnectWithoutAreaFoldersInput
+    upsert?: AreaUpsertWithoutAreaFoldersInput
+    connect?: AreaWhereUniqueInput
+    update?: XOR<XOR<AreaUpdateToOneWithWhereWithoutAreaFoldersInput, AreaUpdateWithoutAreaFoldersInput>, AreaUncheckedUpdateWithoutAreaFoldersInput>
+  }
+
+  export type ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput = {
+    create?: XOR<ParameterFolderCreateWithoutAreaFolderInput, ParameterFolderUncheckedCreateWithoutAreaFolderInput> | ParameterFolderCreateWithoutAreaFolderInput[] | ParameterFolderUncheckedCreateWithoutAreaFolderInput[]
+    connectOrCreate?: ParameterFolderCreateOrConnectWithoutAreaFolderInput | ParameterFolderCreateOrConnectWithoutAreaFolderInput[]
+    upsert?: ParameterFolderUpsertWithWhereUniqueWithoutAreaFolderInput | ParameterFolderUpsertWithWhereUniqueWithoutAreaFolderInput[]
+    createMany?: ParameterFolderCreateManyAreaFolderInputEnvelope
+    set?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    disconnect?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    delete?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    connect?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+    update?: ParameterFolderUpdateWithWhereUniqueWithoutAreaFolderInput | ParameterFolderUpdateWithWhereUniqueWithoutAreaFolderInput[]
+    updateMany?: ParameterFolderUpdateManyWithWhereWithoutAreaFolderInput | ParameterFolderUpdateManyWithWhereWithoutAreaFolderInput[]
+    deleteMany?: ParameterFolderScalarWhereInput | ParameterFolderScalarWhereInput[]
+  }
+
+  export type AreaFolderCreateNestedOneWithoutParameterFoldersInput = {
+    create?: XOR<AreaFolderCreateWithoutParameterFoldersInput, AreaFolderUncheckedCreateWithoutParameterFoldersInput>
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutParameterFoldersInput
+    connect?: AreaFolderWhereUniqueInput
+  }
+
+  export type IndicatorFolderCreateNestedManyWithoutParameterFolderInput = {
+    create?: XOR<IndicatorFolderCreateWithoutParameterFolderInput, IndicatorFolderUncheckedCreateWithoutParameterFolderInput> | IndicatorFolderCreateWithoutParameterFolderInput[] | IndicatorFolderUncheckedCreateWithoutParameterFolderInput[]
+    connectOrCreate?: IndicatorFolderCreateOrConnectWithoutParameterFolderInput | IndicatorFolderCreateOrConnectWithoutParameterFolderInput[]
+    createMany?: IndicatorFolderCreateManyParameterFolderInputEnvelope
+    connect?: IndicatorFolderWhereUniqueInput | IndicatorFolderWhereUniqueInput[]
+  }
+
+  export type ParameterCreateNestedOneWithoutParameterFoldersInput = {
+    create?: XOR<ParameterCreateWithoutParameterFoldersInput, ParameterUncheckedCreateWithoutParameterFoldersInput>
+    connectOrCreate?: ParameterCreateOrConnectWithoutParameterFoldersInput
+    connect?: ParameterWhereUniqueInput
+  }
+
+  export type IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput = {
+    create?: XOR<IndicatorFolderCreateWithoutParameterFolderInput, IndicatorFolderUncheckedCreateWithoutParameterFolderInput> | IndicatorFolderCreateWithoutParameterFolderInput[] | IndicatorFolderUncheckedCreateWithoutParameterFolderInput[]
+    connectOrCreate?: IndicatorFolderCreateOrConnectWithoutParameterFolderInput | IndicatorFolderCreateOrConnectWithoutParameterFolderInput[]
+    createMany?: IndicatorFolderCreateManyParameterFolderInputEnvelope
+    connect?: IndicatorFolderWhereUniqueInput | IndicatorFolderWhereUniqueInput[]
+  }
+
+  export type AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput = {
+    create?: XOR<AreaFolderCreateWithoutParameterFoldersInput, AreaFolderUncheckedCreateWithoutParameterFoldersInput>
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutParameterFoldersInput
+    upsert?: AreaFolderUpsertWithoutParameterFoldersInput
+    connect?: AreaFolderWhereUniqueInput
+    update?: XOR<XOR<AreaFolderUpdateToOneWithWhereWithoutParameterFoldersInput, AreaFolderUpdateWithoutParameterFoldersInput>, AreaFolderUncheckedUpdateWithoutParameterFoldersInput>
+  }
+
+  export type IndicatorFolderUpdateManyWithoutParameterFolderNestedInput = {
+    create?: XOR<IndicatorFolderCreateWithoutParameterFolderInput, IndicatorFolderUncheckedCreateWithoutParameterFolderInput> | IndicatorFolderCreateWithoutParameterFolderInput[] | IndicatorFolderUncheckedCreateWithoutParameterFolderInput[]
+    connectOrCreate?: IndicatorFolderCreateOrConnectWithoutParameterFolderInput | IndicatorFolderCreateOrConnectWithoutParameterFolderInput[]
+    upsert?: IndicatorFolderUpsertWithWhereUniqueWithoutParameterFolderInput | IndicatorFolderUpsertWithWhereUniqueWithoutParameterFolderInput[]
+    createMany?: IndicatorFolderCreateManyParameterFolderInputEnvelope
+    set?: IndicatorFolderWhereUniqueInput | IndicatorFolderWhereUniqueInput[]
+    disconnect?: IndicatorFolderWhereUniqueInput | IndicatorFolderWhereUniqueInput[]
+    delete?: IndicatorFolderWhereUniqueInput | IndicatorFolderWhereUniqueInput[]
+    connect?: IndicatorFolderWhereUniqueInput | IndicatorFolderWhereUniqueInput[]
+    update?: IndicatorFolderUpdateWithWhereUniqueWithoutParameterFolderInput | IndicatorFolderUpdateWithWhereUniqueWithoutParameterFolderInput[]
+    updateMany?: IndicatorFolderUpdateManyWithWhereWithoutParameterFolderInput | IndicatorFolderUpdateManyWithWhereWithoutParameterFolderInput[]
+    deleteMany?: IndicatorFolderScalarWhereInput | IndicatorFolderScalarWhereInput[]
+  }
+
+  export type ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput = {
+    create?: XOR<ParameterCreateWithoutParameterFoldersInput, ParameterUncheckedCreateWithoutParameterFoldersInput>
+    connectOrCreate?: ParameterCreateOrConnectWithoutParameterFoldersInput
+    upsert?: ParameterUpsertWithoutParameterFoldersInput
+    connect?: ParameterWhereUniqueInput
+    update?: XOR<XOR<ParameterUpdateToOneWithWhereWithoutParameterFoldersInput, ParameterUpdateWithoutParameterFoldersInput>, ParameterUncheckedUpdateWithoutParameterFoldersInput>
+  }
+
+  export type IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput = {
+    create?: XOR<IndicatorFolderCreateWithoutParameterFolderInput, IndicatorFolderUncheckedCreateWithoutParameterFolderInput> | IndicatorFolderCreateWithoutParameterFolderInput[] | IndicatorFolderUncheckedCreateWithoutParameterFolderInput[]
+    connectOrCreate?: IndicatorFolderCreateOrConnectWithoutParameterFolderInput | IndicatorFolderCreateOrConnectWithoutParameterFolderInput[]
+    upsert?: IndicatorFolderUpsertWithWhereUniqueWithoutParameterFolderInput | IndicatorFolderUpsertWithWhereUniqueWithoutParameterFolderInput[]
+    createMany?: IndicatorFolderCreateManyParameterFolderInputEnvelope
+    set?: IndicatorFolderWhereUniqueInput | IndicatorFolderWhereUniqueInput[]
+    disconnect?: IndicatorFolderWhereUniqueInput | IndicatorFolderWhereUniqueInput[]
+    delete?: IndicatorFolderWhereUniqueInput | IndicatorFolderWhereUniqueInput[]
+    connect?: IndicatorFolderWhereUniqueInput | IndicatorFolderWhereUniqueInput[]
+    update?: IndicatorFolderUpdateWithWhereUniqueWithoutParameterFolderInput | IndicatorFolderUpdateWithWhereUniqueWithoutParameterFolderInput[]
+    updateMany?: IndicatorFolderUpdateManyWithWhereWithoutParameterFolderInput | IndicatorFolderUpdateManyWithWhereWithoutParameterFolderInput[]
+    deleteMany?: IndicatorFolderScalarWhereInput | IndicatorFolderScalarWhereInput[]
+  }
+
+  export type ParameterFolderCreateNestedOneWithoutIndicatorFoldersInput = {
+    create?: XOR<ParameterFolderCreateWithoutIndicatorFoldersInput, ParameterFolderUncheckedCreateWithoutIndicatorFoldersInput>
+    connectOrCreate?: ParameterFolderCreateOrConnectWithoutIndicatorFoldersInput
+    connect?: ParameterFolderWhereUniqueInput
+  }
+
+  export type EvidenceFileCreateNestedManyWithoutIndicatorFolderInput = {
+    create?: XOR<EvidenceFileCreateWithoutIndicatorFolderInput, EvidenceFileUncheckedCreateWithoutIndicatorFolderInput> | EvidenceFileCreateWithoutIndicatorFolderInput[] | EvidenceFileUncheckedCreateWithoutIndicatorFolderInput[]
+    connectOrCreate?: EvidenceFileCreateOrConnectWithoutIndicatorFolderInput | EvidenceFileCreateOrConnectWithoutIndicatorFolderInput[]
+    createMany?: EvidenceFileCreateManyIndicatorFolderInputEnvelope
+    connect?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+  }
+
+  export type EvidenceFileUncheckedCreateNestedManyWithoutIndicatorFolderInput = {
+    create?: XOR<EvidenceFileCreateWithoutIndicatorFolderInput, EvidenceFileUncheckedCreateWithoutIndicatorFolderInput> | EvidenceFileCreateWithoutIndicatorFolderInput[] | EvidenceFileUncheckedCreateWithoutIndicatorFolderInput[]
+    connectOrCreate?: EvidenceFileCreateOrConnectWithoutIndicatorFolderInput | EvidenceFileCreateOrConnectWithoutIndicatorFolderInput[]
+    createMany?: EvidenceFileCreateManyIndicatorFolderInputEnvelope
+    connect?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+  }
+
+  export type ParameterFolderUpdateOneRequiredWithoutIndicatorFoldersNestedInput = {
+    create?: XOR<ParameterFolderCreateWithoutIndicatorFoldersInput, ParameterFolderUncheckedCreateWithoutIndicatorFoldersInput>
+    connectOrCreate?: ParameterFolderCreateOrConnectWithoutIndicatorFoldersInput
+    upsert?: ParameterFolderUpsertWithoutIndicatorFoldersInput
+    connect?: ParameterFolderWhereUniqueInput
+    update?: XOR<XOR<ParameterFolderUpdateToOneWithWhereWithoutIndicatorFoldersInput, ParameterFolderUpdateWithoutIndicatorFoldersInput>, ParameterFolderUncheckedUpdateWithoutIndicatorFoldersInput>
+  }
+
+  export type EvidenceFileUpdateManyWithoutIndicatorFolderNestedInput = {
+    create?: XOR<EvidenceFileCreateWithoutIndicatorFolderInput, EvidenceFileUncheckedCreateWithoutIndicatorFolderInput> | EvidenceFileCreateWithoutIndicatorFolderInput[] | EvidenceFileUncheckedCreateWithoutIndicatorFolderInput[]
+    connectOrCreate?: EvidenceFileCreateOrConnectWithoutIndicatorFolderInput | EvidenceFileCreateOrConnectWithoutIndicatorFolderInput[]
+    upsert?: EvidenceFileUpsertWithWhereUniqueWithoutIndicatorFolderInput | EvidenceFileUpsertWithWhereUniqueWithoutIndicatorFolderInput[]
+    createMany?: EvidenceFileCreateManyIndicatorFolderInputEnvelope
+    set?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    disconnect?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    delete?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    connect?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    update?: EvidenceFileUpdateWithWhereUniqueWithoutIndicatorFolderInput | EvidenceFileUpdateWithWhereUniqueWithoutIndicatorFolderInput[]
+    updateMany?: EvidenceFileUpdateManyWithWhereWithoutIndicatorFolderInput | EvidenceFileUpdateManyWithWhereWithoutIndicatorFolderInput[]
+    deleteMany?: EvidenceFileScalarWhereInput | EvidenceFileScalarWhereInput[]
+  }
+
+  export type EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderNestedInput = {
+    create?: XOR<EvidenceFileCreateWithoutIndicatorFolderInput, EvidenceFileUncheckedCreateWithoutIndicatorFolderInput> | EvidenceFileCreateWithoutIndicatorFolderInput[] | EvidenceFileUncheckedCreateWithoutIndicatorFolderInput[]
+    connectOrCreate?: EvidenceFileCreateOrConnectWithoutIndicatorFolderInput | EvidenceFileCreateOrConnectWithoutIndicatorFolderInput[]
+    upsert?: EvidenceFileUpsertWithWhereUniqueWithoutIndicatorFolderInput | EvidenceFileUpsertWithWhereUniqueWithoutIndicatorFolderInput[]
+    createMany?: EvidenceFileCreateManyIndicatorFolderInputEnvelope
+    set?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    disconnect?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    delete?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    connect?: EvidenceFileWhereUniqueInput | EvidenceFileWhereUniqueInput[]
+    update?: EvidenceFileUpdateWithWhereUniqueWithoutIndicatorFolderInput | EvidenceFileUpdateWithWhereUniqueWithoutIndicatorFolderInput[]
+    updateMany?: EvidenceFileUpdateManyWithWhereWithoutIndicatorFolderInput | EvidenceFileUpdateManyWithWhereWithoutIndicatorFolderInput[]
+    deleteMany?: EvidenceFileScalarWhereInput | EvidenceFileScalarWhereInput[]
+  }
+
+  export type IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput = {
+    create?: XOR<IndicatorFolderCreateWithoutEvidenceFilesInput, IndicatorFolderUncheckedCreateWithoutEvidenceFilesInput>
+    connectOrCreate?: IndicatorFolderCreateOrConnectWithoutEvidenceFilesInput
+    connect?: IndicatorFolderWhereUniqueInput
+  }
+
+  export type IndicatorCreateNestedOneWithoutEvidenceFilesInput = {
+    create?: XOR<IndicatorCreateWithoutEvidenceFilesInput, IndicatorUncheckedCreateWithoutEvidenceFilesInput>
+    connectOrCreate?: IndicatorCreateOrConnectWithoutEvidenceFilesInput
+    connect?: IndicatorWhereUniqueInput
+  }
+
+  export type IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput = {
+    create?: XOR<IndicatorFolderCreateWithoutEvidenceFilesInput, IndicatorFolderUncheckedCreateWithoutEvidenceFilesInput>
+    connectOrCreate?: IndicatorFolderCreateOrConnectWithoutEvidenceFilesInput
+    upsert?: IndicatorFolderUpsertWithoutEvidenceFilesInput
+    connect?: IndicatorFolderWhereUniqueInput
+    update?: XOR<XOR<IndicatorFolderUpdateToOneWithWhereWithoutEvidenceFilesInput, IndicatorFolderUpdateWithoutEvidenceFilesInput>, IndicatorFolderUncheckedUpdateWithoutEvidenceFilesInput>
+  }
+
+  export type IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput = {
+    create?: XOR<IndicatorCreateWithoutEvidenceFilesInput, IndicatorUncheckedCreateWithoutEvidenceFilesInput>
+    connectOrCreate?: IndicatorCreateOrConnectWithoutEvidenceFilesInput
+    upsert?: IndicatorUpsertWithoutEvidenceFilesInput
+    connect?: IndicatorWhereUniqueInput
+    update?: XOR<XOR<IndicatorUpdateToOneWithWhereWithoutEvidenceFilesInput, IndicatorUpdateWithoutEvidenceFilesInput>, IndicatorUncheckedUpdateWithoutEvidenceFilesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -12844,6 +24892,13 @@ export namespace Prisma {
     _max?: NestedEnumCategoryFilter<$PrismaModel>
   }
 
+  export type NestedEnumPhaseFilter<$PrismaModel = never> = {
+    equals?: $Enums.Phase | EnumPhaseFieldRefInput<$PrismaModel>
+    in?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel>
+    not?: NestedEnumPhaseFilter<$PrismaModel> | $Enums.Phase
+  }
+
   export type NestedDecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -12853,6 +24908,16 @@ export namespace Prisma {
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedEnumPhaseWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Phase | EnumPhaseFieldRefInput<$PrismaModel>
+    in?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel>
+    not?: NestedEnumPhaseWithAggregatesFilter<$PrismaModel> | $Enums.Phase
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPhaseFilter<$PrismaModel>
+    _max?: NestedEnumPhaseFilter<$PrismaModel>
   }
 
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -12869,6 +24934,23 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type NestedEnumPhaseNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Phase | EnumPhaseFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumPhaseNullableFilter<$PrismaModel> | $Enums.Phase | null
+  }
+
+  export type NestedEnumPhaseNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Phase | EnumPhaseFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumPhaseNullableWithAggregatesFilter<$PrismaModel> | $Enums.Phase | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumPhaseNullableFilter<$PrismaModel>
+    _max?: NestedEnumPhaseNullableFilter<$PrismaModel>
   }
 
   export type ProgramPersonnelCreateWithoutUserInput = {
@@ -12941,6 +25023,25 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AccreditationCreateWithoutProgramInput = {
+    id?: string
+    phase?: $Enums.Phase | null
+    level?: LevelCreateNestedOneWithoutAccreditationsInput
+    surveyVisits?: SurveyVisitCreateNestedManyWithoutAccreditationInput
+  }
+
+  export type AccreditationUncheckedCreateWithoutProgramInput = {
+    id?: string
+    currentLevel?: string | null
+    phase?: $Enums.Phase | null
+    surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutAccreditationInput
+  }
+
+  export type AccreditationCreateOrConnectWithoutProgramInput = {
+    where: AccreditationWhereUniqueInput
+    create: XOR<AccreditationCreateWithoutProgramInput, AccreditationUncheckedCreateWithoutProgramInput>
+  }
+
   export type ProgramPersonnelUpsertWithWhereUniqueWithoutProgramInput = {
     where: ProgramPersonnelWhereUniqueInput
     update: XOR<ProgramPersonnelUpdateWithoutProgramInput, ProgramPersonnelUncheckedUpdateWithoutProgramInput>
@@ -12955,6 +25056,31 @@ export namespace Prisma {
   export type ProgramPersonnelUpdateManyWithWhereWithoutProgramInput = {
     where: ProgramPersonnelScalarWhereInput
     data: XOR<ProgramPersonnelUpdateManyMutationInput, ProgramPersonnelUncheckedUpdateManyWithoutProgramInput>
+  }
+
+  export type AccreditationUpsertWithoutProgramInput = {
+    update: XOR<AccreditationUpdateWithoutProgramInput, AccreditationUncheckedUpdateWithoutProgramInput>
+    create: XOR<AccreditationCreateWithoutProgramInput, AccreditationUncheckedCreateWithoutProgramInput>
+    where?: AccreditationWhereInput
+  }
+
+  export type AccreditationUpdateToOneWithWhereWithoutProgramInput = {
+    where?: AccreditationWhereInput
+    data: XOR<AccreditationUpdateWithoutProgramInput, AccreditationUncheckedUpdateWithoutProgramInput>
+  }
+
+  export type AccreditationUpdateWithoutProgramInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
+    level?: LevelUpdateOneWithoutAccreditationsNestedInput
+    surveyVisits?: SurveyVisitUpdateManyWithoutAccreditationNestedInput
+  }
+
+  export type AccreditationUncheckedUpdateWithoutProgramInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    currentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
+    surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutAccreditationNestedInput
   }
 
   export type UserCreateWithoutProgramPersonnelInput = {
@@ -12998,6 +25124,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     folderId: string
+    accreditation?: AccreditationCreateNestedOneWithoutProgramInput
   }
 
   export type ProgramUncheckedCreateWithoutProgramPersonnelInput = {
@@ -13008,6 +25135,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     folderId: string
+    accreditation?: AccreditationUncheckedCreateNestedOneWithoutProgramInput
   }
 
   export type ProgramCreateOrConnectWithoutProgramPersonnelInput = {
@@ -13073,6 +25201,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     folderId?: StringFieldUpdateOperationsInput | string
+    accreditation?: AccreditationUpdateOneWithoutProgramNestedInput
   }
 
   export type ProgramUncheckedUpdateWithoutProgramPersonnelInput = {
@@ -13083,6 +25212,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     folderId?: StringFieldUpdateOperationsInput | string
+    accreditation?: AccreditationUncheckedUpdateOneWithoutProgramNestedInput
   }
 
   export type AreaCreateWithoutInstrumentInput = {
@@ -13092,6 +25222,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     parameter?: ParameterCreateNestedManyWithoutAreaInput
+    areaFolders?: AreaFolderCreateNestedManyWithoutAreaInput
   }
 
   export type AreaUncheckedCreateWithoutInstrumentInput = {
@@ -13102,6 +25233,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     parameter?: ParameterUncheckedCreateNestedManyWithoutAreaInput
+    areaFolders?: AreaFolderUncheckedCreateNestedManyWithoutAreaInput
   }
 
   export type AreaCreateOrConnectWithoutInstrumentInput = {
@@ -13111,6 +25243,28 @@ export namespace Prisma {
 
   export type AreaCreateManyInstrumentInputEnvelope = {
     data: AreaCreateManyInstrumentInput | AreaCreateManyInstrumentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PhaseOneRequirementsCreateWithoutInstrumentInput = {
+    id?: string
+    surveyVisit: SurveyVisitCreateNestedOneWithoutPhaseOneRequirementsInput
+    instrumentFolder?: InstrumentFolderCreateNestedOneWithoutPhaseOneRequirementsInput
+  }
+
+  export type PhaseOneRequirementsUncheckedCreateWithoutInstrumentInput = {
+    id?: string
+    surveyVisitId: string
+    instrumentFolder?: InstrumentFolderUncheckedCreateNestedOneWithoutPhaseOneRequirementsInput
+  }
+
+  export type PhaseOneRequirementsCreateOrConnectWithoutInstrumentInput = {
+    where: PhaseOneRequirementsWhereUniqueInput
+    create: XOR<PhaseOneRequirementsCreateWithoutInstrumentInput, PhaseOneRequirementsUncheckedCreateWithoutInstrumentInput>
+  }
+
+  export type PhaseOneRequirementsCreateManyInstrumentInputEnvelope = {
+    data: PhaseOneRequirementsCreateManyInstrumentInput | PhaseOneRequirementsCreateManyInstrumentInput[]
     skipDuplicates?: boolean
   }
 
@@ -13143,12 +25297,38 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Area"> | Date | string
   }
 
+  export type PhaseOneRequirementsUpsertWithWhereUniqueWithoutInstrumentInput = {
+    where: PhaseOneRequirementsWhereUniqueInput
+    update: XOR<PhaseOneRequirementsUpdateWithoutInstrumentInput, PhaseOneRequirementsUncheckedUpdateWithoutInstrumentInput>
+    create: XOR<PhaseOneRequirementsCreateWithoutInstrumentInput, PhaseOneRequirementsUncheckedCreateWithoutInstrumentInput>
+  }
+
+  export type PhaseOneRequirementsUpdateWithWhereUniqueWithoutInstrumentInput = {
+    where: PhaseOneRequirementsWhereUniqueInput
+    data: XOR<PhaseOneRequirementsUpdateWithoutInstrumentInput, PhaseOneRequirementsUncheckedUpdateWithoutInstrumentInput>
+  }
+
+  export type PhaseOneRequirementsUpdateManyWithWhereWithoutInstrumentInput = {
+    where: PhaseOneRequirementsScalarWhereInput
+    data: XOR<PhaseOneRequirementsUpdateManyMutationInput, PhaseOneRequirementsUncheckedUpdateManyWithoutInstrumentInput>
+  }
+
+  export type PhaseOneRequirementsScalarWhereInput = {
+    AND?: PhaseOneRequirementsScalarWhereInput | PhaseOneRequirementsScalarWhereInput[]
+    OR?: PhaseOneRequirementsScalarWhereInput[]
+    NOT?: PhaseOneRequirementsScalarWhereInput | PhaseOneRequirementsScalarWhereInput[]
+    id?: StringFilter<"PhaseOneRequirements"> | string
+    surveyVisitId?: StringFilter<"PhaseOneRequirements"> | string
+    instrumentId?: StringFilter<"PhaseOneRequirements"> | string
+  }
+
   export type InstrumentCreateWithoutAreaInput = {
     id?: string
     name: string
     accreditingBody: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    phaseOneRequirements?: PhaseOneRequirementsCreateNestedManyWithoutInstrumentInput
   }
 
   export type InstrumentUncheckedCreateWithoutAreaInput = {
@@ -13157,6 +25337,7 @@ export namespace Prisma {
     accreditingBody: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedManyWithoutInstrumentInput
   }
 
   export type InstrumentCreateOrConnectWithoutAreaInput = {
@@ -13170,6 +25351,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     indicator?: IndicatorCreateNestedManyWithoutParameterInput
+    parameterFolders?: ParameterFolderCreateNestedManyWithoutParameterInput
   }
 
   export type ParameterUncheckedCreateWithoutAreaInput = {
@@ -13179,6 +25361,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     indicator?: IndicatorUncheckedCreateNestedManyWithoutParameterInput
+    parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutParameterInput
   }
 
   export type ParameterCreateOrConnectWithoutAreaInput = {
@@ -13188,6 +25371,30 @@ export namespace Prisma {
 
   export type ParameterCreateManyAreaInputEnvelope = {
     data: ParameterCreateManyAreaInput | ParameterCreateManyAreaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AreaFolderCreateWithoutAreaInput = {
+    id?: string
+    folderId: string
+    instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
+    parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
+  }
+
+  export type AreaFolderUncheckedCreateWithoutAreaInput = {
+    id?: string
+    instrumentFolderId: string
+    folderId: string
+    parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
+  }
+
+  export type AreaFolderCreateOrConnectWithoutAreaInput = {
+    where: AreaFolderWhereUniqueInput
+    create: XOR<AreaFolderCreateWithoutAreaInput, AreaFolderUncheckedCreateWithoutAreaInput>
+  }
+
+  export type AreaFolderCreateManyAreaInputEnvelope = {
+    data: AreaFolderCreateManyAreaInput | AreaFolderCreateManyAreaInput[]
     skipDuplicates?: boolean
   }
 
@@ -13208,6 +25415,7 @@ export namespace Prisma {
     accreditingBody?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phaseOneRequirements?: PhaseOneRequirementsUpdateManyWithoutInstrumentNestedInput
   }
 
   export type InstrumentUncheckedUpdateWithoutAreaInput = {
@@ -13216,6 +25424,7 @@ export namespace Prisma {
     accreditingBody?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateManyWithoutInstrumentNestedInput
   }
 
   export type ParameterUpsertWithWhereUniqueWithoutAreaInput = {
@@ -13246,6 +25455,32 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Parameter"> | Date | string
   }
 
+  export type AreaFolderUpsertWithWhereUniqueWithoutAreaInput = {
+    where: AreaFolderWhereUniqueInput
+    update: XOR<AreaFolderUpdateWithoutAreaInput, AreaFolderUncheckedUpdateWithoutAreaInput>
+    create: XOR<AreaFolderCreateWithoutAreaInput, AreaFolderUncheckedCreateWithoutAreaInput>
+  }
+
+  export type AreaFolderUpdateWithWhereUniqueWithoutAreaInput = {
+    where: AreaFolderWhereUniqueInput
+    data: XOR<AreaFolderUpdateWithoutAreaInput, AreaFolderUncheckedUpdateWithoutAreaInput>
+  }
+
+  export type AreaFolderUpdateManyWithWhereWithoutAreaInput = {
+    where: AreaFolderScalarWhereInput
+    data: XOR<AreaFolderUpdateManyMutationInput, AreaFolderUncheckedUpdateManyWithoutAreaInput>
+  }
+
+  export type AreaFolderScalarWhereInput = {
+    AND?: AreaFolderScalarWhereInput | AreaFolderScalarWhereInput[]
+    OR?: AreaFolderScalarWhereInput[]
+    NOT?: AreaFolderScalarWhereInput | AreaFolderScalarWhereInput[]
+    id?: StringFilter<"AreaFolder"> | string
+    instrumentFolderId?: StringFilter<"AreaFolder"> | string
+    folderId?: StringFilter<"AreaFolder"> | string
+    areaId?: IntFilter<"AreaFolder"> | number
+  }
+
   export type AreaCreateWithoutParameterInput = {
     label: string
     description: string
@@ -13253,6 +25488,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     instrument: InstrumentCreateNestedOneWithoutAreaInput
+    areaFolders?: AreaFolderCreateNestedManyWithoutAreaInput
   }
 
   export type AreaUncheckedCreateWithoutParameterInput = {
@@ -13263,6 +25499,7 @@ export namespace Prisma {
     instrumentId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    areaFolders?: AreaFolderUncheckedCreateNestedManyWithoutAreaInput
   }
 
   export type AreaCreateOrConnectWithoutParameterInput = {
@@ -13277,6 +25514,7 @@ export namespace Prisma {
     evidence: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    evidenceFiles?: EvidenceFileCreateNestedManyWithoutIndicatorInput
   }
 
   export type IndicatorUncheckedCreateWithoutParameterInput = {
@@ -13287,6 +25525,7 @@ export namespace Prisma {
     evidence: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    evidenceFiles?: EvidenceFileUncheckedCreateNestedManyWithoutIndicatorInput
   }
 
   export type IndicatorCreateOrConnectWithoutParameterInput = {
@@ -13296,6 +25535,30 @@ export namespace Prisma {
 
   export type IndicatorCreateManyParameterInputEnvelope = {
     data: IndicatorCreateManyParameterInput | IndicatorCreateManyParameterInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ParameterFolderCreateWithoutParameterInput = {
+    id?: string
+    folderId: string
+    areaFolder: AreaFolderCreateNestedOneWithoutParameterFoldersInput
+    indicatorFolders?: IndicatorFolderCreateNestedManyWithoutParameterFolderInput
+  }
+
+  export type ParameterFolderUncheckedCreateWithoutParameterInput = {
+    id?: string
+    areaFolderId: string
+    folderId: string
+    indicatorFolders?: IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput
+  }
+
+  export type ParameterFolderCreateOrConnectWithoutParameterInput = {
+    where: ParameterFolderWhereUniqueInput
+    create: XOR<ParameterFolderCreateWithoutParameterInput, ParameterFolderUncheckedCreateWithoutParameterInput>
+  }
+
+  export type ParameterFolderCreateManyParameterInputEnvelope = {
+    data: ParameterFolderCreateManyParameterInput | ParameterFolderCreateManyParameterInput[]
     skipDuplicates?: boolean
   }
 
@@ -13317,6 +25580,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     instrument?: InstrumentUpdateOneRequiredWithoutAreaNestedInput
+    areaFolders?: AreaFolderUpdateManyWithoutAreaNestedInput
   }
 
   export type AreaUncheckedUpdateWithoutParameterInput = {
@@ -13327,6 +25591,7 @@ export namespace Prisma {
     instrumentId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    areaFolders?: AreaFolderUncheckedUpdateManyWithoutAreaNestedInput
   }
 
   export type IndicatorUpsertWithWhereUniqueWithoutParameterInput = {
@@ -13359,12 +25624,39 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Indicator"> | Date | string
   }
 
+  export type ParameterFolderUpsertWithWhereUniqueWithoutParameterInput = {
+    where: ParameterFolderWhereUniqueInput
+    update: XOR<ParameterFolderUpdateWithoutParameterInput, ParameterFolderUncheckedUpdateWithoutParameterInput>
+    create: XOR<ParameterFolderCreateWithoutParameterInput, ParameterFolderUncheckedCreateWithoutParameterInput>
+  }
+
+  export type ParameterFolderUpdateWithWhereUniqueWithoutParameterInput = {
+    where: ParameterFolderWhereUniqueInput
+    data: XOR<ParameterFolderUpdateWithoutParameterInput, ParameterFolderUncheckedUpdateWithoutParameterInput>
+  }
+
+  export type ParameterFolderUpdateManyWithWhereWithoutParameterInput = {
+    where: ParameterFolderScalarWhereInput
+    data: XOR<ParameterFolderUpdateManyMutationInput, ParameterFolderUncheckedUpdateManyWithoutParameterInput>
+  }
+
+  export type ParameterFolderScalarWhereInput = {
+    AND?: ParameterFolderScalarWhereInput | ParameterFolderScalarWhereInput[]
+    OR?: ParameterFolderScalarWhereInput[]
+    NOT?: ParameterFolderScalarWhereInput | ParameterFolderScalarWhereInput[]
+    id?: StringFilter<"ParameterFolder"> | string
+    areaFolderId?: StringFilter<"ParameterFolder"> | string
+    folderId?: StringFilter<"ParameterFolder"> | string
+    parameterId?: IntFilter<"ParameterFolder"> | number
+  }
+
   export type ParameterCreateWithoutIndicatorInput = {
     label: string
     description: string
     createdAt?: Date | string
     updatedAt?: Date | string
     area: AreaCreateNestedOneWithoutParameterInput
+    parameterFolders?: ParameterFolderCreateNestedManyWithoutParameterInput
   }
 
   export type ParameterUncheckedCreateWithoutIndicatorInput = {
@@ -13374,11 +25666,38 @@ export namespace Prisma {
     areaId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutParameterInput
   }
 
   export type ParameterCreateOrConnectWithoutIndicatorInput = {
     where: ParameterWhereUniqueInput
     create: XOR<ParameterCreateWithoutIndicatorInput, ParameterUncheckedCreateWithoutIndicatorInput>
+  }
+
+  export type EvidenceFileCreateWithoutIndicatorInput = {
+    id?: string
+    fileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
+  }
+
+  export type EvidenceFileUncheckedCreateWithoutIndicatorInput = {
+    id?: string
+    indicatorFolderId: string
+    fileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EvidenceFileCreateOrConnectWithoutIndicatorInput = {
+    where: EvidenceFileWhereUniqueInput
+    create: XOR<EvidenceFileCreateWithoutIndicatorInput, EvidenceFileUncheckedCreateWithoutIndicatorInput>
+  }
+
+  export type EvidenceFileCreateManyIndicatorInputEnvelope = {
+    data: EvidenceFileCreateManyIndicatorInput | EvidenceFileCreateManyIndicatorInput[]
+    skipDuplicates?: boolean
   }
 
   export type ParameterUpsertWithoutIndicatorInput = {
@@ -13398,6 +25717,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     area?: AreaUpdateOneRequiredWithoutParameterNestedInput
+    parameterFolders?: ParameterFolderUpdateManyWithoutParameterNestedInput
   }
 
   export type ParameterUncheckedUpdateWithoutIndicatorInput = {
@@ -13405,6 +25725,1105 @@ export namespace Prisma {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutParameterNestedInput
+  }
+
+  export type EvidenceFileUpsertWithWhereUniqueWithoutIndicatorInput = {
+    where: EvidenceFileWhereUniqueInput
+    update: XOR<EvidenceFileUpdateWithoutIndicatorInput, EvidenceFileUncheckedUpdateWithoutIndicatorInput>
+    create: XOR<EvidenceFileCreateWithoutIndicatorInput, EvidenceFileUncheckedCreateWithoutIndicatorInput>
+  }
+
+  export type EvidenceFileUpdateWithWhereUniqueWithoutIndicatorInput = {
+    where: EvidenceFileWhereUniqueInput
+    data: XOR<EvidenceFileUpdateWithoutIndicatorInput, EvidenceFileUncheckedUpdateWithoutIndicatorInput>
+  }
+
+  export type EvidenceFileUpdateManyWithWhereWithoutIndicatorInput = {
+    where: EvidenceFileScalarWhereInput
+    data: XOR<EvidenceFileUpdateManyMutationInput, EvidenceFileUncheckedUpdateManyWithoutIndicatorInput>
+  }
+
+  export type EvidenceFileScalarWhereInput = {
+    AND?: EvidenceFileScalarWhereInput | EvidenceFileScalarWhereInput[]
+    OR?: EvidenceFileScalarWhereInput[]
+    NOT?: EvidenceFileScalarWhereInput | EvidenceFileScalarWhereInput[]
+    id?: StringFilter<"EvidenceFile"> | string
+    indicatorFolderId?: StringFilter<"EvidenceFile"> | string
+    fileId?: StringFilter<"EvidenceFile"> | string
+    indicatorId?: IntFilter<"EvidenceFile"> | number
+    createdAt?: DateTimeFilter<"EvidenceFile"> | Date | string
+    updatedAt?: DateTimeFilter<"EvidenceFile"> | Date | string
+  }
+
+  export type AccreditationCreateWithoutLevelInput = {
+    id?: string
+    phase?: $Enums.Phase | null
+    program: ProgramCreateNestedOneWithoutAccreditationInput
+    surveyVisits?: SurveyVisitCreateNestedManyWithoutAccreditationInput
+  }
+
+  export type AccreditationUncheckedCreateWithoutLevelInput = {
+    id?: string
+    programId: string
+    phase?: $Enums.Phase | null
+    surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutAccreditationInput
+  }
+
+  export type AccreditationCreateOrConnectWithoutLevelInput = {
+    where: AccreditationWhereUniqueInput
+    create: XOR<AccreditationCreateWithoutLevelInput, AccreditationUncheckedCreateWithoutLevelInput>
+  }
+
+  export type AccreditationCreateManyLevelInputEnvelope = {
+    data: AccreditationCreateManyLevelInput | AccreditationCreateManyLevelInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SurveyVisitCreateWithoutLevelInput = {
+    id?: string
+    accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
+    phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitUncheckedCreateWithoutLevelInput = {
+    id?: string
+    accreditationId: string
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitCreateOrConnectWithoutLevelInput = {
+    where: SurveyVisitWhereUniqueInput
+    create: XOR<SurveyVisitCreateWithoutLevelInput, SurveyVisitUncheckedCreateWithoutLevelInput>
+  }
+
+  export type SurveyVisitCreateManyLevelInputEnvelope = {
+    data: SurveyVisitCreateManyLevelInput | SurveyVisitCreateManyLevelInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AccreditationUpsertWithWhereUniqueWithoutLevelInput = {
+    where: AccreditationWhereUniqueInput
+    update: XOR<AccreditationUpdateWithoutLevelInput, AccreditationUncheckedUpdateWithoutLevelInput>
+    create: XOR<AccreditationCreateWithoutLevelInput, AccreditationUncheckedCreateWithoutLevelInput>
+  }
+
+  export type AccreditationUpdateWithWhereUniqueWithoutLevelInput = {
+    where: AccreditationWhereUniqueInput
+    data: XOR<AccreditationUpdateWithoutLevelInput, AccreditationUncheckedUpdateWithoutLevelInput>
+  }
+
+  export type AccreditationUpdateManyWithWhereWithoutLevelInput = {
+    where: AccreditationScalarWhereInput
+    data: XOR<AccreditationUpdateManyMutationInput, AccreditationUncheckedUpdateManyWithoutLevelInput>
+  }
+
+  export type AccreditationScalarWhereInput = {
+    AND?: AccreditationScalarWhereInput | AccreditationScalarWhereInput[]
+    OR?: AccreditationScalarWhereInput[]
+    NOT?: AccreditationScalarWhereInput | AccreditationScalarWhereInput[]
+    id?: StringFilter<"Accreditation"> | string
+    programId?: StringFilter<"Accreditation"> | string
+    currentLevel?: StringNullableFilter<"Accreditation"> | string | null
+    phase?: EnumPhaseNullableFilter<"Accreditation"> | $Enums.Phase | null
+  }
+
+  export type SurveyVisitUpsertWithWhereUniqueWithoutLevelInput = {
+    where: SurveyVisitWhereUniqueInput
+    update: XOR<SurveyVisitUpdateWithoutLevelInput, SurveyVisitUncheckedUpdateWithoutLevelInput>
+    create: XOR<SurveyVisitCreateWithoutLevelInput, SurveyVisitUncheckedCreateWithoutLevelInput>
+  }
+
+  export type SurveyVisitUpdateWithWhereUniqueWithoutLevelInput = {
+    where: SurveyVisitWhereUniqueInput
+    data: XOR<SurveyVisitUpdateWithoutLevelInput, SurveyVisitUncheckedUpdateWithoutLevelInput>
+  }
+
+  export type SurveyVisitUpdateManyWithWhereWithoutLevelInput = {
+    where: SurveyVisitScalarWhereInput
+    data: XOR<SurveyVisitUpdateManyMutationInput, SurveyVisitUncheckedUpdateManyWithoutLevelInput>
+  }
+
+  export type SurveyVisitScalarWhereInput = {
+    AND?: SurveyVisitScalarWhereInput | SurveyVisitScalarWhereInput[]
+    OR?: SurveyVisitScalarWhereInput[]
+    NOT?: SurveyVisitScalarWhereInput | SurveyVisitScalarWhereInput[]
+    id?: StringFilter<"SurveyVisit"> | string
+    accreditationId?: StringFilter<"SurveyVisit"> | string
+    targetLevel?: StringFilter<"SurveyVisit"> | string
+  }
+
+  export type ProgramCreateWithoutAccreditationInput = {
+    id?: string
+    name: string
+    code: string
+    department: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    folderId: string
+    programPersonnel?: ProgramPersonnelCreateNestedManyWithoutProgramInput
+  }
+
+  export type ProgramUncheckedCreateWithoutAccreditationInput = {
+    id?: string
+    name: string
+    code: string
+    department: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    folderId: string
+    programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutProgramInput
+  }
+
+  export type ProgramCreateOrConnectWithoutAccreditationInput = {
+    where: ProgramWhereUniqueInput
+    create: XOR<ProgramCreateWithoutAccreditationInput, ProgramUncheckedCreateWithoutAccreditationInput>
+  }
+
+  export type LevelCreateWithoutAccreditationsInput = {
+    id?: string
+    rank: number
+    label: string
+    phase: $Enums.Phase
+    requiredGrandMean: Decimal | DecimalJsLike | number | string
+    requiredAreaMean: Decimal | DecimalJsLike | number | string
+    surveyVisits?: SurveyVisitCreateNestedManyWithoutLevelInput
+  }
+
+  export type LevelUncheckedCreateWithoutAccreditationsInput = {
+    id?: string
+    rank: number
+    label: string
+    phase: $Enums.Phase
+    requiredGrandMean: Decimal | DecimalJsLike | number | string
+    requiredAreaMean: Decimal | DecimalJsLike | number | string
+    surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutLevelInput
+  }
+
+  export type LevelCreateOrConnectWithoutAccreditationsInput = {
+    where: LevelWhereUniqueInput
+    create: XOR<LevelCreateWithoutAccreditationsInput, LevelUncheckedCreateWithoutAccreditationsInput>
+  }
+
+  export type SurveyVisitCreateWithoutAccreditationInput = {
+    id?: string
+    level: LevelCreateNestedOneWithoutSurveyVisitsInput
+    phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitUncheckedCreateWithoutAccreditationInput = {
+    id?: string
+    targetLevel: string
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitCreateOrConnectWithoutAccreditationInput = {
+    where: SurveyVisitWhereUniqueInput
+    create: XOR<SurveyVisitCreateWithoutAccreditationInput, SurveyVisitUncheckedCreateWithoutAccreditationInput>
+  }
+
+  export type SurveyVisitCreateManyAccreditationInputEnvelope = {
+    data: SurveyVisitCreateManyAccreditationInput | SurveyVisitCreateManyAccreditationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProgramUpsertWithoutAccreditationInput = {
+    update: XOR<ProgramUpdateWithoutAccreditationInput, ProgramUncheckedUpdateWithoutAccreditationInput>
+    create: XOR<ProgramCreateWithoutAccreditationInput, ProgramUncheckedCreateWithoutAccreditationInput>
+    where?: ProgramWhereInput
+  }
+
+  export type ProgramUpdateToOneWithWhereWithoutAccreditationInput = {
+    where?: ProgramWhereInput
+    data: XOR<ProgramUpdateWithoutAccreditationInput, ProgramUncheckedUpdateWithoutAccreditationInput>
+  }
+
+  export type ProgramUpdateWithoutAccreditationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    programPersonnel?: ProgramPersonnelUpdateManyWithoutProgramNestedInput
+  }
+
+  export type ProgramUncheckedUpdateWithoutAccreditationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutProgramNestedInput
+  }
+
+  export type LevelUpsertWithoutAccreditationsInput = {
+    update: XOR<LevelUpdateWithoutAccreditationsInput, LevelUncheckedUpdateWithoutAccreditationsInput>
+    create: XOR<LevelCreateWithoutAccreditationsInput, LevelUncheckedCreateWithoutAccreditationsInput>
+    where?: LevelWhereInput
+  }
+
+  export type LevelUpdateToOneWithWhereWithoutAccreditationsInput = {
+    where?: LevelWhereInput
+    data: XOR<LevelUpdateWithoutAccreditationsInput, LevelUncheckedUpdateWithoutAccreditationsInput>
+  }
+
+  export type LevelUpdateWithoutAccreditationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rank?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
+    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    surveyVisits?: SurveyVisitUpdateManyWithoutLevelNestedInput
+  }
+
+  export type LevelUncheckedUpdateWithoutAccreditationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rank?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
+    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutLevelNestedInput
+  }
+
+  export type SurveyVisitUpsertWithWhereUniqueWithoutAccreditationInput = {
+    where: SurveyVisitWhereUniqueInput
+    update: XOR<SurveyVisitUpdateWithoutAccreditationInput, SurveyVisitUncheckedUpdateWithoutAccreditationInput>
+    create: XOR<SurveyVisitCreateWithoutAccreditationInput, SurveyVisitUncheckedCreateWithoutAccreditationInput>
+  }
+
+  export type SurveyVisitUpdateWithWhereUniqueWithoutAccreditationInput = {
+    where: SurveyVisitWhereUniqueInput
+    data: XOR<SurveyVisitUpdateWithoutAccreditationInput, SurveyVisitUncheckedUpdateWithoutAccreditationInput>
+  }
+
+  export type SurveyVisitUpdateManyWithWhereWithoutAccreditationInput = {
+    where: SurveyVisitScalarWhereInput
+    data: XOR<SurveyVisitUpdateManyMutationInput, SurveyVisitUncheckedUpdateManyWithoutAccreditationInput>
+  }
+
+  export type AccreditationCreateWithoutSurveyVisitsInput = {
+    id?: string
+    phase?: $Enums.Phase | null
+    program: ProgramCreateNestedOneWithoutAccreditationInput
+    level?: LevelCreateNestedOneWithoutAccreditationsInput
+  }
+
+  export type AccreditationUncheckedCreateWithoutSurveyVisitsInput = {
+    id?: string
+    programId: string
+    currentLevel?: string | null
+    phase?: $Enums.Phase | null
+  }
+
+  export type AccreditationCreateOrConnectWithoutSurveyVisitsInput = {
+    where: AccreditationWhereUniqueInput
+    create: XOR<AccreditationCreateWithoutSurveyVisitsInput, AccreditationUncheckedCreateWithoutSurveyVisitsInput>
+  }
+
+  export type LevelCreateWithoutSurveyVisitsInput = {
+    id?: string
+    rank: number
+    label: string
+    phase: $Enums.Phase
+    requiredGrandMean: Decimal | DecimalJsLike | number | string
+    requiredAreaMean: Decimal | DecimalJsLike | number | string
+    accreditations?: AccreditationCreateNestedManyWithoutLevelInput
+  }
+
+  export type LevelUncheckedCreateWithoutSurveyVisitsInput = {
+    id?: string
+    rank: number
+    label: string
+    phase: $Enums.Phase
+    requiredGrandMean: Decimal | DecimalJsLike | number | string
+    requiredAreaMean: Decimal | DecimalJsLike | number | string
+    accreditations?: AccreditationUncheckedCreateNestedManyWithoutLevelInput
+  }
+
+  export type LevelCreateOrConnectWithoutSurveyVisitsInput = {
+    where: LevelWhereUniqueInput
+    create: XOR<LevelCreateWithoutSurveyVisitsInput, LevelUncheckedCreateWithoutSurveyVisitsInput>
+  }
+
+  export type PhaseOneRequirementsCreateWithoutSurveyVisitInput = {
+    id?: string
+    instrument: InstrumentCreateNestedOneWithoutPhaseOneRequirementsInput
+    instrumentFolder?: InstrumentFolderCreateNestedOneWithoutPhaseOneRequirementsInput
+  }
+
+  export type PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput = {
+    id?: string
+    instrumentId: string
+    instrumentFolder?: InstrumentFolderUncheckedCreateNestedOneWithoutPhaseOneRequirementsInput
+  }
+
+  export type PhaseOneRequirementsCreateOrConnectWithoutSurveyVisitInput = {
+    where: PhaseOneRequirementsWhereUniqueInput
+    create: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
+  }
+
+  export type AccreditationUpsertWithoutSurveyVisitsInput = {
+    update: XOR<AccreditationUpdateWithoutSurveyVisitsInput, AccreditationUncheckedUpdateWithoutSurveyVisitsInput>
+    create: XOR<AccreditationCreateWithoutSurveyVisitsInput, AccreditationUncheckedCreateWithoutSurveyVisitsInput>
+    where?: AccreditationWhereInput
+  }
+
+  export type AccreditationUpdateToOneWithWhereWithoutSurveyVisitsInput = {
+    where?: AccreditationWhereInput
+    data: XOR<AccreditationUpdateWithoutSurveyVisitsInput, AccreditationUncheckedUpdateWithoutSurveyVisitsInput>
+  }
+
+  export type AccreditationUpdateWithoutSurveyVisitsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
+    program?: ProgramUpdateOneRequiredWithoutAccreditationNestedInput
+    level?: LevelUpdateOneWithoutAccreditationsNestedInput
+  }
+
+  export type AccreditationUncheckedUpdateWithoutSurveyVisitsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    programId?: StringFieldUpdateOperationsInput | string
+    currentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
+  }
+
+  export type LevelUpsertWithoutSurveyVisitsInput = {
+    update: XOR<LevelUpdateWithoutSurveyVisitsInput, LevelUncheckedUpdateWithoutSurveyVisitsInput>
+    create: XOR<LevelCreateWithoutSurveyVisitsInput, LevelUncheckedCreateWithoutSurveyVisitsInput>
+    where?: LevelWhereInput
+  }
+
+  export type LevelUpdateToOneWithWhereWithoutSurveyVisitsInput = {
+    where?: LevelWhereInput
+    data: XOR<LevelUpdateWithoutSurveyVisitsInput, LevelUncheckedUpdateWithoutSurveyVisitsInput>
+  }
+
+  export type LevelUpdateWithoutSurveyVisitsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rank?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
+    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    accreditations?: AccreditationUpdateManyWithoutLevelNestedInput
+  }
+
+  export type LevelUncheckedUpdateWithoutSurveyVisitsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rank?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
+    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    accreditations?: AccreditationUncheckedUpdateManyWithoutLevelNestedInput
+  }
+
+  export type PhaseOneRequirementsUpsertWithoutSurveyVisitInput = {
+    update: XOR<PhaseOneRequirementsUpdateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedUpdateWithoutSurveyVisitInput>
+    create: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
+    where?: PhaseOneRequirementsWhereInput
+  }
+
+  export type PhaseOneRequirementsUpdateToOneWithWhereWithoutSurveyVisitInput = {
+    where?: PhaseOneRequirementsWhereInput
+    data: XOR<PhaseOneRequirementsUpdateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedUpdateWithoutSurveyVisitInput>
+  }
+
+  export type PhaseOneRequirementsUpdateWithoutSurveyVisitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instrument?: InstrumentUpdateOneRequiredWithoutPhaseOneRequirementsNestedInput
+    instrumentFolder?: InstrumentFolderUpdateOneWithoutPhaseOneRequirementsNestedInput
+  }
+
+  export type PhaseOneRequirementsUncheckedUpdateWithoutSurveyVisitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instrumentId?: StringFieldUpdateOperationsInput | string
+    instrumentFolder?: InstrumentFolderUncheckedUpdateOneWithoutPhaseOneRequirementsNestedInput
+  }
+
+  export type SurveyVisitCreateWithoutPhaseOneRequirementsInput = {
+    id?: string
+    accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
+    level: LevelCreateNestedOneWithoutSurveyVisitsInput
+  }
+
+  export type SurveyVisitUncheckedCreateWithoutPhaseOneRequirementsInput = {
+    id?: string
+    accreditationId: string
+    targetLevel: string
+  }
+
+  export type SurveyVisitCreateOrConnectWithoutPhaseOneRequirementsInput = {
+    where: SurveyVisitWhereUniqueInput
+    create: XOR<SurveyVisitCreateWithoutPhaseOneRequirementsInput, SurveyVisitUncheckedCreateWithoutPhaseOneRequirementsInput>
+  }
+
+  export type InstrumentCreateWithoutPhaseOneRequirementsInput = {
+    id?: string
+    name: string
+    accreditingBody: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    area?: AreaCreateNestedManyWithoutInstrumentInput
+  }
+
+  export type InstrumentUncheckedCreateWithoutPhaseOneRequirementsInput = {
+    id?: string
+    name: string
+    accreditingBody: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    area?: AreaUncheckedCreateNestedManyWithoutInstrumentInput
+  }
+
+  export type InstrumentCreateOrConnectWithoutPhaseOneRequirementsInput = {
+    where: InstrumentWhereUniqueInput
+    create: XOR<InstrumentCreateWithoutPhaseOneRequirementsInput, InstrumentUncheckedCreateWithoutPhaseOneRequirementsInput>
+  }
+
+  export type InstrumentFolderCreateWithoutPhaseOneRequirementsInput = {
+    id?: string
+    folderId: string
+    areaFolders?: AreaFolderCreateNestedManyWithoutInstrumentFolderInput
+  }
+
+  export type InstrumentFolderUncheckedCreateWithoutPhaseOneRequirementsInput = {
+    id?: string
+    folderId: string
+    areaFolders?: AreaFolderUncheckedCreateNestedManyWithoutInstrumentFolderInput
+  }
+
+  export type InstrumentFolderCreateOrConnectWithoutPhaseOneRequirementsInput = {
+    where: InstrumentFolderWhereUniqueInput
+    create: XOR<InstrumentFolderCreateWithoutPhaseOneRequirementsInput, InstrumentFolderUncheckedCreateWithoutPhaseOneRequirementsInput>
+  }
+
+  export type SurveyVisitUpsertWithoutPhaseOneRequirementsInput = {
+    update: XOR<SurveyVisitUpdateWithoutPhaseOneRequirementsInput, SurveyVisitUncheckedUpdateWithoutPhaseOneRequirementsInput>
+    create: XOR<SurveyVisitCreateWithoutPhaseOneRequirementsInput, SurveyVisitUncheckedCreateWithoutPhaseOneRequirementsInput>
+    where?: SurveyVisitWhereInput
+  }
+
+  export type SurveyVisitUpdateToOneWithWhereWithoutPhaseOneRequirementsInput = {
+    where?: SurveyVisitWhereInput
+    data: XOR<SurveyVisitUpdateWithoutPhaseOneRequirementsInput, SurveyVisitUncheckedUpdateWithoutPhaseOneRequirementsInput>
+  }
+
+  export type SurveyVisitUpdateWithoutPhaseOneRequirementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
+  }
+
+  export type SurveyVisitUncheckedUpdateWithoutPhaseOneRequirementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accreditationId?: StringFieldUpdateOperationsInput | string
+    targetLevel?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type InstrumentUpsertWithoutPhaseOneRequirementsInput = {
+    update: XOR<InstrumentUpdateWithoutPhaseOneRequirementsInput, InstrumentUncheckedUpdateWithoutPhaseOneRequirementsInput>
+    create: XOR<InstrumentCreateWithoutPhaseOneRequirementsInput, InstrumentUncheckedCreateWithoutPhaseOneRequirementsInput>
+    where?: InstrumentWhereInput
+  }
+
+  export type InstrumentUpdateToOneWithWhereWithoutPhaseOneRequirementsInput = {
+    where?: InstrumentWhereInput
+    data: XOR<InstrumentUpdateWithoutPhaseOneRequirementsInput, InstrumentUncheckedUpdateWithoutPhaseOneRequirementsInput>
+  }
+
+  export type InstrumentUpdateWithoutPhaseOneRequirementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    accreditingBody?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    area?: AreaUpdateManyWithoutInstrumentNestedInput
+  }
+
+  export type InstrumentUncheckedUpdateWithoutPhaseOneRequirementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    accreditingBody?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    area?: AreaUncheckedUpdateManyWithoutInstrumentNestedInput
+  }
+
+  export type InstrumentFolderUpsertWithoutPhaseOneRequirementsInput = {
+    update: XOR<InstrumentFolderUpdateWithoutPhaseOneRequirementsInput, InstrumentFolderUncheckedUpdateWithoutPhaseOneRequirementsInput>
+    create: XOR<InstrumentFolderCreateWithoutPhaseOneRequirementsInput, InstrumentFolderUncheckedCreateWithoutPhaseOneRequirementsInput>
+    where?: InstrumentFolderWhereInput
+  }
+
+  export type InstrumentFolderUpdateToOneWithWhereWithoutPhaseOneRequirementsInput = {
+    where?: InstrumentFolderWhereInput
+    data: XOR<InstrumentFolderUpdateWithoutPhaseOneRequirementsInput, InstrumentFolderUncheckedUpdateWithoutPhaseOneRequirementsInput>
+  }
+
+  export type InstrumentFolderUpdateWithoutPhaseOneRequirementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaFolders?: AreaFolderUpdateManyWithoutInstrumentFolderNestedInput
+  }
+
+  export type InstrumentFolderUncheckedUpdateWithoutPhaseOneRequirementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaFolders?: AreaFolderUncheckedUpdateManyWithoutInstrumentFolderNestedInput
+  }
+
+  export type PhaseOneRequirementsCreateWithoutInstrumentFolderInput = {
+    id?: string
+    surveyVisit: SurveyVisitCreateNestedOneWithoutPhaseOneRequirementsInput
+    instrument: InstrumentCreateNestedOneWithoutPhaseOneRequirementsInput
+  }
+
+  export type PhaseOneRequirementsUncheckedCreateWithoutInstrumentFolderInput = {
+    id?: string
+    surveyVisitId: string
+    instrumentId: string
+  }
+
+  export type PhaseOneRequirementsCreateOrConnectWithoutInstrumentFolderInput = {
+    where: PhaseOneRequirementsWhereUniqueInput
+    create: XOR<PhaseOneRequirementsCreateWithoutInstrumentFolderInput, PhaseOneRequirementsUncheckedCreateWithoutInstrumentFolderInput>
+  }
+
+  export type AreaFolderCreateWithoutInstrumentFolderInput = {
+    id?: string
+    folderId: string
+    parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
+    area: AreaCreateNestedOneWithoutAreaFoldersInput
+  }
+
+  export type AreaFolderUncheckedCreateWithoutInstrumentFolderInput = {
+    id?: string
+    folderId: string
+    areaId: number
+    parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
+  }
+
+  export type AreaFolderCreateOrConnectWithoutInstrumentFolderInput = {
+    where: AreaFolderWhereUniqueInput
+    create: XOR<AreaFolderCreateWithoutInstrumentFolderInput, AreaFolderUncheckedCreateWithoutInstrumentFolderInput>
+  }
+
+  export type AreaFolderCreateManyInstrumentFolderInputEnvelope = {
+    data: AreaFolderCreateManyInstrumentFolderInput | AreaFolderCreateManyInstrumentFolderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PhaseOneRequirementsUpsertWithoutInstrumentFolderInput = {
+    update: XOR<PhaseOneRequirementsUpdateWithoutInstrumentFolderInput, PhaseOneRequirementsUncheckedUpdateWithoutInstrumentFolderInput>
+    create: XOR<PhaseOneRequirementsCreateWithoutInstrumentFolderInput, PhaseOneRequirementsUncheckedCreateWithoutInstrumentFolderInput>
+    where?: PhaseOneRequirementsWhereInput
+  }
+
+  export type PhaseOneRequirementsUpdateToOneWithWhereWithoutInstrumentFolderInput = {
+    where?: PhaseOneRequirementsWhereInput
+    data: XOR<PhaseOneRequirementsUpdateWithoutInstrumentFolderInput, PhaseOneRequirementsUncheckedUpdateWithoutInstrumentFolderInput>
+  }
+
+  export type PhaseOneRequirementsUpdateWithoutInstrumentFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisit?: SurveyVisitUpdateOneRequiredWithoutPhaseOneRequirementsNestedInput
+    instrument?: InstrumentUpdateOneRequiredWithoutPhaseOneRequirementsNestedInput
+  }
+
+  export type PhaseOneRequirementsUncheckedUpdateWithoutInstrumentFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: StringFieldUpdateOperationsInput | string
+    instrumentId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AreaFolderUpsertWithWhereUniqueWithoutInstrumentFolderInput = {
+    where: AreaFolderWhereUniqueInput
+    update: XOR<AreaFolderUpdateWithoutInstrumentFolderInput, AreaFolderUncheckedUpdateWithoutInstrumentFolderInput>
+    create: XOR<AreaFolderCreateWithoutInstrumentFolderInput, AreaFolderUncheckedCreateWithoutInstrumentFolderInput>
+  }
+
+  export type AreaFolderUpdateWithWhereUniqueWithoutInstrumentFolderInput = {
+    where: AreaFolderWhereUniqueInput
+    data: XOR<AreaFolderUpdateWithoutInstrumentFolderInput, AreaFolderUncheckedUpdateWithoutInstrumentFolderInput>
+  }
+
+  export type AreaFolderUpdateManyWithWhereWithoutInstrumentFolderInput = {
+    where: AreaFolderScalarWhereInput
+    data: XOR<AreaFolderUpdateManyMutationInput, AreaFolderUncheckedUpdateManyWithoutInstrumentFolderInput>
+  }
+
+  export type InstrumentFolderCreateWithoutAreaFoldersInput = {
+    id?: string
+    folderId: string
+    phaseOneRequirements: PhaseOneRequirementsCreateNestedOneWithoutInstrumentFolderInput
+  }
+
+  export type InstrumentFolderUncheckedCreateWithoutAreaFoldersInput = {
+    id?: string
+    phaseOneRequirementsId: string
+    folderId: string
+  }
+
+  export type InstrumentFolderCreateOrConnectWithoutAreaFoldersInput = {
+    where: InstrumentFolderWhereUniqueInput
+    create: XOR<InstrumentFolderCreateWithoutAreaFoldersInput, InstrumentFolderUncheckedCreateWithoutAreaFoldersInput>
+  }
+
+  export type ParameterFolderCreateWithoutAreaFolderInput = {
+    id?: string
+    folderId: string
+    indicatorFolders?: IndicatorFolderCreateNestedManyWithoutParameterFolderInput
+    parameter: ParameterCreateNestedOneWithoutParameterFoldersInput
+  }
+
+  export type ParameterFolderUncheckedCreateWithoutAreaFolderInput = {
+    id?: string
+    folderId: string
+    parameterId: number
+    indicatorFolders?: IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput
+  }
+
+  export type ParameterFolderCreateOrConnectWithoutAreaFolderInput = {
+    where: ParameterFolderWhereUniqueInput
+    create: XOR<ParameterFolderCreateWithoutAreaFolderInput, ParameterFolderUncheckedCreateWithoutAreaFolderInput>
+  }
+
+  export type ParameterFolderCreateManyAreaFolderInputEnvelope = {
+    data: ParameterFolderCreateManyAreaFolderInput | ParameterFolderCreateManyAreaFolderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AreaCreateWithoutAreaFoldersInput = {
+    label: string
+    description: string
+    weight: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    instrument: InstrumentCreateNestedOneWithoutAreaInput
+    parameter?: ParameterCreateNestedManyWithoutAreaInput
+  }
+
+  export type AreaUncheckedCreateWithoutAreaFoldersInput = {
+    id?: number
+    label: string
+    description: string
+    weight: number
+    instrumentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parameter?: ParameterUncheckedCreateNestedManyWithoutAreaInput
+  }
+
+  export type AreaCreateOrConnectWithoutAreaFoldersInput = {
+    where: AreaWhereUniqueInput
+    create: XOR<AreaCreateWithoutAreaFoldersInput, AreaUncheckedCreateWithoutAreaFoldersInput>
+  }
+
+  export type InstrumentFolderUpsertWithoutAreaFoldersInput = {
+    update: XOR<InstrumentFolderUpdateWithoutAreaFoldersInput, InstrumentFolderUncheckedUpdateWithoutAreaFoldersInput>
+    create: XOR<InstrumentFolderCreateWithoutAreaFoldersInput, InstrumentFolderUncheckedCreateWithoutAreaFoldersInput>
+    where?: InstrumentFolderWhereInput
+  }
+
+  export type InstrumentFolderUpdateToOneWithWhereWithoutAreaFoldersInput = {
+    where?: InstrumentFolderWhereInput
+    data: XOR<InstrumentFolderUpdateWithoutAreaFoldersInput, InstrumentFolderUncheckedUpdateWithoutAreaFoldersInput>
+  }
+
+  export type InstrumentFolderUpdateWithoutAreaFoldersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    phaseOneRequirements?: PhaseOneRequirementsUpdateOneRequiredWithoutInstrumentFolderNestedInput
+  }
+
+  export type InstrumentFolderUncheckedUpdateWithoutAreaFoldersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseOneRequirementsId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ParameterFolderUpsertWithWhereUniqueWithoutAreaFolderInput = {
+    where: ParameterFolderWhereUniqueInput
+    update: XOR<ParameterFolderUpdateWithoutAreaFolderInput, ParameterFolderUncheckedUpdateWithoutAreaFolderInput>
+    create: XOR<ParameterFolderCreateWithoutAreaFolderInput, ParameterFolderUncheckedCreateWithoutAreaFolderInput>
+  }
+
+  export type ParameterFolderUpdateWithWhereUniqueWithoutAreaFolderInput = {
+    where: ParameterFolderWhereUniqueInput
+    data: XOR<ParameterFolderUpdateWithoutAreaFolderInput, ParameterFolderUncheckedUpdateWithoutAreaFolderInput>
+  }
+
+  export type ParameterFolderUpdateManyWithWhereWithoutAreaFolderInput = {
+    where: ParameterFolderScalarWhereInput
+    data: XOR<ParameterFolderUpdateManyMutationInput, ParameterFolderUncheckedUpdateManyWithoutAreaFolderInput>
+  }
+
+  export type AreaUpsertWithoutAreaFoldersInput = {
+    update: XOR<AreaUpdateWithoutAreaFoldersInput, AreaUncheckedUpdateWithoutAreaFoldersInput>
+    create: XOR<AreaCreateWithoutAreaFoldersInput, AreaUncheckedCreateWithoutAreaFoldersInput>
+    where?: AreaWhereInput
+  }
+
+  export type AreaUpdateToOneWithWhereWithoutAreaFoldersInput = {
+    where?: AreaWhereInput
+    data: XOR<AreaUpdateWithoutAreaFoldersInput, AreaUncheckedUpdateWithoutAreaFoldersInput>
+  }
+
+  export type AreaUpdateWithoutAreaFoldersInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    weight?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    instrument?: InstrumentUpdateOneRequiredWithoutAreaNestedInput
+    parameter?: ParameterUpdateManyWithoutAreaNestedInput
+  }
+
+  export type AreaUncheckedUpdateWithoutAreaFoldersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    weight?: IntFieldUpdateOperationsInput | number
+    instrumentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parameter?: ParameterUncheckedUpdateManyWithoutAreaNestedInput
+  }
+
+  export type AreaFolderCreateWithoutParameterFoldersInput = {
+    id?: string
+    folderId: string
+    instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
+    area: AreaCreateNestedOneWithoutAreaFoldersInput
+  }
+
+  export type AreaFolderUncheckedCreateWithoutParameterFoldersInput = {
+    id?: string
+    instrumentFolderId: string
+    folderId: string
+    areaId: number
+  }
+
+  export type AreaFolderCreateOrConnectWithoutParameterFoldersInput = {
+    where: AreaFolderWhereUniqueInput
+    create: XOR<AreaFolderCreateWithoutParameterFoldersInput, AreaFolderUncheckedCreateWithoutParameterFoldersInput>
+  }
+
+  export type IndicatorFolderCreateWithoutParameterFolderInput = {
+    id?: string
+    category: $Enums.Category
+    evidenceFiles?: EvidenceFileCreateNestedManyWithoutIndicatorFolderInput
+  }
+
+  export type IndicatorFolderUncheckedCreateWithoutParameterFolderInput = {
+    id?: string
+    category: $Enums.Category
+    evidenceFiles?: EvidenceFileUncheckedCreateNestedManyWithoutIndicatorFolderInput
+  }
+
+  export type IndicatorFolderCreateOrConnectWithoutParameterFolderInput = {
+    where: IndicatorFolderWhereUniqueInput
+    create: XOR<IndicatorFolderCreateWithoutParameterFolderInput, IndicatorFolderUncheckedCreateWithoutParameterFolderInput>
+  }
+
+  export type IndicatorFolderCreateManyParameterFolderInputEnvelope = {
+    data: IndicatorFolderCreateManyParameterFolderInput | IndicatorFolderCreateManyParameterFolderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ParameterCreateWithoutParameterFoldersInput = {
+    label: string
+    description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    area: AreaCreateNestedOneWithoutParameterInput
+    indicator?: IndicatorCreateNestedManyWithoutParameterInput
+  }
+
+  export type ParameterUncheckedCreateWithoutParameterFoldersInput = {
+    id?: number
+    label: string
+    description: string
+    areaId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    indicator?: IndicatorUncheckedCreateNestedManyWithoutParameterInput
+  }
+
+  export type ParameterCreateOrConnectWithoutParameterFoldersInput = {
+    where: ParameterWhereUniqueInput
+    create: XOR<ParameterCreateWithoutParameterFoldersInput, ParameterUncheckedCreateWithoutParameterFoldersInput>
+  }
+
+  export type AreaFolderUpsertWithoutParameterFoldersInput = {
+    update: XOR<AreaFolderUpdateWithoutParameterFoldersInput, AreaFolderUncheckedUpdateWithoutParameterFoldersInput>
+    create: XOR<AreaFolderCreateWithoutParameterFoldersInput, AreaFolderUncheckedCreateWithoutParameterFoldersInput>
+    where?: AreaFolderWhereInput
+  }
+
+  export type AreaFolderUpdateToOneWithWhereWithoutParameterFoldersInput = {
+    where?: AreaFolderWhereInput
+    data: XOR<AreaFolderUpdateWithoutParameterFoldersInput, AreaFolderUncheckedUpdateWithoutParameterFoldersInput>
+  }
+
+  export type AreaFolderUpdateWithoutParameterFoldersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
+    area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
+  }
+
+  export type AreaFolderUncheckedUpdateWithoutParameterFoldersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instrumentFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type IndicatorFolderUpsertWithWhereUniqueWithoutParameterFolderInput = {
+    where: IndicatorFolderWhereUniqueInput
+    update: XOR<IndicatorFolderUpdateWithoutParameterFolderInput, IndicatorFolderUncheckedUpdateWithoutParameterFolderInput>
+    create: XOR<IndicatorFolderCreateWithoutParameterFolderInput, IndicatorFolderUncheckedCreateWithoutParameterFolderInput>
+  }
+
+  export type IndicatorFolderUpdateWithWhereUniqueWithoutParameterFolderInput = {
+    where: IndicatorFolderWhereUniqueInput
+    data: XOR<IndicatorFolderUpdateWithoutParameterFolderInput, IndicatorFolderUncheckedUpdateWithoutParameterFolderInput>
+  }
+
+  export type IndicatorFolderUpdateManyWithWhereWithoutParameterFolderInput = {
+    where: IndicatorFolderScalarWhereInput
+    data: XOR<IndicatorFolderUpdateManyMutationInput, IndicatorFolderUncheckedUpdateManyWithoutParameterFolderInput>
+  }
+
+  export type IndicatorFolderScalarWhereInput = {
+    AND?: IndicatorFolderScalarWhereInput | IndicatorFolderScalarWhereInput[]
+    OR?: IndicatorFolderScalarWhereInput[]
+    NOT?: IndicatorFolderScalarWhereInput | IndicatorFolderScalarWhereInput[]
+    id?: StringFilter<"IndicatorFolder"> | string
+    parameterFolderId?: StringFilter<"IndicatorFolder"> | string
+    category?: EnumCategoryFilter<"IndicatorFolder"> | $Enums.Category
+  }
+
+  export type ParameterUpsertWithoutParameterFoldersInput = {
+    update: XOR<ParameterUpdateWithoutParameterFoldersInput, ParameterUncheckedUpdateWithoutParameterFoldersInput>
+    create: XOR<ParameterCreateWithoutParameterFoldersInput, ParameterUncheckedCreateWithoutParameterFoldersInput>
+    where?: ParameterWhereInput
+  }
+
+  export type ParameterUpdateToOneWithWhereWithoutParameterFoldersInput = {
+    where?: ParameterWhereInput
+    data: XOR<ParameterUpdateWithoutParameterFoldersInput, ParameterUncheckedUpdateWithoutParameterFoldersInput>
+  }
+
+  export type ParameterUpdateWithoutParameterFoldersInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    area?: AreaUpdateOneRequiredWithoutParameterNestedInput
+    indicator?: IndicatorUpdateManyWithoutParameterNestedInput
+  }
+
+  export type ParameterUncheckedUpdateWithoutParameterFoldersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    indicator?: IndicatorUncheckedUpdateManyWithoutParameterNestedInput
+  }
+
+  export type ParameterFolderCreateWithoutIndicatorFoldersInput = {
+    id?: string
+    folderId: string
+    areaFolder: AreaFolderCreateNestedOneWithoutParameterFoldersInput
+    parameter: ParameterCreateNestedOneWithoutParameterFoldersInput
+  }
+
+  export type ParameterFolderUncheckedCreateWithoutIndicatorFoldersInput = {
+    id?: string
+    areaFolderId: string
+    folderId: string
+    parameterId: number
+  }
+
+  export type ParameterFolderCreateOrConnectWithoutIndicatorFoldersInput = {
+    where: ParameterFolderWhereUniqueInput
+    create: XOR<ParameterFolderCreateWithoutIndicatorFoldersInput, ParameterFolderUncheckedCreateWithoutIndicatorFoldersInput>
+  }
+
+  export type EvidenceFileCreateWithoutIndicatorFolderInput = {
+    id?: string
+    fileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
+  }
+
+  export type EvidenceFileUncheckedCreateWithoutIndicatorFolderInput = {
+    id?: string
+    fileId: string
+    indicatorId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EvidenceFileCreateOrConnectWithoutIndicatorFolderInput = {
+    where: EvidenceFileWhereUniqueInput
+    create: XOR<EvidenceFileCreateWithoutIndicatorFolderInput, EvidenceFileUncheckedCreateWithoutIndicatorFolderInput>
+  }
+
+  export type EvidenceFileCreateManyIndicatorFolderInputEnvelope = {
+    data: EvidenceFileCreateManyIndicatorFolderInput | EvidenceFileCreateManyIndicatorFolderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ParameterFolderUpsertWithoutIndicatorFoldersInput = {
+    update: XOR<ParameterFolderUpdateWithoutIndicatorFoldersInput, ParameterFolderUncheckedUpdateWithoutIndicatorFoldersInput>
+    create: XOR<ParameterFolderCreateWithoutIndicatorFoldersInput, ParameterFolderUncheckedCreateWithoutIndicatorFoldersInput>
+    where?: ParameterFolderWhereInput
+  }
+
+  export type ParameterFolderUpdateToOneWithWhereWithoutIndicatorFoldersInput = {
+    where?: ParameterFolderWhereInput
+    data: XOR<ParameterFolderUpdateWithoutIndicatorFoldersInput, ParameterFolderUncheckedUpdateWithoutIndicatorFoldersInput>
+  }
+
+  export type ParameterFolderUpdateWithoutIndicatorFoldersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaFolder?: AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput
+    parameter?: ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput
+  }
+
+  export type ParameterFolderUncheckedUpdateWithoutIndicatorFoldersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    parameterId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EvidenceFileUpsertWithWhereUniqueWithoutIndicatorFolderInput = {
+    where: EvidenceFileWhereUniqueInput
+    update: XOR<EvidenceFileUpdateWithoutIndicatorFolderInput, EvidenceFileUncheckedUpdateWithoutIndicatorFolderInput>
+    create: XOR<EvidenceFileCreateWithoutIndicatorFolderInput, EvidenceFileUncheckedCreateWithoutIndicatorFolderInput>
+  }
+
+  export type EvidenceFileUpdateWithWhereUniqueWithoutIndicatorFolderInput = {
+    where: EvidenceFileWhereUniqueInput
+    data: XOR<EvidenceFileUpdateWithoutIndicatorFolderInput, EvidenceFileUncheckedUpdateWithoutIndicatorFolderInput>
+  }
+
+  export type EvidenceFileUpdateManyWithWhereWithoutIndicatorFolderInput = {
+    where: EvidenceFileScalarWhereInput
+    data: XOR<EvidenceFileUpdateManyMutationInput, EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderInput>
+  }
+
+  export type IndicatorFolderCreateWithoutEvidenceFilesInput = {
+    id?: string
+    category: $Enums.Category
+    parameterFolder: ParameterFolderCreateNestedOneWithoutIndicatorFoldersInput
+  }
+
+  export type IndicatorFolderUncheckedCreateWithoutEvidenceFilesInput = {
+    id?: string
+    parameterFolderId: string
+    category: $Enums.Category
+  }
+
+  export type IndicatorFolderCreateOrConnectWithoutEvidenceFilesInput = {
+    where: IndicatorFolderWhereUniqueInput
+    create: XOR<IndicatorFolderCreateWithoutEvidenceFilesInput, IndicatorFolderUncheckedCreateWithoutEvidenceFilesInput>
+  }
+
+  export type IndicatorCreateWithoutEvidenceFilesInput = {
+    label: string
+    description: string
+    category: $Enums.Category
+    evidence: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parameter: ParameterCreateNestedOneWithoutIndicatorInput
+  }
+
+  export type IndicatorUncheckedCreateWithoutEvidenceFilesInput = {
+    id?: number
+    label: string
+    description: string
+    category: $Enums.Category
+    evidence: string
+    parameterId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IndicatorCreateOrConnectWithoutEvidenceFilesInput = {
+    where: IndicatorWhereUniqueInput
+    create: XOR<IndicatorCreateWithoutEvidenceFilesInput, IndicatorUncheckedCreateWithoutEvidenceFilesInput>
+  }
+
+  export type IndicatorFolderUpsertWithoutEvidenceFilesInput = {
+    update: XOR<IndicatorFolderUpdateWithoutEvidenceFilesInput, IndicatorFolderUncheckedUpdateWithoutEvidenceFilesInput>
+    create: XOR<IndicatorFolderCreateWithoutEvidenceFilesInput, IndicatorFolderUncheckedCreateWithoutEvidenceFilesInput>
+    where?: IndicatorFolderWhereInput
+  }
+
+  export type IndicatorFolderUpdateToOneWithWhereWithoutEvidenceFilesInput = {
+    where?: IndicatorFolderWhereInput
+    data: XOR<IndicatorFolderUpdateWithoutEvidenceFilesInput, IndicatorFolderUncheckedUpdateWithoutEvidenceFilesInput>
+  }
+
+  export type IndicatorFolderUpdateWithoutEvidenceFilesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+    parameterFolder?: ParameterFolderUpdateOneRequiredWithoutIndicatorFoldersNestedInput
+  }
+
+  export type IndicatorFolderUncheckedUpdateWithoutEvidenceFilesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    parameterFolderId?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+  }
+
+  export type IndicatorUpsertWithoutEvidenceFilesInput = {
+    update: XOR<IndicatorUpdateWithoutEvidenceFilesInput, IndicatorUncheckedUpdateWithoutEvidenceFilesInput>
+    create: XOR<IndicatorCreateWithoutEvidenceFilesInput, IndicatorUncheckedCreateWithoutEvidenceFilesInput>
+    where?: IndicatorWhereInput
+  }
+
+  export type IndicatorUpdateToOneWithWhereWithoutEvidenceFilesInput = {
+    where?: IndicatorWhereInput
+    data: XOR<IndicatorUpdateWithoutEvidenceFilesInput, IndicatorUncheckedUpdateWithoutEvidenceFilesInput>
+  }
+
+  export type IndicatorUpdateWithoutEvidenceFilesInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+    evidence?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parameter?: ParameterUpdateOneRequiredWithoutIndicatorNestedInput
+  }
+
+  export type IndicatorUncheckedUpdateWithoutEvidenceFilesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+    evidence?: StringFieldUpdateOperationsInput | string
+    parameterId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13466,6 +26885,11 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type PhaseOneRequirementsCreateManyInstrumentInput = {
+    id?: string
+    surveyVisitId: string
+  }
+
   export type AreaUpdateWithoutInstrumentInput = {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -13473,6 +26897,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parameter?: ParameterUpdateManyWithoutAreaNestedInput
+    areaFolders?: AreaFolderUpdateManyWithoutAreaNestedInput
   }
 
   export type AreaUncheckedUpdateWithoutInstrumentInput = {
@@ -13483,6 +26908,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parameter?: ParameterUncheckedUpdateManyWithoutAreaNestedInput
+    areaFolders?: AreaFolderUncheckedUpdateManyWithoutAreaNestedInput
   }
 
   export type AreaUncheckedUpdateManyWithoutInstrumentInput = {
@@ -13494,6 +26920,23 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type PhaseOneRequirementsUpdateWithoutInstrumentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisit?: SurveyVisitUpdateOneRequiredWithoutPhaseOneRequirementsNestedInput
+    instrumentFolder?: InstrumentFolderUpdateOneWithoutPhaseOneRequirementsNestedInput
+  }
+
+  export type PhaseOneRequirementsUncheckedUpdateWithoutInstrumentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: StringFieldUpdateOperationsInput | string
+    instrumentFolder?: InstrumentFolderUncheckedUpdateOneWithoutPhaseOneRequirementsNestedInput
+  }
+
+  export type PhaseOneRequirementsUncheckedUpdateManyWithoutInstrumentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type ParameterCreateManyAreaInput = {
     id?: number
     label: string
@@ -13502,12 +26945,19 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type AreaFolderCreateManyAreaInput = {
+    id?: string
+    instrumentFolderId: string
+    folderId: string
+  }
+
   export type ParameterUpdateWithoutAreaInput = {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicator?: IndicatorUpdateManyWithoutParameterNestedInput
+    parameterFolders?: ParameterFolderUpdateManyWithoutParameterNestedInput
   }
 
   export type ParameterUncheckedUpdateWithoutAreaInput = {
@@ -13517,6 +26967,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicator?: IndicatorUncheckedUpdateManyWithoutParameterNestedInput
+    parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutParameterNestedInput
   }
 
   export type ParameterUncheckedUpdateManyWithoutAreaInput = {
@@ -13525,6 +26976,26 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AreaFolderUpdateWithoutAreaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
+    parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
+  }
+
+  export type AreaFolderUncheckedUpdateWithoutAreaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instrumentFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
+  }
+
+  export type AreaFolderUncheckedUpdateManyWithoutAreaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instrumentFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type IndicatorCreateManyParameterInput = {
@@ -13537,6 +27008,12 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type ParameterFolderCreateManyParameterInput = {
+    id?: string
+    areaFolderId: string
+    folderId: string
+  }
+
   export type IndicatorUpdateWithoutParameterInput = {
     label?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -13544,6 +27021,7 @@ export namespace Prisma {
     evidence?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidenceFiles?: EvidenceFileUpdateManyWithoutIndicatorNestedInput
   }
 
   export type IndicatorUncheckedUpdateWithoutParameterInput = {
@@ -13554,6 +27032,7 @@ export namespace Prisma {
     evidence?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidenceFiles?: EvidenceFileUncheckedUpdateManyWithoutIndicatorNestedInput
   }
 
   export type IndicatorUncheckedUpdateManyWithoutParameterInput = {
@@ -13562,6 +27041,234 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     evidence?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ParameterFolderUpdateWithoutParameterInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaFolder?: AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput
+    indicatorFolders?: IndicatorFolderUpdateManyWithoutParameterFolderNestedInput
+  }
+
+  export type ParameterFolderUncheckedUpdateWithoutParameterInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    indicatorFolders?: IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput
+  }
+
+  export type ParameterFolderUncheckedUpdateManyWithoutParameterInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EvidenceFileCreateManyIndicatorInput = {
+    id?: string
+    indicatorFolderId: string
+    fileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EvidenceFileUpdateWithoutIndicatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
+  }
+
+  export type EvidenceFileUncheckedUpdateWithoutIndicatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    indicatorFolderId?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EvidenceFileUncheckedUpdateManyWithoutIndicatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    indicatorFolderId?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccreditationCreateManyLevelInput = {
+    id?: string
+    programId: string
+    phase?: $Enums.Phase | null
+  }
+
+  export type SurveyVisitCreateManyLevelInput = {
+    id?: string
+    accreditationId: string
+  }
+
+  export type AccreditationUpdateWithoutLevelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
+    program?: ProgramUpdateOneRequiredWithoutAccreditationNestedInput
+    surveyVisits?: SurveyVisitUpdateManyWithoutAccreditationNestedInput
+  }
+
+  export type AccreditationUncheckedUpdateWithoutLevelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    programId?: StringFieldUpdateOperationsInput | string
+    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
+    surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutAccreditationNestedInput
+  }
+
+  export type AccreditationUncheckedUpdateManyWithoutLevelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    programId?: StringFieldUpdateOperationsInput | string
+    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
+  }
+
+  export type SurveyVisitUpdateWithoutLevelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
+  }
+
+  export type SurveyVisitUncheckedUpdateWithoutLevelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accreditationId?: StringFieldUpdateOperationsInput | string
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+  }
+
+  export type SurveyVisitUncheckedUpdateManyWithoutLevelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accreditationId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SurveyVisitCreateManyAccreditationInput = {
+    id?: string
+    targetLevel: string
+  }
+
+  export type SurveyVisitUpdateWithoutAccreditationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
+  }
+
+  export type SurveyVisitUncheckedUpdateWithoutAccreditationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    targetLevel?: StringFieldUpdateOperationsInput | string
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+  }
+
+  export type SurveyVisitUncheckedUpdateManyWithoutAccreditationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    targetLevel?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AreaFolderCreateManyInstrumentFolderInput = {
+    id?: string
+    folderId: string
+    areaId: number
+  }
+
+  export type AreaFolderUpdateWithoutInstrumentFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
+    area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
+  }
+
+  export type AreaFolderUncheckedUpdateWithoutInstrumentFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+    parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
+  }
+
+  export type AreaFolderUncheckedUpdateManyWithoutInstrumentFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ParameterFolderCreateManyAreaFolderInput = {
+    id?: string
+    folderId: string
+    parameterId: number
+  }
+
+  export type ParameterFolderUpdateWithoutAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    indicatorFolders?: IndicatorFolderUpdateManyWithoutParameterFolderNestedInput
+    parameter?: ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput
+  }
+
+  export type ParameterFolderUncheckedUpdateWithoutAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    parameterId?: IntFieldUpdateOperationsInput | number
+    indicatorFolders?: IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput
+  }
+
+  export type ParameterFolderUncheckedUpdateManyWithoutAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    parameterId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type IndicatorFolderCreateManyParameterFolderInput = {
+    id?: string
+    category: $Enums.Category
+  }
+
+  export type IndicatorFolderUpdateWithoutParameterFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+    evidenceFiles?: EvidenceFileUpdateManyWithoutIndicatorFolderNestedInput
+  }
+
+  export type IndicatorFolderUncheckedUpdateWithoutParameterFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+    evidenceFiles?: EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderNestedInput
+  }
+
+  export type IndicatorFolderUncheckedUpdateManyWithoutParameterFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
+  }
+
+  export type EvidenceFileCreateManyIndicatorFolderInput = {
+    id?: string
+    fileId: string
+    indicatorId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EvidenceFileUpdateWithoutIndicatorFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
+  }
+
+  export type EvidenceFileUncheckedUpdateWithoutIndicatorFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    indicatorId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

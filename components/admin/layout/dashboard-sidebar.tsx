@@ -1,6 +1,8 @@
 import {
+  BadgeCheck,
   ClipboardCheck,
   FolderCheck,
+  Home,
   Landmark,
   LayoutDashboard,
   Users,
@@ -79,6 +81,14 @@ const DashboardSidebar = async () => {
         <SidebarGroup>
           <SidebarGroupLabel>Accreditation</SidebarGroupLabel>
           <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href={"/admin/accreditation"}>
+                  <BadgeCheck />
+                  <span>Program Accreditations</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <Link href={"/admin/instruments"}>

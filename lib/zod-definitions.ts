@@ -95,3 +95,10 @@ export const CreateIndicatorFormSchema = z
       path: ["label"],
     }
   );
+
+export const CreateAccreditationFormSchema = z.object({
+  programId: z.string().min(1, "This field is required").trim(),
+  level: z.string().min(1, "This field is required").trim(),
+  phase: z.string().min(1, "This field is required").trim(),
+  instrumentId: z.string().min(1, "This field is required").trim(),
+});

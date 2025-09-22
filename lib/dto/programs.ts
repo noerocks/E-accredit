@@ -8,4 +8,5 @@ export type ProgramDTO = {
   name: string;
   code: string;
   department: string;
+  folderId: string;
 };

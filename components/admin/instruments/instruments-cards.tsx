@@ -6,13 +6,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { InstrumentDisplayDTO } from "@/lib/dto/instrument";
 import { FolderOpen } from "lucide-react";
 import Link from "next/link";
 
 const InstrumentCards = ({
   instruments,
 }: {
-  instruments: { id: string; name: string; accreditingBody: string }[] | null;
+  instruments: InstrumentDisplayDTO[] | null;
 }) => {
   return (
     <div className="flex flex-wrap gap-5">

@@ -7,6 +7,9 @@ import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/libra
 import { revalidateTag } from "next/cache";
 import { deleteInstrumentById } from "../dal/instrument";
 import { redirect } from "next/navigation";
+import { InstrumentDTO } from "../dto/instrument";
+import { createFolder } from "./drive";
+import { ProgramDTO } from "../dto/programs";
 
 export async function createInstrument(
   data: z.infer<typeof CreateInstrumentFormSchema>
@@ -45,4 +48,24 @@ export async function deleteInstrument(id: string) {
     throw new Error("Unauthorized action");
   revalidateTag("instruments");
   redirect("/admin/instruments");
+}
+
+export async function createAccreditationFolderHierarchy(
+  instrument: InstrumentDTO | null,
+  program: ProgramDTO,
+  level: string,
+  phase?: string
+) {
+  if (!instrument) return null;
+  const root = await createFolder(`${level} ${phase}`, program.fileId);
+  if (!root) throw new Error("Failed to create root folder");
+  const areas = instrument.area;
+  areas.forEach(async (area) => {
+    const { id: areaId } = await createFolder(area.label, root.id);
+    if (areaId) {
+      area.parameter.forEach(async (parameter) => {
+        const { id: parameterId } = await createFolder(parameter.label, areaId);
+      });
+    }
+  });
 }
