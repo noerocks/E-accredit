@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Dialog,
   DialogClose,
@@ -21,6 +22,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -31,10 +37,11 @@ import { createSurveyVisit } from "@/lib/action/accreditation";
 import { InstrumentDisplayDTO } from "@/lib/dto/instrument";
 import { LevelDTO } from "@/lib/dto/level";
 import { ProgramDTO } from "@/lib/dto/programs";
+import { cn } from "@/lib/utils";
 import { CreateAccreditationFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Plus } from "lucide-react";
-import { useTransition } from "react";
+import { CalendarIcon, Plus } from "lucide-react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 
@@ -56,6 +63,7 @@ const CreateAccreditationDialog = ({
     },
   });
   const [pending, startTransition] = useTransition();
+  const [datePickerOpen, setDatePickerOpen] = useState(false);
   const onSubmit = async (
     data: z.infer<typeof CreateAccreditationFormSchema>
   ) => {
@@ -67,7 +75,12 @@ const CreateAccreditationDialog = ({
       const instrument = instruments?.filter(
         (instrument) => instrument.id === data.instrumentId
       )[0];
-      const result = await createSurveyVisit(program, level, instrument);
+      const result = await createSurveyVisit(
+        program,
+        level,
+        instrument,
+        data.actualSurveyDate
+      );
     });
   };
   return (
@@ -185,6 +198,55 @@ const CreateAccreditationDialog = ({
                     </SelectContent>
                   </Select>
                   <FormDescription>Please select an instrument</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="actualSurveyDate"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Actual Survey Date</FormLabel>
+                  <Popover
+                    open={datePickerOpen}
+                    onOpenChange={setDatePickerOpen}
+                  >
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant={"outline"}
+                          className={cn(
+                            "w-full pl-3 text-left font-normal",
+                            !field.value && "text-muted-foreground"
+                          )}
+                        >
+                          {field.value ? (
+                            <p>{field.value.toLocaleDateString("en-US")}</p>
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={(data) => {
+                          field.onChange(data);
+                          setDatePickerOpen(false);
+                        }}
+                        captionLayout="dropdown"
+                        startMonth={new Date(new Date().getFullYear(), 0)}
+                        endMonth={new Date(new Date().getFullYear() + 10, 11)}
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormDescription>
+                    Please select the date of actual survey visit
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

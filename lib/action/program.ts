@@ -6,7 +6,7 @@ import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/libra
 import { createProgram as createProgramDAL } from "../dal/program";
 import { revalidateTag } from "next/cache";
 import { createFolder } from "./drive";
-import { CreateAccreditation } from "../dal/accreditation";
+import { createAccreditation } from "../dal/accreditation";
 
 export async function createProgram(
   data: z.infer<typeof CreateProgramFormSchema>
@@ -22,13 +22,14 @@ export async function createProgram(
     if (!folder.id) throw new Error("Failed to create folder");
     const program = await createProgramDAL({ ...data, folderId: folder.id });
     if (!program) throw new Error("Failed to create program");
-    await CreateAccreditation(program.id);
+    await createAccreditation(program.id);
     revalidateTag("programs");
     return {
       status: "success",
       message: "Program created successfuly",
     };
   } catch (error) {
+    console.log((error as Error).message);
     const e = error as PrismaClientKnownRequestError;
     if (e.code === "P2002") {
       return {

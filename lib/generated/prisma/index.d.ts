@@ -93,6 +93,36 @@ export type IndicatorFolder = $Result.DefaultSelection<Prisma.$IndicatorFolderPa
  * 
  */
 export type EvidenceFile = $Result.DefaultSelection<Prisma.$EvidenceFilePayload>
+/**
+ * Model PhaseTwoRequirements
+ * 
+ */
+export type PhaseTwoRequirements = $Result.DefaultSelection<Prisma.$PhaseTwoRequirementsPayload>
+/**
+ * Model PhaseTwoFolder
+ * 
+ */
+export type PhaseTwoFolder = $Result.DefaultSelection<Prisma.$PhaseTwoFolderPayload>
+/**
+ * Model PhaseTwoAreaFolder
+ * 
+ */
+export type PhaseTwoAreaFolder = $Result.DefaultSelection<Prisma.$PhaseTwoAreaFolderPayload>
+/**
+ * Model AreaFile
+ * 
+ */
+export type AreaFile = $Result.DefaultSelection<Prisma.$AreaFilePayload>
+/**
+ * Model TaskForce
+ * 
+ */
+export type TaskForce = $Result.DefaultSelection<Prisma.$TaskForcePayload>
+/**
+ * Model TaskForceMember
+ * 
+ */
+export type TaskForceMember = $Result.DefaultSelection<Prisma.$TaskForceMemberPayload>
 
 /**
  * Enums
@@ -124,6 +154,31 @@ export const Phase: {
 
 export type Phase = (typeof Phase)[keyof typeof Phase]
 
+
+export const AccreditationStatus: {
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETE: 'COMPLETE'
+};
+
+export type AccreditationStatus = (typeof AccreditationStatus)[keyof typeof AccreditationStatus]
+
+
+export const SurveyVisitType: {
+  FIRST: 'FIRST',
+  REVISIT: 'REVISIT'
+};
+
+export type SurveyVisitType = (typeof SurveyVisitType)[keyof typeof SurveyVisitType]
+
+
+export const AreaFileType: {
+  PPP: 'PPP',
+  COMPLIANCE_REPORT: 'COMPLIANCE_REPORT',
+  NARRATIVE_PROFILE: 'NARRATIVE_PROFILE'
+};
+
+export type AreaFileType = (typeof AreaFileType)[keyof typeof AreaFileType]
+
 }
 
 export type Role = $Enums.Role
@@ -137,6 +192,18 @@ export const Category: typeof $Enums.Category
 export type Phase = $Enums.Phase
 
 export const Phase: typeof $Enums.Phase
+
+export type AccreditationStatus = $Enums.AccreditationStatus
+
+export const AccreditationStatus: typeof $Enums.AccreditationStatus
+
+export type SurveyVisitType = $Enums.SurveyVisitType
+
+export const SurveyVisitType: typeof $Enums.SurveyVisitType
+
+export type AreaFileType = $Enums.AreaFileType
+
+export const AreaFileType: typeof $Enums.AreaFileType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -415,6 +482,66 @@ export class PrismaClient<
     * ```
     */
   get evidenceFile(): Prisma.EvidenceFileDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.phaseTwoRequirements`: Exposes CRUD operations for the **PhaseTwoRequirements** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PhaseTwoRequirements
+    * const phaseTwoRequirements = await prisma.phaseTwoRequirements.findMany()
+    * ```
+    */
+  get phaseTwoRequirements(): Prisma.PhaseTwoRequirementsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.phaseTwoFolder`: Exposes CRUD operations for the **PhaseTwoFolder** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PhaseTwoFolders
+    * const phaseTwoFolders = await prisma.phaseTwoFolder.findMany()
+    * ```
+    */
+  get phaseTwoFolder(): Prisma.PhaseTwoFolderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.phaseTwoAreaFolder`: Exposes CRUD operations for the **PhaseTwoAreaFolder** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PhaseTwoAreaFolders
+    * const phaseTwoAreaFolders = await prisma.phaseTwoAreaFolder.findMany()
+    * ```
+    */
+  get phaseTwoAreaFolder(): Prisma.PhaseTwoAreaFolderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.areaFile`: Exposes CRUD operations for the **AreaFile** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AreaFiles
+    * const areaFiles = await prisma.areaFile.findMany()
+    * ```
+    */
+  get areaFile(): Prisma.AreaFileDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.taskForce`: Exposes CRUD operations for the **TaskForce** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TaskForces
+    * const taskForces = await prisma.taskForce.findMany()
+    * ```
+    */
+  get taskForce(): Prisma.TaskForceDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.taskForceMember`: Exposes CRUD operations for the **TaskForceMember** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TaskForceMembers
+    * const taskForceMembers = await prisma.taskForceMember.findMany()
+    * ```
+    */
+  get taskForceMember(): Prisma.TaskForceMemberDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -870,7 +997,13 @@ export namespace Prisma {
     AreaFolder: 'AreaFolder',
     ParameterFolder: 'ParameterFolder',
     IndicatorFolder: 'IndicatorFolder',
-    EvidenceFile: 'EvidenceFile'
+    EvidenceFile: 'EvidenceFile',
+    PhaseTwoRequirements: 'PhaseTwoRequirements',
+    PhaseTwoFolder: 'PhaseTwoFolder',
+    PhaseTwoAreaFolder: 'PhaseTwoAreaFolder',
+    AreaFile: 'AreaFile',
+    TaskForce: 'TaskForce',
+    TaskForceMember: 'TaskForceMember'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -889,7 +1022,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level" | "accreditation" | "surveyVisit" | "phaseOneRequirements" | "instrumentFolder" | "areaFolder" | "parameterFolder" | "indicatorFolder" | "evidenceFile"
+      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level" | "accreditation" | "surveyVisit" | "phaseOneRequirements" | "instrumentFolder" | "areaFolder" | "parameterFolder" | "indicatorFolder" | "evidenceFile" | "phaseTwoRequirements" | "phaseTwoFolder" | "phaseTwoAreaFolder" | "areaFile" | "taskForce" | "taskForceMember"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2077,6 +2210,450 @@ export namespace Prisma {
           }
         }
       }
+      PhaseTwoRequirements: {
+        payload: Prisma.$PhaseTwoRequirementsPayload<ExtArgs>
+        fields: Prisma.PhaseTwoRequirementsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PhaseTwoRequirementsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoRequirementsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PhaseTwoRequirementsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoRequirementsPayload>
+          }
+          findFirst: {
+            args: Prisma.PhaseTwoRequirementsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoRequirementsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PhaseTwoRequirementsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoRequirementsPayload>
+          }
+          findMany: {
+            args: Prisma.PhaseTwoRequirementsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoRequirementsPayload>[]
+          }
+          create: {
+            args: Prisma.PhaseTwoRequirementsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoRequirementsPayload>
+          }
+          createMany: {
+            args: Prisma.PhaseTwoRequirementsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PhaseTwoRequirementsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoRequirementsPayload>[]
+          }
+          delete: {
+            args: Prisma.PhaseTwoRequirementsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoRequirementsPayload>
+          }
+          update: {
+            args: Prisma.PhaseTwoRequirementsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoRequirementsPayload>
+          }
+          deleteMany: {
+            args: Prisma.PhaseTwoRequirementsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PhaseTwoRequirementsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PhaseTwoRequirementsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoRequirementsPayload>[]
+          }
+          upsert: {
+            args: Prisma.PhaseTwoRequirementsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoRequirementsPayload>
+          }
+          aggregate: {
+            args: Prisma.PhaseTwoRequirementsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePhaseTwoRequirements>
+          }
+          groupBy: {
+            args: Prisma.PhaseTwoRequirementsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PhaseTwoRequirementsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PhaseTwoRequirementsCountArgs<ExtArgs>
+            result: $Utils.Optional<PhaseTwoRequirementsCountAggregateOutputType> | number
+          }
+        }
+      }
+      PhaseTwoFolder: {
+        payload: Prisma.$PhaseTwoFolderPayload<ExtArgs>
+        fields: Prisma.PhaseTwoFolderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PhaseTwoFolderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoFolderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PhaseTwoFolderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoFolderPayload>
+          }
+          findFirst: {
+            args: Prisma.PhaseTwoFolderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoFolderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PhaseTwoFolderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoFolderPayload>
+          }
+          findMany: {
+            args: Prisma.PhaseTwoFolderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoFolderPayload>[]
+          }
+          create: {
+            args: Prisma.PhaseTwoFolderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoFolderPayload>
+          }
+          createMany: {
+            args: Prisma.PhaseTwoFolderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PhaseTwoFolderCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoFolderPayload>[]
+          }
+          delete: {
+            args: Prisma.PhaseTwoFolderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoFolderPayload>
+          }
+          update: {
+            args: Prisma.PhaseTwoFolderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoFolderPayload>
+          }
+          deleteMany: {
+            args: Prisma.PhaseTwoFolderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PhaseTwoFolderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PhaseTwoFolderUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoFolderPayload>[]
+          }
+          upsert: {
+            args: Prisma.PhaseTwoFolderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoFolderPayload>
+          }
+          aggregate: {
+            args: Prisma.PhaseTwoFolderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePhaseTwoFolder>
+          }
+          groupBy: {
+            args: Prisma.PhaseTwoFolderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PhaseTwoFolderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PhaseTwoFolderCountArgs<ExtArgs>
+            result: $Utils.Optional<PhaseTwoFolderCountAggregateOutputType> | number
+          }
+        }
+      }
+      PhaseTwoAreaFolder: {
+        payload: Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>
+        fields: Prisma.PhaseTwoAreaFolderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PhaseTwoAreaFolderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoAreaFolderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PhaseTwoAreaFolderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoAreaFolderPayload>
+          }
+          findFirst: {
+            args: Prisma.PhaseTwoAreaFolderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoAreaFolderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PhaseTwoAreaFolderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoAreaFolderPayload>
+          }
+          findMany: {
+            args: Prisma.PhaseTwoAreaFolderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoAreaFolderPayload>[]
+          }
+          create: {
+            args: Prisma.PhaseTwoAreaFolderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoAreaFolderPayload>
+          }
+          createMany: {
+            args: Prisma.PhaseTwoAreaFolderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PhaseTwoAreaFolderCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoAreaFolderPayload>[]
+          }
+          delete: {
+            args: Prisma.PhaseTwoAreaFolderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoAreaFolderPayload>
+          }
+          update: {
+            args: Prisma.PhaseTwoAreaFolderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoAreaFolderPayload>
+          }
+          deleteMany: {
+            args: Prisma.PhaseTwoAreaFolderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PhaseTwoAreaFolderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PhaseTwoAreaFolderUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoAreaFolderPayload>[]
+          }
+          upsert: {
+            args: Prisma.PhaseTwoAreaFolderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PhaseTwoAreaFolderPayload>
+          }
+          aggregate: {
+            args: Prisma.PhaseTwoAreaFolderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePhaseTwoAreaFolder>
+          }
+          groupBy: {
+            args: Prisma.PhaseTwoAreaFolderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PhaseTwoAreaFolderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PhaseTwoAreaFolderCountArgs<ExtArgs>
+            result: $Utils.Optional<PhaseTwoAreaFolderCountAggregateOutputType> | number
+          }
+        }
+      }
+      AreaFile: {
+        payload: Prisma.$AreaFilePayload<ExtArgs>
+        fields: Prisma.AreaFileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AreaFileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AreaFileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFilePayload>
+          }
+          findFirst: {
+            args: Prisma.AreaFileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AreaFileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFilePayload>
+          }
+          findMany: {
+            args: Prisma.AreaFileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFilePayload>[]
+          }
+          create: {
+            args: Prisma.AreaFileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFilePayload>
+          }
+          createMany: {
+            args: Prisma.AreaFileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AreaFileCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFilePayload>[]
+          }
+          delete: {
+            args: Prisma.AreaFileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFilePayload>
+          }
+          update: {
+            args: Prisma.AreaFileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFilePayload>
+          }
+          deleteMany: {
+            args: Prisma.AreaFileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AreaFileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AreaFileUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFilePayload>[]
+          }
+          upsert: {
+            args: Prisma.AreaFileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaFilePayload>
+          }
+          aggregate: {
+            args: Prisma.AreaFileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAreaFile>
+          }
+          groupBy: {
+            args: Prisma.AreaFileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AreaFileGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AreaFileCountArgs<ExtArgs>
+            result: $Utils.Optional<AreaFileCountAggregateOutputType> | number
+          }
+        }
+      }
+      TaskForce: {
+        payload: Prisma.$TaskForcePayload<ExtArgs>
+        fields: Prisma.TaskForceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TaskForceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForcePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TaskForceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForcePayload>
+          }
+          findFirst: {
+            args: Prisma.TaskForceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForcePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TaskForceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForcePayload>
+          }
+          findMany: {
+            args: Prisma.TaskForceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForcePayload>[]
+          }
+          create: {
+            args: Prisma.TaskForceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForcePayload>
+          }
+          createMany: {
+            args: Prisma.TaskForceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TaskForceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForcePayload>[]
+          }
+          delete: {
+            args: Prisma.TaskForceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForcePayload>
+          }
+          update: {
+            args: Prisma.TaskForceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForcePayload>
+          }
+          deleteMany: {
+            args: Prisma.TaskForceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TaskForceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TaskForceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForcePayload>[]
+          }
+          upsert: {
+            args: Prisma.TaskForceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForcePayload>
+          }
+          aggregate: {
+            args: Prisma.TaskForceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTaskForce>
+          }
+          groupBy: {
+            args: Prisma.TaskForceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TaskForceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TaskForceCountArgs<ExtArgs>
+            result: $Utils.Optional<TaskForceCountAggregateOutputType> | number
+          }
+        }
+      }
+      TaskForceMember: {
+        payload: Prisma.$TaskForceMemberPayload<ExtArgs>
+        fields: Prisma.TaskForceMemberFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TaskForceMemberFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForceMemberPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TaskForceMemberFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForceMemberPayload>
+          }
+          findFirst: {
+            args: Prisma.TaskForceMemberFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForceMemberPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TaskForceMemberFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForceMemberPayload>
+          }
+          findMany: {
+            args: Prisma.TaskForceMemberFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForceMemberPayload>[]
+          }
+          create: {
+            args: Prisma.TaskForceMemberCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForceMemberPayload>
+          }
+          createMany: {
+            args: Prisma.TaskForceMemberCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TaskForceMemberCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForceMemberPayload>[]
+          }
+          delete: {
+            args: Prisma.TaskForceMemberDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForceMemberPayload>
+          }
+          update: {
+            args: Prisma.TaskForceMemberUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForceMemberPayload>
+          }
+          deleteMany: {
+            args: Prisma.TaskForceMemberDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TaskForceMemberUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TaskForceMemberUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForceMemberPayload>[]
+          }
+          upsert: {
+            args: Prisma.TaskForceMemberUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskForceMemberPayload>
+          }
+          aggregate: {
+            args: Prisma.TaskForceMemberAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTaskForceMember>
+          }
+          groupBy: {
+            args: Prisma.TaskForceMemberGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TaskForceMemberGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TaskForceMemberCountArgs<ExtArgs>
+            result: $Utils.Optional<TaskForceMemberCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2185,6 +2762,12 @@ export namespace Prisma {
     parameterFolder?: ParameterFolderOmit
     indicatorFolder?: IndicatorFolderOmit
     evidenceFile?: EvidenceFileOmit
+    phaseTwoRequirements?: PhaseTwoRequirementsOmit
+    phaseTwoFolder?: PhaseTwoFolderOmit
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderOmit
+    areaFile?: AreaFileOmit
+    taskForce?: TaskForceOmit
+    taskForceMember?: TaskForceMemberOmit
   }
 
   /* Types for Logging */
@@ -2323,17 +2906,50 @@ export namespace Prisma {
 
 
   /**
+   * Count Type ProgramPersonnelCountOutputType
+   */
+
+  export type ProgramPersonnelCountOutputType = {
+    chairPerson: number
+  }
+
+  export type ProgramPersonnelCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    chairPerson?: boolean | ProgramPersonnelCountOutputTypeCountChairPersonArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ProgramPersonnelCountOutputType without action
+   */
+  export type ProgramPersonnelCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgramPersonnelCountOutputType
+     */
+    select?: ProgramPersonnelCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProgramPersonnelCountOutputType without action
+   */
+  export type ProgramPersonnelCountOutputTypeCountChairPersonArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskForceWhereInput
+  }
+
+
+  /**
    * Count Type InstrumentCountOutputType
    */
 
   export type InstrumentCountOutputType = {
     area: number
     phaseOneRequirements: number
+    phaseTwoRequirements: number
   }
 
   export type InstrumentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     area?: boolean | InstrumentCountOutputTypeCountAreaArgs
     phaseOneRequirements?: boolean | InstrumentCountOutputTypeCountPhaseOneRequirementsArgs
+    phaseTwoRequirements?: boolean | InstrumentCountOutputTypeCountPhaseTwoRequirementsArgs
   }
 
   // Custom InputTypes
@@ -2361,6 +2977,13 @@ export namespace Prisma {
     where?: PhaseOneRequirementsWhereInput
   }
 
+  /**
+   * InstrumentCountOutputType without action
+   */
+  export type InstrumentCountOutputTypeCountPhaseTwoRequirementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PhaseTwoRequirementsWhereInput
+  }
+
 
   /**
    * Count Type AreaCountOutputType
@@ -2369,11 +2992,13 @@ export namespace Prisma {
   export type AreaCountOutputType = {
     parameter: number
     areaFolders: number
+    phaseTwoAreaFolders: number
   }
 
   export type AreaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parameter?: boolean | AreaCountOutputTypeCountParameterArgs
     areaFolders?: boolean | AreaCountOutputTypeCountAreaFoldersArgs
+    phaseTwoAreaFolders?: boolean | AreaCountOutputTypeCountPhaseTwoAreaFoldersArgs
   }
 
   // Custom InputTypes
@@ -2399,6 +3024,13 @@ export namespace Prisma {
    */
   export type AreaCountOutputTypeCountAreaFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AreaFolderWhereInput
+  }
+
+  /**
+   * AreaCountOutputType without action
+   */
+  export type AreaCountOutputTypeCountPhaseTwoAreaFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PhaseTwoAreaFolderWhereInput
   }
 
 
@@ -2581,10 +3213,12 @@ export namespace Prisma {
 
   export type AreaFolderCountOutputType = {
     parameterFolders: number
+    areaFiles: number
   }
 
   export type AreaFolderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parameterFolders?: boolean | AreaFolderCountOutputTypeCountParameterFoldersArgs
+    areaFiles?: boolean | AreaFolderCountOutputTypeCountAreaFilesArgs
   }
 
   // Custom InputTypes
@@ -2603,6 +3237,13 @@ export namespace Prisma {
    */
   export type AreaFolderCountOutputTypeCountParameterFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ParameterFolderWhereInput
+  }
+
+  /**
+   * AreaFolderCountOutputType without action
+   */
+  export type AreaFolderCountOutputTypeCountAreaFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AreaFileWhereInput
   }
 
 
@@ -2665,6 +3306,99 @@ export namespace Prisma {
    */
   export type IndicatorFolderCountOutputTypeCountEvidenceFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EvidenceFileWhereInput
+  }
+
+
+  /**
+   * Count Type PhaseTwoFolderCountOutputType
+   */
+
+  export type PhaseTwoFolderCountOutputType = {
+    phaseTwoAreaFolders: number
+  }
+
+  export type PhaseTwoFolderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phaseTwoAreaFolders?: boolean | PhaseTwoFolderCountOutputTypeCountPhaseTwoAreaFoldersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PhaseTwoFolderCountOutputType without action
+   */
+  export type PhaseTwoFolderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoFolderCountOutputType
+     */
+    select?: PhaseTwoFolderCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PhaseTwoFolderCountOutputType without action
+   */
+  export type PhaseTwoFolderCountOutputTypeCountPhaseTwoAreaFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PhaseTwoAreaFolderWhereInput
+  }
+
+
+  /**
+   * Count Type PhaseTwoAreaFolderCountOutputType
+   */
+
+  export type PhaseTwoAreaFolderCountOutputType = {
+    areaFiles: number
+  }
+
+  export type PhaseTwoAreaFolderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    areaFiles?: boolean | PhaseTwoAreaFolderCountOutputTypeCountAreaFilesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PhaseTwoAreaFolderCountOutputType without action
+   */
+  export type PhaseTwoAreaFolderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolderCountOutputType
+     */
+    select?: PhaseTwoAreaFolderCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PhaseTwoAreaFolderCountOutputType without action
+   */
+  export type PhaseTwoAreaFolderCountOutputTypeCountAreaFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AreaFileWhereInput
+  }
+
+
+  /**
+   * Count Type TaskForceCountOutputType
+   */
+
+  export type TaskForceCountOutputType = {
+    taskForceMember: number
+  }
+
+  export type TaskForceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    taskForceMember?: boolean | TaskForceCountOutputTypeCountTaskForceMemberArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TaskForceCountOutputType without action
+   */
+  export type TaskForceCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceCountOutputType
+     */
+    select?: TaskForceCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TaskForceCountOutputType without action
+   */
+  export type TaskForceCountOutputTypeCountTaskForceMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskForceMemberWhereInput
   }
 
 
@@ -5097,6 +5831,8 @@ export namespace Prisma {
     assignedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     program?: boolean | ProgramDefaultArgs<ExtArgs>
+    chairPerson?: boolean | ProgramPersonnel$chairPersonArgs<ExtArgs>
+    _count?: boolean | ProgramPersonnelCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["programPersonnel"]>
 
   export type ProgramPersonnelSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5128,6 +5864,8 @@ export namespace Prisma {
   export type ProgramPersonnelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     program?: boolean | ProgramDefaultArgs<ExtArgs>
+    chairPerson?: boolean | ProgramPersonnel$chairPersonArgs<ExtArgs>
+    _count?: boolean | ProgramPersonnelCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProgramPersonnelIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -5143,6 +5881,7 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       program: Prisma.$ProgramPayload<ExtArgs>
+      chairPerson: Prisma.$TaskForcePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5545,6 +6284,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     program<T extends ProgramDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProgramDefaultArgs<ExtArgs>>): Prisma__ProgramClient<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    chairPerson<T extends ProgramPersonnel$chairPersonArgs<ExtArgs> = {}>(args?: Subset<T, ProgramPersonnel$chairPersonArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5974,6 +6714,30 @@ export namespace Prisma {
   }
 
   /**
+   * ProgramPersonnel.chairPerson
+   */
+  export type ProgramPersonnel$chairPersonArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceInclude<ExtArgs> | null
+    where?: TaskForceWhereInput
+    orderBy?: TaskForceOrderByWithRelationInput | TaskForceOrderByWithRelationInput[]
+    cursor?: TaskForceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskForceScalarFieldEnum | TaskForceScalarFieldEnum[]
+  }
+
+  /**
    * ProgramPersonnel without action
    */
   export type ProgramPersonnelDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6158,6 +6922,7 @@ export namespace Prisma {
     updatedAt?: boolean
     area?: boolean | Instrument$areaArgs<ExtArgs>
     phaseOneRequirements?: boolean | Instrument$phaseOneRequirementsArgs<ExtArgs>
+    phaseTwoRequirements?: boolean | Instrument$phaseTwoRequirementsArgs<ExtArgs>
     _count?: boolean | InstrumentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["instrument"]>
 
@@ -6189,6 +6954,7 @@ export namespace Prisma {
   export type InstrumentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     area?: boolean | Instrument$areaArgs<ExtArgs>
     phaseOneRequirements?: boolean | Instrument$phaseOneRequirementsArgs<ExtArgs>
+    phaseTwoRequirements?: boolean | Instrument$phaseTwoRequirementsArgs<ExtArgs>
     _count?: boolean | InstrumentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type InstrumentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6199,6 +6965,7 @@ export namespace Prisma {
     objects: {
       area: Prisma.$AreaPayload<ExtArgs>[]
       phaseOneRequirements: Prisma.$PhaseOneRequirementsPayload<ExtArgs>[]
+      phaseTwoRequirements: Prisma.$PhaseTwoRequirementsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6602,6 +7369,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     area<T extends Instrument$areaArgs<ExtArgs> = {}>(args?: Subset<T, Instrument$areaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     phaseOneRequirements<T extends Instrument$phaseOneRequirementsArgs<ExtArgs> = {}>(args?: Subset<T, Instrument$phaseOneRequirementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    phaseTwoRequirements<T extends Instrument$phaseTwoRequirementsArgs<ExtArgs> = {}>(args?: Subset<T, Instrument$phaseTwoRequirementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7072,6 +7840,30 @@ export namespace Prisma {
   }
 
   /**
+   * Instrument.phaseTwoRequirements
+   */
+  export type Instrument$phaseTwoRequirementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsInclude<ExtArgs> | null
+    where?: PhaseTwoRequirementsWhereInput
+    orderBy?: PhaseTwoRequirementsOrderByWithRelationInput | PhaseTwoRequirementsOrderByWithRelationInput[]
+    cursor?: PhaseTwoRequirementsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PhaseTwoRequirementsScalarFieldEnum | PhaseTwoRequirementsScalarFieldEnum[]
+  }
+
+  /**
    * Instrument without action
    */
   export type InstrumentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7311,6 +8103,7 @@ export namespace Prisma {
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
     parameter?: boolean | Area$parameterArgs<ExtArgs>
     areaFolders?: boolean | Area$areaFoldersArgs<ExtArgs>
+    phaseTwoAreaFolders?: boolean | Area$phaseTwoAreaFoldersArgs<ExtArgs>
     _count?: boolean | AreaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["area"]>
 
@@ -7351,6 +8144,7 @@ export namespace Prisma {
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
     parameter?: boolean | Area$parameterArgs<ExtArgs>
     areaFolders?: boolean | Area$areaFoldersArgs<ExtArgs>
+    phaseTwoAreaFolders?: boolean | Area$phaseTwoAreaFoldersArgs<ExtArgs>
     _count?: boolean | AreaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type AreaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7366,6 +8160,7 @@ export namespace Prisma {
       instrument: Prisma.$InstrumentPayload<ExtArgs>
       parameter: Prisma.$ParameterPayload<ExtArgs>[]
       areaFolders: Prisma.$AreaFolderPayload<ExtArgs>[]
+      phaseTwoAreaFolders: Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -7772,6 +8567,7 @@ export namespace Prisma {
     instrument<T extends InstrumentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InstrumentDefaultArgs<ExtArgs>>): Prisma__InstrumentClient<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     parameter<T extends Area$parameterArgs<ExtArgs> = {}>(args?: Subset<T, Area$parameterArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     areaFolders<T extends Area$areaFoldersArgs<ExtArgs> = {}>(args?: Subset<T, Area$areaFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    phaseTwoAreaFolders<T extends Area$phaseTwoAreaFoldersArgs<ExtArgs> = {}>(args?: Subset<T, Area$phaseTwoAreaFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8249,6 +9045,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AreaFolderScalarFieldEnum | AreaFolderScalarFieldEnum[]
+  }
+
+  /**
+   * Area.phaseTwoAreaFolders
+   */
+  export type Area$phaseTwoAreaFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
+    where?: PhaseTwoAreaFolderWhereInput
+    orderBy?: PhaseTwoAreaFolderOrderByWithRelationInput | PhaseTwoAreaFolderOrderByWithRelationInput[]
+    cursor?: PhaseTwoAreaFolderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PhaseTwoAreaFolderScalarFieldEnum | PhaseTwoAreaFolderScalarFieldEnum[]
   }
 
   /**
@@ -11769,21 +12589,18 @@ export namespace Prisma {
     id: string | null
     programId: string | null
     currentLevel: string | null
-    phase: $Enums.Phase | null
   }
 
   export type AccreditationMaxAggregateOutputType = {
     id: string | null
     programId: string | null
     currentLevel: string | null
-    phase: $Enums.Phase | null
   }
 
   export type AccreditationCountAggregateOutputType = {
     id: number
     programId: number
     currentLevel: number
-    phase: number
     _all: number
   }
 
@@ -11792,21 +12609,18 @@ export namespace Prisma {
     id?: true
     programId?: true
     currentLevel?: true
-    phase?: true
   }
 
   export type AccreditationMaxAggregateInputType = {
     id?: true
     programId?: true
     currentLevel?: true
-    phase?: true
   }
 
   export type AccreditationCountAggregateInputType = {
     id?: true
     programId?: true
     currentLevel?: true
-    phase?: true
     _all?: true
   }
 
@@ -11886,7 +12700,6 @@ export namespace Prisma {
     id: string
     programId: string
     currentLevel: string | null
-    phase: $Enums.Phase | null
     _count: AccreditationCountAggregateOutputType | null
     _min: AccreditationMinAggregateOutputType | null
     _max: AccreditationMaxAggregateOutputType | null
@@ -11910,7 +12723,6 @@ export namespace Prisma {
     id?: boolean
     programId?: boolean
     currentLevel?: boolean
-    phase?: boolean
     program?: boolean | ProgramDefaultArgs<ExtArgs>
     level?: boolean | Accreditation$levelArgs<ExtArgs>
     surveyVisits?: boolean | Accreditation$surveyVisitsArgs<ExtArgs>
@@ -11921,7 +12733,6 @@ export namespace Prisma {
     id?: boolean
     programId?: boolean
     currentLevel?: boolean
-    phase?: boolean
     program?: boolean | ProgramDefaultArgs<ExtArgs>
     level?: boolean | Accreditation$levelArgs<ExtArgs>
   }, ExtArgs["result"]["accreditation"]>
@@ -11930,7 +12741,6 @@ export namespace Prisma {
     id?: boolean
     programId?: boolean
     currentLevel?: boolean
-    phase?: boolean
     program?: boolean | ProgramDefaultArgs<ExtArgs>
     level?: boolean | Accreditation$levelArgs<ExtArgs>
   }, ExtArgs["result"]["accreditation"]>
@@ -11939,10 +12749,9 @@ export namespace Prisma {
     id?: boolean
     programId?: boolean
     currentLevel?: boolean
-    phase?: boolean
   }
 
-  export type AccreditationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "programId" | "currentLevel" | "phase", ExtArgs["result"]["accreditation"]>
+  export type AccreditationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "programId" | "currentLevel", ExtArgs["result"]["accreditation"]>
   export type AccreditationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     program?: boolean | ProgramDefaultArgs<ExtArgs>
     level?: boolean | Accreditation$levelArgs<ExtArgs>
@@ -11969,7 +12778,6 @@ export namespace Prisma {
       id: string
       programId: string
       currentLevel: string | null
-      phase: $Enums.Phase | null
     }, ExtArgs["result"]["accreditation"]>
     composites: {}
   }
@@ -12399,7 +13207,6 @@ export namespace Prisma {
     readonly id: FieldRef<"Accreditation", 'String'>
     readonly programId: FieldRef<"Accreditation", 'String'>
     readonly currentLevel: FieldRef<"Accreditation", 'String'>
-    readonly phase: FieldRef<"Accreditation", 'Phase'>
   }
     
 
@@ -12870,19 +13677,31 @@ export namespace Prisma {
   export type SurveyVisitMinAggregateOutputType = {
     id: string | null
     accreditationId: string | null
+    actualSurveyDate: Date | null
+    type: $Enums.SurveyVisitType | null
     targetLevel: string | null
+    status: $Enums.AccreditationStatus | null
+    createdAt: Date | null
   }
 
   export type SurveyVisitMaxAggregateOutputType = {
     id: string | null
     accreditationId: string | null
+    actualSurveyDate: Date | null
+    type: $Enums.SurveyVisitType | null
     targetLevel: string | null
+    status: $Enums.AccreditationStatus | null
+    createdAt: Date | null
   }
 
   export type SurveyVisitCountAggregateOutputType = {
     id: number
     accreditationId: number
+    actualSurveyDate: number
+    type: number
     targetLevel: number
+    status: number
+    createdAt: number
     _all: number
   }
 
@@ -12890,19 +13709,31 @@ export namespace Prisma {
   export type SurveyVisitMinAggregateInputType = {
     id?: true
     accreditationId?: true
+    actualSurveyDate?: true
+    type?: true
     targetLevel?: true
+    status?: true
+    createdAt?: true
   }
 
   export type SurveyVisitMaxAggregateInputType = {
     id?: true
     accreditationId?: true
+    actualSurveyDate?: true
+    type?: true
     targetLevel?: true
+    status?: true
+    createdAt?: true
   }
 
   export type SurveyVisitCountAggregateInputType = {
     id?: true
     accreditationId?: true
+    actualSurveyDate?: true
+    type?: true
     targetLevel?: true
+    status?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -12981,7 +13812,11 @@ export namespace Prisma {
   export type SurveyVisitGroupByOutputType = {
     id: string
     accreditationId: string
+    actualSurveyDate: Date
+    type: $Enums.SurveyVisitType
     targetLevel: string
+    status: $Enums.AccreditationStatus
+    createdAt: Date
     _count: SurveyVisitCountAggregateOutputType | null
     _min: SurveyVisitMinAggregateOutputType | null
     _max: SurveyVisitMaxAggregateOutputType | null
@@ -13004,16 +13839,25 @@ export namespace Prisma {
   export type SurveyVisitSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     accreditationId?: boolean
+    actualSurveyDate?: boolean
+    type?: boolean
     targetLevel?: boolean
+    status?: boolean
+    createdAt?: boolean
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
     level?: boolean | LevelDefaultArgs<ExtArgs>
     phaseOneRequirements?: boolean | SurveyVisit$phaseOneRequirementsArgs<ExtArgs>
+    phaseTwoRequirements?: boolean | SurveyVisit$phaseTwoRequirementsArgs<ExtArgs>
   }, ExtArgs["result"]["surveyVisit"]>
 
   export type SurveyVisitSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     accreditationId?: boolean
+    actualSurveyDate?: boolean
+    type?: boolean
     targetLevel?: boolean
+    status?: boolean
+    createdAt?: boolean
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
     level?: boolean | LevelDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["surveyVisit"]>
@@ -13021,7 +13865,11 @@ export namespace Prisma {
   export type SurveyVisitSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     accreditationId?: boolean
+    actualSurveyDate?: boolean
+    type?: boolean
     targetLevel?: boolean
+    status?: boolean
+    createdAt?: boolean
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
     level?: boolean | LevelDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["surveyVisit"]>
@@ -13029,14 +13877,19 @@ export namespace Prisma {
   export type SurveyVisitSelectScalar = {
     id?: boolean
     accreditationId?: boolean
+    actualSurveyDate?: boolean
+    type?: boolean
     targetLevel?: boolean
+    status?: boolean
+    createdAt?: boolean
   }
 
-  export type SurveyVisitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accreditationId" | "targetLevel", ExtArgs["result"]["surveyVisit"]>
+  export type SurveyVisitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accreditationId" | "actualSurveyDate" | "type" | "targetLevel" | "status" | "createdAt", ExtArgs["result"]["surveyVisit"]>
   export type SurveyVisitInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
     level?: boolean | LevelDefaultArgs<ExtArgs>
     phaseOneRequirements?: boolean | SurveyVisit$phaseOneRequirementsArgs<ExtArgs>
+    phaseTwoRequirements?: boolean | SurveyVisit$phaseTwoRequirementsArgs<ExtArgs>
   }
   export type SurveyVisitIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
@@ -13053,11 +13906,16 @@ export namespace Prisma {
       accreditation: Prisma.$AccreditationPayload<ExtArgs>
       level: Prisma.$LevelPayload<ExtArgs>
       phaseOneRequirements: Prisma.$PhaseOneRequirementsPayload<ExtArgs> | null
+      phaseTwoRequirements: Prisma.$PhaseTwoRequirementsPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       accreditationId: string
+      actualSurveyDate: Date
+      type: $Enums.SurveyVisitType
       targetLevel: string
+      status: $Enums.AccreditationStatus
+      createdAt: Date
     }, ExtArgs["result"]["surveyVisit"]>
     composites: {}
   }
@@ -13455,6 +14313,7 @@ export namespace Prisma {
     accreditation<T extends AccreditationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AccreditationDefaultArgs<ExtArgs>>): Prisma__AccreditationClient<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     level<T extends LevelDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LevelDefaultArgs<ExtArgs>>): Prisma__LevelClient<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     phaseOneRequirements<T extends SurveyVisit$phaseOneRequirementsArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$phaseOneRequirementsArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    phaseTwoRequirements<T extends SurveyVisit$phaseTwoRequirementsArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$phaseTwoRequirementsArgs<ExtArgs>>): Prisma__PhaseTwoRequirementsClient<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13486,7 +14345,11 @@ export namespace Prisma {
   interface SurveyVisitFieldRefs {
     readonly id: FieldRef<"SurveyVisit", 'String'>
     readonly accreditationId: FieldRef<"SurveyVisit", 'String'>
+    readonly actualSurveyDate: FieldRef<"SurveyVisit", 'DateTime'>
+    readonly type: FieldRef<"SurveyVisit", 'SurveyVisitType'>
     readonly targetLevel: FieldRef<"SurveyVisit", 'String'>
+    readonly status: FieldRef<"SurveyVisit", 'AccreditationStatus'>
+    readonly createdAt: FieldRef<"SurveyVisit", 'DateTime'>
   }
     
 
@@ -13902,6 +14765,25 @@ export namespace Prisma {
   }
 
   /**
+   * SurveyVisit.phaseTwoRequirements
+   */
+  export type SurveyVisit$phaseTwoRequirementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsInclude<ExtArgs> | null
+    where?: PhaseTwoRequirementsWhereInput
+  }
+
+  /**
    * SurveyVisit without action
    */
   export type SurveyVisitDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14043,7 +14925,7 @@ export namespace Prisma {
 
   export type PhaseOneRequirementsGroupByOutputType = {
     id: string
-    surveyVisitId: string
+    surveyVisitId: string | null
     instrumentId: string
     _count: PhaseOneRequirementsCountAggregateOutputType | null
     _min: PhaseOneRequirementsMinAggregateOutputType | null
@@ -14068,7 +14950,7 @@ export namespace Prisma {
     id?: boolean
     surveyVisitId?: boolean
     instrumentId?: boolean
-    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    surveyVisit?: boolean | PhaseOneRequirements$surveyVisitArgs<ExtArgs>
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
     instrumentFolder?: boolean | PhaseOneRequirements$instrumentFolderArgs<ExtArgs>
   }, ExtArgs["result"]["phaseOneRequirements"]>
@@ -14077,7 +14959,7 @@ export namespace Prisma {
     id?: boolean
     surveyVisitId?: boolean
     instrumentId?: boolean
-    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    surveyVisit?: boolean | PhaseOneRequirements$surveyVisitArgs<ExtArgs>
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["phaseOneRequirements"]>
 
@@ -14085,7 +14967,7 @@ export namespace Prisma {
     id?: boolean
     surveyVisitId?: boolean
     instrumentId?: boolean
-    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    surveyVisit?: boolean | PhaseOneRequirements$surveyVisitArgs<ExtArgs>
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["phaseOneRequirements"]>
 
@@ -14097,29 +14979,29 @@ export namespace Prisma {
 
   export type PhaseOneRequirementsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "surveyVisitId" | "instrumentId", ExtArgs["result"]["phaseOneRequirements"]>
   export type PhaseOneRequirementsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    surveyVisit?: boolean | PhaseOneRequirements$surveyVisitArgs<ExtArgs>
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
     instrumentFolder?: boolean | PhaseOneRequirements$instrumentFolderArgs<ExtArgs>
   }
   export type PhaseOneRequirementsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    surveyVisit?: boolean | PhaseOneRequirements$surveyVisitArgs<ExtArgs>
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
   }
   export type PhaseOneRequirementsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    surveyVisit?: boolean | PhaseOneRequirements$surveyVisitArgs<ExtArgs>
     instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
   }
 
   export type $PhaseOneRequirementsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PhaseOneRequirements"
     objects: {
-      surveyVisit: Prisma.$SurveyVisitPayload<ExtArgs>
+      surveyVisit: Prisma.$SurveyVisitPayload<ExtArgs> | null
       instrument: Prisma.$InstrumentPayload<ExtArgs>
       instrumentFolder: Prisma.$InstrumentFolderPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      surveyVisitId: string
+      surveyVisitId: string | null
       instrumentId: string
     }, ExtArgs["result"]["phaseOneRequirements"]>
     composites: {}
@@ -14515,7 +15397,7 @@ export namespace Prisma {
    */
   export interface Prisma__PhaseOneRequirementsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    surveyVisit<T extends SurveyVisitDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisitDefaultArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    surveyVisit<T extends PhaseOneRequirements$surveyVisitArgs<ExtArgs> = {}>(args?: Subset<T, PhaseOneRequirements$surveyVisitArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     instrument<T extends InstrumentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InstrumentDefaultArgs<ExtArgs>>): Prisma__InstrumentClient<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     instrumentFolder<T extends PhaseOneRequirements$instrumentFolderArgs<ExtArgs> = {}>(args?: Subset<T, PhaseOneRequirements$instrumentFolderArgs<ExtArgs>>): Prisma__InstrumentFolderClient<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
@@ -14946,6 +15828,25 @@ export namespace Prisma {
   }
 
   /**
+   * PhaseOneRequirements.surveyVisit
+   */
+  export type PhaseOneRequirements$surveyVisitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    where?: SurveyVisitWhereInput
+  }
+
+  /**
    * PhaseOneRequirements.instrumentFolder
    */
   export type PhaseOneRequirements$instrumentFolderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15106,7 +16007,7 @@ export namespace Prisma {
 
   export type InstrumentFolderGroupByOutputType = {
     id: string
-    phaseOneRequirementsId: string
+    phaseOneRequirementsId: string | null
     folderId: string
     _count: InstrumentFolderCountAggregateOutputType | null
     _min: InstrumentFolderMinAggregateOutputType | null
@@ -15131,7 +16032,7 @@ export namespace Prisma {
     id?: boolean
     phaseOneRequirementsId?: boolean
     folderId?: boolean
-    phaseOneRequirements?: boolean | PhaseOneRequirementsDefaultArgs<ExtArgs>
+    phaseOneRequirements?: boolean | InstrumentFolder$phaseOneRequirementsArgs<ExtArgs>
     areaFolders?: boolean | InstrumentFolder$areaFoldersArgs<ExtArgs>
     _count?: boolean | InstrumentFolderCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["instrumentFolder"]>
@@ -15140,14 +16041,14 @@ export namespace Prisma {
     id?: boolean
     phaseOneRequirementsId?: boolean
     folderId?: boolean
-    phaseOneRequirements?: boolean | PhaseOneRequirementsDefaultArgs<ExtArgs>
+    phaseOneRequirements?: boolean | InstrumentFolder$phaseOneRequirementsArgs<ExtArgs>
   }, ExtArgs["result"]["instrumentFolder"]>
 
   export type InstrumentFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     phaseOneRequirementsId?: boolean
     folderId?: boolean
-    phaseOneRequirements?: boolean | PhaseOneRequirementsDefaultArgs<ExtArgs>
+    phaseOneRequirements?: boolean | InstrumentFolder$phaseOneRequirementsArgs<ExtArgs>
   }, ExtArgs["result"]["instrumentFolder"]>
 
   export type InstrumentFolderSelectScalar = {
@@ -15158,26 +16059,26 @@ export namespace Prisma {
 
   export type InstrumentFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseOneRequirementsId" | "folderId", ExtArgs["result"]["instrumentFolder"]>
   export type InstrumentFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    phaseOneRequirements?: boolean | PhaseOneRequirementsDefaultArgs<ExtArgs>
+    phaseOneRequirements?: boolean | InstrumentFolder$phaseOneRequirementsArgs<ExtArgs>
     areaFolders?: boolean | InstrumentFolder$areaFoldersArgs<ExtArgs>
     _count?: boolean | InstrumentFolderCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type InstrumentFolderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    phaseOneRequirements?: boolean | PhaseOneRequirementsDefaultArgs<ExtArgs>
+    phaseOneRequirements?: boolean | InstrumentFolder$phaseOneRequirementsArgs<ExtArgs>
   }
   export type InstrumentFolderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    phaseOneRequirements?: boolean | PhaseOneRequirementsDefaultArgs<ExtArgs>
+    phaseOneRequirements?: boolean | InstrumentFolder$phaseOneRequirementsArgs<ExtArgs>
   }
 
   export type $InstrumentFolderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "InstrumentFolder"
     objects: {
-      phaseOneRequirements: Prisma.$PhaseOneRequirementsPayload<ExtArgs>
+      phaseOneRequirements: Prisma.$PhaseOneRequirementsPayload<ExtArgs> | null
       areaFolders: Prisma.$AreaFolderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      phaseOneRequirementsId: string
+      phaseOneRequirementsId: string | null
       folderId: string
     }, ExtArgs["result"]["instrumentFolder"]>
     composites: {}
@@ -15573,7 +16474,7 @@ export namespace Prisma {
    */
   export interface Prisma__InstrumentFolderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    phaseOneRequirements<T extends PhaseOneRequirementsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PhaseOneRequirementsDefaultArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    phaseOneRequirements<T extends InstrumentFolder$phaseOneRequirementsArgs<ExtArgs> = {}>(args?: Subset<T, InstrumentFolder$phaseOneRequirementsArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     areaFolders<T extends InstrumentFolder$areaFoldersArgs<ExtArgs> = {}>(args?: Subset<T, InstrumentFolder$areaFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -16003,6 +16904,25 @@ export namespace Prisma {
   }
 
   /**
+   * InstrumentFolder.phaseOneRequirements
+   */
+  export type InstrumentFolder$phaseOneRequirementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseOneRequirements
+     */
+    select?: PhaseOneRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseOneRequirements
+     */
+    omit?: PhaseOneRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseOneRequirementsInclude<ExtArgs> | null
+    where?: PhaseOneRequirementsWhereInput
+  }
+
+  /**
    * InstrumentFolder.areaFolders
    */
   export type InstrumentFolder$areaFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -16070,6 +16990,7 @@ export namespace Prisma {
     instrumentFolderId: string | null
     folderId: string | null
     areaId: number | null
+    complete: boolean | null
   }
 
   export type AreaFolderMaxAggregateOutputType = {
@@ -16077,6 +16998,7 @@ export namespace Prisma {
     instrumentFolderId: string | null
     folderId: string | null
     areaId: number | null
+    complete: boolean | null
   }
 
   export type AreaFolderCountAggregateOutputType = {
@@ -16084,6 +17006,7 @@ export namespace Prisma {
     instrumentFolderId: number
     folderId: number
     areaId: number
+    complete: number
     _all: number
   }
 
@@ -16101,6 +17024,7 @@ export namespace Prisma {
     instrumentFolderId?: true
     folderId?: true
     areaId?: true
+    complete?: true
   }
 
   export type AreaFolderMaxAggregateInputType = {
@@ -16108,6 +17032,7 @@ export namespace Prisma {
     instrumentFolderId?: true
     folderId?: true
     areaId?: true
+    complete?: true
   }
 
   export type AreaFolderCountAggregateInputType = {
@@ -16115,6 +17040,7 @@ export namespace Prisma {
     instrumentFolderId?: true
     folderId?: true
     areaId?: true
+    complete?: true
     _all?: true
   }
 
@@ -16209,6 +17135,7 @@ export namespace Prisma {
     instrumentFolderId: string
     folderId: string
     areaId: number
+    complete: boolean
     _count: AreaFolderCountAggregateOutputType | null
     _avg: AreaFolderAvgAggregateOutputType | null
     _sum: AreaFolderSumAggregateOutputType | null
@@ -16235,9 +17162,12 @@ export namespace Prisma {
     instrumentFolderId?: boolean
     folderId?: boolean
     areaId?: boolean
+    complete?: boolean
     instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
     parameterFolders?: boolean | AreaFolder$parameterFoldersArgs<ExtArgs>
     area?: boolean | AreaDefaultArgs<ExtArgs>
+    areaFiles?: boolean | AreaFolder$areaFilesArgs<ExtArgs>
+    taskForce?: boolean | AreaFolder$taskForceArgs<ExtArgs>
     _count?: boolean | AreaFolderCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["areaFolder"]>
 
@@ -16246,6 +17176,7 @@ export namespace Prisma {
     instrumentFolderId?: boolean
     folderId?: boolean
     areaId?: boolean
+    complete?: boolean
     instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
     area?: boolean | AreaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["areaFolder"]>
@@ -16255,6 +17186,7 @@ export namespace Prisma {
     instrumentFolderId?: boolean
     folderId?: boolean
     areaId?: boolean
+    complete?: boolean
     instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
     area?: boolean | AreaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["areaFolder"]>
@@ -16264,13 +17196,16 @@ export namespace Prisma {
     instrumentFolderId?: boolean
     folderId?: boolean
     areaId?: boolean
+    complete?: boolean
   }
 
-  export type AreaFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "instrumentFolderId" | "folderId" | "areaId", ExtArgs["result"]["areaFolder"]>
+  export type AreaFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "instrumentFolderId" | "folderId" | "areaId" | "complete", ExtArgs["result"]["areaFolder"]>
   export type AreaFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
     parameterFolders?: boolean | AreaFolder$parameterFoldersArgs<ExtArgs>
     area?: boolean | AreaDefaultArgs<ExtArgs>
+    areaFiles?: boolean | AreaFolder$areaFilesArgs<ExtArgs>
+    taskForce?: boolean | AreaFolder$taskForceArgs<ExtArgs>
     _count?: boolean | AreaFolderCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type AreaFolderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -16288,12 +17223,15 @@ export namespace Prisma {
       instrumentFolder: Prisma.$InstrumentFolderPayload<ExtArgs>
       parameterFolders: Prisma.$ParameterFolderPayload<ExtArgs>[]
       area: Prisma.$AreaPayload<ExtArgs>
+      areaFiles: Prisma.$AreaFilePayload<ExtArgs>[]
+      taskForce: Prisma.$TaskForcePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       instrumentFolderId: string
       folderId: string
       areaId: number
+      complete: boolean
     }, ExtArgs["result"]["areaFolder"]>
     composites: {}
   }
@@ -16691,6 +17629,8 @@ export namespace Prisma {
     instrumentFolder<T extends InstrumentFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InstrumentFolderDefaultArgs<ExtArgs>>): Prisma__InstrumentFolderClient<$Result.GetResult<Prisma.$InstrumentFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     parameterFolders<T extends AreaFolder$parameterFoldersArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolder$parameterFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     area<T extends AreaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AreaDefaultArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    areaFiles<T extends AreaFolder$areaFilesArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolder$areaFilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    taskForce<T extends AreaFolder$taskForceArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolder$taskForceArgs<ExtArgs>>): Prisma__TaskForceClient<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16724,6 +17664,7 @@ export namespace Prisma {
     readonly instrumentFolderId: FieldRef<"AreaFolder", 'String'>
     readonly folderId: FieldRef<"AreaFolder", 'String'>
     readonly areaId: FieldRef<"AreaFolder", 'Int'>
+    readonly complete: FieldRef<"AreaFolder", 'Boolean'>
   }
     
 
@@ -17144,6 +18085,49 @@ export namespace Prisma {
   }
 
   /**
+   * AreaFolder.areaFiles
+   */
+  export type AreaFolder$areaFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileInclude<ExtArgs> | null
+    where?: AreaFileWhereInput
+    orderBy?: AreaFileOrderByWithRelationInput | AreaFileOrderByWithRelationInput[]
+    cursor?: AreaFileWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AreaFileScalarFieldEnum | AreaFileScalarFieldEnum[]
+  }
+
+  /**
+   * AreaFolder.taskForce
+   */
+  export type AreaFolder$taskForceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceInclude<ExtArgs> | null
+    where?: TaskForceWhereInput
+  }
+
+  /**
    * AreaFolder without action
    */
   export type AreaFolderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -17355,6 +18339,7 @@ export namespace Prisma {
     areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
     indicatorFolders?: boolean | ParameterFolder$indicatorFoldersArgs<ExtArgs>
     parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+    taskForceMember?: boolean | ParameterFolder$taskForceMemberArgs<ExtArgs>
     _count?: boolean | ParameterFolderCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["parameterFolder"]>
 
@@ -17388,6 +18373,7 @@ export namespace Prisma {
     areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
     indicatorFolders?: boolean | ParameterFolder$indicatorFoldersArgs<ExtArgs>
     parameter?: boolean | ParameterDefaultArgs<ExtArgs>
+    taskForceMember?: boolean | ParameterFolder$taskForceMemberArgs<ExtArgs>
     _count?: boolean | ParameterFolderCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ParameterFolderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -17405,6 +18391,7 @@ export namespace Prisma {
       areaFolder: Prisma.$AreaFolderPayload<ExtArgs>
       indicatorFolders: Prisma.$IndicatorFolderPayload<ExtArgs>[]
       parameter: Prisma.$ParameterPayload<ExtArgs>
+      taskForceMember: Prisma.$TaskForceMemberPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -17808,6 +18795,7 @@ export namespace Prisma {
     areaFolder<T extends AreaFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolderDefaultArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     indicatorFolders<T extends ParameterFolder$indicatorFoldersArgs<ExtArgs> = {}>(args?: Subset<T, ParameterFolder$indicatorFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     parameter<T extends ParameterDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ParameterDefaultArgs<ExtArgs>>): Prisma__ParameterClient<$Result.GetResult<Prisma.$ParameterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    taskForceMember<T extends ParameterFolder$taskForceMemberArgs<ExtArgs> = {}>(args?: Subset<T, ParameterFolder$taskForceMemberArgs<ExtArgs>>): Prisma__TaskForceMemberClient<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18258,6 +19246,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: IndicatorFolderScalarFieldEnum | IndicatorFolderScalarFieldEnum[]
+  }
+
+  /**
+   * ParameterFolder.taskForceMember
+   */
+  export type ParameterFolder$taskForceMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberInclude<ExtArgs> | null
+    where?: TaskForceMemberWhereInput
   }
 
   /**
@@ -20468,6 +21475,6526 @@ export namespace Prisma {
 
 
   /**
+   * Model PhaseTwoRequirements
+   */
+
+  export type AggregatePhaseTwoRequirements = {
+    _count: PhaseTwoRequirementsCountAggregateOutputType | null
+    _min: PhaseTwoRequirementsMinAggregateOutputType | null
+    _max: PhaseTwoRequirementsMaxAggregateOutputType | null
+  }
+
+  export type PhaseTwoRequirementsMinAggregateOutputType = {
+    id: string | null
+    surveyVisitId: string | null
+    instrumentId: string | null
+  }
+
+  export type PhaseTwoRequirementsMaxAggregateOutputType = {
+    id: string | null
+    surveyVisitId: string | null
+    instrumentId: string | null
+  }
+
+  export type PhaseTwoRequirementsCountAggregateOutputType = {
+    id: number
+    surveyVisitId: number
+    instrumentId: number
+    _all: number
+  }
+
+
+  export type PhaseTwoRequirementsMinAggregateInputType = {
+    id?: true
+    surveyVisitId?: true
+    instrumentId?: true
+  }
+
+  export type PhaseTwoRequirementsMaxAggregateInputType = {
+    id?: true
+    surveyVisitId?: true
+    instrumentId?: true
+  }
+
+  export type PhaseTwoRequirementsCountAggregateInputType = {
+    id?: true
+    surveyVisitId?: true
+    instrumentId?: true
+    _all?: true
+  }
+
+  export type PhaseTwoRequirementsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PhaseTwoRequirements to aggregate.
+     */
+    where?: PhaseTwoRequirementsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseTwoRequirements to fetch.
+     */
+    orderBy?: PhaseTwoRequirementsOrderByWithRelationInput | PhaseTwoRequirementsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PhaseTwoRequirementsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseTwoRequirements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseTwoRequirements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PhaseTwoRequirements
+    **/
+    _count?: true | PhaseTwoRequirementsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PhaseTwoRequirementsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PhaseTwoRequirementsMaxAggregateInputType
+  }
+
+  export type GetPhaseTwoRequirementsAggregateType<T extends PhaseTwoRequirementsAggregateArgs> = {
+        [P in keyof T & keyof AggregatePhaseTwoRequirements]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePhaseTwoRequirements[P]>
+      : GetScalarType<T[P], AggregatePhaseTwoRequirements[P]>
+  }
+
+
+
+
+  export type PhaseTwoRequirementsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PhaseTwoRequirementsWhereInput
+    orderBy?: PhaseTwoRequirementsOrderByWithAggregationInput | PhaseTwoRequirementsOrderByWithAggregationInput[]
+    by: PhaseTwoRequirementsScalarFieldEnum[] | PhaseTwoRequirementsScalarFieldEnum
+    having?: PhaseTwoRequirementsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PhaseTwoRequirementsCountAggregateInputType | true
+    _min?: PhaseTwoRequirementsMinAggregateInputType
+    _max?: PhaseTwoRequirementsMaxAggregateInputType
+  }
+
+  export type PhaseTwoRequirementsGroupByOutputType = {
+    id: string
+    surveyVisitId: string | null
+    instrumentId: string
+    _count: PhaseTwoRequirementsCountAggregateOutputType | null
+    _min: PhaseTwoRequirementsMinAggregateOutputType | null
+    _max: PhaseTwoRequirementsMaxAggregateOutputType | null
+  }
+
+  type GetPhaseTwoRequirementsGroupByPayload<T extends PhaseTwoRequirementsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PhaseTwoRequirementsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PhaseTwoRequirementsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PhaseTwoRequirementsGroupByOutputType[P]>
+            : GetScalarType<T[P], PhaseTwoRequirementsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PhaseTwoRequirementsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    surveyVisitId?: boolean
+    instrumentId?: boolean
+    surveyVisit?: boolean | PhaseTwoRequirements$surveyVisitArgs<ExtArgs>
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+    phaseTwoFolder?: boolean | PhaseTwoRequirements$phaseTwoFolderArgs<ExtArgs>
+  }, ExtArgs["result"]["phaseTwoRequirements"]>
+
+  export type PhaseTwoRequirementsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    surveyVisitId?: boolean
+    instrumentId?: boolean
+    surveyVisit?: boolean | PhaseTwoRequirements$surveyVisitArgs<ExtArgs>
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["phaseTwoRequirements"]>
+
+  export type PhaseTwoRequirementsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    surveyVisitId?: boolean
+    instrumentId?: boolean
+    surveyVisit?: boolean | PhaseTwoRequirements$surveyVisitArgs<ExtArgs>
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["phaseTwoRequirements"]>
+
+  export type PhaseTwoRequirementsSelectScalar = {
+    id?: boolean
+    surveyVisitId?: boolean
+    instrumentId?: boolean
+  }
+
+  export type PhaseTwoRequirementsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "surveyVisitId" | "instrumentId", ExtArgs["result"]["phaseTwoRequirements"]>
+  export type PhaseTwoRequirementsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surveyVisit?: boolean | PhaseTwoRequirements$surveyVisitArgs<ExtArgs>
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+    phaseTwoFolder?: boolean | PhaseTwoRequirements$phaseTwoFolderArgs<ExtArgs>
+  }
+  export type PhaseTwoRequirementsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surveyVisit?: boolean | PhaseTwoRequirements$surveyVisitArgs<ExtArgs>
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+  }
+  export type PhaseTwoRequirementsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surveyVisit?: boolean | PhaseTwoRequirements$surveyVisitArgs<ExtArgs>
+    instrument?: boolean | InstrumentDefaultArgs<ExtArgs>
+  }
+
+  export type $PhaseTwoRequirementsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PhaseTwoRequirements"
+    objects: {
+      surveyVisit: Prisma.$SurveyVisitPayload<ExtArgs> | null
+      instrument: Prisma.$InstrumentPayload<ExtArgs>
+      phaseTwoFolder: Prisma.$PhaseTwoFolderPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      surveyVisitId: string | null
+      instrumentId: string
+    }, ExtArgs["result"]["phaseTwoRequirements"]>
+    composites: {}
+  }
+
+  type PhaseTwoRequirementsGetPayload<S extends boolean | null | undefined | PhaseTwoRequirementsDefaultArgs> = $Result.GetResult<Prisma.$PhaseTwoRequirementsPayload, S>
+
+  type PhaseTwoRequirementsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PhaseTwoRequirementsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PhaseTwoRequirementsCountAggregateInputType | true
+    }
+
+  export interface PhaseTwoRequirementsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PhaseTwoRequirements'], meta: { name: 'PhaseTwoRequirements' } }
+    /**
+     * Find zero or one PhaseTwoRequirements that matches the filter.
+     * @param {PhaseTwoRequirementsFindUniqueArgs} args - Arguments to find a PhaseTwoRequirements
+     * @example
+     * // Get one PhaseTwoRequirements
+     * const phaseTwoRequirements = await prisma.phaseTwoRequirements.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PhaseTwoRequirementsFindUniqueArgs>(args: SelectSubset<T, PhaseTwoRequirementsFindUniqueArgs<ExtArgs>>): Prisma__PhaseTwoRequirementsClient<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PhaseTwoRequirements that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PhaseTwoRequirementsFindUniqueOrThrowArgs} args - Arguments to find a PhaseTwoRequirements
+     * @example
+     * // Get one PhaseTwoRequirements
+     * const phaseTwoRequirements = await prisma.phaseTwoRequirements.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PhaseTwoRequirementsFindUniqueOrThrowArgs>(args: SelectSubset<T, PhaseTwoRequirementsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PhaseTwoRequirementsClient<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PhaseTwoRequirements that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoRequirementsFindFirstArgs} args - Arguments to find a PhaseTwoRequirements
+     * @example
+     * // Get one PhaseTwoRequirements
+     * const phaseTwoRequirements = await prisma.phaseTwoRequirements.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PhaseTwoRequirementsFindFirstArgs>(args?: SelectSubset<T, PhaseTwoRequirementsFindFirstArgs<ExtArgs>>): Prisma__PhaseTwoRequirementsClient<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PhaseTwoRequirements that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoRequirementsFindFirstOrThrowArgs} args - Arguments to find a PhaseTwoRequirements
+     * @example
+     * // Get one PhaseTwoRequirements
+     * const phaseTwoRequirements = await prisma.phaseTwoRequirements.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PhaseTwoRequirementsFindFirstOrThrowArgs>(args?: SelectSubset<T, PhaseTwoRequirementsFindFirstOrThrowArgs<ExtArgs>>): Prisma__PhaseTwoRequirementsClient<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PhaseTwoRequirements that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoRequirementsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PhaseTwoRequirements
+     * const phaseTwoRequirements = await prisma.phaseTwoRequirements.findMany()
+     * 
+     * // Get first 10 PhaseTwoRequirements
+     * const phaseTwoRequirements = await prisma.phaseTwoRequirements.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const phaseTwoRequirementsWithIdOnly = await prisma.phaseTwoRequirements.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PhaseTwoRequirementsFindManyArgs>(args?: SelectSubset<T, PhaseTwoRequirementsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PhaseTwoRequirements.
+     * @param {PhaseTwoRequirementsCreateArgs} args - Arguments to create a PhaseTwoRequirements.
+     * @example
+     * // Create one PhaseTwoRequirements
+     * const PhaseTwoRequirements = await prisma.phaseTwoRequirements.create({
+     *   data: {
+     *     // ... data to create a PhaseTwoRequirements
+     *   }
+     * })
+     * 
+     */
+    create<T extends PhaseTwoRequirementsCreateArgs>(args: SelectSubset<T, PhaseTwoRequirementsCreateArgs<ExtArgs>>): Prisma__PhaseTwoRequirementsClient<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PhaseTwoRequirements.
+     * @param {PhaseTwoRequirementsCreateManyArgs} args - Arguments to create many PhaseTwoRequirements.
+     * @example
+     * // Create many PhaseTwoRequirements
+     * const phaseTwoRequirements = await prisma.phaseTwoRequirements.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PhaseTwoRequirementsCreateManyArgs>(args?: SelectSubset<T, PhaseTwoRequirementsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PhaseTwoRequirements and returns the data saved in the database.
+     * @param {PhaseTwoRequirementsCreateManyAndReturnArgs} args - Arguments to create many PhaseTwoRequirements.
+     * @example
+     * // Create many PhaseTwoRequirements
+     * const phaseTwoRequirements = await prisma.phaseTwoRequirements.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PhaseTwoRequirements and only return the `id`
+     * const phaseTwoRequirementsWithIdOnly = await prisma.phaseTwoRequirements.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PhaseTwoRequirementsCreateManyAndReturnArgs>(args?: SelectSubset<T, PhaseTwoRequirementsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PhaseTwoRequirements.
+     * @param {PhaseTwoRequirementsDeleteArgs} args - Arguments to delete one PhaseTwoRequirements.
+     * @example
+     * // Delete one PhaseTwoRequirements
+     * const PhaseTwoRequirements = await prisma.phaseTwoRequirements.delete({
+     *   where: {
+     *     // ... filter to delete one PhaseTwoRequirements
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PhaseTwoRequirementsDeleteArgs>(args: SelectSubset<T, PhaseTwoRequirementsDeleteArgs<ExtArgs>>): Prisma__PhaseTwoRequirementsClient<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PhaseTwoRequirements.
+     * @param {PhaseTwoRequirementsUpdateArgs} args - Arguments to update one PhaseTwoRequirements.
+     * @example
+     * // Update one PhaseTwoRequirements
+     * const phaseTwoRequirements = await prisma.phaseTwoRequirements.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PhaseTwoRequirementsUpdateArgs>(args: SelectSubset<T, PhaseTwoRequirementsUpdateArgs<ExtArgs>>): Prisma__PhaseTwoRequirementsClient<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PhaseTwoRequirements.
+     * @param {PhaseTwoRequirementsDeleteManyArgs} args - Arguments to filter PhaseTwoRequirements to delete.
+     * @example
+     * // Delete a few PhaseTwoRequirements
+     * const { count } = await prisma.phaseTwoRequirements.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PhaseTwoRequirementsDeleteManyArgs>(args?: SelectSubset<T, PhaseTwoRequirementsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PhaseTwoRequirements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoRequirementsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PhaseTwoRequirements
+     * const phaseTwoRequirements = await prisma.phaseTwoRequirements.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PhaseTwoRequirementsUpdateManyArgs>(args: SelectSubset<T, PhaseTwoRequirementsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PhaseTwoRequirements and returns the data updated in the database.
+     * @param {PhaseTwoRequirementsUpdateManyAndReturnArgs} args - Arguments to update many PhaseTwoRequirements.
+     * @example
+     * // Update many PhaseTwoRequirements
+     * const phaseTwoRequirements = await prisma.phaseTwoRequirements.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PhaseTwoRequirements and only return the `id`
+     * const phaseTwoRequirementsWithIdOnly = await prisma.phaseTwoRequirements.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PhaseTwoRequirementsUpdateManyAndReturnArgs>(args: SelectSubset<T, PhaseTwoRequirementsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PhaseTwoRequirements.
+     * @param {PhaseTwoRequirementsUpsertArgs} args - Arguments to update or create a PhaseTwoRequirements.
+     * @example
+     * // Update or create a PhaseTwoRequirements
+     * const phaseTwoRequirements = await prisma.phaseTwoRequirements.upsert({
+     *   create: {
+     *     // ... data to create a PhaseTwoRequirements
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PhaseTwoRequirements we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PhaseTwoRequirementsUpsertArgs>(args: SelectSubset<T, PhaseTwoRequirementsUpsertArgs<ExtArgs>>): Prisma__PhaseTwoRequirementsClient<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PhaseTwoRequirements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoRequirementsCountArgs} args - Arguments to filter PhaseTwoRequirements to count.
+     * @example
+     * // Count the number of PhaseTwoRequirements
+     * const count = await prisma.phaseTwoRequirements.count({
+     *   where: {
+     *     // ... the filter for the PhaseTwoRequirements we want to count
+     *   }
+     * })
+    **/
+    count<T extends PhaseTwoRequirementsCountArgs>(
+      args?: Subset<T, PhaseTwoRequirementsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PhaseTwoRequirementsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PhaseTwoRequirements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoRequirementsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PhaseTwoRequirementsAggregateArgs>(args: Subset<T, PhaseTwoRequirementsAggregateArgs>): Prisma.PrismaPromise<GetPhaseTwoRequirementsAggregateType<T>>
+
+    /**
+     * Group by PhaseTwoRequirements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoRequirementsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PhaseTwoRequirementsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PhaseTwoRequirementsGroupByArgs['orderBy'] }
+        : { orderBy?: PhaseTwoRequirementsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PhaseTwoRequirementsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPhaseTwoRequirementsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PhaseTwoRequirements model
+   */
+  readonly fields: PhaseTwoRequirementsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PhaseTwoRequirements.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PhaseTwoRequirementsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    surveyVisit<T extends PhaseTwoRequirements$surveyVisitArgs<ExtArgs> = {}>(args?: Subset<T, PhaseTwoRequirements$surveyVisitArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    instrument<T extends InstrumentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InstrumentDefaultArgs<ExtArgs>>): Prisma__InstrumentClient<$Result.GetResult<Prisma.$InstrumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    phaseTwoFolder<T extends PhaseTwoRequirements$phaseTwoFolderArgs<ExtArgs> = {}>(args?: Subset<T, PhaseTwoRequirements$phaseTwoFolderArgs<ExtArgs>>): Prisma__PhaseTwoFolderClient<$Result.GetResult<Prisma.$PhaseTwoFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PhaseTwoRequirements model
+   */
+  interface PhaseTwoRequirementsFieldRefs {
+    readonly id: FieldRef<"PhaseTwoRequirements", 'String'>
+    readonly surveyVisitId: FieldRef<"PhaseTwoRequirements", 'String'>
+    readonly instrumentId: FieldRef<"PhaseTwoRequirements", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PhaseTwoRequirements findUnique
+   */
+  export type PhaseTwoRequirementsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoRequirements to fetch.
+     */
+    where: PhaseTwoRequirementsWhereUniqueInput
+  }
+
+  /**
+   * PhaseTwoRequirements findUniqueOrThrow
+   */
+  export type PhaseTwoRequirementsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoRequirements to fetch.
+     */
+    where: PhaseTwoRequirementsWhereUniqueInput
+  }
+
+  /**
+   * PhaseTwoRequirements findFirst
+   */
+  export type PhaseTwoRequirementsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoRequirements to fetch.
+     */
+    where?: PhaseTwoRequirementsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseTwoRequirements to fetch.
+     */
+    orderBy?: PhaseTwoRequirementsOrderByWithRelationInput | PhaseTwoRequirementsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PhaseTwoRequirements.
+     */
+    cursor?: PhaseTwoRequirementsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseTwoRequirements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseTwoRequirements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PhaseTwoRequirements.
+     */
+    distinct?: PhaseTwoRequirementsScalarFieldEnum | PhaseTwoRequirementsScalarFieldEnum[]
+  }
+
+  /**
+   * PhaseTwoRequirements findFirstOrThrow
+   */
+  export type PhaseTwoRequirementsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoRequirements to fetch.
+     */
+    where?: PhaseTwoRequirementsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseTwoRequirements to fetch.
+     */
+    orderBy?: PhaseTwoRequirementsOrderByWithRelationInput | PhaseTwoRequirementsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PhaseTwoRequirements.
+     */
+    cursor?: PhaseTwoRequirementsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseTwoRequirements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseTwoRequirements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PhaseTwoRequirements.
+     */
+    distinct?: PhaseTwoRequirementsScalarFieldEnum | PhaseTwoRequirementsScalarFieldEnum[]
+  }
+
+  /**
+   * PhaseTwoRequirements findMany
+   */
+  export type PhaseTwoRequirementsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoRequirements to fetch.
+     */
+    where?: PhaseTwoRequirementsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseTwoRequirements to fetch.
+     */
+    orderBy?: PhaseTwoRequirementsOrderByWithRelationInput | PhaseTwoRequirementsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PhaseTwoRequirements.
+     */
+    cursor?: PhaseTwoRequirementsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseTwoRequirements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseTwoRequirements.
+     */
+    skip?: number
+    distinct?: PhaseTwoRequirementsScalarFieldEnum | PhaseTwoRequirementsScalarFieldEnum[]
+  }
+
+  /**
+   * PhaseTwoRequirements create
+   */
+  export type PhaseTwoRequirementsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PhaseTwoRequirements.
+     */
+    data: XOR<PhaseTwoRequirementsCreateInput, PhaseTwoRequirementsUncheckedCreateInput>
+  }
+
+  /**
+   * PhaseTwoRequirements createMany
+   */
+  export type PhaseTwoRequirementsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PhaseTwoRequirements.
+     */
+    data: PhaseTwoRequirementsCreateManyInput | PhaseTwoRequirementsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PhaseTwoRequirements createManyAndReturn
+   */
+  export type PhaseTwoRequirementsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * The data used to create many PhaseTwoRequirements.
+     */
+    data: PhaseTwoRequirementsCreateManyInput | PhaseTwoRequirementsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PhaseTwoRequirements update
+   */
+  export type PhaseTwoRequirementsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PhaseTwoRequirements.
+     */
+    data: XOR<PhaseTwoRequirementsUpdateInput, PhaseTwoRequirementsUncheckedUpdateInput>
+    /**
+     * Choose, which PhaseTwoRequirements to update.
+     */
+    where: PhaseTwoRequirementsWhereUniqueInput
+  }
+
+  /**
+   * PhaseTwoRequirements updateMany
+   */
+  export type PhaseTwoRequirementsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PhaseTwoRequirements.
+     */
+    data: XOR<PhaseTwoRequirementsUpdateManyMutationInput, PhaseTwoRequirementsUncheckedUpdateManyInput>
+    /**
+     * Filter which PhaseTwoRequirements to update
+     */
+    where?: PhaseTwoRequirementsWhereInput
+    /**
+     * Limit how many PhaseTwoRequirements to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PhaseTwoRequirements updateManyAndReturn
+   */
+  export type PhaseTwoRequirementsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * The data used to update PhaseTwoRequirements.
+     */
+    data: XOR<PhaseTwoRequirementsUpdateManyMutationInput, PhaseTwoRequirementsUncheckedUpdateManyInput>
+    /**
+     * Filter which PhaseTwoRequirements to update
+     */
+    where?: PhaseTwoRequirementsWhereInput
+    /**
+     * Limit how many PhaseTwoRequirements to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PhaseTwoRequirements upsert
+   */
+  export type PhaseTwoRequirementsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PhaseTwoRequirements to update in case it exists.
+     */
+    where: PhaseTwoRequirementsWhereUniqueInput
+    /**
+     * In case the PhaseTwoRequirements found by the `where` argument doesn't exist, create a new PhaseTwoRequirements with this data.
+     */
+    create: XOR<PhaseTwoRequirementsCreateInput, PhaseTwoRequirementsUncheckedCreateInput>
+    /**
+     * In case the PhaseTwoRequirements was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PhaseTwoRequirementsUpdateInput, PhaseTwoRequirementsUncheckedUpdateInput>
+  }
+
+  /**
+   * PhaseTwoRequirements delete
+   */
+  export type PhaseTwoRequirementsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsInclude<ExtArgs> | null
+    /**
+     * Filter which PhaseTwoRequirements to delete.
+     */
+    where: PhaseTwoRequirementsWhereUniqueInput
+  }
+
+  /**
+   * PhaseTwoRequirements deleteMany
+   */
+  export type PhaseTwoRequirementsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PhaseTwoRequirements to delete
+     */
+    where?: PhaseTwoRequirementsWhereInput
+    /**
+     * Limit how many PhaseTwoRequirements to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PhaseTwoRequirements.surveyVisit
+   */
+  export type PhaseTwoRequirements$surveyVisitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    where?: SurveyVisitWhereInput
+  }
+
+  /**
+   * PhaseTwoRequirements.phaseTwoFolder
+   */
+  export type PhaseTwoRequirements$phaseTwoFolderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoFolder
+     */
+    select?: PhaseTwoFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoFolder
+     */
+    omit?: PhaseTwoFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoFolderInclude<ExtArgs> | null
+    where?: PhaseTwoFolderWhereInput
+  }
+
+  /**
+   * PhaseTwoRequirements without action
+   */
+  export type PhaseTwoRequirementsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PhaseTwoFolder
+   */
+
+  export type AggregatePhaseTwoFolder = {
+    _count: PhaseTwoFolderCountAggregateOutputType | null
+    _min: PhaseTwoFolderMinAggregateOutputType | null
+    _max: PhaseTwoFolderMaxAggregateOutputType | null
+  }
+
+  export type PhaseTwoFolderMinAggregateOutputType = {
+    id: string | null
+    phaseTwoRequirementsId: string | null
+    folderId: string | null
+  }
+
+  export type PhaseTwoFolderMaxAggregateOutputType = {
+    id: string | null
+    phaseTwoRequirementsId: string | null
+    folderId: string | null
+  }
+
+  export type PhaseTwoFolderCountAggregateOutputType = {
+    id: number
+    phaseTwoRequirementsId: number
+    folderId: number
+    _all: number
+  }
+
+
+  export type PhaseTwoFolderMinAggregateInputType = {
+    id?: true
+    phaseTwoRequirementsId?: true
+    folderId?: true
+  }
+
+  export type PhaseTwoFolderMaxAggregateInputType = {
+    id?: true
+    phaseTwoRequirementsId?: true
+    folderId?: true
+  }
+
+  export type PhaseTwoFolderCountAggregateInputType = {
+    id?: true
+    phaseTwoRequirementsId?: true
+    folderId?: true
+    _all?: true
+  }
+
+  export type PhaseTwoFolderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PhaseTwoFolder to aggregate.
+     */
+    where?: PhaseTwoFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseTwoFolders to fetch.
+     */
+    orderBy?: PhaseTwoFolderOrderByWithRelationInput | PhaseTwoFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PhaseTwoFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseTwoFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseTwoFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PhaseTwoFolders
+    **/
+    _count?: true | PhaseTwoFolderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PhaseTwoFolderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PhaseTwoFolderMaxAggregateInputType
+  }
+
+  export type GetPhaseTwoFolderAggregateType<T extends PhaseTwoFolderAggregateArgs> = {
+        [P in keyof T & keyof AggregatePhaseTwoFolder]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePhaseTwoFolder[P]>
+      : GetScalarType<T[P], AggregatePhaseTwoFolder[P]>
+  }
+
+
+
+
+  export type PhaseTwoFolderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PhaseTwoFolderWhereInput
+    orderBy?: PhaseTwoFolderOrderByWithAggregationInput | PhaseTwoFolderOrderByWithAggregationInput[]
+    by: PhaseTwoFolderScalarFieldEnum[] | PhaseTwoFolderScalarFieldEnum
+    having?: PhaseTwoFolderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PhaseTwoFolderCountAggregateInputType | true
+    _min?: PhaseTwoFolderMinAggregateInputType
+    _max?: PhaseTwoFolderMaxAggregateInputType
+  }
+
+  export type PhaseTwoFolderGroupByOutputType = {
+    id: string
+    phaseTwoRequirementsId: string | null
+    folderId: string
+    _count: PhaseTwoFolderCountAggregateOutputType | null
+    _min: PhaseTwoFolderMinAggregateOutputType | null
+    _max: PhaseTwoFolderMaxAggregateOutputType | null
+  }
+
+  type GetPhaseTwoFolderGroupByPayload<T extends PhaseTwoFolderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PhaseTwoFolderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PhaseTwoFolderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PhaseTwoFolderGroupByOutputType[P]>
+            : GetScalarType<T[P], PhaseTwoFolderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PhaseTwoFolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    phaseTwoRequirementsId?: boolean
+    folderId?: boolean
+    phaseTwoRequirements?: boolean | PhaseTwoFolder$phaseTwoRequirementsArgs<ExtArgs>
+    phaseTwoAreaFolders?: boolean | PhaseTwoFolder$phaseTwoAreaFoldersArgs<ExtArgs>
+    _count?: boolean | PhaseTwoFolderCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["phaseTwoFolder"]>
+
+  export type PhaseTwoFolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    phaseTwoRequirementsId?: boolean
+    folderId?: boolean
+    phaseTwoRequirements?: boolean | PhaseTwoFolder$phaseTwoRequirementsArgs<ExtArgs>
+  }, ExtArgs["result"]["phaseTwoFolder"]>
+
+  export type PhaseTwoFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    phaseTwoRequirementsId?: boolean
+    folderId?: boolean
+    phaseTwoRequirements?: boolean | PhaseTwoFolder$phaseTwoRequirementsArgs<ExtArgs>
+  }, ExtArgs["result"]["phaseTwoFolder"]>
+
+  export type PhaseTwoFolderSelectScalar = {
+    id?: boolean
+    phaseTwoRequirementsId?: boolean
+    folderId?: boolean
+  }
+
+  export type PhaseTwoFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseTwoRequirementsId" | "folderId", ExtArgs["result"]["phaseTwoFolder"]>
+  export type PhaseTwoFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phaseTwoRequirements?: boolean | PhaseTwoFolder$phaseTwoRequirementsArgs<ExtArgs>
+    phaseTwoAreaFolders?: boolean | PhaseTwoFolder$phaseTwoAreaFoldersArgs<ExtArgs>
+    _count?: boolean | PhaseTwoFolderCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type PhaseTwoFolderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phaseTwoRequirements?: boolean | PhaseTwoFolder$phaseTwoRequirementsArgs<ExtArgs>
+  }
+  export type PhaseTwoFolderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phaseTwoRequirements?: boolean | PhaseTwoFolder$phaseTwoRequirementsArgs<ExtArgs>
+  }
+
+  export type $PhaseTwoFolderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PhaseTwoFolder"
+    objects: {
+      phaseTwoRequirements: Prisma.$PhaseTwoRequirementsPayload<ExtArgs> | null
+      phaseTwoAreaFolders: Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      phaseTwoRequirementsId: string | null
+      folderId: string
+    }, ExtArgs["result"]["phaseTwoFolder"]>
+    composites: {}
+  }
+
+  type PhaseTwoFolderGetPayload<S extends boolean | null | undefined | PhaseTwoFolderDefaultArgs> = $Result.GetResult<Prisma.$PhaseTwoFolderPayload, S>
+
+  type PhaseTwoFolderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PhaseTwoFolderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PhaseTwoFolderCountAggregateInputType | true
+    }
+
+  export interface PhaseTwoFolderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PhaseTwoFolder'], meta: { name: 'PhaseTwoFolder' } }
+    /**
+     * Find zero or one PhaseTwoFolder that matches the filter.
+     * @param {PhaseTwoFolderFindUniqueArgs} args - Arguments to find a PhaseTwoFolder
+     * @example
+     * // Get one PhaseTwoFolder
+     * const phaseTwoFolder = await prisma.phaseTwoFolder.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PhaseTwoFolderFindUniqueArgs>(args: SelectSubset<T, PhaseTwoFolderFindUniqueArgs<ExtArgs>>): Prisma__PhaseTwoFolderClient<$Result.GetResult<Prisma.$PhaseTwoFolderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PhaseTwoFolder that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PhaseTwoFolderFindUniqueOrThrowArgs} args - Arguments to find a PhaseTwoFolder
+     * @example
+     * // Get one PhaseTwoFolder
+     * const phaseTwoFolder = await prisma.phaseTwoFolder.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PhaseTwoFolderFindUniqueOrThrowArgs>(args: SelectSubset<T, PhaseTwoFolderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PhaseTwoFolderClient<$Result.GetResult<Prisma.$PhaseTwoFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PhaseTwoFolder that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoFolderFindFirstArgs} args - Arguments to find a PhaseTwoFolder
+     * @example
+     * // Get one PhaseTwoFolder
+     * const phaseTwoFolder = await prisma.phaseTwoFolder.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PhaseTwoFolderFindFirstArgs>(args?: SelectSubset<T, PhaseTwoFolderFindFirstArgs<ExtArgs>>): Prisma__PhaseTwoFolderClient<$Result.GetResult<Prisma.$PhaseTwoFolderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PhaseTwoFolder that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoFolderFindFirstOrThrowArgs} args - Arguments to find a PhaseTwoFolder
+     * @example
+     * // Get one PhaseTwoFolder
+     * const phaseTwoFolder = await prisma.phaseTwoFolder.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PhaseTwoFolderFindFirstOrThrowArgs>(args?: SelectSubset<T, PhaseTwoFolderFindFirstOrThrowArgs<ExtArgs>>): Prisma__PhaseTwoFolderClient<$Result.GetResult<Prisma.$PhaseTwoFolderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PhaseTwoFolders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoFolderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PhaseTwoFolders
+     * const phaseTwoFolders = await prisma.phaseTwoFolder.findMany()
+     * 
+     * // Get first 10 PhaseTwoFolders
+     * const phaseTwoFolders = await prisma.phaseTwoFolder.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const phaseTwoFolderWithIdOnly = await prisma.phaseTwoFolder.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PhaseTwoFolderFindManyArgs>(args?: SelectSubset<T, PhaseTwoFolderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseTwoFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PhaseTwoFolder.
+     * @param {PhaseTwoFolderCreateArgs} args - Arguments to create a PhaseTwoFolder.
+     * @example
+     * // Create one PhaseTwoFolder
+     * const PhaseTwoFolder = await prisma.phaseTwoFolder.create({
+     *   data: {
+     *     // ... data to create a PhaseTwoFolder
+     *   }
+     * })
+     * 
+     */
+    create<T extends PhaseTwoFolderCreateArgs>(args: SelectSubset<T, PhaseTwoFolderCreateArgs<ExtArgs>>): Prisma__PhaseTwoFolderClient<$Result.GetResult<Prisma.$PhaseTwoFolderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PhaseTwoFolders.
+     * @param {PhaseTwoFolderCreateManyArgs} args - Arguments to create many PhaseTwoFolders.
+     * @example
+     * // Create many PhaseTwoFolders
+     * const phaseTwoFolder = await prisma.phaseTwoFolder.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PhaseTwoFolderCreateManyArgs>(args?: SelectSubset<T, PhaseTwoFolderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PhaseTwoFolders and returns the data saved in the database.
+     * @param {PhaseTwoFolderCreateManyAndReturnArgs} args - Arguments to create many PhaseTwoFolders.
+     * @example
+     * // Create many PhaseTwoFolders
+     * const phaseTwoFolder = await prisma.phaseTwoFolder.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PhaseTwoFolders and only return the `id`
+     * const phaseTwoFolderWithIdOnly = await prisma.phaseTwoFolder.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PhaseTwoFolderCreateManyAndReturnArgs>(args?: SelectSubset<T, PhaseTwoFolderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseTwoFolderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PhaseTwoFolder.
+     * @param {PhaseTwoFolderDeleteArgs} args - Arguments to delete one PhaseTwoFolder.
+     * @example
+     * // Delete one PhaseTwoFolder
+     * const PhaseTwoFolder = await prisma.phaseTwoFolder.delete({
+     *   where: {
+     *     // ... filter to delete one PhaseTwoFolder
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PhaseTwoFolderDeleteArgs>(args: SelectSubset<T, PhaseTwoFolderDeleteArgs<ExtArgs>>): Prisma__PhaseTwoFolderClient<$Result.GetResult<Prisma.$PhaseTwoFolderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PhaseTwoFolder.
+     * @param {PhaseTwoFolderUpdateArgs} args - Arguments to update one PhaseTwoFolder.
+     * @example
+     * // Update one PhaseTwoFolder
+     * const phaseTwoFolder = await prisma.phaseTwoFolder.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PhaseTwoFolderUpdateArgs>(args: SelectSubset<T, PhaseTwoFolderUpdateArgs<ExtArgs>>): Prisma__PhaseTwoFolderClient<$Result.GetResult<Prisma.$PhaseTwoFolderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PhaseTwoFolders.
+     * @param {PhaseTwoFolderDeleteManyArgs} args - Arguments to filter PhaseTwoFolders to delete.
+     * @example
+     * // Delete a few PhaseTwoFolders
+     * const { count } = await prisma.phaseTwoFolder.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PhaseTwoFolderDeleteManyArgs>(args?: SelectSubset<T, PhaseTwoFolderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PhaseTwoFolders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoFolderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PhaseTwoFolders
+     * const phaseTwoFolder = await prisma.phaseTwoFolder.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PhaseTwoFolderUpdateManyArgs>(args: SelectSubset<T, PhaseTwoFolderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PhaseTwoFolders and returns the data updated in the database.
+     * @param {PhaseTwoFolderUpdateManyAndReturnArgs} args - Arguments to update many PhaseTwoFolders.
+     * @example
+     * // Update many PhaseTwoFolders
+     * const phaseTwoFolder = await prisma.phaseTwoFolder.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PhaseTwoFolders and only return the `id`
+     * const phaseTwoFolderWithIdOnly = await prisma.phaseTwoFolder.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PhaseTwoFolderUpdateManyAndReturnArgs>(args: SelectSubset<T, PhaseTwoFolderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseTwoFolderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PhaseTwoFolder.
+     * @param {PhaseTwoFolderUpsertArgs} args - Arguments to update or create a PhaseTwoFolder.
+     * @example
+     * // Update or create a PhaseTwoFolder
+     * const phaseTwoFolder = await prisma.phaseTwoFolder.upsert({
+     *   create: {
+     *     // ... data to create a PhaseTwoFolder
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PhaseTwoFolder we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PhaseTwoFolderUpsertArgs>(args: SelectSubset<T, PhaseTwoFolderUpsertArgs<ExtArgs>>): Prisma__PhaseTwoFolderClient<$Result.GetResult<Prisma.$PhaseTwoFolderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PhaseTwoFolders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoFolderCountArgs} args - Arguments to filter PhaseTwoFolders to count.
+     * @example
+     * // Count the number of PhaseTwoFolders
+     * const count = await prisma.phaseTwoFolder.count({
+     *   where: {
+     *     // ... the filter for the PhaseTwoFolders we want to count
+     *   }
+     * })
+    **/
+    count<T extends PhaseTwoFolderCountArgs>(
+      args?: Subset<T, PhaseTwoFolderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PhaseTwoFolderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PhaseTwoFolder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoFolderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PhaseTwoFolderAggregateArgs>(args: Subset<T, PhaseTwoFolderAggregateArgs>): Prisma.PrismaPromise<GetPhaseTwoFolderAggregateType<T>>
+
+    /**
+     * Group by PhaseTwoFolder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoFolderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PhaseTwoFolderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PhaseTwoFolderGroupByArgs['orderBy'] }
+        : { orderBy?: PhaseTwoFolderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PhaseTwoFolderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPhaseTwoFolderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PhaseTwoFolder model
+   */
+  readonly fields: PhaseTwoFolderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PhaseTwoFolder.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PhaseTwoFolderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    phaseTwoRequirements<T extends PhaseTwoFolder$phaseTwoRequirementsArgs<ExtArgs> = {}>(args?: Subset<T, PhaseTwoFolder$phaseTwoRequirementsArgs<ExtArgs>>): Prisma__PhaseTwoRequirementsClient<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    phaseTwoAreaFolders<T extends PhaseTwoFolder$phaseTwoAreaFoldersArgs<ExtArgs> = {}>(args?: Subset<T, PhaseTwoFolder$phaseTwoAreaFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PhaseTwoFolder model
+   */
+  interface PhaseTwoFolderFieldRefs {
+    readonly id: FieldRef<"PhaseTwoFolder", 'String'>
+    readonly phaseTwoRequirementsId: FieldRef<"PhaseTwoFolder", 'String'>
+    readonly folderId: FieldRef<"PhaseTwoFolder", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PhaseTwoFolder findUnique
+   */
+  export type PhaseTwoFolderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoFolder
+     */
+    select?: PhaseTwoFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoFolder
+     */
+    omit?: PhaseTwoFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoFolder to fetch.
+     */
+    where: PhaseTwoFolderWhereUniqueInput
+  }
+
+  /**
+   * PhaseTwoFolder findUniqueOrThrow
+   */
+  export type PhaseTwoFolderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoFolder
+     */
+    select?: PhaseTwoFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoFolder
+     */
+    omit?: PhaseTwoFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoFolder to fetch.
+     */
+    where: PhaseTwoFolderWhereUniqueInput
+  }
+
+  /**
+   * PhaseTwoFolder findFirst
+   */
+  export type PhaseTwoFolderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoFolder
+     */
+    select?: PhaseTwoFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoFolder
+     */
+    omit?: PhaseTwoFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoFolder to fetch.
+     */
+    where?: PhaseTwoFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseTwoFolders to fetch.
+     */
+    orderBy?: PhaseTwoFolderOrderByWithRelationInput | PhaseTwoFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PhaseTwoFolders.
+     */
+    cursor?: PhaseTwoFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseTwoFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseTwoFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PhaseTwoFolders.
+     */
+    distinct?: PhaseTwoFolderScalarFieldEnum | PhaseTwoFolderScalarFieldEnum[]
+  }
+
+  /**
+   * PhaseTwoFolder findFirstOrThrow
+   */
+  export type PhaseTwoFolderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoFolder
+     */
+    select?: PhaseTwoFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoFolder
+     */
+    omit?: PhaseTwoFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoFolder to fetch.
+     */
+    where?: PhaseTwoFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseTwoFolders to fetch.
+     */
+    orderBy?: PhaseTwoFolderOrderByWithRelationInput | PhaseTwoFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PhaseTwoFolders.
+     */
+    cursor?: PhaseTwoFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseTwoFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseTwoFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PhaseTwoFolders.
+     */
+    distinct?: PhaseTwoFolderScalarFieldEnum | PhaseTwoFolderScalarFieldEnum[]
+  }
+
+  /**
+   * PhaseTwoFolder findMany
+   */
+  export type PhaseTwoFolderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoFolder
+     */
+    select?: PhaseTwoFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoFolder
+     */
+    omit?: PhaseTwoFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoFolders to fetch.
+     */
+    where?: PhaseTwoFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseTwoFolders to fetch.
+     */
+    orderBy?: PhaseTwoFolderOrderByWithRelationInput | PhaseTwoFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PhaseTwoFolders.
+     */
+    cursor?: PhaseTwoFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseTwoFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseTwoFolders.
+     */
+    skip?: number
+    distinct?: PhaseTwoFolderScalarFieldEnum | PhaseTwoFolderScalarFieldEnum[]
+  }
+
+  /**
+   * PhaseTwoFolder create
+   */
+  export type PhaseTwoFolderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoFolder
+     */
+    select?: PhaseTwoFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoFolder
+     */
+    omit?: PhaseTwoFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoFolderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PhaseTwoFolder.
+     */
+    data: XOR<PhaseTwoFolderCreateInput, PhaseTwoFolderUncheckedCreateInput>
+  }
+
+  /**
+   * PhaseTwoFolder createMany
+   */
+  export type PhaseTwoFolderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PhaseTwoFolders.
+     */
+    data: PhaseTwoFolderCreateManyInput | PhaseTwoFolderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PhaseTwoFolder createManyAndReturn
+   */
+  export type PhaseTwoFolderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoFolder
+     */
+    select?: PhaseTwoFolderSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoFolder
+     */
+    omit?: PhaseTwoFolderOmit<ExtArgs> | null
+    /**
+     * The data used to create many PhaseTwoFolders.
+     */
+    data: PhaseTwoFolderCreateManyInput | PhaseTwoFolderCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoFolderIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PhaseTwoFolder update
+   */
+  export type PhaseTwoFolderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoFolder
+     */
+    select?: PhaseTwoFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoFolder
+     */
+    omit?: PhaseTwoFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoFolderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PhaseTwoFolder.
+     */
+    data: XOR<PhaseTwoFolderUpdateInput, PhaseTwoFolderUncheckedUpdateInput>
+    /**
+     * Choose, which PhaseTwoFolder to update.
+     */
+    where: PhaseTwoFolderWhereUniqueInput
+  }
+
+  /**
+   * PhaseTwoFolder updateMany
+   */
+  export type PhaseTwoFolderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PhaseTwoFolders.
+     */
+    data: XOR<PhaseTwoFolderUpdateManyMutationInput, PhaseTwoFolderUncheckedUpdateManyInput>
+    /**
+     * Filter which PhaseTwoFolders to update
+     */
+    where?: PhaseTwoFolderWhereInput
+    /**
+     * Limit how many PhaseTwoFolders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PhaseTwoFolder updateManyAndReturn
+   */
+  export type PhaseTwoFolderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoFolder
+     */
+    select?: PhaseTwoFolderSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoFolder
+     */
+    omit?: PhaseTwoFolderOmit<ExtArgs> | null
+    /**
+     * The data used to update PhaseTwoFolders.
+     */
+    data: XOR<PhaseTwoFolderUpdateManyMutationInput, PhaseTwoFolderUncheckedUpdateManyInput>
+    /**
+     * Filter which PhaseTwoFolders to update
+     */
+    where?: PhaseTwoFolderWhereInput
+    /**
+     * Limit how many PhaseTwoFolders to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoFolderIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PhaseTwoFolder upsert
+   */
+  export type PhaseTwoFolderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoFolder
+     */
+    select?: PhaseTwoFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoFolder
+     */
+    omit?: PhaseTwoFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoFolderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PhaseTwoFolder to update in case it exists.
+     */
+    where: PhaseTwoFolderWhereUniqueInput
+    /**
+     * In case the PhaseTwoFolder found by the `where` argument doesn't exist, create a new PhaseTwoFolder with this data.
+     */
+    create: XOR<PhaseTwoFolderCreateInput, PhaseTwoFolderUncheckedCreateInput>
+    /**
+     * In case the PhaseTwoFolder was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PhaseTwoFolderUpdateInput, PhaseTwoFolderUncheckedUpdateInput>
+  }
+
+  /**
+   * PhaseTwoFolder delete
+   */
+  export type PhaseTwoFolderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoFolder
+     */
+    select?: PhaseTwoFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoFolder
+     */
+    omit?: PhaseTwoFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoFolderInclude<ExtArgs> | null
+    /**
+     * Filter which PhaseTwoFolder to delete.
+     */
+    where: PhaseTwoFolderWhereUniqueInput
+  }
+
+  /**
+   * PhaseTwoFolder deleteMany
+   */
+  export type PhaseTwoFolderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PhaseTwoFolders to delete
+     */
+    where?: PhaseTwoFolderWhereInput
+    /**
+     * Limit how many PhaseTwoFolders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PhaseTwoFolder.phaseTwoRequirements
+   */
+  export type PhaseTwoFolder$phaseTwoRequirementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoRequirements
+     */
+    select?: PhaseTwoRequirementsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoRequirements
+     */
+    omit?: PhaseTwoRequirementsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoRequirementsInclude<ExtArgs> | null
+    where?: PhaseTwoRequirementsWhereInput
+  }
+
+  /**
+   * PhaseTwoFolder.phaseTwoAreaFolders
+   */
+  export type PhaseTwoFolder$phaseTwoAreaFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
+    where?: PhaseTwoAreaFolderWhereInput
+    orderBy?: PhaseTwoAreaFolderOrderByWithRelationInput | PhaseTwoAreaFolderOrderByWithRelationInput[]
+    cursor?: PhaseTwoAreaFolderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PhaseTwoAreaFolderScalarFieldEnum | PhaseTwoAreaFolderScalarFieldEnum[]
+  }
+
+  /**
+   * PhaseTwoFolder without action
+   */
+  export type PhaseTwoFolderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoFolder
+     */
+    select?: PhaseTwoFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoFolder
+     */
+    omit?: PhaseTwoFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoFolderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PhaseTwoAreaFolder
+   */
+
+  export type AggregatePhaseTwoAreaFolder = {
+    _count: PhaseTwoAreaFolderCountAggregateOutputType | null
+    _avg: PhaseTwoAreaFolderAvgAggregateOutputType | null
+    _sum: PhaseTwoAreaFolderSumAggregateOutputType | null
+    _min: PhaseTwoAreaFolderMinAggregateOutputType | null
+    _max: PhaseTwoAreaFolderMaxAggregateOutputType | null
+  }
+
+  export type PhaseTwoAreaFolderAvgAggregateOutputType = {
+    areaId: number | null
+  }
+
+  export type PhaseTwoAreaFolderSumAggregateOutputType = {
+    areaId: number | null
+  }
+
+  export type PhaseTwoAreaFolderMinAggregateOutputType = {
+    id: string | null
+    phaseTwoFolderId: string | null
+    folderId: string | null
+    areaId: number | null
+  }
+
+  export type PhaseTwoAreaFolderMaxAggregateOutputType = {
+    id: string | null
+    phaseTwoFolderId: string | null
+    folderId: string | null
+    areaId: number | null
+  }
+
+  export type PhaseTwoAreaFolderCountAggregateOutputType = {
+    id: number
+    phaseTwoFolderId: number
+    folderId: number
+    areaId: number
+    _all: number
+  }
+
+
+  export type PhaseTwoAreaFolderAvgAggregateInputType = {
+    areaId?: true
+  }
+
+  export type PhaseTwoAreaFolderSumAggregateInputType = {
+    areaId?: true
+  }
+
+  export type PhaseTwoAreaFolderMinAggregateInputType = {
+    id?: true
+    phaseTwoFolderId?: true
+    folderId?: true
+    areaId?: true
+  }
+
+  export type PhaseTwoAreaFolderMaxAggregateInputType = {
+    id?: true
+    phaseTwoFolderId?: true
+    folderId?: true
+    areaId?: true
+  }
+
+  export type PhaseTwoAreaFolderCountAggregateInputType = {
+    id?: true
+    phaseTwoFolderId?: true
+    folderId?: true
+    areaId?: true
+    _all?: true
+  }
+
+  export type PhaseTwoAreaFolderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PhaseTwoAreaFolder to aggregate.
+     */
+    where?: PhaseTwoAreaFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseTwoAreaFolders to fetch.
+     */
+    orderBy?: PhaseTwoAreaFolderOrderByWithRelationInput | PhaseTwoAreaFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PhaseTwoAreaFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseTwoAreaFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseTwoAreaFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PhaseTwoAreaFolders
+    **/
+    _count?: true | PhaseTwoAreaFolderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PhaseTwoAreaFolderAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PhaseTwoAreaFolderSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PhaseTwoAreaFolderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PhaseTwoAreaFolderMaxAggregateInputType
+  }
+
+  export type GetPhaseTwoAreaFolderAggregateType<T extends PhaseTwoAreaFolderAggregateArgs> = {
+        [P in keyof T & keyof AggregatePhaseTwoAreaFolder]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePhaseTwoAreaFolder[P]>
+      : GetScalarType<T[P], AggregatePhaseTwoAreaFolder[P]>
+  }
+
+
+
+
+  export type PhaseTwoAreaFolderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PhaseTwoAreaFolderWhereInput
+    orderBy?: PhaseTwoAreaFolderOrderByWithAggregationInput | PhaseTwoAreaFolderOrderByWithAggregationInput[]
+    by: PhaseTwoAreaFolderScalarFieldEnum[] | PhaseTwoAreaFolderScalarFieldEnum
+    having?: PhaseTwoAreaFolderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PhaseTwoAreaFolderCountAggregateInputType | true
+    _avg?: PhaseTwoAreaFolderAvgAggregateInputType
+    _sum?: PhaseTwoAreaFolderSumAggregateInputType
+    _min?: PhaseTwoAreaFolderMinAggregateInputType
+    _max?: PhaseTwoAreaFolderMaxAggregateInputType
+  }
+
+  export type PhaseTwoAreaFolderGroupByOutputType = {
+    id: string
+    phaseTwoFolderId: string
+    folderId: string
+    areaId: number
+    _count: PhaseTwoAreaFolderCountAggregateOutputType | null
+    _avg: PhaseTwoAreaFolderAvgAggregateOutputType | null
+    _sum: PhaseTwoAreaFolderSumAggregateOutputType | null
+    _min: PhaseTwoAreaFolderMinAggregateOutputType | null
+    _max: PhaseTwoAreaFolderMaxAggregateOutputType | null
+  }
+
+  type GetPhaseTwoAreaFolderGroupByPayload<T extends PhaseTwoAreaFolderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PhaseTwoAreaFolderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PhaseTwoAreaFolderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PhaseTwoAreaFolderGroupByOutputType[P]>
+            : GetScalarType<T[P], PhaseTwoAreaFolderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PhaseTwoAreaFolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    phaseTwoFolderId?: boolean
+    folderId?: boolean
+    areaId?: boolean
+    phaseTwoFolder?: boolean | PhaseTwoFolderDefaultArgs<ExtArgs>
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+    areaFiles?: boolean | PhaseTwoAreaFolder$areaFilesArgs<ExtArgs>
+    _count?: boolean | PhaseTwoAreaFolderCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["phaseTwoAreaFolder"]>
+
+  export type PhaseTwoAreaFolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    phaseTwoFolderId?: boolean
+    folderId?: boolean
+    areaId?: boolean
+    phaseTwoFolder?: boolean | PhaseTwoFolderDefaultArgs<ExtArgs>
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["phaseTwoAreaFolder"]>
+
+  export type PhaseTwoAreaFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    phaseTwoFolderId?: boolean
+    folderId?: boolean
+    areaId?: boolean
+    phaseTwoFolder?: boolean | PhaseTwoFolderDefaultArgs<ExtArgs>
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["phaseTwoAreaFolder"]>
+
+  export type PhaseTwoAreaFolderSelectScalar = {
+    id?: boolean
+    phaseTwoFolderId?: boolean
+    folderId?: boolean
+    areaId?: boolean
+  }
+
+  export type PhaseTwoAreaFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseTwoFolderId" | "folderId" | "areaId", ExtArgs["result"]["phaseTwoAreaFolder"]>
+  export type PhaseTwoAreaFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phaseTwoFolder?: boolean | PhaseTwoFolderDefaultArgs<ExtArgs>
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+    areaFiles?: boolean | PhaseTwoAreaFolder$areaFilesArgs<ExtArgs>
+    _count?: boolean | PhaseTwoAreaFolderCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type PhaseTwoAreaFolderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phaseTwoFolder?: boolean | PhaseTwoFolderDefaultArgs<ExtArgs>
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+  }
+  export type PhaseTwoAreaFolderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phaseTwoFolder?: boolean | PhaseTwoFolderDefaultArgs<ExtArgs>
+    area?: boolean | AreaDefaultArgs<ExtArgs>
+  }
+
+  export type $PhaseTwoAreaFolderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PhaseTwoAreaFolder"
+    objects: {
+      phaseTwoFolder: Prisma.$PhaseTwoFolderPayload<ExtArgs>
+      area: Prisma.$AreaPayload<ExtArgs>
+      areaFiles: Prisma.$AreaFilePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      phaseTwoFolderId: string
+      folderId: string
+      areaId: number
+    }, ExtArgs["result"]["phaseTwoAreaFolder"]>
+    composites: {}
+  }
+
+  type PhaseTwoAreaFolderGetPayload<S extends boolean | null | undefined | PhaseTwoAreaFolderDefaultArgs> = $Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload, S>
+
+  type PhaseTwoAreaFolderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PhaseTwoAreaFolderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PhaseTwoAreaFolderCountAggregateInputType | true
+    }
+
+  export interface PhaseTwoAreaFolderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PhaseTwoAreaFolder'], meta: { name: 'PhaseTwoAreaFolder' } }
+    /**
+     * Find zero or one PhaseTwoAreaFolder that matches the filter.
+     * @param {PhaseTwoAreaFolderFindUniqueArgs} args - Arguments to find a PhaseTwoAreaFolder
+     * @example
+     * // Get one PhaseTwoAreaFolder
+     * const phaseTwoAreaFolder = await prisma.phaseTwoAreaFolder.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PhaseTwoAreaFolderFindUniqueArgs>(args: SelectSubset<T, PhaseTwoAreaFolderFindUniqueArgs<ExtArgs>>): Prisma__PhaseTwoAreaFolderClient<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PhaseTwoAreaFolder that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PhaseTwoAreaFolderFindUniqueOrThrowArgs} args - Arguments to find a PhaseTwoAreaFolder
+     * @example
+     * // Get one PhaseTwoAreaFolder
+     * const phaseTwoAreaFolder = await prisma.phaseTwoAreaFolder.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PhaseTwoAreaFolderFindUniqueOrThrowArgs>(args: SelectSubset<T, PhaseTwoAreaFolderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PhaseTwoAreaFolderClient<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PhaseTwoAreaFolder that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoAreaFolderFindFirstArgs} args - Arguments to find a PhaseTwoAreaFolder
+     * @example
+     * // Get one PhaseTwoAreaFolder
+     * const phaseTwoAreaFolder = await prisma.phaseTwoAreaFolder.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PhaseTwoAreaFolderFindFirstArgs>(args?: SelectSubset<T, PhaseTwoAreaFolderFindFirstArgs<ExtArgs>>): Prisma__PhaseTwoAreaFolderClient<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PhaseTwoAreaFolder that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoAreaFolderFindFirstOrThrowArgs} args - Arguments to find a PhaseTwoAreaFolder
+     * @example
+     * // Get one PhaseTwoAreaFolder
+     * const phaseTwoAreaFolder = await prisma.phaseTwoAreaFolder.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PhaseTwoAreaFolderFindFirstOrThrowArgs>(args?: SelectSubset<T, PhaseTwoAreaFolderFindFirstOrThrowArgs<ExtArgs>>): Prisma__PhaseTwoAreaFolderClient<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PhaseTwoAreaFolders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoAreaFolderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PhaseTwoAreaFolders
+     * const phaseTwoAreaFolders = await prisma.phaseTwoAreaFolder.findMany()
+     * 
+     * // Get first 10 PhaseTwoAreaFolders
+     * const phaseTwoAreaFolders = await prisma.phaseTwoAreaFolder.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const phaseTwoAreaFolderWithIdOnly = await prisma.phaseTwoAreaFolder.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PhaseTwoAreaFolderFindManyArgs>(args?: SelectSubset<T, PhaseTwoAreaFolderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PhaseTwoAreaFolder.
+     * @param {PhaseTwoAreaFolderCreateArgs} args - Arguments to create a PhaseTwoAreaFolder.
+     * @example
+     * // Create one PhaseTwoAreaFolder
+     * const PhaseTwoAreaFolder = await prisma.phaseTwoAreaFolder.create({
+     *   data: {
+     *     // ... data to create a PhaseTwoAreaFolder
+     *   }
+     * })
+     * 
+     */
+    create<T extends PhaseTwoAreaFolderCreateArgs>(args: SelectSubset<T, PhaseTwoAreaFolderCreateArgs<ExtArgs>>): Prisma__PhaseTwoAreaFolderClient<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PhaseTwoAreaFolders.
+     * @param {PhaseTwoAreaFolderCreateManyArgs} args - Arguments to create many PhaseTwoAreaFolders.
+     * @example
+     * // Create many PhaseTwoAreaFolders
+     * const phaseTwoAreaFolder = await prisma.phaseTwoAreaFolder.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PhaseTwoAreaFolderCreateManyArgs>(args?: SelectSubset<T, PhaseTwoAreaFolderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PhaseTwoAreaFolders and returns the data saved in the database.
+     * @param {PhaseTwoAreaFolderCreateManyAndReturnArgs} args - Arguments to create many PhaseTwoAreaFolders.
+     * @example
+     * // Create many PhaseTwoAreaFolders
+     * const phaseTwoAreaFolder = await prisma.phaseTwoAreaFolder.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PhaseTwoAreaFolders and only return the `id`
+     * const phaseTwoAreaFolderWithIdOnly = await prisma.phaseTwoAreaFolder.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PhaseTwoAreaFolderCreateManyAndReturnArgs>(args?: SelectSubset<T, PhaseTwoAreaFolderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PhaseTwoAreaFolder.
+     * @param {PhaseTwoAreaFolderDeleteArgs} args - Arguments to delete one PhaseTwoAreaFolder.
+     * @example
+     * // Delete one PhaseTwoAreaFolder
+     * const PhaseTwoAreaFolder = await prisma.phaseTwoAreaFolder.delete({
+     *   where: {
+     *     // ... filter to delete one PhaseTwoAreaFolder
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PhaseTwoAreaFolderDeleteArgs>(args: SelectSubset<T, PhaseTwoAreaFolderDeleteArgs<ExtArgs>>): Prisma__PhaseTwoAreaFolderClient<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PhaseTwoAreaFolder.
+     * @param {PhaseTwoAreaFolderUpdateArgs} args - Arguments to update one PhaseTwoAreaFolder.
+     * @example
+     * // Update one PhaseTwoAreaFolder
+     * const phaseTwoAreaFolder = await prisma.phaseTwoAreaFolder.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PhaseTwoAreaFolderUpdateArgs>(args: SelectSubset<T, PhaseTwoAreaFolderUpdateArgs<ExtArgs>>): Prisma__PhaseTwoAreaFolderClient<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PhaseTwoAreaFolders.
+     * @param {PhaseTwoAreaFolderDeleteManyArgs} args - Arguments to filter PhaseTwoAreaFolders to delete.
+     * @example
+     * // Delete a few PhaseTwoAreaFolders
+     * const { count } = await prisma.phaseTwoAreaFolder.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PhaseTwoAreaFolderDeleteManyArgs>(args?: SelectSubset<T, PhaseTwoAreaFolderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PhaseTwoAreaFolders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoAreaFolderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PhaseTwoAreaFolders
+     * const phaseTwoAreaFolder = await prisma.phaseTwoAreaFolder.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PhaseTwoAreaFolderUpdateManyArgs>(args: SelectSubset<T, PhaseTwoAreaFolderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PhaseTwoAreaFolders and returns the data updated in the database.
+     * @param {PhaseTwoAreaFolderUpdateManyAndReturnArgs} args - Arguments to update many PhaseTwoAreaFolders.
+     * @example
+     * // Update many PhaseTwoAreaFolders
+     * const phaseTwoAreaFolder = await prisma.phaseTwoAreaFolder.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PhaseTwoAreaFolders and only return the `id`
+     * const phaseTwoAreaFolderWithIdOnly = await prisma.phaseTwoAreaFolder.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PhaseTwoAreaFolderUpdateManyAndReturnArgs>(args: SelectSubset<T, PhaseTwoAreaFolderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PhaseTwoAreaFolder.
+     * @param {PhaseTwoAreaFolderUpsertArgs} args - Arguments to update or create a PhaseTwoAreaFolder.
+     * @example
+     * // Update or create a PhaseTwoAreaFolder
+     * const phaseTwoAreaFolder = await prisma.phaseTwoAreaFolder.upsert({
+     *   create: {
+     *     // ... data to create a PhaseTwoAreaFolder
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PhaseTwoAreaFolder we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PhaseTwoAreaFolderUpsertArgs>(args: SelectSubset<T, PhaseTwoAreaFolderUpsertArgs<ExtArgs>>): Prisma__PhaseTwoAreaFolderClient<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PhaseTwoAreaFolders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoAreaFolderCountArgs} args - Arguments to filter PhaseTwoAreaFolders to count.
+     * @example
+     * // Count the number of PhaseTwoAreaFolders
+     * const count = await prisma.phaseTwoAreaFolder.count({
+     *   where: {
+     *     // ... the filter for the PhaseTwoAreaFolders we want to count
+     *   }
+     * })
+    **/
+    count<T extends PhaseTwoAreaFolderCountArgs>(
+      args?: Subset<T, PhaseTwoAreaFolderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PhaseTwoAreaFolderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PhaseTwoAreaFolder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoAreaFolderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PhaseTwoAreaFolderAggregateArgs>(args: Subset<T, PhaseTwoAreaFolderAggregateArgs>): Prisma.PrismaPromise<GetPhaseTwoAreaFolderAggregateType<T>>
+
+    /**
+     * Group by PhaseTwoAreaFolder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PhaseTwoAreaFolderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PhaseTwoAreaFolderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PhaseTwoAreaFolderGroupByArgs['orderBy'] }
+        : { orderBy?: PhaseTwoAreaFolderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PhaseTwoAreaFolderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPhaseTwoAreaFolderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PhaseTwoAreaFolder model
+   */
+  readonly fields: PhaseTwoAreaFolderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PhaseTwoAreaFolder.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PhaseTwoAreaFolderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    phaseTwoFolder<T extends PhaseTwoFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PhaseTwoFolderDefaultArgs<ExtArgs>>): Prisma__PhaseTwoFolderClient<$Result.GetResult<Prisma.$PhaseTwoFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    area<T extends AreaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AreaDefaultArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    areaFiles<T extends PhaseTwoAreaFolder$areaFilesArgs<ExtArgs> = {}>(args?: Subset<T, PhaseTwoAreaFolder$areaFilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PhaseTwoAreaFolder model
+   */
+  interface PhaseTwoAreaFolderFieldRefs {
+    readonly id: FieldRef<"PhaseTwoAreaFolder", 'String'>
+    readonly phaseTwoFolderId: FieldRef<"PhaseTwoAreaFolder", 'String'>
+    readonly folderId: FieldRef<"PhaseTwoAreaFolder", 'String'>
+    readonly areaId: FieldRef<"PhaseTwoAreaFolder", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PhaseTwoAreaFolder findUnique
+   */
+  export type PhaseTwoAreaFolderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoAreaFolder to fetch.
+     */
+    where: PhaseTwoAreaFolderWhereUniqueInput
+  }
+
+  /**
+   * PhaseTwoAreaFolder findUniqueOrThrow
+   */
+  export type PhaseTwoAreaFolderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoAreaFolder to fetch.
+     */
+    where: PhaseTwoAreaFolderWhereUniqueInput
+  }
+
+  /**
+   * PhaseTwoAreaFolder findFirst
+   */
+  export type PhaseTwoAreaFolderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoAreaFolder to fetch.
+     */
+    where?: PhaseTwoAreaFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseTwoAreaFolders to fetch.
+     */
+    orderBy?: PhaseTwoAreaFolderOrderByWithRelationInput | PhaseTwoAreaFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PhaseTwoAreaFolders.
+     */
+    cursor?: PhaseTwoAreaFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseTwoAreaFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseTwoAreaFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PhaseTwoAreaFolders.
+     */
+    distinct?: PhaseTwoAreaFolderScalarFieldEnum | PhaseTwoAreaFolderScalarFieldEnum[]
+  }
+
+  /**
+   * PhaseTwoAreaFolder findFirstOrThrow
+   */
+  export type PhaseTwoAreaFolderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoAreaFolder to fetch.
+     */
+    where?: PhaseTwoAreaFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseTwoAreaFolders to fetch.
+     */
+    orderBy?: PhaseTwoAreaFolderOrderByWithRelationInput | PhaseTwoAreaFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PhaseTwoAreaFolders.
+     */
+    cursor?: PhaseTwoAreaFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseTwoAreaFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseTwoAreaFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PhaseTwoAreaFolders.
+     */
+    distinct?: PhaseTwoAreaFolderScalarFieldEnum | PhaseTwoAreaFolderScalarFieldEnum[]
+  }
+
+  /**
+   * PhaseTwoAreaFolder findMany
+   */
+  export type PhaseTwoAreaFolderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which PhaseTwoAreaFolders to fetch.
+     */
+    where?: PhaseTwoAreaFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PhaseTwoAreaFolders to fetch.
+     */
+    orderBy?: PhaseTwoAreaFolderOrderByWithRelationInput | PhaseTwoAreaFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PhaseTwoAreaFolders.
+     */
+    cursor?: PhaseTwoAreaFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PhaseTwoAreaFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PhaseTwoAreaFolders.
+     */
+    skip?: number
+    distinct?: PhaseTwoAreaFolderScalarFieldEnum | PhaseTwoAreaFolderScalarFieldEnum[]
+  }
+
+  /**
+   * PhaseTwoAreaFolder create
+   */
+  export type PhaseTwoAreaFolderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PhaseTwoAreaFolder.
+     */
+    data: XOR<PhaseTwoAreaFolderCreateInput, PhaseTwoAreaFolderUncheckedCreateInput>
+  }
+
+  /**
+   * PhaseTwoAreaFolder createMany
+   */
+  export type PhaseTwoAreaFolderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PhaseTwoAreaFolders.
+     */
+    data: PhaseTwoAreaFolderCreateManyInput | PhaseTwoAreaFolderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PhaseTwoAreaFolder createManyAndReturn
+   */
+  export type PhaseTwoAreaFolderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * The data used to create many PhaseTwoAreaFolders.
+     */
+    data: PhaseTwoAreaFolderCreateManyInput | PhaseTwoAreaFolderCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PhaseTwoAreaFolder update
+   */
+  export type PhaseTwoAreaFolderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PhaseTwoAreaFolder.
+     */
+    data: XOR<PhaseTwoAreaFolderUpdateInput, PhaseTwoAreaFolderUncheckedUpdateInput>
+    /**
+     * Choose, which PhaseTwoAreaFolder to update.
+     */
+    where: PhaseTwoAreaFolderWhereUniqueInput
+  }
+
+  /**
+   * PhaseTwoAreaFolder updateMany
+   */
+  export type PhaseTwoAreaFolderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PhaseTwoAreaFolders.
+     */
+    data: XOR<PhaseTwoAreaFolderUpdateManyMutationInput, PhaseTwoAreaFolderUncheckedUpdateManyInput>
+    /**
+     * Filter which PhaseTwoAreaFolders to update
+     */
+    where?: PhaseTwoAreaFolderWhereInput
+    /**
+     * Limit how many PhaseTwoAreaFolders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PhaseTwoAreaFolder updateManyAndReturn
+   */
+  export type PhaseTwoAreaFolderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * The data used to update PhaseTwoAreaFolders.
+     */
+    data: XOR<PhaseTwoAreaFolderUpdateManyMutationInput, PhaseTwoAreaFolderUncheckedUpdateManyInput>
+    /**
+     * Filter which PhaseTwoAreaFolders to update
+     */
+    where?: PhaseTwoAreaFolderWhereInput
+    /**
+     * Limit how many PhaseTwoAreaFolders to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PhaseTwoAreaFolder upsert
+   */
+  export type PhaseTwoAreaFolderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PhaseTwoAreaFolder to update in case it exists.
+     */
+    where: PhaseTwoAreaFolderWhereUniqueInput
+    /**
+     * In case the PhaseTwoAreaFolder found by the `where` argument doesn't exist, create a new PhaseTwoAreaFolder with this data.
+     */
+    create: XOR<PhaseTwoAreaFolderCreateInput, PhaseTwoAreaFolderUncheckedCreateInput>
+    /**
+     * In case the PhaseTwoAreaFolder was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PhaseTwoAreaFolderUpdateInput, PhaseTwoAreaFolderUncheckedUpdateInput>
+  }
+
+  /**
+   * PhaseTwoAreaFolder delete
+   */
+  export type PhaseTwoAreaFolderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
+    /**
+     * Filter which PhaseTwoAreaFolder to delete.
+     */
+    where: PhaseTwoAreaFolderWhereUniqueInput
+  }
+
+  /**
+   * PhaseTwoAreaFolder deleteMany
+   */
+  export type PhaseTwoAreaFolderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PhaseTwoAreaFolders to delete
+     */
+    where?: PhaseTwoAreaFolderWhereInput
+    /**
+     * Limit how many PhaseTwoAreaFolders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PhaseTwoAreaFolder.areaFiles
+   */
+  export type PhaseTwoAreaFolder$areaFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileInclude<ExtArgs> | null
+    where?: AreaFileWhereInput
+    orderBy?: AreaFileOrderByWithRelationInput | AreaFileOrderByWithRelationInput[]
+    cursor?: AreaFileWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AreaFileScalarFieldEnum | AreaFileScalarFieldEnum[]
+  }
+
+  /**
+   * PhaseTwoAreaFolder without action
+   */
+  export type PhaseTwoAreaFolderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AreaFile
+   */
+
+  export type AggregateAreaFile = {
+    _count: AreaFileCountAggregateOutputType | null
+    _min: AreaFileMinAggregateOutputType | null
+    _max: AreaFileMaxAggregateOutputType | null
+  }
+
+  export type AreaFileMinAggregateOutputType = {
+    id: string | null
+    phaseOneAreaFolderId: string | null
+    phaseTwoAreaFolderId: string | null
+    type: $Enums.AreaFileType | null
+    fileId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AreaFileMaxAggregateOutputType = {
+    id: string | null
+    phaseOneAreaFolderId: string | null
+    phaseTwoAreaFolderId: string | null
+    type: $Enums.AreaFileType | null
+    fileId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AreaFileCountAggregateOutputType = {
+    id: number
+    phaseOneAreaFolderId: number
+    phaseTwoAreaFolderId: number
+    type: number
+    fileId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AreaFileMinAggregateInputType = {
+    id?: true
+    phaseOneAreaFolderId?: true
+    phaseTwoAreaFolderId?: true
+    type?: true
+    fileId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AreaFileMaxAggregateInputType = {
+    id?: true
+    phaseOneAreaFolderId?: true
+    phaseTwoAreaFolderId?: true
+    type?: true
+    fileId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AreaFileCountAggregateInputType = {
+    id?: true
+    phaseOneAreaFolderId?: true
+    phaseTwoAreaFolderId?: true
+    type?: true
+    fileId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AreaFileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AreaFile to aggregate.
+     */
+    where?: AreaFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AreaFiles to fetch.
+     */
+    orderBy?: AreaFileOrderByWithRelationInput | AreaFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AreaFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AreaFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AreaFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AreaFiles
+    **/
+    _count?: true | AreaFileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AreaFileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AreaFileMaxAggregateInputType
+  }
+
+  export type GetAreaFileAggregateType<T extends AreaFileAggregateArgs> = {
+        [P in keyof T & keyof AggregateAreaFile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAreaFile[P]>
+      : GetScalarType<T[P], AggregateAreaFile[P]>
+  }
+
+
+
+
+  export type AreaFileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AreaFileWhereInput
+    orderBy?: AreaFileOrderByWithAggregationInput | AreaFileOrderByWithAggregationInput[]
+    by: AreaFileScalarFieldEnum[] | AreaFileScalarFieldEnum
+    having?: AreaFileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AreaFileCountAggregateInputType | true
+    _min?: AreaFileMinAggregateInputType
+    _max?: AreaFileMaxAggregateInputType
+  }
+
+  export type AreaFileGroupByOutputType = {
+    id: string
+    phaseOneAreaFolderId: string | null
+    phaseTwoAreaFolderId: string | null
+    type: $Enums.AreaFileType
+    fileId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: AreaFileCountAggregateOutputType | null
+    _min: AreaFileMinAggregateOutputType | null
+    _max: AreaFileMaxAggregateOutputType | null
+  }
+
+  type GetAreaFileGroupByPayload<T extends AreaFileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AreaFileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AreaFileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AreaFileGroupByOutputType[P]>
+            : GetScalarType<T[P], AreaFileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AreaFileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    phaseOneAreaFolderId?: boolean
+    phaseTwoAreaFolderId?: boolean
+    type?: boolean
+    fileId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
+    phaseTwoAreaFolder?: boolean | AreaFile$phaseTwoAreaFolderArgs<ExtArgs>
+  }, ExtArgs["result"]["areaFile"]>
+
+  export type AreaFileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    phaseOneAreaFolderId?: boolean
+    phaseTwoAreaFolderId?: boolean
+    type?: boolean
+    fileId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
+    phaseTwoAreaFolder?: boolean | AreaFile$phaseTwoAreaFolderArgs<ExtArgs>
+  }, ExtArgs["result"]["areaFile"]>
+
+  export type AreaFileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    phaseOneAreaFolderId?: boolean
+    phaseTwoAreaFolderId?: boolean
+    type?: boolean
+    fileId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
+    phaseTwoAreaFolder?: boolean | AreaFile$phaseTwoAreaFolderArgs<ExtArgs>
+  }, ExtArgs["result"]["areaFile"]>
+
+  export type AreaFileSelectScalar = {
+    id?: boolean
+    phaseOneAreaFolderId?: boolean
+    phaseTwoAreaFolderId?: boolean
+    type?: boolean
+    fileId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AreaFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseOneAreaFolderId" | "phaseTwoAreaFolderId" | "type" | "fileId" | "createdAt" | "updatedAt", ExtArgs["result"]["areaFile"]>
+  export type AreaFileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
+    phaseTwoAreaFolder?: boolean | AreaFile$phaseTwoAreaFolderArgs<ExtArgs>
+  }
+  export type AreaFileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
+    phaseTwoAreaFolder?: boolean | AreaFile$phaseTwoAreaFolderArgs<ExtArgs>
+  }
+  export type AreaFileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
+    phaseTwoAreaFolder?: boolean | AreaFile$phaseTwoAreaFolderArgs<ExtArgs>
+  }
+
+  export type $AreaFilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AreaFile"
+    objects: {
+      phaseOneAreaFolder: Prisma.$AreaFolderPayload<ExtArgs> | null
+      phaseTwoAreaFolder: Prisma.$PhaseTwoAreaFolderPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      phaseOneAreaFolderId: string | null
+      phaseTwoAreaFolderId: string | null
+      type: $Enums.AreaFileType
+      fileId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["areaFile"]>
+    composites: {}
+  }
+
+  type AreaFileGetPayload<S extends boolean | null | undefined | AreaFileDefaultArgs> = $Result.GetResult<Prisma.$AreaFilePayload, S>
+
+  type AreaFileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AreaFileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AreaFileCountAggregateInputType | true
+    }
+
+  export interface AreaFileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AreaFile'], meta: { name: 'AreaFile' } }
+    /**
+     * Find zero or one AreaFile that matches the filter.
+     * @param {AreaFileFindUniqueArgs} args - Arguments to find a AreaFile
+     * @example
+     * // Get one AreaFile
+     * const areaFile = await prisma.areaFile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AreaFileFindUniqueArgs>(args: SelectSubset<T, AreaFileFindUniqueArgs<ExtArgs>>): Prisma__AreaFileClient<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AreaFile that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AreaFileFindUniqueOrThrowArgs} args - Arguments to find a AreaFile
+     * @example
+     * // Get one AreaFile
+     * const areaFile = await prisma.areaFile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AreaFileFindUniqueOrThrowArgs>(args: SelectSubset<T, AreaFileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AreaFileClient<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AreaFile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFileFindFirstArgs} args - Arguments to find a AreaFile
+     * @example
+     * // Get one AreaFile
+     * const areaFile = await prisma.areaFile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AreaFileFindFirstArgs>(args?: SelectSubset<T, AreaFileFindFirstArgs<ExtArgs>>): Prisma__AreaFileClient<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AreaFile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFileFindFirstOrThrowArgs} args - Arguments to find a AreaFile
+     * @example
+     * // Get one AreaFile
+     * const areaFile = await prisma.areaFile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AreaFileFindFirstOrThrowArgs>(args?: SelectSubset<T, AreaFileFindFirstOrThrowArgs<ExtArgs>>): Prisma__AreaFileClient<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AreaFiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AreaFiles
+     * const areaFiles = await prisma.areaFile.findMany()
+     * 
+     * // Get first 10 AreaFiles
+     * const areaFiles = await prisma.areaFile.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const areaFileWithIdOnly = await prisma.areaFile.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AreaFileFindManyArgs>(args?: SelectSubset<T, AreaFileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AreaFile.
+     * @param {AreaFileCreateArgs} args - Arguments to create a AreaFile.
+     * @example
+     * // Create one AreaFile
+     * const AreaFile = await prisma.areaFile.create({
+     *   data: {
+     *     // ... data to create a AreaFile
+     *   }
+     * })
+     * 
+     */
+    create<T extends AreaFileCreateArgs>(args: SelectSubset<T, AreaFileCreateArgs<ExtArgs>>): Prisma__AreaFileClient<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AreaFiles.
+     * @param {AreaFileCreateManyArgs} args - Arguments to create many AreaFiles.
+     * @example
+     * // Create many AreaFiles
+     * const areaFile = await prisma.areaFile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AreaFileCreateManyArgs>(args?: SelectSubset<T, AreaFileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AreaFiles and returns the data saved in the database.
+     * @param {AreaFileCreateManyAndReturnArgs} args - Arguments to create many AreaFiles.
+     * @example
+     * // Create many AreaFiles
+     * const areaFile = await prisma.areaFile.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AreaFiles and only return the `id`
+     * const areaFileWithIdOnly = await prisma.areaFile.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AreaFileCreateManyAndReturnArgs>(args?: SelectSubset<T, AreaFileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AreaFile.
+     * @param {AreaFileDeleteArgs} args - Arguments to delete one AreaFile.
+     * @example
+     * // Delete one AreaFile
+     * const AreaFile = await prisma.areaFile.delete({
+     *   where: {
+     *     // ... filter to delete one AreaFile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AreaFileDeleteArgs>(args: SelectSubset<T, AreaFileDeleteArgs<ExtArgs>>): Prisma__AreaFileClient<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AreaFile.
+     * @param {AreaFileUpdateArgs} args - Arguments to update one AreaFile.
+     * @example
+     * // Update one AreaFile
+     * const areaFile = await prisma.areaFile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AreaFileUpdateArgs>(args: SelectSubset<T, AreaFileUpdateArgs<ExtArgs>>): Prisma__AreaFileClient<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AreaFiles.
+     * @param {AreaFileDeleteManyArgs} args - Arguments to filter AreaFiles to delete.
+     * @example
+     * // Delete a few AreaFiles
+     * const { count } = await prisma.areaFile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AreaFileDeleteManyArgs>(args?: SelectSubset<T, AreaFileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AreaFiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AreaFiles
+     * const areaFile = await prisma.areaFile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AreaFileUpdateManyArgs>(args: SelectSubset<T, AreaFileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AreaFiles and returns the data updated in the database.
+     * @param {AreaFileUpdateManyAndReturnArgs} args - Arguments to update many AreaFiles.
+     * @example
+     * // Update many AreaFiles
+     * const areaFile = await prisma.areaFile.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AreaFiles and only return the `id`
+     * const areaFileWithIdOnly = await prisma.areaFile.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AreaFileUpdateManyAndReturnArgs>(args: SelectSubset<T, AreaFileUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AreaFile.
+     * @param {AreaFileUpsertArgs} args - Arguments to update or create a AreaFile.
+     * @example
+     * // Update or create a AreaFile
+     * const areaFile = await prisma.areaFile.upsert({
+     *   create: {
+     *     // ... data to create a AreaFile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AreaFile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AreaFileUpsertArgs>(args: SelectSubset<T, AreaFileUpsertArgs<ExtArgs>>): Prisma__AreaFileClient<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AreaFiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFileCountArgs} args - Arguments to filter AreaFiles to count.
+     * @example
+     * // Count the number of AreaFiles
+     * const count = await prisma.areaFile.count({
+     *   where: {
+     *     // ... the filter for the AreaFiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends AreaFileCountArgs>(
+      args?: Subset<T, AreaFileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AreaFileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AreaFile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AreaFileAggregateArgs>(args: Subset<T, AreaFileAggregateArgs>): Prisma.PrismaPromise<GetAreaFileAggregateType<T>>
+
+    /**
+     * Group by AreaFile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaFileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AreaFileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AreaFileGroupByArgs['orderBy'] }
+        : { orderBy?: AreaFileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AreaFileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAreaFileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AreaFile model
+   */
+  readonly fields: AreaFileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AreaFile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AreaFileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    phaseOneAreaFolder<T extends AreaFile$phaseOneAreaFolderArgs<ExtArgs> = {}>(args?: Subset<T, AreaFile$phaseOneAreaFolderArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    phaseTwoAreaFolder<T extends AreaFile$phaseTwoAreaFolderArgs<ExtArgs> = {}>(args?: Subset<T, AreaFile$phaseTwoAreaFolderArgs<ExtArgs>>): Prisma__PhaseTwoAreaFolderClient<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AreaFile model
+   */
+  interface AreaFileFieldRefs {
+    readonly id: FieldRef<"AreaFile", 'String'>
+    readonly phaseOneAreaFolderId: FieldRef<"AreaFile", 'String'>
+    readonly phaseTwoAreaFolderId: FieldRef<"AreaFile", 'String'>
+    readonly type: FieldRef<"AreaFile", 'AreaFileType'>
+    readonly fileId: FieldRef<"AreaFile", 'String'>
+    readonly createdAt: FieldRef<"AreaFile", 'DateTime'>
+    readonly updatedAt: FieldRef<"AreaFile", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AreaFile findUnique
+   */
+  export type AreaFileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaFile to fetch.
+     */
+    where: AreaFileWhereUniqueInput
+  }
+
+  /**
+   * AreaFile findUniqueOrThrow
+   */
+  export type AreaFileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaFile to fetch.
+     */
+    where: AreaFileWhereUniqueInput
+  }
+
+  /**
+   * AreaFile findFirst
+   */
+  export type AreaFileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaFile to fetch.
+     */
+    where?: AreaFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AreaFiles to fetch.
+     */
+    orderBy?: AreaFileOrderByWithRelationInput | AreaFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AreaFiles.
+     */
+    cursor?: AreaFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AreaFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AreaFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AreaFiles.
+     */
+    distinct?: AreaFileScalarFieldEnum | AreaFileScalarFieldEnum[]
+  }
+
+  /**
+   * AreaFile findFirstOrThrow
+   */
+  export type AreaFileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaFile to fetch.
+     */
+    where?: AreaFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AreaFiles to fetch.
+     */
+    orderBy?: AreaFileOrderByWithRelationInput | AreaFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AreaFiles.
+     */
+    cursor?: AreaFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AreaFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AreaFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AreaFiles.
+     */
+    distinct?: AreaFileScalarFieldEnum | AreaFileScalarFieldEnum[]
+  }
+
+  /**
+   * AreaFile findMany
+   */
+  export type AreaFileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaFiles to fetch.
+     */
+    where?: AreaFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AreaFiles to fetch.
+     */
+    orderBy?: AreaFileOrderByWithRelationInput | AreaFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AreaFiles.
+     */
+    cursor?: AreaFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AreaFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AreaFiles.
+     */
+    skip?: number
+    distinct?: AreaFileScalarFieldEnum | AreaFileScalarFieldEnum[]
+  }
+
+  /**
+   * AreaFile create
+   */
+  export type AreaFileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AreaFile.
+     */
+    data: XOR<AreaFileCreateInput, AreaFileUncheckedCreateInput>
+  }
+
+  /**
+   * AreaFile createMany
+   */
+  export type AreaFileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AreaFiles.
+     */
+    data: AreaFileCreateManyInput | AreaFileCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AreaFile createManyAndReturn
+   */
+  export type AreaFileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * The data used to create many AreaFiles.
+     */
+    data: AreaFileCreateManyInput | AreaFileCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AreaFile update
+   */
+  export type AreaFileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AreaFile.
+     */
+    data: XOR<AreaFileUpdateInput, AreaFileUncheckedUpdateInput>
+    /**
+     * Choose, which AreaFile to update.
+     */
+    where: AreaFileWhereUniqueInput
+  }
+
+  /**
+   * AreaFile updateMany
+   */
+  export type AreaFileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AreaFiles.
+     */
+    data: XOR<AreaFileUpdateManyMutationInput, AreaFileUncheckedUpdateManyInput>
+    /**
+     * Filter which AreaFiles to update
+     */
+    where?: AreaFileWhereInput
+    /**
+     * Limit how many AreaFiles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AreaFile updateManyAndReturn
+   */
+  export type AreaFileUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * The data used to update AreaFiles.
+     */
+    data: XOR<AreaFileUpdateManyMutationInput, AreaFileUncheckedUpdateManyInput>
+    /**
+     * Filter which AreaFiles to update
+     */
+    where?: AreaFileWhereInput
+    /**
+     * Limit how many AreaFiles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AreaFile upsert
+   */
+  export type AreaFileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AreaFile to update in case it exists.
+     */
+    where: AreaFileWhereUniqueInput
+    /**
+     * In case the AreaFile found by the `where` argument doesn't exist, create a new AreaFile with this data.
+     */
+    create: XOR<AreaFileCreateInput, AreaFileUncheckedCreateInput>
+    /**
+     * In case the AreaFile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AreaFileUpdateInput, AreaFileUncheckedUpdateInput>
+  }
+
+  /**
+   * AreaFile delete
+   */
+  export type AreaFileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileInclude<ExtArgs> | null
+    /**
+     * Filter which AreaFile to delete.
+     */
+    where: AreaFileWhereUniqueInput
+  }
+
+  /**
+   * AreaFile deleteMany
+   */
+  export type AreaFileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AreaFiles to delete
+     */
+    where?: AreaFileWhereInput
+    /**
+     * Limit how many AreaFiles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AreaFile.phaseOneAreaFolder
+   */
+  export type AreaFile$phaseOneAreaFolderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    where?: AreaFolderWhereInput
+  }
+
+  /**
+   * AreaFile.phaseTwoAreaFolder
+   */
+  export type AreaFile$phaseTwoAreaFolderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
+    where?: PhaseTwoAreaFolderWhereInput
+  }
+
+  /**
+   * AreaFile without action
+   */
+  export type AreaFileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TaskForce
+   */
+
+  export type AggregateTaskForce = {
+    _count: TaskForceCountAggregateOutputType | null
+    _min: TaskForceMinAggregateOutputType | null
+    _max: TaskForceMaxAggregateOutputType | null
+  }
+
+  export type TaskForceMinAggregateOutputType = {
+    id: string | null
+    areaFolderId: string | null
+    chairPersonId: string | null
+  }
+
+  export type TaskForceMaxAggregateOutputType = {
+    id: string | null
+    areaFolderId: string | null
+    chairPersonId: string | null
+  }
+
+  export type TaskForceCountAggregateOutputType = {
+    id: number
+    areaFolderId: number
+    chairPersonId: number
+    _all: number
+  }
+
+
+  export type TaskForceMinAggregateInputType = {
+    id?: true
+    areaFolderId?: true
+    chairPersonId?: true
+  }
+
+  export type TaskForceMaxAggregateInputType = {
+    id?: true
+    areaFolderId?: true
+    chairPersonId?: true
+  }
+
+  export type TaskForceCountAggregateInputType = {
+    id?: true
+    areaFolderId?: true
+    chairPersonId?: true
+    _all?: true
+  }
+
+  export type TaskForceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TaskForce to aggregate.
+     */
+    where?: TaskForceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskForces to fetch.
+     */
+    orderBy?: TaskForceOrderByWithRelationInput | TaskForceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TaskForceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskForces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskForces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TaskForces
+    **/
+    _count?: true | TaskForceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TaskForceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TaskForceMaxAggregateInputType
+  }
+
+  export type GetTaskForceAggregateType<T extends TaskForceAggregateArgs> = {
+        [P in keyof T & keyof AggregateTaskForce]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTaskForce[P]>
+      : GetScalarType<T[P], AggregateTaskForce[P]>
+  }
+
+
+
+
+  export type TaskForceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskForceWhereInput
+    orderBy?: TaskForceOrderByWithAggregationInput | TaskForceOrderByWithAggregationInput[]
+    by: TaskForceScalarFieldEnum[] | TaskForceScalarFieldEnum
+    having?: TaskForceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TaskForceCountAggregateInputType | true
+    _min?: TaskForceMinAggregateInputType
+    _max?: TaskForceMaxAggregateInputType
+  }
+
+  export type TaskForceGroupByOutputType = {
+    id: string
+    areaFolderId: string
+    chairPersonId: string
+    _count: TaskForceCountAggregateOutputType | null
+    _min: TaskForceMinAggregateOutputType | null
+    _max: TaskForceMaxAggregateOutputType | null
+  }
+
+  type GetTaskForceGroupByPayload<T extends TaskForceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TaskForceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TaskForceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TaskForceGroupByOutputType[P]>
+            : GetScalarType<T[P], TaskForceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TaskForceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    areaFolderId?: boolean
+    chairPersonId?: boolean
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    chairPerson?: boolean | ProgramPersonnelDefaultArgs<ExtArgs>
+    taskForceMember?: boolean | TaskForce$taskForceMemberArgs<ExtArgs>
+    _count?: boolean | TaskForceCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskForce"]>
+
+  export type TaskForceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    areaFolderId?: boolean
+    chairPersonId?: boolean
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    chairPerson?: boolean | ProgramPersonnelDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskForce"]>
+
+  export type TaskForceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    areaFolderId?: boolean
+    chairPersonId?: boolean
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    chairPerson?: boolean | ProgramPersonnelDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskForce"]>
+
+  export type TaskForceSelectScalar = {
+    id?: boolean
+    areaFolderId?: boolean
+    chairPersonId?: boolean
+  }
+
+  export type TaskForceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "areaFolderId" | "chairPersonId", ExtArgs["result"]["taskForce"]>
+  export type TaskForceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    chairPerson?: boolean | ProgramPersonnelDefaultArgs<ExtArgs>
+    taskForceMember?: boolean | TaskForce$taskForceMemberArgs<ExtArgs>
+    _count?: boolean | TaskForceCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type TaskForceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    chairPerson?: boolean | ProgramPersonnelDefaultArgs<ExtArgs>
+  }
+  export type TaskForceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    chairPerson?: boolean | ProgramPersonnelDefaultArgs<ExtArgs>
+  }
+
+  export type $TaskForcePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TaskForce"
+    objects: {
+      areaFolder: Prisma.$AreaFolderPayload<ExtArgs>
+      chairPerson: Prisma.$ProgramPersonnelPayload<ExtArgs>
+      taskForceMember: Prisma.$TaskForceMemberPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      areaFolderId: string
+      chairPersonId: string
+    }, ExtArgs["result"]["taskForce"]>
+    composites: {}
+  }
+
+  type TaskForceGetPayload<S extends boolean | null | undefined | TaskForceDefaultArgs> = $Result.GetResult<Prisma.$TaskForcePayload, S>
+
+  type TaskForceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TaskForceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TaskForceCountAggregateInputType | true
+    }
+
+  export interface TaskForceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TaskForce'], meta: { name: 'TaskForce' } }
+    /**
+     * Find zero or one TaskForce that matches the filter.
+     * @param {TaskForceFindUniqueArgs} args - Arguments to find a TaskForce
+     * @example
+     * // Get one TaskForce
+     * const taskForce = await prisma.taskForce.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TaskForceFindUniqueArgs>(args: SelectSubset<T, TaskForceFindUniqueArgs<ExtArgs>>): Prisma__TaskForceClient<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TaskForce that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TaskForceFindUniqueOrThrowArgs} args - Arguments to find a TaskForce
+     * @example
+     * // Get one TaskForce
+     * const taskForce = await prisma.taskForce.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TaskForceFindUniqueOrThrowArgs>(args: SelectSubset<T, TaskForceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TaskForceClient<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TaskForce that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskForceFindFirstArgs} args - Arguments to find a TaskForce
+     * @example
+     * // Get one TaskForce
+     * const taskForce = await prisma.taskForce.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TaskForceFindFirstArgs>(args?: SelectSubset<T, TaskForceFindFirstArgs<ExtArgs>>): Prisma__TaskForceClient<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TaskForce that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskForceFindFirstOrThrowArgs} args - Arguments to find a TaskForce
+     * @example
+     * // Get one TaskForce
+     * const taskForce = await prisma.taskForce.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TaskForceFindFirstOrThrowArgs>(args?: SelectSubset<T, TaskForceFindFirstOrThrowArgs<ExtArgs>>): Prisma__TaskForceClient<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TaskForces that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskForceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TaskForces
+     * const taskForces = await prisma.taskForce.findMany()
+     * 
+     * // Get first 10 TaskForces
+     * const taskForces = await prisma.taskForce.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const taskForceWithIdOnly = await prisma.taskForce.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TaskForceFindManyArgs>(args?: SelectSubset<T, TaskForceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TaskForce.
+     * @param {TaskForceCreateArgs} args - Arguments to create a TaskForce.
+     * @example
+     * // Create one TaskForce
+     * const TaskForce = await prisma.taskForce.create({
+     *   data: {
+     *     // ... data to create a TaskForce
+     *   }
+     * })
+     * 
+     */
+    create<T extends TaskForceCreateArgs>(args: SelectSubset<T, TaskForceCreateArgs<ExtArgs>>): Prisma__TaskForceClient<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TaskForces.
+     * @param {TaskForceCreateManyArgs} args - Arguments to create many TaskForces.
+     * @example
+     * // Create many TaskForces
+     * const taskForce = await prisma.taskForce.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TaskForceCreateManyArgs>(args?: SelectSubset<T, TaskForceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TaskForces and returns the data saved in the database.
+     * @param {TaskForceCreateManyAndReturnArgs} args - Arguments to create many TaskForces.
+     * @example
+     * // Create many TaskForces
+     * const taskForce = await prisma.taskForce.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TaskForces and only return the `id`
+     * const taskForceWithIdOnly = await prisma.taskForce.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TaskForceCreateManyAndReturnArgs>(args?: SelectSubset<T, TaskForceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TaskForce.
+     * @param {TaskForceDeleteArgs} args - Arguments to delete one TaskForce.
+     * @example
+     * // Delete one TaskForce
+     * const TaskForce = await prisma.taskForce.delete({
+     *   where: {
+     *     // ... filter to delete one TaskForce
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TaskForceDeleteArgs>(args: SelectSubset<T, TaskForceDeleteArgs<ExtArgs>>): Prisma__TaskForceClient<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TaskForce.
+     * @param {TaskForceUpdateArgs} args - Arguments to update one TaskForce.
+     * @example
+     * // Update one TaskForce
+     * const taskForce = await prisma.taskForce.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TaskForceUpdateArgs>(args: SelectSubset<T, TaskForceUpdateArgs<ExtArgs>>): Prisma__TaskForceClient<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TaskForces.
+     * @param {TaskForceDeleteManyArgs} args - Arguments to filter TaskForces to delete.
+     * @example
+     * // Delete a few TaskForces
+     * const { count } = await prisma.taskForce.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TaskForceDeleteManyArgs>(args?: SelectSubset<T, TaskForceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TaskForces.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskForceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TaskForces
+     * const taskForce = await prisma.taskForce.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TaskForceUpdateManyArgs>(args: SelectSubset<T, TaskForceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TaskForces and returns the data updated in the database.
+     * @param {TaskForceUpdateManyAndReturnArgs} args - Arguments to update many TaskForces.
+     * @example
+     * // Update many TaskForces
+     * const taskForce = await prisma.taskForce.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TaskForces and only return the `id`
+     * const taskForceWithIdOnly = await prisma.taskForce.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TaskForceUpdateManyAndReturnArgs>(args: SelectSubset<T, TaskForceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TaskForce.
+     * @param {TaskForceUpsertArgs} args - Arguments to update or create a TaskForce.
+     * @example
+     * // Update or create a TaskForce
+     * const taskForce = await prisma.taskForce.upsert({
+     *   create: {
+     *     // ... data to create a TaskForce
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TaskForce we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TaskForceUpsertArgs>(args: SelectSubset<T, TaskForceUpsertArgs<ExtArgs>>): Prisma__TaskForceClient<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TaskForces.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskForceCountArgs} args - Arguments to filter TaskForces to count.
+     * @example
+     * // Count the number of TaskForces
+     * const count = await prisma.taskForce.count({
+     *   where: {
+     *     // ... the filter for the TaskForces we want to count
+     *   }
+     * })
+    **/
+    count<T extends TaskForceCountArgs>(
+      args?: Subset<T, TaskForceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TaskForceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TaskForce.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskForceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TaskForceAggregateArgs>(args: Subset<T, TaskForceAggregateArgs>): Prisma.PrismaPromise<GetTaskForceAggregateType<T>>
+
+    /**
+     * Group by TaskForce.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskForceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TaskForceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TaskForceGroupByArgs['orderBy'] }
+        : { orderBy?: TaskForceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TaskForceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTaskForceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TaskForce model
+   */
+  readonly fields: TaskForceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TaskForce.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TaskForceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    areaFolder<T extends AreaFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolderDefaultArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    chairPerson<T extends ProgramPersonnelDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProgramPersonnelDefaultArgs<ExtArgs>>): Prisma__ProgramPersonnelClient<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    taskForceMember<T extends TaskForce$taskForceMemberArgs<ExtArgs> = {}>(args?: Subset<T, TaskForce$taskForceMemberArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TaskForce model
+   */
+  interface TaskForceFieldRefs {
+    readonly id: FieldRef<"TaskForce", 'String'>
+    readonly areaFolderId: FieldRef<"TaskForce", 'String'>
+    readonly chairPersonId: FieldRef<"TaskForce", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TaskForce findUnique
+   */
+  export type TaskForceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskForce to fetch.
+     */
+    where: TaskForceWhereUniqueInput
+  }
+
+  /**
+   * TaskForce findUniqueOrThrow
+   */
+  export type TaskForceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskForce to fetch.
+     */
+    where: TaskForceWhereUniqueInput
+  }
+
+  /**
+   * TaskForce findFirst
+   */
+  export type TaskForceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskForce to fetch.
+     */
+    where?: TaskForceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskForces to fetch.
+     */
+    orderBy?: TaskForceOrderByWithRelationInput | TaskForceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TaskForces.
+     */
+    cursor?: TaskForceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskForces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskForces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskForces.
+     */
+    distinct?: TaskForceScalarFieldEnum | TaskForceScalarFieldEnum[]
+  }
+
+  /**
+   * TaskForce findFirstOrThrow
+   */
+  export type TaskForceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskForce to fetch.
+     */
+    where?: TaskForceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskForces to fetch.
+     */
+    orderBy?: TaskForceOrderByWithRelationInput | TaskForceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TaskForces.
+     */
+    cursor?: TaskForceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskForces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskForces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskForces.
+     */
+    distinct?: TaskForceScalarFieldEnum | TaskForceScalarFieldEnum[]
+  }
+
+  /**
+   * TaskForce findMany
+   */
+  export type TaskForceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskForces to fetch.
+     */
+    where?: TaskForceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskForces to fetch.
+     */
+    orderBy?: TaskForceOrderByWithRelationInput | TaskForceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TaskForces.
+     */
+    cursor?: TaskForceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskForces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskForces.
+     */
+    skip?: number
+    distinct?: TaskForceScalarFieldEnum | TaskForceScalarFieldEnum[]
+  }
+
+  /**
+   * TaskForce create
+   */
+  export type TaskForceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TaskForce.
+     */
+    data: XOR<TaskForceCreateInput, TaskForceUncheckedCreateInput>
+  }
+
+  /**
+   * TaskForce createMany
+   */
+  export type TaskForceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TaskForces.
+     */
+    data: TaskForceCreateManyInput | TaskForceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TaskForce createManyAndReturn
+   */
+  export type TaskForceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * The data used to create many TaskForces.
+     */
+    data: TaskForceCreateManyInput | TaskForceCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TaskForce update
+   */
+  export type TaskForceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TaskForce.
+     */
+    data: XOR<TaskForceUpdateInput, TaskForceUncheckedUpdateInput>
+    /**
+     * Choose, which TaskForce to update.
+     */
+    where: TaskForceWhereUniqueInput
+  }
+
+  /**
+   * TaskForce updateMany
+   */
+  export type TaskForceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TaskForces.
+     */
+    data: XOR<TaskForceUpdateManyMutationInput, TaskForceUncheckedUpdateManyInput>
+    /**
+     * Filter which TaskForces to update
+     */
+    where?: TaskForceWhereInput
+    /**
+     * Limit how many TaskForces to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskForce updateManyAndReturn
+   */
+  export type TaskForceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * The data used to update TaskForces.
+     */
+    data: XOR<TaskForceUpdateManyMutationInput, TaskForceUncheckedUpdateManyInput>
+    /**
+     * Filter which TaskForces to update
+     */
+    where?: TaskForceWhereInput
+    /**
+     * Limit how many TaskForces to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TaskForce upsert
+   */
+  export type TaskForceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TaskForce to update in case it exists.
+     */
+    where: TaskForceWhereUniqueInput
+    /**
+     * In case the TaskForce found by the `where` argument doesn't exist, create a new TaskForce with this data.
+     */
+    create: XOR<TaskForceCreateInput, TaskForceUncheckedCreateInput>
+    /**
+     * In case the TaskForce was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TaskForceUpdateInput, TaskForceUncheckedUpdateInput>
+  }
+
+  /**
+   * TaskForce delete
+   */
+  export type TaskForceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceInclude<ExtArgs> | null
+    /**
+     * Filter which TaskForce to delete.
+     */
+    where: TaskForceWhereUniqueInput
+  }
+
+  /**
+   * TaskForce deleteMany
+   */
+  export type TaskForceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TaskForces to delete
+     */
+    where?: TaskForceWhereInput
+    /**
+     * Limit how many TaskForces to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskForce.taskForceMember
+   */
+  export type TaskForce$taskForceMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberInclude<ExtArgs> | null
+    where?: TaskForceMemberWhereInput
+    orderBy?: TaskForceMemberOrderByWithRelationInput | TaskForceMemberOrderByWithRelationInput[]
+    cursor?: TaskForceMemberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskForceMemberScalarFieldEnum | TaskForceMemberScalarFieldEnum[]
+  }
+
+  /**
+   * TaskForce without action
+   */
+  export type TaskForceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TaskForceMember
+   */
+
+  export type AggregateTaskForceMember = {
+    _count: TaskForceMemberCountAggregateOutputType | null
+    _min: TaskForceMemberMinAggregateOutputType | null
+    _max: TaskForceMemberMaxAggregateOutputType | null
+  }
+
+  export type TaskForceMemberMinAggregateOutputType = {
+    id: string | null
+    taskForceId: string | null
+    parameterFolderId: string | null
+  }
+
+  export type TaskForceMemberMaxAggregateOutputType = {
+    id: string | null
+    taskForceId: string | null
+    parameterFolderId: string | null
+  }
+
+  export type TaskForceMemberCountAggregateOutputType = {
+    id: number
+    taskForceId: number
+    parameterFolderId: number
+    _all: number
+  }
+
+
+  export type TaskForceMemberMinAggregateInputType = {
+    id?: true
+    taskForceId?: true
+    parameterFolderId?: true
+  }
+
+  export type TaskForceMemberMaxAggregateInputType = {
+    id?: true
+    taskForceId?: true
+    parameterFolderId?: true
+  }
+
+  export type TaskForceMemberCountAggregateInputType = {
+    id?: true
+    taskForceId?: true
+    parameterFolderId?: true
+    _all?: true
+  }
+
+  export type TaskForceMemberAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TaskForceMember to aggregate.
+     */
+    where?: TaskForceMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskForceMembers to fetch.
+     */
+    orderBy?: TaskForceMemberOrderByWithRelationInput | TaskForceMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TaskForceMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskForceMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskForceMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TaskForceMembers
+    **/
+    _count?: true | TaskForceMemberCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TaskForceMemberMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TaskForceMemberMaxAggregateInputType
+  }
+
+  export type GetTaskForceMemberAggregateType<T extends TaskForceMemberAggregateArgs> = {
+        [P in keyof T & keyof AggregateTaskForceMember]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTaskForceMember[P]>
+      : GetScalarType<T[P], AggregateTaskForceMember[P]>
+  }
+
+
+
+
+  export type TaskForceMemberGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskForceMemberWhereInput
+    orderBy?: TaskForceMemberOrderByWithAggregationInput | TaskForceMemberOrderByWithAggregationInput[]
+    by: TaskForceMemberScalarFieldEnum[] | TaskForceMemberScalarFieldEnum
+    having?: TaskForceMemberScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TaskForceMemberCountAggregateInputType | true
+    _min?: TaskForceMemberMinAggregateInputType
+    _max?: TaskForceMemberMaxAggregateInputType
+  }
+
+  export type TaskForceMemberGroupByOutputType = {
+    id: string
+    taskForceId: string
+    parameterFolderId: string
+    _count: TaskForceMemberCountAggregateOutputType | null
+    _min: TaskForceMemberMinAggregateOutputType | null
+    _max: TaskForceMemberMaxAggregateOutputType | null
+  }
+
+  type GetTaskForceMemberGroupByPayload<T extends TaskForceMemberGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TaskForceMemberGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TaskForceMemberGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TaskForceMemberGroupByOutputType[P]>
+            : GetScalarType<T[P], TaskForceMemberGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TaskForceMemberSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    taskForceId?: boolean
+    parameterFolderId?: boolean
+    taskForce?: boolean | TaskForceDefaultArgs<ExtArgs>
+    parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskForceMember"]>
+
+  export type TaskForceMemberSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    taskForceId?: boolean
+    parameterFolderId?: boolean
+    taskForce?: boolean | TaskForceDefaultArgs<ExtArgs>
+    parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskForceMember"]>
+
+  export type TaskForceMemberSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    taskForceId?: boolean
+    parameterFolderId?: boolean
+    taskForce?: boolean | TaskForceDefaultArgs<ExtArgs>
+    parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskForceMember"]>
+
+  export type TaskForceMemberSelectScalar = {
+    id?: boolean
+    taskForceId?: boolean
+    parameterFolderId?: boolean
+  }
+
+  export type TaskForceMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "taskForceId" | "parameterFolderId", ExtArgs["result"]["taskForceMember"]>
+  export type TaskForceMemberInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    taskForce?: boolean | TaskForceDefaultArgs<ExtArgs>
+    parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
+  }
+  export type TaskForceMemberIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    taskForce?: boolean | TaskForceDefaultArgs<ExtArgs>
+    parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
+  }
+  export type TaskForceMemberIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    taskForce?: boolean | TaskForceDefaultArgs<ExtArgs>
+    parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
+  }
+
+  export type $TaskForceMemberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TaskForceMember"
+    objects: {
+      taskForce: Prisma.$TaskForcePayload<ExtArgs>
+      parameterFolder: Prisma.$ParameterFolderPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      taskForceId: string
+      parameterFolderId: string
+    }, ExtArgs["result"]["taskForceMember"]>
+    composites: {}
+  }
+
+  type TaskForceMemberGetPayload<S extends boolean | null | undefined | TaskForceMemberDefaultArgs> = $Result.GetResult<Prisma.$TaskForceMemberPayload, S>
+
+  type TaskForceMemberCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TaskForceMemberFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TaskForceMemberCountAggregateInputType | true
+    }
+
+  export interface TaskForceMemberDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TaskForceMember'], meta: { name: 'TaskForceMember' } }
+    /**
+     * Find zero or one TaskForceMember that matches the filter.
+     * @param {TaskForceMemberFindUniqueArgs} args - Arguments to find a TaskForceMember
+     * @example
+     * // Get one TaskForceMember
+     * const taskForceMember = await prisma.taskForceMember.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TaskForceMemberFindUniqueArgs>(args: SelectSubset<T, TaskForceMemberFindUniqueArgs<ExtArgs>>): Prisma__TaskForceMemberClient<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TaskForceMember that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TaskForceMemberFindUniqueOrThrowArgs} args - Arguments to find a TaskForceMember
+     * @example
+     * // Get one TaskForceMember
+     * const taskForceMember = await prisma.taskForceMember.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TaskForceMemberFindUniqueOrThrowArgs>(args: SelectSubset<T, TaskForceMemberFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TaskForceMemberClient<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TaskForceMember that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskForceMemberFindFirstArgs} args - Arguments to find a TaskForceMember
+     * @example
+     * // Get one TaskForceMember
+     * const taskForceMember = await prisma.taskForceMember.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TaskForceMemberFindFirstArgs>(args?: SelectSubset<T, TaskForceMemberFindFirstArgs<ExtArgs>>): Prisma__TaskForceMemberClient<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TaskForceMember that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskForceMemberFindFirstOrThrowArgs} args - Arguments to find a TaskForceMember
+     * @example
+     * // Get one TaskForceMember
+     * const taskForceMember = await prisma.taskForceMember.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TaskForceMemberFindFirstOrThrowArgs>(args?: SelectSubset<T, TaskForceMemberFindFirstOrThrowArgs<ExtArgs>>): Prisma__TaskForceMemberClient<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TaskForceMembers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskForceMemberFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TaskForceMembers
+     * const taskForceMembers = await prisma.taskForceMember.findMany()
+     * 
+     * // Get first 10 TaskForceMembers
+     * const taskForceMembers = await prisma.taskForceMember.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const taskForceMemberWithIdOnly = await prisma.taskForceMember.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TaskForceMemberFindManyArgs>(args?: SelectSubset<T, TaskForceMemberFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TaskForceMember.
+     * @param {TaskForceMemberCreateArgs} args - Arguments to create a TaskForceMember.
+     * @example
+     * // Create one TaskForceMember
+     * const TaskForceMember = await prisma.taskForceMember.create({
+     *   data: {
+     *     // ... data to create a TaskForceMember
+     *   }
+     * })
+     * 
+     */
+    create<T extends TaskForceMemberCreateArgs>(args: SelectSubset<T, TaskForceMemberCreateArgs<ExtArgs>>): Prisma__TaskForceMemberClient<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TaskForceMembers.
+     * @param {TaskForceMemberCreateManyArgs} args - Arguments to create many TaskForceMembers.
+     * @example
+     * // Create many TaskForceMembers
+     * const taskForceMember = await prisma.taskForceMember.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TaskForceMemberCreateManyArgs>(args?: SelectSubset<T, TaskForceMemberCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TaskForceMembers and returns the data saved in the database.
+     * @param {TaskForceMemberCreateManyAndReturnArgs} args - Arguments to create many TaskForceMembers.
+     * @example
+     * // Create many TaskForceMembers
+     * const taskForceMember = await prisma.taskForceMember.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TaskForceMembers and only return the `id`
+     * const taskForceMemberWithIdOnly = await prisma.taskForceMember.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TaskForceMemberCreateManyAndReturnArgs>(args?: SelectSubset<T, TaskForceMemberCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TaskForceMember.
+     * @param {TaskForceMemberDeleteArgs} args - Arguments to delete one TaskForceMember.
+     * @example
+     * // Delete one TaskForceMember
+     * const TaskForceMember = await prisma.taskForceMember.delete({
+     *   where: {
+     *     // ... filter to delete one TaskForceMember
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TaskForceMemberDeleteArgs>(args: SelectSubset<T, TaskForceMemberDeleteArgs<ExtArgs>>): Prisma__TaskForceMemberClient<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TaskForceMember.
+     * @param {TaskForceMemberUpdateArgs} args - Arguments to update one TaskForceMember.
+     * @example
+     * // Update one TaskForceMember
+     * const taskForceMember = await prisma.taskForceMember.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TaskForceMemberUpdateArgs>(args: SelectSubset<T, TaskForceMemberUpdateArgs<ExtArgs>>): Prisma__TaskForceMemberClient<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TaskForceMembers.
+     * @param {TaskForceMemberDeleteManyArgs} args - Arguments to filter TaskForceMembers to delete.
+     * @example
+     * // Delete a few TaskForceMembers
+     * const { count } = await prisma.taskForceMember.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TaskForceMemberDeleteManyArgs>(args?: SelectSubset<T, TaskForceMemberDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TaskForceMembers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskForceMemberUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TaskForceMembers
+     * const taskForceMember = await prisma.taskForceMember.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TaskForceMemberUpdateManyArgs>(args: SelectSubset<T, TaskForceMemberUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TaskForceMembers and returns the data updated in the database.
+     * @param {TaskForceMemberUpdateManyAndReturnArgs} args - Arguments to update many TaskForceMembers.
+     * @example
+     * // Update many TaskForceMembers
+     * const taskForceMember = await prisma.taskForceMember.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TaskForceMembers and only return the `id`
+     * const taskForceMemberWithIdOnly = await prisma.taskForceMember.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TaskForceMemberUpdateManyAndReturnArgs>(args: SelectSubset<T, TaskForceMemberUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TaskForceMember.
+     * @param {TaskForceMemberUpsertArgs} args - Arguments to update or create a TaskForceMember.
+     * @example
+     * // Update or create a TaskForceMember
+     * const taskForceMember = await prisma.taskForceMember.upsert({
+     *   create: {
+     *     // ... data to create a TaskForceMember
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TaskForceMember we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TaskForceMemberUpsertArgs>(args: SelectSubset<T, TaskForceMemberUpsertArgs<ExtArgs>>): Prisma__TaskForceMemberClient<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TaskForceMembers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskForceMemberCountArgs} args - Arguments to filter TaskForceMembers to count.
+     * @example
+     * // Count the number of TaskForceMembers
+     * const count = await prisma.taskForceMember.count({
+     *   where: {
+     *     // ... the filter for the TaskForceMembers we want to count
+     *   }
+     * })
+    **/
+    count<T extends TaskForceMemberCountArgs>(
+      args?: Subset<T, TaskForceMemberCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TaskForceMemberCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TaskForceMember.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskForceMemberAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TaskForceMemberAggregateArgs>(args: Subset<T, TaskForceMemberAggregateArgs>): Prisma.PrismaPromise<GetTaskForceMemberAggregateType<T>>
+
+    /**
+     * Group by TaskForceMember.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskForceMemberGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TaskForceMemberGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TaskForceMemberGroupByArgs['orderBy'] }
+        : { orderBy?: TaskForceMemberGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TaskForceMemberGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTaskForceMemberGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TaskForceMember model
+   */
+  readonly fields: TaskForceMemberFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TaskForceMember.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TaskForceMemberClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    taskForce<T extends TaskForceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TaskForceDefaultArgs<ExtArgs>>): Prisma__TaskForceClient<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    parameterFolder<T extends ParameterFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ParameterFolderDefaultArgs<ExtArgs>>): Prisma__ParameterFolderClient<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TaskForceMember model
+   */
+  interface TaskForceMemberFieldRefs {
+    readonly id: FieldRef<"TaskForceMember", 'String'>
+    readonly taskForceId: FieldRef<"TaskForceMember", 'String'>
+    readonly parameterFolderId: FieldRef<"TaskForceMember", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TaskForceMember findUnique
+   */
+  export type TaskForceMemberFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskForceMember to fetch.
+     */
+    where: TaskForceMemberWhereUniqueInput
+  }
+
+  /**
+   * TaskForceMember findUniqueOrThrow
+   */
+  export type TaskForceMemberFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskForceMember to fetch.
+     */
+    where: TaskForceMemberWhereUniqueInput
+  }
+
+  /**
+   * TaskForceMember findFirst
+   */
+  export type TaskForceMemberFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskForceMember to fetch.
+     */
+    where?: TaskForceMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskForceMembers to fetch.
+     */
+    orderBy?: TaskForceMemberOrderByWithRelationInput | TaskForceMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TaskForceMembers.
+     */
+    cursor?: TaskForceMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskForceMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskForceMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskForceMembers.
+     */
+    distinct?: TaskForceMemberScalarFieldEnum | TaskForceMemberScalarFieldEnum[]
+  }
+
+  /**
+   * TaskForceMember findFirstOrThrow
+   */
+  export type TaskForceMemberFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskForceMember to fetch.
+     */
+    where?: TaskForceMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskForceMembers to fetch.
+     */
+    orderBy?: TaskForceMemberOrderByWithRelationInput | TaskForceMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TaskForceMembers.
+     */
+    cursor?: TaskForceMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskForceMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskForceMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskForceMembers.
+     */
+    distinct?: TaskForceMemberScalarFieldEnum | TaskForceMemberScalarFieldEnum[]
+  }
+
+  /**
+   * TaskForceMember findMany
+   */
+  export type TaskForceMemberFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskForceMembers to fetch.
+     */
+    where?: TaskForceMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskForceMembers to fetch.
+     */
+    orderBy?: TaskForceMemberOrderByWithRelationInput | TaskForceMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TaskForceMembers.
+     */
+    cursor?: TaskForceMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskForceMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskForceMembers.
+     */
+    skip?: number
+    distinct?: TaskForceMemberScalarFieldEnum | TaskForceMemberScalarFieldEnum[]
+  }
+
+  /**
+   * TaskForceMember create
+   */
+  export type TaskForceMemberCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TaskForceMember.
+     */
+    data: XOR<TaskForceMemberCreateInput, TaskForceMemberUncheckedCreateInput>
+  }
+
+  /**
+   * TaskForceMember createMany
+   */
+  export type TaskForceMemberCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TaskForceMembers.
+     */
+    data: TaskForceMemberCreateManyInput | TaskForceMemberCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TaskForceMember createManyAndReturn
+   */
+  export type TaskForceMemberCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * The data used to create many TaskForceMembers.
+     */
+    data: TaskForceMemberCreateManyInput | TaskForceMemberCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TaskForceMember update
+   */
+  export type TaskForceMemberUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TaskForceMember.
+     */
+    data: XOR<TaskForceMemberUpdateInput, TaskForceMemberUncheckedUpdateInput>
+    /**
+     * Choose, which TaskForceMember to update.
+     */
+    where: TaskForceMemberWhereUniqueInput
+  }
+
+  /**
+   * TaskForceMember updateMany
+   */
+  export type TaskForceMemberUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TaskForceMembers.
+     */
+    data: XOR<TaskForceMemberUpdateManyMutationInput, TaskForceMemberUncheckedUpdateManyInput>
+    /**
+     * Filter which TaskForceMembers to update
+     */
+    where?: TaskForceMemberWhereInput
+    /**
+     * Limit how many TaskForceMembers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskForceMember updateManyAndReturn
+   */
+  export type TaskForceMemberUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * The data used to update TaskForceMembers.
+     */
+    data: XOR<TaskForceMemberUpdateManyMutationInput, TaskForceMemberUncheckedUpdateManyInput>
+    /**
+     * Filter which TaskForceMembers to update
+     */
+    where?: TaskForceMemberWhereInput
+    /**
+     * Limit how many TaskForceMembers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TaskForceMember upsert
+   */
+  export type TaskForceMemberUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TaskForceMember to update in case it exists.
+     */
+    where: TaskForceMemberWhereUniqueInput
+    /**
+     * In case the TaskForceMember found by the `where` argument doesn't exist, create a new TaskForceMember with this data.
+     */
+    create: XOR<TaskForceMemberCreateInput, TaskForceMemberUncheckedCreateInput>
+    /**
+     * In case the TaskForceMember was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TaskForceMemberUpdateInput, TaskForceMemberUncheckedUpdateInput>
+  }
+
+  /**
+   * TaskForceMember delete
+   */
+  export type TaskForceMemberDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberInclude<ExtArgs> | null
+    /**
+     * Filter which TaskForceMember to delete.
+     */
+    where: TaskForceMemberWhereUniqueInput
+  }
+
+  /**
+   * TaskForceMember deleteMany
+   */
+  export type TaskForceMemberDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TaskForceMembers to delete
+     */
+    where?: TaskForceMemberWhereInput
+    /**
+     * Limit how many TaskForceMembers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskForceMember without action
+   */
+  export type TaskForceMemberDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -20586,8 +28113,7 @@ export namespace Prisma {
   export const AccreditationScalarFieldEnum: {
     id: 'id',
     programId: 'programId',
-    currentLevel: 'currentLevel',
-    phase: 'phase'
+    currentLevel: 'currentLevel'
   };
 
   export type AccreditationScalarFieldEnum = (typeof AccreditationScalarFieldEnum)[keyof typeof AccreditationScalarFieldEnum]
@@ -20596,7 +28122,11 @@ export namespace Prisma {
   export const SurveyVisitScalarFieldEnum: {
     id: 'id',
     accreditationId: 'accreditationId',
-    targetLevel: 'targetLevel'
+    actualSurveyDate: 'actualSurveyDate',
+    type: 'type',
+    targetLevel: 'targetLevel',
+    status: 'status',
+    createdAt: 'createdAt'
   };
 
   export type SurveyVisitScalarFieldEnum = (typeof SurveyVisitScalarFieldEnum)[keyof typeof SurveyVisitScalarFieldEnum]
@@ -20624,7 +28154,8 @@ export namespace Prisma {
     id: 'id',
     instrumentFolderId: 'instrumentFolderId',
     folderId: 'folderId',
-    areaId: 'areaId'
+    areaId: 'areaId',
+    complete: 'complete'
   };
 
   export type AreaFolderScalarFieldEnum = (typeof AreaFolderScalarFieldEnum)[keyof typeof AreaFolderScalarFieldEnum]
@@ -20660,6 +28191,65 @@ export namespace Prisma {
   };
 
   export type EvidenceFileScalarFieldEnum = (typeof EvidenceFileScalarFieldEnum)[keyof typeof EvidenceFileScalarFieldEnum]
+
+
+  export const PhaseTwoRequirementsScalarFieldEnum: {
+    id: 'id',
+    surveyVisitId: 'surveyVisitId',
+    instrumentId: 'instrumentId'
+  };
+
+  export type PhaseTwoRequirementsScalarFieldEnum = (typeof PhaseTwoRequirementsScalarFieldEnum)[keyof typeof PhaseTwoRequirementsScalarFieldEnum]
+
+
+  export const PhaseTwoFolderScalarFieldEnum: {
+    id: 'id',
+    phaseTwoRequirementsId: 'phaseTwoRequirementsId',
+    folderId: 'folderId'
+  };
+
+  export type PhaseTwoFolderScalarFieldEnum = (typeof PhaseTwoFolderScalarFieldEnum)[keyof typeof PhaseTwoFolderScalarFieldEnum]
+
+
+  export const PhaseTwoAreaFolderScalarFieldEnum: {
+    id: 'id',
+    phaseTwoFolderId: 'phaseTwoFolderId',
+    folderId: 'folderId',
+    areaId: 'areaId'
+  };
+
+  export type PhaseTwoAreaFolderScalarFieldEnum = (typeof PhaseTwoAreaFolderScalarFieldEnum)[keyof typeof PhaseTwoAreaFolderScalarFieldEnum]
+
+
+  export const AreaFileScalarFieldEnum: {
+    id: 'id',
+    phaseOneAreaFolderId: 'phaseOneAreaFolderId',
+    phaseTwoAreaFolderId: 'phaseTwoAreaFolderId',
+    type: 'type',
+    fileId: 'fileId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AreaFileScalarFieldEnum = (typeof AreaFileScalarFieldEnum)[keyof typeof AreaFileScalarFieldEnum]
+
+
+  export const TaskForceScalarFieldEnum: {
+    id: 'id',
+    areaFolderId: 'areaFolderId',
+    chairPersonId: 'chairPersonId'
+  };
+
+  export type TaskForceScalarFieldEnum = (typeof TaskForceScalarFieldEnum)[keyof typeof TaskForceScalarFieldEnum]
+
+
+  export const TaskForceMemberScalarFieldEnum: {
+    id: 'id',
+    taskForceId: 'taskForceId',
+    parameterFolderId: 'parameterFolderId'
+  };
+
+  export type TaskForceMemberScalarFieldEnum = (typeof TaskForceMemberScalarFieldEnum)[keyof typeof TaskForceMemberScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -20786,6 +28376,55 @@ export namespace Prisma {
    * Reference to a field of type 'Decimal[]'
    */
   export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'SurveyVisitType'
+   */
+  export type EnumSurveyVisitTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurveyVisitType'>
+    
+
+
+  /**
+   * Reference to a field of type 'SurveyVisitType[]'
+   */
+  export type ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurveyVisitType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'AccreditationStatus'
+   */
+  export type EnumAccreditationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccreditationStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'AccreditationStatus[]'
+   */
+  export type ListEnumAccreditationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccreditationStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'AreaFileType'
+   */
+  export type EnumAreaFileTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AreaFileType'>
+    
+
+
+  /**
+   * Reference to a field of type 'AreaFileType[]'
+   */
+  export type ListEnumAreaFileTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AreaFileType[]'>
     
 
 
@@ -20970,6 +28609,7 @@ export namespace Prisma {
     assignedAt?: DateTimeFilter<"ProgramPersonnel"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
+    chairPerson?: TaskForceListRelationFilter
   }
 
   export type ProgramPersonnelOrderByWithRelationInput = {
@@ -20979,6 +28619,7 @@ export namespace Prisma {
     assignedAt?: SortOrder
     user?: UserOrderByWithRelationInput
     program?: ProgramOrderByWithRelationInput
+    chairPerson?: TaskForceOrderByRelationAggregateInput
   }
 
   export type ProgramPersonnelWhereUniqueInput = Prisma.AtLeast<{
@@ -20992,6 +28633,7 @@ export namespace Prisma {
     assignedAt?: DateTimeFilter<"ProgramPersonnel"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
+    chairPerson?: TaskForceListRelationFilter
   }, "id" | "userId_programId">
 
   export type ProgramPersonnelOrderByWithAggregationInput = {
@@ -21025,6 +28667,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Instrument"> | Date | string
     area?: AreaListRelationFilter
     phaseOneRequirements?: PhaseOneRequirementsListRelationFilter
+    phaseTwoRequirements?: PhaseTwoRequirementsListRelationFilter
   }
 
   export type InstrumentOrderByWithRelationInput = {
@@ -21035,6 +28678,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     area?: AreaOrderByRelationAggregateInput
     phaseOneRequirements?: PhaseOneRequirementsOrderByRelationAggregateInput
+    phaseTwoRequirements?: PhaseTwoRequirementsOrderByRelationAggregateInput
   }
 
   export type InstrumentWhereUniqueInput = Prisma.AtLeast<{
@@ -21049,6 +28693,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Instrument"> | Date | string
     area?: AreaListRelationFilter
     phaseOneRequirements?: PhaseOneRequirementsListRelationFilter
+    phaseTwoRequirements?: PhaseTwoRequirementsListRelationFilter
   }, "id" | "name_accreditingBody">
 
   export type InstrumentOrderByWithAggregationInput = {
@@ -21087,6 +28732,7 @@ export namespace Prisma {
     instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
     parameter?: ParameterListRelationFilter
     areaFolders?: AreaFolderListRelationFilter
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderListRelationFilter
   }
 
   export type AreaOrderByWithRelationInput = {
@@ -21100,6 +28746,7 @@ export namespace Prisma {
     instrument?: InstrumentOrderByWithRelationInput
     parameter?: ParameterOrderByRelationAggregateInput
     areaFolders?: AreaFolderOrderByRelationAggregateInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderOrderByRelationAggregateInput
   }
 
   export type AreaWhereUniqueInput = Prisma.AtLeast<{
@@ -21116,6 +28763,7 @@ export namespace Prisma {
     instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
     parameter?: ParameterListRelationFilter
     areaFolders?: AreaFolderListRelationFilter
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderListRelationFilter
   }, "id">
 
   export type AreaOrderByWithAggregationInput = {
@@ -21361,7 +29009,6 @@ export namespace Prisma {
     id?: StringFilter<"Accreditation"> | string
     programId?: StringFilter<"Accreditation"> | string
     currentLevel?: StringNullableFilter<"Accreditation"> | string | null
-    phase?: EnumPhaseNullableFilter<"Accreditation"> | $Enums.Phase | null
     program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
     level?: XOR<LevelNullableScalarRelationFilter, LevelWhereInput> | null
     surveyVisits?: SurveyVisitListRelationFilter
@@ -21371,7 +29018,6 @@ export namespace Prisma {
     id?: SortOrder
     programId?: SortOrder
     currentLevel?: SortOrderInput | SortOrder
-    phase?: SortOrderInput | SortOrder
     program?: ProgramOrderByWithRelationInput
     level?: LevelOrderByWithRelationInput
     surveyVisits?: SurveyVisitOrderByRelationAggregateInput
@@ -21384,7 +29030,6 @@ export namespace Prisma {
     OR?: AccreditationWhereInput[]
     NOT?: AccreditationWhereInput | AccreditationWhereInput[]
     currentLevel?: StringNullableFilter<"Accreditation"> | string | null
-    phase?: EnumPhaseNullableFilter<"Accreditation"> | $Enums.Phase | null
     program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
     level?: XOR<LevelNullableScalarRelationFilter, LevelWhereInput> | null
     surveyVisits?: SurveyVisitListRelationFilter
@@ -21394,7 +29039,6 @@ export namespace Prisma {
     id?: SortOrder
     programId?: SortOrder
     currentLevel?: SortOrderInput | SortOrder
-    phase?: SortOrderInput | SortOrder
     _count?: AccreditationCountOrderByAggregateInput
     _max?: AccreditationMaxOrderByAggregateInput
     _min?: AccreditationMinOrderByAggregateInput
@@ -21407,7 +29051,6 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Accreditation"> | string
     programId?: StringWithAggregatesFilter<"Accreditation"> | string
     currentLevel?: StringNullableWithAggregatesFilter<"Accreditation"> | string | null
-    phase?: EnumPhaseNullableWithAggregatesFilter<"Accreditation"> | $Enums.Phase | null
   }
 
   export type SurveyVisitWhereInput = {
@@ -21416,19 +29059,29 @@ export namespace Prisma {
     NOT?: SurveyVisitWhereInput | SurveyVisitWhereInput[]
     id?: StringFilter<"SurveyVisit"> | string
     accreditationId?: StringFilter<"SurveyVisit"> | string
+    actualSurveyDate?: DateTimeFilter<"SurveyVisit"> | Date | string
+    type?: EnumSurveyVisitTypeFilter<"SurveyVisit"> | $Enums.SurveyVisitType
     targetLevel?: StringFilter<"SurveyVisit"> | string
+    status?: EnumAccreditationStatusFilter<"SurveyVisit"> | $Enums.AccreditationStatus
+    createdAt?: DateTimeFilter<"SurveyVisit"> | Date | string
     accreditation?: XOR<AccreditationScalarRelationFilter, AccreditationWhereInput>
     level?: XOR<LevelScalarRelationFilter, LevelWhereInput>
     phaseOneRequirements?: XOR<PhaseOneRequirementsNullableScalarRelationFilter, PhaseOneRequirementsWhereInput> | null
+    phaseTwoRequirements?: XOR<PhaseTwoRequirementsNullableScalarRelationFilter, PhaseTwoRequirementsWhereInput> | null
   }
 
   export type SurveyVisitOrderByWithRelationInput = {
     id?: SortOrder
     accreditationId?: SortOrder
+    actualSurveyDate?: SortOrder
+    type?: SortOrder
     targetLevel?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
     accreditation?: AccreditationOrderByWithRelationInput
     level?: LevelOrderByWithRelationInput
     phaseOneRequirements?: PhaseOneRequirementsOrderByWithRelationInput
+    phaseTwoRequirements?: PhaseTwoRequirementsOrderByWithRelationInput
   }
 
   export type SurveyVisitWhereUniqueInput = Prisma.AtLeast<{
@@ -21437,16 +29090,25 @@ export namespace Prisma {
     OR?: SurveyVisitWhereInput[]
     NOT?: SurveyVisitWhereInput | SurveyVisitWhereInput[]
     accreditationId?: StringFilter<"SurveyVisit"> | string
+    actualSurveyDate?: DateTimeFilter<"SurveyVisit"> | Date | string
+    type?: EnumSurveyVisitTypeFilter<"SurveyVisit"> | $Enums.SurveyVisitType
     targetLevel?: StringFilter<"SurveyVisit"> | string
+    status?: EnumAccreditationStatusFilter<"SurveyVisit"> | $Enums.AccreditationStatus
+    createdAt?: DateTimeFilter<"SurveyVisit"> | Date | string
     accreditation?: XOR<AccreditationScalarRelationFilter, AccreditationWhereInput>
     level?: XOR<LevelScalarRelationFilter, LevelWhereInput>
     phaseOneRequirements?: XOR<PhaseOneRequirementsNullableScalarRelationFilter, PhaseOneRequirementsWhereInput> | null
+    phaseTwoRequirements?: XOR<PhaseTwoRequirementsNullableScalarRelationFilter, PhaseTwoRequirementsWhereInput> | null
   }, "id">
 
   export type SurveyVisitOrderByWithAggregationInput = {
     id?: SortOrder
     accreditationId?: SortOrder
+    actualSurveyDate?: SortOrder
+    type?: SortOrder
     targetLevel?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
     _count?: SurveyVisitCountOrderByAggregateInput
     _max?: SurveyVisitMaxOrderByAggregateInput
     _min?: SurveyVisitMinOrderByAggregateInput
@@ -21458,7 +29120,11 @@ export namespace Prisma {
     NOT?: SurveyVisitScalarWhereWithAggregatesInput | SurveyVisitScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"SurveyVisit"> | string
     accreditationId?: StringWithAggregatesFilter<"SurveyVisit"> | string
+    actualSurveyDate?: DateTimeWithAggregatesFilter<"SurveyVisit"> | Date | string
+    type?: EnumSurveyVisitTypeWithAggregatesFilter<"SurveyVisit"> | $Enums.SurveyVisitType
     targetLevel?: StringWithAggregatesFilter<"SurveyVisit"> | string
+    status?: EnumAccreditationStatusWithAggregatesFilter<"SurveyVisit"> | $Enums.AccreditationStatus
+    createdAt?: DateTimeWithAggregatesFilter<"SurveyVisit"> | Date | string
   }
 
   export type PhaseOneRequirementsWhereInput = {
@@ -21466,16 +29132,16 @@ export namespace Prisma {
     OR?: PhaseOneRequirementsWhereInput[]
     NOT?: PhaseOneRequirementsWhereInput | PhaseOneRequirementsWhereInput[]
     id?: StringFilter<"PhaseOneRequirements"> | string
-    surveyVisitId?: StringFilter<"PhaseOneRequirements"> | string
+    surveyVisitId?: StringNullableFilter<"PhaseOneRequirements"> | string | null
     instrumentId?: StringFilter<"PhaseOneRequirements"> | string
-    surveyVisit?: XOR<SurveyVisitScalarRelationFilter, SurveyVisitWhereInput>
+    surveyVisit?: XOR<SurveyVisitNullableScalarRelationFilter, SurveyVisitWhereInput> | null
     instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
     instrumentFolder?: XOR<InstrumentFolderNullableScalarRelationFilter, InstrumentFolderWhereInput> | null
   }
 
   export type PhaseOneRequirementsOrderByWithRelationInput = {
     id?: SortOrder
-    surveyVisitId?: SortOrder
+    surveyVisitId?: SortOrderInput | SortOrder
     instrumentId?: SortOrder
     surveyVisit?: SurveyVisitOrderByWithRelationInput
     instrument?: InstrumentOrderByWithRelationInput
@@ -21489,14 +29155,14 @@ export namespace Prisma {
     OR?: PhaseOneRequirementsWhereInput[]
     NOT?: PhaseOneRequirementsWhereInput | PhaseOneRequirementsWhereInput[]
     instrumentId?: StringFilter<"PhaseOneRequirements"> | string
-    surveyVisit?: XOR<SurveyVisitScalarRelationFilter, SurveyVisitWhereInput>
+    surveyVisit?: XOR<SurveyVisitNullableScalarRelationFilter, SurveyVisitWhereInput> | null
     instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
     instrumentFolder?: XOR<InstrumentFolderNullableScalarRelationFilter, InstrumentFolderWhereInput> | null
   }, "id" | "surveyVisitId">
 
   export type PhaseOneRequirementsOrderByWithAggregationInput = {
     id?: SortOrder
-    surveyVisitId?: SortOrder
+    surveyVisitId?: SortOrderInput | SortOrder
     instrumentId?: SortOrder
     _count?: PhaseOneRequirementsCountOrderByAggregateInput
     _max?: PhaseOneRequirementsMaxOrderByAggregateInput
@@ -21508,7 +29174,7 @@ export namespace Prisma {
     OR?: PhaseOneRequirementsScalarWhereWithAggregatesInput[]
     NOT?: PhaseOneRequirementsScalarWhereWithAggregatesInput | PhaseOneRequirementsScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"PhaseOneRequirements"> | string
-    surveyVisitId?: StringWithAggregatesFilter<"PhaseOneRequirements"> | string
+    surveyVisitId?: StringNullableWithAggregatesFilter<"PhaseOneRequirements"> | string | null
     instrumentId?: StringWithAggregatesFilter<"PhaseOneRequirements"> | string
   }
 
@@ -21517,15 +29183,15 @@ export namespace Prisma {
     OR?: InstrumentFolderWhereInput[]
     NOT?: InstrumentFolderWhereInput | InstrumentFolderWhereInput[]
     id?: StringFilter<"InstrumentFolder"> | string
-    phaseOneRequirementsId?: StringFilter<"InstrumentFolder"> | string
+    phaseOneRequirementsId?: StringNullableFilter<"InstrumentFolder"> | string | null
     folderId?: StringFilter<"InstrumentFolder"> | string
-    phaseOneRequirements?: XOR<PhaseOneRequirementsScalarRelationFilter, PhaseOneRequirementsWhereInput>
+    phaseOneRequirements?: XOR<PhaseOneRequirementsNullableScalarRelationFilter, PhaseOneRequirementsWhereInput> | null
     areaFolders?: AreaFolderListRelationFilter
   }
 
   export type InstrumentFolderOrderByWithRelationInput = {
     id?: SortOrder
-    phaseOneRequirementsId?: SortOrder
+    phaseOneRequirementsId?: SortOrderInput | SortOrder
     folderId?: SortOrder
     phaseOneRequirements?: PhaseOneRequirementsOrderByWithRelationInput
     areaFolders?: AreaFolderOrderByRelationAggregateInput
@@ -21538,13 +29204,13 @@ export namespace Prisma {
     OR?: InstrumentFolderWhereInput[]
     NOT?: InstrumentFolderWhereInput | InstrumentFolderWhereInput[]
     folderId?: StringFilter<"InstrumentFolder"> | string
-    phaseOneRequirements?: XOR<PhaseOneRequirementsScalarRelationFilter, PhaseOneRequirementsWhereInput>
+    phaseOneRequirements?: XOR<PhaseOneRequirementsNullableScalarRelationFilter, PhaseOneRequirementsWhereInput> | null
     areaFolders?: AreaFolderListRelationFilter
   }, "id" | "phaseOneRequirementsId">
 
   export type InstrumentFolderOrderByWithAggregationInput = {
     id?: SortOrder
-    phaseOneRequirementsId?: SortOrder
+    phaseOneRequirementsId?: SortOrderInput | SortOrder
     folderId?: SortOrder
     _count?: InstrumentFolderCountOrderByAggregateInput
     _max?: InstrumentFolderMaxOrderByAggregateInput
@@ -21556,7 +29222,7 @@ export namespace Prisma {
     OR?: InstrumentFolderScalarWhereWithAggregatesInput[]
     NOT?: InstrumentFolderScalarWhereWithAggregatesInput | InstrumentFolderScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"InstrumentFolder"> | string
-    phaseOneRequirementsId?: StringWithAggregatesFilter<"InstrumentFolder"> | string
+    phaseOneRequirementsId?: StringNullableWithAggregatesFilter<"InstrumentFolder"> | string | null
     folderId?: StringWithAggregatesFilter<"InstrumentFolder"> | string
   }
 
@@ -21568,9 +29234,12 @@ export namespace Prisma {
     instrumentFolderId?: StringFilter<"AreaFolder"> | string
     folderId?: StringFilter<"AreaFolder"> | string
     areaId?: IntFilter<"AreaFolder"> | number
+    complete?: BoolFilter<"AreaFolder"> | boolean
     instrumentFolder?: XOR<InstrumentFolderScalarRelationFilter, InstrumentFolderWhereInput>
     parameterFolders?: ParameterFolderListRelationFilter
     area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
+    areaFiles?: AreaFileListRelationFilter
+    taskForce?: XOR<TaskForceNullableScalarRelationFilter, TaskForceWhereInput> | null
   }
 
   export type AreaFolderOrderByWithRelationInput = {
@@ -21578,9 +29247,12 @@ export namespace Prisma {
     instrumentFolderId?: SortOrder
     folderId?: SortOrder
     areaId?: SortOrder
+    complete?: SortOrder
     instrumentFolder?: InstrumentFolderOrderByWithRelationInput
     parameterFolders?: ParameterFolderOrderByRelationAggregateInput
     area?: AreaOrderByWithRelationInput
+    areaFiles?: AreaFileOrderByRelationAggregateInput
+    taskForce?: TaskForceOrderByWithRelationInput
   }
 
   export type AreaFolderWhereUniqueInput = Prisma.AtLeast<{
@@ -21591,9 +29263,12 @@ export namespace Prisma {
     instrumentFolderId?: StringFilter<"AreaFolder"> | string
     folderId?: StringFilter<"AreaFolder"> | string
     areaId?: IntFilter<"AreaFolder"> | number
+    complete?: BoolFilter<"AreaFolder"> | boolean
     instrumentFolder?: XOR<InstrumentFolderScalarRelationFilter, InstrumentFolderWhereInput>
     parameterFolders?: ParameterFolderListRelationFilter
     area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
+    areaFiles?: AreaFileListRelationFilter
+    taskForce?: XOR<TaskForceNullableScalarRelationFilter, TaskForceWhereInput> | null
   }, "id">
 
   export type AreaFolderOrderByWithAggregationInput = {
@@ -21601,6 +29276,7 @@ export namespace Prisma {
     instrumentFolderId?: SortOrder
     folderId?: SortOrder
     areaId?: SortOrder
+    complete?: SortOrder
     _count?: AreaFolderCountOrderByAggregateInput
     _avg?: AreaFolderAvgOrderByAggregateInput
     _max?: AreaFolderMaxOrderByAggregateInput
@@ -21616,6 +29292,7 @@ export namespace Prisma {
     instrumentFolderId?: StringWithAggregatesFilter<"AreaFolder"> | string
     folderId?: StringWithAggregatesFilter<"AreaFolder"> | string
     areaId?: IntWithAggregatesFilter<"AreaFolder"> | number
+    complete?: BoolWithAggregatesFilter<"AreaFolder"> | boolean
   }
 
   export type ParameterFolderWhereInput = {
@@ -21629,6 +29306,7 @@ export namespace Prisma {
     areaFolder?: XOR<AreaFolderScalarRelationFilter, AreaFolderWhereInput>
     indicatorFolders?: IndicatorFolderListRelationFilter
     parameter?: XOR<ParameterScalarRelationFilter, ParameterWhereInput>
+    taskForceMember?: XOR<TaskForceMemberNullableScalarRelationFilter, TaskForceMemberWhereInput> | null
   }
 
   export type ParameterFolderOrderByWithRelationInput = {
@@ -21639,6 +29317,7 @@ export namespace Prisma {
     areaFolder?: AreaFolderOrderByWithRelationInput
     indicatorFolders?: IndicatorFolderOrderByRelationAggregateInput
     parameter?: ParameterOrderByWithRelationInput
+    taskForceMember?: TaskForceMemberOrderByWithRelationInput
   }
 
   export type ParameterFolderWhereUniqueInput = Prisma.AtLeast<{
@@ -21652,6 +29331,7 @@ export namespace Prisma {
     areaFolder?: XOR<AreaFolderScalarRelationFilter, AreaFolderWhereInput>
     indicatorFolders?: IndicatorFolderListRelationFilter
     parameter?: XOR<ParameterScalarRelationFilter, ParameterWhereInput>
+    taskForceMember?: XOR<TaskForceMemberNullableScalarRelationFilter, TaskForceMemberWhereInput> | null
   }, "id">
 
   export type ParameterFolderOrderByWithAggregationInput = {
@@ -21792,6 +29472,330 @@ export namespace Prisma {
     indicatorId?: IntWithAggregatesFilter<"EvidenceFile"> | number
     createdAt?: DateTimeWithAggregatesFilter<"EvidenceFile"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"EvidenceFile"> | Date | string
+  }
+
+  export type PhaseTwoRequirementsWhereInput = {
+    AND?: PhaseTwoRequirementsWhereInput | PhaseTwoRequirementsWhereInput[]
+    OR?: PhaseTwoRequirementsWhereInput[]
+    NOT?: PhaseTwoRequirementsWhereInput | PhaseTwoRequirementsWhereInput[]
+    id?: StringFilter<"PhaseTwoRequirements"> | string
+    surveyVisitId?: StringNullableFilter<"PhaseTwoRequirements"> | string | null
+    instrumentId?: StringFilter<"PhaseTwoRequirements"> | string
+    surveyVisit?: XOR<SurveyVisitNullableScalarRelationFilter, SurveyVisitWhereInput> | null
+    instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
+    phaseTwoFolder?: XOR<PhaseTwoFolderNullableScalarRelationFilter, PhaseTwoFolderWhereInput> | null
+  }
+
+  export type PhaseTwoRequirementsOrderByWithRelationInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrderInput | SortOrder
+    instrumentId?: SortOrder
+    surveyVisit?: SurveyVisitOrderByWithRelationInput
+    instrument?: InstrumentOrderByWithRelationInput
+    phaseTwoFolder?: PhaseTwoFolderOrderByWithRelationInput
+  }
+
+  export type PhaseTwoRequirementsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    surveyVisitId?: string
+    AND?: PhaseTwoRequirementsWhereInput | PhaseTwoRequirementsWhereInput[]
+    OR?: PhaseTwoRequirementsWhereInput[]
+    NOT?: PhaseTwoRequirementsWhereInput | PhaseTwoRequirementsWhereInput[]
+    instrumentId?: StringFilter<"PhaseTwoRequirements"> | string
+    surveyVisit?: XOR<SurveyVisitNullableScalarRelationFilter, SurveyVisitWhereInput> | null
+    instrument?: XOR<InstrumentScalarRelationFilter, InstrumentWhereInput>
+    phaseTwoFolder?: XOR<PhaseTwoFolderNullableScalarRelationFilter, PhaseTwoFolderWhereInput> | null
+  }, "id" | "surveyVisitId">
+
+  export type PhaseTwoRequirementsOrderByWithAggregationInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrderInput | SortOrder
+    instrumentId?: SortOrder
+    _count?: PhaseTwoRequirementsCountOrderByAggregateInput
+    _max?: PhaseTwoRequirementsMaxOrderByAggregateInput
+    _min?: PhaseTwoRequirementsMinOrderByAggregateInput
+  }
+
+  export type PhaseTwoRequirementsScalarWhereWithAggregatesInput = {
+    AND?: PhaseTwoRequirementsScalarWhereWithAggregatesInput | PhaseTwoRequirementsScalarWhereWithAggregatesInput[]
+    OR?: PhaseTwoRequirementsScalarWhereWithAggregatesInput[]
+    NOT?: PhaseTwoRequirementsScalarWhereWithAggregatesInput | PhaseTwoRequirementsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PhaseTwoRequirements"> | string
+    surveyVisitId?: StringNullableWithAggregatesFilter<"PhaseTwoRequirements"> | string | null
+    instrumentId?: StringWithAggregatesFilter<"PhaseTwoRequirements"> | string
+  }
+
+  export type PhaseTwoFolderWhereInput = {
+    AND?: PhaseTwoFolderWhereInput | PhaseTwoFolderWhereInput[]
+    OR?: PhaseTwoFolderWhereInput[]
+    NOT?: PhaseTwoFolderWhereInput | PhaseTwoFolderWhereInput[]
+    id?: StringFilter<"PhaseTwoFolder"> | string
+    phaseTwoRequirementsId?: StringNullableFilter<"PhaseTwoFolder"> | string | null
+    folderId?: StringFilter<"PhaseTwoFolder"> | string
+    phaseTwoRequirements?: XOR<PhaseTwoRequirementsNullableScalarRelationFilter, PhaseTwoRequirementsWhereInput> | null
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderListRelationFilter
+  }
+
+  export type PhaseTwoFolderOrderByWithRelationInput = {
+    id?: SortOrder
+    phaseTwoRequirementsId?: SortOrderInput | SortOrder
+    folderId?: SortOrder
+    phaseTwoRequirements?: PhaseTwoRequirementsOrderByWithRelationInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderOrderByRelationAggregateInput
+  }
+
+  export type PhaseTwoFolderWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    phaseTwoRequirementsId?: string
+    AND?: PhaseTwoFolderWhereInput | PhaseTwoFolderWhereInput[]
+    OR?: PhaseTwoFolderWhereInput[]
+    NOT?: PhaseTwoFolderWhereInput | PhaseTwoFolderWhereInput[]
+    folderId?: StringFilter<"PhaseTwoFolder"> | string
+    phaseTwoRequirements?: XOR<PhaseTwoRequirementsNullableScalarRelationFilter, PhaseTwoRequirementsWhereInput> | null
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderListRelationFilter
+  }, "id" | "phaseTwoRequirementsId">
+
+  export type PhaseTwoFolderOrderByWithAggregationInput = {
+    id?: SortOrder
+    phaseTwoRequirementsId?: SortOrderInput | SortOrder
+    folderId?: SortOrder
+    _count?: PhaseTwoFolderCountOrderByAggregateInput
+    _max?: PhaseTwoFolderMaxOrderByAggregateInput
+    _min?: PhaseTwoFolderMinOrderByAggregateInput
+  }
+
+  export type PhaseTwoFolderScalarWhereWithAggregatesInput = {
+    AND?: PhaseTwoFolderScalarWhereWithAggregatesInput | PhaseTwoFolderScalarWhereWithAggregatesInput[]
+    OR?: PhaseTwoFolderScalarWhereWithAggregatesInput[]
+    NOT?: PhaseTwoFolderScalarWhereWithAggregatesInput | PhaseTwoFolderScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PhaseTwoFolder"> | string
+    phaseTwoRequirementsId?: StringNullableWithAggregatesFilter<"PhaseTwoFolder"> | string | null
+    folderId?: StringWithAggregatesFilter<"PhaseTwoFolder"> | string
+  }
+
+  export type PhaseTwoAreaFolderWhereInput = {
+    AND?: PhaseTwoAreaFolderWhereInput | PhaseTwoAreaFolderWhereInput[]
+    OR?: PhaseTwoAreaFolderWhereInput[]
+    NOT?: PhaseTwoAreaFolderWhereInput | PhaseTwoAreaFolderWhereInput[]
+    id?: StringFilter<"PhaseTwoAreaFolder"> | string
+    phaseTwoFolderId?: StringFilter<"PhaseTwoAreaFolder"> | string
+    folderId?: StringFilter<"PhaseTwoAreaFolder"> | string
+    areaId?: IntFilter<"PhaseTwoAreaFolder"> | number
+    phaseTwoFolder?: XOR<PhaseTwoFolderScalarRelationFilter, PhaseTwoFolderWhereInput>
+    area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
+    areaFiles?: AreaFileListRelationFilter
+  }
+
+  export type PhaseTwoAreaFolderOrderByWithRelationInput = {
+    id?: SortOrder
+    phaseTwoFolderId?: SortOrder
+    folderId?: SortOrder
+    areaId?: SortOrder
+    phaseTwoFolder?: PhaseTwoFolderOrderByWithRelationInput
+    area?: AreaOrderByWithRelationInput
+    areaFiles?: AreaFileOrderByRelationAggregateInput
+  }
+
+  export type PhaseTwoAreaFolderWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PhaseTwoAreaFolderWhereInput | PhaseTwoAreaFolderWhereInput[]
+    OR?: PhaseTwoAreaFolderWhereInput[]
+    NOT?: PhaseTwoAreaFolderWhereInput | PhaseTwoAreaFolderWhereInput[]
+    phaseTwoFolderId?: StringFilter<"PhaseTwoAreaFolder"> | string
+    folderId?: StringFilter<"PhaseTwoAreaFolder"> | string
+    areaId?: IntFilter<"PhaseTwoAreaFolder"> | number
+    phaseTwoFolder?: XOR<PhaseTwoFolderScalarRelationFilter, PhaseTwoFolderWhereInput>
+    area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
+    areaFiles?: AreaFileListRelationFilter
+  }, "id">
+
+  export type PhaseTwoAreaFolderOrderByWithAggregationInput = {
+    id?: SortOrder
+    phaseTwoFolderId?: SortOrder
+    folderId?: SortOrder
+    areaId?: SortOrder
+    _count?: PhaseTwoAreaFolderCountOrderByAggregateInput
+    _avg?: PhaseTwoAreaFolderAvgOrderByAggregateInput
+    _max?: PhaseTwoAreaFolderMaxOrderByAggregateInput
+    _min?: PhaseTwoAreaFolderMinOrderByAggregateInput
+    _sum?: PhaseTwoAreaFolderSumOrderByAggregateInput
+  }
+
+  export type PhaseTwoAreaFolderScalarWhereWithAggregatesInput = {
+    AND?: PhaseTwoAreaFolderScalarWhereWithAggregatesInput | PhaseTwoAreaFolderScalarWhereWithAggregatesInput[]
+    OR?: PhaseTwoAreaFolderScalarWhereWithAggregatesInput[]
+    NOT?: PhaseTwoAreaFolderScalarWhereWithAggregatesInput | PhaseTwoAreaFolderScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PhaseTwoAreaFolder"> | string
+    phaseTwoFolderId?: StringWithAggregatesFilter<"PhaseTwoAreaFolder"> | string
+    folderId?: StringWithAggregatesFilter<"PhaseTwoAreaFolder"> | string
+    areaId?: IntWithAggregatesFilter<"PhaseTwoAreaFolder"> | number
+  }
+
+  export type AreaFileWhereInput = {
+    AND?: AreaFileWhereInput | AreaFileWhereInput[]
+    OR?: AreaFileWhereInput[]
+    NOT?: AreaFileWhereInput | AreaFileWhereInput[]
+    id?: StringFilter<"AreaFile"> | string
+    phaseOneAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
+    phaseTwoAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
+    type?: EnumAreaFileTypeFilter<"AreaFile"> | $Enums.AreaFileType
+    fileId?: StringFilter<"AreaFile"> | string
+    createdAt?: DateTimeFilter<"AreaFile"> | Date | string
+    updatedAt?: DateTimeFilter<"AreaFile"> | Date | string
+    phaseOneAreaFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
+    phaseTwoAreaFolder?: XOR<PhaseTwoAreaFolderNullableScalarRelationFilter, PhaseTwoAreaFolderWhereInput> | null
+  }
+
+  export type AreaFileOrderByWithRelationInput = {
+    id?: SortOrder
+    phaseOneAreaFolderId?: SortOrderInput | SortOrder
+    phaseTwoAreaFolderId?: SortOrderInput | SortOrder
+    type?: SortOrder
+    fileId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    phaseOneAreaFolder?: AreaFolderOrderByWithRelationInput
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderOrderByWithRelationInput
+  }
+
+  export type AreaFileWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AreaFileWhereInput | AreaFileWhereInput[]
+    OR?: AreaFileWhereInput[]
+    NOT?: AreaFileWhereInput | AreaFileWhereInput[]
+    phaseOneAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
+    phaseTwoAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
+    type?: EnumAreaFileTypeFilter<"AreaFile"> | $Enums.AreaFileType
+    fileId?: StringFilter<"AreaFile"> | string
+    createdAt?: DateTimeFilter<"AreaFile"> | Date | string
+    updatedAt?: DateTimeFilter<"AreaFile"> | Date | string
+    phaseOneAreaFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
+    phaseTwoAreaFolder?: XOR<PhaseTwoAreaFolderNullableScalarRelationFilter, PhaseTwoAreaFolderWhereInput> | null
+  }, "id">
+
+  export type AreaFileOrderByWithAggregationInput = {
+    id?: SortOrder
+    phaseOneAreaFolderId?: SortOrderInput | SortOrder
+    phaseTwoAreaFolderId?: SortOrderInput | SortOrder
+    type?: SortOrder
+    fileId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AreaFileCountOrderByAggregateInput
+    _max?: AreaFileMaxOrderByAggregateInput
+    _min?: AreaFileMinOrderByAggregateInput
+  }
+
+  export type AreaFileScalarWhereWithAggregatesInput = {
+    AND?: AreaFileScalarWhereWithAggregatesInput | AreaFileScalarWhereWithAggregatesInput[]
+    OR?: AreaFileScalarWhereWithAggregatesInput[]
+    NOT?: AreaFileScalarWhereWithAggregatesInput | AreaFileScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AreaFile"> | string
+    phaseOneAreaFolderId?: StringNullableWithAggregatesFilter<"AreaFile"> | string | null
+    phaseTwoAreaFolderId?: StringNullableWithAggregatesFilter<"AreaFile"> | string | null
+    type?: EnumAreaFileTypeWithAggregatesFilter<"AreaFile"> | $Enums.AreaFileType
+    fileId?: StringWithAggregatesFilter<"AreaFile"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"AreaFile"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AreaFile"> | Date | string
+  }
+
+  export type TaskForceWhereInput = {
+    AND?: TaskForceWhereInput | TaskForceWhereInput[]
+    OR?: TaskForceWhereInput[]
+    NOT?: TaskForceWhereInput | TaskForceWhereInput[]
+    id?: StringFilter<"TaskForce"> | string
+    areaFolderId?: StringFilter<"TaskForce"> | string
+    chairPersonId?: StringFilter<"TaskForce"> | string
+    areaFolder?: XOR<AreaFolderScalarRelationFilter, AreaFolderWhereInput>
+    chairPerson?: XOR<ProgramPersonnelScalarRelationFilter, ProgramPersonnelWhereInput>
+    taskForceMember?: TaskForceMemberListRelationFilter
+  }
+
+  export type TaskForceOrderByWithRelationInput = {
+    id?: SortOrder
+    areaFolderId?: SortOrder
+    chairPersonId?: SortOrder
+    areaFolder?: AreaFolderOrderByWithRelationInput
+    chairPerson?: ProgramPersonnelOrderByWithRelationInput
+    taskForceMember?: TaskForceMemberOrderByRelationAggregateInput
+  }
+
+  export type TaskForceWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    areaFolderId?: string
+    AND?: TaskForceWhereInput | TaskForceWhereInput[]
+    OR?: TaskForceWhereInput[]
+    NOT?: TaskForceWhereInput | TaskForceWhereInput[]
+    chairPersonId?: StringFilter<"TaskForce"> | string
+    areaFolder?: XOR<AreaFolderScalarRelationFilter, AreaFolderWhereInput>
+    chairPerson?: XOR<ProgramPersonnelScalarRelationFilter, ProgramPersonnelWhereInput>
+    taskForceMember?: TaskForceMemberListRelationFilter
+  }, "id" | "areaFolderId">
+
+  export type TaskForceOrderByWithAggregationInput = {
+    id?: SortOrder
+    areaFolderId?: SortOrder
+    chairPersonId?: SortOrder
+    _count?: TaskForceCountOrderByAggregateInput
+    _max?: TaskForceMaxOrderByAggregateInput
+    _min?: TaskForceMinOrderByAggregateInput
+  }
+
+  export type TaskForceScalarWhereWithAggregatesInput = {
+    AND?: TaskForceScalarWhereWithAggregatesInput | TaskForceScalarWhereWithAggregatesInput[]
+    OR?: TaskForceScalarWhereWithAggregatesInput[]
+    NOT?: TaskForceScalarWhereWithAggregatesInput | TaskForceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TaskForce"> | string
+    areaFolderId?: StringWithAggregatesFilter<"TaskForce"> | string
+    chairPersonId?: StringWithAggregatesFilter<"TaskForce"> | string
+  }
+
+  export type TaskForceMemberWhereInput = {
+    AND?: TaskForceMemberWhereInput | TaskForceMemberWhereInput[]
+    OR?: TaskForceMemberWhereInput[]
+    NOT?: TaskForceMemberWhereInput | TaskForceMemberWhereInput[]
+    id?: StringFilter<"TaskForceMember"> | string
+    taskForceId?: StringFilter<"TaskForceMember"> | string
+    parameterFolderId?: StringFilter<"TaskForceMember"> | string
+    taskForce?: XOR<TaskForceScalarRelationFilter, TaskForceWhereInput>
+    parameterFolder?: XOR<ParameterFolderScalarRelationFilter, ParameterFolderWhereInput>
+  }
+
+  export type TaskForceMemberOrderByWithRelationInput = {
+    id?: SortOrder
+    taskForceId?: SortOrder
+    parameterFolderId?: SortOrder
+    taskForce?: TaskForceOrderByWithRelationInput
+    parameterFolder?: ParameterFolderOrderByWithRelationInput
+  }
+
+  export type TaskForceMemberWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    parameterFolderId?: string
+    AND?: TaskForceMemberWhereInput | TaskForceMemberWhereInput[]
+    OR?: TaskForceMemberWhereInput[]
+    NOT?: TaskForceMemberWhereInput | TaskForceMemberWhereInput[]
+    taskForceId?: StringFilter<"TaskForceMember"> | string
+    taskForce?: XOR<TaskForceScalarRelationFilter, TaskForceWhereInput>
+    parameterFolder?: XOR<ParameterFolderScalarRelationFilter, ParameterFolderWhereInput>
+  }, "id" | "parameterFolderId">
+
+  export type TaskForceMemberOrderByWithAggregationInput = {
+    id?: SortOrder
+    taskForceId?: SortOrder
+    parameterFolderId?: SortOrder
+    _count?: TaskForceMemberCountOrderByAggregateInput
+    _max?: TaskForceMemberMaxOrderByAggregateInput
+    _min?: TaskForceMemberMinOrderByAggregateInput
+  }
+
+  export type TaskForceMemberScalarWhereWithAggregatesInput = {
+    AND?: TaskForceMemberScalarWhereWithAggregatesInput | TaskForceMemberScalarWhereWithAggregatesInput[]
+    OR?: TaskForceMemberScalarWhereWithAggregatesInput[]
+    NOT?: TaskForceMemberScalarWhereWithAggregatesInput | TaskForceMemberScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TaskForceMember"> | string
+    taskForceId?: StringWithAggregatesFilter<"TaskForceMember"> | string
+    parameterFolderId?: StringWithAggregatesFilter<"TaskForceMember"> | string
   }
 
   export type UserCreateInput = {
@@ -21979,6 +29983,7 @@ export namespace Prisma {
     assignedAt?: Date | string
     user: UserCreateNestedOneWithoutProgramPersonnelInput
     program: ProgramCreateNestedOneWithoutProgramPersonnelInput
+    chairPerson?: TaskForceCreateNestedManyWithoutChairPersonInput
   }
 
   export type ProgramPersonnelUncheckedCreateInput = {
@@ -21986,6 +29991,7 @@ export namespace Prisma {
     userId: string
     programId: string
     assignedAt?: Date | string
+    chairPerson?: TaskForceUncheckedCreateNestedManyWithoutChairPersonInput
   }
 
   export type ProgramPersonnelUpdateInput = {
@@ -21993,6 +29999,7 @@ export namespace Prisma {
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutProgramPersonnelNestedInput
     program?: ProgramUpdateOneRequiredWithoutProgramPersonnelNestedInput
+    chairPerson?: TaskForceUpdateManyWithoutChairPersonNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateInput = {
@@ -22000,6 +30007,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chairPerson?: TaskForceUncheckedUpdateManyWithoutChairPersonNestedInput
   }
 
   export type ProgramPersonnelCreateManyInput = {
@@ -22029,6 +30037,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     area?: AreaCreateNestedManyWithoutInstrumentInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedManyWithoutInstrumentInput
+    phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedManyWithoutInstrumentInput
   }
 
   export type InstrumentUncheckedCreateInput = {
@@ -22039,6 +30048,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     area?: AreaUncheckedCreateNestedManyWithoutInstrumentInput
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedManyWithoutInstrumentInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedManyWithoutInstrumentInput
   }
 
   export type InstrumentUpdateInput = {
@@ -22049,6 +30059,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     area?: AreaUpdateManyWithoutInstrumentNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateManyWithoutInstrumentNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUpdateManyWithoutInstrumentNestedInput
   }
 
   export type InstrumentUncheckedUpdateInput = {
@@ -22059,6 +30070,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     area?: AreaUncheckedUpdateManyWithoutInstrumentNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateManyWithoutInstrumentNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateManyWithoutInstrumentNestedInput
   }
 
   export type InstrumentCreateManyInput = {
@@ -22094,6 +30106,7 @@ export namespace Prisma {
     instrument: InstrumentCreateNestedOneWithoutAreaInput
     parameter?: ParameterCreateNestedManyWithoutAreaInput
     areaFolders?: AreaFolderCreateNestedManyWithoutAreaInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderCreateNestedManyWithoutAreaInput
   }
 
   export type AreaUncheckedCreateInput = {
@@ -22106,6 +30119,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     parameter?: ParameterUncheckedCreateNestedManyWithoutAreaInput
     areaFolders?: AreaFolderUncheckedCreateNestedManyWithoutAreaInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedCreateNestedManyWithoutAreaInput
   }
 
   export type AreaUpdateInput = {
@@ -22117,6 +30131,7 @@ export namespace Prisma {
     instrument?: InstrumentUpdateOneRequiredWithoutAreaNestedInput
     parameter?: ParameterUpdateManyWithoutAreaNestedInput
     areaFolders?: AreaFolderUpdateManyWithoutAreaNestedInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUpdateManyWithoutAreaNestedInput
   }
 
   export type AreaUncheckedUpdateInput = {
@@ -22129,6 +30144,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parameter?: ParameterUncheckedUpdateManyWithoutAreaNestedInput
     areaFolders?: AreaFolderUncheckedUpdateManyWithoutAreaNestedInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedUpdateManyWithoutAreaNestedInput
   }
 
   export type AreaCreateManyInput = {
@@ -22376,7 +30392,6 @@ export namespace Prisma {
 
   export type AccreditationCreateInput = {
     id?: string
-    phase?: $Enums.Phase | null
     program: ProgramCreateNestedOneWithoutAccreditationInput
     level?: LevelCreateNestedOneWithoutAccreditationsInput
     surveyVisits?: SurveyVisitCreateNestedManyWithoutAccreditationInput
@@ -22386,13 +30401,11 @@ export namespace Prisma {
     id?: string
     programId: string
     currentLevel?: string | null
-    phase?: $Enums.Phase | null
     surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutAccreditationInput
   }
 
   export type AccreditationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
     program?: ProgramUpdateOneRequiredWithoutAccreditationNestedInput
     level?: LevelUpdateOneWithoutAccreditationsNestedInput
     surveyVisits?: SurveyVisitUpdateManyWithoutAccreditationNestedInput
@@ -22402,7 +30415,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
     currentLevel?: NullableStringFieldUpdateOperationsInput | string | null
-    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
     surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutAccreditationNestedInput
   }
 
@@ -22410,96 +30422,125 @@ export namespace Prisma {
     id?: string
     programId: string
     currentLevel?: string | null
-    phase?: $Enums.Phase | null
   }
 
   export type AccreditationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
   }
 
   export type AccreditationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
     currentLevel?: NullableStringFieldUpdateOperationsInput | string | null
-    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
   }
 
   export type SurveyVisitCreateInput = {
     id?: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    status: $Enums.AccreditationStatus
+    createdAt?: Date | string
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
+    phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateInput = {
     id?: string
     accreditationId: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
     targetLevel: string
+    status: $Enums.AccreditationStatus
+    createdAt?: Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     accreditationId?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitCreateManyInput = {
     id?: string
     accreditationId: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
     targetLevel: string
+    status: $Enums.AccreditationStatus
+    createdAt?: Date | string
   }
 
   export type SurveyVisitUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SurveyVisitUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     accreditationId?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PhaseOneRequirementsCreateInput = {
     id?: string
-    surveyVisit: SurveyVisitCreateNestedOneWithoutPhaseOneRequirementsInput
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutPhaseOneRequirementsInput
     instrument: InstrumentCreateNestedOneWithoutPhaseOneRequirementsInput
     instrumentFolder?: InstrumentFolderCreateNestedOneWithoutPhaseOneRequirementsInput
   }
 
   export type PhaseOneRequirementsUncheckedCreateInput = {
     id?: string
-    surveyVisitId: string
+    surveyVisitId?: string | null
     instrumentId: string
     instrumentFolder?: InstrumentFolderUncheckedCreateNestedOneWithoutPhaseOneRequirementsInput
   }
 
   export type PhaseOneRequirementsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    surveyVisit?: SurveyVisitUpdateOneRequiredWithoutPhaseOneRequirementsNestedInput
+    surveyVisit?: SurveyVisitUpdateOneWithoutPhaseOneRequirementsNestedInput
     instrument?: InstrumentUpdateOneRequiredWithoutPhaseOneRequirementsNestedInput
     instrumentFolder?: InstrumentFolderUpdateOneWithoutPhaseOneRequirementsNestedInput
   }
 
   export type PhaseOneRequirementsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    surveyVisitId?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     instrumentId?: StringFieldUpdateOperationsInput | string
     instrumentFolder?: InstrumentFolderUncheckedUpdateOneWithoutPhaseOneRequirementsNestedInput
   }
 
   export type PhaseOneRequirementsCreateManyInput = {
     id?: string
-    surveyVisitId: string
+    surveyVisitId?: string | null
     instrumentId: string
   }
 
@@ -22509,20 +30550,20 @@ export namespace Prisma {
 
   export type PhaseOneRequirementsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    surveyVisitId?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     instrumentId?: StringFieldUpdateOperationsInput | string
   }
 
   export type InstrumentFolderCreateInput = {
     id?: string
     folderId: string
-    phaseOneRequirements: PhaseOneRequirementsCreateNestedOneWithoutInstrumentFolderInput
+    phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutInstrumentFolderInput
     areaFolders?: AreaFolderCreateNestedManyWithoutInstrumentFolderInput
   }
 
   export type InstrumentFolderUncheckedCreateInput = {
     id?: string
-    phaseOneRequirementsId: string
+    phaseOneRequirementsId?: string | null
     folderId: string
     areaFolders?: AreaFolderUncheckedCreateNestedManyWithoutInstrumentFolderInput
   }
@@ -22530,20 +30571,20 @@ export namespace Prisma {
   export type InstrumentFolderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
-    phaseOneRequirements?: PhaseOneRequirementsUpdateOneRequiredWithoutInstrumentFolderNestedInput
+    phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutInstrumentFolderNestedInput
     areaFolders?: AreaFolderUpdateManyWithoutInstrumentFolderNestedInput
   }
 
   export type InstrumentFolderUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    phaseOneRequirementsId?: StringFieldUpdateOperationsInput | string
+    phaseOneRequirementsId?: NullableStringFieldUpdateOperationsInput | string | null
     folderId?: StringFieldUpdateOperationsInput | string
     areaFolders?: AreaFolderUncheckedUpdateManyWithoutInstrumentFolderNestedInput
   }
 
   export type InstrumentFolderCreateManyInput = {
     id?: string
-    phaseOneRequirementsId: string
+    phaseOneRequirementsId?: string | null
     folderId: string
   }
 
@@ -22554,16 +30595,19 @@ export namespace Prisma {
 
   export type InstrumentFolderUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    phaseOneRequirementsId?: StringFieldUpdateOperationsInput | string
+    phaseOneRequirementsId?: NullableStringFieldUpdateOperationsInput | string | null
     folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AreaFolderCreateInput = {
     id?: string
     folderId: string
+    complete?: boolean
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
     area: AreaCreateNestedOneWithoutAreaFoldersInput
+    areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
+    taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
   }
 
   export type AreaFolderUncheckedCreateInput = {
@@ -22571,15 +30615,21 @@ export namespace Prisma {
     instrumentFolderId: string
     folderId: string
     areaId: number
+    complete?: boolean
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
+    areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
+    taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
   }
 
   export type AreaFolderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
+    complete?: BoolFieldUpdateOperationsInput | boolean
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
+    areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateInput = {
@@ -22587,7 +30637,10 @@ export namespace Prisma {
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    complete?: BoolFieldUpdateOperationsInput | boolean
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
+    areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderCreateManyInput = {
@@ -22595,11 +30648,13 @@ export namespace Prisma {
     instrumentFolderId: string
     folderId: string
     areaId: number
+    complete?: boolean
   }
 
   export type AreaFolderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
+    complete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AreaFolderUncheckedUpdateManyInput = {
@@ -22607,6 +30662,7 @@ export namespace Prisma {
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    complete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ParameterFolderCreateInput = {
@@ -22615,6 +30671,7 @@ export namespace Prisma {
     areaFolder: AreaFolderCreateNestedOneWithoutParameterFoldersInput
     indicatorFolders?: IndicatorFolderCreateNestedManyWithoutParameterFolderInput
     parameter: ParameterCreateNestedOneWithoutParameterFoldersInput
+    taskForceMember?: TaskForceMemberCreateNestedOneWithoutParameterFolderInput
   }
 
   export type ParameterFolderUncheckedCreateInput = {
@@ -22623,6 +30680,7 @@ export namespace Prisma {
     folderId: string
     parameterId: number
     indicatorFolders?: IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput
+    taskForceMember?: TaskForceMemberUncheckedCreateNestedOneWithoutParameterFolderInput
   }
 
   export type ParameterFolderUpdateInput = {
@@ -22631,6 +30689,7 @@ export namespace Prisma {
     areaFolder?: AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput
     indicatorFolders?: IndicatorFolderUpdateManyWithoutParameterFolderNestedInput
     parameter?: ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput
+    taskForceMember?: TaskForceMemberUpdateOneWithoutParameterFolderNestedInput
   }
 
   export type ParameterFolderUncheckedUpdateInput = {
@@ -22639,6 +30698,7 @@ export namespace Prisma {
     folderId?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
     indicatorFolders?: IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput
+    taskForceMember?: TaskForceMemberUncheckedUpdateOneWithoutParameterFolderNestedInput
   }
 
   export type ParameterFolderCreateManyInput = {
@@ -22771,6 +30831,298 @@ export namespace Prisma {
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PhaseTwoRequirementsCreateInput = {
+    id?: string
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutPhaseTwoRequirementsInput
+    instrument: InstrumentCreateNestedOneWithoutPhaseTwoRequirementsInput
+    phaseTwoFolder?: PhaseTwoFolderCreateNestedOneWithoutPhaseTwoRequirementsInput
+  }
+
+  export type PhaseTwoRequirementsUncheckedCreateInput = {
+    id?: string
+    surveyVisitId?: string | null
+    instrumentId: string
+    phaseTwoFolder?: PhaseTwoFolderUncheckedCreateNestedOneWithoutPhaseTwoRequirementsInput
+  }
+
+  export type PhaseTwoRequirementsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisit?: SurveyVisitUpdateOneWithoutPhaseTwoRequirementsNestedInput
+    instrument?: InstrumentUpdateOneRequiredWithoutPhaseTwoRequirementsNestedInput
+    phaseTwoFolder?: PhaseTwoFolderUpdateOneWithoutPhaseTwoRequirementsNestedInput
+  }
+
+  export type PhaseTwoRequirementsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
+    instrumentId?: StringFieldUpdateOperationsInput | string
+    phaseTwoFolder?: PhaseTwoFolderUncheckedUpdateOneWithoutPhaseTwoRequirementsNestedInput
+  }
+
+  export type PhaseTwoRequirementsCreateManyInput = {
+    id?: string
+    surveyVisitId?: string | null
+    instrumentId: string
+  }
+
+  export type PhaseTwoRequirementsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PhaseTwoRequirementsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
+    instrumentId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PhaseTwoFolderCreateInput = {
+    id?: string
+    folderId: string
+    phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutPhaseTwoFolderInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderCreateNestedManyWithoutPhaseTwoFolderInput
+  }
+
+  export type PhaseTwoFolderUncheckedCreateInput = {
+    id?: string
+    phaseTwoRequirementsId?: string | null
+    folderId: string
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedCreateNestedManyWithoutPhaseTwoFolderInput
+  }
+
+  export type PhaseTwoFolderUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutPhaseTwoFolderNestedInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUpdateManyWithoutPhaseTwoFolderNestedInput
+  }
+
+  export type PhaseTwoFolderUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseTwoRequirementsId?: NullableStringFieldUpdateOperationsInput | string | null
+    folderId?: StringFieldUpdateOperationsInput | string
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedUpdateManyWithoutPhaseTwoFolderNestedInput
+  }
+
+  export type PhaseTwoFolderCreateManyInput = {
+    id?: string
+    phaseTwoRequirementsId?: string | null
+    folderId: string
+  }
+
+  export type PhaseTwoFolderUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PhaseTwoFolderUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseTwoRequirementsId?: NullableStringFieldUpdateOperationsInput | string | null
+    folderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PhaseTwoAreaFolderCreateInput = {
+    id?: string
+    folderId: string
+    phaseTwoFolder: PhaseTwoFolderCreateNestedOneWithoutPhaseTwoAreaFoldersInput
+    area: AreaCreateNestedOneWithoutPhaseTwoAreaFoldersInput
+    areaFiles?: AreaFileCreateNestedManyWithoutPhaseTwoAreaFolderInput
+  }
+
+  export type PhaseTwoAreaFolderUncheckedCreateInput = {
+    id?: string
+    phaseTwoFolderId: string
+    folderId: string
+    areaId: number
+    areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseTwoAreaFolderInput
+  }
+
+  export type PhaseTwoAreaFolderUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    phaseTwoFolder?: PhaseTwoFolderUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
+    area?: AreaUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
+    areaFiles?: AreaFileUpdateManyWithoutPhaseTwoAreaFolderNestedInput
+  }
+
+  export type PhaseTwoAreaFolderUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+    areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderNestedInput
+  }
+
+  export type PhaseTwoAreaFolderCreateManyInput = {
+    id?: string
+    phaseTwoFolderId: string
+    folderId: string
+    areaId: number
+  }
+
+  export type PhaseTwoAreaFolderUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PhaseTwoAreaFolderUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type AreaFileCreateInput = {
+    id?: string
+    type: $Enums.AreaFileType
+    fileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    phaseOneAreaFolder?: AreaFolderCreateNestedOneWithoutAreaFilesInput
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderCreateNestedOneWithoutAreaFilesInput
+  }
+
+  export type AreaFileUncheckedCreateInput = {
+    id?: string
+    phaseOneAreaFolderId?: string | null
+    phaseTwoAreaFolderId?: string | null
+    type: $Enums.AreaFileType
+    fileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AreaFileUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phaseOneAreaFolder?: AreaFolderUpdateOneWithoutAreaFilesNestedInput
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderUpdateOneWithoutAreaFilesNestedInput
+  }
+
+  export type AreaFileUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AreaFileCreateManyInput = {
+    id?: string
+    phaseOneAreaFolderId?: string | null
+    phaseTwoAreaFolderId?: string | null
+    type: $Enums.AreaFileType
+    fileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AreaFileUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AreaFileUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskForceCreateInput = {
+    id?: string
+    areaFolder: AreaFolderCreateNestedOneWithoutTaskForceInput
+    chairPerson: ProgramPersonnelCreateNestedOneWithoutChairPersonInput
+    taskForceMember?: TaskForceMemberCreateNestedManyWithoutTaskForceInput
+  }
+
+  export type TaskForceUncheckedCreateInput = {
+    id?: string
+    areaFolderId: string
+    chairPersonId: string
+    taskForceMember?: TaskForceMemberUncheckedCreateNestedManyWithoutTaskForceInput
+  }
+
+  export type TaskForceUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolder?: AreaFolderUpdateOneRequiredWithoutTaskForceNestedInput
+    chairPerson?: ProgramPersonnelUpdateOneRequiredWithoutChairPersonNestedInput
+    taskForceMember?: TaskForceMemberUpdateManyWithoutTaskForceNestedInput
+  }
+
+  export type TaskForceUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
+    chairPersonId?: StringFieldUpdateOperationsInput | string
+    taskForceMember?: TaskForceMemberUncheckedUpdateManyWithoutTaskForceNestedInput
+  }
+
+  export type TaskForceCreateManyInput = {
+    id?: string
+    areaFolderId: string
+    chairPersonId: string
+  }
+
+  export type TaskForceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TaskForceUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
+    chairPersonId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TaskForceMemberCreateInput = {
+    id?: string
+    taskForce: TaskForceCreateNestedOneWithoutTaskForceMemberInput
+    parameterFolder: ParameterFolderCreateNestedOneWithoutTaskForceMemberInput
+  }
+
+  export type TaskForceMemberUncheckedCreateInput = {
+    id?: string
+    taskForceId: string
+    parameterFolderId: string
+  }
+
+  export type TaskForceMemberUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    taskForce?: TaskForceUpdateOneRequiredWithoutTaskForceMemberNestedInput
+    parameterFolder?: ParameterFolderUpdateOneRequiredWithoutTaskForceMemberNestedInput
+  }
+
+  export type TaskForceMemberUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    taskForceId?: StringFieldUpdateOperationsInput | string
+    parameterFolderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TaskForceMemberCreateManyInput = {
+    id?: string
+    taskForceId: string
+    parameterFolderId: string
+  }
+
+  export type TaskForceMemberUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TaskForceMemberUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    taskForceId?: StringFieldUpdateOperationsInput | string
+    parameterFolderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -22988,6 +31340,16 @@ export namespace Prisma {
     isNot?: ProgramWhereInput
   }
 
+  export type TaskForceListRelationFilter = {
+    every?: TaskForceWhereInput
+    some?: TaskForceWhereInput
+    none?: TaskForceWhereInput
+  }
+
+  export type TaskForceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type ProgramPersonnelUserIdProgramIdCompoundUniqueInput = {
     userId: string
     programId: string
@@ -23026,11 +31388,21 @@ export namespace Prisma {
     none?: PhaseOneRequirementsWhereInput
   }
 
+  export type PhaseTwoRequirementsListRelationFilter = {
+    every?: PhaseTwoRequirementsWhereInput
+    some?: PhaseTwoRequirementsWhereInput
+    none?: PhaseTwoRequirementsWhereInput
+  }
+
   export type AreaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type PhaseOneRequirementsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PhaseTwoRequirementsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -23091,11 +31463,21 @@ export namespace Prisma {
     none?: AreaFolderWhereInput
   }
 
+  export type PhaseTwoAreaFolderListRelationFilter = {
+    every?: PhaseTwoAreaFolderWhereInput
+    some?: PhaseTwoAreaFolderWhereInput
+    none?: PhaseTwoAreaFolderWhereInput
+  }
+
   export type ParameterOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type AreaFolderOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PhaseTwoAreaFolderOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -23395,13 +31777,6 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
-  export type EnumPhaseNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.Phase | EnumPhaseFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumPhaseNullableFilter<$PrismaModel> | $Enums.Phase | null
-  }
-
   export type LevelNullableScalarRelationFilter = {
     is?: LevelWhereInput | null
     isNot?: LevelWhereInput | null
@@ -23411,31 +31786,32 @@ export namespace Prisma {
     id?: SortOrder
     programId?: SortOrder
     currentLevel?: SortOrder
-    phase?: SortOrder
   }
 
   export type AccreditationMaxOrderByAggregateInput = {
     id?: SortOrder
     programId?: SortOrder
     currentLevel?: SortOrder
-    phase?: SortOrder
   }
 
   export type AccreditationMinOrderByAggregateInput = {
     id?: SortOrder
     programId?: SortOrder
     currentLevel?: SortOrder
-    phase?: SortOrder
   }
 
-  export type EnumPhaseNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Phase | EnumPhaseFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumPhaseNullableWithAggregatesFilter<$PrismaModel> | $Enums.Phase | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumPhaseNullableFilter<$PrismaModel>
-    _max?: NestedEnumPhaseNullableFilter<$PrismaModel>
+  export type EnumSurveyVisitTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyVisitType | EnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyVisitType[] | ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyVisitType[] | ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyVisitTypeFilter<$PrismaModel> | $Enums.SurveyVisitType
+  }
+
+  export type EnumAccreditationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccreditationStatus | EnumAccreditationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAccreditationStatusFilter<$PrismaModel> | $Enums.AccreditationStatus
   }
 
   export type AccreditationScalarRelationFilter = {
@@ -23453,27 +31829,64 @@ export namespace Prisma {
     isNot?: PhaseOneRequirementsWhereInput | null
   }
 
+  export type PhaseTwoRequirementsNullableScalarRelationFilter = {
+    is?: PhaseTwoRequirementsWhereInput | null
+    isNot?: PhaseTwoRequirementsWhereInput | null
+  }
+
   export type SurveyVisitCountOrderByAggregateInput = {
     id?: SortOrder
     accreditationId?: SortOrder
+    actualSurveyDate?: SortOrder
+    type?: SortOrder
     targetLevel?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type SurveyVisitMaxOrderByAggregateInput = {
     id?: SortOrder
     accreditationId?: SortOrder
+    actualSurveyDate?: SortOrder
+    type?: SortOrder
     targetLevel?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type SurveyVisitMinOrderByAggregateInput = {
     id?: SortOrder
     accreditationId?: SortOrder
+    actualSurveyDate?: SortOrder
+    type?: SortOrder
     targetLevel?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
   }
 
-  export type SurveyVisitScalarRelationFilter = {
-    is?: SurveyVisitWhereInput
-    isNot?: SurveyVisitWhereInput
+  export type EnumSurveyVisitTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyVisitType | EnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyVisitType[] | ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyVisitType[] | ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyVisitTypeWithAggregatesFilter<$PrismaModel> | $Enums.SurveyVisitType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSurveyVisitTypeFilter<$PrismaModel>
+    _max?: NestedEnumSurveyVisitTypeFilter<$PrismaModel>
+  }
+
+  export type EnumAccreditationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccreditationStatus | EnumAccreditationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAccreditationStatusWithAggregatesFilter<$PrismaModel> | $Enums.AccreditationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAccreditationStatusFilter<$PrismaModel>
+    _max?: NestedEnumAccreditationStatusFilter<$PrismaModel>
+  }
+
+  export type SurveyVisitNullableScalarRelationFilter = {
+    is?: SurveyVisitWhereInput | null
+    isNot?: SurveyVisitWhereInput | null
   }
 
   export type InstrumentFolderNullableScalarRelationFilter = {
@@ -23499,11 +31912,6 @@ export namespace Prisma {
     instrumentId?: SortOrder
   }
 
-  export type PhaseOneRequirementsScalarRelationFilter = {
-    is?: PhaseOneRequirementsWhereInput
-    isNot?: PhaseOneRequirementsWhereInput
-  }
-
   export type InstrumentFolderCountOrderByAggregateInput = {
     id?: SortOrder
     phaseOneRequirementsId?: SortOrder
@@ -23522,9 +31930,29 @@ export namespace Prisma {
     folderId?: SortOrder
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type InstrumentFolderScalarRelationFilter = {
     is?: InstrumentFolderWhereInput
     isNot?: InstrumentFolderWhereInput
+  }
+
+  export type AreaFileListRelationFilter = {
+    every?: AreaFileWhereInput
+    some?: AreaFileWhereInput
+    none?: AreaFileWhereInput
+  }
+
+  export type TaskForceNullableScalarRelationFilter = {
+    is?: TaskForceWhereInput | null
+    isNot?: TaskForceWhereInput | null
+  }
+
+  export type AreaFileOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type AreaFolderCountOrderByAggregateInput = {
@@ -23532,6 +31960,7 @@ export namespace Prisma {
     instrumentFolderId?: SortOrder
     folderId?: SortOrder
     areaId?: SortOrder
+    complete?: SortOrder
   }
 
   export type AreaFolderAvgOrderByAggregateInput = {
@@ -23543,6 +31972,7 @@ export namespace Prisma {
     instrumentFolderId?: SortOrder
     folderId?: SortOrder
     areaId?: SortOrder
+    complete?: SortOrder
   }
 
   export type AreaFolderMinOrderByAggregateInput = {
@@ -23550,10 +31980,19 @@ export namespace Prisma {
     instrumentFolderId?: SortOrder
     folderId?: SortOrder
     areaId?: SortOrder
+    complete?: SortOrder
   }
 
   export type AreaFolderSumOrderByAggregateInput = {
     areaId?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type AreaFolderScalarRelationFilter = {
@@ -23565,6 +32004,11 @@ export namespace Prisma {
     every?: IndicatorFolderWhereInput
     some?: IndicatorFolderWhereInput
     none?: IndicatorFolderWhereInput
+  }
+
+  export type TaskForceMemberNullableScalarRelationFilter = {
+    is?: TaskForceMemberWhereInput | null
+    isNot?: TaskForceMemberWhereInput | null
   }
 
   export type IndicatorFolderOrderByRelationAggregateInput = {
@@ -23669,6 +32113,194 @@ export namespace Prisma {
 
   export type EvidenceFileSumOrderByAggregateInput = {
     indicatorId?: SortOrder
+  }
+
+  export type PhaseTwoFolderNullableScalarRelationFilter = {
+    is?: PhaseTwoFolderWhereInput | null
+    isNot?: PhaseTwoFolderWhereInput | null
+  }
+
+  export type PhaseTwoRequirementsCountOrderByAggregateInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrder
+    instrumentId?: SortOrder
+  }
+
+  export type PhaseTwoRequirementsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrder
+    instrumentId?: SortOrder
+  }
+
+  export type PhaseTwoRequirementsMinOrderByAggregateInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrder
+    instrumentId?: SortOrder
+  }
+
+  export type PhaseTwoFolderCountOrderByAggregateInput = {
+    id?: SortOrder
+    phaseTwoRequirementsId?: SortOrder
+    folderId?: SortOrder
+  }
+
+  export type PhaseTwoFolderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    phaseTwoRequirementsId?: SortOrder
+    folderId?: SortOrder
+  }
+
+  export type PhaseTwoFolderMinOrderByAggregateInput = {
+    id?: SortOrder
+    phaseTwoRequirementsId?: SortOrder
+    folderId?: SortOrder
+  }
+
+  export type PhaseTwoFolderScalarRelationFilter = {
+    is?: PhaseTwoFolderWhereInput
+    isNot?: PhaseTwoFolderWhereInput
+  }
+
+  export type PhaseTwoAreaFolderCountOrderByAggregateInput = {
+    id?: SortOrder
+    phaseTwoFolderId?: SortOrder
+    folderId?: SortOrder
+    areaId?: SortOrder
+  }
+
+  export type PhaseTwoAreaFolderAvgOrderByAggregateInput = {
+    areaId?: SortOrder
+  }
+
+  export type PhaseTwoAreaFolderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    phaseTwoFolderId?: SortOrder
+    folderId?: SortOrder
+    areaId?: SortOrder
+  }
+
+  export type PhaseTwoAreaFolderMinOrderByAggregateInput = {
+    id?: SortOrder
+    phaseTwoFolderId?: SortOrder
+    folderId?: SortOrder
+    areaId?: SortOrder
+  }
+
+  export type PhaseTwoAreaFolderSumOrderByAggregateInput = {
+    areaId?: SortOrder
+  }
+
+  export type EnumAreaFileTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AreaFileType | EnumAreaFileTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AreaFileType[] | ListEnumAreaFileTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AreaFileType[] | ListEnumAreaFileTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAreaFileTypeFilter<$PrismaModel> | $Enums.AreaFileType
+  }
+
+  export type AreaFolderNullableScalarRelationFilter = {
+    is?: AreaFolderWhereInput | null
+    isNot?: AreaFolderWhereInput | null
+  }
+
+  export type PhaseTwoAreaFolderNullableScalarRelationFilter = {
+    is?: PhaseTwoAreaFolderWhereInput | null
+    isNot?: PhaseTwoAreaFolderWhereInput | null
+  }
+
+  export type AreaFileCountOrderByAggregateInput = {
+    id?: SortOrder
+    phaseOneAreaFolderId?: SortOrder
+    phaseTwoAreaFolderId?: SortOrder
+    type?: SortOrder
+    fileId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AreaFileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    phaseOneAreaFolderId?: SortOrder
+    phaseTwoAreaFolderId?: SortOrder
+    type?: SortOrder
+    fileId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AreaFileMinOrderByAggregateInput = {
+    id?: SortOrder
+    phaseOneAreaFolderId?: SortOrder
+    phaseTwoAreaFolderId?: SortOrder
+    type?: SortOrder
+    fileId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumAreaFileTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AreaFileType | EnumAreaFileTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AreaFileType[] | ListEnumAreaFileTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AreaFileType[] | ListEnumAreaFileTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAreaFileTypeWithAggregatesFilter<$PrismaModel> | $Enums.AreaFileType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAreaFileTypeFilter<$PrismaModel>
+    _max?: NestedEnumAreaFileTypeFilter<$PrismaModel>
+  }
+
+  export type ProgramPersonnelScalarRelationFilter = {
+    is?: ProgramPersonnelWhereInput
+    isNot?: ProgramPersonnelWhereInput
+  }
+
+  export type TaskForceMemberListRelationFilter = {
+    every?: TaskForceMemberWhereInput
+    some?: TaskForceMemberWhereInput
+    none?: TaskForceMemberWhereInput
+  }
+
+  export type TaskForceMemberOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TaskForceCountOrderByAggregateInput = {
+    id?: SortOrder
+    areaFolderId?: SortOrder
+    chairPersonId?: SortOrder
+  }
+
+  export type TaskForceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    areaFolderId?: SortOrder
+    chairPersonId?: SortOrder
+  }
+
+  export type TaskForceMinOrderByAggregateInput = {
+    id?: SortOrder
+    areaFolderId?: SortOrder
+    chairPersonId?: SortOrder
+  }
+
+  export type TaskForceScalarRelationFilter = {
+    is?: TaskForceWhereInput
+    isNot?: TaskForceWhereInput
+  }
+
+  export type TaskForceMemberCountOrderByAggregateInput = {
+    id?: SortOrder
+    taskForceId?: SortOrder
+    parameterFolderId?: SortOrder
+  }
+
+  export type TaskForceMemberMaxOrderByAggregateInput = {
+    id?: SortOrder
+    taskForceId?: SortOrder
+    parameterFolderId?: SortOrder
+  }
+
+  export type TaskForceMemberMinOrderByAggregateInput = {
+    id?: SortOrder
+    taskForceId?: SortOrder
+    parameterFolderId?: SortOrder
   }
 
   export type ProgramPersonnelCreateNestedManyWithoutUserInput = {
@@ -23815,6 +32447,20 @@ export namespace Prisma {
     connect?: ProgramWhereUniqueInput
   }
 
+  export type TaskForceCreateNestedManyWithoutChairPersonInput = {
+    create?: XOR<TaskForceCreateWithoutChairPersonInput, TaskForceUncheckedCreateWithoutChairPersonInput> | TaskForceCreateWithoutChairPersonInput[] | TaskForceUncheckedCreateWithoutChairPersonInput[]
+    connectOrCreate?: TaskForceCreateOrConnectWithoutChairPersonInput | TaskForceCreateOrConnectWithoutChairPersonInput[]
+    createMany?: TaskForceCreateManyChairPersonInputEnvelope
+    connect?: TaskForceWhereUniqueInput | TaskForceWhereUniqueInput[]
+  }
+
+  export type TaskForceUncheckedCreateNestedManyWithoutChairPersonInput = {
+    create?: XOR<TaskForceCreateWithoutChairPersonInput, TaskForceUncheckedCreateWithoutChairPersonInput> | TaskForceCreateWithoutChairPersonInput[] | TaskForceUncheckedCreateWithoutChairPersonInput[]
+    connectOrCreate?: TaskForceCreateOrConnectWithoutChairPersonInput | TaskForceCreateOrConnectWithoutChairPersonInput[]
+    createMany?: TaskForceCreateManyChairPersonInputEnvelope
+    connect?: TaskForceWhereUniqueInput | TaskForceWhereUniqueInput[]
+  }
+
   export type UserUpdateOneRequiredWithoutProgramPersonnelNestedInput = {
     create?: XOR<UserCreateWithoutProgramPersonnelInput, UserUncheckedCreateWithoutProgramPersonnelInput>
     connectOrCreate?: UserCreateOrConnectWithoutProgramPersonnelInput
@@ -23831,6 +32477,34 @@ export namespace Prisma {
     update?: XOR<XOR<ProgramUpdateToOneWithWhereWithoutProgramPersonnelInput, ProgramUpdateWithoutProgramPersonnelInput>, ProgramUncheckedUpdateWithoutProgramPersonnelInput>
   }
 
+  export type TaskForceUpdateManyWithoutChairPersonNestedInput = {
+    create?: XOR<TaskForceCreateWithoutChairPersonInput, TaskForceUncheckedCreateWithoutChairPersonInput> | TaskForceCreateWithoutChairPersonInput[] | TaskForceUncheckedCreateWithoutChairPersonInput[]
+    connectOrCreate?: TaskForceCreateOrConnectWithoutChairPersonInput | TaskForceCreateOrConnectWithoutChairPersonInput[]
+    upsert?: TaskForceUpsertWithWhereUniqueWithoutChairPersonInput | TaskForceUpsertWithWhereUniqueWithoutChairPersonInput[]
+    createMany?: TaskForceCreateManyChairPersonInputEnvelope
+    set?: TaskForceWhereUniqueInput | TaskForceWhereUniqueInput[]
+    disconnect?: TaskForceWhereUniqueInput | TaskForceWhereUniqueInput[]
+    delete?: TaskForceWhereUniqueInput | TaskForceWhereUniqueInput[]
+    connect?: TaskForceWhereUniqueInput | TaskForceWhereUniqueInput[]
+    update?: TaskForceUpdateWithWhereUniqueWithoutChairPersonInput | TaskForceUpdateWithWhereUniqueWithoutChairPersonInput[]
+    updateMany?: TaskForceUpdateManyWithWhereWithoutChairPersonInput | TaskForceUpdateManyWithWhereWithoutChairPersonInput[]
+    deleteMany?: TaskForceScalarWhereInput | TaskForceScalarWhereInput[]
+  }
+
+  export type TaskForceUncheckedUpdateManyWithoutChairPersonNestedInput = {
+    create?: XOR<TaskForceCreateWithoutChairPersonInput, TaskForceUncheckedCreateWithoutChairPersonInput> | TaskForceCreateWithoutChairPersonInput[] | TaskForceUncheckedCreateWithoutChairPersonInput[]
+    connectOrCreate?: TaskForceCreateOrConnectWithoutChairPersonInput | TaskForceCreateOrConnectWithoutChairPersonInput[]
+    upsert?: TaskForceUpsertWithWhereUniqueWithoutChairPersonInput | TaskForceUpsertWithWhereUniqueWithoutChairPersonInput[]
+    createMany?: TaskForceCreateManyChairPersonInputEnvelope
+    set?: TaskForceWhereUniqueInput | TaskForceWhereUniqueInput[]
+    disconnect?: TaskForceWhereUniqueInput | TaskForceWhereUniqueInput[]
+    delete?: TaskForceWhereUniqueInput | TaskForceWhereUniqueInput[]
+    connect?: TaskForceWhereUniqueInput | TaskForceWhereUniqueInput[]
+    update?: TaskForceUpdateWithWhereUniqueWithoutChairPersonInput | TaskForceUpdateWithWhereUniqueWithoutChairPersonInput[]
+    updateMany?: TaskForceUpdateManyWithWhereWithoutChairPersonInput | TaskForceUpdateManyWithWhereWithoutChairPersonInput[]
+    deleteMany?: TaskForceScalarWhereInput | TaskForceScalarWhereInput[]
+  }
+
   export type AreaCreateNestedManyWithoutInstrumentInput = {
     create?: XOR<AreaCreateWithoutInstrumentInput, AreaUncheckedCreateWithoutInstrumentInput> | AreaCreateWithoutInstrumentInput[] | AreaUncheckedCreateWithoutInstrumentInput[]
     connectOrCreate?: AreaCreateOrConnectWithoutInstrumentInput | AreaCreateOrConnectWithoutInstrumentInput[]
@@ -23845,6 +32519,13 @@ export namespace Prisma {
     connect?: PhaseOneRequirementsWhereUniqueInput | PhaseOneRequirementsWhereUniqueInput[]
   }
 
+  export type PhaseTwoRequirementsCreateNestedManyWithoutInstrumentInput = {
+    create?: XOR<PhaseTwoRequirementsCreateWithoutInstrumentInput, PhaseTwoRequirementsUncheckedCreateWithoutInstrumentInput> | PhaseTwoRequirementsCreateWithoutInstrumentInput[] | PhaseTwoRequirementsUncheckedCreateWithoutInstrumentInput[]
+    connectOrCreate?: PhaseTwoRequirementsCreateOrConnectWithoutInstrumentInput | PhaseTwoRequirementsCreateOrConnectWithoutInstrumentInput[]
+    createMany?: PhaseTwoRequirementsCreateManyInstrumentInputEnvelope
+    connect?: PhaseTwoRequirementsWhereUniqueInput | PhaseTwoRequirementsWhereUniqueInput[]
+  }
+
   export type AreaUncheckedCreateNestedManyWithoutInstrumentInput = {
     create?: XOR<AreaCreateWithoutInstrumentInput, AreaUncheckedCreateWithoutInstrumentInput> | AreaCreateWithoutInstrumentInput[] | AreaUncheckedCreateWithoutInstrumentInput[]
     connectOrCreate?: AreaCreateOrConnectWithoutInstrumentInput | AreaCreateOrConnectWithoutInstrumentInput[]
@@ -23857,6 +32538,13 @@ export namespace Prisma {
     connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutInstrumentInput | PhaseOneRequirementsCreateOrConnectWithoutInstrumentInput[]
     createMany?: PhaseOneRequirementsCreateManyInstrumentInputEnvelope
     connect?: PhaseOneRequirementsWhereUniqueInput | PhaseOneRequirementsWhereUniqueInput[]
+  }
+
+  export type PhaseTwoRequirementsUncheckedCreateNestedManyWithoutInstrumentInput = {
+    create?: XOR<PhaseTwoRequirementsCreateWithoutInstrumentInput, PhaseTwoRequirementsUncheckedCreateWithoutInstrumentInput> | PhaseTwoRequirementsCreateWithoutInstrumentInput[] | PhaseTwoRequirementsUncheckedCreateWithoutInstrumentInput[]
+    connectOrCreate?: PhaseTwoRequirementsCreateOrConnectWithoutInstrumentInput | PhaseTwoRequirementsCreateOrConnectWithoutInstrumentInput[]
+    createMany?: PhaseTwoRequirementsCreateManyInstrumentInputEnvelope
+    connect?: PhaseTwoRequirementsWhereUniqueInput | PhaseTwoRequirementsWhereUniqueInput[]
   }
 
   export type AreaUpdateManyWithoutInstrumentNestedInput = {
@@ -23887,6 +32575,20 @@ export namespace Prisma {
     deleteMany?: PhaseOneRequirementsScalarWhereInput | PhaseOneRequirementsScalarWhereInput[]
   }
 
+  export type PhaseTwoRequirementsUpdateManyWithoutInstrumentNestedInput = {
+    create?: XOR<PhaseTwoRequirementsCreateWithoutInstrumentInput, PhaseTwoRequirementsUncheckedCreateWithoutInstrumentInput> | PhaseTwoRequirementsCreateWithoutInstrumentInput[] | PhaseTwoRequirementsUncheckedCreateWithoutInstrumentInput[]
+    connectOrCreate?: PhaseTwoRequirementsCreateOrConnectWithoutInstrumentInput | PhaseTwoRequirementsCreateOrConnectWithoutInstrumentInput[]
+    upsert?: PhaseTwoRequirementsUpsertWithWhereUniqueWithoutInstrumentInput | PhaseTwoRequirementsUpsertWithWhereUniqueWithoutInstrumentInput[]
+    createMany?: PhaseTwoRequirementsCreateManyInstrumentInputEnvelope
+    set?: PhaseTwoRequirementsWhereUniqueInput | PhaseTwoRequirementsWhereUniqueInput[]
+    disconnect?: PhaseTwoRequirementsWhereUniqueInput | PhaseTwoRequirementsWhereUniqueInput[]
+    delete?: PhaseTwoRequirementsWhereUniqueInput | PhaseTwoRequirementsWhereUniqueInput[]
+    connect?: PhaseTwoRequirementsWhereUniqueInput | PhaseTwoRequirementsWhereUniqueInput[]
+    update?: PhaseTwoRequirementsUpdateWithWhereUniqueWithoutInstrumentInput | PhaseTwoRequirementsUpdateWithWhereUniqueWithoutInstrumentInput[]
+    updateMany?: PhaseTwoRequirementsUpdateManyWithWhereWithoutInstrumentInput | PhaseTwoRequirementsUpdateManyWithWhereWithoutInstrumentInput[]
+    deleteMany?: PhaseTwoRequirementsScalarWhereInput | PhaseTwoRequirementsScalarWhereInput[]
+  }
+
   export type AreaUncheckedUpdateManyWithoutInstrumentNestedInput = {
     create?: XOR<AreaCreateWithoutInstrumentInput, AreaUncheckedCreateWithoutInstrumentInput> | AreaCreateWithoutInstrumentInput[] | AreaUncheckedCreateWithoutInstrumentInput[]
     connectOrCreate?: AreaCreateOrConnectWithoutInstrumentInput | AreaCreateOrConnectWithoutInstrumentInput[]
@@ -23915,6 +32617,20 @@ export namespace Prisma {
     deleteMany?: PhaseOneRequirementsScalarWhereInput | PhaseOneRequirementsScalarWhereInput[]
   }
 
+  export type PhaseTwoRequirementsUncheckedUpdateManyWithoutInstrumentNestedInput = {
+    create?: XOR<PhaseTwoRequirementsCreateWithoutInstrumentInput, PhaseTwoRequirementsUncheckedCreateWithoutInstrumentInput> | PhaseTwoRequirementsCreateWithoutInstrumentInput[] | PhaseTwoRequirementsUncheckedCreateWithoutInstrumentInput[]
+    connectOrCreate?: PhaseTwoRequirementsCreateOrConnectWithoutInstrumentInput | PhaseTwoRequirementsCreateOrConnectWithoutInstrumentInput[]
+    upsert?: PhaseTwoRequirementsUpsertWithWhereUniqueWithoutInstrumentInput | PhaseTwoRequirementsUpsertWithWhereUniqueWithoutInstrumentInput[]
+    createMany?: PhaseTwoRequirementsCreateManyInstrumentInputEnvelope
+    set?: PhaseTwoRequirementsWhereUniqueInput | PhaseTwoRequirementsWhereUniqueInput[]
+    disconnect?: PhaseTwoRequirementsWhereUniqueInput | PhaseTwoRequirementsWhereUniqueInput[]
+    delete?: PhaseTwoRequirementsWhereUniqueInput | PhaseTwoRequirementsWhereUniqueInput[]
+    connect?: PhaseTwoRequirementsWhereUniqueInput | PhaseTwoRequirementsWhereUniqueInput[]
+    update?: PhaseTwoRequirementsUpdateWithWhereUniqueWithoutInstrumentInput | PhaseTwoRequirementsUpdateWithWhereUniqueWithoutInstrumentInput[]
+    updateMany?: PhaseTwoRequirementsUpdateManyWithWhereWithoutInstrumentInput | PhaseTwoRequirementsUpdateManyWithWhereWithoutInstrumentInput[]
+    deleteMany?: PhaseTwoRequirementsScalarWhereInput | PhaseTwoRequirementsScalarWhereInput[]
+  }
+
   export type InstrumentCreateNestedOneWithoutAreaInput = {
     create?: XOR<InstrumentCreateWithoutAreaInput, InstrumentUncheckedCreateWithoutAreaInput>
     connectOrCreate?: InstrumentCreateOrConnectWithoutAreaInput
@@ -23935,6 +32651,13 @@ export namespace Prisma {
     connect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
   }
 
+  export type PhaseTwoAreaFolderCreateNestedManyWithoutAreaInput = {
+    create?: XOR<PhaseTwoAreaFolderCreateWithoutAreaInput, PhaseTwoAreaFolderUncheckedCreateWithoutAreaInput> | PhaseTwoAreaFolderCreateWithoutAreaInput[] | PhaseTwoAreaFolderUncheckedCreateWithoutAreaInput[]
+    connectOrCreate?: PhaseTwoAreaFolderCreateOrConnectWithoutAreaInput | PhaseTwoAreaFolderCreateOrConnectWithoutAreaInput[]
+    createMany?: PhaseTwoAreaFolderCreateManyAreaInputEnvelope
+    connect?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+  }
+
   export type ParameterUncheckedCreateNestedManyWithoutAreaInput = {
     create?: XOR<ParameterCreateWithoutAreaInput, ParameterUncheckedCreateWithoutAreaInput> | ParameterCreateWithoutAreaInput[] | ParameterUncheckedCreateWithoutAreaInput[]
     connectOrCreate?: ParameterCreateOrConnectWithoutAreaInput | ParameterCreateOrConnectWithoutAreaInput[]
@@ -23947,6 +32670,13 @@ export namespace Prisma {
     connectOrCreate?: AreaFolderCreateOrConnectWithoutAreaInput | AreaFolderCreateOrConnectWithoutAreaInput[]
     createMany?: AreaFolderCreateManyAreaInputEnvelope
     connect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
+  }
+
+  export type PhaseTwoAreaFolderUncheckedCreateNestedManyWithoutAreaInput = {
+    create?: XOR<PhaseTwoAreaFolderCreateWithoutAreaInput, PhaseTwoAreaFolderUncheckedCreateWithoutAreaInput> | PhaseTwoAreaFolderCreateWithoutAreaInput[] | PhaseTwoAreaFolderUncheckedCreateWithoutAreaInput[]
+    connectOrCreate?: PhaseTwoAreaFolderCreateOrConnectWithoutAreaInput | PhaseTwoAreaFolderCreateOrConnectWithoutAreaInput[]
+    createMany?: PhaseTwoAreaFolderCreateManyAreaInputEnvelope
+    connect?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -23993,6 +32723,20 @@ export namespace Prisma {
     deleteMany?: AreaFolderScalarWhereInput | AreaFolderScalarWhereInput[]
   }
 
+  export type PhaseTwoAreaFolderUpdateManyWithoutAreaNestedInput = {
+    create?: XOR<PhaseTwoAreaFolderCreateWithoutAreaInput, PhaseTwoAreaFolderUncheckedCreateWithoutAreaInput> | PhaseTwoAreaFolderCreateWithoutAreaInput[] | PhaseTwoAreaFolderUncheckedCreateWithoutAreaInput[]
+    connectOrCreate?: PhaseTwoAreaFolderCreateOrConnectWithoutAreaInput | PhaseTwoAreaFolderCreateOrConnectWithoutAreaInput[]
+    upsert?: PhaseTwoAreaFolderUpsertWithWhereUniqueWithoutAreaInput | PhaseTwoAreaFolderUpsertWithWhereUniqueWithoutAreaInput[]
+    createMany?: PhaseTwoAreaFolderCreateManyAreaInputEnvelope
+    set?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    disconnect?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    delete?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    connect?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    update?: PhaseTwoAreaFolderUpdateWithWhereUniqueWithoutAreaInput | PhaseTwoAreaFolderUpdateWithWhereUniqueWithoutAreaInput[]
+    updateMany?: PhaseTwoAreaFolderUpdateManyWithWhereWithoutAreaInput | PhaseTwoAreaFolderUpdateManyWithWhereWithoutAreaInput[]
+    deleteMany?: PhaseTwoAreaFolderScalarWhereInput | PhaseTwoAreaFolderScalarWhereInput[]
+  }
+
   export type ParameterUncheckedUpdateManyWithoutAreaNestedInput = {
     create?: XOR<ParameterCreateWithoutAreaInput, ParameterUncheckedCreateWithoutAreaInput> | ParameterCreateWithoutAreaInput[] | ParameterUncheckedCreateWithoutAreaInput[]
     connectOrCreate?: ParameterCreateOrConnectWithoutAreaInput | ParameterCreateOrConnectWithoutAreaInput[]
@@ -24019,6 +32763,20 @@ export namespace Prisma {
     update?: AreaFolderUpdateWithWhereUniqueWithoutAreaInput | AreaFolderUpdateWithWhereUniqueWithoutAreaInput[]
     updateMany?: AreaFolderUpdateManyWithWhereWithoutAreaInput | AreaFolderUpdateManyWithWhereWithoutAreaInput[]
     deleteMany?: AreaFolderScalarWhereInput | AreaFolderScalarWhereInput[]
+  }
+
+  export type PhaseTwoAreaFolderUncheckedUpdateManyWithoutAreaNestedInput = {
+    create?: XOR<PhaseTwoAreaFolderCreateWithoutAreaInput, PhaseTwoAreaFolderUncheckedCreateWithoutAreaInput> | PhaseTwoAreaFolderCreateWithoutAreaInput[] | PhaseTwoAreaFolderUncheckedCreateWithoutAreaInput[]
+    connectOrCreate?: PhaseTwoAreaFolderCreateOrConnectWithoutAreaInput | PhaseTwoAreaFolderCreateOrConnectWithoutAreaInput[]
+    upsert?: PhaseTwoAreaFolderUpsertWithWhereUniqueWithoutAreaInput | PhaseTwoAreaFolderUpsertWithWhereUniqueWithoutAreaInput[]
+    createMany?: PhaseTwoAreaFolderCreateManyAreaInputEnvelope
+    set?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    disconnect?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    delete?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    connect?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    update?: PhaseTwoAreaFolderUpdateWithWhereUniqueWithoutAreaInput | PhaseTwoAreaFolderUpdateWithWhereUniqueWithoutAreaInput[]
+    updateMany?: PhaseTwoAreaFolderUpdateManyWithWhereWithoutAreaInput | PhaseTwoAreaFolderUpdateManyWithWhereWithoutAreaInput[]
+    deleteMany?: PhaseTwoAreaFolderScalarWhereInput | PhaseTwoAreaFolderScalarWhereInput[]
   }
 
   export type AreaCreateNestedOneWithoutParameterInput = {
@@ -24301,10 +33059,6 @@ export namespace Prisma {
     connect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
   }
 
-  export type NullableEnumPhaseFieldUpdateOperationsInput = {
-    set?: $Enums.Phase | null
-  }
-
   export type ProgramUpdateOneRequiredWithoutAccreditationNestedInput = {
     create?: XOR<ProgramCreateWithoutAccreditationInput, ProgramUncheckedCreateWithoutAccreditationInput>
     connectOrCreate?: ProgramCreateOrConnectWithoutAccreditationInput
@@ -24369,10 +33123,30 @@ export namespace Prisma {
     connect?: PhaseOneRequirementsWhereUniqueInput
   }
 
+  export type PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput = {
+    create?: XOR<PhaseTwoRequirementsCreateWithoutSurveyVisitInput, PhaseTwoRequirementsUncheckedCreateWithoutSurveyVisitInput>
+    connectOrCreate?: PhaseTwoRequirementsCreateOrConnectWithoutSurveyVisitInput
+    connect?: PhaseTwoRequirementsWhereUniqueInput
+  }
+
   export type PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput = {
     create?: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
     connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutSurveyVisitInput
     connect?: PhaseOneRequirementsWhereUniqueInput
+  }
+
+  export type PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput = {
+    create?: XOR<PhaseTwoRequirementsCreateWithoutSurveyVisitInput, PhaseTwoRequirementsUncheckedCreateWithoutSurveyVisitInput>
+    connectOrCreate?: PhaseTwoRequirementsCreateOrConnectWithoutSurveyVisitInput
+    connect?: PhaseTwoRequirementsWhereUniqueInput
+  }
+
+  export type EnumSurveyVisitTypeFieldUpdateOperationsInput = {
+    set?: $Enums.SurveyVisitType
+  }
+
+  export type EnumAccreditationStatusFieldUpdateOperationsInput = {
+    set?: $Enums.AccreditationStatus
   }
 
   export type AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput = {
@@ -24401,6 +33175,16 @@ export namespace Prisma {
     update?: XOR<XOR<PhaseOneRequirementsUpdateToOneWithWhereWithoutSurveyVisitInput, PhaseOneRequirementsUpdateWithoutSurveyVisitInput>, PhaseOneRequirementsUncheckedUpdateWithoutSurveyVisitInput>
   }
 
+  export type PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput = {
+    create?: XOR<PhaseTwoRequirementsCreateWithoutSurveyVisitInput, PhaseTwoRequirementsUncheckedCreateWithoutSurveyVisitInput>
+    connectOrCreate?: PhaseTwoRequirementsCreateOrConnectWithoutSurveyVisitInput
+    upsert?: PhaseTwoRequirementsUpsertWithoutSurveyVisitInput
+    disconnect?: PhaseTwoRequirementsWhereInput | boolean
+    delete?: PhaseTwoRequirementsWhereInput | boolean
+    connect?: PhaseTwoRequirementsWhereUniqueInput
+    update?: XOR<XOR<PhaseTwoRequirementsUpdateToOneWithWhereWithoutSurveyVisitInput, PhaseTwoRequirementsUpdateWithoutSurveyVisitInput>, PhaseTwoRequirementsUncheckedUpdateWithoutSurveyVisitInput>
+  }
+
   export type PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput = {
     create?: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
     connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutSurveyVisitInput
@@ -24409,6 +33193,16 @@ export namespace Prisma {
     delete?: PhaseOneRequirementsWhereInput | boolean
     connect?: PhaseOneRequirementsWhereUniqueInput
     update?: XOR<XOR<PhaseOneRequirementsUpdateToOneWithWhereWithoutSurveyVisitInput, PhaseOneRequirementsUpdateWithoutSurveyVisitInput>, PhaseOneRequirementsUncheckedUpdateWithoutSurveyVisitInput>
+  }
+
+  export type PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput = {
+    create?: XOR<PhaseTwoRequirementsCreateWithoutSurveyVisitInput, PhaseTwoRequirementsUncheckedCreateWithoutSurveyVisitInput>
+    connectOrCreate?: PhaseTwoRequirementsCreateOrConnectWithoutSurveyVisitInput
+    upsert?: PhaseTwoRequirementsUpsertWithoutSurveyVisitInput
+    disconnect?: PhaseTwoRequirementsWhereInput | boolean
+    delete?: PhaseTwoRequirementsWhereInput | boolean
+    connect?: PhaseTwoRequirementsWhereUniqueInput
+    update?: XOR<XOR<PhaseTwoRequirementsUpdateToOneWithWhereWithoutSurveyVisitInput, PhaseTwoRequirementsUpdateWithoutSurveyVisitInput>, PhaseTwoRequirementsUncheckedUpdateWithoutSurveyVisitInput>
   }
 
   export type SurveyVisitCreateNestedOneWithoutPhaseOneRequirementsInput = {
@@ -24435,10 +33229,12 @@ export namespace Prisma {
     connect?: InstrumentFolderWhereUniqueInput
   }
 
-  export type SurveyVisitUpdateOneRequiredWithoutPhaseOneRequirementsNestedInput = {
+  export type SurveyVisitUpdateOneWithoutPhaseOneRequirementsNestedInput = {
     create?: XOR<SurveyVisitCreateWithoutPhaseOneRequirementsInput, SurveyVisitUncheckedCreateWithoutPhaseOneRequirementsInput>
     connectOrCreate?: SurveyVisitCreateOrConnectWithoutPhaseOneRequirementsInput
     upsert?: SurveyVisitUpsertWithoutPhaseOneRequirementsInput
+    disconnect?: SurveyVisitWhereInput | boolean
+    delete?: SurveyVisitWhereInput | boolean
     connect?: SurveyVisitWhereUniqueInput
     update?: XOR<XOR<SurveyVisitUpdateToOneWithWhereWithoutPhaseOneRequirementsInput, SurveyVisitUpdateWithoutPhaseOneRequirementsInput>, SurveyVisitUncheckedUpdateWithoutPhaseOneRequirementsInput>
   }
@@ -24491,10 +33287,12 @@ export namespace Prisma {
     connect?: AreaFolderWhereUniqueInput | AreaFolderWhereUniqueInput[]
   }
 
-  export type PhaseOneRequirementsUpdateOneRequiredWithoutInstrumentFolderNestedInput = {
+  export type PhaseOneRequirementsUpdateOneWithoutInstrumentFolderNestedInput = {
     create?: XOR<PhaseOneRequirementsCreateWithoutInstrumentFolderInput, PhaseOneRequirementsUncheckedCreateWithoutInstrumentFolderInput>
     connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutInstrumentFolderInput
     upsert?: PhaseOneRequirementsUpsertWithoutInstrumentFolderInput
+    disconnect?: PhaseOneRequirementsWhereInput | boolean
+    delete?: PhaseOneRequirementsWhereInput | boolean
     connect?: PhaseOneRequirementsWhereUniqueInput
     update?: XOR<XOR<PhaseOneRequirementsUpdateToOneWithWhereWithoutInstrumentFolderInput, PhaseOneRequirementsUpdateWithoutInstrumentFolderInput>, PhaseOneRequirementsUncheckedUpdateWithoutInstrumentFolderInput>
   }
@@ -24546,11 +33344,41 @@ export namespace Prisma {
     connect?: AreaWhereUniqueInput
   }
 
+  export type AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput = {
+    create?: XOR<AreaFileCreateWithoutPhaseOneAreaFolderInput, AreaFileUncheckedCreateWithoutPhaseOneAreaFolderInput> | AreaFileCreateWithoutPhaseOneAreaFolderInput[] | AreaFileUncheckedCreateWithoutPhaseOneAreaFolderInput[]
+    connectOrCreate?: AreaFileCreateOrConnectWithoutPhaseOneAreaFolderInput | AreaFileCreateOrConnectWithoutPhaseOneAreaFolderInput[]
+    createMany?: AreaFileCreateManyPhaseOneAreaFolderInputEnvelope
+    connect?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+  }
+
+  export type TaskForceCreateNestedOneWithoutAreaFolderInput = {
+    create?: XOR<TaskForceCreateWithoutAreaFolderInput, TaskForceUncheckedCreateWithoutAreaFolderInput>
+    connectOrCreate?: TaskForceCreateOrConnectWithoutAreaFolderInput
+    connect?: TaskForceWhereUniqueInput
+  }
+
   export type ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput = {
     create?: XOR<ParameterFolderCreateWithoutAreaFolderInput, ParameterFolderUncheckedCreateWithoutAreaFolderInput> | ParameterFolderCreateWithoutAreaFolderInput[] | ParameterFolderUncheckedCreateWithoutAreaFolderInput[]
     connectOrCreate?: ParameterFolderCreateOrConnectWithoutAreaFolderInput | ParameterFolderCreateOrConnectWithoutAreaFolderInput[]
     createMany?: ParameterFolderCreateManyAreaFolderInputEnvelope
     connect?: ParameterFolderWhereUniqueInput | ParameterFolderWhereUniqueInput[]
+  }
+
+  export type AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput = {
+    create?: XOR<AreaFileCreateWithoutPhaseOneAreaFolderInput, AreaFileUncheckedCreateWithoutPhaseOneAreaFolderInput> | AreaFileCreateWithoutPhaseOneAreaFolderInput[] | AreaFileUncheckedCreateWithoutPhaseOneAreaFolderInput[]
+    connectOrCreate?: AreaFileCreateOrConnectWithoutPhaseOneAreaFolderInput | AreaFileCreateOrConnectWithoutPhaseOneAreaFolderInput[]
+    createMany?: AreaFileCreateManyPhaseOneAreaFolderInputEnvelope
+    connect?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+  }
+
+  export type TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput = {
+    create?: XOR<TaskForceCreateWithoutAreaFolderInput, TaskForceUncheckedCreateWithoutAreaFolderInput>
+    connectOrCreate?: TaskForceCreateOrConnectWithoutAreaFolderInput
+    connect?: TaskForceWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput = {
@@ -24583,6 +33411,30 @@ export namespace Prisma {
     update?: XOR<XOR<AreaUpdateToOneWithWhereWithoutAreaFoldersInput, AreaUpdateWithoutAreaFoldersInput>, AreaUncheckedUpdateWithoutAreaFoldersInput>
   }
 
+  export type AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput = {
+    create?: XOR<AreaFileCreateWithoutPhaseOneAreaFolderInput, AreaFileUncheckedCreateWithoutPhaseOneAreaFolderInput> | AreaFileCreateWithoutPhaseOneAreaFolderInput[] | AreaFileUncheckedCreateWithoutPhaseOneAreaFolderInput[]
+    connectOrCreate?: AreaFileCreateOrConnectWithoutPhaseOneAreaFolderInput | AreaFileCreateOrConnectWithoutPhaseOneAreaFolderInput[]
+    upsert?: AreaFileUpsertWithWhereUniqueWithoutPhaseOneAreaFolderInput | AreaFileUpsertWithWhereUniqueWithoutPhaseOneAreaFolderInput[]
+    createMany?: AreaFileCreateManyPhaseOneAreaFolderInputEnvelope
+    set?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    disconnect?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    delete?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    connect?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    update?: AreaFileUpdateWithWhereUniqueWithoutPhaseOneAreaFolderInput | AreaFileUpdateWithWhereUniqueWithoutPhaseOneAreaFolderInput[]
+    updateMany?: AreaFileUpdateManyWithWhereWithoutPhaseOneAreaFolderInput | AreaFileUpdateManyWithWhereWithoutPhaseOneAreaFolderInput[]
+    deleteMany?: AreaFileScalarWhereInput | AreaFileScalarWhereInput[]
+  }
+
+  export type TaskForceUpdateOneWithoutAreaFolderNestedInput = {
+    create?: XOR<TaskForceCreateWithoutAreaFolderInput, TaskForceUncheckedCreateWithoutAreaFolderInput>
+    connectOrCreate?: TaskForceCreateOrConnectWithoutAreaFolderInput
+    upsert?: TaskForceUpsertWithoutAreaFolderInput
+    disconnect?: TaskForceWhereInput | boolean
+    delete?: TaskForceWhereInput | boolean
+    connect?: TaskForceWhereUniqueInput
+    update?: XOR<XOR<TaskForceUpdateToOneWithWhereWithoutAreaFolderInput, TaskForceUpdateWithoutAreaFolderInput>, TaskForceUncheckedUpdateWithoutAreaFolderInput>
+  }
+
   export type ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput = {
     create?: XOR<ParameterFolderCreateWithoutAreaFolderInput, ParameterFolderUncheckedCreateWithoutAreaFolderInput> | ParameterFolderCreateWithoutAreaFolderInput[] | ParameterFolderUncheckedCreateWithoutAreaFolderInput[]
     connectOrCreate?: ParameterFolderCreateOrConnectWithoutAreaFolderInput | ParameterFolderCreateOrConnectWithoutAreaFolderInput[]
@@ -24595,6 +33447,30 @@ export namespace Prisma {
     update?: ParameterFolderUpdateWithWhereUniqueWithoutAreaFolderInput | ParameterFolderUpdateWithWhereUniqueWithoutAreaFolderInput[]
     updateMany?: ParameterFolderUpdateManyWithWhereWithoutAreaFolderInput | ParameterFolderUpdateManyWithWhereWithoutAreaFolderInput[]
     deleteMany?: ParameterFolderScalarWhereInput | ParameterFolderScalarWhereInput[]
+  }
+
+  export type AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput = {
+    create?: XOR<AreaFileCreateWithoutPhaseOneAreaFolderInput, AreaFileUncheckedCreateWithoutPhaseOneAreaFolderInput> | AreaFileCreateWithoutPhaseOneAreaFolderInput[] | AreaFileUncheckedCreateWithoutPhaseOneAreaFolderInput[]
+    connectOrCreate?: AreaFileCreateOrConnectWithoutPhaseOneAreaFolderInput | AreaFileCreateOrConnectWithoutPhaseOneAreaFolderInput[]
+    upsert?: AreaFileUpsertWithWhereUniqueWithoutPhaseOneAreaFolderInput | AreaFileUpsertWithWhereUniqueWithoutPhaseOneAreaFolderInput[]
+    createMany?: AreaFileCreateManyPhaseOneAreaFolderInputEnvelope
+    set?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    disconnect?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    delete?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    connect?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    update?: AreaFileUpdateWithWhereUniqueWithoutPhaseOneAreaFolderInput | AreaFileUpdateWithWhereUniqueWithoutPhaseOneAreaFolderInput[]
+    updateMany?: AreaFileUpdateManyWithWhereWithoutPhaseOneAreaFolderInput | AreaFileUpdateManyWithWhereWithoutPhaseOneAreaFolderInput[]
+    deleteMany?: AreaFileScalarWhereInput | AreaFileScalarWhereInput[]
+  }
+
+  export type TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput = {
+    create?: XOR<TaskForceCreateWithoutAreaFolderInput, TaskForceUncheckedCreateWithoutAreaFolderInput>
+    connectOrCreate?: TaskForceCreateOrConnectWithoutAreaFolderInput
+    upsert?: TaskForceUpsertWithoutAreaFolderInput
+    disconnect?: TaskForceWhereInput | boolean
+    delete?: TaskForceWhereInput | boolean
+    connect?: TaskForceWhereUniqueInput
+    update?: XOR<XOR<TaskForceUpdateToOneWithWhereWithoutAreaFolderInput, TaskForceUpdateWithoutAreaFolderInput>, TaskForceUncheckedUpdateWithoutAreaFolderInput>
   }
 
   export type AreaFolderCreateNestedOneWithoutParameterFoldersInput = {
@@ -24616,11 +33492,23 @@ export namespace Prisma {
     connect?: ParameterWhereUniqueInput
   }
 
+  export type TaskForceMemberCreateNestedOneWithoutParameterFolderInput = {
+    create?: XOR<TaskForceMemberCreateWithoutParameterFolderInput, TaskForceMemberUncheckedCreateWithoutParameterFolderInput>
+    connectOrCreate?: TaskForceMemberCreateOrConnectWithoutParameterFolderInput
+    connect?: TaskForceMemberWhereUniqueInput
+  }
+
   export type IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput = {
     create?: XOR<IndicatorFolderCreateWithoutParameterFolderInput, IndicatorFolderUncheckedCreateWithoutParameterFolderInput> | IndicatorFolderCreateWithoutParameterFolderInput[] | IndicatorFolderUncheckedCreateWithoutParameterFolderInput[]
     connectOrCreate?: IndicatorFolderCreateOrConnectWithoutParameterFolderInput | IndicatorFolderCreateOrConnectWithoutParameterFolderInput[]
     createMany?: IndicatorFolderCreateManyParameterFolderInputEnvelope
     connect?: IndicatorFolderWhereUniqueInput | IndicatorFolderWhereUniqueInput[]
+  }
+
+  export type TaskForceMemberUncheckedCreateNestedOneWithoutParameterFolderInput = {
+    create?: XOR<TaskForceMemberCreateWithoutParameterFolderInput, TaskForceMemberUncheckedCreateWithoutParameterFolderInput>
+    connectOrCreate?: TaskForceMemberCreateOrConnectWithoutParameterFolderInput
+    connect?: TaskForceMemberWhereUniqueInput
   }
 
   export type AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput = {
@@ -24653,6 +33541,16 @@ export namespace Prisma {
     update?: XOR<XOR<ParameterUpdateToOneWithWhereWithoutParameterFoldersInput, ParameterUpdateWithoutParameterFoldersInput>, ParameterUncheckedUpdateWithoutParameterFoldersInput>
   }
 
+  export type TaskForceMemberUpdateOneWithoutParameterFolderNestedInput = {
+    create?: XOR<TaskForceMemberCreateWithoutParameterFolderInput, TaskForceMemberUncheckedCreateWithoutParameterFolderInput>
+    connectOrCreate?: TaskForceMemberCreateOrConnectWithoutParameterFolderInput
+    upsert?: TaskForceMemberUpsertWithoutParameterFolderInput
+    disconnect?: TaskForceMemberWhereInput | boolean
+    delete?: TaskForceMemberWhereInput | boolean
+    connect?: TaskForceMemberWhereUniqueInput
+    update?: XOR<XOR<TaskForceMemberUpdateToOneWithWhereWithoutParameterFolderInput, TaskForceMemberUpdateWithoutParameterFolderInput>, TaskForceMemberUncheckedUpdateWithoutParameterFolderInput>
+  }
+
   export type IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput = {
     create?: XOR<IndicatorFolderCreateWithoutParameterFolderInput, IndicatorFolderUncheckedCreateWithoutParameterFolderInput> | IndicatorFolderCreateWithoutParameterFolderInput[] | IndicatorFolderUncheckedCreateWithoutParameterFolderInput[]
     connectOrCreate?: IndicatorFolderCreateOrConnectWithoutParameterFolderInput | IndicatorFolderCreateOrConnectWithoutParameterFolderInput[]
@@ -24665,6 +33563,16 @@ export namespace Prisma {
     update?: IndicatorFolderUpdateWithWhereUniqueWithoutParameterFolderInput | IndicatorFolderUpdateWithWhereUniqueWithoutParameterFolderInput[]
     updateMany?: IndicatorFolderUpdateManyWithWhereWithoutParameterFolderInput | IndicatorFolderUpdateManyWithWhereWithoutParameterFolderInput[]
     deleteMany?: IndicatorFolderScalarWhereInput | IndicatorFolderScalarWhereInput[]
+  }
+
+  export type TaskForceMemberUncheckedUpdateOneWithoutParameterFolderNestedInput = {
+    create?: XOR<TaskForceMemberCreateWithoutParameterFolderInput, TaskForceMemberUncheckedCreateWithoutParameterFolderInput>
+    connectOrCreate?: TaskForceMemberCreateOrConnectWithoutParameterFolderInput
+    upsert?: TaskForceMemberUpsertWithoutParameterFolderInput
+    disconnect?: TaskForceMemberWhereInput | boolean
+    delete?: TaskForceMemberWhereInput | boolean
+    connect?: TaskForceMemberWhereUniqueInput
+    update?: XOR<XOR<TaskForceMemberUpdateToOneWithWhereWithoutParameterFolderInput, TaskForceMemberUpdateWithoutParameterFolderInput>, TaskForceMemberUncheckedUpdateWithoutParameterFolderInput>
   }
 
   export type ParameterFolderCreateNestedOneWithoutIndicatorFoldersInput = {
@@ -24749,6 +33657,330 @@ export namespace Prisma {
     upsert?: IndicatorUpsertWithoutEvidenceFilesInput
     connect?: IndicatorWhereUniqueInput
     update?: XOR<XOR<IndicatorUpdateToOneWithWhereWithoutEvidenceFilesInput, IndicatorUpdateWithoutEvidenceFilesInput>, IndicatorUncheckedUpdateWithoutEvidenceFilesInput>
+  }
+
+  export type SurveyVisitCreateNestedOneWithoutPhaseTwoRequirementsInput = {
+    create?: XOR<SurveyVisitCreateWithoutPhaseTwoRequirementsInput, SurveyVisitUncheckedCreateWithoutPhaseTwoRequirementsInput>
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutPhaseTwoRequirementsInput
+    connect?: SurveyVisitWhereUniqueInput
+  }
+
+  export type InstrumentCreateNestedOneWithoutPhaseTwoRequirementsInput = {
+    create?: XOR<InstrumentCreateWithoutPhaseTwoRequirementsInput, InstrumentUncheckedCreateWithoutPhaseTwoRequirementsInput>
+    connectOrCreate?: InstrumentCreateOrConnectWithoutPhaseTwoRequirementsInput
+    connect?: InstrumentWhereUniqueInput
+  }
+
+  export type PhaseTwoFolderCreateNestedOneWithoutPhaseTwoRequirementsInput = {
+    create?: XOR<PhaseTwoFolderCreateWithoutPhaseTwoRequirementsInput, PhaseTwoFolderUncheckedCreateWithoutPhaseTwoRequirementsInput>
+    connectOrCreate?: PhaseTwoFolderCreateOrConnectWithoutPhaseTwoRequirementsInput
+    connect?: PhaseTwoFolderWhereUniqueInput
+  }
+
+  export type PhaseTwoFolderUncheckedCreateNestedOneWithoutPhaseTwoRequirementsInput = {
+    create?: XOR<PhaseTwoFolderCreateWithoutPhaseTwoRequirementsInput, PhaseTwoFolderUncheckedCreateWithoutPhaseTwoRequirementsInput>
+    connectOrCreate?: PhaseTwoFolderCreateOrConnectWithoutPhaseTwoRequirementsInput
+    connect?: PhaseTwoFolderWhereUniqueInput
+  }
+
+  export type SurveyVisitUpdateOneWithoutPhaseTwoRequirementsNestedInput = {
+    create?: XOR<SurveyVisitCreateWithoutPhaseTwoRequirementsInput, SurveyVisitUncheckedCreateWithoutPhaseTwoRequirementsInput>
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutPhaseTwoRequirementsInput
+    upsert?: SurveyVisitUpsertWithoutPhaseTwoRequirementsInput
+    disconnect?: SurveyVisitWhereInput | boolean
+    delete?: SurveyVisitWhereInput | boolean
+    connect?: SurveyVisitWhereUniqueInput
+    update?: XOR<XOR<SurveyVisitUpdateToOneWithWhereWithoutPhaseTwoRequirementsInput, SurveyVisitUpdateWithoutPhaseTwoRequirementsInput>, SurveyVisitUncheckedUpdateWithoutPhaseTwoRequirementsInput>
+  }
+
+  export type InstrumentUpdateOneRequiredWithoutPhaseTwoRequirementsNestedInput = {
+    create?: XOR<InstrumentCreateWithoutPhaseTwoRequirementsInput, InstrumentUncheckedCreateWithoutPhaseTwoRequirementsInput>
+    connectOrCreate?: InstrumentCreateOrConnectWithoutPhaseTwoRequirementsInput
+    upsert?: InstrumentUpsertWithoutPhaseTwoRequirementsInput
+    connect?: InstrumentWhereUniqueInput
+    update?: XOR<XOR<InstrumentUpdateToOneWithWhereWithoutPhaseTwoRequirementsInput, InstrumentUpdateWithoutPhaseTwoRequirementsInput>, InstrumentUncheckedUpdateWithoutPhaseTwoRequirementsInput>
+  }
+
+  export type PhaseTwoFolderUpdateOneWithoutPhaseTwoRequirementsNestedInput = {
+    create?: XOR<PhaseTwoFolderCreateWithoutPhaseTwoRequirementsInput, PhaseTwoFolderUncheckedCreateWithoutPhaseTwoRequirementsInput>
+    connectOrCreate?: PhaseTwoFolderCreateOrConnectWithoutPhaseTwoRequirementsInput
+    upsert?: PhaseTwoFolderUpsertWithoutPhaseTwoRequirementsInput
+    disconnect?: PhaseTwoFolderWhereInput | boolean
+    delete?: PhaseTwoFolderWhereInput | boolean
+    connect?: PhaseTwoFolderWhereUniqueInput
+    update?: XOR<XOR<PhaseTwoFolderUpdateToOneWithWhereWithoutPhaseTwoRequirementsInput, PhaseTwoFolderUpdateWithoutPhaseTwoRequirementsInput>, PhaseTwoFolderUncheckedUpdateWithoutPhaseTwoRequirementsInput>
+  }
+
+  export type PhaseTwoFolderUncheckedUpdateOneWithoutPhaseTwoRequirementsNestedInput = {
+    create?: XOR<PhaseTwoFolderCreateWithoutPhaseTwoRequirementsInput, PhaseTwoFolderUncheckedCreateWithoutPhaseTwoRequirementsInput>
+    connectOrCreate?: PhaseTwoFolderCreateOrConnectWithoutPhaseTwoRequirementsInput
+    upsert?: PhaseTwoFolderUpsertWithoutPhaseTwoRequirementsInput
+    disconnect?: PhaseTwoFolderWhereInput | boolean
+    delete?: PhaseTwoFolderWhereInput | boolean
+    connect?: PhaseTwoFolderWhereUniqueInput
+    update?: XOR<XOR<PhaseTwoFolderUpdateToOneWithWhereWithoutPhaseTwoRequirementsInput, PhaseTwoFolderUpdateWithoutPhaseTwoRequirementsInput>, PhaseTwoFolderUncheckedUpdateWithoutPhaseTwoRequirementsInput>
+  }
+
+  export type PhaseTwoRequirementsCreateNestedOneWithoutPhaseTwoFolderInput = {
+    create?: XOR<PhaseTwoRequirementsCreateWithoutPhaseTwoFolderInput, PhaseTwoRequirementsUncheckedCreateWithoutPhaseTwoFolderInput>
+    connectOrCreate?: PhaseTwoRequirementsCreateOrConnectWithoutPhaseTwoFolderInput
+    connect?: PhaseTwoRequirementsWhereUniqueInput
+  }
+
+  export type PhaseTwoAreaFolderCreateNestedManyWithoutPhaseTwoFolderInput = {
+    create?: XOR<PhaseTwoAreaFolderCreateWithoutPhaseTwoFolderInput, PhaseTwoAreaFolderUncheckedCreateWithoutPhaseTwoFolderInput> | PhaseTwoAreaFolderCreateWithoutPhaseTwoFolderInput[] | PhaseTwoAreaFolderUncheckedCreateWithoutPhaseTwoFolderInput[]
+    connectOrCreate?: PhaseTwoAreaFolderCreateOrConnectWithoutPhaseTwoFolderInput | PhaseTwoAreaFolderCreateOrConnectWithoutPhaseTwoFolderInput[]
+    createMany?: PhaseTwoAreaFolderCreateManyPhaseTwoFolderInputEnvelope
+    connect?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+  }
+
+  export type PhaseTwoAreaFolderUncheckedCreateNestedManyWithoutPhaseTwoFolderInput = {
+    create?: XOR<PhaseTwoAreaFolderCreateWithoutPhaseTwoFolderInput, PhaseTwoAreaFolderUncheckedCreateWithoutPhaseTwoFolderInput> | PhaseTwoAreaFolderCreateWithoutPhaseTwoFolderInput[] | PhaseTwoAreaFolderUncheckedCreateWithoutPhaseTwoFolderInput[]
+    connectOrCreate?: PhaseTwoAreaFolderCreateOrConnectWithoutPhaseTwoFolderInput | PhaseTwoAreaFolderCreateOrConnectWithoutPhaseTwoFolderInput[]
+    createMany?: PhaseTwoAreaFolderCreateManyPhaseTwoFolderInputEnvelope
+    connect?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+  }
+
+  export type PhaseTwoRequirementsUpdateOneWithoutPhaseTwoFolderNestedInput = {
+    create?: XOR<PhaseTwoRequirementsCreateWithoutPhaseTwoFolderInput, PhaseTwoRequirementsUncheckedCreateWithoutPhaseTwoFolderInput>
+    connectOrCreate?: PhaseTwoRequirementsCreateOrConnectWithoutPhaseTwoFolderInput
+    upsert?: PhaseTwoRequirementsUpsertWithoutPhaseTwoFolderInput
+    disconnect?: PhaseTwoRequirementsWhereInput | boolean
+    delete?: PhaseTwoRequirementsWhereInput | boolean
+    connect?: PhaseTwoRequirementsWhereUniqueInput
+    update?: XOR<XOR<PhaseTwoRequirementsUpdateToOneWithWhereWithoutPhaseTwoFolderInput, PhaseTwoRequirementsUpdateWithoutPhaseTwoFolderInput>, PhaseTwoRequirementsUncheckedUpdateWithoutPhaseTwoFolderInput>
+  }
+
+  export type PhaseTwoAreaFolderUpdateManyWithoutPhaseTwoFolderNestedInput = {
+    create?: XOR<PhaseTwoAreaFolderCreateWithoutPhaseTwoFolderInput, PhaseTwoAreaFolderUncheckedCreateWithoutPhaseTwoFolderInput> | PhaseTwoAreaFolderCreateWithoutPhaseTwoFolderInput[] | PhaseTwoAreaFolderUncheckedCreateWithoutPhaseTwoFolderInput[]
+    connectOrCreate?: PhaseTwoAreaFolderCreateOrConnectWithoutPhaseTwoFolderInput | PhaseTwoAreaFolderCreateOrConnectWithoutPhaseTwoFolderInput[]
+    upsert?: PhaseTwoAreaFolderUpsertWithWhereUniqueWithoutPhaseTwoFolderInput | PhaseTwoAreaFolderUpsertWithWhereUniqueWithoutPhaseTwoFolderInput[]
+    createMany?: PhaseTwoAreaFolderCreateManyPhaseTwoFolderInputEnvelope
+    set?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    disconnect?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    delete?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    connect?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    update?: PhaseTwoAreaFolderUpdateWithWhereUniqueWithoutPhaseTwoFolderInput | PhaseTwoAreaFolderUpdateWithWhereUniqueWithoutPhaseTwoFolderInput[]
+    updateMany?: PhaseTwoAreaFolderUpdateManyWithWhereWithoutPhaseTwoFolderInput | PhaseTwoAreaFolderUpdateManyWithWhereWithoutPhaseTwoFolderInput[]
+    deleteMany?: PhaseTwoAreaFolderScalarWhereInput | PhaseTwoAreaFolderScalarWhereInput[]
+  }
+
+  export type PhaseTwoAreaFolderUncheckedUpdateManyWithoutPhaseTwoFolderNestedInput = {
+    create?: XOR<PhaseTwoAreaFolderCreateWithoutPhaseTwoFolderInput, PhaseTwoAreaFolderUncheckedCreateWithoutPhaseTwoFolderInput> | PhaseTwoAreaFolderCreateWithoutPhaseTwoFolderInput[] | PhaseTwoAreaFolderUncheckedCreateWithoutPhaseTwoFolderInput[]
+    connectOrCreate?: PhaseTwoAreaFolderCreateOrConnectWithoutPhaseTwoFolderInput | PhaseTwoAreaFolderCreateOrConnectWithoutPhaseTwoFolderInput[]
+    upsert?: PhaseTwoAreaFolderUpsertWithWhereUniqueWithoutPhaseTwoFolderInput | PhaseTwoAreaFolderUpsertWithWhereUniqueWithoutPhaseTwoFolderInput[]
+    createMany?: PhaseTwoAreaFolderCreateManyPhaseTwoFolderInputEnvelope
+    set?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    disconnect?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    delete?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    connect?: PhaseTwoAreaFolderWhereUniqueInput | PhaseTwoAreaFolderWhereUniqueInput[]
+    update?: PhaseTwoAreaFolderUpdateWithWhereUniqueWithoutPhaseTwoFolderInput | PhaseTwoAreaFolderUpdateWithWhereUniqueWithoutPhaseTwoFolderInput[]
+    updateMany?: PhaseTwoAreaFolderUpdateManyWithWhereWithoutPhaseTwoFolderInput | PhaseTwoAreaFolderUpdateManyWithWhereWithoutPhaseTwoFolderInput[]
+    deleteMany?: PhaseTwoAreaFolderScalarWhereInput | PhaseTwoAreaFolderScalarWhereInput[]
+  }
+
+  export type PhaseTwoFolderCreateNestedOneWithoutPhaseTwoAreaFoldersInput = {
+    create?: XOR<PhaseTwoFolderCreateWithoutPhaseTwoAreaFoldersInput, PhaseTwoFolderUncheckedCreateWithoutPhaseTwoAreaFoldersInput>
+    connectOrCreate?: PhaseTwoFolderCreateOrConnectWithoutPhaseTwoAreaFoldersInput
+    connect?: PhaseTwoFolderWhereUniqueInput
+  }
+
+  export type AreaCreateNestedOneWithoutPhaseTwoAreaFoldersInput = {
+    create?: XOR<AreaCreateWithoutPhaseTwoAreaFoldersInput, AreaUncheckedCreateWithoutPhaseTwoAreaFoldersInput>
+    connectOrCreate?: AreaCreateOrConnectWithoutPhaseTwoAreaFoldersInput
+    connect?: AreaWhereUniqueInput
+  }
+
+  export type AreaFileCreateNestedManyWithoutPhaseTwoAreaFolderInput = {
+    create?: XOR<AreaFileCreateWithoutPhaseTwoAreaFolderInput, AreaFileUncheckedCreateWithoutPhaseTwoAreaFolderInput> | AreaFileCreateWithoutPhaseTwoAreaFolderInput[] | AreaFileUncheckedCreateWithoutPhaseTwoAreaFolderInput[]
+    connectOrCreate?: AreaFileCreateOrConnectWithoutPhaseTwoAreaFolderInput | AreaFileCreateOrConnectWithoutPhaseTwoAreaFolderInput[]
+    createMany?: AreaFileCreateManyPhaseTwoAreaFolderInputEnvelope
+    connect?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+  }
+
+  export type AreaFileUncheckedCreateNestedManyWithoutPhaseTwoAreaFolderInput = {
+    create?: XOR<AreaFileCreateWithoutPhaseTwoAreaFolderInput, AreaFileUncheckedCreateWithoutPhaseTwoAreaFolderInput> | AreaFileCreateWithoutPhaseTwoAreaFolderInput[] | AreaFileUncheckedCreateWithoutPhaseTwoAreaFolderInput[]
+    connectOrCreate?: AreaFileCreateOrConnectWithoutPhaseTwoAreaFolderInput | AreaFileCreateOrConnectWithoutPhaseTwoAreaFolderInput[]
+    createMany?: AreaFileCreateManyPhaseTwoAreaFolderInputEnvelope
+    connect?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+  }
+
+  export type PhaseTwoFolderUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput = {
+    create?: XOR<PhaseTwoFolderCreateWithoutPhaseTwoAreaFoldersInput, PhaseTwoFolderUncheckedCreateWithoutPhaseTwoAreaFoldersInput>
+    connectOrCreate?: PhaseTwoFolderCreateOrConnectWithoutPhaseTwoAreaFoldersInput
+    upsert?: PhaseTwoFolderUpsertWithoutPhaseTwoAreaFoldersInput
+    connect?: PhaseTwoFolderWhereUniqueInput
+    update?: XOR<XOR<PhaseTwoFolderUpdateToOneWithWhereWithoutPhaseTwoAreaFoldersInput, PhaseTwoFolderUpdateWithoutPhaseTwoAreaFoldersInput>, PhaseTwoFolderUncheckedUpdateWithoutPhaseTwoAreaFoldersInput>
+  }
+
+  export type AreaUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput = {
+    create?: XOR<AreaCreateWithoutPhaseTwoAreaFoldersInput, AreaUncheckedCreateWithoutPhaseTwoAreaFoldersInput>
+    connectOrCreate?: AreaCreateOrConnectWithoutPhaseTwoAreaFoldersInput
+    upsert?: AreaUpsertWithoutPhaseTwoAreaFoldersInput
+    connect?: AreaWhereUniqueInput
+    update?: XOR<XOR<AreaUpdateToOneWithWhereWithoutPhaseTwoAreaFoldersInput, AreaUpdateWithoutPhaseTwoAreaFoldersInput>, AreaUncheckedUpdateWithoutPhaseTwoAreaFoldersInput>
+  }
+
+  export type AreaFileUpdateManyWithoutPhaseTwoAreaFolderNestedInput = {
+    create?: XOR<AreaFileCreateWithoutPhaseTwoAreaFolderInput, AreaFileUncheckedCreateWithoutPhaseTwoAreaFolderInput> | AreaFileCreateWithoutPhaseTwoAreaFolderInput[] | AreaFileUncheckedCreateWithoutPhaseTwoAreaFolderInput[]
+    connectOrCreate?: AreaFileCreateOrConnectWithoutPhaseTwoAreaFolderInput | AreaFileCreateOrConnectWithoutPhaseTwoAreaFolderInput[]
+    upsert?: AreaFileUpsertWithWhereUniqueWithoutPhaseTwoAreaFolderInput | AreaFileUpsertWithWhereUniqueWithoutPhaseTwoAreaFolderInput[]
+    createMany?: AreaFileCreateManyPhaseTwoAreaFolderInputEnvelope
+    set?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    disconnect?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    delete?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    connect?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    update?: AreaFileUpdateWithWhereUniqueWithoutPhaseTwoAreaFolderInput | AreaFileUpdateWithWhereUniqueWithoutPhaseTwoAreaFolderInput[]
+    updateMany?: AreaFileUpdateManyWithWhereWithoutPhaseTwoAreaFolderInput | AreaFileUpdateManyWithWhereWithoutPhaseTwoAreaFolderInput[]
+    deleteMany?: AreaFileScalarWhereInput | AreaFileScalarWhereInput[]
+  }
+
+  export type AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderNestedInput = {
+    create?: XOR<AreaFileCreateWithoutPhaseTwoAreaFolderInput, AreaFileUncheckedCreateWithoutPhaseTwoAreaFolderInput> | AreaFileCreateWithoutPhaseTwoAreaFolderInput[] | AreaFileUncheckedCreateWithoutPhaseTwoAreaFolderInput[]
+    connectOrCreate?: AreaFileCreateOrConnectWithoutPhaseTwoAreaFolderInput | AreaFileCreateOrConnectWithoutPhaseTwoAreaFolderInput[]
+    upsert?: AreaFileUpsertWithWhereUniqueWithoutPhaseTwoAreaFolderInput | AreaFileUpsertWithWhereUniqueWithoutPhaseTwoAreaFolderInput[]
+    createMany?: AreaFileCreateManyPhaseTwoAreaFolderInputEnvelope
+    set?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    disconnect?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    delete?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    connect?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+    update?: AreaFileUpdateWithWhereUniqueWithoutPhaseTwoAreaFolderInput | AreaFileUpdateWithWhereUniqueWithoutPhaseTwoAreaFolderInput[]
+    updateMany?: AreaFileUpdateManyWithWhereWithoutPhaseTwoAreaFolderInput | AreaFileUpdateManyWithWhereWithoutPhaseTwoAreaFolderInput[]
+    deleteMany?: AreaFileScalarWhereInput | AreaFileScalarWhereInput[]
+  }
+
+  export type AreaFolderCreateNestedOneWithoutAreaFilesInput = {
+    create?: XOR<AreaFolderCreateWithoutAreaFilesInput, AreaFolderUncheckedCreateWithoutAreaFilesInput>
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutAreaFilesInput
+    connect?: AreaFolderWhereUniqueInput
+  }
+
+  export type PhaseTwoAreaFolderCreateNestedOneWithoutAreaFilesInput = {
+    create?: XOR<PhaseTwoAreaFolderCreateWithoutAreaFilesInput, PhaseTwoAreaFolderUncheckedCreateWithoutAreaFilesInput>
+    connectOrCreate?: PhaseTwoAreaFolderCreateOrConnectWithoutAreaFilesInput
+    connect?: PhaseTwoAreaFolderWhereUniqueInput
+  }
+
+  export type EnumAreaFileTypeFieldUpdateOperationsInput = {
+    set?: $Enums.AreaFileType
+  }
+
+  export type AreaFolderUpdateOneWithoutAreaFilesNestedInput = {
+    create?: XOR<AreaFolderCreateWithoutAreaFilesInput, AreaFolderUncheckedCreateWithoutAreaFilesInput>
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutAreaFilesInput
+    upsert?: AreaFolderUpsertWithoutAreaFilesInput
+    disconnect?: AreaFolderWhereInput | boolean
+    delete?: AreaFolderWhereInput | boolean
+    connect?: AreaFolderWhereUniqueInput
+    update?: XOR<XOR<AreaFolderUpdateToOneWithWhereWithoutAreaFilesInput, AreaFolderUpdateWithoutAreaFilesInput>, AreaFolderUncheckedUpdateWithoutAreaFilesInput>
+  }
+
+  export type PhaseTwoAreaFolderUpdateOneWithoutAreaFilesNestedInput = {
+    create?: XOR<PhaseTwoAreaFolderCreateWithoutAreaFilesInput, PhaseTwoAreaFolderUncheckedCreateWithoutAreaFilesInput>
+    connectOrCreate?: PhaseTwoAreaFolderCreateOrConnectWithoutAreaFilesInput
+    upsert?: PhaseTwoAreaFolderUpsertWithoutAreaFilesInput
+    disconnect?: PhaseTwoAreaFolderWhereInput | boolean
+    delete?: PhaseTwoAreaFolderWhereInput | boolean
+    connect?: PhaseTwoAreaFolderWhereUniqueInput
+    update?: XOR<XOR<PhaseTwoAreaFolderUpdateToOneWithWhereWithoutAreaFilesInput, PhaseTwoAreaFolderUpdateWithoutAreaFilesInput>, PhaseTwoAreaFolderUncheckedUpdateWithoutAreaFilesInput>
+  }
+
+  export type AreaFolderCreateNestedOneWithoutTaskForceInput = {
+    create?: XOR<AreaFolderCreateWithoutTaskForceInput, AreaFolderUncheckedCreateWithoutTaskForceInput>
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutTaskForceInput
+    connect?: AreaFolderWhereUniqueInput
+  }
+
+  export type ProgramPersonnelCreateNestedOneWithoutChairPersonInput = {
+    create?: XOR<ProgramPersonnelCreateWithoutChairPersonInput, ProgramPersonnelUncheckedCreateWithoutChairPersonInput>
+    connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutChairPersonInput
+    connect?: ProgramPersonnelWhereUniqueInput
+  }
+
+  export type TaskForceMemberCreateNestedManyWithoutTaskForceInput = {
+    create?: XOR<TaskForceMemberCreateWithoutTaskForceInput, TaskForceMemberUncheckedCreateWithoutTaskForceInput> | TaskForceMemberCreateWithoutTaskForceInput[] | TaskForceMemberUncheckedCreateWithoutTaskForceInput[]
+    connectOrCreate?: TaskForceMemberCreateOrConnectWithoutTaskForceInput | TaskForceMemberCreateOrConnectWithoutTaskForceInput[]
+    createMany?: TaskForceMemberCreateManyTaskForceInputEnvelope
+    connect?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+  }
+
+  export type TaskForceMemberUncheckedCreateNestedManyWithoutTaskForceInput = {
+    create?: XOR<TaskForceMemberCreateWithoutTaskForceInput, TaskForceMemberUncheckedCreateWithoutTaskForceInput> | TaskForceMemberCreateWithoutTaskForceInput[] | TaskForceMemberUncheckedCreateWithoutTaskForceInput[]
+    connectOrCreate?: TaskForceMemberCreateOrConnectWithoutTaskForceInput | TaskForceMemberCreateOrConnectWithoutTaskForceInput[]
+    createMany?: TaskForceMemberCreateManyTaskForceInputEnvelope
+    connect?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+  }
+
+  export type AreaFolderUpdateOneRequiredWithoutTaskForceNestedInput = {
+    create?: XOR<AreaFolderCreateWithoutTaskForceInput, AreaFolderUncheckedCreateWithoutTaskForceInput>
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutTaskForceInput
+    upsert?: AreaFolderUpsertWithoutTaskForceInput
+    connect?: AreaFolderWhereUniqueInput
+    update?: XOR<XOR<AreaFolderUpdateToOneWithWhereWithoutTaskForceInput, AreaFolderUpdateWithoutTaskForceInput>, AreaFolderUncheckedUpdateWithoutTaskForceInput>
+  }
+
+  export type ProgramPersonnelUpdateOneRequiredWithoutChairPersonNestedInput = {
+    create?: XOR<ProgramPersonnelCreateWithoutChairPersonInput, ProgramPersonnelUncheckedCreateWithoutChairPersonInput>
+    connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutChairPersonInput
+    upsert?: ProgramPersonnelUpsertWithoutChairPersonInput
+    connect?: ProgramPersonnelWhereUniqueInput
+    update?: XOR<XOR<ProgramPersonnelUpdateToOneWithWhereWithoutChairPersonInput, ProgramPersonnelUpdateWithoutChairPersonInput>, ProgramPersonnelUncheckedUpdateWithoutChairPersonInput>
+  }
+
+  export type TaskForceMemberUpdateManyWithoutTaskForceNestedInput = {
+    create?: XOR<TaskForceMemberCreateWithoutTaskForceInput, TaskForceMemberUncheckedCreateWithoutTaskForceInput> | TaskForceMemberCreateWithoutTaskForceInput[] | TaskForceMemberUncheckedCreateWithoutTaskForceInput[]
+    connectOrCreate?: TaskForceMemberCreateOrConnectWithoutTaskForceInput | TaskForceMemberCreateOrConnectWithoutTaskForceInput[]
+    upsert?: TaskForceMemberUpsertWithWhereUniqueWithoutTaskForceInput | TaskForceMemberUpsertWithWhereUniqueWithoutTaskForceInput[]
+    createMany?: TaskForceMemberCreateManyTaskForceInputEnvelope
+    set?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    disconnect?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    delete?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    connect?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    update?: TaskForceMemberUpdateWithWhereUniqueWithoutTaskForceInput | TaskForceMemberUpdateWithWhereUniqueWithoutTaskForceInput[]
+    updateMany?: TaskForceMemberUpdateManyWithWhereWithoutTaskForceInput | TaskForceMemberUpdateManyWithWhereWithoutTaskForceInput[]
+    deleteMany?: TaskForceMemberScalarWhereInput | TaskForceMemberScalarWhereInput[]
+  }
+
+  export type TaskForceMemberUncheckedUpdateManyWithoutTaskForceNestedInput = {
+    create?: XOR<TaskForceMemberCreateWithoutTaskForceInput, TaskForceMemberUncheckedCreateWithoutTaskForceInput> | TaskForceMemberCreateWithoutTaskForceInput[] | TaskForceMemberUncheckedCreateWithoutTaskForceInput[]
+    connectOrCreate?: TaskForceMemberCreateOrConnectWithoutTaskForceInput | TaskForceMemberCreateOrConnectWithoutTaskForceInput[]
+    upsert?: TaskForceMemberUpsertWithWhereUniqueWithoutTaskForceInput | TaskForceMemberUpsertWithWhereUniqueWithoutTaskForceInput[]
+    createMany?: TaskForceMemberCreateManyTaskForceInputEnvelope
+    set?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    disconnect?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    delete?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    connect?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    update?: TaskForceMemberUpdateWithWhereUniqueWithoutTaskForceInput | TaskForceMemberUpdateWithWhereUniqueWithoutTaskForceInput[]
+    updateMany?: TaskForceMemberUpdateManyWithWhereWithoutTaskForceInput | TaskForceMemberUpdateManyWithWhereWithoutTaskForceInput[]
+    deleteMany?: TaskForceMemberScalarWhereInput | TaskForceMemberScalarWhereInput[]
+  }
+
+  export type TaskForceCreateNestedOneWithoutTaskForceMemberInput = {
+    create?: XOR<TaskForceCreateWithoutTaskForceMemberInput, TaskForceUncheckedCreateWithoutTaskForceMemberInput>
+    connectOrCreate?: TaskForceCreateOrConnectWithoutTaskForceMemberInput
+    connect?: TaskForceWhereUniqueInput
+  }
+
+  export type ParameterFolderCreateNestedOneWithoutTaskForceMemberInput = {
+    create?: XOR<ParameterFolderCreateWithoutTaskForceMemberInput, ParameterFolderUncheckedCreateWithoutTaskForceMemberInput>
+    connectOrCreate?: ParameterFolderCreateOrConnectWithoutTaskForceMemberInput
+    connect?: ParameterFolderWhereUniqueInput
+  }
+
+  export type TaskForceUpdateOneRequiredWithoutTaskForceMemberNestedInput = {
+    create?: XOR<TaskForceCreateWithoutTaskForceMemberInput, TaskForceUncheckedCreateWithoutTaskForceMemberInput>
+    connectOrCreate?: TaskForceCreateOrConnectWithoutTaskForceMemberInput
+    upsert?: TaskForceUpsertWithoutTaskForceMemberInput
+    connect?: TaskForceWhereUniqueInput
+    update?: XOR<XOR<TaskForceUpdateToOneWithWhereWithoutTaskForceMemberInput, TaskForceUpdateWithoutTaskForceMemberInput>, TaskForceUncheckedUpdateWithoutTaskForceMemberInput>
+  }
+
+  export type ParameterFolderUpdateOneRequiredWithoutTaskForceMemberNestedInput = {
+    create?: XOR<ParameterFolderCreateWithoutTaskForceMemberInput, ParameterFolderUncheckedCreateWithoutTaskForceMemberInput>
+    connectOrCreate?: ParameterFolderCreateOrConnectWithoutTaskForceMemberInput
+    upsert?: ParameterFolderUpsertWithoutTaskForceMemberInput
+    connect?: ParameterFolderWhereUniqueInput
+    update?: XOR<XOR<ParameterFolderUpdateToOneWithWhereWithoutTaskForceMemberInput, ParameterFolderUpdateWithoutTaskForceMemberInput>, ParameterFolderUncheckedUpdateWithoutTaskForceMemberInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -24965,33 +34197,82 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
-  export type NestedEnumPhaseNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.Phase | EnumPhaseFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumPhaseNullableFilter<$PrismaModel> | $Enums.Phase | null
+  export type NestedEnumSurveyVisitTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyVisitType | EnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyVisitType[] | ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyVisitType[] | ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyVisitTypeFilter<$PrismaModel> | $Enums.SurveyVisitType
   }
 
-  export type NestedEnumPhaseNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Phase | EnumPhaseFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumPhaseNullableWithAggregatesFilter<$PrismaModel> | $Enums.Phase | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumPhaseNullableFilter<$PrismaModel>
-    _max?: NestedEnumPhaseNullableFilter<$PrismaModel>
+  export type NestedEnumAccreditationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccreditationStatus | EnumAccreditationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAccreditationStatusFilter<$PrismaModel> | $Enums.AccreditationStatus
+  }
+
+  export type NestedEnumSurveyVisitTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyVisitType | EnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyVisitType[] | ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyVisitType[] | ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyVisitTypeWithAggregatesFilter<$PrismaModel> | $Enums.SurveyVisitType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSurveyVisitTypeFilter<$PrismaModel>
+    _max?: NestedEnumSurveyVisitTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumAccreditationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccreditationStatus | EnumAccreditationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAccreditationStatusWithAggregatesFilter<$PrismaModel> | $Enums.AccreditationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAccreditationStatusFilter<$PrismaModel>
+    _max?: NestedEnumAccreditationStatusFilter<$PrismaModel>
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedEnumAreaFileTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AreaFileType | EnumAreaFileTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AreaFileType[] | ListEnumAreaFileTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AreaFileType[] | ListEnumAreaFileTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAreaFileTypeFilter<$PrismaModel> | $Enums.AreaFileType
+  }
+
+  export type NestedEnumAreaFileTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AreaFileType | EnumAreaFileTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AreaFileType[] | ListEnumAreaFileTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AreaFileType[] | ListEnumAreaFileTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAreaFileTypeWithAggregatesFilter<$PrismaModel> | $Enums.AreaFileType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAreaFileTypeFilter<$PrismaModel>
+    _max?: NestedEnumAreaFileTypeFilter<$PrismaModel>
   }
 
   export type ProgramPersonnelCreateWithoutUserInput = {
     id?: string
     assignedAt?: Date | string
     program: ProgramCreateNestedOneWithoutProgramPersonnelInput
+    chairPerson?: TaskForceCreateNestedManyWithoutChairPersonInput
   }
 
   export type ProgramPersonnelUncheckedCreateWithoutUserInput = {
     id?: string
     programId: string
     assignedAt?: Date | string
+    chairPerson?: TaskForceUncheckedCreateNestedManyWithoutChairPersonInput
   }
 
   export type ProgramPersonnelCreateOrConnectWithoutUserInput = {
@@ -25034,12 +34315,14 @@ export namespace Prisma {
     id?: string
     assignedAt?: Date | string
     user: UserCreateNestedOneWithoutProgramPersonnelInput
+    chairPerson?: TaskForceCreateNestedManyWithoutChairPersonInput
   }
 
   export type ProgramPersonnelUncheckedCreateWithoutProgramInput = {
     id?: string
     userId: string
     assignedAt?: Date | string
+    chairPerson?: TaskForceUncheckedCreateNestedManyWithoutChairPersonInput
   }
 
   export type ProgramPersonnelCreateOrConnectWithoutProgramInput = {
@@ -25054,7 +34337,6 @@ export namespace Prisma {
 
   export type AccreditationCreateWithoutProgramInput = {
     id?: string
-    phase?: $Enums.Phase | null
     level?: LevelCreateNestedOneWithoutAccreditationsInput
     surveyVisits?: SurveyVisitCreateNestedManyWithoutAccreditationInput
   }
@@ -25062,7 +34344,6 @@ export namespace Prisma {
   export type AccreditationUncheckedCreateWithoutProgramInput = {
     id?: string
     currentLevel?: string | null
-    phase?: $Enums.Phase | null
     surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutAccreditationInput
   }
 
@@ -25100,7 +34381,6 @@ export namespace Prisma {
 
   export type AccreditationUpdateWithoutProgramInput = {
     id?: StringFieldUpdateOperationsInput | string
-    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
     level?: LevelUpdateOneWithoutAccreditationsNestedInput
     surveyVisits?: SurveyVisitUpdateManyWithoutAccreditationNestedInput
   }
@@ -25108,7 +34388,6 @@ export namespace Prisma {
   export type AccreditationUncheckedUpdateWithoutProgramInput = {
     id?: StringFieldUpdateOperationsInput | string
     currentLevel?: NullableStringFieldUpdateOperationsInput | string | null
-    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
     surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutAccreditationNestedInput
   }
 
@@ -25170,6 +34449,28 @@ export namespace Prisma {
   export type ProgramCreateOrConnectWithoutProgramPersonnelInput = {
     where: ProgramWhereUniqueInput
     create: XOR<ProgramCreateWithoutProgramPersonnelInput, ProgramUncheckedCreateWithoutProgramPersonnelInput>
+  }
+
+  export type TaskForceCreateWithoutChairPersonInput = {
+    id?: string
+    areaFolder: AreaFolderCreateNestedOneWithoutTaskForceInput
+    taskForceMember?: TaskForceMemberCreateNestedManyWithoutTaskForceInput
+  }
+
+  export type TaskForceUncheckedCreateWithoutChairPersonInput = {
+    id?: string
+    areaFolderId: string
+    taskForceMember?: TaskForceMemberUncheckedCreateNestedManyWithoutTaskForceInput
+  }
+
+  export type TaskForceCreateOrConnectWithoutChairPersonInput = {
+    where: TaskForceWhereUniqueInput
+    create: XOR<TaskForceCreateWithoutChairPersonInput, TaskForceUncheckedCreateWithoutChairPersonInput>
+  }
+
+  export type TaskForceCreateManyChairPersonInputEnvelope = {
+    data: TaskForceCreateManyChairPersonInput | TaskForceCreateManyChairPersonInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutProgramPersonnelInput = {
@@ -25244,6 +34545,31 @@ export namespace Prisma {
     accreditation?: AccreditationUncheckedUpdateOneWithoutProgramNestedInput
   }
 
+  export type TaskForceUpsertWithWhereUniqueWithoutChairPersonInput = {
+    where: TaskForceWhereUniqueInput
+    update: XOR<TaskForceUpdateWithoutChairPersonInput, TaskForceUncheckedUpdateWithoutChairPersonInput>
+    create: XOR<TaskForceCreateWithoutChairPersonInput, TaskForceUncheckedCreateWithoutChairPersonInput>
+  }
+
+  export type TaskForceUpdateWithWhereUniqueWithoutChairPersonInput = {
+    where: TaskForceWhereUniqueInput
+    data: XOR<TaskForceUpdateWithoutChairPersonInput, TaskForceUncheckedUpdateWithoutChairPersonInput>
+  }
+
+  export type TaskForceUpdateManyWithWhereWithoutChairPersonInput = {
+    where: TaskForceScalarWhereInput
+    data: XOR<TaskForceUpdateManyMutationInput, TaskForceUncheckedUpdateManyWithoutChairPersonInput>
+  }
+
+  export type TaskForceScalarWhereInput = {
+    AND?: TaskForceScalarWhereInput | TaskForceScalarWhereInput[]
+    OR?: TaskForceScalarWhereInput[]
+    NOT?: TaskForceScalarWhereInput | TaskForceScalarWhereInput[]
+    id?: StringFilter<"TaskForce"> | string
+    areaFolderId?: StringFilter<"TaskForce"> | string
+    chairPersonId?: StringFilter<"TaskForce"> | string
+  }
+
   export type AreaCreateWithoutInstrumentInput = {
     label: string
     description: string
@@ -25252,6 +34578,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     parameter?: ParameterCreateNestedManyWithoutAreaInput
     areaFolders?: AreaFolderCreateNestedManyWithoutAreaInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderCreateNestedManyWithoutAreaInput
   }
 
   export type AreaUncheckedCreateWithoutInstrumentInput = {
@@ -25263,6 +34590,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     parameter?: ParameterUncheckedCreateNestedManyWithoutAreaInput
     areaFolders?: AreaFolderUncheckedCreateNestedManyWithoutAreaInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedCreateNestedManyWithoutAreaInput
   }
 
   export type AreaCreateOrConnectWithoutInstrumentInput = {
@@ -25277,13 +34605,13 @@ export namespace Prisma {
 
   export type PhaseOneRequirementsCreateWithoutInstrumentInput = {
     id?: string
-    surveyVisit: SurveyVisitCreateNestedOneWithoutPhaseOneRequirementsInput
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutPhaseOneRequirementsInput
     instrumentFolder?: InstrumentFolderCreateNestedOneWithoutPhaseOneRequirementsInput
   }
 
   export type PhaseOneRequirementsUncheckedCreateWithoutInstrumentInput = {
     id?: string
-    surveyVisitId: string
+    surveyVisitId?: string | null
     instrumentFolder?: InstrumentFolderUncheckedCreateNestedOneWithoutPhaseOneRequirementsInput
   }
 
@@ -25294,6 +34622,28 @@ export namespace Prisma {
 
   export type PhaseOneRequirementsCreateManyInstrumentInputEnvelope = {
     data: PhaseOneRequirementsCreateManyInstrumentInput | PhaseOneRequirementsCreateManyInstrumentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PhaseTwoRequirementsCreateWithoutInstrumentInput = {
+    id?: string
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutPhaseTwoRequirementsInput
+    phaseTwoFolder?: PhaseTwoFolderCreateNestedOneWithoutPhaseTwoRequirementsInput
+  }
+
+  export type PhaseTwoRequirementsUncheckedCreateWithoutInstrumentInput = {
+    id?: string
+    surveyVisitId?: string | null
+    phaseTwoFolder?: PhaseTwoFolderUncheckedCreateNestedOneWithoutPhaseTwoRequirementsInput
+  }
+
+  export type PhaseTwoRequirementsCreateOrConnectWithoutInstrumentInput = {
+    where: PhaseTwoRequirementsWhereUniqueInput
+    create: XOR<PhaseTwoRequirementsCreateWithoutInstrumentInput, PhaseTwoRequirementsUncheckedCreateWithoutInstrumentInput>
+  }
+
+  export type PhaseTwoRequirementsCreateManyInstrumentInputEnvelope = {
+    data: PhaseTwoRequirementsCreateManyInstrumentInput | PhaseTwoRequirementsCreateManyInstrumentInput[]
     skipDuplicates?: boolean
   }
 
@@ -25347,8 +34697,33 @@ export namespace Prisma {
     OR?: PhaseOneRequirementsScalarWhereInput[]
     NOT?: PhaseOneRequirementsScalarWhereInput | PhaseOneRequirementsScalarWhereInput[]
     id?: StringFilter<"PhaseOneRequirements"> | string
-    surveyVisitId?: StringFilter<"PhaseOneRequirements"> | string
+    surveyVisitId?: StringNullableFilter<"PhaseOneRequirements"> | string | null
     instrumentId?: StringFilter<"PhaseOneRequirements"> | string
+  }
+
+  export type PhaseTwoRequirementsUpsertWithWhereUniqueWithoutInstrumentInput = {
+    where: PhaseTwoRequirementsWhereUniqueInput
+    update: XOR<PhaseTwoRequirementsUpdateWithoutInstrumentInput, PhaseTwoRequirementsUncheckedUpdateWithoutInstrumentInput>
+    create: XOR<PhaseTwoRequirementsCreateWithoutInstrumentInput, PhaseTwoRequirementsUncheckedCreateWithoutInstrumentInput>
+  }
+
+  export type PhaseTwoRequirementsUpdateWithWhereUniqueWithoutInstrumentInput = {
+    where: PhaseTwoRequirementsWhereUniqueInput
+    data: XOR<PhaseTwoRequirementsUpdateWithoutInstrumentInput, PhaseTwoRequirementsUncheckedUpdateWithoutInstrumentInput>
+  }
+
+  export type PhaseTwoRequirementsUpdateManyWithWhereWithoutInstrumentInput = {
+    where: PhaseTwoRequirementsScalarWhereInput
+    data: XOR<PhaseTwoRequirementsUpdateManyMutationInput, PhaseTwoRequirementsUncheckedUpdateManyWithoutInstrumentInput>
+  }
+
+  export type PhaseTwoRequirementsScalarWhereInput = {
+    AND?: PhaseTwoRequirementsScalarWhereInput | PhaseTwoRequirementsScalarWhereInput[]
+    OR?: PhaseTwoRequirementsScalarWhereInput[]
+    NOT?: PhaseTwoRequirementsScalarWhereInput | PhaseTwoRequirementsScalarWhereInput[]
+    id?: StringFilter<"PhaseTwoRequirements"> | string
+    surveyVisitId?: StringNullableFilter<"PhaseTwoRequirements"> | string | null
+    instrumentId?: StringFilter<"PhaseTwoRequirements"> | string
   }
 
   export type InstrumentCreateWithoutAreaInput = {
@@ -25358,6 +34733,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedManyWithoutInstrumentInput
+    phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedManyWithoutInstrumentInput
   }
 
   export type InstrumentUncheckedCreateWithoutAreaInput = {
@@ -25367,6 +34743,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedManyWithoutInstrumentInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedManyWithoutInstrumentInput
   }
 
   export type InstrumentCreateOrConnectWithoutAreaInput = {
@@ -25406,15 +34783,21 @@ export namespace Prisma {
   export type AreaFolderCreateWithoutAreaInput = {
     id?: string
     folderId: string
+    complete?: boolean
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
+    areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
+    taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutAreaInput = {
     id?: string
     instrumentFolderId: string
     folderId: string
+    complete?: boolean
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
+    areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
+    taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutAreaInput = {
@@ -25424,6 +34807,30 @@ export namespace Prisma {
 
   export type AreaFolderCreateManyAreaInputEnvelope = {
     data: AreaFolderCreateManyAreaInput | AreaFolderCreateManyAreaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PhaseTwoAreaFolderCreateWithoutAreaInput = {
+    id?: string
+    folderId: string
+    phaseTwoFolder: PhaseTwoFolderCreateNestedOneWithoutPhaseTwoAreaFoldersInput
+    areaFiles?: AreaFileCreateNestedManyWithoutPhaseTwoAreaFolderInput
+  }
+
+  export type PhaseTwoAreaFolderUncheckedCreateWithoutAreaInput = {
+    id?: string
+    phaseTwoFolderId: string
+    folderId: string
+    areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseTwoAreaFolderInput
+  }
+
+  export type PhaseTwoAreaFolderCreateOrConnectWithoutAreaInput = {
+    where: PhaseTwoAreaFolderWhereUniqueInput
+    create: XOR<PhaseTwoAreaFolderCreateWithoutAreaInput, PhaseTwoAreaFolderUncheckedCreateWithoutAreaInput>
+  }
+
+  export type PhaseTwoAreaFolderCreateManyAreaInputEnvelope = {
+    data: PhaseTwoAreaFolderCreateManyAreaInput | PhaseTwoAreaFolderCreateManyAreaInput[]
     skipDuplicates?: boolean
   }
 
@@ -25445,6 +34852,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneRequirements?: PhaseOneRequirementsUpdateManyWithoutInstrumentNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUpdateManyWithoutInstrumentNestedInput
   }
 
   export type InstrumentUncheckedUpdateWithoutAreaInput = {
@@ -25454,6 +34862,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateManyWithoutInstrumentNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateManyWithoutInstrumentNestedInput
   }
 
   export type ParameterUpsertWithWhereUniqueWithoutAreaInput = {
@@ -25508,6 +34917,33 @@ export namespace Prisma {
     instrumentFolderId?: StringFilter<"AreaFolder"> | string
     folderId?: StringFilter<"AreaFolder"> | string
     areaId?: IntFilter<"AreaFolder"> | number
+    complete?: BoolFilter<"AreaFolder"> | boolean
+  }
+
+  export type PhaseTwoAreaFolderUpsertWithWhereUniqueWithoutAreaInput = {
+    where: PhaseTwoAreaFolderWhereUniqueInput
+    update: XOR<PhaseTwoAreaFolderUpdateWithoutAreaInput, PhaseTwoAreaFolderUncheckedUpdateWithoutAreaInput>
+    create: XOR<PhaseTwoAreaFolderCreateWithoutAreaInput, PhaseTwoAreaFolderUncheckedCreateWithoutAreaInput>
+  }
+
+  export type PhaseTwoAreaFolderUpdateWithWhereUniqueWithoutAreaInput = {
+    where: PhaseTwoAreaFolderWhereUniqueInput
+    data: XOR<PhaseTwoAreaFolderUpdateWithoutAreaInput, PhaseTwoAreaFolderUncheckedUpdateWithoutAreaInput>
+  }
+
+  export type PhaseTwoAreaFolderUpdateManyWithWhereWithoutAreaInput = {
+    where: PhaseTwoAreaFolderScalarWhereInput
+    data: XOR<PhaseTwoAreaFolderUpdateManyMutationInput, PhaseTwoAreaFolderUncheckedUpdateManyWithoutAreaInput>
+  }
+
+  export type PhaseTwoAreaFolderScalarWhereInput = {
+    AND?: PhaseTwoAreaFolderScalarWhereInput | PhaseTwoAreaFolderScalarWhereInput[]
+    OR?: PhaseTwoAreaFolderScalarWhereInput[]
+    NOT?: PhaseTwoAreaFolderScalarWhereInput | PhaseTwoAreaFolderScalarWhereInput[]
+    id?: StringFilter<"PhaseTwoAreaFolder"> | string
+    phaseTwoFolderId?: StringFilter<"PhaseTwoAreaFolder"> | string
+    folderId?: StringFilter<"PhaseTwoAreaFolder"> | string
+    areaId?: IntFilter<"PhaseTwoAreaFolder"> | number
   }
 
   export type AreaCreateWithoutParameterInput = {
@@ -25518,6 +34954,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     instrument: InstrumentCreateNestedOneWithoutAreaInput
     areaFolders?: AreaFolderCreateNestedManyWithoutAreaInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderCreateNestedManyWithoutAreaInput
   }
 
   export type AreaUncheckedCreateWithoutParameterInput = {
@@ -25529,6 +34966,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     areaFolders?: AreaFolderUncheckedCreateNestedManyWithoutAreaInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedCreateNestedManyWithoutAreaInput
   }
 
   export type AreaCreateOrConnectWithoutParameterInput = {
@@ -25572,6 +35010,7 @@ export namespace Prisma {
     folderId: string
     areaFolder: AreaFolderCreateNestedOneWithoutParameterFoldersInput
     indicatorFolders?: IndicatorFolderCreateNestedManyWithoutParameterFolderInput
+    taskForceMember?: TaskForceMemberCreateNestedOneWithoutParameterFolderInput
   }
 
   export type ParameterFolderUncheckedCreateWithoutParameterInput = {
@@ -25579,6 +35018,7 @@ export namespace Prisma {
     areaFolderId: string
     folderId: string
     indicatorFolders?: IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput
+    taskForceMember?: TaskForceMemberUncheckedCreateNestedOneWithoutParameterFolderInput
   }
 
   export type ParameterFolderCreateOrConnectWithoutParameterInput = {
@@ -25610,6 +35050,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     instrument?: InstrumentUpdateOneRequiredWithoutAreaNestedInput
     areaFolders?: AreaFolderUpdateManyWithoutAreaNestedInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUpdateManyWithoutAreaNestedInput
   }
 
   export type AreaUncheckedUpdateWithoutParameterInput = {
@@ -25621,6 +35062,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     areaFolders?: AreaFolderUncheckedUpdateManyWithoutAreaNestedInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedUpdateManyWithoutAreaNestedInput
   }
 
   export type IndicatorUpsertWithWhereUniqueWithoutParameterInput = {
@@ -25789,7 +35231,6 @@ export namespace Prisma {
 
   export type AccreditationCreateWithoutLevelInput = {
     id?: string
-    phase?: $Enums.Phase | null
     program: ProgramCreateNestedOneWithoutAccreditationInput
     surveyVisits?: SurveyVisitCreateNestedManyWithoutAccreditationInput
   }
@@ -25797,7 +35238,6 @@ export namespace Prisma {
   export type AccreditationUncheckedCreateWithoutLevelInput = {
     id?: string
     programId: string
-    phase?: $Enums.Phase | null
     surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutAccreditationInput
   }
 
@@ -25813,14 +35253,24 @@ export namespace Prisma {
 
   export type SurveyVisitCreateWithoutLevelInput = {
     id?: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    status: $Enums.AccreditationStatus
+    createdAt?: Date | string
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
+    phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutLevelInput = {
     id?: string
     accreditationId: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    status: $Enums.AccreditationStatus
+    createdAt?: Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutLevelInput = {
@@ -25856,7 +35306,6 @@ export namespace Prisma {
     id?: StringFilter<"Accreditation"> | string
     programId?: StringFilter<"Accreditation"> | string
     currentLevel?: StringNullableFilter<"Accreditation"> | string | null
-    phase?: EnumPhaseNullableFilter<"Accreditation"> | $Enums.Phase | null
   }
 
   export type SurveyVisitUpsertWithWhereUniqueWithoutLevelInput = {
@@ -25881,7 +35330,11 @@ export namespace Prisma {
     NOT?: SurveyVisitScalarWhereInput | SurveyVisitScalarWhereInput[]
     id?: StringFilter<"SurveyVisit"> | string
     accreditationId?: StringFilter<"SurveyVisit"> | string
+    actualSurveyDate?: DateTimeFilter<"SurveyVisit"> | Date | string
+    type?: EnumSurveyVisitTypeFilter<"SurveyVisit"> | $Enums.SurveyVisitType
     targetLevel?: StringFilter<"SurveyVisit"> | string
+    status?: EnumAccreditationStatusFilter<"SurveyVisit"> | $Enums.AccreditationStatus
+    createdAt?: DateTimeFilter<"SurveyVisit"> | Date | string
   }
 
   export type ProgramCreateWithoutAccreditationInput = {
@@ -25938,14 +35391,24 @@ export namespace Prisma {
 
   export type SurveyVisitCreateWithoutAccreditationInput = {
     id?: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    status: $Enums.AccreditationStatus
+    createdAt?: Date | string
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
+    phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutAccreditationInput = {
     id?: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
     targetLevel: string
+    status: $Enums.AccreditationStatus
+    createdAt?: Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutAccreditationInput = {
@@ -26040,7 +35503,6 @@ export namespace Prisma {
 
   export type AccreditationCreateWithoutSurveyVisitsInput = {
     id?: string
-    phase?: $Enums.Phase | null
     program: ProgramCreateNestedOneWithoutAccreditationInput
     level?: LevelCreateNestedOneWithoutAccreditationsInput
   }
@@ -26049,7 +35511,6 @@ export namespace Prisma {
     id?: string
     programId: string
     currentLevel?: string | null
-    phase?: $Enums.Phase | null
   }
 
   export type AccreditationCreateOrConnectWithoutSurveyVisitsInput = {
@@ -26099,6 +35560,23 @@ export namespace Prisma {
     create: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
   }
 
+  export type PhaseTwoRequirementsCreateWithoutSurveyVisitInput = {
+    id?: string
+    instrument: InstrumentCreateNestedOneWithoutPhaseTwoRequirementsInput
+    phaseTwoFolder?: PhaseTwoFolderCreateNestedOneWithoutPhaseTwoRequirementsInput
+  }
+
+  export type PhaseTwoRequirementsUncheckedCreateWithoutSurveyVisitInput = {
+    id?: string
+    instrumentId: string
+    phaseTwoFolder?: PhaseTwoFolderUncheckedCreateNestedOneWithoutPhaseTwoRequirementsInput
+  }
+
+  export type PhaseTwoRequirementsCreateOrConnectWithoutSurveyVisitInput = {
+    where: PhaseTwoRequirementsWhereUniqueInput
+    create: XOR<PhaseTwoRequirementsCreateWithoutSurveyVisitInput, PhaseTwoRequirementsUncheckedCreateWithoutSurveyVisitInput>
+  }
+
   export type AccreditationUpsertWithoutSurveyVisitsInput = {
     update: XOR<AccreditationUpdateWithoutSurveyVisitsInput, AccreditationUncheckedUpdateWithoutSurveyVisitsInput>
     create: XOR<AccreditationCreateWithoutSurveyVisitsInput, AccreditationUncheckedCreateWithoutSurveyVisitsInput>
@@ -26112,7 +35590,6 @@ export namespace Prisma {
 
   export type AccreditationUpdateWithoutSurveyVisitsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
     program?: ProgramUpdateOneRequiredWithoutAccreditationNestedInput
     level?: LevelUpdateOneWithoutAccreditationsNestedInput
   }
@@ -26121,7 +35598,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
     currentLevel?: NullableStringFieldUpdateOperationsInput | string | null
-    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
   }
 
   export type LevelUpsertWithoutSurveyVisitsInput = {
@@ -26178,16 +35654,49 @@ export namespace Prisma {
     instrumentFolder?: InstrumentFolderUncheckedUpdateOneWithoutPhaseOneRequirementsNestedInput
   }
 
+  export type PhaseTwoRequirementsUpsertWithoutSurveyVisitInput = {
+    update: XOR<PhaseTwoRequirementsUpdateWithoutSurveyVisitInput, PhaseTwoRequirementsUncheckedUpdateWithoutSurveyVisitInput>
+    create: XOR<PhaseTwoRequirementsCreateWithoutSurveyVisitInput, PhaseTwoRequirementsUncheckedCreateWithoutSurveyVisitInput>
+    where?: PhaseTwoRequirementsWhereInput
+  }
+
+  export type PhaseTwoRequirementsUpdateToOneWithWhereWithoutSurveyVisitInput = {
+    where?: PhaseTwoRequirementsWhereInput
+    data: XOR<PhaseTwoRequirementsUpdateWithoutSurveyVisitInput, PhaseTwoRequirementsUncheckedUpdateWithoutSurveyVisitInput>
+  }
+
+  export type PhaseTwoRequirementsUpdateWithoutSurveyVisitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instrument?: InstrumentUpdateOneRequiredWithoutPhaseTwoRequirementsNestedInput
+    phaseTwoFolder?: PhaseTwoFolderUpdateOneWithoutPhaseTwoRequirementsNestedInput
+  }
+
+  export type PhaseTwoRequirementsUncheckedUpdateWithoutSurveyVisitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instrumentId?: StringFieldUpdateOperationsInput | string
+    phaseTwoFolder?: PhaseTwoFolderUncheckedUpdateOneWithoutPhaseTwoRequirementsNestedInput
+  }
+
   export type SurveyVisitCreateWithoutPhaseOneRequirementsInput = {
     id?: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    status: $Enums.AccreditationStatus
+    createdAt?: Date | string
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
+    phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutPhaseOneRequirementsInput = {
     id?: string
     accreditationId: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
     targetLevel: string
+    status: $Enums.AccreditationStatus
+    createdAt?: Date | string
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutPhaseOneRequirementsInput = {
@@ -26202,6 +35711,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     area?: AreaCreateNestedManyWithoutInstrumentInput
+    phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedManyWithoutInstrumentInput
   }
 
   export type InstrumentUncheckedCreateWithoutPhaseOneRequirementsInput = {
@@ -26211,6 +35721,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     area?: AreaUncheckedCreateNestedManyWithoutInstrumentInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedManyWithoutInstrumentInput
   }
 
   export type InstrumentCreateOrConnectWithoutPhaseOneRequirementsInput = {
@@ -26248,14 +35759,24 @@ export namespace Prisma {
 
   export type SurveyVisitUpdateWithoutPhaseOneRequirementsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutPhaseOneRequirementsInput = {
     id?: StringFieldUpdateOperationsInput | string
     accreditationId?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
   }
 
   export type InstrumentUpsertWithoutPhaseOneRequirementsInput = {
@@ -26276,6 +35797,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     area?: AreaUpdateManyWithoutInstrumentNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUpdateManyWithoutInstrumentNestedInput
   }
 
   export type InstrumentUncheckedUpdateWithoutPhaseOneRequirementsInput = {
@@ -26285,6 +35807,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     area?: AreaUncheckedUpdateManyWithoutInstrumentNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateManyWithoutInstrumentNestedInput
   }
 
   export type InstrumentFolderUpsertWithoutPhaseOneRequirementsInput = {
@@ -26312,13 +35835,13 @@ export namespace Prisma {
 
   export type PhaseOneRequirementsCreateWithoutInstrumentFolderInput = {
     id?: string
-    surveyVisit: SurveyVisitCreateNestedOneWithoutPhaseOneRequirementsInput
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutPhaseOneRequirementsInput
     instrument: InstrumentCreateNestedOneWithoutPhaseOneRequirementsInput
   }
 
   export type PhaseOneRequirementsUncheckedCreateWithoutInstrumentFolderInput = {
     id?: string
-    surveyVisitId: string
+    surveyVisitId?: string | null
     instrumentId: string
   }
 
@@ -26330,15 +35853,21 @@ export namespace Prisma {
   export type AreaFolderCreateWithoutInstrumentFolderInput = {
     id?: string
     folderId: string
+    complete?: boolean
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
     area: AreaCreateNestedOneWithoutAreaFoldersInput
+    areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
+    taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutInstrumentFolderInput = {
     id?: string
     folderId: string
     areaId: number
+    complete?: boolean
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
+    areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
+    taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutInstrumentFolderInput = {
@@ -26364,13 +35893,13 @@ export namespace Prisma {
 
   export type PhaseOneRequirementsUpdateWithoutInstrumentFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    surveyVisit?: SurveyVisitUpdateOneRequiredWithoutPhaseOneRequirementsNestedInput
+    surveyVisit?: SurveyVisitUpdateOneWithoutPhaseOneRequirementsNestedInput
     instrument?: InstrumentUpdateOneRequiredWithoutPhaseOneRequirementsNestedInput
   }
 
   export type PhaseOneRequirementsUncheckedUpdateWithoutInstrumentFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    surveyVisitId?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     instrumentId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -26393,12 +35922,12 @@ export namespace Prisma {
   export type InstrumentFolderCreateWithoutAreaFoldersInput = {
     id?: string
     folderId: string
-    phaseOneRequirements: PhaseOneRequirementsCreateNestedOneWithoutInstrumentFolderInput
+    phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutInstrumentFolderInput
   }
 
   export type InstrumentFolderUncheckedCreateWithoutAreaFoldersInput = {
     id?: string
-    phaseOneRequirementsId: string
+    phaseOneRequirementsId?: string | null
     folderId: string
   }
 
@@ -26412,6 +35941,7 @@ export namespace Prisma {
     folderId: string
     indicatorFolders?: IndicatorFolderCreateNestedManyWithoutParameterFolderInput
     parameter: ParameterCreateNestedOneWithoutParameterFoldersInput
+    taskForceMember?: TaskForceMemberCreateNestedOneWithoutParameterFolderInput
   }
 
   export type ParameterFolderUncheckedCreateWithoutAreaFolderInput = {
@@ -26419,6 +35949,7 @@ export namespace Prisma {
     folderId: string
     parameterId: number
     indicatorFolders?: IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput
+    taskForceMember?: TaskForceMemberUncheckedCreateNestedOneWithoutParameterFolderInput
   }
 
   export type ParameterFolderCreateOrConnectWithoutAreaFolderInput = {
@@ -26439,6 +35970,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     instrument: InstrumentCreateNestedOneWithoutAreaInput
     parameter?: ParameterCreateNestedManyWithoutAreaInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderCreateNestedManyWithoutAreaInput
   }
 
   export type AreaUncheckedCreateWithoutAreaFoldersInput = {
@@ -26450,11 +35982,57 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     parameter?: ParameterUncheckedCreateNestedManyWithoutAreaInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedCreateNestedManyWithoutAreaInput
   }
 
   export type AreaCreateOrConnectWithoutAreaFoldersInput = {
     where: AreaWhereUniqueInput
     create: XOR<AreaCreateWithoutAreaFoldersInput, AreaUncheckedCreateWithoutAreaFoldersInput>
+  }
+
+  export type AreaFileCreateWithoutPhaseOneAreaFolderInput = {
+    id?: string
+    type: $Enums.AreaFileType
+    fileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderCreateNestedOneWithoutAreaFilesInput
+  }
+
+  export type AreaFileUncheckedCreateWithoutPhaseOneAreaFolderInput = {
+    id?: string
+    phaseTwoAreaFolderId?: string | null
+    type: $Enums.AreaFileType
+    fileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AreaFileCreateOrConnectWithoutPhaseOneAreaFolderInput = {
+    where: AreaFileWhereUniqueInput
+    create: XOR<AreaFileCreateWithoutPhaseOneAreaFolderInput, AreaFileUncheckedCreateWithoutPhaseOneAreaFolderInput>
+  }
+
+  export type AreaFileCreateManyPhaseOneAreaFolderInputEnvelope = {
+    data: AreaFileCreateManyPhaseOneAreaFolderInput | AreaFileCreateManyPhaseOneAreaFolderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TaskForceCreateWithoutAreaFolderInput = {
+    id?: string
+    chairPerson: ProgramPersonnelCreateNestedOneWithoutChairPersonInput
+    taskForceMember?: TaskForceMemberCreateNestedManyWithoutTaskForceInput
+  }
+
+  export type TaskForceUncheckedCreateWithoutAreaFolderInput = {
+    id?: string
+    chairPersonId: string
+    taskForceMember?: TaskForceMemberUncheckedCreateNestedManyWithoutTaskForceInput
+  }
+
+  export type TaskForceCreateOrConnectWithoutAreaFolderInput = {
+    where: TaskForceWhereUniqueInput
+    create: XOR<TaskForceCreateWithoutAreaFolderInput, TaskForceUncheckedCreateWithoutAreaFolderInput>
   }
 
   export type InstrumentFolderUpsertWithoutAreaFoldersInput = {
@@ -26471,12 +36049,12 @@ export namespace Prisma {
   export type InstrumentFolderUpdateWithoutAreaFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
-    phaseOneRequirements?: PhaseOneRequirementsUpdateOneRequiredWithoutInstrumentFolderNestedInput
+    phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutInstrumentFolderNestedInput
   }
 
   export type InstrumentFolderUncheckedUpdateWithoutAreaFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    phaseOneRequirementsId?: StringFieldUpdateOperationsInput | string
+    phaseOneRequirementsId?: NullableStringFieldUpdateOperationsInput | string | null
     folderId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -26515,6 +36093,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     instrument?: InstrumentUpdateOneRequiredWithoutAreaNestedInput
     parameter?: ParameterUpdateManyWithoutAreaNestedInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUpdateManyWithoutAreaNestedInput
   }
 
   export type AreaUncheckedUpdateWithoutAreaFoldersInput = {
@@ -26526,13 +36105,69 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parameter?: ParameterUncheckedUpdateManyWithoutAreaNestedInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedUpdateManyWithoutAreaNestedInput
+  }
+
+  export type AreaFileUpsertWithWhereUniqueWithoutPhaseOneAreaFolderInput = {
+    where: AreaFileWhereUniqueInput
+    update: XOR<AreaFileUpdateWithoutPhaseOneAreaFolderInput, AreaFileUncheckedUpdateWithoutPhaseOneAreaFolderInput>
+    create: XOR<AreaFileCreateWithoutPhaseOneAreaFolderInput, AreaFileUncheckedCreateWithoutPhaseOneAreaFolderInput>
+  }
+
+  export type AreaFileUpdateWithWhereUniqueWithoutPhaseOneAreaFolderInput = {
+    where: AreaFileWhereUniqueInput
+    data: XOR<AreaFileUpdateWithoutPhaseOneAreaFolderInput, AreaFileUncheckedUpdateWithoutPhaseOneAreaFolderInput>
+  }
+
+  export type AreaFileUpdateManyWithWhereWithoutPhaseOneAreaFolderInput = {
+    where: AreaFileScalarWhereInput
+    data: XOR<AreaFileUpdateManyMutationInput, AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderInput>
+  }
+
+  export type AreaFileScalarWhereInput = {
+    AND?: AreaFileScalarWhereInput | AreaFileScalarWhereInput[]
+    OR?: AreaFileScalarWhereInput[]
+    NOT?: AreaFileScalarWhereInput | AreaFileScalarWhereInput[]
+    id?: StringFilter<"AreaFile"> | string
+    phaseOneAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
+    phaseTwoAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
+    type?: EnumAreaFileTypeFilter<"AreaFile"> | $Enums.AreaFileType
+    fileId?: StringFilter<"AreaFile"> | string
+    createdAt?: DateTimeFilter<"AreaFile"> | Date | string
+    updatedAt?: DateTimeFilter<"AreaFile"> | Date | string
+  }
+
+  export type TaskForceUpsertWithoutAreaFolderInput = {
+    update: XOR<TaskForceUpdateWithoutAreaFolderInput, TaskForceUncheckedUpdateWithoutAreaFolderInput>
+    create: XOR<TaskForceCreateWithoutAreaFolderInput, TaskForceUncheckedCreateWithoutAreaFolderInput>
+    where?: TaskForceWhereInput
+  }
+
+  export type TaskForceUpdateToOneWithWhereWithoutAreaFolderInput = {
+    where?: TaskForceWhereInput
+    data: XOR<TaskForceUpdateWithoutAreaFolderInput, TaskForceUncheckedUpdateWithoutAreaFolderInput>
+  }
+
+  export type TaskForceUpdateWithoutAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    chairPerson?: ProgramPersonnelUpdateOneRequiredWithoutChairPersonNestedInput
+    taskForceMember?: TaskForceMemberUpdateManyWithoutTaskForceNestedInput
+  }
+
+  export type TaskForceUncheckedUpdateWithoutAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    chairPersonId?: StringFieldUpdateOperationsInput | string
+    taskForceMember?: TaskForceMemberUncheckedUpdateManyWithoutTaskForceNestedInput
   }
 
   export type AreaFolderCreateWithoutParameterFoldersInput = {
     id?: string
     folderId: string
+    complete?: boolean
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     area: AreaCreateNestedOneWithoutAreaFoldersInput
+    areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
+    taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutParameterFoldersInput = {
@@ -26540,6 +36175,9 @@ export namespace Prisma {
     instrumentFolderId: string
     folderId: string
     areaId: number
+    complete?: boolean
+    areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
+    taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutParameterFoldersInput = {
@@ -26595,6 +36233,21 @@ export namespace Prisma {
     create: XOR<ParameterCreateWithoutParameterFoldersInput, ParameterUncheckedCreateWithoutParameterFoldersInput>
   }
 
+  export type TaskForceMemberCreateWithoutParameterFolderInput = {
+    id?: string
+    taskForce: TaskForceCreateNestedOneWithoutTaskForceMemberInput
+  }
+
+  export type TaskForceMemberUncheckedCreateWithoutParameterFolderInput = {
+    id?: string
+    taskForceId: string
+  }
+
+  export type TaskForceMemberCreateOrConnectWithoutParameterFolderInput = {
+    where: TaskForceMemberWhereUniqueInput
+    create: XOR<TaskForceMemberCreateWithoutParameterFolderInput, TaskForceMemberUncheckedCreateWithoutParameterFolderInput>
+  }
+
   export type AreaFolderUpsertWithoutParameterFoldersInput = {
     update: XOR<AreaFolderUpdateWithoutParameterFoldersInput, AreaFolderUncheckedUpdateWithoutParameterFoldersInput>
     create: XOR<AreaFolderCreateWithoutParameterFoldersInput, AreaFolderUncheckedCreateWithoutParameterFoldersInput>
@@ -26609,8 +36262,11 @@ export namespace Prisma {
   export type AreaFolderUpdateWithoutParameterFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
+    complete?: BoolFieldUpdateOperationsInput | boolean
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
+    areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutParameterFoldersInput = {
@@ -26618,6 +36274,9 @@ export namespace Prisma {
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    complete?: BoolFieldUpdateOperationsInput | boolean
+    areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
   }
 
   export type IndicatorFolderUpsertWithWhereUniqueWithoutParameterFolderInput = {
@@ -26676,11 +36335,33 @@ export namespace Prisma {
     indicator?: IndicatorUncheckedUpdateManyWithoutParameterNestedInput
   }
 
+  export type TaskForceMemberUpsertWithoutParameterFolderInput = {
+    update: XOR<TaskForceMemberUpdateWithoutParameterFolderInput, TaskForceMemberUncheckedUpdateWithoutParameterFolderInput>
+    create: XOR<TaskForceMemberCreateWithoutParameterFolderInput, TaskForceMemberUncheckedCreateWithoutParameterFolderInput>
+    where?: TaskForceMemberWhereInput
+  }
+
+  export type TaskForceMemberUpdateToOneWithWhereWithoutParameterFolderInput = {
+    where?: TaskForceMemberWhereInput
+    data: XOR<TaskForceMemberUpdateWithoutParameterFolderInput, TaskForceMemberUncheckedUpdateWithoutParameterFolderInput>
+  }
+
+  export type TaskForceMemberUpdateWithoutParameterFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    taskForce?: TaskForceUpdateOneRequiredWithoutTaskForceMemberNestedInput
+  }
+
+  export type TaskForceMemberUncheckedUpdateWithoutParameterFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    taskForceId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type ParameterFolderCreateWithoutIndicatorFoldersInput = {
     id?: string
     folderId: string
     areaFolder: AreaFolderCreateNestedOneWithoutParameterFoldersInput
     parameter: ParameterCreateNestedOneWithoutParameterFoldersInput
+    taskForceMember?: TaskForceMemberCreateNestedOneWithoutParameterFolderInput
   }
 
   export type ParameterFolderUncheckedCreateWithoutIndicatorFoldersInput = {
@@ -26688,6 +36369,7 @@ export namespace Prisma {
     areaFolderId: string
     folderId: string
     parameterId: number
+    taskForceMember?: TaskForceMemberUncheckedCreateNestedOneWithoutParameterFolderInput
   }
 
   export type ParameterFolderCreateOrConnectWithoutIndicatorFoldersInput = {
@@ -26737,6 +36419,7 @@ export namespace Prisma {
     folderId?: StringFieldUpdateOperationsInput | string
     areaFolder?: AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput
     parameter?: ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput
+    taskForceMember?: TaskForceMemberUpdateOneWithoutParameterFolderNestedInput
   }
 
   export type ParameterFolderUncheckedUpdateWithoutIndicatorFoldersInput = {
@@ -26744,6 +36427,7 @@ export namespace Prisma {
     areaFolderId?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
+    taskForceMember?: TaskForceMemberUncheckedUpdateOneWithoutParameterFolderNestedInput
   }
 
   export type EvidenceFileUpsertWithWhereUniqueWithoutIndicatorFolderInput = {
@@ -26864,6 +36548,721 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SurveyVisitCreateWithoutPhaseTwoRequirementsInput = {
+    id?: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    status: $Enums.AccreditationStatus
+    createdAt?: Date | string
+    accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
+    level: LevelCreateNestedOneWithoutSurveyVisitsInput
+    phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitUncheckedCreateWithoutPhaseTwoRequirementsInput = {
+    id?: string
+    accreditationId: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    targetLevel: string
+    status: $Enums.AccreditationStatus
+    createdAt?: Date | string
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitCreateOrConnectWithoutPhaseTwoRequirementsInput = {
+    where: SurveyVisitWhereUniqueInput
+    create: XOR<SurveyVisitCreateWithoutPhaseTwoRequirementsInput, SurveyVisitUncheckedCreateWithoutPhaseTwoRequirementsInput>
+  }
+
+  export type InstrumentCreateWithoutPhaseTwoRequirementsInput = {
+    id?: string
+    name: string
+    accreditingBody: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    area?: AreaCreateNestedManyWithoutInstrumentInput
+    phaseOneRequirements?: PhaseOneRequirementsCreateNestedManyWithoutInstrumentInput
+  }
+
+  export type InstrumentUncheckedCreateWithoutPhaseTwoRequirementsInput = {
+    id?: string
+    name: string
+    accreditingBody: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    area?: AreaUncheckedCreateNestedManyWithoutInstrumentInput
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedManyWithoutInstrumentInput
+  }
+
+  export type InstrumentCreateOrConnectWithoutPhaseTwoRequirementsInput = {
+    where: InstrumentWhereUniqueInput
+    create: XOR<InstrumentCreateWithoutPhaseTwoRequirementsInput, InstrumentUncheckedCreateWithoutPhaseTwoRequirementsInput>
+  }
+
+  export type PhaseTwoFolderCreateWithoutPhaseTwoRequirementsInput = {
+    id?: string
+    folderId: string
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderCreateNestedManyWithoutPhaseTwoFolderInput
+  }
+
+  export type PhaseTwoFolderUncheckedCreateWithoutPhaseTwoRequirementsInput = {
+    id?: string
+    folderId: string
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedCreateNestedManyWithoutPhaseTwoFolderInput
+  }
+
+  export type PhaseTwoFolderCreateOrConnectWithoutPhaseTwoRequirementsInput = {
+    where: PhaseTwoFolderWhereUniqueInput
+    create: XOR<PhaseTwoFolderCreateWithoutPhaseTwoRequirementsInput, PhaseTwoFolderUncheckedCreateWithoutPhaseTwoRequirementsInput>
+  }
+
+  export type SurveyVisitUpsertWithoutPhaseTwoRequirementsInput = {
+    update: XOR<SurveyVisitUpdateWithoutPhaseTwoRequirementsInput, SurveyVisitUncheckedUpdateWithoutPhaseTwoRequirementsInput>
+    create: XOR<SurveyVisitCreateWithoutPhaseTwoRequirementsInput, SurveyVisitUncheckedCreateWithoutPhaseTwoRequirementsInput>
+    where?: SurveyVisitWhereInput
+  }
+
+  export type SurveyVisitUpdateToOneWithWhereWithoutPhaseTwoRequirementsInput = {
+    where?: SurveyVisitWhereInput
+    data: XOR<SurveyVisitUpdateWithoutPhaseTwoRequirementsInput, SurveyVisitUncheckedUpdateWithoutPhaseTwoRequirementsInput>
+  }
+
+  export type SurveyVisitUpdateWithoutPhaseTwoRequirementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
+  }
+
+  export type SurveyVisitUncheckedUpdateWithoutPhaseTwoRequirementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accreditationId?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    targetLevel?: StringFieldUpdateOperationsInput | string
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+  }
+
+  export type InstrumentUpsertWithoutPhaseTwoRequirementsInput = {
+    update: XOR<InstrumentUpdateWithoutPhaseTwoRequirementsInput, InstrumentUncheckedUpdateWithoutPhaseTwoRequirementsInput>
+    create: XOR<InstrumentCreateWithoutPhaseTwoRequirementsInput, InstrumentUncheckedCreateWithoutPhaseTwoRequirementsInput>
+    where?: InstrumentWhereInput
+  }
+
+  export type InstrumentUpdateToOneWithWhereWithoutPhaseTwoRequirementsInput = {
+    where?: InstrumentWhereInput
+    data: XOR<InstrumentUpdateWithoutPhaseTwoRequirementsInput, InstrumentUncheckedUpdateWithoutPhaseTwoRequirementsInput>
+  }
+
+  export type InstrumentUpdateWithoutPhaseTwoRequirementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    accreditingBody?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    area?: AreaUpdateManyWithoutInstrumentNestedInput
+    phaseOneRequirements?: PhaseOneRequirementsUpdateManyWithoutInstrumentNestedInput
+  }
+
+  export type InstrumentUncheckedUpdateWithoutPhaseTwoRequirementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    accreditingBody?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    area?: AreaUncheckedUpdateManyWithoutInstrumentNestedInput
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateManyWithoutInstrumentNestedInput
+  }
+
+  export type PhaseTwoFolderUpsertWithoutPhaseTwoRequirementsInput = {
+    update: XOR<PhaseTwoFolderUpdateWithoutPhaseTwoRequirementsInput, PhaseTwoFolderUncheckedUpdateWithoutPhaseTwoRequirementsInput>
+    create: XOR<PhaseTwoFolderCreateWithoutPhaseTwoRequirementsInput, PhaseTwoFolderUncheckedCreateWithoutPhaseTwoRequirementsInput>
+    where?: PhaseTwoFolderWhereInput
+  }
+
+  export type PhaseTwoFolderUpdateToOneWithWhereWithoutPhaseTwoRequirementsInput = {
+    where?: PhaseTwoFolderWhereInput
+    data: XOR<PhaseTwoFolderUpdateWithoutPhaseTwoRequirementsInput, PhaseTwoFolderUncheckedUpdateWithoutPhaseTwoRequirementsInput>
+  }
+
+  export type PhaseTwoFolderUpdateWithoutPhaseTwoRequirementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUpdateManyWithoutPhaseTwoFolderNestedInput
+  }
+
+  export type PhaseTwoFolderUncheckedUpdateWithoutPhaseTwoRequirementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedUpdateManyWithoutPhaseTwoFolderNestedInput
+  }
+
+  export type PhaseTwoRequirementsCreateWithoutPhaseTwoFolderInput = {
+    id?: string
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutPhaseTwoRequirementsInput
+    instrument: InstrumentCreateNestedOneWithoutPhaseTwoRequirementsInput
+  }
+
+  export type PhaseTwoRequirementsUncheckedCreateWithoutPhaseTwoFolderInput = {
+    id?: string
+    surveyVisitId?: string | null
+    instrumentId: string
+  }
+
+  export type PhaseTwoRequirementsCreateOrConnectWithoutPhaseTwoFolderInput = {
+    where: PhaseTwoRequirementsWhereUniqueInput
+    create: XOR<PhaseTwoRequirementsCreateWithoutPhaseTwoFolderInput, PhaseTwoRequirementsUncheckedCreateWithoutPhaseTwoFolderInput>
+  }
+
+  export type PhaseTwoAreaFolderCreateWithoutPhaseTwoFolderInput = {
+    id?: string
+    folderId: string
+    area: AreaCreateNestedOneWithoutPhaseTwoAreaFoldersInput
+    areaFiles?: AreaFileCreateNestedManyWithoutPhaseTwoAreaFolderInput
+  }
+
+  export type PhaseTwoAreaFolderUncheckedCreateWithoutPhaseTwoFolderInput = {
+    id?: string
+    folderId: string
+    areaId: number
+    areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseTwoAreaFolderInput
+  }
+
+  export type PhaseTwoAreaFolderCreateOrConnectWithoutPhaseTwoFolderInput = {
+    where: PhaseTwoAreaFolderWhereUniqueInput
+    create: XOR<PhaseTwoAreaFolderCreateWithoutPhaseTwoFolderInput, PhaseTwoAreaFolderUncheckedCreateWithoutPhaseTwoFolderInput>
+  }
+
+  export type PhaseTwoAreaFolderCreateManyPhaseTwoFolderInputEnvelope = {
+    data: PhaseTwoAreaFolderCreateManyPhaseTwoFolderInput | PhaseTwoAreaFolderCreateManyPhaseTwoFolderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PhaseTwoRequirementsUpsertWithoutPhaseTwoFolderInput = {
+    update: XOR<PhaseTwoRequirementsUpdateWithoutPhaseTwoFolderInput, PhaseTwoRequirementsUncheckedUpdateWithoutPhaseTwoFolderInput>
+    create: XOR<PhaseTwoRequirementsCreateWithoutPhaseTwoFolderInput, PhaseTwoRequirementsUncheckedCreateWithoutPhaseTwoFolderInput>
+    where?: PhaseTwoRequirementsWhereInput
+  }
+
+  export type PhaseTwoRequirementsUpdateToOneWithWhereWithoutPhaseTwoFolderInput = {
+    where?: PhaseTwoRequirementsWhereInput
+    data: XOR<PhaseTwoRequirementsUpdateWithoutPhaseTwoFolderInput, PhaseTwoRequirementsUncheckedUpdateWithoutPhaseTwoFolderInput>
+  }
+
+  export type PhaseTwoRequirementsUpdateWithoutPhaseTwoFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisit?: SurveyVisitUpdateOneWithoutPhaseTwoRequirementsNestedInput
+    instrument?: InstrumentUpdateOneRequiredWithoutPhaseTwoRequirementsNestedInput
+  }
+
+  export type PhaseTwoRequirementsUncheckedUpdateWithoutPhaseTwoFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
+    instrumentId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PhaseTwoAreaFolderUpsertWithWhereUniqueWithoutPhaseTwoFolderInput = {
+    where: PhaseTwoAreaFolderWhereUniqueInput
+    update: XOR<PhaseTwoAreaFolderUpdateWithoutPhaseTwoFolderInput, PhaseTwoAreaFolderUncheckedUpdateWithoutPhaseTwoFolderInput>
+    create: XOR<PhaseTwoAreaFolderCreateWithoutPhaseTwoFolderInput, PhaseTwoAreaFolderUncheckedCreateWithoutPhaseTwoFolderInput>
+  }
+
+  export type PhaseTwoAreaFolderUpdateWithWhereUniqueWithoutPhaseTwoFolderInput = {
+    where: PhaseTwoAreaFolderWhereUniqueInput
+    data: XOR<PhaseTwoAreaFolderUpdateWithoutPhaseTwoFolderInput, PhaseTwoAreaFolderUncheckedUpdateWithoutPhaseTwoFolderInput>
+  }
+
+  export type PhaseTwoAreaFolderUpdateManyWithWhereWithoutPhaseTwoFolderInput = {
+    where: PhaseTwoAreaFolderScalarWhereInput
+    data: XOR<PhaseTwoAreaFolderUpdateManyMutationInput, PhaseTwoAreaFolderUncheckedUpdateManyWithoutPhaseTwoFolderInput>
+  }
+
+  export type PhaseTwoFolderCreateWithoutPhaseTwoAreaFoldersInput = {
+    id?: string
+    folderId: string
+    phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutPhaseTwoFolderInput
+  }
+
+  export type PhaseTwoFolderUncheckedCreateWithoutPhaseTwoAreaFoldersInput = {
+    id?: string
+    phaseTwoRequirementsId?: string | null
+    folderId: string
+  }
+
+  export type PhaseTwoFolderCreateOrConnectWithoutPhaseTwoAreaFoldersInput = {
+    where: PhaseTwoFolderWhereUniqueInput
+    create: XOR<PhaseTwoFolderCreateWithoutPhaseTwoAreaFoldersInput, PhaseTwoFolderUncheckedCreateWithoutPhaseTwoAreaFoldersInput>
+  }
+
+  export type AreaCreateWithoutPhaseTwoAreaFoldersInput = {
+    label: string
+    description: string
+    weight: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    instrument: InstrumentCreateNestedOneWithoutAreaInput
+    parameter?: ParameterCreateNestedManyWithoutAreaInput
+    areaFolders?: AreaFolderCreateNestedManyWithoutAreaInput
+  }
+
+  export type AreaUncheckedCreateWithoutPhaseTwoAreaFoldersInput = {
+    id?: number
+    label: string
+    description: string
+    weight: number
+    instrumentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parameter?: ParameterUncheckedCreateNestedManyWithoutAreaInput
+    areaFolders?: AreaFolderUncheckedCreateNestedManyWithoutAreaInput
+  }
+
+  export type AreaCreateOrConnectWithoutPhaseTwoAreaFoldersInput = {
+    where: AreaWhereUniqueInput
+    create: XOR<AreaCreateWithoutPhaseTwoAreaFoldersInput, AreaUncheckedCreateWithoutPhaseTwoAreaFoldersInput>
+  }
+
+  export type AreaFileCreateWithoutPhaseTwoAreaFolderInput = {
+    id?: string
+    type: $Enums.AreaFileType
+    fileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    phaseOneAreaFolder?: AreaFolderCreateNestedOneWithoutAreaFilesInput
+  }
+
+  export type AreaFileUncheckedCreateWithoutPhaseTwoAreaFolderInput = {
+    id?: string
+    phaseOneAreaFolderId?: string | null
+    type: $Enums.AreaFileType
+    fileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AreaFileCreateOrConnectWithoutPhaseTwoAreaFolderInput = {
+    where: AreaFileWhereUniqueInput
+    create: XOR<AreaFileCreateWithoutPhaseTwoAreaFolderInput, AreaFileUncheckedCreateWithoutPhaseTwoAreaFolderInput>
+  }
+
+  export type AreaFileCreateManyPhaseTwoAreaFolderInputEnvelope = {
+    data: AreaFileCreateManyPhaseTwoAreaFolderInput | AreaFileCreateManyPhaseTwoAreaFolderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PhaseTwoFolderUpsertWithoutPhaseTwoAreaFoldersInput = {
+    update: XOR<PhaseTwoFolderUpdateWithoutPhaseTwoAreaFoldersInput, PhaseTwoFolderUncheckedUpdateWithoutPhaseTwoAreaFoldersInput>
+    create: XOR<PhaseTwoFolderCreateWithoutPhaseTwoAreaFoldersInput, PhaseTwoFolderUncheckedCreateWithoutPhaseTwoAreaFoldersInput>
+    where?: PhaseTwoFolderWhereInput
+  }
+
+  export type PhaseTwoFolderUpdateToOneWithWhereWithoutPhaseTwoAreaFoldersInput = {
+    where?: PhaseTwoFolderWhereInput
+    data: XOR<PhaseTwoFolderUpdateWithoutPhaseTwoAreaFoldersInput, PhaseTwoFolderUncheckedUpdateWithoutPhaseTwoAreaFoldersInput>
+  }
+
+  export type PhaseTwoFolderUpdateWithoutPhaseTwoAreaFoldersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutPhaseTwoFolderNestedInput
+  }
+
+  export type PhaseTwoFolderUncheckedUpdateWithoutPhaseTwoAreaFoldersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseTwoRequirementsId?: NullableStringFieldUpdateOperationsInput | string | null
+    folderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AreaUpsertWithoutPhaseTwoAreaFoldersInput = {
+    update: XOR<AreaUpdateWithoutPhaseTwoAreaFoldersInput, AreaUncheckedUpdateWithoutPhaseTwoAreaFoldersInput>
+    create: XOR<AreaCreateWithoutPhaseTwoAreaFoldersInput, AreaUncheckedCreateWithoutPhaseTwoAreaFoldersInput>
+    where?: AreaWhereInput
+  }
+
+  export type AreaUpdateToOneWithWhereWithoutPhaseTwoAreaFoldersInput = {
+    where?: AreaWhereInput
+    data: XOR<AreaUpdateWithoutPhaseTwoAreaFoldersInput, AreaUncheckedUpdateWithoutPhaseTwoAreaFoldersInput>
+  }
+
+  export type AreaUpdateWithoutPhaseTwoAreaFoldersInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    weight?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    instrument?: InstrumentUpdateOneRequiredWithoutAreaNestedInput
+    parameter?: ParameterUpdateManyWithoutAreaNestedInput
+    areaFolders?: AreaFolderUpdateManyWithoutAreaNestedInput
+  }
+
+  export type AreaUncheckedUpdateWithoutPhaseTwoAreaFoldersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    label?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    weight?: IntFieldUpdateOperationsInput | number
+    instrumentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parameter?: ParameterUncheckedUpdateManyWithoutAreaNestedInput
+    areaFolders?: AreaFolderUncheckedUpdateManyWithoutAreaNestedInput
+  }
+
+  export type AreaFileUpsertWithWhereUniqueWithoutPhaseTwoAreaFolderInput = {
+    where: AreaFileWhereUniqueInput
+    update: XOR<AreaFileUpdateWithoutPhaseTwoAreaFolderInput, AreaFileUncheckedUpdateWithoutPhaseTwoAreaFolderInput>
+    create: XOR<AreaFileCreateWithoutPhaseTwoAreaFolderInput, AreaFileUncheckedCreateWithoutPhaseTwoAreaFolderInput>
+  }
+
+  export type AreaFileUpdateWithWhereUniqueWithoutPhaseTwoAreaFolderInput = {
+    where: AreaFileWhereUniqueInput
+    data: XOR<AreaFileUpdateWithoutPhaseTwoAreaFolderInput, AreaFileUncheckedUpdateWithoutPhaseTwoAreaFolderInput>
+  }
+
+  export type AreaFileUpdateManyWithWhereWithoutPhaseTwoAreaFolderInput = {
+    where: AreaFileScalarWhereInput
+    data: XOR<AreaFileUpdateManyMutationInput, AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderInput>
+  }
+
+  export type AreaFolderCreateWithoutAreaFilesInput = {
+    id?: string
+    folderId: string
+    complete?: boolean
+    instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
+    parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
+    area: AreaCreateNestedOneWithoutAreaFoldersInput
+    taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
+  }
+
+  export type AreaFolderUncheckedCreateWithoutAreaFilesInput = {
+    id?: string
+    instrumentFolderId: string
+    folderId: string
+    areaId: number
+    complete?: boolean
+    parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
+    taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
+  }
+
+  export type AreaFolderCreateOrConnectWithoutAreaFilesInput = {
+    where: AreaFolderWhereUniqueInput
+    create: XOR<AreaFolderCreateWithoutAreaFilesInput, AreaFolderUncheckedCreateWithoutAreaFilesInput>
+  }
+
+  export type PhaseTwoAreaFolderCreateWithoutAreaFilesInput = {
+    id?: string
+    folderId: string
+    phaseTwoFolder: PhaseTwoFolderCreateNestedOneWithoutPhaseTwoAreaFoldersInput
+    area: AreaCreateNestedOneWithoutPhaseTwoAreaFoldersInput
+  }
+
+  export type PhaseTwoAreaFolderUncheckedCreateWithoutAreaFilesInput = {
+    id?: string
+    phaseTwoFolderId: string
+    folderId: string
+    areaId: number
+  }
+
+  export type PhaseTwoAreaFolderCreateOrConnectWithoutAreaFilesInput = {
+    where: PhaseTwoAreaFolderWhereUniqueInput
+    create: XOR<PhaseTwoAreaFolderCreateWithoutAreaFilesInput, PhaseTwoAreaFolderUncheckedCreateWithoutAreaFilesInput>
+  }
+
+  export type AreaFolderUpsertWithoutAreaFilesInput = {
+    update: XOR<AreaFolderUpdateWithoutAreaFilesInput, AreaFolderUncheckedUpdateWithoutAreaFilesInput>
+    create: XOR<AreaFolderCreateWithoutAreaFilesInput, AreaFolderUncheckedCreateWithoutAreaFilesInput>
+    where?: AreaFolderWhereInput
+  }
+
+  export type AreaFolderUpdateToOneWithWhereWithoutAreaFilesInput = {
+    where?: AreaFolderWhereInput
+    data: XOR<AreaFolderUpdateWithoutAreaFilesInput, AreaFolderUncheckedUpdateWithoutAreaFilesInput>
+  }
+
+  export type AreaFolderUpdateWithoutAreaFilesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    complete?: BoolFieldUpdateOperationsInput | boolean
+    instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
+    parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
+    area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
+    taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
+  }
+
+  export type AreaFolderUncheckedUpdateWithoutAreaFilesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instrumentFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+    complete?: BoolFieldUpdateOperationsInput | boolean
+    parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
+    taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
+  }
+
+  export type PhaseTwoAreaFolderUpsertWithoutAreaFilesInput = {
+    update: XOR<PhaseTwoAreaFolderUpdateWithoutAreaFilesInput, PhaseTwoAreaFolderUncheckedUpdateWithoutAreaFilesInput>
+    create: XOR<PhaseTwoAreaFolderCreateWithoutAreaFilesInput, PhaseTwoAreaFolderUncheckedCreateWithoutAreaFilesInput>
+    where?: PhaseTwoAreaFolderWhereInput
+  }
+
+  export type PhaseTwoAreaFolderUpdateToOneWithWhereWithoutAreaFilesInput = {
+    where?: PhaseTwoAreaFolderWhereInput
+    data: XOR<PhaseTwoAreaFolderUpdateWithoutAreaFilesInput, PhaseTwoAreaFolderUncheckedUpdateWithoutAreaFilesInput>
+  }
+
+  export type PhaseTwoAreaFolderUpdateWithoutAreaFilesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    phaseTwoFolder?: PhaseTwoFolderUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
+    area?: AreaUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
+  }
+
+  export type PhaseTwoAreaFolderUncheckedUpdateWithoutAreaFilesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type AreaFolderCreateWithoutTaskForceInput = {
+    id?: string
+    folderId: string
+    complete?: boolean
+    instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
+    parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
+    area: AreaCreateNestedOneWithoutAreaFoldersInput
+    areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
+  }
+
+  export type AreaFolderUncheckedCreateWithoutTaskForceInput = {
+    id?: string
+    instrumentFolderId: string
+    folderId: string
+    areaId: number
+    complete?: boolean
+    parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
+    areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
+  }
+
+  export type AreaFolderCreateOrConnectWithoutTaskForceInput = {
+    where: AreaFolderWhereUniqueInput
+    create: XOR<AreaFolderCreateWithoutTaskForceInput, AreaFolderUncheckedCreateWithoutTaskForceInput>
+  }
+
+  export type ProgramPersonnelCreateWithoutChairPersonInput = {
+    id?: string
+    assignedAt?: Date | string
+    user: UserCreateNestedOneWithoutProgramPersonnelInput
+    program: ProgramCreateNestedOneWithoutProgramPersonnelInput
+  }
+
+  export type ProgramPersonnelUncheckedCreateWithoutChairPersonInput = {
+    id?: string
+    userId: string
+    programId: string
+    assignedAt?: Date | string
+  }
+
+  export type ProgramPersonnelCreateOrConnectWithoutChairPersonInput = {
+    where: ProgramPersonnelWhereUniqueInput
+    create: XOR<ProgramPersonnelCreateWithoutChairPersonInput, ProgramPersonnelUncheckedCreateWithoutChairPersonInput>
+  }
+
+  export type TaskForceMemberCreateWithoutTaskForceInput = {
+    id?: string
+    parameterFolder: ParameterFolderCreateNestedOneWithoutTaskForceMemberInput
+  }
+
+  export type TaskForceMemberUncheckedCreateWithoutTaskForceInput = {
+    id?: string
+    parameterFolderId: string
+  }
+
+  export type TaskForceMemberCreateOrConnectWithoutTaskForceInput = {
+    where: TaskForceMemberWhereUniqueInput
+    create: XOR<TaskForceMemberCreateWithoutTaskForceInput, TaskForceMemberUncheckedCreateWithoutTaskForceInput>
+  }
+
+  export type TaskForceMemberCreateManyTaskForceInputEnvelope = {
+    data: TaskForceMemberCreateManyTaskForceInput | TaskForceMemberCreateManyTaskForceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AreaFolderUpsertWithoutTaskForceInput = {
+    update: XOR<AreaFolderUpdateWithoutTaskForceInput, AreaFolderUncheckedUpdateWithoutTaskForceInput>
+    create: XOR<AreaFolderCreateWithoutTaskForceInput, AreaFolderUncheckedCreateWithoutTaskForceInput>
+    where?: AreaFolderWhereInput
+  }
+
+  export type AreaFolderUpdateToOneWithWhereWithoutTaskForceInput = {
+    where?: AreaFolderWhereInput
+    data: XOR<AreaFolderUpdateWithoutTaskForceInput, AreaFolderUncheckedUpdateWithoutTaskForceInput>
+  }
+
+  export type AreaFolderUpdateWithoutTaskForceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    complete?: BoolFieldUpdateOperationsInput | boolean
+    instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
+    parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
+    area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
+    areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
+  }
+
+  export type AreaFolderUncheckedUpdateWithoutTaskForceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instrumentFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+    complete?: BoolFieldUpdateOperationsInput | boolean
+    parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
+    areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
+  }
+
+  export type ProgramPersonnelUpsertWithoutChairPersonInput = {
+    update: XOR<ProgramPersonnelUpdateWithoutChairPersonInput, ProgramPersonnelUncheckedUpdateWithoutChairPersonInput>
+    create: XOR<ProgramPersonnelCreateWithoutChairPersonInput, ProgramPersonnelUncheckedCreateWithoutChairPersonInput>
+    where?: ProgramPersonnelWhereInput
+  }
+
+  export type ProgramPersonnelUpdateToOneWithWhereWithoutChairPersonInput = {
+    where?: ProgramPersonnelWhereInput
+    data: XOR<ProgramPersonnelUpdateWithoutChairPersonInput, ProgramPersonnelUncheckedUpdateWithoutChairPersonInput>
+  }
+
+  export type ProgramPersonnelUpdateWithoutChairPersonInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutProgramPersonnelNestedInput
+    program?: ProgramUpdateOneRequiredWithoutProgramPersonnelNestedInput
+  }
+
+  export type ProgramPersonnelUncheckedUpdateWithoutChairPersonInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    programId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskForceMemberUpsertWithWhereUniqueWithoutTaskForceInput = {
+    where: TaskForceMemberWhereUniqueInput
+    update: XOR<TaskForceMemberUpdateWithoutTaskForceInput, TaskForceMemberUncheckedUpdateWithoutTaskForceInput>
+    create: XOR<TaskForceMemberCreateWithoutTaskForceInput, TaskForceMemberUncheckedCreateWithoutTaskForceInput>
+  }
+
+  export type TaskForceMemberUpdateWithWhereUniqueWithoutTaskForceInput = {
+    where: TaskForceMemberWhereUniqueInput
+    data: XOR<TaskForceMemberUpdateWithoutTaskForceInput, TaskForceMemberUncheckedUpdateWithoutTaskForceInput>
+  }
+
+  export type TaskForceMemberUpdateManyWithWhereWithoutTaskForceInput = {
+    where: TaskForceMemberScalarWhereInput
+    data: XOR<TaskForceMemberUpdateManyMutationInput, TaskForceMemberUncheckedUpdateManyWithoutTaskForceInput>
+  }
+
+  export type TaskForceMemberScalarWhereInput = {
+    AND?: TaskForceMemberScalarWhereInput | TaskForceMemberScalarWhereInput[]
+    OR?: TaskForceMemberScalarWhereInput[]
+    NOT?: TaskForceMemberScalarWhereInput | TaskForceMemberScalarWhereInput[]
+    id?: StringFilter<"TaskForceMember"> | string
+    taskForceId?: StringFilter<"TaskForceMember"> | string
+    parameterFolderId?: StringFilter<"TaskForceMember"> | string
+  }
+
+  export type TaskForceCreateWithoutTaskForceMemberInput = {
+    id?: string
+    areaFolder: AreaFolderCreateNestedOneWithoutTaskForceInput
+    chairPerson: ProgramPersonnelCreateNestedOneWithoutChairPersonInput
+  }
+
+  export type TaskForceUncheckedCreateWithoutTaskForceMemberInput = {
+    id?: string
+    areaFolderId: string
+    chairPersonId: string
+  }
+
+  export type TaskForceCreateOrConnectWithoutTaskForceMemberInput = {
+    where: TaskForceWhereUniqueInput
+    create: XOR<TaskForceCreateWithoutTaskForceMemberInput, TaskForceUncheckedCreateWithoutTaskForceMemberInput>
+  }
+
+  export type ParameterFolderCreateWithoutTaskForceMemberInput = {
+    id?: string
+    folderId: string
+    areaFolder: AreaFolderCreateNestedOneWithoutParameterFoldersInput
+    indicatorFolders?: IndicatorFolderCreateNestedManyWithoutParameterFolderInput
+    parameter: ParameterCreateNestedOneWithoutParameterFoldersInput
+  }
+
+  export type ParameterFolderUncheckedCreateWithoutTaskForceMemberInput = {
+    id?: string
+    areaFolderId: string
+    folderId: string
+    parameterId: number
+    indicatorFolders?: IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput
+  }
+
+  export type ParameterFolderCreateOrConnectWithoutTaskForceMemberInput = {
+    where: ParameterFolderWhereUniqueInput
+    create: XOR<ParameterFolderCreateWithoutTaskForceMemberInput, ParameterFolderUncheckedCreateWithoutTaskForceMemberInput>
+  }
+
+  export type TaskForceUpsertWithoutTaskForceMemberInput = {
+    update: XOR<TaskForceUpdateWithoutTaskForceMemberInput, TaskForceUncheckedUpdateWithoutTaskForceMemberInput>
+    create: XOR<TaskForceCreateWithoutTaskForceMemberInput, TaskForceUncheckedCreateWithoutTaskForceMemberInput>
+    where?: TaskForceWhereInput
+  }
+
+  export type TaskForceUpdateToOneWithWhereWithoutTaskForceMemberInput = {
+    where?: TaskForceWhereInput
+    data: XOR<TaskForceUpdateWithoutTaskForceMemberInput, TaskForceUncheckedUpdateWithoutTaskForceMemberInput>
+  }
+
+  export type TaskForceUpdateWithoutTaskForceMemberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolder?: AreaFolderUpdateOneRequiredWithoutTaskForceNestedInput
+    chairPerson?: ProgramPersonnelUpdateOneRequiredWithoutChairPersonNestedInput
+  }
+
+  export type TaskForceUncheckedUpdateWithoutTaskForceMemberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
+    chairPersonId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ParameterFolderUpsertWithoutTaskForceMemberInput = {
+    update: XOR<ParameterFolderUpdateWithoutTaskForceMemberInput, ParameterFolderUncheckedUpdateWithoutTaskForceMemberInput>
+    create: XOR<ParameterFolderCreateWithoutTaskForceMemberInput, ParameterFolderUncheckedCreateWithoutTaskForceMemberInput>
+    where?: ParameterFolderWhereInput
+  }
+
+  export type ParameterFolderUpdateToOneWithWhereWithoutTaskForceMemberInput = {
+    where?: ParameterFolderWhereInput
+    data: XOR<ParameterFolderUpdateWithoutTaskForceMemberInput, ParameterFolderUncheckedUpdateWithoutTaskForceMemberInput>
+  }
+
+  export type ParameterFolderUpdateWithoutTaskForceMemberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaFolder?: AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput
+    indicatorFolders?: IndicatorFolderUpdateManyWithoutParameterFolderNestedInput
+    parameter?: ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput
+  }
+
+  export type ParameterFolderUncheckedUpdateWithoutTaskForceMemberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    parameterId?: IntFieldUpdateOperationsInput | number
+    indicatorFolders?: IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput
+  }
+
   export type ProgramPersonnelCreateManyUserInput = {
     id?: string
     programId: string
@@ -26874,12 +37273,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: ProgramUpdateOneRequiredWithoutProgramPersonnelNestedInput
+    chairPerson?: TaskForceUpdateManyWithoutChairPersonNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chairPerson?: TaskForceUncheckedUpdateManyWithoutChairPersonNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateManyWithoutUserInput = {
@@ -26898,18 +37299,42 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutProgramPersonnelNestedInput
+    chairPerson?: TaskForceUpdateManyWithoutChairPersonNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateWithoutProgramInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chairPerson?: TaskForceUncheckedUpdateManyWithoutChairPersonNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateManyWithoutProgramInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskForceCreateManyChairPersonInput = {
+    id?: string
+    areaFolderId: string
+  }
+
+  export type TaskForceUpdateWithoutChairPersonInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolder?: AreaFolderUpdateOneRequiredWithoutTaskForceNestedInput
+    taskForceMember?: TaskForceMemberUpdateManyWithoutTaskForceNestedInput
+  }
+
+  export type TaskForceUncheckedUpdateWithoutChairPersonInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
+    taskForceMember?: TaskForceMemberUncheckedUpdateManyWithoutTaskForceNestedInput
+  }
+
+  export type TaskForceUncheckedUpdateManyWithoutChairPersonInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AreaCreateManyInstrumentInput = {
@@ -26923,7 +37348,12 @@ export namespace Prisma {
 
   export type PhaseOneRequirementsCreateManyInstrumentInput = {
     id?: string
-    surveyVisitId: string
+    surveyVisitId?: string | null
+  }
+
+  export type PhaseTwoRequirementsCreateManyInstrumentInput = {
+    id?: string
+    surveyVisitId?: string | null
   }
 
   export type AreaUpdateWithoutInstrumentInput = {
@@ -26934,6 +37364,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parameter?: ParameterUpdateManyWithoutAreaNestedInput
     areaFolders?: AreaFolderUpdateManyWithoutAreaNestedInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUpdateManyWithoutAreaNestedInput
   }
 
   export type AreaUncheckedUpdateWithoutInstrumentInput = {
@@ -26945,6 +37376,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parameter?: ParameterUncheckedUpdateManyWithoutAreaNestedInput
     areaFolders?: AreaFolderUncheckedUpdateManyWithoutAreaNestedInput
+    phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedUpdateManyWithoutAreaNestedInput
   }
 
   export type AreaUncheckedUpdateManyWithoutInstrumentInput = {
@@ -26958,19 +37390,36 @@ export namespace Prisma {
 
   export type PhaseOneRequirementsUpdateWithoutInstrumentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    surveyVisit?: SurveyVisitUpdateOneRequiredWithoutPhaseOneRequirementsNestedInput
+    surveyVisit?: SurveyVisitUpdateOneWithoutPhaseOneRequirementsNestedInput
     instrumentFolder?: InstrumentFolderUpdateOneWithoutPhaseOneRequirementsNestedInput
   }
 
   export type PhaseOneRequirementsUncheckedUpdateWithoutInstrumentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    surveyVisitId?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     instrumentFolder?: InstrumentFolderUncheckedUpdateOneWithoutPhaseOneRequirementsNestedInput
   }
 
   export type PhaseOneRequirementsUncheckedUpdateManyWithoutInstrumentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    surveyVisitId?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PhaseTwoRequirementsUpdateWithoutInstrumentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisit?: SurveyVisitUpdateOneWithoutPhaseTwoRequirementsNestedInput
+    phaseTwoFolder?: PhaseTwoFolderUpdateOneWithoutPhaseTwoRequirementsNestedInput
+  }
+
+  export type PhaseTwoRequirementsUncheckedUpdateWithoutInstrumentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
+    phaseTwoFolder?: PhaseTwoFolderUncheckedUpdateOneWithoutPhaseTwoRequirementsNestedInput
+  }
+
+  export type PhaseTwoRequirementsUncheckedUpdateManyWithoutInstrumentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ParameterCreateManyAreaInput = {
@@ -26984,6 +37433,13 @@ export namespace Prisma {
   export type AreaFolderCreateManyAreaInput = {
     id?: string
     instrumentFolderId: string
+    folderId: string
+    complete?: boolean
+  }
+
+  export type PhaseTwoAreaFolderCreateManyAreaInput = {
+    id?: string
+    phaseTwoFolderId: string
     folderId: string
   }
 
@@ -27017,20 +37473,47 @@ export namespace Prisma {
   export type AreaFolderUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
+    complete?: BoolFieldUpdateOperationsInput | boolean
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
+    areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
+    complete?: BoolFieldUpdateOperationsInput | boolean
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
+    areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateManyWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    complete?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PhaseTwoAreaFolderUpdateWithoutAreaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    phaseTwoFolder?: PhaseTwoFolderUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
+    areaFiles?: AreaFileUpdateManyWithoutPhaseTwoAreaFolderNestedInput
+  }
+
+  export type PhaseTwoAreaFolderUncheckedUpdateWithoutAreaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderNestedInput
+  }
+
+  export type PhaseTwoAreaFolderUncheckedUpdateManyWithoutAreaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -27086,6 +37569,7 @@ export namespace Prisma {
     folderId?: StringFieldUpdateOperationsInput | string
     areaFolder?: AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput
     indicatorFolders?: IndicatorFolderUpdateManyWithoutParameterFolderNestedInput
+    taskForceMember?: TaskForceMemberUpdateOneWithoutParameterFolderNestedInput
   }
 
   export type ParameterFolderUncheckedUpdateWithoutParameterInput = {
@@ -27093,6 +37577,7 @@ export namespace Prisma {
     areaFolderId?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
     indicatorFolders?: IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput
+    taskForceMember?: TaskForceMemberUncheckedUpdateOneWithoutParameterFolderNestedInput
   }
 
   export type ParameterFolderUncheckedUpdateManyWithoutParameterInput = {
@@ -27136,17 +37621,19 @@ export namespace Prisma {
   export type AccreditationCreateManyLevelInput = {
     id?: string
     programId: string
-    phase?: $Enums.Phase | null
   }
 
   export type SurveyVisitCreateManyLevelInput = {
     id?: string
     accreditationId: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    status: $Enums.AccreditationStatus
+    createdAt?: Date | string
   }
 
   export type AccreditationUpdateWithoutLevelInput = {
     id?: StringFieldUpdateOperationsInput | string
-    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
     program?: ProgramUpdateOneRequiredWithoutAccreditationNestedInput
     surveyVisits?: SurveyVisitUpdateManyWithoutAccreditationNestedInput
   }
@@ -27154,79 +37641,117 @@ export namespace Prisma {
   export type AccreditationUncheckedUpdateWithoutLevelInput = {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
-    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
     surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutAccreditationNestedInput
   }
 
   export type AccreditationUncheckedUpdateManyWithoutLevelInput = {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
-    phase?: NullableEnumPhaseFieldUpdateOperationsInput | $Enums.Phase | null
   }
 
   export type SurveyVisitUpdateWithoutLevelInput = {
     id?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutLevelInput = {
     id?: StringFieldUpdateOperationsInput | string
     accreditationId?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateManyWithoutLevelInput = {
     id?: StringFieldUpdateOperationsInput | string
     accreditationId?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SurveyVisitCreateManyAccreditationInput = {
     id?: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
     targetLevel: string
+    status: $Enums.AccreditationStatus
+    createdAt?: Date | string
   }
 
   export type SurveyVisitUpdateWithoutAccreditationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutAccreditationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateManyWithoutAccreditationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AreaFolderCreateManyInstrumentFolderInput = {
     id?: string
     folderId: string
     areaId: number
+    complete?: boolean
   }
 
   export type AreaFolderUpdateWithoutInstrumentFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
+    complete?: BoolFieldUpdateOperationsInput | boolean
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
+    areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutInstrumentFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    complete?: BoolFieldUpdateOperationsInput | boolean
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
+    areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateManyWithoutInstrumentFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    complete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ParameterFolderCreateManyAreaFolderInput = {
@@ -27235,11 +37760,21 @@ export namespace Prisma {
     parameterId: number
   }
 
+  export type AreaFileCreateManyPhaseOneAreaFolderInput = {
+    id?: string
+    phaseTwoAreaFolderId?: string | null
+    type: $Enums.AreaFileType
+    fileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type ParameterFolderUpdateWithoutAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
     indicatorFolders?: IndicatorFolderUpdateManyWithoutParameterFolderNestedInput
     parameter?: ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput
+    taskForceMember?: TaskForceMemberUpdateOneWithoutParameterFolderNestedInput
   }
 
   export type ParameterFolderUncheckedUpdateWithoutAreaFolderInput = {
@@ -27247,12 +37782,40 @@ export namespace Prisma {
     folderId?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
     indicatorFolders?: IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput
+    taskForceMember?: TaskForceMemberUncheckedUpdateOneWithoutParameterFolderNestedInput
   }
 
   export type ParameterFolderUncheckedUpdateManyWithoutAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     folderId?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type AreaFileUpdateWithoutPhaseOneAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderUpdateOneWithoutAreaFilesNestedInput
+  }
+
+  export type AreaFileUncheckedUpdateWithoutPhaseOneAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IndicatorFolderCreateManyParameterFolderInput = {
@@ -27311,6 +37874,88 @@ export namespace Prisma {
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PhaseTwoAreaFolderCreateManyPhaseTwoFolderInput = {
+    id?: string
+    folderId: string
+    areaId: number
+  }
+
+  export type PhaseTwoAreaFolderUpdateWithoutPhaseTwoFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    area?: AreaUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
+    areaFiles?: AreaFileUpdateManyWithoutPhaseTwoAreaFolderNestedInput
+  }
+
+  export type PhaseTwoAreaFolderUncheckedUpdateWithoutPhaseTwoFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+    areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderNestedInput
+  }
+
+  export type PhaseTwoAreaFolderUncheckedUpdateManyWithoutPhaseTwoFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    folderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type AreaFileCreateManyPhaseTwoAreaFolderInput = {
+    id?: string
+    phaseOneAreaFolderId?: string | null
+    type: $Enums.AreaFileType
+    fileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AreaFileUpdateWithoutPhaseTwoAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phaseOneAreaFolder?: AreaFolderUpdateOneWithoutAreaFilesNestedInput
+  }
+
+  export type AreaFileUncheckedUpdateWithoutPhaseTwoAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
+    fileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskForceMemberCreateManyTaskForceInput = {
+    id?: string
+    parameterFolderId: string
+  }
+
+  export type TaskForceMemberUpdateWithoutTaskForceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    parameterFolder?: ParameterFolderUpdateOneRequiredWithoutTaskForceMemberNestedInput
+  }
+
+  export type TaskForceMemberUncheckedUpdateWithoutTaskForceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    parameterFolderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TaskForceMemberUncheckedUpdateManyWithoutTaskForceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    parameterFolderId?: StringFieldUpdateOperationsInput | string
   }
 
 

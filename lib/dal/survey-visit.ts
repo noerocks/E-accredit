@@ -1,4 +1,5 @@
 import { verifySession } from "../action/session";
+import { AccreditationStatus, SurveyVisitType } from "../generated/prisma";
 import { prisma } from "../prisma";
 
 export async function createSurveyVisit(
@@ -24,9 +25,12 @@ export async function createSurveyVisit(
           instrumentId,
         },
       },
+      type: SurveyVisitType.FIRST,
+      status: AccreditationStatus.IN_PROGRESS,
     },
     include: {
       phaseOneRequirements: true,
+      phaseTwoRequirements: true,
     },
   });
   return surveyVisit;

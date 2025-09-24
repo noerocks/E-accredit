@@ -32,6 +32,22 @@ enum Phase {
   PHASE_2
 }
 
+enum AccreditationStatus {
+  IN_PROGRESS
+  COMPLETE
+}
+
+enum SurveyVisitType {
+  FIRST
+  REVISIT
+}
+
+enum AreaFileType {
+  PPP
+  COMPLIANCE_REPORT
+  NARRATIVE_PROFILE
+}
+
 model User {
   id               String             @id @default(uuid())
   firstName        String
@@ -62,12 +78,13 @@ model Program {
 }
 
 model ProgramPersonnel {
-  id         String   @id @default(uuid())
-  user       User     @relation(fields: [userId], references: [id])
-  userId     String
-  program    Program  @relation(fields: [programId], references: [id])
-  programId  String
-  assignedAt DateTime @default(now())
+  id          String      @id @default(uuid())
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  program     Program     @relation(fields: [programId], references: [id], onDelete: Cascade)
+  programId   String
+  assignedAt  DateTime    @default(now())
+  chairPerson TaskForce[]
 
   @@unique([userId, programId])
 }
@@ -80,21 +97,23 @@ model Instrument {
   createdAt            DateTime               @default(now())
   updatedAt            DateTime               @updatedAt
   phaseOneRequirements PhaseOneRequirements[]
+  phaseTwoRequirements PhaseTwoRequirements[]
 
   @@unique([name, accreditingBody])
 }
 
 model Area {
-  id           Int          @id @default(autoincrement())
-  label        String
-  description  String
-  weight       Int
-  instrument   Instrument   @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
-  instrumentId String
-  parameter    Parameter[]
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-  areaFolders  AreaFolder[]
+  id                  Int                  @id @default(autoincrement())
+  label               String
+  description         String
+  weight              Int
+  instrument          Instrument           @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
+  instrumentId        String
+  parameter           Parameter[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  areaFolders         AreaFolder[]
+  phaseTwoAreaFolders PhaseTwoAreaFolder[]
 }
 
 model Parameter {
@@ -135,63 +154,71 @@ model Level {
 
 model Accreditation {
   id           String        @id @default(uuid())
-  program      Program       @relation(fields: [programId], references: [id])
+  program      Program       @relation(fields: [programId], references: [id], onDelete: Cascade)
   programId    String        @unique
-  level        Level?        @relation(fields: [currentLevel], references: [id])
+  level        Level?        @relation(fields: [currentLevel], references: [id], onDelete: Cascade)
   currentLevel String?
-  phase        Phase?
   surveyVisits SurveyVisit[]
 }
 
 model SurveyVisit {
   id                   String                @id @default(uuid())
-  accreditation        Accreditation         @relation(fields: [accreditationId], references: [id])
+  accreditation        Accreditation         @relation(fields: [accreditationId], references: [id], onDelete: Cascade)
   accreditationId      String
-  level                Level                 @relation(fields: [targetLevel], references: [id])
+  actualSurveyDate     DateTime
+  type                 SurveyVisitType
+  level                Level                 @relation(fields: [targetLevel], references: [id], onDelete: Cascade)
   targetLevel          String
   phaseOneRequirements PhaseOneRequirements?
+  phaseTwoRequirements PhaseTwoRequirements?
+  status               AccreditationStatus
+  createdAt            DateTime              @default(now())
 }
 
 model PhaseOneRequirements {
   id               String            @id @default(uuid())
-  surveyVisit      SurveyVisit       @relation(fields: [surveyVisitId], references: [id])
-  surveyVisitId    String            @unique
-  instrument       Instrument        @relation(fields: [instrumentId], references: [id])
+  surveyVisit      SurveyVisit?      @relation(fields: [surveyVisitId], references: [id], onDelete: Cascade)
+  surveyVisitId    String?           @unique
+  instrument       Instrument        @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
   instrumentId     String
   instrumentFolder InstrumentFolder?
 }
 
 model InstrumentFolder {
-  id                     String               @id @default(uuid())
-  phaseOneRequirements   PhaseOneRequirements @relation(fields: [phaseOneRequirementsId], references: [id])
-  phaseOneRequirementsId String               @unique
+  id                     String                @id @default(uuid())
+  phaseOneRequirements   PhaseOneRequirements? @relation(fields: [phaseOneRequirementsId], references: [id], onDelete: Cascade)
+  phaseOneRequirementsId String?               @unique
   folderId               String
   areaFolders            AreaFolder[]
 }
 
 model AreaFolder {
   id                 String            @id @default(uuid())
-  instrumentFolder   InstrumentFolder  @relation(fields: [instrumentFolderId], references: [id])
+  instrumentFolder   InstrumentFolder  @relation(fields: [instrumentFolderId], references: [id], onDelete: Cascade)
   instrumentFolderId String
   folderId           String
   parameterFolders   ParameterFolder[]
-  area               Area              @relation(fields: [areaId], references: [id])
+  area               Area              @relation(fields: [areaId], references: [id], onDelete: Cascade)
   areaId             Int
+  areaFiles          AreaFile[]
+  complete           Boolean           @default(false)
+  taskForce          TaskForce?
 }
 
 model ParameterFolder {
   id               String            @id @default(uuid())
-  areaFolder       AreaFolder        @relation(fields: [areaFolderId], references: [id])
+  areaFolder       AreaFolder        @relation(fields: [areaFolderId], references: [id], onDelete: Cascade)
   areaFolderId     String
   folderId         String
   indicatorFolders IndicatorFolder[]
-  parameter        Parameter         @relation(fields: [parameterId], references: [id])
+  parameter        Parameter         @relation(fields: [parameterId], references: [id], onDelete: Cascade)
   parameterId      Int
+  taskForceMember  TaskForceMember?
 }
 
 model IndicatorFolder {
   id                String          @id @default(uuid())
-  parameterFolder   ParameterFolder @relation(fields: [parameterFolderId], references: [id])
+  parameterFolder   ParameterFolder @relation(fields: [parameterFolderId], references: [id], onDelete: Cascade)
   parameterFolderId String
   folderId          String
   category          Category
@@ -200,11 +227,67 @@ model IndicatorFolder {
 
 model EvidenceFile {
   id                String          @id @default(uuid())
-  indicatorFolder   IndicatorFolder @relation(fields: [indicatorFolderId], references: [id])
+  indicatorFolder   IndicatorFolder @relation(fields: [indicatorFolderId], references: [id], onDelete: Cascade)
   indicatorFolderId String
   fileId            String
-  indicator         Indicator       @relation(fields: [indicatorId], references: [id])
+  indicator         Indicator       @relation(fields: [indicatorId], references: [id], onDelete: Cascade)
   indicatorId       Int
   createdAt         DateTime        @default(now())
   updatedAt         DateTime        @updatedAt
+}
+
+model PhaseTwoRequirements {
+  id             String          @id @default(uuid())
+  surveyVisit    SurveyVisit?    @relation(fields: [surveyVisitId], references: [id], onDelete: Cascade)
+  surveyVisitId  String?         @unique
+  instrument     Instrument      @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
+  instrumentId   String
+  phaseTwoFolder PhaseTwoFolder?
+}
+
+model PhaseTwoFolder {
+  id                     String                @id @default(uuid())
+  phaseTwoRequirements   PhaseTwoRequirements? @relation(fields: [phaseTwoRequirementsId], references: [id], onDelete: Cascade)
+  phaseTwoRequirementsId String?               @unique
+  folderId               String
+  phaseTwoAreaFolders    PhaseTwoAreaFolder[]
+}
+
+model PhaseTwoAreaFolder {
+  id               String         @id @default(uuid())
+  phaseTwoFolder   PhaseTwoFolder @relation(fields: [phaseTwoFolderId], references: [id], onDelete: Cascade)
+  phaseTwoFolderId String
+  folderId         String
+  area             Area           @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  areaId           Int
+  areaFiles        AreaFile[]
+}
+
+model AreaFile {
+  id                   String              @id @default(uuid())
+  phaseOneAreaFolder   AreaFolder?         @relation(fields: [phaseOneAreaFolderId], references: [id])
+  phaseOneAreaFolderId String?
+  phaseTwoAreaFolder   PhaseTwoAreaFolder? @relation(fields: [phaseTwoAreaFolderId], references: [id])
+  phaseTwoAreaFolderId String?
+  type                 AreaFileType
+  fileId               String
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
+}
+
+model TaskForce {
+  id              String            @id @default(uuid())
+  areaFolder      AreaFolder        @relation(fields: [areaFolderId], references: [id], onDelete: Cascade)
+  areaFolderId    String            @unique
+  chairPerson     ProgramPersonnel  @relation(fields: [chairPersonId], references: [id], onDelete: Cascade)
+  chairPersonId   String
+  taskForceMember TaskForceMember[]
+}
+
+model TaskForceMember {
+  id                String          @id @default(uuid())
+  taskForce         TaskForce       @relation(fields: [taskForceId], references: [id], onDelete: Cascade)
+  taskForceId       String
+  parameterFolder   ParameterFolder @relation(fields: [parameterFolderId], references: [id], onDelete: Cascade)
+  parameterFolderId String          @unique
 }
