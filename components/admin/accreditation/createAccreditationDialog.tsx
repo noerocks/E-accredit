@@ -96,7 +96,7 @@ const CreateAccreditationDialog = ({
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-2xl text-center">
-            Get a Program Accredited
+            Program Accreditation
           </DialogTitle>
           <DialogDescription>
             Create new accreditation by providing its details

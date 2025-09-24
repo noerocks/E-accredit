@@ -4,12 +4,18 @@ import { prisma } from "../prisma";
 
 export async function createSurveyVisit(
   accreditationId: string,
+  actualSurveyDate: Date,
+  surveyVisitType: SurveyVisitType,
   targetLevelId: string,
+  status: AccreditationStatus,
   instrumentId: string
 ) {
   const session = await verifySession();
+  if (!session) return null;
   const surveyVisit = await prisma.surveyVisit.create({
     data: {
+      actualSurveyDate,
+      type: surveyVisitType,
       level: {
         connect: {
           id: targetLevelId,
@@ -25,8 +31,7 @@ export async function createSurveyVisit(
           instrumentId,
         },
       },
-      type: SurveyVisitType.FIRST,
-      status: AccreditationStatus.IN_PROGRESS,
+      status: status,
     },
     include: {
       phaseOneRequirements: true,

@@ -2,11 +2,13 @@ import CreateAccreditationDialog from "@/components/admin/accreditation/createAc
 import { getInstruments } from "@/lib/dal/instrument";
 import { getLevels } from "@/lib/dal/levels";
 import { getPrograms } from "@/lib/dal/program";
+import { prisma } from "@/lib/prisma";
 
 const Accreditation = async () => {
   const programs = await getPrograms();
   const instruments = await getInstruments();
   const levels = await getLevels();
+  // await prisma.program.deleteMany();
   return (
     <div className="max-w-3/4 mx-auto mt-10">
       <div className="flex justify-between items-center mb-10">
