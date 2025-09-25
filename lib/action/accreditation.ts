@@ -4,9 +4,9 @@ import { InstrumentDisplayDTO } from "../dto/instrument";
 import { LevelDTO } from "../dto/level";
 import { ProgramDTO } from "../dto/programs";
 import {
-  AccreditationStatus,
   Category,
   Phase,
+  SurveyStatus,
   SurveyVisitType,
 } from "../generated/prisma";
 import { createFolder } from "./drive";
@@ -50,7 +50,7 @@ export async function createSurveyVisit(
     actualSurveyDate,
     SurveyVisitType.FIRST,
     level.id,
-    AccreditationStatus.IN_PROGRESS,
+    SurveyStatus.IN_PROGRESS,
     instrument.id
   );
   if (!surveyVisit) throw new Error("Error in creating survey visit");

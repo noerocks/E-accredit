@@ -155,12 +155,12 @@ export const Phase: {
 export type Phase = (typeof Phase)[keyof typeof Phase]
 
 
-export const AccreditationStatus: {
+export const SurveyStatus: {
   IN_PROGRESS: 'IN_PROGRESS',
   COMPLETE: 'COMPLETE'
 };
 
-export type AccreditationStatus = (typeof AccreditationStatus)[keyof typeof AccreditationStatus]
+export type SurveyStatus = (typeof SurveyStatus)[keyof typeof SurveyStatus]
 
 
 export const SurveyVisitType: {
@@ -169,6 +169,15 @@ export const SurveyVisitType: {
 };
 
 export type SurveyVisitType = (typeof SurveyVisitType)[keyof typeof SurveyVisitType]
+
+
+export const AccreditationStatus: {
+  UNACCREDITED: 'UNACCREDITED',
+  ACTIVE: 'ACTIVE',
+  EXPIRED: 'EXPIRED'
+};
+
+export type AccreditationStatus = (typeof AccreditationStatus)[keyof typeof AccreditationStatus]
 
 
 export const AreaFileType: {
@@ -193,13 +202,17 @@ export type Phase = $Enums.Phase
 
 export const Phase: typeof $Enums.Phase
 
-export type AccreditationStatus = $Enums.AccreditationStatus
+export type SurveyStatus = $Enums.SurveyStatus
 
-export const AccreditationStatus: typeof $Enums.AccreditationStatus
+export const SurveyStatus: typeof $Enums.SurveyStatus
 
 export type SurveyVisitType = $Enums.SurveyVisitType
 
 export const SurveyVisitType: typeof $Enums.SurveyVisitType
+
+export type AccreditationStatus = $Enums.AccreditationStatus
+
+export const AccreditationStatus: typeof $Enums.AccreditationStatus
 
 export type AreaFileType = $Enums.AreaFileType
 
@@ -11438,12 +11451,14 @@ export namespace Prisma {
     rank: number | null
     requiredGrandMean: Decimal | null
     requiredAreaMean: Decimal | null
+    yearsEffective: number | null
   }
 
   export type LevelSumAggregateOutputType = {
     rank: number | null
     requiredGrandMean: Decimal | null
     requiredAreaMean: Decimal | null
+    yearsEffective: number | null
   }
 
   export type LevelMinAggregateOutputType = {
@@ -11453,6 +11468,7 @@ export namespace Prisma {
     phase: $Enums.Phase | null
     requiredGrandMean: Decimal | null
     requiredAreaMean: Decimal | null
+    yearsEffective: number | null
   }
 
   export type LevelMaxAggregateOutputType = {
@@ -11462,6 +11478,7 @@ export namespace Prisma {
     phase: $Enums.Phase | null
     requiredGrandMean: Decimal | null
     requiredAreaMean: Decimal | null
+    yearsEffective: number | null
   }
 
   export type LevelCountAggregateOutputType = {
@@ -11471,6 +11488,7 @@ export namespace Prisma {
     phase: number
     requiredGrandMean: number
     requiredAreaMean: number
+    yearsEffective: number
     _all: number
   }
 
@@ -11479,12 +11497,14 @@ export namespace Prisma {
     rank?: true
     requiredGrandMean?: true
     requiredAreaMean?: true
+    yearsEffective?: true
   }
 
   export type LevelSumAggregateInputType = {
     rank?: true
     requiredGrandMean?: true
     requiredAreaMean?: true
+    yearsEffective?: true
   }
 
   export type LevelMinAggregateInputType = {
@@ -11494,6 +11514,7 @@ export namespace Prisma {
     phase?: true
     requiredGrandMean?: true
     requiredAreaMean?: true
+    yearsEffective?: true
   }
 
   export type LevelMaxAggregateInputType = {
@@ -11503,6 +11524,7 @@ export namespace Prisma {
     phase?: true
     requiredGrandMean?: true
     requiredAreaMean?: true
+    yearsEffective?: true
   }
 
   export type LevelCountAggregateInputType = {
@@ -11512,6 +11534,7 @@ export namespace Prisma {
     phase?: true
     requiredGrandMean?: true
     requiredAreaMean?: true
+    yearsEffective?: true
     _all?: true
   }
 
@@ -11608,6 +11631,7 @@ export namespace Prisma {
     phase: $Enums.Phase
     requiredGrandMean: Decimal
     requiredAreaMean: Decimal
+    yearsEffective: number
     _count: LevelCountAggregateOutputType | null
     _avg: LevelAvgAggregateOutputType | null
     _sum: LevelSumAggregateOutputType | null
@@ -11636,6 +11660,7 @@ export namespace Prisma {
     phase?: boolean
     requiredGrandMean?: boolean
     requiredAreaMean?: boolean
+    yearsEffective?: boolean
     accreditations?: boolean | Level$accreditationsArgs<ExtArgs>
     surveyVisits?: boolean | Level$surveyVisitsArgs<ExtArgs>
     _count?: boolean | LevelCountOutputTypeDefaultArgs<ExtArgs>
@@ -11648,6 +11673,7 @@ export namespace Prisma {
     phase?: boolean
     requiredGrandMean?: boolean
     requiredAreaMean?: boolean
+    yearsEffective?: boolean
   }, ExtArgs["result"]["level"]>
 
   export type LevelSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -11657,6 +11683,7 @@ export namespace Prisma {
     phase?: boolean
     requiredGrandMean?: boolean
     requiredAreaMean?: boolean
+    yearsEffective?: boolean
   }, ExtArgs["result"]["level"]>
 
   export type LevelSelectScalar = {
@@ -11666,9 +11693,10 @@ export namespace Prisma {
     phase?: boolean
     requiredGrandMean?: boolean
     requiredAreaMean?: boolean
+    yearsEffective?: boolean
   }
 
-  export type LevelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "rank" | "label" | "phase" | "requiredGrandMean" | "requiredAreaMean", ExtArgs["result"]["level"]>
+  export type LevelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "rank" | "label" | "phase" | "requiredGrandMean" | "requiredAreaMean" | "yearsEffective", ExtArgs["result"]["level"]>
   export type LevelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accreditations?: boolean | Level$accreditationsArgs<ExtArgs>
     surveyVisits?: boolean | Level$surveyVisitsArgs<ExtArgs>
@@ -11690,6 +11718,7 @@ export namespace Prisma {
       phase: $Enums.Phase
       requiredGrandMean: Prisma.Decimal
       requiredAreaMean: Prisma.Decimal
+      yearsEffective: number
     }, ExtArgs["result"]["level"]>
     composites: {}
   }
@@ -12121,6 +12150,7 @@ export namespace Prisma {
     readonly phase: FieldRef<"Level", 'Phase'>
     readonly requiredGrandMean: FieldRef<"Level", 'Decimal'>
     readonly requiredAreaMean: FieldRef<"Level", 'Decimal'>
+    readonly yearsEffective: FieldRef<"Level", 'Int'>
   }
     
 
@@ -12589,18 +12619,27 @@ export namespace Prisma {
     id: string | null
     programId: string | null
     currentLevel: string | null
+    startsAt: Date | null
+    endsAt: Date | null
+    status: $Enums.AccreditationStatus | null
   }
 
   export type AccreditationMaxAggregateOutputType = {
     id: string | null
     programId: string | null
     currentLevel: string | null
+    startsAt: Date | null
+    endsAt: Date | null
+    status: $Enums.AccreditationStatus | null
   }
 
   export type AccreditationCountAggregateOutputType = {
     id: number
     programId: number
     currentLevel: number
+    startsAt: number
+    endsAt: number
+    status: number
     _all: number
   }
 
@@ -12609,18 +12648,27 @@ export namespace Prisma {
     id?: true
     programId?: true
     currentLevel?: true
+    startsAt?: true
+    endsAt?: true
+    status?: true
   }
 
   export type AccreditationMaxAggregateInputType = {
     id?: true
     programId?: true
     currentLevel?: true
+    startsAt?: true
+    endsAt?: true
+    status?: true
   }
 
   export type AccreditationCountAggregateInputType = {
     id?: true
     programId?: true
     currentLevel?: true
+    startsAt?: true
+    endsAt?: true
+    status?: true
     _all?: true
   }
 
@@ -12700,6 +12748,9 @@ export namespace Prisma {
     id: string
     programId: string
     currentLevel: string | null
+    startsAt: Date | null
+    endsAt: Date | null
+    status: $Enums.AccreditationStatus
     _count: AccreditationCountAggregateOutputType | null
     _min: AccreditationMinAggregateOutputType | null
     _max: AccreditationMaxAggregateOutputType | null
@@ -12723,6 +12774,9 @@ export namespace Prisma {
     id?: boolean
     programId?: boolean
     currentLevel?: boolean
+    startsAt?: boolean
+    endsAt?: boolean
+    status?: boolean
     program?: boolean | ProgramDefaultArgs<ExtArgs>
     level?: boolean | Accreditation$levelArgs<ExtArgs>
     surveyVisits?: boolean | Accreditation$surveyVisitsArgs<ExtArgs>
@@ -12733,6 +12787,9 @@ export namespace Prisma {
     id?: boolean
     programId?: boolean
     currentLevel?: boolean
+    startsAt?: boolean
+    endsAt?: boolean
+    status?: boolean
     program?: boolean | ProgramDefaultArgs<ExtArgs>
     level?: boolean | Accreditation$levelArgs<ExtArgs>
   }, ExtArgs["result"]["accreditation"]>
@@ -12741,6 +12798,9 @@ export namespace Prisma {
     id?: boolean
     programId?: boolean
     currentLevel?: boolean
+    startsAt?: boolean
+    endsAt?: boolean
+    status?: boolean
     program?: boolean | ProgramDefaultArgs<ExtArgs>
     level?: boolean | Accreditation$levelArgs<ExtArgs>
   }, ExtArgs["result"]["accreditation"]>
@@ -12749,9 +12809,12 @@ export namespace Prisma {
     id?: boolean
     programId?: boolean
     currentLevel?: boolean
+    startsAt?: boolean
+    endsAt?: boolean
+    status?: boolean
   }
 
-  export type AccreditationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "programId" | "currentLevel", ExtArgs["result"]["accreditation"]>
+  export type AccreditationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "programId" | "currentLevel" | "startsAt" | "endsAt" | "status", ExtArgs["result"]["accreditation"]>
   export type AccreditationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     program?: boolean | ProgramDefaultArgs<ExtArgs>
     level?: boolean | Accreditation$levelArgs<ExtArgs>
@@ -12778,6 +12841,9 @@ export namespace Prisma {
       id: string
       programId: string
       currentLevel: string | null
+      startsAt: Date | null
+      endsAt: Date | null
+      status: $Enums.AccreditationStatus
     }, ExtArgs["result"]["accreditation"]>
     composites: {}
   }
@@ -13207,6 +13273,9 @@ export namespace Prisma {
     readonly id: FieldRef<"Accreditation", 'String'>
     readonly programId: FieldRef<"Accreditation", 'String'>
     readonly currentLevel: FieldRef<"Accreditation", 'String'>
+    readonly startsAt: FieldRef<"Accreditation", 'DateTime'>
+    readonly endsAt: FieldRef<"Accreditation", 'DateTime'>
+    readonly status: FieldRef<"Accreditation", 'AccreditationStatus'>
   }
     
 
@@ -13680,7 +13749,7 @@ export namespace Prisma {
     actualSurveyDate: Date | null
     type: $Enums.SurveyVisitType | null
     targetLevel: string | null
-    status: $Enums.AccreditationStatus | null
+    status: $Enums.SurveyStatus | null
     createdAt: Date | null
   }
 
@@ -13690,7 +13759,7 @@ export namespace Prisma {
     actualSurveyDate: Date | null
     type: $Enums.SurveyVisitType | null
     targetLevel: string | null
-    status: $Enums.AccreditationStatus | null
+    status: $Enums.SurveyStatus | null
     createdAt: Date | null
   }
 
@@ -13815,7 +13884,7 @@ export namespace Prisma {
     actualSurveyDate: Date
     type: $Enums.SurveyVisitType
     targetLevel: string
-    status: $Enums.AccreditationStatus
+    status: $Enums.SurveyStatus
     createdAt: Date
     _count: SurveyVisitCountAggregateOutputType | null
     _min: SurveyVisitMinAggregateOutputType | null
@@ -13914,7 +13983,7 @@ export namespace Prisma {
       actualSurveyDate: Date
       type: $Enums.SurveyVisitType
       targetLevel: string
-      status: $Enums.AccreditationStatus
+      status: $Enums.SurveyStatus
       createdAt: Date
     }, ExtArgs["result"]["surveyVisit"]>
     composites: {}
@@ -14348,7 +14417,7 @@ export namespace Prisma {
     readonly actualSurveyDate: FieldRef<"SurveyVisit", 'DateTime'>
     readonly type: FieldRef<"SurveyVisit", 'SurveyVisitType'>
     readonly targetLevel: FieldRef<"SurveyVisit", 'String'>
-    readonly status: FieldRef<"SurveyVisit", 'AccreditationStatus'>
+    readonly status: FieldRef<"SurveyVisit", 'SurveyStatus'>
     readonly createdAt: FieldRef<"SurveyVisit", 'DateTime'>
   }
     
@@ -28104,7 +28173,8 @@ export namespace Prisma {
     label: 'label',
     phase: 'phase',
     requiredGrandMean: 'requiredGrandMean',
-    requiredAreaMean: 'requiredAreaMean'
+    requiredAreaMean: 'requiredAreaMean',
+    yearsEffective: 'yearsEffective'
   };
 
   export type LevelScalarFieldEnum = (typeof LevelScalarFieldEnum)[keyof typeof LevelScalarFieldEnum]
@@ -28113,7 +28183,10 @@ export namespace Prisma {
   export const AccreditationScalarFieldEnum: {
     id: 'id',
     programId: 'programId',
-    currentLevel: 'currentLevel'
+    currentLevel: 'currentLevel',
+    startsAt: 'startsAt',
+    endsAt: 'endsAt',
+    status: 'status'
   };
 
   export type AccreditationScalarFieldEnum = (typeof AccreditationScalarFieldEnum)[keyof typeof AccreditationScalarFieldEnum]
@@ -28380,6 +28453,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'AccreditationStatus'
+   */
+  export type EnumAccreditationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccreditationStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'AccreditationStatus[]'
+   */
+  export type ListEnumAccreditationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccreditationStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'SurveyVisitType'
    */
   export type EnumSurveyVisitTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurveyVisitType'>
@@ -28394,16 +28481,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'AccreditationStatus'
+   * Reference to a field of type 'SurveyStatus'
    */
-  export type EnumAccreditationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccreditationStatus'>
+  export type EnumSurveyStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurveyStatus'>
     
 
 
   /**
-   * Reference to a field of type 'AccreditationStatus[]'
+   * Reference to a field of type 'SurveyStatus[]'
    */
-  export type ListEnumAccreditationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccreditationStatus[]'>
+  export type ListEnumSurveyStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurveyStatus[]'>
     
 
 
@@ -28947,6 +29034,7 @@ export namespace Prisma {
     phase?: EnumPhaseFilter<"Level"> | $Enums.Phase
     requiredGrandMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
+    yearsEffective?: IntFilter<"Level"> | number
     accreditations?: AccreditationListRelationFilter
     surveyVisits?: SurveyVisitListRelationFilter
   }
@@ -28958,6 +29046,7 @@ export namespace Prisma {
     phase?: SortOrder
     requiredGrandMean?: SortOrder
     requiredAreaMean?: SortOrder
+    yearsEffective?: SortOrder
     accreditations?: AccreditationOrderByRelationAggregateInput
     surveyVisits?: SurveyVisitOrderByRelationAggregateInput
   }
@@ -28972,6 +29061,7 @@ export namespace Prisma {
     phase?: EnumPhaseFilter<"Level"> | $Enums.Phase
     requiredGrandMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
+    yearsEffective?: IntFilter<"Level"> | number
     accreditations?: AccreditationListRelationFilter
     surveyVisits?: SurveyVisitListRelationFilter
   }, "id">
@@ -28983,6 +29073,7 @@ export namespace Prisma {
     phase?: SortOrder
     requiredGrandMean?: SortOrder
     requiredAreaMean?: SortOrder
+    yearsEffective?: SortOrder
     _count?: LevelCountOrderByAggregateInput
     _avg?: LevelAvgOrderByAggregateInput
     _max?: LevelMaxOrderByAggregateInput
@@ -29000,6 +29091,7 @@ export namespace Prisma {
     phase?: EnumPhaseWithAggregatesFilter<"Level"> | $Enums.Phase
     requiredGrandMean?: DecimalWithAggregatesFilter<"Level"> | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalWithAggregatesFilter<"Level"> | Decimal | DecimalJsLike | number | string
+    yearsEffective?: IntWithAggregatesFilter<"Level"> | number
   }
 
   export type AccreditationWhereInput = {
@@ -29009,6 +29101,9 @@ export namespace Prisma {
     id?: StringFilter<"Accreditation"> | string
     programId?: StringFilter<"Accreditation"> | string
     currentLevel?: StringNullableFilter<"Accreditation"> | string | null
+    startsAt?: DateTimeNullableFilter<"Accreditation"> | Date | string | null
+    endsAt?: DateTimeNullableFilter<"Accreditation"> | Date | string | null
+    status?: EnumAccreditationStatusFilter<"Accreditation"> | $Enums.AccreditationStatus
     program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
     level?: XOR<LevelNullableScalarRelationFilter, LevelWhereInput> | null
     surveyVisits?: SurveyVisitListRelationFilter
@@ -29018,6 +29113,9 @@ export namespace Prisma {
     id?: SortOrder
     programId?: SortOrder
     currentLevel?: SortOrderInput | SortOrder
+    startsAt?: SortOrderInput | SortOrder
+    endsAt?: SortOrderInput | SortOrder
+    status?: SortOrder
     program?: ProgramOrderByWithRelationInput
     level?: LevelOrderByWithRelationInput
     surveyVisits?: SurveyVisitOrderByRelationAggregateInput
@@ -29030,6 +29128,9 @@ export namespace Prisma {
     OR?: AccreditationWhereInput[]
     NOT?: AccreditationWhereInput | AccreditationWhereInput[]
     currentLevel?: StringNullableFilter<"Accreditation"> | string | null
+    startsAt?: DateTimeNullableFilter<"Accreditation"> | Date | string | null
+    endsAt?: DateTimeNullableFilter<"Accreditation"> | Date | string | null
+    status?: EnumAccreditationStatusFilter<"Accreditation"> | $Enums.AccreditationStatus
     program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
     level?: XOR<LevelNullableScalarRelationFilter, LevelWhereInput> | null
     surveyVisits?: SurveyVisitListRelationFilter
@@ -29039,6 +29140,9 @@ export namespace Prisma {
     id?: SortOrder
     programId?: SortOrder
     currentLevel?: SortOrderInput | SortOrder
+    startsAt?: SortOrderInput | SortOrder
+    endsAt?: SortOrderInput | SortOrder
+    status?: SortOrder
     _count?: AccreditationCountOrderByAggregateInput
     _max?: AccreditationMaxOrderByAggregateInput
     _min?: AccreditationMinOrderByAggregateInput
@@ -29051,6 +29155,9 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Accreditation"> | string
     programId?: StringWithAggregatesFilter<"Accreditation"> | string
     currentLevel?: StringNullableWithAggregatesFilter<"Accreditation"> | string | null
+    startsAt?: DateTimeNullableWithAggregatesFilter<"Accreditation"> | Date | string | null
+    endsAt?: DateTimeNullableWithAggregatesFilter<"Accreditation"> | Date | string | null
+    status?: EnumAccreditationStatusWithAggregatesFilter<"Accreditation"> | $Enums.AccreditationStatus
   }
 
   export type SurveyVisitWhereInput = {
@@ -29062,7 +29169,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFilter<"SurveyVisit"> | Date | string
     type?: EnumSurveyVisitTypeFilter<"SurveyVisit"> | $Enums.SurveyVisitType
     targetLevel?: StringFilter<"SurveyVisit"> | string
-    status?: EnumAccreditationStatusFilter<"SurveyVisit"> | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFilter<"SurveyVisit"> | $Enums.SurveyStatus
     createdAt?: DateTimeFilter<"SurveyVisit"> | Date | string
     accreditation?: XOR<AccreditationScalarRelationFilter, AccreditationWhereInput>
     level?: XOR<LevelScalarRelationFilter, LevelWhereInput>
@@ -29093,7 +29200,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFilter<"SurveyVisit"> | Date | string
     type?: EnumSurveyVisitTypeFilter<"SurveyVisit"> | $Enums.SurveyVisitType
     targetLevel?: StringFilter<"SurveyVisit"> | string
-    status?: EnumAccreditationStatusFilter<"SurveyVisit"> | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFilter<"SurveyVisit"> | $Enums.SurveyStatus
     createdAt?: DateTimeFilter<"SurveyVisit"> | Date | string
     accreditation?: XOR<AccreditationScalarRelationFilter, AccreditationWhereInput>
     level?: XOR<LevelScalarRelationFilter, LevelWhereInput>
@@ -29123,7 +29230,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeWithAggregatesFilter<"SurveyVisit"> | Date | string
     type?: EnumSurveyVisitTypeWithAggregatesFilter<"SurveyVisit"> | $Enums.SurveyVisitType
     targetLevel?: StringWithAggregatesFilter<"SurveyVisit"> | string
-    status?: EnumAccreditationStatusWithAggregatesFilter<"SurveyVisit"> | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusWithAggregatesFilter<"SurveyVisit"> | $Enums.SurveyStatus
     createdAt?: DateTimeWithAggregatesFilter<"SurveyVisit"> | Date | string
   }
 
@@ -30326,6 +30433,7 @@ export namespace Prisma {
     phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
+    yearsEffective: number
     accreditations?: AccreditationCreateNestedManyWithoutLevelInput
     surveyVisits?: SurveyVisitCreateNestedManyWithoutLevelInput
   }
@@ -30337,6 +30445,7 @@ export namespace Prisma {
     phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
+    yearsEffective: number
     accreditations?: AccreditationUncheckedCreateNestedManyWithoutLevelInput
     surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutLevelInput
   }
@@ -30348,6 +30457,7 @@ export namespace Prisma {
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    yearsEffective?: IntFieldUpdateOperationsInput | number
     accreditations?: AccreditationUpdateManyWithoutLevelNestedInput
     surveyVisits?: SurveyVisitUpdateManyWithoutLevelNestedInput
   }
@@ -30359,6 +30469,7 @@ export namespace Prisma {
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    yearsEffective?: IntFieldUpdateOperationsInput | number
     accreditations?: AccreditationUncheckedUpdateManyWithoutLevelNestedInput
     surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutLevelNestedInput
   }
@@ -30370,6 +30481,7 @@ export namespace Prisma {
     phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
+    yearsEffective: number
   }
 
   export type LevelUpdateManyMutationInput = {
@@ -30379,6 +30491,7 @@ export namespace Prisma {
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    yearsEffective?: IntFieldUpdateOperationsInput | number
   }
 
   export type LevelUncheckedUpdateManyInput = {
@@ -30388,10 +30501,14 @@ export namespace Prisma {
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    yearsEffective?: IntFieldUpdateOperationsInput | number
   }
 
   export type AccreditationCreateInput = {
     id?: string
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    status?: $Enums.AccreditationStatus
     program: ProgramCreateNestedOneWithoutAccreditationInput
     level?: LevelCreateNestedOneWithoutAccreditationsInput
     surveyVisits?: SurveyVisitCreateNestedManyWithoutAccreditationInput
@@ -30401,11 +30518,17 @@ export namespace Prisma {
     id?: string
     programId: string
     currentLevel?: string | null
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    status?: $Enums.AccreditationStatus
     surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutAccreditationInput
   }
 
   export type AccreditationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
     program?: ProgramUpdateOneRequiredWithoutAccreditationNestedInput
     level?: LevelUpdateOneWithoutAccreditationsNestedInput
     surveyVisits?: SurveyVisitUpdateManyWithoutAccreditationNestedInput
@@ -30415,6 +30538,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
     currentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
     surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutAccreditationNestedInput
   }
 
@@ -30422,23 +30548,32 @@ export namespace Prisma {
     id?: string
     programId: string
     currentLevel?: string | null
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    status?: $Enums.AccreditationStatus
   }
 
   export type AccreditationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
   }
 
   export type AccreditationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
     currentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
   }
 
   export type SurveyVisitCreateInput = {
     id?: string
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
-    status: $Enums.AccreditationStatus
+    status: $Enums.SurveyStatus
     createdAt?: Date | string
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
@@ -30452,7 +30587,7 @@ export namespace Prisma {
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
     targetLevel: string
-    status: $Enums.AccreditationStatus
+    status: $Enums.SurveyStatus
     createdAt?: Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
@@ -30462,7 +30597,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
-    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
@@ -30476,7 +30611,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
-    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
@@ -30488,7 +30623,7 @@ export namespace Prisma {
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
     targetLevel: string
-    status: $Enums.AccreditationStatus
+    status: $Enums.SurveyStatus
     createdAt?: Date | string
   }
 
@@ -30496,7 +30631,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
-    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -30506,7 +30641,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
-    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -31719,12 +31854,14 @@ export namespace Prisma {
     phase?: SortOrder
     requiredGrandMean?: SortOrder
     requiredAreaMean?: SortOrder
+    yearsEffective?: SortOrder
   }
 
   export type LevelAvgOrderByAggregateInput = {
     rank?: SortOrder
     requiredGrandMean?: SortOrder
     requiredAreaMean?: SortOrder
+    yearsEffective?: SortOrder
   }
 
   export type LevelMaxOrderByAggregateInput = {
@@ -31734,6 +31871,7 @@ export namespace Prisma {
     phase?: SortOrder
     requiredGrandMean?: SortOrder
     requiredAreaMean?: SortOrder
+    yearsEffective?: SortOrder
   }
 
   export type LevelMinOrderByAggregateInput = {
@@ -31743,12 +31881,14 @@ export namespace Prisma {
     phase?: SortOrder
     requiredGrandMean?: SortOrder
     requiredAreaMean?: SortOrder
+    yearsEffective?: SortOrder
   }
 
   export type LevelSumOrderByAggregateInput = {
     rank?: SortOrder
     requiredGrandMean?: SortOrder
     requiredAreaMean?: SortOrder
+    yearsEffective?: SortOrder
   }
 
   export type EnumPhaseWithAggregatesFilter<$PrismaModel = never> = {
@@ -31777,6 +31917,24 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type EnumAccreditationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccreditationStatus | EnumAccreditationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAccreditationStatusFilter<$PrismaModel> | $Enums.AccreditationStatus
+  }
+
   export type LevelNullableScalarRelationFilter = {
     is?: LevelWhereInput | null
     isNot?: LevelWhereInput | null
@@ -31786,18 +31944,51 @@ export namespace Prisma {
     id?: SortOrder
     programId?: SortOrder
     currentLevel?: SortOrder
+    startsAt?: SortOrder
+    endsAt?: SortOrder
+    status?: SortOrder
   }
 
   export type AccreditationMaxOrderByAggregateInput = {
     id?: SortOrder
     programId?: SortOrder
     currentLevel?: SortOrder
+    startsAt?: SortOrder
+    endsAt?: SortOrder
+    status?: SortOrder
   }
 
   export type AccreditationMinOrderByAggregateInput = {
     id?: SortOrder
     programId?: SortOrder
     currentLevel?: SortOrder
+    startsAt?: SortOrder
+    endsAt?: SortOrder
+    status?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type EnumAccreditationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccreditationStatus | EnumAccreditationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAccreditationStatusWithAggregatesFilter<$PrismaModel> | $Enums.AccreditationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAccreditationStatusFilter<$PrismaModel>
+    _max?: NestedEnumAccreditationStatusFilter<$PrismaModel>
   }
 
   export type EnumSurveyVisitTypeFilter<$PrismaModel = never> = {
@@ -31807,11 +31998,11 @@ export namespace Prisma {
     not?: NestedEnumSurveyVisitTypeFilter<$PrismaModel> | $Enums.SurveyVisitType
   }
 
-  export type EnumAccreditationStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.AccreditationStatus | EnumAccreditationStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumAccreditationStatusFilter<$PrismaModel> | $Enums.AccreditationStatus
+  export type EnumSurveyStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyStatus | EnumSurveyStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyStatusFilter<$PrismaModel> | $Enums.SurveyStatus
   }
 
   export type AccreditationScalarRelationFilter = {
@@ -31874,14 +32065,14 @@ export namespace Prisma {
     _max?: NestedEnumSurveyVisitTypeFilter<$PrismaModel>
   }
 
-  export type EnumAccreditationStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.AccreditationStatus | EnumAccreditationStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumAccreditationStatusWithAggregatesFilter<$PrismaModel> | $Enums.AccreditationStatus
+  export type EnumSurveyStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyStatus | EnumSurveyStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyStatusWithAggregatesFilter<$PrismaModel> | $Enums.SurveyStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumAccreditationStatusFilter<$PrismaModel>
-    _max?: NestedEnumAccreditationStatusFilter<$PrismaModel>
+    _min?: NestedEnumSurveyStatusFilter<$PrismaModel>
+    _max?: NestedEnumSurveyStatusFilter<$PrismaModel>
   }
 
   export type SurveyVisitNullableScalarRelationFilter = {
@@ -33059,6 +33250,14 @@ export namespace Prisma {
     connect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type EnumAccreditationStatusFieldUpdateOperationsInput = {
+    set?: $Enums.AccreditationStatus
+  }
+
   export type ProgramUpdateOneRequiredWithoutAccreditationNestedInput = {
     create?: XOR<ProgramCreateWithoutAccreditationInput, ProgramUncheckedCreateWithoutAccreditationInput>
     connectOrCreate?: ProgramCreateOrConnectWithoutAccreditationInput
@@ -33145,8 +33344,8 @@ export namespace Prisma {
     set?: $Enums.SurveyVisitType
   }
 
-  export type EnumAccreditationStatusFieldUpdateOperationsInput = {
-    set?: $Enums.AccreditationStatus
+  export type EnumSurveyStatusFieldUpdateOperationsInput = {
+    set?: $Enums.SurveyStatus
   }
 
   export type AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput = {
@@ -34197,11 +34396,15 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
-  export type NestedEnumSurveyVisitTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.SurveyVisitType | EnumSurveyVisitTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.SurveyVisitType[] | ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.SurveyVisitType[] | ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumSurveyVisitTypeFilter<$PrismaModel> | $Enums.SurveyVisitType
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedEnumAccreditationStatusFilter<$PrismaModel = never> = {
@@ -34209,6 +34412,44 @@ export namespace Prisma {
     in?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumAccreditationStatusFilter<$PrismaModel> | $Enums.AccreditationStatus
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumAccreditationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccreditationStatus | EnumAccreditationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAccreditationStatusWithAggregatesFilter<$PrismaModel> | $Enums.AccreditationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAccreditationStatusFilter<$PrismaModel>
+    _max?: NestedEnumAccreditationStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumSurveyVisitTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyVisitType | EnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyVisitType[] | ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyVisitType[] | ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyVisitTypeFilter<$PrismaModel> | $Enums.SurveyVisitType
+  }
+
+  export type NestedEnumSurveyStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyStatus | EnumSurveyStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyStatusFilter<$PrismaModel> | $Enums.SurveyStatus
   }
 
   export type NestedEnumSurveyVisitTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -34221,14 +34462,14 @@ export namespace Prisma {
     _max?: NestedEnumSurveyVisitTypeFilter<$PrismaModel>
   }
 
-  export type NestedEnumAccreditationStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.AccreditationStatus | EnumAccreditationStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.AccreditationStatus[] | ListEnumAccreditationStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumAccreditationStatusWithAggregatesFilter<$PrismaModel> | $Enums.AccreditationStatus
+  export type NestedEnumSurveyStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyStatus | EnumSurveyStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyStatusWithAggregatesFilter<$PrismaModel> | $Enums.SurveyStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumAccreditationStatusFilter<$PrismaModel>
-    _max?: NestedEnumAccreditationStatusFilter<$PrismaModel>
+    _min?: NestedEnumSurveyStatusFilter<$PrismaModel>
+    _max?: NestedEnumSurveyStatusFilter<$PrismaModel>
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -34337,6 +34578,9 @@ export namespace Prisma {
 
   export type AccreditationCreateWithoutProgramInput = {
     id?: string
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    status?: $Enums.AccreditationStatus
     level?: LevelCreateNestedOneWithoutAccreditationsInput
     surveyVisits?: SurveyVisitCreateNestedManyWithoutAccreditationInput
   }
@@ -34344,6 +34588,9 @@ export namespace Prisma {
   export type AccreditationUncheckedCreateWithoutProgramInput = {
     id?: string
     currentLevel?: string | null
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    status?: $Enums.AccreditationStatus
     surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutAccreditationInput
   }
 
@@ -34381,6 +34628,9 @@ export namespace Prisma {
 
   export type AccreditationUpdateWithoutProgramInput = {
     id?: StringFieldUpdateOperationsInput | string
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
     level?: LevelUpdateOneWithoutAccreditationsNestedInput
     surveyVisits?: SurveyVisitUpdateManyWithoutAccreditationNestedInput
   }
@@ -34388,6 +34638,9 @@ export namespace Prisma {
   export type AccreditationUncheckedUpdateWithoutProgramInput = {
     id?: StringFieldUpdateOperationsInput | string
     currentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
     surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutAccreditationNestedInput
   }
 
@@ -35231,6 +35484,9 @@ export namespace Prisma {
 
   export type AccreditationCreateWithoutLevelInput = {
     id?: string
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    status?: $Enums.AccreditationStatus
     program: ProgramCreateNestedOneWithoutAccreditationInput
     surveyVisits?: SurveyVisitCreateNestedManyWithoutAccreditationInput
   }
@@ -35238,6 +35494,9 @@ export namespace Prisma {
   export type AccreditationUncheckedCreateWithoutLevelInput = {
     id?: string
     programId: string
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    status?: $Enums.AccreditationStatus
     surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutAccreditationInput
   }
 
@@ -35255,7 +35514,7 @@ export namespace Prisma {
     id?: string
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
-    status: $Enums.AccreditationStatus
+    status: $Enums.SurveyStatus
     createdAt?: Date | string
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
@@ -35267,7 +35526,7 @@ export namespace Prisma {
     accreditationId: string
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
-    status: $Enums.AccreditationStatus
+    status: $Enums.SurveyStatus
     createdAt?: Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
@@ -35306,6 +35565,9 @@ export namespace Prisma {
     id?: StringFilter<"Accreditation"> | string
     programId?: StringFilter<"Accreditation"> | string
     currentLevel?: StringNullableFilter<"Accreditation"> | string | null
+    startsAt?: DateTimeNullableFilter<"Accreditation"> | Date | string | null
+    endsAt?: DateTimeNullableFilter<"Accreditation"> | Date | string | null
+    status?: EnumAccreditationStatusFilter<"Accreditation"> | $Enums.AccreditationStatus
   }
 
   export type SurveyVisitUpsertWithWhereUniqueWithoutLevelInput = {
@@ -35333,7 +35595,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFilter<"SurveyVisit"> | Date | string
     type?: EnumSurveyVisitTypeFilter<"SurveyVisit"> | $Enums.SurveyVisitType
     targetLevel?: StringFilter<"SurveyVisit"> | string
-    status?: EnumAccreditationStatusFilter<"SurveyVisit"> | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFilter<"SurveyVisit"> | $Enums.SurveyStatus
     createdAt?: DateTimeFilter<"SurveyVisit"> | Date | string
   }
 
@@ -35371,6 +35633,7 @@ export namespace Prisma {
     phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
+    yearsEffective: number
     surveyVisits?: SurveyVisitCreateNestedManyWithoutLevelInput
   }
 
@@ -35381,6 +35644,7 @@ export namespace Prisma {
     phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
+    yearsEffective: number
     surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutLevelInput
   }
 
@@ -35393,7 +35657,7 @@ export namespace Prisma {
     id?: string
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
-    status: $Enums.AccreditationStatus
+    status: $Enums.SurveyStatus
     createdAt?: Date | string
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
@@ -35405,7 +35669,7 @@ export namespace Prisma {
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
     targetLevel: string
-    status: $Enums.AccreditationStatus
+    status: $Enums.SurveyStatus
     createdAt?: Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
@@ -35472,6 +35736,7 @@ export namespace Prisma {
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    yearsEffective?: IntFieldUpdateOperationsInput | number
     surveyVisits?: SurveyVisitUpdateManyWithoutLevelNestedInput
   }
 
@@ -35482,6 +35747,7 @@ export namespace Prisma {
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    yearsEffective?: IntFieldUpdateOperationsInput | number
     surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutLevelNestedInput
   }
 
@@ -35503,6 +35769,9 @@ export namespace Prisma {
 
   export type AccreditationCreateWithoutSurveyVisitsInput = {
     id?: string
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    status?: $Enums.AccreditationStatus
     program: ProgramCreateNestedOneWithoutAccreditationInput
     level?: LevelCreateNestedOneWithoutAccreditationsInput
   }
@@ -35511,6 +35780,9 @@ export namespace Prisma {
     id?: string
     programId: string
     currentLevel?: string | null
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    status?: $Enums.AccreditationStatus
   }
 
   export type AccreditationCreateOrConnectWithoutSurveyVisitsInput = {
@@ -35525,6 +35797,7 @@ export namespace Prisma {
     phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
+    yearsEffective: number
     accreditations?: AccreditationCreateNestedManyWithoutLevelInput
   }
 
@@ -35535,6 +35808,7 @@ export namespace Prisma {
     phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
+    yearsEffective: number
     accreditations?: AccreditationUncheckedCreateNestedManyWithoutLevelInput
   }
 
@@ -35590,6 +35864,9 @@ export namespace Prisma {
 
   export type AccreditationUpdateWithoutSurveyVisitsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
     program?: ProgramUpdateOneRequiredWithoutAccreditationNestedInput
     level?: LevelUpdateOneWithoutAccreditationsNestedInput
   }
@@ -35598,6 +35875,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
     currentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
   }
 
   export type LevelUpsertWithoutSurveyVisitsInput = {
@@ -35618,6 +35898,7 @@ export namespace Prisma {
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    yearsEffective?: IntFieldUpdateOperationsInput | number
     accreditations?: AccreditationUpdateManyWithoutLevelNestedInput
   }
 
@@ -35628,6 +35909,7 @@ export namespace Prisma {
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    yearsEffective?: IntFieldUpdateOperationsInput | number
     accreditations?: AccreditationUncheckedUpdateManyWithoutLevelNestedInput
   }
 
@@ -35681,7 +35963,7 @@ export namespace Prisma {
     id?: string
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
-    status: $Enums.AccreditationStatus
+    status: $Enums.SurveyStatus
     createdAt?: Date | string
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
@@ -35694,7 +35976,7 @@ export namespace Prisma {
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
     targetLevel: string
-    status: $Enums.AccreditationStatus
+    status: $Enums.SurveyStatus
     createdAt?: Date | string
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
   }
@@ -35761,7 +36043,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
-    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
@@ -35774,7 +36056,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
-    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
   }
@@ -36552,7 +36834,7 @@ export namespace Prisma {
     id?: string
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
-    status: $Enums.AccreditationStatus
+    status: $Enums.SurveyStatus
     createdAt?: Date | string
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
@@ -36565,7 +36847,7 @@ export namespace Prisma {
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
     targetLevel: string
-    status: $Enums.AccreditationStatus
+    status: $Enums.SurveyStatus
     createdAt?: Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
   }
@@ -36632,7 +36914,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
-    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
@@ -36645,7 +36927,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
-    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
   }
@@ -37621,6 +37903,9 @@ export namespace Prisma {
   export type AccreditationCreateManyLevelInput = {
     id?: string
     programId: string
+    startsAt?: Date | string | null
+    endsAt?: Date | string | null
+    status?: $Enums.AccreditationStatus
   }
 
   export type SurveyVisitCreateManyLevelInput = {
@@ -37628,12 +37913,15 @@ export namespace Prisma {
     accreditationId: string
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
-    status: $Enums.AccreditationStatus
+    status: $Enums.SurveyStatus
     createdAt?: Date | string
   }
 
   export type AccreditationUpdateWithoutLevelInput = {
     id?: StringFieldUpdateOperationsInput | string
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
     program?: ProgramUpdateOneRequiredWithoutAccreditationNestedInput
     surveyVisits?: SurveyVisitUpdateManyWithoutAccreditationNestedInput
   }
@@ -37641,19 +37929,25 @@ export namespace Prisma {
   export type AccreditationUncheckedUpdateWithoutLevelInput = {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
     surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutAccreditationNestedInput
   }
 
   export type AccreditationUncheckedUpdateManyWithoutLevelInput = {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
+    startsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
   }
 
   export type SurveyVisitUpdateWithoutLevelInput = {
     id?: StringFieldUpdateOperationsInput | string
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
-    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
@@ -37665,7 +37959,7 @@ export namespace Prisma {
     accreditationId?: StringFieldUpdateOperationsInput | string
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
-    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
@@ -37676,7 +37970,7 @@ export namespace Prisma {
     accreditationId?: StringFieldUpdateOperationsInput | string
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
-    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -37685,7 +37979,7 @@ export namespace Prisma {
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
     targetLevel: string
-    status: $Enums.AccreditationStatus
+    status: $Enums.SurveyStatus
     createdAt?: Date | string
   }
 
@@ -37693,7 +37987,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
-    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
@@ -37705,7 +37999,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
-    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
@@ -37716,7 +38010,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
-    status?: EnumAccreditationStatusFieldUpdateOperationsInput | $Enums.AccreditationStatus
+    status?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

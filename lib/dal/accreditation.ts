@@ -1,12 +1,17 @@
 import { verifySession } from "../action/session";
+import { AccreditationStatus } from "../generated/prisma";
 import { prisma } from "../prisma";
 
-export async function createAccreditation(programId: string) {
+export async function createAccreditation(
+  programId: string,
+  status: AccreditationStatus
+) {
   const session = await verifySession();
   if (!session) return null;
   const accreditation = await prisma.accreditation.create({
     data: {
       programId,
+      status,
     },
   });
   return accreditation;

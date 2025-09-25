@@ -7,6 +7,7 @@ import { createProgram as createProgramDAL } from "../dal/program";
 import { revalidateTag } from "next/cache";
 import { createFolder } from "./drive";
 import { createAccreditation } from "../dal/accreditation";
+import { AccreditationStatus } from "../generated/prisma";
 
 export async function createProgram(
   data: z.infer<typeof CreateProgramFormSchema>
@@ -22,7 +23,7 @@ export async function createProgram(
     if (!folder.id) throw new Error("Failed to create folder");
     const program = await createProgramDAL({ ...data, folderId: folder.id });
     if (!program) throw new Error("Failed to create program");
-    await createAccreditation(program.id);
+    await createAccreditation(program.id, AccreditationStatus.UNACCREDITED);
     revalidateTag("programs");
     return {
       status: "success",

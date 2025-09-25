@@ -1,5 +1,5 @@
 import { verifySession } from "../action/session";
-import { AccreditationStatus, SurveyVisitType } from "../generated/prisma";
+import { SurveyStatus, SurveyVisitType } from "../generated/prisma";
 import { prisma } from "../prisma";
 
 export async function createSurveyVisit(
@@ -7,7 +7,7 @@ export async function createSurveyVisit(
   actualSurveyDate: Date,
   surveyVisitType: SurveyVisitType,
   targetLevelId: string,
-  status: AccreditationStatus,
+  status: SurveyStatus,
   instrumentId: string
 ) {
   const session = await verifySession();

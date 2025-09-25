@@ -32,7 +32,7 @@ enum Phase {
   PHASE_2
 }
 
-enum AccreditationStatus {
+enum SurveyStatus {
   IN_PROGRESS
   COMPLETE
 }
@@ -40,6 +40,12 @@ enum AccreditationStatus {
 enum SurveyVisitType {
   FIRST
   REVISIT
+}
+
+enum AccreditationStatus {
+  UNACCREDITED
+  ACTIVE
+  EXPIRED
 }
 
 enum AreaFileType {
@@ -148,16 +154,20 @@ model Level {
   phase             Phase
   requiredGrandMean Decimal
   requiredAreaMean  Decimal
+  yearsEffective    Int
   accreditations    Accreditation[]
   surveyVisits      SurveyVisit[]
 }
 
 model Accreditation {
-  id           String        @id @default(uuid())
-  program      Program       @relation(fields: [programId], references: [id], onDelete: Cascade)
-  programId    String        @unique
-  level        Level?        @relation(fields: [currentLevel], references: [id], onDelete: Cascade)
+  id           String              @id @default(uuid())
+  program      Program             @relation(fields: [programId], references: [id], onDelete: Cascade)
+  programId    String              @unique
+  level        Level?              @relation(fields: [currentLevel], references: [id], onDelete: Cascade)
   currentLevel String?
+  startsAt     DateTime?
+  endsAt       DateTime?
+  status       AccreditationStatus @default(UNACCREDITED)
   surveyVisits SurveyVisit[]
 }
 
@@ -171,7 +181,7 @@ model SurveyVisit {
   targetLevel          String
   phaseOneRequirements PhaseOneRequirements?
   phaseTwoRequirements PhaseTwoRequirements?
-  status               AccreditationStatus
+  status               SurveyStatus
   createdAt            DateTime              @default(now())
 }
 
