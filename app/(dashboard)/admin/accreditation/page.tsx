@@ -1,14 +1,15 @@
+import AccreditationCards from "@/components/admin/accreditation/accreditation-cards";
 import CreateAccreditationDialog from "@/components/admin/accreditation/createAccreditationDialog";
+import { getAccreditations } from "@/lib/dal/accreditation";
 import { getInstruments } from "@/lib/dal/instrument";
 import { getLevels } from "@/lib/dal/levels";
 import { getPrograms } from "@/lib/dal/program";
-import { prisma } from "@/lib/prisma";
 
 const Accreditation = async () => {
   const programs = await getPrograms();
   const instruments = await getInstruments();
   const levels = await getLevels();
-  // await prisma.program.deleteMany();
+  const accreditations = await getAccreditations();
   return (
     <div className="max-w-3/4 mx-auto mt-10">
       <div className="flex justify-between items-center mb-10">
@@ -19,6 +20,7 @@ const Accreditation = async () => {
           levels={levels}
         />
       </div>
+      <AccreditationCards accreditations={accreditations} />
     </div>
   );
 };

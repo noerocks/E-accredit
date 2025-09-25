@@ -1,4 +1,5 @@
 import { verifySession } from "../action/session";
+import { AccreditationDisplayDTO, SafeLevel } from "../dto/accreditation";
 import { AccreditationStatus } from "../generated/prisma";
 import { prisma } from "../prisma";
 
@@ -15,6 +16,40 @@ export async function createAccreditation(
     },
   });
   return accreditation;
+}
+
+export async function getAccreditations(): Promise<
+  AccreditationDisplayDTO[] | null
+> {
+  const session = await verifySession();
+  if (!session) return null;
+  const accreditations = await prisma.accreditation.findMany({
+    include: {
+      program: true,
+      level: true,
+      surveyVisits: {
+        include: {
+          level: true,
+        },
+      },
+    },
+  });
+  return accreditations.map((a) => ({
+    ...a,
+    level: {
+      ...a.level,
+      requiredAreaMean: Number(a.level?.requiredAreaMean),
+      requiredGrandMean: Number(a.level?.requiredGrandMean),
+    } as SafeLevel,
+    surveyVisits: a.surveyVisits.map((sv) => ({
+      ...sv,
+      level: {
+        ...sv.level,
+        requiredAreaMean: Number(sv.level.requiredAreaMean),
+        requiredGrandMean: Number(sv.level.requiredGrandMean),
+      },
+    })),
+  }));
 }
 
 export async function getAccreditationStructureById(id: string) {

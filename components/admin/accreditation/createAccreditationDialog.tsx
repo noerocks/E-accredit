@@ -151,25 +151,27 @@ const CreateAccreditationDialog = ({
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {levels?.map((level) => (
-                        <SelectItem value={level.id} key={level.id}>
-                          {`${level.label} ${
-                            ["Level IV", "Level III"].includes(level.label)
-                              ? level.phase
-                                  .split("_")
-                                  .map(
-                                    (word) =>
-                                      word[0] +
-                                      word.slice(1).toLocaleLowerCase()
-                                  )
-                                  .join(" ")
-                              : ""
-                          }`}
-                        </SelectItem>
-                      ))}
+                      {levels
+                        ?.sort((a, b) => a.rank - b.rank)
+                        .map((level) => (
+                          <SelectItem value={level.id} key={level.id}>
+                            {`${level.label} ${
+                              ["Level IV", "Level III"].includes(level.label)
+                                ? level.phase
+                                    .split("_")
+                                    .map(
+                                      (word) =>
+                                        word[0] +
+                                        word.slice(1).toLocaleLowerCase()
+                                    )
+                                    .join(" ")
+                                : ""
+                            }`}
+                          </SelectItem>
+                        ))}
                     </SelectContent>
                   </Select>
-                  <FormDescription>Please select a program</FormDescription>
+                  <FormDescription>Please select a level</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -186,7 +188,7 @@ const CreateAccreditationDialog = ({
                   >
                     <FormControl>
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select a Level" />
+                        <SelectValue placeholder="Select an instrument" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
