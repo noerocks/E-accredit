@@ -1,5 +1,4 @@
 import InstrumentSidebar from "@/components/admin/instruments/instrument-sidebar";
-import { SidebarInset } from "@/components/ui/sidebar";
 import { getInstrumentStructureById } from "@/lib/dal/instrument";
 
 const InstrumentLayout = async ({
@@ -14,9 +13,7 @@ const InstrumentLayout = async ({
   return (
     <div className="flex h-full">
       <InstrumentSidebar instrument={instrument} />
-      <SidebarInset>
-        <div className="flex-1 h-full bg-muted overflow-auto">{children}</div>
-      </SidebarInset>
+      <div className="flex-1 h-full bg-muted overflow-auto">{children}</div>
     </div>
   );
 };
