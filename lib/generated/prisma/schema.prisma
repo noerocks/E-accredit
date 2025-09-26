@@ -240,7 +240,7 @@ model EvidenceFile {
   id                String          @id @default(uuid())
   indicatorFolder   IndicatorFolder @relation(fields: [indicatorFolderId], references: [id], onDelete: Cascade)
   indicatorFolderId String
-  fileId            String
+  fileId            String?
   indicator         Indicator       @relation(fields: [indicatorId], references: [id], onDelete: Cascade)
   indicatorId       Int
   createdAt         DateTime        @default(now())

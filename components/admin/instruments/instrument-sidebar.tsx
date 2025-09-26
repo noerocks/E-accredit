@@ -84,8 +84,8 @@ const InstrumentSidebar = ({
                   );
                 }}
               >
-                {instrument?.area.map((item, index) => (
-                  <FileTree key={index} item={item} />
+                {instrument?.area.map((area) => (
+                  <FileTree key={area.id} item={area} />
                 ))}
               </SidebarMenu>
             </SidebarGroupContent>

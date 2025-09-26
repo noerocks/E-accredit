@@ -20641,7 +20641,7 @@ export namespace Prisma {
   export type EvidenceFileGroupByOutputType = {
     id: string
     indicatorFolderId: string
-    fileId: string
+    fileId: string | null
     indicatorId: number
     createdAt: Date
     updatedAt: Date
@@ -20731,7 +20731,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       indicatorFolderId: string
-      fileId: string
+      fileId: string | null
       indicatorId: number
       createdAt: Date
       updatedAt: Date
@@ -29584,7 +29584,7 @@ export namespace Prisma {
     NOT?: EvidenceFileWhereInput | EvidenceFileWhereInput[]
     id?: StringFilter<"EvidenceFile"> | string
     indicatorFolderId?: StringFilter<"EvidenceFile"> | string
-    fileId?: StringFilter<"EvidenceFile"> | string
+    fileId?: StringNullableFilter<"EvidenceFile"> | string | null
     indicatorId?: IntFilter<"EvidenceFile"> | number
     createdAt?: DateTimeFilter<"EvidenceFile"> | Date | string
     updatedAt?: DateTimeFilter<"EvidenceFile"> | Date | string
@@ -29595,7 +29595,7 @@ export namespace Prisma {
   export type EvidenceFileOrderByWithRelationInput = {
     id?: SortOrder
     indicatorFolderId?: SortOrder
-    fileId?: SortOrder
+    fileId?: SortOrderInput | SortOrder
     indicatorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -29609,7 +29609,7 @@ export namespace Prisma {
     OR?: EvidenceFileWhereInput[]
     NOT?: EvidenceFileWhereInput | EvidenceFileWhereInput[]
     indicatorFolderId?: StringFilter<"EvidenceFile"> | string
-    fileId?: StringFilter<"EvidenceFile"> | string
+    fileId?: StringNullableFilter<"EvidenceFile"> | string | null
     indicatorId?: IntFilter<"EvidenceFile"> | number
     createdAt?: DateTimeFilter<"EvidenceFile"> | Date | string
     updatedAt?: DateTimeFilter<"EvidenceFile"> | Date | string
@@ -29620,7 +29620,7 @@ export namespace Prisma {
   export type EvidenceFileOrderByWithAggregationInput = {
     id?: SortOrder
     indicatorFolderId?: SortOrder
-    fileId?: SortOrder
+    fileId?: SortOrderInput | SortOrder
     indicatorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -29637,7 +29637,7 @@ export namespace Prisma {
     NOT?: EvidenceFileScalarWhereWithAggregatesInput | EvidenceFileScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"EvidenceFile"> | string
     indicatorFolderId?: StringWithAggregatesFilter<"EvidenceFile"> | string
-    fileId?: StringWithAggregatesFilter<"EvidenceFile"> | string
+    fileId?: StringNullableWithAggregatesFilter<"EvidenceFile"> | string | null
     indicatorId?: IntWithAggregatesFilter<"EvidenceFile"> | number
     createdAt?: DateTimeWithAggregatesFilter<"EvidenceFile"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"EvidenceFile"> | Date | string
@@ -30983,7 +30983,7 @@ export namespace Prisma {
 
   export type EvidenceFileCreateInput = {
     id?: string
-    fileId: string
+    fileId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
@@ -30993,7 +30993,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedCreateInput = {
     id?: string
     indicatorFolderId: string
-    fileId: string
+    fileId?: string | null
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31001,7 +31001,7 @@ export namespace Prisma {
 
   export type EvidenceFileUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fileId?: StringFieldUpdateOperationsInput | string
+    fileId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
@@ -31011,7 +31011,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     indicatorFolderId?: StringFieldUpdateOperationsInput | string
-    fileId?: StringFieldUpdateOperationsInput | string
+    fileId?: NullableStringFieldUpdateOperationsInput | string | null
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31020,7 +31020,7 @@ export namespace Prisma {
   export type EvidenceFileCreateManyInput = {
     id?: string
     indicatorFolderId: string
-    fileId: string
+    fileId?: string | null
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31028,7 +31028,7 @@ export namespace Prisma {
 
   export type EvidenceFileUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fileId?: StringFieldUpdateOperationsInput | string
+    fileId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -31036,7 +31036,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     indicatorFolderId?: StringFieldUpdateOperationsInput | string
-    fileId?: StringFieldUpdateOperationsInput | string
+    fileId?: NullableStringFieldUpdateOperationsInput | string | null
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35591,7 +35591,7 @@ export namespace Prisma {
 
   export type EvidenceFileCreateWithoutIndicatorInput = {
     id?: string
-    fileId: string
+    fileId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
@@ -35600,7 +35600,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedCreateWithoutIndicatorInput = {
     id?: string
     indicatorFolderId: string
-    fileId: string
+    fileId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -35667,7 +35667,7 @@ export namespace Prisma {
     NOT?: EvidenceFileScalarWhereInput | EvidenceFileScalarWhereInput[]
     id?: StringFilter<"EvidenceFile"> | string
     indicatorFolderId?: StringFilter<"EvidenceFile"> | string
-    fileId?: StringFilter<"EvidenceFile"> | string
+    fileId?: StringNullableFilter<"EvidenceFile"> | string | null
     indicatorId?: IntFilter<"EvidenceFile"> | number
     createdAt?: DateTimeFilter<"EvidenceFile"> | Date | string
     updatedAt?: DateTimeFilter<"EvidenceFile"> | Date | string
@@ -36856,7 +36856,7 @@ export namespace Prisma {
 
   export type EvidenceFileCreateWithoutIndicatorFolderInput = {
     id?: string
-    fileId: string
+    fileId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
@@ -36864,7 +36864,7 @@ export namespace Prisma {
 
   export type EvidenceFileUncheckedCreateWithoutIndicatorFolderInput = {
     id?: string
-    fileId: string
+    fileId?: string | null
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -38139,14 +38139,14 @@ export namespace Prisma {
   export type EvidenceFileCreateManyIndicatorInput = {
     id?: string
     indicatorFolderId: string
-    fileId: string
+    fileId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type EvidenceFileUpdateWithoutIndicatorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fileId?: StringFieldUpdateOperationsInput | string
+    fileId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
@@ -38155,7 +38155,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedUpdateWithoutIndicatorInput = {
     id?: StringFieldUpdateOperationsInput | string
     indicatorFolderId?: StringFieldUpdateOperationsInput | string
-    fileId?: StringFieldUpdateOperationsInput | string
+    fileId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38163,7 +38163,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedUpdateManyWithoutIndicatorInput = {
     id?: StringFieldUpdateOperationsInput | string
     indicatorFolderId?: StringFieldUpdateOperationsInput | string
-    fileId?: StringFieldUpdateOperationsInput | string
+    fileId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38408,7 +38408,7 @@ export namespace Prisma {
 
   export type EvidenceFileCreateManyIndicatorFolderInput = {
     id?: string
-    fileId: string
+    fileId?: string | null
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -38416,7 +38416,7 @@ export namespace Prisma {
 
   export type EvidenceFileUpdateWithoutIndicatorFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fileId?: StringFieldUpdateOperationsInput | string
+    fileId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
@@ -38424,7 +38424,7 @@ export namespace Prisma {
 
   export type EvidenceFileUncheckedUpdateWithoutIndicatorFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fileId?: StringFieldUpdateOperationsInput | string
+    fileId?: NullableStringFieldUpdateOperationsInput | string | null
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38432,7 +38432,7 @@ export namespace Prisma {
 
   export type EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fileId?: StringFieldUpdateOperationsInput | string
+    fileId?: NullableStringFieldUpdateOperationsInput | string | null
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

@@ -4,10 +4,9 @@ const ProgramAccreditationPage = async ({
   params: Promise<{ id: string }>;
 }) => {
   const { id } = await params;
-  console.log(id);
   return (
     <div>
-      <p>Program Accreditation</p>
+      <p></p>
     </div>
   );
 };

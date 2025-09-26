@@ -50,24 +50,12 @@ export async function getSurveyVisitStructureById(id: string) {
       level: true,
       phaseOneRequirements: {
         include: {
-          instrument: {
-            include: {
-              area: {
-                include: {
-                  parameter: {
-                    include: {
-                      indicator: true,
-                    },
-                  },
-                },
-              },
-            },
-          },
           instrumentFolder: {
             include: {
               areaFolders: {
                 include: {
                   area: true,
+                  areaFiles: true,
                   parameterFolders: {
                     include: {
                       parameter: true,
@@ -82,16 +70,6 @@ export async function getSurveyVisitStructureById(id: string) {
                       },
                     },
                   },
-                  taskForce: {
-                    include: {
-                      chairPerson: {
-                        include: {
-                          user: true,
-                        },
-                      },
-                      taskForceMember: {},
-                    },
-                  },
                 },
               },
             },
@@ -100,4 +78,5 @@ export async function getSurveyVisitStructureById(id: string) {
       },
     },
   });
+  return surveyVisitStructure;
 }

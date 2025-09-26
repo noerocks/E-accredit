@@ -36,7 +36,6 @@ const isIndicatorGroup = (node: TreeNode): node is IndicatorGroup => {
 
 const FileTree = ({ item }: { item: TreeNode }) => {
   const params = useParams();
-  console.log(params.parameterId);
   if (isArea(item) && "parameter" in item) {
     const parameters = item.parameter as Parameter[];
     return (

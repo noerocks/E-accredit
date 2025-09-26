@@ -17,6 +17,7 @@ import { createInstrumentFolder } from "./instrument-folder";
 import { createParameterFolder } from "../dal/parameter-folder";
 import { createIndicatorFolder } from "../dal/indicator-folder";
 import { revalidateTag } from "next/cache";
+import { createManyEvidenceFiles } from "../dal/evidence-file";
 
 export async function createSurveyVisit(
   program: ProgramDTO,
@@ -103,11 +104,20 @@ export async function createSurveyVisit(
           );
           if (!categoryFolderId)
             throw new Error("Error in creating category folder");
-          await createIndicatorFolder(
-            parameterFolderId,
+          const indicatorFolder = await createIndicatorFolder(
+            parameterFolder.id,
             categoryFolderId,
             category.name
           );
+          if (!indicatorFolder)
+            throw new Error("Error in creating indicator folder");
+          const evidenceFiles = parameter.indicator
+            .filter((indicator) => indicator.category === category.name)
+            .map((indicator) => ({
+              indicatorFolderId: indicatorFolder.id,
+              indicatorId: indicator.id,
+            }));
+          await createManyEvidenceFiles(evidenceFiles);
         });
       });
     });
