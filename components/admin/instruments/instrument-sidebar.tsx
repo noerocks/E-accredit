@@ -32,6 +32,17 @@ const InstrumentSidebar = ({
   const params = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
+  const onDoubleClick = (e: React.MouseEvent<HTMLUListElement>) => {
+    const target = e.target as HTMLElement;
+    const button = target.closest<HTMLButtonElement>("[data-id]");
+    if (!button || target.tagName !== "BUTTON") return null;
+    const { id, type } = button.dataset;
+    router.replace(
+      `/admin/instruments/${String(
+        params.id
+      )}/${type}/${id}?${searchParams.toString()}`
+    );
+  };
   return (
     <Sidebar
       collapsible="none"
@@ -71,21 +82,9 @@ const InstrumentSidebar = ({
             <SidebarGroupLabel>Areas</SidebarGroupLabel>
             <CreateAreaDialog />
             <SidebarGroupContent>
-              <SidebarMenu
-                onDoubleClick={(e) => {
-                  const target = e.target as HTMLElement;
-                  const button = target.closest<HTMLButtonElement>("[data-id]");
-                  if (!button || target.tagName !== "BUTTON") return null;
-                  const { id, type } = button.dataset;
-                  router.replace(
-                    `/admin/instruments/${String(
-                      params.id
-                    )}/${type}/${id}?${searchParams.toString()}`
-                  );
-                }}
-              >
-                {instrument?.area.map((area) => (
-                  <FileTree key={area.id} item={area} />
+              <SidebarMenu onDoubleClick={onDoubleClick}>
+                {instrument?.area.map((item, index) => (
+                  <FileTree key={index} item={item} />
                 ))}
               </SidebarMenu>
             </SidebarGroupContent>

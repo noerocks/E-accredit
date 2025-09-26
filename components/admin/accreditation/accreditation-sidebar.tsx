@@ -1,33 +1,69 @@
+"use client";
+
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { PhaseOneInstrumentDTO } from "@/lib/dto/phase-one-instrument";
 import FileTreePhaseOne from "./file-tree-phase-one";
+import React from "react";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
-const AccreditationSidebar = async ({
+const AccreditationSidebar = ({
   instrumentFolder,
 }: {
   instrumentFolder: PhaseOneInstrumentDTO | null | undefined;
 }) => {
+  const params = useParams();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const onDoubleClick = (e: React.MouseEvent<HTMLUListElement>) => {
+    const target = e.target as HTMLElement;
+    const button = target.closest<HTMLButtonElement>("[data-id]");
+    if (!button || target.tagName !== "BUTTON") return null;
+    const { id, type } = button.dataset;
+    router.replace(
+      `/admin/accreditation/${String(
+        params.id
+      )}/${type}/${id}?${searchParams.toString()}`
+    );
+  };
   return (
     <Sidebar
       collapsible="none"
       className="border-r overflow-auto w-[300px] flex flex-col"
     >
+      <SidebarHeader className="border-b">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton className="hover:bg-transparent active:bg-transparent"></SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Areas</SidebarGroupLabel>
-          <SidebarMenu>
+          <SidebarMenu onDoubleClick={onDoubleClick}>
             {instrumentFolder?.areaFolders.map((area) => (
               <FileTreePhaseOne key={area.id} item={area} />
             ))}
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter className="border-t">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton className="hover:bg-transparent active:bg-transparent"></SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 };

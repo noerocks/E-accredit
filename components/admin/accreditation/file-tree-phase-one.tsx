@@ -121,7 +121,7 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
   if (isEvidenceFile(item)) {
     return (
       <SidebarMenuItem>
-        <SidebarMenuButton data-id={item.id} data-type={"indicator"}>
+        <SidebarMenuButton data-id={item.id} data-type={"evidence"}>
           <File />
           {item.indicator.label}
         </SidebarMenuButton>
