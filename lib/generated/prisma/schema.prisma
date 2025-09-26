@@ -84,13 +84,14 @@ model Program {
 }
 
 model ProgramPersonnel {
-  id          String      @id @default(uuid())
-  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String
-  program     Program     @relation(fields: [programId], references: [id], onDelete: Cascade)
-  programId   String
-  assignedAt  DateTime    @default(now())
-  chairPerson TaskForce[]
+  id              String            @id @default(uuid())
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId          String
+  program         Program           @relation(fields: [programId], references: [id], onDelete: Cascade)
+  programId       String
+  assignedAt      DateTime          @default(now())
+  chairPerson     TaskForce[]
+  taskForceMember TaskForceMember[]
 
   @@unique([userId, programId])
 }
@@ -295,9 +296,11 @@ model TaskForce {
 }
 
 model TaskForceMember {
-  id                String          @id @default(uuid())
-  taskForce         TaskForce       @relation(fields: [taskForceId], references: [id], onDelete: Cascade)
-  taskForceId       String
-  parameterFolder   ParameterFolder @relation(fields: [parameterFolderId], references: [id], onDelete: Cascade)
-  parameterFolderId String          @unique
+  id                 String           @id @default(uuid())
+  programPersonnel   ProgramPersonnel @relation(fields: [programPersonnelId], references: [id])
+  programPersonnelId String
+  taskForce          TaskForce        @relation(fields: [taskForceId], references: [id], onDelete: Cascade)
+  taskForceId        String
+  parameterFolder    ParameterFolder  @relation(fields: [parameterFolderId], references: [id], onDelete: Cascade)
+  parameterFolderId  String           @unique
 }

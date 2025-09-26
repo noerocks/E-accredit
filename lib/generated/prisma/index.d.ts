@@ -2924,10 +2924,12 @@ export namespace Prisma {
 
   export type ProgramPersonnelCountOutputType = {
     chairPerson: number
+    taskForceMember: number
   }
 
   export type ProgramPersonnelCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     chairPerson?: boolean | ProgramPersonnelCountOutputTypeCountChairPersonArgs
+    taskForceMember?: boolean | ProgramPersonnelCountOutputTypeCountTaskForceMemberArgs
   }
 
   // Custom InputTypes
@@ -2946,6 +2948,13 @@ export namespace Prisma {
    */
   export type ProgramPersonnelCountOutputTypeCountChairPersonArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TaskForceWhereInput
+  }
+
+  /**
+   * ProgramPersonnelCountOutputType without action
+   */
+  export type ProgramPersonnelCountOutputTypeCountTaskForceMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskForceMemberWhereInput
   }
 
 
@@ -5845,6 +5854,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
     program?: boolean | ProgramDefaultArgs<ExtArgs>
     chairPerson?: boolean | ProgramPersonnel$chairPersonArgs<ExtArgs>
+    taskForceMember?: boolean | ProgramPersonnel$taskForceMemberArgs<ExtArgs>
     _count?: boolean | ProgramPersonnelCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["programPersonnel"]>
 
@@ -5878,6 +5888,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
     program?: boolean | ProgramDefaultArgs<ExtArgs>
     chairPerson?: boolean | ProgramPersonnel$chairPersonArgs<ExtArgs>
+    taskForceMember?: boolean | ProgramPersonnel$taskForceMemberArgs<ExtArgs>
     _count?: boolean | ProgramPersonnelCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProgramPersonnelIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5895,6 +5906,7 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
       program: Prisma.$ProgramPayload<ExtArgs>
       chairPerson: Prisma.$TaskForcePayload<ExtArgs>[]
+      taskForceMember: Prisma.$TaskForceMemberPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6298,6 +6310,7 @@ export namespace Prisma {
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     program<T extends ProgramDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProgramDefaultArgs<ExtArgs>>): Prisma__ProgramClient<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     chairPerson<T extends ProgramPersonnel$chairPersonArgs<ExtArgs> = {}>(args?: Subset<T, ProgramPersonnel$chairPersonArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    taskForceMember<T extends ProgramPersonnel$taskForceMemberArgs<ExtArgs> = {}>(args?: Subset<T, ProgramPersonnel$taskForceMemberArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6748,6 +6761,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TaskForceScalarFieldEnum | TaskForceScalarFieldEnum[]
+  }
+
+  /**
+   * ProgramPersonnel.taskForceMember
+   */
+  export type ProgramPersonnel$taskForceMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForceMember
+     */
+    select?: TaskForceMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForceMember
+     */
+    omit?: TaskForceMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceMemberInclude<ExtArgs> | null
+    where?: TaskForceMemberWhereInput
+    orderBy?: TaskForceMemberOrderByWithRelationInput | TaskForceMemberOrderByWithRelationInput[]
+    cursor?: TaskForceMemberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskForceMemberScalarFieldEnum | TaskForceMemberScalarFieldEnum[]
   }
 
   /**
@@ -27035,18 +27072,21 @@ export namespace Prisma {
 
   export type TaskForceMemberMinAggregateOutputType = {
     id: string | null
+    programPersonnelId: string | null
     taskForceId: string | null
     parameterFolderId: string | null
   }
 
   export type TaskForceMemberMaxAggregateOutputType = {
     id: string | null
+    programPersonnelId: string | null
     taskForceId: string | null
     parameterFolderId: string | null
   }
 
   export type TaskForceMemberCountAggregateOutputType = {
     id: number
+    programPersonnelId: number
     taskForceId: number
     parameterFolderId: number
     _all: number
@@ -27055,18 +27095,21 @@ export namespace Prisma {
 
   export type TaskForceMemberMinAggregateInputType = {
     id?: true
+    programPersonnelId?: true
     taskForceId?: true
     parameterFolderId?: true
   }
 
   export type TaskForceMemberMaxAggregateInputType = {
     id?: true
+    programPersonnelId?: true
     taskForceId?: true
     parameterFolderId?: true
   }
 
   export type TaskForceMemberCountAggregateInputType = {
     id?: true
+    programPersonnelId?: true
     taskForceId?: true
     parameterFolderId?: true
     _all?: true
@@ -27146,6 +27189,7 @@ export namespace Prisma {
 
   export type TaskForceMemberGroupByOutputType = {
     id: string
+    programPersonnelId: string
     taskForceId: string
     parameterFolderId: string
     _count: TaskForceMemberCountAggregateOutputType | null
@@ -27169,44 +27213,54 @@ export namespace Prisma {
 
   export type TaskForceMemberSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    programPersonnelId?: boolean
     taskForceId?: boolean
     parameterFolderId?: boolean
+    programPersonnel?: boolean | ProgramPersonnelDefaultArgs<ExtArgs>
     taskForce?: boolean | TaskForceDefaultArgs<ExtArgs>
     parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["taskForceMember"]>
 
   export type TaskForceMemberSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    programPersonnelId?: boolean
     taskForceId?: boolean
     parameterFolderId?: boolean
+    programPersonnel?: boolean | ProgramPersonnelDefaultArgs<ExtArgs>
     taskForce?: boolean | TaskForceDefaultArgs<ExtArgs>
     parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["taskForceMember"]>
 
   export type TaskForceMemberSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    programPersonnelId?: boolean
     taskForceId?: boolean
     parameterFolderId?: boolean
+    programPersonnel?: boolean | ProgramPersonnelDefaultArgs<ExtArgs>
     taskForce?: boolean | TaskForceDefaultArgs<ExtArgs>
     parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["taskForceMember"]>
 
   export type TaskForceMemberSelectScalar = {
     id?: boolean
+    programPersonnelId?: boolean
     taskForceId?: boolean
     parameterFolderId?: boolean
   }
 
-  export type TaskForceMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "taskForceId" | "parameterFolderId", ExtArgs["result"]["taskForceMember"]>
+  export type TaskForceMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "programPersonnelId" | "taskForceId" | "parameterFolderId", ExtArgs["result"]["taskForceMember"]>
   export type TaskForceMemberInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    programPersonnel?: boolean | ProgramPersonnelDefaultArgs<ExtArgs>
     taskForce?: boolean | TaskForceDefaultArgs<ExtArgs>
     parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
   }
   export type TaskForceMemberIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    programPersonnel?: boolean | ProgramPersonnelDefaultArgs<ExtArgs>
     taskForce?: boolean | TaskForceDefaultArgs<ExtArgs>
     parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
   }
   export type TaskForceMemberIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    programPersonnel?: boolean | ProgramPersonnelDefaultArgs<ExtArgs>
     taskForce?: boolean | TaskForceDefaultArgs<ExtArgs>
     parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
   }
@@ -27214,11 +27268,13 @@ export namespace Prisma {
   export type $TaskForceMemberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TaskForceMember"
     objects: {
+      programPersonnel: Prisma.$ProgramPersonnelPayload<ExtArgs>
       taskForce: Prisma.$TaskForcePayload<ExtArgs>
       parameterFolder: Prisma.$ParameterFolderPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      programPersonnelId: string
       taskForceId: string
       parameterFolderId: string
     }, ExtArgs["result"]["taskForceMember"]>
@@ -27615,6 +27671,7 @@ export namespace Prisma {
    */
   export interface Prisma__TaskForceMemberClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    programPersonnel<T extends ProgramPersonnelDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProgramPersonnelDefaultArgs<ExtArgs>>): Prisma__ProgramPersonnelClient<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     taskForce<T extends TaskForceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TaskForceDefaultArgs<ExtArgs>>): Prisma__TaskForceClient<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     parameterFolder<T extends ParameterFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ParameterFolderDefaultArgs<ExtArgs>>): Prisma__ParameterFolderClient<$Result.GetResult<Prisma.$ParameterFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -27647,6 +27704,7 @@ export namespace Prisma {
    */
   interface TaskForceMemberFieldRefs {
     readonly id: FieldRef<"TaskForceMember", 'String'>
+    readonly programPersonnelId: FieldRef<"TaskForceMember", 'String'>
     readonly taskForceId: FieldRef<"TaskForceMember", 'String'>
     readonly parameterFolderId: FieldRef<"TaskForceMember", 'String'>
   }
@@ -28318,6 +28376,7 @@ export namespace Prisma {
 
   export const TaskForceMemberScalarFieldEnum: {
     id: 'id',
+    programPersonnelId: 'programPersonnelId',
     taskForceId: 'taskForceId',
     parameterFolderId: 'parameterFolderId'
   };
@@ -28697,6 +28756,7 @@ export namespace Prisma {
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
     chairPerson?: TaskForceListRelationFilter
+    taskForceMember?: TaskForceMemberListRelationFilter
   }
 
   export type ProgramPersonnelOrderByWithRelationInput = {
@@ -28707,6 +28767,7 @@ export namespace Prisma {
     user?: UserOrderByWithRelationInput
     program?: ProgramOrderByWithRelationInput
     chairPerson?: TaskForceOrderByRelationAggregateInput
+    taskForceMember?: TaskForceMemberOrderByRelationAggregateInput
   }
 
   export type ProgramPersonnelWhereUniqueInput = Prisma.AtLeast<{
@@ -28721,6 +28782,7 @@ export namespace Prisma {
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     program?: XOR<ProgramScalarRelationFilter, ProgramWhereInput>
     chairPerson?: TaskForceListRelationFilter
+    taskForceMember?: TaskForceMemberListRelationFilter
   }, "id" | "userId_programId">
 
   export type ProgramPersonnelOrderByWithAggregationInput = {
@@ -29862,16 +29924,20 @@ export namespace Prisma {
     OR?: TaskForceMemberWhereInput[]
     NOT?: TaskForceMemberWhereInput | TaskForceMemberWhereInput[]
     id?: StringFilter<"TaskForceMember"> | string
+    programPersonnelId?: StringFilter<"TaskForceMember"> | string
     taskForceId?: StringFilter<"TaskForceMember"> | string
     parameterFolderId?: StringFilter<"TaskForceMember"> | string
+    programPersonnel?: XOR<ProgramPersonnelScalarRelationFilter, ProgramPersonnelWhereInput>
     taskForce?: XOR<TaskForceScalarRelationFilter, TaskForceWhereInput>
     parameterFolder?: XOR<ParameterFolderScalarRelationFilter, ParameterFolderWhereInput>
   }
 
   export type TaskForceMemberOrderByWithRelationInput = {
     id?: SortOrder
+    programPersonnelId?: SortOrder
     taskForceId?: SortOrder
     parameterFolderId?: SortOrder
+    programPersonnel?: ProgramPersonnelOrderByWithRelationInput
     taskForce?: TaskForceOrderByWithRelationInput
     parameterFolder?: ParameterFolderOrderByWithRelationInput
   }
@@ -29882,13 +29948,16 @@ export namespace Prisma {
     AND?: TaskForceMemberWhereInput | TaskForceMemberWhereInput[]
     OR?: TaskForceMemberWhereInput[]
     NOT?: TaskForceMemberWhereInput | TaskForceMemberWhereInput[]
+    programPersonnelId?: StringFilter<"TaskForceMember"> | string
     taskForceId?: StringFilter<"TaskForceMember"> | string
+    programPersonnel?: XOR<ProgramPersonnelScalarRelationFilter, ProgramPersonnelWhereInput>
     taskForce?: XOR<TaskForceScalarRelationFilter, TaskForceWhereInput>
     parameterFolder?: XOR<ParameterFolderScalarRelationFilter, ParameterFolderWhereInput>
   }, "id" | "parameterFolderId">
 
   export type TaskForceMemberOrderByWithAggregationInput = {
     id?: SortOrder
+    programPersonnelId?: SortOrder
     taskForceId?: SortOrder
     parameterFolderId?: SortOrder
     _count?: TaskForceMemberCountOrderByAggregateInput
@@ -29901,6 +29970,7 @@ export namespace Prisma {
     OR?: TaskForceMemberScalarWhereWithAggregatesInput[]
     NOT?: TaskForceMemberScalarWhereWithAggregatesInput | TaskForceMemberScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"TaskForceMember"> | string
+    programPersonnelId?: StringWithAggregatesFilter<"TaskForceMember"> | string
     taskForceId?: StringWithAggregatesFilter<"TaskForceMember"> | string
     parameterFolderId?: StringWithAggregatesFilter<"TaskForceMember"> | string
   }
@@ -30091,6 +30161,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutProgramPersonnelInput
     program: ProgramCreateNestedOneWithoutProgramPersonnelInput
     chairPerson?: TaskForceCreateNestedManyWithoutChairPersonInput
+    taskForceMember?: TaskForceMemberCreateNestedManyWithoutProgramPersonnelInput
   }
 
   export type ProgramPersonnelUncheckedCreateInput = {
@@ -30099,6 +30170,7 @@ export namespace Prisma {
     programId: string
     assignedAt?: Date | string
     chairPerson?: TaskForceUncheckedCreateNestedManyWithoutChairPersonInput
+    taskForceMember?: TaskForceMemberUncheckedCreateNestedManyWithoutProgramPersonnelInput
   }
 
   export type ProgramPersonnelUpdateInput = {
@@ -30107,6 +30179,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutProgramPersonnelNestedInput
     program?: ProgramUpdateOneRequiredWithoutProgramPersonnelNestedInput
     chairPerson?: TaskForceUpdateManyWithoutChairPersonNestedInput
+    taskForceMember?: TaskForceMemberUpdateManyWithoutProgramPersonnelNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateInput = {
@@ -30115,6 +30188,7 @@ export namespace Prisma {
     programId?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chairPerson?: TaskForceUncheckedUpdateManyWithoutChairPersonNestedInput
+    taskForceMember?: TaskForceMemberUncheckedUpdateManyWithoutProgramPersonnelNestedInput
   }
 
   export type ProgramPersonnelCreateManyInput = {
@@ -31222,30 +31296,35 @@ export namespace Prisma {
 
   export type TaskForceMemberCreateInput = {
     id?: string
+    programPersonnel: ProgramPersonnelCreateNestedOneWithoutTaskForceMemberInput
     taskForce: TaskForceCreateNestedOneWithoutTaskForceMemberInput
     parameterFolder: ParameterFolderCreateNestedOneWithoutTaskForceMemberInput
   }
 
   export type TaskForceMemberUncheckedCreateInput = {
     id?: string
+    programPersonnelId: string
     taskForceId: string
     parameterFolderId: string
   }
 
   export type TaskForceMemberUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    programPersonnel?: ProgramPersonnelUpdateOneRequiredWithoutTaskForceMemberNestedInput
     taskForce?: TaskForceUpdateOneRequiredWithoutTaskForceMemberNestedInput
     parameterFolder?: ParameterFolderUpdateOneRequiredWithoutTaskForceMemberNestedInput
   }
 
   export type TaskForceMemberUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    programPersonnelId?: StringFieldUpdateOperationsInput | string
     taskForceId?: StringFieldUpdateOperationsInput | string
     parameterFolderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type TaskForceMemberCreateManyInput = {
     id?: string
+    programPersonnelId: string
     taskForceId: string
     parameterFolderId: string
   }
@@ -31256,6 +31335,7 @@ export namespace Prisma {
 
   export type TaskForceMemberUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    programPersonnelId?: StringFieldUpdateOperationsInput | string
     taskForceId?: StringFieldUpdateOperationsInput | string
     parameterFolderId?: StringFieldUpdateOperationsInput | string
   }
@@ -31481,7 +31561,17 @@ export namespace Prisma {
     none?: TaskForceWhereInput
   }
 
+  export type TaskForceMemberListRelationFilter = {
+    every?: TaskForceMemberWhereInput
+    some?: TaskForceMemberWhereInput
+    none?: TaskForceMemberWhereInput
+  }
+
   export type TaskForceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TaskForceMemberOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -32443,16 +32533,6 @@ export namespace Prisma {
     isNot?: ProgramPersonnelWhereInput
   }
 
-  export type TaskForceMemberListRelationFilter = {
-    every?: TaskForceMemberWhereInput
-    some?: TaskForceMemberWhereInput
-    none?: TaskForceMemberWhereInput
-  }
-
-  export type TaskForceMemberOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type TaskForceCountOrderByAggregateInput = {
     id?: SortOrder
     areaFolderId?: SortOrder
@@ -32478,18 +32558,21 @@ export namespace Prisma {
 
   export type TaskForceMemberCountOrderByAggregateInput = {
     id?: SortOrder
+    programPersonnelId?: SortOrder
     taskForceId?: SortOrder
     parameterFolderId?: SortOrder
   }
 
   export type TaskForceMemberMaxOrderByAggregateInput = {
     id?: SortOrder
+    programPersonnelId?: SortOrder
     taskForceId?: SortOrder
     parameterFolderId?: SortOrder
   }
 
   export type TaskForceMemberMinOrderByAggregateInput = {
     id?: SortOrder
+    programPersonnelId?: SortOrder
     taskForceId?: SortOrder
     parameterFolderId?: SortOrder
   }
@@ -32645,11 +32728,25 @@ export namespace Prisma {
     connect?: TaskForceWhereUniqueInput | TaskForceWhereUniqueInput[]
   }
 
+  export type TaskForceMemberCreateNestedManyWithoutProgramPersonnelInput = {
+    create?: XOR<TaskForceMemberCreateWithoutProgramPersonnelInput, TaskForceMemberUncheckedCreateWithoutProgramPersonnelInput> | TaskForceMemberCreateWithoutProgramPersonnelInput[] | TaskForceMemberUncheckedCreateWithoutProgramPersonnelInput[]
+    connectOrCreate?: TaskForceMemberCreateOrConnectWithoutProgramPersonnelInput | TaskForceMemberCreateOrConnectWithoutProgramPersonnelInput[]
+    createMany?: TaskForceMemberCreateManyProgramPersonnelInputEnvelope
+    connect?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+  }
+
   export type TaskForceUncheckedCreateNestedManyWithoutChairPersonInput = {
     create?: XOR<TaskForceCreateWithoutChairPersonInput, TaskForceUncheckedCreateWithoutChairPersonInput> | TaskForceCreateWithoutChairPersonInput[] | TaskForceUncheckedCreateWithoutChairPersonInput[]
     connectOrCreate?: TaskForceCreateOrConnectWithoutChairPersonInput | TaskForceCreateOrConnectWithoutChairPersonInput[]
     createMany?: TaskForceCreateManyChairPersonInputEnvelope
     connect?: TaskForceWhereUniqueInput | TaskForceWhereUniqueInput[]
+  }
+
+  export type TaskForceMemberUncheckedCreateNestedManyWithoutProgramPersonnelInput = {
+    create?: XOR<TaskForceMemberCreateWithoutProgramPersonnelInput, TaskForceMemberUncheckedCreateWithoutProgramPersonnelInput> | TaskForceMemberCreateWithoutProgramPersonnelInput[] | TaskForceMemberUncheckedCreateWithoutProgramPersonnelInput[]
+    connectOrCreate?: TaskForceMemberCreateOrConnectWithoutProgramPersonnelInput | TaskForceMemberCreateOrConnectWithoutProgramPersonnelInput[]
+    createMany?: TaskForceMemberCreateManyProgramPersonnelInputEnvelope
+    connect?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutProgramPersonnelNestedInput = {
@@ -32682,6 +32779,20 @@ export namespace Prisma {
     deleteMany?: TaskForceScalarWhereInput | TaskForceScalarWhereInput[]
   }
 
+  export type TaskForceMemberUpdateManyWithoutProgramPersonnelNestedInput = {
+    create?: XOR<TaskForceMemberCreateWithoutProgramPersonnelInput, TaskForceMemberUncheckedCreateWithoutProgramPersonnelInput> | TaskForceMemberCreateWithoutProgramPersonnelInput[] | TaskForceMemberUncheckedCreateWithoutProgramPersonnelInput[]
+    connectOrCreate?: TaskForceMemberCreateOrConnectWithoutProgramPersonnelInput | TaskForceMemberCreateOrConnectWithoutProgramPersonnelInput[]
+    upsert?: TaskForceMemberUpsertWithWhereUniqueWithoutProgramPersonnelInput | TaskForceMemberUpsertWithWhereUniqueWithoutProgramPersonnelInput[]
+    createMany?: TaskForceMemberCreateManyProgramPersonnelInputEnvelope
+    set?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    disconnect?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    delete?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    connect?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    update?: TaskForceMemberUpdateWithWhereUniqueWithoutProgramPersonnelInput | TaskForceMemberUpdateWithWhereUniqueWithoutProgramPersonnelInput[]
+    updateMany?: TaskForceMemberUpdateManyWithWhereWithoutProgramPersonnelInput | TaskForceMemberUpdateManyWithWhereWithoutProgramPersonnelInput[]
+    deleteMany?: TaskForceMemberScalarWhereInput | TaskForceMemberScalarWhereInput[]
+  }
+
   export type TaskForceUncheckedUpdateManyWithoutChairPersonNestedInput = {
     create?: XOR<TaskForceCreateWithoutChairPersonInput, TaskForceUncheckedCreateWithoutChairPersonInput> | TaskForceCreateWithoutChairPersonInput[] | TaskForceUncheckedCreateWithoutChairPersonInput[]
     connectOrCreate?: TaskForceCreateOrConnectWithoutChairPersonInput | TaskForceCreateOrConnectWithoutChairPersonInput[]
@@ -32694,6 +32805,20 @@ export namespace Prisma {
     update?: TaskForceUpdateWithWhereUniqueWithoutChairPersonInput | TaskForceUpdateWithWhereUniqueWithoutChairPersonInput[]
     updateMany?: TaskForceUpdateManyWithWhereWithoutChairPersonInput | TaskForceUpdateManyWithWhereWithoutChairPersonInput[]
     deleteMany?: TaskForceScalarWhereInput | TaskForceScalarWhereInput[]
+  }
+
+  export type TaskForceMemberUncheckedUpdateManyWithoutProgramPersonnelNestedInput = {
+    create?: XOR<TaskForceMemberCreateWithoutProgramPersonnelInput, TaskForceMemberUncheckedCreateWithoutProgramPersonnelInput> | TaskForceMemberCreateWithoutProgramPersonnelInput[] | TaskForceMemberUncheckedCreateWithoutProgramPersonnelInput[]
+    connectOrCreate?: TaskForceMemberCreateOrConnectWithoutProgramPersonnelInput | TaskForceMemberCreateOrConnectWithoutProgramPersonnelInput[]
+    upsert?: TaskForceMemberUpsertWithWhereUniqueWithoutProgramPersonnelInput | TaskForceMemberUpsertWithWhereUniqueWithoutProgramPersonnelInput[]
+    createMany?: TaskForceMemberCreateManyProgramPersonnelInputEnvelope
+    set?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    disconnect?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    delete?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    connect?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
+    update?: TaskForceMemberUpdateWithWhereUniqueWithoutProgramPersonnelInput | TaskForceMemberUpdateWithWhereUniqueWithoutProgramPersonnelInput[]
+    updateMany?: TaskForceMemberUpdateManyWithWhereWithoutProgramPersonnelInput | TaskForceMemberUpdateManyWithWhereWithoutProgramPersonnelInput[]
+    deleteMany?: TaskForceMemberScalarWhereInput | TaskForceMemberScalarWhereInput[]
   }
 
   export type AreaCreateNestedManyWithoutInstrumentInput = {
@@ -34154,6 +34279,12 @@ export namespace Prisma {
     deleteMany?: TaskForceMemberScalarWhereInput | TaskForceMemberScalarWhereInput[]
   }
 
+  export type ProgramPersonnelCreateNestedOneWithoutTaskForceMemberInput = {
+    create?: XOR<ProgramPersonnelCreateWithoutTaskForceMemberInput, ProgramPersonnelUncheckedCreateWithoutTaskForceMemberInput>
+    connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutTaskForceMemberInput
+    connect?: ProgramPersonnelWhereUniqueInput
+  }
+
   export type TaskForceCreateNestedOneWithoutTaskForceMemberInput = {
     create?: XOR<TaskForceCreateWithoutTaskForceMemberInput, TaskForceUncheckedCreateWithoutTaskForceMemberInput>
     connectOrCreate?: TaskForceCreateOrConnectWithoutTaskForceMemberInput
@@ -34164,6 +34295,14 @@ export namespace Prisma {
     create?: XOR<ParameterFolderCreateWithoutTaskForceMemberInput, ParameterFolderUncheckedCreateWithoutTaskForceMemberInput>
     connectOrCreate?: ParameterFolderCreateOrConnectWithoutTaskForceMemberInput
     connect?: ParameterFolderWhereUniqueInput
+  }
+
+  export type ProgramPersonnelUpdateOneRequiredWithoutTaskForceMemberNestedInput = {
+    create?: XOR<ProgramPersonnelCreateWithoutTaskForceMemberInput, ProgramPersonnelUncheckedCreateWithoutTaskForceMemberInput>
+    connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutTaskForceMemberInput
+    upsert?: ProgramPersonnelUpsertWithoutTaskForceMemberInput
+    connect?: ProgramPersonnelWhereUniqueInput
+    update?: XOR<XOR<ProgramPersonnelUpdateToOneWithWhereWithoutTaskForceMemberInput, ProgramPersonnelUpdateWithoutTaskForceMemberInput>, ProgramPersonnelUncheckedUpdateWithoutTaskForceMemberInput>
   }
 
   export type TaskForceUpdateOneRequiredWithoutTaskForceMemberNestedInput = {
@@ -34507,6 +34646,7 @@ export namespace Prisma {
     assignedAt?: Date | string
     program: ProgramCreateNestedOneWithoutProgramPersonnelInput
     chairPerson?: TaskForceCreateNestedManyWithoutChairPersonInput
+    taskForceMember?: TaskForceMemberCreateNestedManyWithoutProgramPersonnelInput
   }
 
   export type ProgramPersonnelUncheckedCreateWithoutUserInput = {
@@ -34514,6 +34654,7 @@ export namespace Prisma {
     programId: string
     assignedAt?: Date | string
     chairPerson?: TaskForceUncheckedCreateNestedManyWithoutChairPersonInput
+    taskForceMember?: TaskForceMemberUncheckedCreateNestedManyWithoutProgramPersonnelInput
   }
 
   export type ProgramPersonnelCreateOrConnectWithoutUserInput = {
@@ -34557,6 +34698,7 @@ export namespace Prisma {
     assignedAt?: Date | string
     user: UserCreateNestedOneWithoutProgramPersonnelInput
     chairPerson?: TaskForceCreateNestedManyWithoutChairPersonInput
+    taskForceMember?: TaskForceMemberCreateNestedManyWithoutProgramPersonnelInput
   }
 
   export type ProgramPersonnelUncheckedCreateWithoutProgramInput = {
@@ -34564,6 +34706,7 @@ export namespace Prisma {
     userId: string
     assignedAt?: Date | string
     chairPerson?: TaskForceUncheckedCreateNestedManyWithoutChairPersonInput
+    taskForceMember?: TaskForceMemberUncheckedCreateNestedManyWithoutProgramPersonnelInput
   }
 
   export type ProgramPersonnelCreateOrConnectWithoutProgramInput = {
@@ -34726,6 +34869,28 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TaskForceMemberCreateWithoutProgramPersonnelInput = {
+    id?: string
+    taskForce: TaskForceCreateNestedOneWithoutTaskForceMemberInput
+    parameterFolder: ParameterFolderCreateNestedOneWithoutTaskForceMemberInput
+  }
+
+  export type TaskForceMemberUncheckedCreateWithoutProgramPersonnelInput = {
+    id?: string
+    taskForceId: string
+    parameterFolderId: string
+  }
+
+  export type TaskForceMemberCreateOrConnectWithoutProgramPersonnelInput = {
+    where: TaskForceMemberWhereUniqueInput
+    create: XOR<TaskForceMemberCreateWithoutProgramPersonnelInput, TaskForceMemberUncheckedCreateWithoutProgramPersonnelInput>
+  }
+
+  export type TaskForceMemberCreateManyProgramPersonnelInputEnvelope = {
+    data: TaskForceMemberCreateManyProgramPersonnelInput | TaskForceMemberCreateManyProgramPersonnelInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutProgramPersonnelInput = {
     update: XOR<UserUpdateWithoutProgramPersonnelInput, UserUncheckedUpdateWithoutProgramPersonnelInput>
     create: XOR<UserCreateWithoutProgramPersonnelInput, UserUncheckedCreateWithoutProgramPersonnelInput>
@@ -34821,6 +34986,32 @@ export namespace Prisma {
     id?: StringFilter<"TaskForce"> | string
     areaFolderId?: StringFilter<"TaskForce"> | string
     chairPersonId?: StringFilter<"TaskForce"> | string
+  }
+
+  export type TaskForceMemberUpsertWithWhereUniqueWithoutProgramPersonnelInput = {
+    where: TaskForceMemberWhereUniqueInput
+    update: XOR<TaskForceMemberUpdateWithoutProgramPersonnelInput, TaskForceMemberUncheckedUpdateWithoutProgramPersonnelInput>
+    create: XOR<TaskForceMemberCreateWithoutProgramPersonnelInput, TaskForceMemberUncheckedCreateWithoutProgramPersonnelInput>
+  }
+
+  export type TaskForceMemberUpdateWithWhereUniqueWithoutProgramPersonnelInput = {
+    where: TaskForceMemberWhereUniqueInput
+    data: XOR<TaskForceMemberUpdateWithoutProgramPersonnelInput, TaskForceMemberUncheckedUpdateWithoutProgramPersonnelInput>
+  }
+
+  export type TaskForceMemberUpdateManyWithWhereWithoutProgramPersonnelInput = {
+    where: TaskForceMemberScalarWhereInput
+    data: XOR<TaskForceMemberUpdateManyMutationInput, TaskForceMemberUncheckedUpdateManyWithoutProgramPersonnelInput>
+  }
+
+  export type TaskForceMemberScalarWhereInput = {
+    AND?: TaskForceMemberScalarWhereInput | TaskForceMemberScalarWhereInput[]
+    OR?: TaskForceMemberScalarWhereInput[]
+    NOT?: TaskForceMemberScalarWhereInput | TaskForceMemberScalarWhereInput[]
+    id?: StringFilter<"TaskForceMember"> | string
+    programPersonnelId?: StringFilter<"TaskForceMember"> | string
+    taskForceId?: StringFilter<"TaskForceMember"> | string
+    parameterFolderId?: StringFilter<"TaskForceMember"> | string
   }
 
   export type AreaCreateWithoutInstrumentInput = {
@@ -36517,11 +36708,13 @@ export namespace Prisma {
 
   export type TaskForceMemberCreateWithoutParameterFolderInput = {
     id?: string
+    programPersonnel: ProgramPersonnelCreateNestedOneWithoutTaskForceMemberInput
     taskForce: TaskForceCreateNestedOneWithoutTaskForceMemberInput
   }
 
   export type TaskForceMemberUncheckedCreateWithoutParameterFolderInput = {
     id?: string
+    programPersonnelId: string
     taskForceId: string
   }
 
@@ -36630,11 +36823,13 @@ export namespace Prisma {
 
   export type TaskForceMemberUpdateWithoutParameterFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    programPersonnel?: ProgramPersonnelUpdateOneRequiredWithoutTaskForceMemberNestedInput
     taskForce?: TaskForceUpdateOneRequiredWithoutTaskForceMemberNestedInput
   }
 
   export type TaskForceMemberUncheckedUpdateWithoutParameterFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    programPersonnelId?: StringFieldUpdateOperationsInput | string
     taskForceId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -37342,6 +37537,7 @@ export namespace Prisma {
     assignedAt?: Date | string
     user: UserCreateNestedOneWithoutProgramPersonnelInput
     program: ProgramCreateNestedOneWithoutProgramPersonnelInput
+    taskForceMember?: TaskForceMemberCreateNestedManyWithoutProgramPersonnelInput
   }
 
   export type ProgramPersonnelUncheckedCreateWithoutChairPersonInput = {
@@ -37349,6 +37545,7 @@ export namespace Prisma {
     userId: string
     programId: string
     assignedAt?: Date | string
+    taskForceMember?: TaskForceMemberUncheckedCreateNestedManyWithoutProgramPersonnelInput
   }
 
   export type ProgramPersonnelCreateOrConnectWithoutChairPersonInput = {
@@ -37358,11 +37555,13 @@ export namespace Prisma {
 
   export type TaskForceMemberCreateWithoutTaskForceInput = {
     id?: string
+    programPersonnel: ProgramPersonnelCreateNestedOneWithoutTaskForceMemberInput
     parameterFolder: ParameterFolderCreateNestedOneWithoutTaskForceMemberInput
   }
 
   export type TaskForceMemberUncheckedCreateWithoutTaskForceInput = {
     id?: string
+    programPersonnelId: string
     parameterFolderId: string
   }
 
@@ -37423,6 +37622,7 @@ export namespace Prisma {
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutProgramPersonnelNestedInput
     program?: ProgramUpdateOneRequiredWithoutProgramPersonnelNestedInput
+    taskForceMember?: TaskForceMemberUpdateManyWithoutProgramPersonnelNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateWithoutChairPersonInput = {
@@ -37430,6 +37630,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    taskForceMember?: TaskForceMemberUncheckedUpdateManyWithoutProgramPersonnelNestedInput
   }
 
   export type TaskForceMemberUpsertWithWhereUniqueWithoutTaskForceInput = {
@@ -37448,13 +37649,25 @@ export namespace Prisma {
     data: XOR<TaskForceMemberUpdateManyMutationInput, TaskForceMemberUncheckedUpdateManyWithoutTaskForceInput>
   }
 
-  export type TaskForceMemberScalarWhereInput = {
-    AND?: TaskForceMemberScalarWhereInput | TaskForceMemberScalarWhereInput[]
-    OR?: TaskForceMemberScalarWhereInput[]
-    NOT?: TaskForceMemberScalarWhereInput | TaskForceMemberScalarWhereInput[]
-    id?: StringFilter<"TaskForceMember"> | string
-    taskForceId?: StringFilter<"TaskForceMember"> | string
-    parameterFolderId?: StringFilter<"TaskForceMember"> | string
+  export type ProgramPersonnelCreateWithoutTaskForceMemberInput = {
+    id?: string
+    assignedAt?: Date | string
+    user: UserCreateNestedOneWithoutProgramPersonnelInput
+    program: ProgramCreateNestedOneWithoutProgramPersonnelInput
+    chairPerson?: TaskForceCreateNestedManyWithoutChairPersonInput
+  }
+
+  export type ProgramPersonnelUncheckedCreateWithoutTaskForceMemberInput = {
+    id?: string
+    userId: string
+    programId: string
+    assignedAt?: Date | string
+    chairPerson?: TaskForceUncheckedCreateNestedManyWithoutChairPersonInput
+  }
+
+  export type ProgramPersonnelCreateOrConnectWithoutTaskForceMemberInput = {
+    where: ProgramPersonnelWhereUniqueInput
+    create: XOR<ProgramPersonnelCreateWithoutTaskForceMemberInput, ProgramPersonnelUncheckedCreateWithoutTaskForceMemberInput>
   }
 
   export type TaskForceCreateWithoutTaskForceMemberInput = {
@@ -37493,6 +37706,33 @@ export namespace Prisma {
   export type ParameterFolderCreateOrConnectWithoutTaskForceMemberInput = {
     where: ParameterFolderWhereUniqueInput
     create: XOR<ParameterFolderCreateWithoutTaskForceMemberInput, ParameterFolderUncheckedCreateWithoutTaskForceMemberInput>
+  }
+
+  export type ProgramPersonnelUpsertWithoutTaskForceMemberInput = {
+    update: XOR<ProgramPersonnelUpdateWithoutTaskForceMemberInput, ProgramPersonnelUncheckedUpdateWithoutTaskForceMemberInput>
+    create: XOR<ProgramPersonnelCreateWithoutTaskForceMemberInput, ProgramPersonnelUncheckedCreateWithoutTaskForceMemberInput>
+    where?: ProgramPersonnelWhereInput
+  }
+
+  export type ProgramPersonnelUpdateToOneWithWhereWithoutTaskForceMemberInput = {
+    where?: ProgramPersonnelWhereInput
+    data: XOR<ProgramPersonnelUpdateWithoutTaskForceMemberInput, ProgramPersonnelUncheckedUpdateWithoutTaskForceMemberInput>
+  }
+
+  export type ProgramPersonnelUpdateWithoutTaskForceMemberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutProgramPersonnelNestedInput
+    program?: ProgramUpdateOneRequiredWithoutProgramPersonnelNestedInput
+    chairPerson?: TaskForceUpdateManyWithoutChairPersonNestedInput
+  }
+
+  export type ProgramPersonnelUncheckedUpdateWithoutTaskForceMemberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    programId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chairPerson?: TaskForceUncheckedUpdateManyWithoutChairPersonNestedInput
   }
 
   export type TaskForceUpsertWithoutTaskForceMemberInput = {
@@ -37556,6 +37796,7 @@ export namespace Prisma {
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: ProgramUpdateOneRequiredWithoutProgramPersonnelNestedInput
     chairPerson?: TaskForceUpdateManyWithoutChairPersonNestedInput
+    taskForceMember?: TaskForceMemberUpdateManyWithoutProgramPersonnelNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateWithoutUserInput = {
@@ -37563,6 +37804,7 @@ export namespace Prisma {
     programId?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chairPerson?: TaskForceUncheckedUpdateManyWithoutChairPersonNestedInput
+    taskForceMember?: TaskForceMemberUncheckedUpdateManyWithoutProgramPersonnelNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateManyWithoutUserInput = {
@@ -37582,6 +37824,7 @@ export namespace Prisma {
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutProgramPersonnelNestedInput
     chairPerson?: TaskForceUpdateManyWithoutChairPersonNestedInput
+    taskForceMember?: TaskForceMemberUpdateManyWithoutProgramPersonnelNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateWithoutProgramInput = {
@@ -37589,6 +37832,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chairPerson?: TaskForceUncheckedUpdateManyWithoutChairPersonNestedInput
+    taskForceMember?: TaskForceMemberUncheckedUpdateManyWithoutProgramPersonnelNestedInput
   }
 
   export type ProgramPersonnelUncheckedUpdateManyWithoutProgramInput = {
@@ -37600,6 +37844,12 @@ export namespace Prisma {
   export type TaskForceCreateManyChairPersonInput = {
     id?: string
     areaFolderId: string
+  }
+
+  export type TaskForceMemberCreateManyProgramPersonnelInput = {
+    id?: string
+    taskForceId: string
+    parameterFolderId: string
   }
 
   export type TaskForceUpdateWithoutChairPersonInput = {
@@ -37617,6 +37867,24 @@ export namespace Prisma {
   export type TaskForceUncheckedUpdateManyWithoutChairPersonInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaFolderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TaskForceMemberUpdateWithoutProgramPersonnelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    taskForce?: TaskForceUpdateOneRequiredWithoutTaskForceMemberNestedInput
+    parameterFolder?: ParameterFolderUpdateOneRequiredWithoutTaskForceMemberNestedInput
+  }
+
+  export type TaskForceMemberUncheckedUpdateWithoutProgramPersonnelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    taskForceId?: StringFieldUpdateOperationsInput | string
+    parameterFolderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TaskForceMemberUncheckedUpdateManyWithoutProgramPersonnelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    taskForceId?: StringFieldUpdateOperationsInput | string
+    parameterFolderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AreaCreateManyInstrumentInput = {
@@ -38234,21 +38502,25 @@ export namespace Prisma {
 
   export type TaskForceMemberCreateManyTaskForceInput = {
     id?: string
+    programPersonnelId: string
     parameterFolderId: string
   }
 
   export type TaskForceMemberUpdateWithoutTaskForceInput = {
     id?: StringFieldUpdateOperationsInput | string
+    programPersonnel?: ProgramPersonnelUpdateOneRequiredWithoutTaskForceMemberNestedInput
     parameterFolder?: ParameterFolderUpdateOneRequiredWithoutTaskForceMemberNestedInput
   }
 
   export type TaskForceMemberUncheckedUpdateWithoutTaskForceInput = {
     id?: StringFieldUpdateOperationsInput | string
+    programPersonnelId?: StringFieldUpdateOperationsInput | string
     parameterFolderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type TaskForceMemberUncheckedUpdateManyWithoutTaskForceInput = {
     id?: StringFieldUpdateOperationsInput | string
+    programPersonnelId?: StringFieldUpdateOperationsInput | string
     parameterFolderId?: StringFieldUpdateOperationsInput | string
   }
 

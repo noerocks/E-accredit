@@ -91,6 +91,7 @@ model ProgramPersonnel {
   programId   String
   assignedAt  DateTime    @default(now())
   chairPerson TaskForce[]
+  taskForceMember TaskForceMember[]
 
   @@unique([userId, programId])
 }
@@ -296,6 +297,8 @@ model TaskForce {
 
 model TaskForceMember {
   id                String          @id @default(uuid())
+  programPersonnel  ProgramPersonnel @relation(fields: [programPersonnelId], references: [id])
+  programPersonnelId String 
   taskForce         TaskForce       @relation(fields: [taskForceId], references: [id], onDelete: Cascade)
   taskForceId       String
   parameterFolder   ParameterFolder @relation(fields: [parameterFolderId], references: [id], onDelete: Cascade)

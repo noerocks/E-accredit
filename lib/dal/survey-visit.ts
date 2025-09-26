@@ -40,3 +40,64 @@ export async function createSurveyVisit(
   });
   return surveyVisit;
 }
+
+export async function getSurveyVisitStructureById(id: string) {
+  const surveyVisitStructure = await prisma.surveyVisit.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      level: true,
+      phaseOneRequirements: {
+        include: {
+          instrument: {
+            include: {
+              area: {
+                include: {
+                  parameter: {
+                    include: {
+                      indicator: true,
+                    },
+                  },
+                },
+              },
+            },
+          },
+          instrumentFolder: {
+            include: {
+              areaFolders: {
+                include: {
+                  area: true,
+                  parameterFolders: {
+                    include: {
+                      parameter: true,
+                      indicatorFolders: {
+                        include: {
+                          evidenceFiles: {
+                            include: {
+                              indicator: true,
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                  taskForce: {
+                    include: {
+                      chairPerson: {
+                        include: {
+                          user: true,
+                        },
+                      },
+                      taskForceMember: {},
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+}
