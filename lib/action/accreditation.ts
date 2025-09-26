@@ -16,6 +16,7 @@ import { createAreaFolder } from "../dal/area-folder";
 import { createInstrumentFolder } from "./instrument-folder";
 import { createParameterFolder } from "../dal/parameter-folder";
 import { createIndicatorFolder } from "../dal/indicator-folder";
+import { revalidateTag } from "next/cache";
 
 export async function createSurveyVisit(
   program: ProgramDTO,
@@ -53,6 +54,7 @@ export async function createSurveyVisit(
     SurveyStatus.IN_PROGRESS,
     instrument.id
   );
+  revalidateTag("accreditations");
   if (!surveyVisit) throw new Error("Error in creating survey visit");
   const instrumentStructure = await getInstrumentStructureById(instrument.id);
   if (level.phase === Phase.PHASE_1) {

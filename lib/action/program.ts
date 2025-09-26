@@ -24,6 +24,7 @@ export async function createProgram(
     const program = await createProgramDAL({ ...data, folderId: folder.id });
     if (!program) throw new Error("Failed to create program");
     await createAccreditation(program.id, AccreditationStatus.UNACCREDITED);
+    revalidateTag("accreditations");
     revalidateTag("programs");
     return {
       status: "success",
