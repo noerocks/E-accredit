@@ -16,6 +16,7 @@ import {
 } from "@/lib/dto/phase-one-instrument";
 import { Category } from "@/lib/generated/prisma";
 import { ChevronRight, File, Folder } from "lucide-react";
+import { useParams } from "next/navigation";
 
 type TreeNode =
   | AreaFolderDTO
@@ -46,6 +47,7 @@ const category = {
 };
 
 const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
+  const params = useParams();
   if (isAreaFolder(item)) {
     return (
       <SidebarMenuItem>
@@ -121,7 +123,11 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
   if (isEvidenceFile(item)) {
     return (
       <SidebarMenuItem>
-        <SidebarMenuButton data-id={item.id} data-type={"evidence"}>
+        <SidebarMenuButton
+          data-id={item.id}
+          data-type={"evidence"}
+          isActive={item.id === String(params.evidenceId)}
+        >
           <File />
           {item.indicator.label}
         </SidebarMenuButton>

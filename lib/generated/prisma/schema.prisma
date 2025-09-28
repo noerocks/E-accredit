@@ -76,7 +76,6 @@ model Program {
   department       String
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
-  folderId         String
   programPersonnel ProgramPersonnel[]
   accreditation    Accreditation?
 
@@ -199,7 +198,6 @@ model InstrumentFolder {
   id                     String                @id @default(uuid())
   phaseOneRequirements   PhaseOneRequirements? @relation(fields: [phaseOneRequirementsId], references: [id], onDelete: Cascade)
   phaseOneRequirementsId String?               @unique
-  folderId               String
   areaFolders            AreaFolder[]
 }
 
@@ -207,7 +205,6 @@ model AreaFolder {
   id                 String            @id @default(uuid())
   instrumentFolder   InstrumentFolder  @relation(fields: [instrumentFolderId], references: [id], onDelete: Cascade)
   instrumentFolderId String
-  folderId           String
   parameterFolders   ParameterFolder[]
   area               Area              @relation(fields: [areaId], references: [id], onDelete: Cascade)
   areaId             Int
@@ -220,7 +217,6 @@ model ParameterFolder {
   id               String            @id @default(uuid())
   areaFolder       AreaFolder        @relation(fields: [areaFolderId], references: [id], onDelete: Cascade)
   areaFolderId     String
-  folderId         String
   indicatorFolders IndicatorFolder[]
   parameter        Parameter         @relation(fields: [parameterId], references: [id], onDelete: Cascade)
   parameterId      Int
@@ -231,7 +227,6 @@ model IndicatorFolder {
   id                String          @id @default(uuid())
   parameterFolder   ParameterFolder @relation(fields: [parameterFolderId], references: [id], onDelete: Cascade)
   parameterFolderId String
-  folderId          String
   category          Category
   evidenceFiles     EvidenceFile[]
 }
@@ -240,7 +235,7 @@ model EvidenceFile {
   id                String          @id @default(uuid())
   indicatorFolder   IndicatorFolder @relation(fields: [indicatorFolderId], references: [id], onDelete: Cascade)
   indicatorFolderId String
-  fileId            String?
+  ObjectURL         String?
   indicator         Indicator       @relation(fields: [indicatorId], references: [id], onDelete: Cascade)
   indicatorId       Int
   createdAt         DateTime        @default(now())
@@ -260,7 +255,6 @@ model PhaseTwoFolder {
   id                     String                @id @default(uuid())
   phaseTwoRequirements   PhaseTwoRequirements? @relation(fields: [phaseTwoRequirementsId], references: [id], onDelete: Cascade)
   phaseTwoRequirementsId String?               @unique
-  folderId               String
   phaseTwoAreaFolders    PhaseTwoAreaFolder[]
 }
 
@@ -268,7 +262,6 @@ model PhaseTwoAreaFolder {
   id               String         @id @default(uuid())
   phaseTwoFolder   PhaseTwoFolder @relation(fields: [phaseTwoFolderId], references: [id], onDelete: Cascade)
   phaseTwoFolderId String
-  folderId         String
   area             Area           @relation(fields: [areaId], references: [id], onDelete: Cascade)
   areaId           Int
   areaFiles        AreaFile[]
@@ -281,7 +274,7 @@ model AreaFile {
   phaseTwoAreaFolder   PhaseTwoAreaFolder? @relation(fields: [phaseTwoAreaFolderId], references: [id])
   phaseTwoAreaFolderId String?
   type                 AreaFileType
-  fileId               String
+  objectURL            String?
   createdAt            DateTime            @default(now())
   updatedAt            DateTime            @updatedAt
 }

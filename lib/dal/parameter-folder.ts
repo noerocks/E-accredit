@@ -3,8 +3,7 @@ import { prisma } from "../prisma";
 
 export async function createParameterFolder(
   areaFolderId: string,
-  parameterId: number,
-  folderId: string
+  parameterId: number
 ) {
   const session = await verifySession();
   if (!session) return null;
@@ -20,7 +19,6 @@ export async function createParameterFolder(
           id: parameterId,
         },
       },
-      folderId,
     },
   });
   return parameterFolder;

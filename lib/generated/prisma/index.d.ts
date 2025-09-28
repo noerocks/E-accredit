@@ -4593,7 +4593,6 @@ export namespace Prisma {
     department: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    folderId: string | null
   }
 
   export type ProgramMaxAggregateOutputType = {
@@ -4603,7 +4602,6 @@ export namespace Prisma {
     department: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    folderId: string | null
   }
 
   export type ProgramCountAggregateOutputType = {
@@ -4613,7 +4611,6 @@ export namespace Prisma {
     department: number
     createdAt: number
     updatedAt: number
-    folderId: number
     _all: number
   }
 
@@ -4625,7 +4622,6 @@ export namespace Prisma {
     department?: true
     createdAt?: true
     updatedAt?: true
-    folderId?: true
   }
 
   export type ProgramMaxAggregateInputType = {
@@ -4635,7 +4631,6 @@ export namespace Prisma {
     department?: true
     createdAt?: true
     updatedAt?: true
-    folderId?: true
   }
 
   export type ProgramCountAggregateInputType = {
@@ -4645,7 +4640,6 @@ export namespace Prisma {
     department?: true
     createdAt?: true
     updatedAt?: true
-    folderId?: true
     _all?: true
   }
 
@@ -4728,7 +4722,6 @@ export namespace Prisma {
     department: string
     createdAt: Date
     updatedAt: Date
-    folderId: string
     _count: ProgramCountAggregateOutputType | null
     _min: ProgramMinAggregateOutputType | null
     _max: ProgramMaxAggregateOutputType | null
@@ -4755,7 +4748,6 @@ export namespace Prisma {
     department?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    folderId?: boolean
     programPersonnel?: boolean | Program$programPersonnelArgs<ExtArgs>
     accreditation?: boolean | Program$accreditationArgs<ExtArgs>
     _count?: boolean | ProgramCountOutputTypeDefaultArgs<ExtArgs>
@@ -4768,7 +4760,6 @@ export namespace Prisma {
     department?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    folderId?: boolean
   }, ExtArgs["result"]["program"]>
 
   export type ProgramSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4778,7 +4769,6 @@ export namespace Prisma {
     department?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    folderId?: boolean
   }, ExtArgs["result"]["program"]>
 
   export type ProgramSelectScalar = {
@@ -4788,10 +4778,9 @@ export namespace Prisma {
     department?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    folderId?: boolean
   }
 
-  export type ProgramOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "code" | "department" | "createdAt" | "updatedAt" | "folderId", ExtArgs["result"]["program"]>
+  export type ProgramOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "code" | "department" | "createdAt" | "updatedAt", ExtArgs["result"]["program"]>
   export type ProgramInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     programPersonnel?: boolean | Program$programPersonnelArgs<ExtArgs>
     accreditation?: boolean | Program$accreditationArgs<ExtArgs>
@@ -4813,7 +4802,6 @@ export namespace Prisma {
       department: string
       createdAt: Date
       updatedAt: Date
-      folderId: string
     }, ExtArgs["result"]["program"]>
     composites: {}
   }
@@ -5245,7 +5233,6 @@ export namespace Prisma {
     readonly department: FieldRef<"Program", 'String'>
     readonly createdAt: FieldRef<"Program", 'DateTime'>
     readonly updatedAt: FieldRef<"Program", 'DateTime'>
-    readonly folderId: FieldRef<"Program", 'String'>
   }
     
 
@@ -16003,19 +15990,16 @@ export namespace Prisma {
   export type InstrumentFolderMinAggregateOutputType = {
     id: string | null
     phaseOneRequirementsId: string | null
-    folderId: string | null
   }
 
   export type InstrumentFolderMaxAggregateOutputType = {
     id: string | null
     phaseOneRequirementsId: string | null
-    folderId: string | null
   }
 
   export type InstrumentFolderCountAggregateOutputType = {
     id: number
     phaseOneRequirementsId: number
-    folderId: number
     _all: number
   }
 
@@ -16023,19 +16007,16 @@ export namespace Prisma {
   export type InstrumentFolderMinAggregateInputType = {
     id?: true
     phaseOneRequirementsId?: true
-    folderId?: true
   }
 
   export type InstrumentFolderMaxAggregateInputType = {
     id?: true
     phaseOneRequirementsId?: true
-    folderId?: true
   }
 
   export type InstrumentFolderCountAggregateInputType = {
     id?: true
     phaseOneRequirementsId?: true
-    folderId?: true
     _all?: true
   }
 
@@ -16114,7 +16095,6 @@ export namespace Prisma {
   export type InstrumentFolderGroupByOutputType = {
     id: string
     phaseOneRequirementsId: string | null
-    folderId: string
     _count: InstrumentFolderCountAggregateOutputType | null
     _min: InstrumentFolderMinAggregateOutputType | null
     _max: InstrumentFolderMaxAggregateOutputType | null
@@ -16137,7 +16117,6 @@ export namespace Prisma {
   export type InstrumentFolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     phaseOneRequirementsId?: boolean
-    folderId?: boolean
     phaseOneRequirements?: boolean | InstrumentFolder$phaseOneRequirementsArgs<ExtArgs>
     areaFolders?: boolean | InstrumentFolder$areaFoldersArgs<ExtArgs>
     _count?: boolean | InstrumentFolderCountOutputTypeDefaultArgs<ExtArgs>
@@ -16146,24 +16125,21 @@ export namespace Prisma {
   export type InstrumentFolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     phaseOneRequirementsId?: boolean
-    folderId?: boolean
     phaseOneRequirements?: boolean | InstrumentFolder$phaseOneRequirementsArgs<ExtArgs>
   }, ExtArgs["result"]["instrumentFolder"]>
 
   export type InstrumentFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     phaseOneRequirementsId?: boolean
-    folderId?: boolean
     phaseOneRequirements?: boolean | InstrumentFolder$phaseOneRequirementsArgs<ExtArgs>
   }, ExtArgs["result"]["instrumentFolder"]>
 
   export type InstrumentFolderSelectScalar = {
     id?: boolean
     phaseOneRequirementsId?: boolean
-    folderId?: boolean
   }
 
-  export type InstrumentFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseOneRequirementsId" | "folderId", ExtArgs["result"]["instrumentFolder"]>
+  export type InstrumentFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseOneRequirementsId", ExtArgs["result"]["instrumentFolder"]>
   export type InstrumentFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     phaseOneRequirements?: boolean | InstrumentFolder$phaseOneRequirementsArgs<ExtArgs>
     areaFolders?: boolean | InstrumentFolder$areaFoldersArgs<ExtArgs>
@@ -16185,7 +16161,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       phaseOneRequirementsId: string | null
-      folderId: string
     }, ExtArgs["result"]["instrumentFolder"]>
     composites: {}
   }
@@ -16613,7 +16588,6 @@ export namespace Prisma {
   interface InstrumentFolderFieldRefs {
     readonly id: FieldRef<"InstrumentFolder", 'String'>
     readonly phaseOneRequirementsId: FieldRef<"InstrumentFolder", 'String'>
-    readonly folderId: FieldRef<"InstrumentFolder", 'String'>
   }
     
 
@@ -16832,7 +16806,7 @@ export namespace Prisma {
     /**
      * The data needed to create a InstrumentFolder.
      */
-    data: XOR<InstrumentFolderCreateInput, InstrumentFolderUncheckedCreateInput>
+    data?: XOR<InstrumentFolderCreateInput, InstrumentFolderUncheckedCreateInput>
   }
 
   /**
@@ -17094,7 +17068,6 @@ export namespace Prisma {
   export type AreaFolderMinAggregateOutputType = {
     id: string | null
     instrumentFolderId: string | null
-    folderId: string | null
     areaId: number | null
     complete: boolean | null
   }
@@ -17102,7 +17075,6 @@ export namespace Prisma {
   export type AreaFolderMaxAggregateOutputType = {
     id: string | null
     instrumentFolderId: string | null
-    folderId: string | null
     areaId: number | null
     complete: boolean | null
   }
@@ -17110,7 +17082,6 @@ export namespace Prisma {
   export type AreaFolderCountAggregateOutputType = {
     id: number
     instrumentFolderId: number
-    folderId: number
     areaId: number
     complete: number
     _all: number
@@ -17128,7 +17099,6 @@ export namespace Prisma {
   export type AreaFolderMinAggregateInputType = {
     id?: true
     instrumentFolderId?: true
-    folderId?: true
     areaId?: true
     complete?: true
   }
@@ -17136,7 +17106,6 @@ export namespace Prisma {
   export type AreaFolderMaxAggregateInputType = {
     id?: true
     instrumentFolderId?: true
-    folderId?: true
     areaId?: true
     complete?: true
   }
@@ -17144,7 +17113,6 @@ export namespace Prisma {
   export type AreaFolderCountAggregateInputType = {
     id?: true
     instrumentFolderId?: true
-    folderId?: true
     areaId?: true
     complete?: true
     _all?: true
@@ -17239,7 +17207,6 @@ export namespace Prisma {
   export type AreaFolderGroupByOutputType = {
     id: string
     instrumentFolderId: string
-    folderId: string
     areaId: number
     complete: boolean
     _count: AreaFolderCountAggregateOutputType | null
@@ -17266,7 +17233,6 @@ export namespace Prisma {
   export type AreaFolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     instrumentFolderId?: boolean
-    folderId?: boolean
     areaId?: boolean
     complete?: boolean
     instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
@@ -17280,7 +17246,6 @@ export namespace Prisma {
   export type AreaFolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     instrumentFolderId?: boolean
-    folderId?: boolean
     areaId?: boolean
     complete?: boolean
     instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
@@ -17290,7 +17255,6 @@ export namespace Prisma {
   export type AreaFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     instrumentFolderId?: boolean
-    folderId?: boolean
     areaId?: boolean
     complete?: boolean
     instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
@@ -17300,12 +17264,11 @@ export namespace Prisma {
   export type AreaFolderSelectScalar = {
     id?: boolean
     instrumentFolderId?: boolean
-    folderId?: boolean
     areaId?: boolean
     complete?: boolean
   }
 
-  export type AreaFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "instrumentFolderId" | "folderId" | "areaId" | "complete", ExtArgs["result"]["areaFolder"]>
+  export type AreaFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "instrumentFolderId" | "areaId" | "complete", ExtArgs["result"]["areaFolder"]>
   export type AreaFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
     parameterFolders?: boolean | AreaFolder$parameterFoldersArgs<ExtArgs>
@@ -17335,7 +17298,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       instrumentFolderId: string
-      folderId: string
       areaId: number
       complete: boolean
     }, ExtArgs["result"]["areaFolder"]>
@@ -17768,7 +17730,6 @@ export namespace Prisma {
   interface AreaFolderFieldRefs {
     readonly id: FieldRef<"AreaFolder", 'String'>
     readonly instrumentFolderId: FieldRef<"AreaFolder", 'String'>
-    readonly folderId: FieldRef<"AreaFolder", 'String'>
     readonly areaId: FieldRef<"AreaFolder", 'Int'>
     readonly complete: FieldRef<"AreaFolder", 'Boolean'>
   }
@@ -18275,21 +18236,18 @@ export namespace Prisma {
   export type ParameterFolderMinAggregateOutputType = {
     id: string | null
     areaFolderId: string | null
-    folderId: string | null
     parameterId: number | null
   }
 
   export type ParameterFolderMaxAggregateOutputType = {
     id: string | null
     areaFolderId: string | null
-    folderId: string | null
     parameterId: number | null
   }
 
   export type ParameterFolderCountAggregateOutputType = {
     id: number
     areaFolderId: number
-    folderId: number
     parameterId: number
     _all: number
   }
@@ -18306,21 +18264,18 @@ export namespace Prisma {
   export type ParameterFolderMinAggregateInputType = {
     id?: true
     areaFolderId?: true
-    folderId?: true
     parameterId?: true
   }
 
   export type ParameterFolderMaxAggregateInputType = {
     id?: true
     areaFolderId?: true
-    folderId?: true
     parameterId?: true
   }
 
   export type ParameterFolderCountAggregateInputType = {
     id?: true
     areaFolderId?: true
-    folderId?: true
     parameterId?: true
     _all?: true
   }
@@ -18414,7 +18369,6 @@ export namespace Prisma {
   export type ParameterFolderGroupByOutputType = {
     id: string
     areaFolderId: string
-    folderId: string
     parameterId: number
     _count: ParameterFolderCountAggregateOutputType | null
     _avg: ParameterFolderAvgAggregateOutputType | null
@@ -18440,7 +18394,6 @@ export namespace Prisma {
   export type ParameterFolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     areaFolderId?: boolean
-    folderId?: boolean
     parameterId?: boolean
     areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
     indicatorFolders?: boolean | ParameterFolder$indicatorFoldersArgs<ExtArgs>
@@ -18452,7 +18405,6 @@ export namespace Prisma {
   export type ParameterFolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     areaFolderId?: boolean
-    folderId?: boolean
     parameterId?: boolean
     areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
     parameter?: boolean | ParameterDefaultArgs<ExtArgs>
@@ -18461,7 +18413,6 @@ export namespace Prisma {
   export type ParameterFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     areaFolderId?: boolean
-    folderId?: boolean
     parameterId?: boolean
     areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
     parameter?: boolean | ParameterDefaultArgs<ExtArgs>
@@ -18470,11 +18421,10 @@ export namespace Prisma {
   export type ParameterFolderSelectScalar = {
     id?: boolean
     areaFolderId?: boolean
-    folderId?: boolean
     parameterId?: boolean
   }
 
-  export type ParameterFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "areaFolderId" | "folderId" | "parameterId", ExtArgs["result"]["parameterFolder"]>
+  export type ParameterFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "areaFolderId" | "parameterId", ExtArgs["result"]["parameterFolder"]>
   export type ParameterFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
     indicatorFolders?: boolean | ParameterFolder$indicatorFoldersArgs<ExtArgs>
@@ -18502,7 +18452,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       areaFolderId: string
-      folderId: string
       parameterId: number
     }, ExtArgs["result"]["parameterFolder"]>
     composites: {}
@@ -18933,7 +18882,6 @@ export namespace Prisma {
   interface ParameterFolderFieldRefs {
     readonly id: FieldRef<"ParameterFolder", 'String'>
     readonly areaFolderId: FieldRef<"ParameterFolder", 'String'>
-    readonly folderId: FieldRef<"ParameterFolder", 'String'>
     readonly parameterId: FieldRef<"ParameterFolder", 'Int'>
   }
     
@@ -19405,21 +19353,18 @@ export namespace Prisma {
   export type IndicatorFolderMinAggregateOutputType = {
     id: string | null
     parameterFolderId: string | null
-    folderId: string | null
     category: $Enums.Category | null
   }
 
   export type IndicatorFolderMaxAggregateOutputType = {
     id: string | null
     parameterFolderId: string | null
-    folderId: string | null
     category: $Enums.Category | null
   }
 
   export type IndicatorFolderCountAggregateOutputType = {
     id: number
     parameterFolderId: number
-    folderId: number
     category: number
     _all: number
   }
@@ -19428,21 +19373,18 @@ export namespace Prisma {
   export type IndicatorFolderMinAggregateInputType = {
     id?: true
     parameterFolderId?: true
-    folderId?: true
     category?: true
   }
 
   export type IndicatorFolderMaxAggregateInputType = {
     id?: true
     parameterFolderId?: true
-    folderId?: true
     category?: true
   }
 
   export type IndicatorFolderCountAggregateInputType = {
     id?: true
     parameterFolderId?: true
-    folderId?: true
     category?: true
     _all?: true
   }
@@ -19522,7 +19464,6 @@ export namespace Prisma {
   export type IndicatorFolderGroupByOutputType = {
     id: string
     parameterFolderId: string
-    folderId: string
     category: $Enums.Category
     _count: IndicatorFolderCountAggregateOutputType | null
     _min: IndicatorFolderMinAggregateOutputType | null
@@ -19546,7 +19487,6 @@ export namespace Prisma {
   export type IndicatorFolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     parameterFolderId?: boolean
-    folderId?: boolean
     category?: boolean
     parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
     evidenceFiles?: boolean | IndicatorFolder$evidenceFilesArgs<ExtArgs>
@@ -19556,7 +19496,6 @@ export namespace Prisma {
   export type IndicatorFolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     parameterFolderId?: boolean
-    folderId?: boolean
     category?: boolean
     parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["indicatorFolder"]>
@@ -19564,7 +19503,6 @@ export namespace Prisma {
   export type IndicatorFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     parameterFolderId?: boolean
-    folderId?: boolean
     category?: boolean
     parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["indicatorFolder"]>
@@ -19572,11 +19510,10 @@ export namespace Prisma {
   export type IndicatorFolderSelectScalar = {
     id?: boolean
     parameterFolderId?: boolean
-    folderId?: boolean
     category?: boolean
   }
 
-  export type IndicatorFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "parameterFolderId" | "folderId" | "category", ExtArgs["result"]["indicatorFolder"]>
+  export type IndicatorFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "parameterFolderId" | "category", ExtArgs["result"]["indicatorFolder"]>
   export type IndicatorFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parameterFolder?: boolean | ParameterFolderDefaultArgs<ExtArgs>
     evidenceFiles?: boolean | IndicatorFolder$evidenceFilesArgs<ExtArgs>
@@ -19598,7 +19535,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       parameterFolderId: string
-      folderId: string
       category: $Enums.Category
     }, ExtArgs["result"]["indicatorFolder"]>
     composites: {}
@@ -20027,7 +19963,6 @@ export namespace Prisma {
   interface IndicatorFolderFieldRefs {
     readonly id: FieldRef<"IndicatorFolder", 'String'>
     readonly parameterFolderId: FieldRef<"IndicatorFolder", 'String'>
-    readonly folderId: FieldRef<"IndicatorFolder", 'String'>
     readonly category: FieldRef<"IndicatorFolder", 'Category'>
   }
     
@@ -20490,7 +20425,7 @@ export namespace Prisma {
   export type EvidenceFileMinAggregateOutputType = {
     id: string | null
     indicatorFolderId: string | null
-    fileId: string | null
+    ObjectURL: string | null
     indicatorId: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -20499,7 +20434,7 @@ export namespace Prisma {
   export type EvidenceFileMaxAggregateOutputType = {
     id: string | null
     indicatorFolderId: string | null
-    fileId: string | null
+    ObjectURL: string | null
     indicatorId: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -20508,7 +20443,7 @@ export namespace Prisma {
   export type EvidenceFileCountAggregateOutputType = {
     id: number
     indicatorFolderId: number
-    fileId: number
+    ObjectURL: number
     indicatorId: number
     createdAt: number
     updatedAt: number
@@ -20527,7 +20462,7 @@ export namespace Prisma {
   export type EvidenceFileMinAggregateInputType = {
     id?: true
     indicatorFolderId?: true
-    fileId?: true
+    ObjectURL?: true
     indicatorId?: true
     createdAt?: true
     updatedAt?: true
@@ -20536,7 +20471,7 @@ export namespace Prisma {
   export type EvidenceFileMaxAggregateInputType = {
     id?: true
     indicatorFolderId?: true
-    fileId?: true
+    ObjectURL?: true
     indicatorId?: true
     createdAt?: true
     updatedAt?: true
@@ -20545,7 +20480,7 @@ export namespace Prisma {
   export type EvidenceFileCountAggregateInputType = {
     id?: true
     indicatorFolderId?: true
-    fileId?: true
+    ObjectURL?: true
     indicatorId?: true
     createdAt?: true
     updatedAt?: true
@@ -20641,7 +20576,7 @@ export namespace Prisma {
   export type EvidenceFileGroupByOutputType = {
     id: string
     indicatorFolderId: string
-    fileId: string | null
+    ObjectURL: string | null
     indicatorId: number
     createdAt: Date
     updatedAt: Date
@@ -20669,7 +20604,7 @@ export namespace Prisma {
   export type EvidenceFileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     indicatorFolderId?: boolean
-    fileId?: boolean
+    ObjectURL?: boolean
     indicatorId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -20680,7 +20615,7 @@ export namespace Prisma {
   export type EvidenceFileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     indicatorFolderId?: boolean
-    fileId?: boolean
+    ObjectURL?: boolean
     indicatorId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -20691,7 +20626,7 @@ export namespace Prisma {
   export type EvidenceFileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     indicatorFolderId?: boolean
-    fileId?: boolean
+    ObjectURL?: boolean
     indicatorId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -20702,13 +20637,13 @@ export namespace Prisma {
   export type EvidenceFileSelectScalar = {
     id?: boolean
     indicatorFolderId?: boolean
-    fileId?: boolean
+    ObjectURL?: boolean
     indicatorId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type EvidenceFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "indicatorFolderId" | "fileId" | "indicatorId" | "createdAt" | "updatedAt", ExtArgs["result"]["evidenceFile"]>
+  export type EvidenceFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "indicatorFolderId" | "ObjectURL" | "indicatorId" | "createdAt" | "updatedAt", ExtArgs["result"]["evidenceFile"]>
   export type EvidenceFileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     indicatorFolder?: boolean | IndicatorFolderDefaultArgs<ExtArgs>
     indicator?: boolean | IndicatorDefaultArgs<ExtArgs>
@@ -20731,7 +20666,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       indicatorFolderId: string
-      fileId: string | null
+      ObjectURL: string | null
       indicatorId: number
       createdAt: Date
       updatedAt: Date
@@ -21162,7 +21097,7 @@ export namespace Prisma {
   interface EvidenceFileFieldRefs {
     readonly id: FieldRef<"EvidenceFile", 'String'>
     readonly indicatorFolderId: FieldRef<"EvidenceFile", 'String'>
-    readonly fileId: FieldRef<"EvidenceFile", 'String'>
+    readonly ObjectURL: FieldRef<"EvidenceFile", 'String'>
     readonly indicatorId: FieldRef<"EvidenceFile", 'Int'>
     readonly createdAt: FieldRef<"EvidenceFile", 'DateTime'>
     readonly updatedAt: FieldRef<"EvidenceFile", 'DateTime'>
@@ -22675,19 +22610,16 @@ export namespace Prisma {
   export type PhaseTwoFolderMinAggregateOutputType = {
     id: string | null
     phaseTwoRequirementsId: string | null
-    folderId: string | null
   }
 
   export type PhaseTwoFolderMaxAggregateOutputType = {
     id: string | null
     phaseTwoRequirementsId: string | null
-    folderId: string | null
   }
 
   export type PhaseTwoFolderCountAggregateOutputType = {
     id: number
     phaseTwoRequirementsId: number
-    folderId: number
     _all: number
   }
 
@@ -22695,19 +22627,16 @@ export namespace Prisma {
   export type PhaseTwoFolderMinAggregateInputType = {
     id?: true
     phaseTwoRequirementsId?: true
-    folderId?: true
   }
 
   export type PhaseTwoFolderMaxAggregateInputType = {
     id?: true
     phaseTwoRequirementsId?: true
-    folderId?: true
   }
 
   export type PhaseTwoFolderCountAggregateInputType = {
     id?: true
     phaseTwoRequirementsId?: true
-    folderId?: true
     _all?: true
   }
 
@@ -22786,7 +22715,6 @@ export namespace Prisma {
   export type PhaseTwoFolderGroupByOutputType = {
     id: string
     phaseTwoRequirementsId: string | null
-    folderId: string
     _count: PhaseTwoFolderCountAggregateOutputType | null
     _min: PhaseTwoFolderMinAggregateOutputType | null
     _max: PhaseTwoFolderMaxAggregateOutputType | null
@@ -22809,7 +22737,6 @@ export namespace Prisma {
   export type PhaseTwoFolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     phaseTwoRequirementsId?: boolean
-    folderId?: boolean
     phaseTwoRequirements?: boolean | PhaseTwoFolder$phaseTwoRequirementsArgs<ExtArgs>
     phaseTwoAreaFolders?: boolean | PhaseTwoFolder$phaseTwoAreaFoldersArgs<ExtArgs>
     _count?: boolean | PhaseTwoFolderCountOutputTypeDefaultArgs<ExtArgs>
@@ -22818,24 +22745,21 @@ export namespace Prisma {
   export type PhaseTwoFolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     phaseTwoRequirementsId?: boolean
-    folderId?: boolean
     phaseTwoRequirements?: boolean | PhaseTwoFolder$phaseTwoRequirementsArgs<ExtArgs>
   }, ExtArgs["result"]["phaseTwoFolder"]>
 
   export type PhaseTwoFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     phaseTwoRequirementsId?: boolean
-    folderId?: boolean
     phaseTwoRequirements?: boolean | PhaseTwoFolder$phaseTwoRequirementsArgs<ExtArgs>
   }, ExtArgs["result"]["phaseTwoFolder"]>
 
   export type PhaseTwoFolderSelectScalar = {
     id?: boolean
     phaseTwoRequirementsId?: boolean
-    folderId?: boolean
   }
 
-  export type PhaseTwoFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseTwoRequirementsId" | "folderId", ExtArgs["result"]["phaseTwoFolder"]>
+  export type PhaseTwoFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseTwoRequirementsId", ExtArgs["result"]["phaseTwoFolder"]>
   export type PhaseTwoFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     phaseTwoRequirements?: boolean | PhaseTwoFolder$phaseTwoRequirementsArgs<ExtArgs>
     phaseTwoAreaFolders?: boolean | PhaseTwoFolder$phaseTwoAreaFoldersArgs<ExtArgs>
@@ -22857,7 +22781,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       phaseTwoRequirementsId: string | null
-      folderId: string
     }, ExtArgs["result"]["phaseTwoFolder"]>
     composites: {}
   }
@@ -23285,7 +23208,6 @@ export namespace Prisma {
   interface PhaseTwoFolderFieldRefs {
     readonly id: FieldRef<"PhaseTwoFolder", 'String'>
     readonly phaseTwoRequirementsId: FieldRef<"PhaseTwoFolder", 'String'>
-    readonly folderId: FieldRef<"PhaseTwoFolder", 'String'>
   }
     
 
@@ -23504,7 +23426,7 @@ export namespace Prisma {
     /**
      * The data needed to create a PhaseTwoFolder.
      */
-    data: XOR<PhaseTwoFolderCreateInput, PhaseTwoFolderUncheckedCreateInput>
+    data?: XOR<PhaseTwoFolderCreateInput, PhaseTwoFolderUncheckedCreateInput>
   }
 
   /**
@@ -23766,21 +23688,18 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderMinAggregateOutputType = {
     id: string | null
     phaseTwoFolderId: string | null
-    folderId: string | null
     areaId: number | null
   }
 
   export type PhaseTwoAreaFolderMaxAggregateOutputType = {
     id: string | null
     phaseTwoFolderId: string | null
-    folderId: string | null
     areaId: number | null
   }
 
   export type PhaseTwoAreaFolderCountAggregateOutputType = {
     id: number
     phaseTwoFolderId: number
-    folderId: number
     areaId: number
     _all: number
   }
@@ -23797,21 +23716,18 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderMinAggregateInputType = {
     id?: true
     phaseTwoFolderId?: true
-    folderId?: true
     areaId?: true
   }
 
   export type PhaseTwoAreaFolderMaxAggregateInputType = {
     id?: true
     phaseTwoFolderId?: true
-    folderId?: true
     areaId?: true
   }
 
   export type PhaseTwoAreaFolderCountAggregateInputType = {
     id?: true
     phaseTwoFolderId?: true
-    folderId?: true
     areaId?: true
     _all?: true
   }
@@ -23905,7 +23821,6 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderGroupByOutputType = {
     id: string
     phaseTwoFolderId: string
-    folderId: string
     areaId: number
     _count: PhaseTwoAreaFolderCountAggregateOutputType | null
     _avg: PhaseTwoAreaFolderAvgAggregateOutputType | null
@@ -23931,7 +23846,6 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     phaseTwoFolderId?: boolean
-    folderId?: boolean
     areaId?: boolean
     phaseTwoFolder?: boolean | PhaseTwoFolderDefaultArgs<ExtArgs>
     area?: boolean | AreaDefaultArgs<ExtArgs>
@@ -23942,7 +23856,6 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     phaseTwoFolderId?: boolean
-    folderId?: boolean
     areaId?: boolean
     phaseTwoFolder?: boolean | PhaseTwoFolderDefaultArgs<ExtArgs>
     area?: boolean | AreaDefaultArgs<ExtArgs>
@@ -23951,7 +23864,6 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     phaseTwoFolderId?: boolean
-    folderId?: boolean
     areaId?: boolean
     phaseTwoFolder?: boolean | PhaseTwoFolderDefaultArgs<ExtArgs>
     area?: boolean | AreaDefaultArgs<ExtArgs>
@@ -23960,11 +23872,10 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderSelectScalar = {
     id?: boolean
     phaseTwoFolderId?: boolean
-    folderId?: boolean
     areaId?: boolean
   }
 
-  export type PhaseTwoAreaFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseTwoFolderId" | "folderId" | "areaId", ExtArgs["result"]["phaseTwoAreaFolder"]>
+  export type PhaseTwoAreaFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseTwoFolderId" | "areaId", ExtArgs["result"]["phaseTwoAreaFolder"]>
   export type PhaseTwoAreaFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     phaseTwoFolder?: boolean | PhaseTwoFolderDefaultArgs<ExtArgs>
     area?: boolean | AreaDefaultArgs<ExtArgs>
@@ -23990,7 +23901,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       phaseTwoFolderId: string
-      folderId: string
       areaId: number
     }, ExtArgs["result"]["phaseTwoAreaFolder"]>
     composites: {}
@@ -24420,7 +24330,6 @@ export namespace Prisma {
   interface PhaseTwoAreaFolderFieldRefs {
     readonly id: FieldRef<"PhaseTwoAreaFolder", 'String'>
     readonly phaseTwoFolderId: FieldRef<"PhaseTwoAreaFolder", 'String'>
-    readonly folderId: FieldRef<"PhaseTwoAreaFolder", 'String'>
     readonly areaId: FieldRef<"PhaseTwoAreaFolder", 'Int'>
   }
     
@@ -24875,7 +24784,7 @@ export namespace Prisma {
     phaseOneAreaFolderId: string | null
     phaseTwoAreaFolderId: string | null
     type: $Enums.AreaFileType | null
-    fileId: string | null
+    objectURL: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -24885,7 +24794,7 @@ export namespace Prisma {
     phaseOneAreaFolderId: string | null
     phaseTwoAreaFolderId: string | null
     type: $Enums.AreaFileType | null
-    fileId: string | null
+    objectURL: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -24895,7 +24804,7 @@ export namespace Prisma {
     phaseOneAreaFolderId: number
     phaseTwoAreaFolderId: number
     type: number
-    fileId: number
+    objectURL: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -24907,7 +24816,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: true
     phaseTwoAreaFolderId?: true
     type?: true
-    fileId?: true
+    objectURL?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -24917,7 +24826,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: true
     phaseTwoAreaFolderId?: true
     type?: true
-    fileId?: true
+    objectURL?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -24927,7 +24836,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: true
     phaseTwoAreaFolderId?: true
     type?: true
-    fileId?: true
+    objectURL?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -25010,7 +24919,7 @@ export namespace Prisma {
     phaseOneAreaFolderId: string | null
     phaseTwoAreaFolderId: string | null
     type: $Enums.AreaFileType
-    fileId: string
+    objectURL: string | null
     createdAt: Date
     updatedAt: Date
     _count: AreaFileCountAggregateOutputType | null
@@ -25037,7 +24946,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: boolean
     phaseTwoAreaFolderId?: boolean
     type?: boolean
-    fileId?: boolean
+    objectURL?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
@@ -25049,7 +24958,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: boolean
     phaseTwoAreaFolderId?: boolean
     type?: boolean
-    fileId?: boolean
+    objectURL?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
@@ -25061,7 +24970,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: boolean
     phaseTwoAreaFolderId?: boolean
     type?: boolean
-    fileId?: boolean
+    objectURL?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
@@ -25073,12 +24982,12 @@ export namespace Prisma {
     phaseOneAreaFolderId?: boolean
     phaseTwoAreaFolderId?: boolean
     type?: boolean
-    fileId?: boolean
+    objectURL?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AreaFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseOneAreaFolderId" | "phaseTwoAreaFolderId" | "type" | "fileId" | "createdAt" | "updatedAt", ExtArgs["result"]["areaFile"]>
+  export type AreaFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseOneAreaFolderId" | "phaseTwoAreaFolderId" | "type" | "objectURL" | "createdAt" | "updatedAt", ExtArgs["result"]["areaFile"]>
   export type AreaFileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
     phaseTwoAreaFolder?: boolean | AreaFile$phaseTwoAreaFolderArgs<ExtArgs>
@@ -25103,7 +25012,7 @@ export namespace Prisma {
       phaseOneAreaFolderId: string | null
       phaseTwoAreaFolderId: string | null
       type: $Enums.AreaFileType
-      fileId: string
+      objectURL: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["areaFile"]>
@@ -25535,7 +25444,7 @@ export namespace Prisma {
     readonly phaseOneAreaFolderId: FieldRef<"AreaFile", 'String'>
     readonly phaseTwoAreaFolderId: FieldRef<"AreaFile", 'String'>
     readonly type: FieldRef<"AreaFile", 'AreaFileType'>
-    readonly fileId: FieldRef<"AreaFile", 'String'>
+    readonly objectURL: FieldRef<"AreaFile", 'String'>
     readonly createdAt: FieldRef<"AreaFile", 'DateTime'>
     readonly updatedAt: FieldRef<"AreaFile", 'DateTime'>
   }
@@ -28158,8 +28067,7 @@ export namespace Prisma {
     code: 'code',
     department: 'department',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    folderId: 'folderId'
+    updatedAt: 'updatedAt'
   };
 
   export type ProgramScalarFieldEnum = (typeof ProgramScalarFieldEnum)[keyof typeof ProgramScalarFieldEnum]
@@ -28274,8 +28182,7 @@ export namespace Prisma {
 
   export const InstrumentFolderScalarFieldEnum: {
     id: 'id',
-    phaseOneRequirementsId: 'phaseOneRequirementsId',
-    folderId: 'folderId'
+    phaseOneRequirementsId: 'phaseOneRequirementsId'
   };
 
   export type InstrumentFolderScalarFieldEnum = (typeof InstrumentFolderScalarFieldEnum)[keyof typeof InstrumentFolderScalarFieldEnum]
@@ -28284,7 +28191,6 @@ export namespace Prisma {
   export const AreaFolderScalarFieldEnum: {
     id: 'id',
     instrumentFolderId: 'instrumentFolderId',
-    folderId: 'folderId',
     areaId: 'areaId',
     complete: 'complete'
   };
@@ -28295,7 +28201,6 @@ export namespace Prisma {
   export const ParameterFolderScalarFieldEnum: {
     id: 'id',
     areaFolderId: 'areaFolderId',
-    folderId: 'folderId',
     parameterId: 'parameterId'
   };
 
@@ -28305,7 +28210,6 @@ export namespace Prisma {
   export const IndicatorFolderScalarFieldEnum: {
     id: 'id',
     parameterFolderId: 'parameterFolderId',
-    folderId: 'folderId',
     category: 'category'
   };
 
@@ -28315,7 +28219,7 @@ export namespace Prisma {
   export const EvidenceFileScalarFieldEnum: {
     id: 'id',
     indicatorFolderId: 'indicatorFolderId',
-    fileId: 'fileId',
+    ObjectURL: 'ObjectURL',
     indicatorId: 'indicatorId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -28335,8 +28239,7 @@ export namespace Prisma {
 
   export const PhaseTwoFolderScalarFieldEnum: {
     id: 'id',
-    phaseTwoRequirementsId: 'phaseTwoRequirementsId',
-    folderId: 'folderId'
+    phaseTwoRequirementsId: 'phaseTwoRequirementsId'
   };
 
   export type PhaseTwoFolderScalarFieldEnum = (typeof PhaseTwoFolderScalarFieldEnum)[keyof typeof PhaseTwoFolderScalarFieldEnum]
@@ -28345,7 +28248,6 @@ export namespace Prisma {
   export const PhaseTwoAreaFolderScalarFieldEnum: {
     id: 'id',
     phaseTwoFolderId: 'phaseTwoFolderId',
-    folderId: 'folderId',
     areaId: 'areaId'
   };
 
@@ -28357,7 +28259,7 @@ export namespace Prisma {
     phaseOneAreaFolderId: 'phaseOneAreaFolderId',
     phaseTwoAreaFolderId: 'phaseTwoAreaFolderId',
     type: 'type',
-    fileId: 'fileId',
+    objectURL: 'objectURL',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -28686,7 +28588,6 @@ export namespace Prisma {
     department?: StringFilter<"Program"> | string
     createdAt?: DateTimeFilter<"Program"> | Date | string
     updatedAt?: DateTimeFilter<"Program"> | Date | string
-    folderId?: StringFilter<"Program"> | string
     programPersonnel?: ProgramPersonnelListRelationFilter
     accreditation?: XOR<AccreditationNullableScalarRelationFilter, AccreditationWhereInput> | null
   }
@@ -28698,7 +28599,6 @@ export namespace Prisma {
     department?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    folderId?: SortOrder
     programPersonnel?: ProgramPersonnelOrderByRelationAggregateInput
     accreditation?: AccreditationOrderByWithRelationInput
   }
@@ -28714,7 +28614,6 @@ export namespace Prisma {
     department?: StringFilter<"Program"> | string
     createdAt?: DateTimeFilter<"Program"> | Date | string
     updatedAt?: DateTimeFilter<"Program"> | Date | string
-    folderId?: StringFilter<"Program"> | string
     programPersonnel?: ProgramPersonnelListRelationFilter
     accreditation?: XOR<AccreditationNullableScalarRelationFilter, AccreditationWhereInput> | null
   }, "id" | "name_code">
@@ -28726,7 +28625,6 @@ export namespace Prisma {
     department?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    folderId?: SortOrder
     _count?: ProgramCountOrderByAggregateInput
     _max?: ProgramMaxOrderByAggregateInput
     _min?: ProgramMinOrderByAggregateInput
@@ -28742,7 +28640,6 @@ export namespace Prisma {
     department?: StringWithAggregatesFilter<"Program"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Program"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Program"> | Date | string
-    folderId?: StringWithAggregatesFilter<"Program"> | string
   }
 
   export type ProgramPersonnelWhereInput = {
@@ -29353,7 +29250,6 @@ export namespace Prisma {
     NOT?: InstrumentFolderWhereInput | InstrumentFolderWhereInput[]
     id?: StringFilter<"InstrumentFolder"> | string
     phaseOneRequirementsId?: StringNullableFilter<"InstrumentFolder"> | string | null
-    folderId?: StringFilter<"InstrumentFolder"> | string
     phaseOneRequirements?: XOR<PhaseOneRequirementsNullableScalarRelationFilter, PhaseOneRequirementsWhereInput> | null
     areaFolders?: AreaFolderListRelationFilter
   }
@@ -29361,7 +29257,6 @@ export namespace Prisma {
   export type InstrumentFolderOrderByWithRelationInput = {
     id?: SortOrder
     phaseOneRequirementsId?: SortOrderInput | SortOrder
-    folderId?: SortOrder
     phaseOneRequirements?: PhaseOneRequirementsOrderByWithRelationInput
     areaFolders?: AreaFolderOrderByRelationAggregateInput
   }
@@ -29372,7 +29267,6 @@ export namespace Prisma {
     AND?: InstrumentFolderWhereInput | InstrumentFolderWhereInput[]
     OR?: InstrumentFolderWhereInput[]
     NOT?: InstrumentFolderWhereInput | InstrumentFolderWhereInput[]
-    folderId?: StringFilter<"InstrumentFolder"> | string
     phaseOneRequirements?: XOR<PhaseOneRequirementsNullableScalarRelationFilter, PhaseOneRequirementsWhereInput> | null
     areaFolders?: AreaFolderListRelationFilter
   }, "id" | "phaseOneRequirementsId">
@@ -29380,7 +29274,6 @@ export namespace Prisma {
   export type InstrumentFolderOrderByWithAggregationInput = {
     id?: SortOrder
     phaseOneRequirementsId?: SortOrderInput | SortOrder
-    folderId?: SortOrder
     _count?: InstrumentFolderCountOrderByAggregateInput
     _max?: InstrumentFolderMaxOrderByAggregateInput
     _min?: InstrumentFolderMinOrderByAggregateInput
@@ -29392,7 +29285,6 @@ export namespace Prisma {
     NOT?: InstrumentFolderScalarWhereWithAggregatesInput | InstrumentFolderScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"InstrumentFolder"> | string
     phaseOneRequirementsId?: StringNullableWithAggregatesFilter<"InstrumentFolder"> | string | null
-    folderId?: StringWithAggregatesFilter<"InstrumentFolder"> | string
   }
 
   export type AreaFolderWhereInput = {
@@ -29401,7 +29293,6 @@ export namespace Prisma {
     NOT?: AreaFolderWhereInput | AreaFolderWhereInput[]
     id?: StringFilter<"AreaFolder"> | string
     instrumentFolderId?: StringFilter<"AreaFolder"> | string
-    folderId?: StringFilter<"AreaFolder"> | string
     areaId?: IntFilter<"AreaFolder"> | number
     complete?: BoolFilter<"AreaFolder"> | boolean
     instrumentFolder?: XOR<InstrumentFolderScalarRelationFilter, InstrumentFolderWhereInput>
@@ -29414,7 +29305,6 @@ export namespace Prisma {
   export type AreaFolderOrderByWithRelationInput = {
     id?: SortOrder
     instrumentFolderId?: SortOrder
-    folderId?: SortOrder
     areaId?: SortOrder
     complete?: SortOrder
     instrumentFolder?: InstrumentFolderOrderByWithRelationInput
@@ -29430,7 +29320,6 @@ export namespace Prisma {
     OR?: AreaFolderWhereInput[]
     NOT?: AreaFolderWhereInput | AreaFolderWhereInput[]
     instrumentFolderId?: StringFilter<"AreaFolder"> | string
-    folderId?: StringFilter<"AreaFolder"> | string
     areaId?: IntFilter<"AreaFolder"> | number
     complete?: BoolFilter<"AreaFolder"> | boolean
     instrumentFolder?: XOR<InstrumentFolderScalarRelationFilter, InstrumentFolderWhereInput>
@@ -29443,7 +29332,6 @@ export namespace Prisma {
   export type AreaFolderOrderByWithAggregationInput = {
     id?: SortOrder
     instrumentFolderId?: SortOrder
-    folderId?: SortOrder
     areaId?: SortOrder
     complete?: SortOrder
     _count?: AreaFolderCountOrderByAggregateInput
@@ -29459,7 +29347,6 @@ export namespace Prisma {
     NOT?: AreaFolderScalarWhereWithAggregatesInput | AreaFolderScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"AreaFolder"> | string
     instrumentFolderId?: StringWithAggregatesFilter<"AreaFolder"> | string
-    folderId?: StringWithAggregatesFilter<"AreaFolder"> | string
     areaId?: IntWithAggregatesFilter<"AreaFolder"> | number
     complete?: BoolWithAggregatesFilter<"AreaFolder"> | boolean
   }
@@ -29470,7 +29357,6 @@ export namespace Prisma {
     NOT?: ParameterFolderWhereInput | ParameterFolderWhereInput[]
     id?: StringFilter<"ParameterFolder"> | string
     areaFolderId?: StringFilter<"ParameterFolder"> | string
-    folderId?: StringFilter<"ParameterFolder"> | string
     parameterId?: IntFilter<"ParameterFolder"> | number
     areaFolder?: XOR<AreaFolderScalarRelationFilter, AreaFolderWhereInput>
     indicatorFolders?: IndicatorFolderListRelationFilter
@@ -29481,7 +29367,6 @@ export namespace Prisma {
   export type ParameterFolderOrderByWithRelationInput = {
     id?: SortOrder
     areaFolderId?: SortOrder
-    folderId?: SortOrder
     parameterId?: SortOrder
     areaFolder?: AreaFolderOrderByWithRelationInput
     indicatorFolders?: IndicatorFolderOrderByRelationAggregateInput
@@ -29495,7 +29380,6 @@ export namespace Prisma {
     OR?: ParameterFolderWhereInput[]
     NOT?: ParameterFolderWhereInput | ParameterFolderWhereInput[]
     areaFolderId?: StringFilter<"ParameterFolder"> | string
-    folderId?: StringFilter<"ParameterFolder"> | string
     parameterId?: IntFilter<"ParameterFolder"> | number
     areaFolder?: XOR<AreaFolderScalarRelationFilter, AreaFolderWhereInput>
     indicatorFolders?: IndicatorFolderListRelationFilter
@@ -29506,7 +29390,6 @@ export namespace Prisma {
   export type ParameterFolderOrderByWithAggregationInput = {
     id?: SortOrder
     areaFolderId?: SortOrder
-    folderId?: SortOrder
     parameterId?: SortOrder
     _count?: ParameterFolderCountOrderByAggregateInput
     _avg?: ParameterFolderAvgOrderByAggregateInput
@@ -29521,7 +29404,6 @@ export namespace Prisma {
     NOT?: ParameterFolderScalarWhereWithAggregatesInput | ParameterFolderScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ParameterFolder"> | string
     areaFolderId?: StringWithAggregatesFilter<"ParameterFolder"> | string
-    folderId?: StringWithAggregatesFilter<"ParameterFolder"> | string
     parameterId?: IntWithAggregatesFilter<"ParameterFolder"> | number
   }
 
@@ -29531,7 +29413,6 @@ export namespace Prisma {
     NOT?: IndicatorFolderWhereInput | IndicatorFolderWhereInput[]
     id?: StringFilter<"IndicatorFolder"> | string
     parameterFolderId?: StringFilter<"IndicatorFolder"> | string
-    folderId?: StringFilter<"IndicatorFolder"> | string
     category?: EnumCategoryFilter<"IndicatorFolder"> | $Enums.Category
     parameterFolder?: XOR<ParameterFolderScalarRelationFilter, ParameterFolderWhereInput>
     evidenceFiles?: EvidenceFileListRelationFilter
@@ -29540,7 +29421,6 @@ export namespace Prisma {
   export type IndicatorFolderOrderByWithRelationInput = {
     id?: SortOrder
     parameterFolderId?: SortOrder
-    folderId?: SortOrder
     category?: SortOrder
     parameterFolder?: ParameterFolderOrderByWithRelationInput
     evidenceFiles?: EvidenceFileOrderByRelationAggregateInput
@@ -29552,7 +29432,6 @@ export namespace Prisma {
     OR?: IndicatorFolderWhereInput[]
     NOT?: IndicatorFolderWhereInput | IndicatorFolderWhereInput[]
     parameterFolderId?: StringFilter<"IndicatorFolder"> | string
-    folderId?: StringFilter<"IndicatorFolder"> | string
     category?: EnumCategoryFilter<"IndicatorFolder"> | $Enums.Category
     parameterFolder?: XOR<ParameterFolderScalarRelationFilter, ParameterFolderWhereInput>
     evidenceFiles?: EvidenceFileListRelationFilter
@@ -29561,7 +29440,6 @@ export namespace Prisma {
   export type IndicatorFolderOrderByWithAggregationInput = {
     id?: SortOrder
     parameterFolderId?: SortOrder
-    folderId?: SortOrder
     category?: SortOrder
     _count?: IndicatorFolderCountOrderByAggregateInput
     _max?: IndicatorFolderMaxOrderByAggregateInput
@@ -29574,7 +29452,6 @@ export namespace Prisma {
     NOT?: IndicatorFolderScalarWhereWithAggregatesInput | IndicatorFolderScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"IndicatorFolder"> | string
     parameterFolderId?: StringWithAggregatesFilter<"IndicatorFolder"> | string
-    folderId?: StringWithAggregatesFilter<"IndicatorFolder"> | string
     category?: EnumCategoryWithAggregatesFilter<"IndicatorFolder"> | $Enums.Category
   }
 
@@ -29584,7 +29461,7 @@ export namespace Prisma {
     NOT?: EvidenceFileWhereInput | EvidenceFileWhereInput[]
     id?: StringFilter<"EvidenceFile"> | string
     indicatorFolderId?: StringFilter<"EvidenceFile"> | string
-    fileId?: StringNullableFilter<"EvidenceFile"> | string | null
+    ObjectURL?: StringNullableFilter<"EvidenceFile"> | string | null
     indicatorId?: IntFilter<"EvidenceFile"> | number
     createdAt?: DateTimeFilter<"EvidenceFile"> | Date | string
     updatedAt?: DateTimeFilter<"EvidenceFile"> | Date | string
@@ -29595,7 +29472,7 @@ export namespace Prisma {
   export type EvidenceFileOrderByWithRelationInput = {
     id?: SortOrder
     indicatorFolderId?: SortOrder
-    fileId?: SortOrderInput | SortOrder
+    ObjectURL?: SortOrderInput | SortOrder
     indicatorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -29609,7 +29486,7 @@ export namespace Prisma {
     OR?: EvidenceFileWhereInput[]
     NOT?: EvidenceFileWhereInput | EvidenceFileWhereInput[]
     indicatorFolderId?: StringFilter<"EvidenceFile"> | string
-    fileId?: StringNullableFilter<"EvidenceFile"> | string | null
+    ObjectURL?: StringNullableFilter<"EvidenceFile"> | string | null
     indicatorId?: IntFilter<"EvidenceFile"> | number
     createdAt?: DateTimeFilter<"EvidenceFile"> | Date | string
     updatedAt?: DateTimeFilter<"EvidenceFile"> | Date | string
@@ -29620,7 +29497,7 @@ export namespace Prisma {
   export type EvidenceFileOrderByWithAggregationInput = {
     id?: SortOrder
     indicatorFolderId?: SortOrder
-    fileId?: SortOrderInput | SortOrder
+    ObjectURL?: SortOrderInput | SortOrder
     indicatorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -29637,7 +29514,7 @@ export namespace Prisma {
     NOT?: EvidenceFileScalarWhereWithAggregatesInput | EvidenceFileScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"EvidenceFile"> | string
     indicatorFolderId?: StringWithAggregatesFilter<"EvidenceFile"> | string
-    fileId?: StringNullableWithAggregatesFilter<"EvidenceFile"> | string | null
+    ObjectURL?: StringNullableWithAggregatesFilter<"EvidenceFile"> | string | null
     indicatorId?: IntWithAggregatesFilter<"EvidenceFile"> | number
     createdAt?: DateTimeWithAggregatesFilter<"EvidenceFile"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"EvidenceFile"> | Date | string
@@ -29700,7 +29577,6 @@ export namespace Prisma {
     NOT?: PhaseTwoFolderWhereInput | PhaseTwoFolderWhereInput[]
     id?: StringFilter<"PhaseTwoFolder"> | string
     phaseTwoRequirementsId?: StringNullableFilter<"PhaseTwoFolder"> | string | null
-    folderId?: StringFilter<"PhaseTwoFolder"> | string
     phaseTwoRequirements?: XOR<PhaseTwoRequirementsNullableScalarRelationFilter, PhaseTwoRequirementsWhereInput> | null
     phaseTwoAreaFolders?: PhaseTwoAreaFolderListRelationFilter
   }
@@ -29708,7 +29584,6 @@ export namespace Prisma {
   export type PhaseTwoFolderOrderByWithRelationInput = {
     id?: SortOrder
     phaseTwoRequirementsId?: SortOrderInput | SortOrder
-    folderId?: SortOrder
     phaseTwoRequirements?: PhaseTwoRequirementsOrderByWithRelationInput
     phaseTwoAreaFolders?: PhaseTwoAreaFolderOrderByRelationAggregateInput
   }
@@ -29719,7 +29594,6 @@ export namespace Prisma {
     AND?: PhaseTwoFolderWhereInput | PhaseTwoFolderWhereInput[]
     OR?: PhaseTwoFolderWhereInput[]
     NOT?: PhaseTwoFolderWhereInput | PhaseTwoFolderWhereInput[]
-    folderId?: StringFilter<"PhaseTwoFolder"> | string
     phaseTwoRequirements?: XOR<PhaseTwoRequirementsNullableScalarRelationFilter, PhaseTwoRequirementsWhereInput> | null
     phaseTwoAreaFolders?: PhaseTwoAreaFolderListRelationFilter
   }, "id" | "phaseTwoRequirementsId">
@@ -29727,7 +29601,6 @@ export namespace Prisma {
   export type PhaseTwoFolderOrderByWithAggregationInput = {
     id?: SortOrder
     phaseTwoRequirementsId?: SortOrderInput | SortOrder
-    folderId?: SortOrder
     _count?: PhaseTwoFolderCountOrderByAggregateInput
     _max?: PhaseTwoFolderMaxOrderByAggregateInput
     _min?: PhaseTwoFolderMinOrderByAggregateInput
@@ -29739,7 +29612,6 @@ export namespace Prisma {
     NOT?: PhaseTwoFolderScalarWhereWithAggregatesInput | PhaseTwoFolderScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"PhaseTwoFolder"> | string
     phaseTwoRequirementsId?: StringNullableWithAggregatesFilter<"PhaseTwoFolder"> | string | null
-    folderId?: StringWithAggregatesFilter<"PhaseTwoFolder"> | string
   }
 
   export type PhaseTwoAreaFolderWhereInput = {
@@ -29748,7 +29620,6 @@ export namespace Prisma {
     NOT?: PhaseTwoAreaFolderWhereInput | PhaseTwoAreaFolderWhereInput[]
     id?: StringFilter<"PhaseTwoAreaFolder"> | string
     phaseTwoFolderId?: StringFilter<"PhaseTwoAreaFolder"> | string
-    folderId?: StringFilter<"PhaseTwoAreaFolder"> | string
     areaId?: IntFilter<"PhaseTwoAreaFolder"> | number
     phaseTwoFolder?: XOR<PhaseTwoFolderScalarRelationFilter, PhaseTwoFolderWhereInput>
     area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
@@ -29758,7 +29629,6 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderOrderByWithRelationInput = {
     id?: SortOrder
     phaseTwoFolderId?: SortOrder
-    folderId?: SortOrder
     areaId?: SortOrder
     phaseTwoFolder?: PhaseTwoFolderOrderByWithRelationInput
     area?: AreaOrderByWithRelationInput
@@ -29771,7 +29641,6 @@ export namespace Prisma {
     OR?: PhaseTwoAreaFolderWhereInput[]
     NOT?: PhaseTwoAreaFolderWhereInput | PhaseTwoAreaFolderWhereInput[]
     phaseTwoFolderId?: StringFilter<"PhaseTwoAreaFolder"> | string
-    folderId?: StringFilter<"PhaseTwoAreaFolder"> | string
     areaId?: IntFilter<"PhaseTwoAreaFolder"> | number
     phaseTwoFolder?: XOR<PhaseTwoFolderScalarRelationFilter, PhaseTwoFolderWhereInput>
     area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
@@ -29781,7 +29650,6 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderOrderByWithAggregationInput = {
     id?: SortOrder
     phaseTwoFolderId?: SortOrder
-    folderId?: SortOrder
     areaId?: SortOrder
     _count?: PhaseTwoAreaFolderCountOrderByAggregateInput
     _avg?: PhaseTwoAreaFolderAvgOrderByAggregateInput
@@ -29796,7 +29664,6 @@ export namespace Prisma {
     NOT?: PhaseTwoAreaFolderScalarWhereWithAggregatesInput | PhaseTwoAreaFolderScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"PhaseTwoAreaFolder"> | string
     phaseTwoFolderId?: StringWithAggregatesFilter<"PhaseTwoAreaFolder"> | string
-    folderId?: StringWithAggregatesFilter<"PhaseTwoAreaFolder"> | string
     areaId?: IntWithAggregatesFilter<"PhaseTwoAreaFolder"> | number
   }
 
@@ -29808,7 +29675,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     phaseTwoAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     type?: EnumAreaFileTypeFilter<"AreaFile"> | $Enums.AreaFileType
-    fileId?: StringFilter<"AreaFile"> | string
+    objectURL?: StringNullableFilter<"AreaFile"> | string | null
     createdAt?: DateTimeFilter<"AreaFile"> | Date | string
     updatedAt?: DateTimeFilter<"AreaFile"> | Date | string
     phaseOneAreaFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
@@ -29820,7 +29687,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: SortOrderInput | SortOrder
     phaseTwoAreaFolderId?: SortOrderInput | SortOrder
     type?: SortOrder
-    fileId?: SortOrder
+    objectURL?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     phaseOneAreaFolder?: AreaFolderOrderByWithRelationInput
@@ -29835,7 +29702,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     phaseTwoAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     type?: EnumAreaFileTypeFilter<"AreaFile"> | $Enums.AreaFileType
-    fileId?: StringFilter<"AreaFile"> | string
+    objectURL?: StringNullableFilter<"AreaFile"> | string | null
     createdAt?: DateTimeFilter<"AreaFile"> | Date | string
     updatedAt?: DateTimeFilter<"AreaFile"> | Date | string
     phaseOneAreaFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
@@ -29847,7 +29714,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: SortOrderInput | SortOrder
     phaseTwoAreaFolderId?: SortOrderInput | SortOrder
     type?: SortOrder
-    fileId?: SortOrder
+    objectURL?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: AreaFileCountOrderByAggregateInput
@@ -29863,7 +29730,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: StringNullableWithAggregatesFilter<"AreaFile"> | string | null
     phaseTwoAreaFolderId?: StringNullableWithAggregatesFilter<"AreaFile"> | string | null
     type?: EnumAreaFileTypeWithAggregatesFilter<"AreaFile"> | $Enums.AreaFileType
-    fileId?: StringWithAggregatesFilter<"AreaFile"> | string
+    objectURL?: StringNullableWithAggregatesFilter<"AreaFile"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"AreaFile"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"AreaFile"> | Date | string
   }
@@ -30084,7 +29951,6 @@ export namespace Prisma {
     department: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    folderId: string
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutProgramInput
     accreditation?: AccreditationCreateNestedOneWithoutProgramInput
   }
@@ -30096,7 +29962,6 @@ export namespace Prisma {
     department: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    folderId: string
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutProgramInput
     accreditation?: AccreditationUncheckedCreateNestedOneWithoutProgramInput
   }
@@ -30108,7 +29973,6 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    folderId?: StringFieldUpdateOperationsInput | string
     programPersonnel?: ProgramPersonnelUpdateManyWithoutProgramNestedInput
     accreditation?: AccreditationUpdateOneWithoutProgramNestedInput
   }
@@ -30120,7 +29984,6 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    folderId?: StringFieldUpdateOperationsInput | string
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutProgramNestedInput
     accreditation?: AccreditationUncheckedUpdateOneWithoutProgramNestedInput
   }
@@ -30132,7 +29995,6 @@ export namespace Prisma {
     department: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    folderId: string
   }
 
   export type ProgramUpdateManyMutationInput = {
@@ -30142,7 +30004,6 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProgramUncheckedUpdateManyInput = {
@@ -30152,7 +30013,6 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProgramPersonnelCreateInput = {
@@ -30765,7 +30625,6 @@ export namespace Prisma {
 
   export type InstrumentFolderCreateInput = {
     id?: string
-    folderId: string
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutInstrumentFolderInput
     areaFolders?: AreaFolderCreateNestedManyWithoutInstrumentFolderInput
   }
@@ -30773,13 +30632,11 @@ export namespace Prisma {
   export type InstrumentFolderUncheckedCreateInput = {
     id?: string
     phaseOneRequirementsId?: string | null
-    folderId: string
     areaFolders?: AreaFolderUncheckedCreateNestedManyWithoutInstrumentFolderInput
   }
 
   export type InstrumentFolderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutInstrumentFolderNestedInput
     areaFolders?: AreaFolderUpdateManyWithoutInstrumentFolderNestedInput
   }
@@ -30787,30 +30644,25 @@ export namespace Prisma {
   export type InstrumentFolderUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseOneRequirementsId?: NullableStringFieldUpdateOperationsInput | string | null
-    folderId?: StringFieldUpdateOperationsInput | string
     areaFolders?: AreaFolderUncheckedUpdateManyWithoutInstrumentFolderNestedInput
   }
 
   export type InstrumentFolderCreateManyInput = {
     id?: string
     phaseOneRequirementsId?: string | null
-    folderId: string
   }
 
   export type InstrumentFolderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type InstrumentFolderUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseOneRequirementsId?: NullableStringFieldUpdateOperationsInput | string | null
-    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AreaFolderCreateInput = {
     id?: string
-    folderId: string
     complete?: boolean
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
@@ -30822,7 +30674,6 @@ export namespace Prisma {
   export type AreaFolderUncheckedCreateInput = {
     id?: string
     instrumentFolderId: string
-    folderId: string
     areaId: number
     complete?: boolean
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
@@ -30832,7 +30683,6 @@ export namespace Prisma {
 
   export type AreaFolderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     complete?: BoolFieldUpdateOperationsInput | boolean
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
@@ -30844,7 +30694,6 @@ export namespace Prisma {
   export type AreaFolderUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
     complete?: BoolFieldUpdateOperationsInput | boolean
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
@@ -30855,28 +30704,24 @@ export namespace Prisma {
   export type AreaFolderCreateManyInput = {
     id?: string
     instrumentFolderId: string
-    folderId: string
     areaId: number
     complete?: boolean
   }
 
   export type AreaFolderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     complete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AreaFolderUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
     complete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ParameterFolderCreateInput = {
     id?: string
-    folderId: string
     areaFolder: AreaFolderCreateNestedOneWithoutParameterFoldersInput
     indicatorFolders?: IndicatorFolderCreateNestedManyWithoutParameterFolderInput
     parameter: ParameterCreateNestedOneWithoutParameterFoldersInput
@@ -30886,7 +30731,6 @@ export namespace Prisma {
   export type ParameterFolderUncheckedCreateInput = {
     id?: string
     areaFolderId: string
-    folderId: string
     parameterId: number
     indicatorFolders?: IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput
     taskForceMember?: TaskForceMemberUncheckedCreateNestedOneWithoutParameterFolderInput
@@ -30894,7 +30738,6 @@ export namespace Prisma {
 
   export type ParameterFolderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaFolder?: AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput
     indicatorFolders?: IndicatorFolderUpdateManyWithoutParameterFolderNestedInput
     parameter?: ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput
@@ -30904,7 +30747,6 @@ export namespace Prisma {
   export type ParameterFolderUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
     indicatorFolders?: IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput
     taskForceMember?: TaskForceMemberUncheckedUpdateOneWithoutParameterFolderNestedInput
@@ -30913,25 +30755,21 @@ export namespace Prisma {
   export type ParameterFolderCreateManyInput = {
     id?: string
     areaFolderId: string
-    folderId: string
     parameterId: number
   }
 
   export type ParameterFolderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ParameterFolderUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IndicatorFolderCreateInput = {
     id?: string
-    folderId: string
     category: $Enums.Category
     parameterFolder: ParameterFolderCreateNestedOneWithoutIndicatorFoldersInput
     evidenceFiles?: EvidenceFileCreateNestedManyWithoutIndicatorFolderInput
@@ -30940,14 +30778,12 @@ export namespace Prisma {
   export type IndicatorFolderUncheckedCreateInput = {
     id?: string
     parameterFolderId: string
-    folderId: string
     category: $Enums.Category
     evidenceFiles?: EvidenceFileUncheckedCreateNestedManyWithoutIndicatorFolderInput
   }
 
   export type IndicatorFolderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     parameterFolder?: ParameterFolderUpdateOneRequiredWithoutIndicatorFoldersNestedInput
     evidenceFiles?: EvidenceFileUpdateManyWithoutIndicatorFolderNestedInput
@@ -30956,7 +30792,6 @@ export namespace Prisma {
   export type IndicatorFolderUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     parameterFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     evidenceFiles?: EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderNestedInput
   }
@@ -30964,26 +30799,23 @@ export namespace Prisma {
   export type IndicatorFolderCreateManyInput = {
     id?: string
     parameterFolderId: string
-    folderId: string
     category: $Enums.Category
   }
 
   export type IndicatorFolderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   }
 
   export type IndicatorFolderUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     parameterFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   }
 
   export type EvidenceFileCreateInput = {
     id?: string
-    fileId?: string | null
+    ObjectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
@@ -30993,7 +30825,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedCreateInput = {
     id?: string
     indicatorFolderId: string
-    fileId?: string | null
+    ObjectURL?: string | null
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31001,7 +30833,7 @@ export namespace Prisma {
 
   export type EvidenceFileUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fileId?: NullableStringFieldUpdateOperationsInput | string | null
+    ObjectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
@@ -31011,7 +30843,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     indicatorFolderId?: StringFieldUpdateOperationsInput | string
-    fileId?: NullableStringFieldUpdateOperationsInput | string | null
+    ObjectURL?: NullableStringFieldUpdateOperationsInput | string | null
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31020,7 +30852,7 @@ export namespace Prisma {
   export type EvidenceFileCreateManyInput = {
     id?: string
     indicatorFolderId: string
-    fileId?: string | null
+    ObjectURL?: string | null
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31028,7 +30860,7 @@ export namespace Prisma {
 
   export type EvidenceFileUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fileId?: NullableStringFieldUpdateOperationsInput | string | null
+    ObjectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -31036,7 +30868,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     indicatorFolderId?: StringFieldUpdateOperationsInput | string
-    fileId?: NullableStringFieldUpdateOperationsInput | string | null
+    ObjectURL?: NullableStringFieldUpdateOperationsInput | string | null
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31088,7 +30920,6 @@ export namespace Prisma {
 
   export type PhaseTwoFolderCreateInput = {
     id?: string
-    folderId: string
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutPhaseTwoFolderInput
     phaseTwoAreaFolders?: PhaseTwoAreaFolderCreateNestedManyWithoutPhaseTwoFolderInput
   }
@@ -31096,13 +30927,11 @@ export namespace Prisma {
   export type PhaseTwoFolderUncheckedCreateInput = {
     id?: string
     phaseTwoRequirementsId?: string | null
-    folderId: string
     phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedCreateNestedManyWithoutPhaseTwoFolderInput
   }
 
   export type PhaseTwoFolderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutPhaseTwoFolderNestedInput
     phaseTwoAreaFolders?: PhaseTwoAreaFolderUpdateManyWithoutPhaseTwoFolderNestedInput
   }
@@ -31110,30 +30939,25 @@ export namespace Prisma {
   export type PhaseTwoFolderUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoRequirementsId?: NullableStringFieldUpdateOperationsInput | string | null
-    folderId?: StringFieldUpdateOperationsInput | string
     phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedUpdateManyWithoutPhaseTwoFolderNestedInput
   }
 
   export type PhaseTwoFolderCreateManyInput = {
     id?: string
     phaseTwoRequirementsId?: string | null
-    folderId: string
   }
 
   export type PhaseTwoFolderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PhaseTwoFolderUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoRequirementsId?: NullableStringFieldUpdateOperationsInput | string | null
-    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PhaseTwoAreaFolderCreateInput = {
     id?: string
-    folderId: string
     phaseTwoFolder: PhaseTwoFolderCreateNestedOneWithoutPhaseTwoAreaFoldersInput
     area: AreaCreateNestedOneWithoutPhaseTwoAreaFoldersInput
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseTwoAreaFolderInput
@@ -31142,14 +30966,12 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderUncheckedCreateInput = {
     id?: string
     phaseTwoFolderId: string
-    folderId: string
     areaId: number
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseTwoAreaFolderInput
   }
 
   export type PhaseTwoAreaFolderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     phaseTwoFolder?: PhaseTwoFolderUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
     area?: AreaUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
     areaFiles?: AreaFileUpdateManyWithoutPhaseTwoAreaFolderNestedInput
@@ -31158,7 +30980,6 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderNestedInput
   }
@@ -31166,26 +30987,23 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderCreateManyInput = {
     id?: string
     phaseTwoFolderId: string
-    folderId: string
     areaId: number
   }
 
   export type PhaseTwoAreaFolderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PhaseTwoAreaFolderUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
   }
 
   export type AreaFileCreateInput = {
     id?: string
     type: $Enums.AreaFileType
-    fileId: string
+    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     phaseOneAreaFolder?: AreaFolderCreateNestedOneWithoutAreaFilesInput
@@ -31197,7 +31015,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: string | null
     phaseTwoAreaFolderId?: string | null
     type: $Enums.AreaFileType
-    fileId: string
+    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -31205,7 +31023,7 @@ export namespace Prisma {
   export type AreaFileUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    fileId?: StringFieldUpdateOperationsInput | string
+    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneAreaFolder?: AreaFolderUpdateOneWithoutAreaFilesNestedInput
@@ -31217,7 +31035,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    fileId?: StringFieldUpdateOperationsInput | string
+    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -31227,7 +31045,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: string | null
     phaseTwoAreaFolderId?: string | null
     type: $Enums.AreaFileType
-    fileId: string
+    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -31235,7 +31053,7 @@ export namespace Prisma {
   export type AreaFileUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    fileId?: StringFieldUpdateOperationsInput | string
+    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -31245,7 +31063,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    fileId?: StringFieldUpdateOperationsInput | string
+    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -31522,7 +31340,6 @@ export namespace Prisma {
     department?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    folderId?: SortOrder
   }
 
   export type ProgramMaxOrderByAggregateInput = {
@@ -31532,7 +31349,6 @@ export namespace Prisma {
     department?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    folderId?: SortOrder
   }
 
   export type ProgramMinOrderByAggregateInput = {
@@ -31542,7 +31358,6 @@ export namespace Prisma {
     department?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    folderId?: SortOrder
   }
 
   export type UserScalarRelationFilter = {
@@ -32196,19 +32011,16 @@ export namespace Prisma {
   export type InstrumentFolderCountOrderByAggregateInput = {
     id?: SortOrder
     phaseOneRequirementsId?: SortOrder
-    folderId?: SortOrder
   }
 
   export type InstrumentFolderMaxOrderByAggregateInput = {
     id?: SortOrder
     phaseOneRequirementsId?: SortOrder
-    folderId?: SortOrder
   }
 
   export type InstrumentFolderMinOrderByAggregateInput = {
     id?: SortOrder
     phaseOneRequirementsId?: SortOrder
-    folderId?: SortOrder
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -32239,7 +32051,6 @@ export namespace Prisma {
   export type AreaFolderCountOrderByAggregateInput = {
     id?: SortOrder
     instrumentFolderId?: SortOrder
-    folderId?: SortOrder
     areaId?: SortOrder
     complete?: SortOrder
   }
@@ -32251,7 +32062,6 @@ export namespace Prisma {
   export type AreaFolderMaxOrderByAggregateInput = {
     id?: SortOrder
     instrumentFolderId?: SortOrder
-    folderId?: SortOrder
     areaId?: SortOrder
     complete?: SortOrder
   }
@@ -32259,7 +32069,6 @@ export namespace Prisma {
   export type AreaFolderMinOrderByAggregateInput = {
     id?: SortOrder
     instrumentFolderId?: SortOrder
-    folderId?: SortOrder
     areaId?: SortOrder
     complete?: SortOrder
   }
@@ -32299,7 +32108,6 @@ export namespace Prisma {
   export type ParameterFolderCountOrderByAggregateInput = {
     id?: SortOrder
     areaFolderId?: SortOrder
-    folderId?: SortOrder
     parameterId?: SortOrder
   }
 
@@ -32310,14 +32118,12 @@ export namespace Prisma {
   export type ParameterFolderMaxOrderByAggregateInput = {
     id?: SortOrder
     areaFolderId?: SortOrder
-    folderId?: SortOrder
     parameterId?: SortOrder
   }
 
   export type ParameterFolderMinOrderByAggregateInput = {
     id?: SortOrder
     areaFolderId?: SortOrder
-    folderId?: SortOrder
     parameterId?: SortOrder
   }
 
@@ -32333,21 +32139,18 @@ export namespace Prisma {
   export type IndicatorFolderCountOrderByAggregateInput = {
     id?: SortOrder
     parameterFolderId?: SortOrder
-    folderId?: SortOrder
     category?: SortOrder
   }
 
   export type IndicatorFolderMaxOrderByAggregateInput = {
     id?: SortOrder
     parameterFolderId?: SortOrder
-    folderId?: SortOrder
     category?: SortOrder
   }
 
   export type IndicatorFolderMinOrderByAggregateInput = {
     id?: SortOrder
     parameterFolderId?: SortOrder
-    folderId?: SortOrder
     category?: SortOrder
   }
 
@@ -32364,7 +32167,7 @@ export namespace Prisma {
   export type EvidenceFileCountOrderByAggregateInput = {
     id?: SortOrder
     indicatorFolderId?: SortOrder
-    fileId?: SortOrder
+    ObjectURL?: SortOrder
     indicatorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -32377,7 +32180,7 @@ export namespace Prisma {
   export type EvidenceFileMaxOrderByAggregateInput = {
     id?: SortOrder
     indicatorFolderId?: SortOrder
-    fileId?: SortOrder
+    ObjectURL?: SortOrder
     indicatorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -32386,7 +32189,7 @@ export namespace Prisma {
   export type EvidenceFileMinOrderByAggregateInput = {
     id?: SortOrder
     indicatorFolderId?: SortOrder
-    fileId?: SortOrder
+    ObjectURL?: SortOrder
     indicatorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -32422,19 +32225,16 @@ export namespace Prisma {
   export type PhaseTwoFolderCountOrderByAggregateInput = {
     id?: SortOrder
     phaseTwoRequirementsId?: SortOrder
-    folderId?: SortOrder
   }
 
   export type PhaseTwoFolderMaxOrderByAggregateInput = {
     id?: SortOrder
     phaseTwoRequirementsId?: SortOrder
-    folderId?: SortOrder
   }
 
   export type PhaseTwoFolderMinOrderByAggregateInput = {
     id?: SortOrder
     phaseTwoRequirementsId?: SortOrder
-    folderId?: SortOrder
   }
 
   export type PhaseTwoFolderScalarRelationFilter = {
@@ -32445,7 +32245,6 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderCountOrderByAggregateInput = {
     id?: SortOrder
     phaseTwoFolderId?: SortOrder
-    folderId?: SortOrder
     areaId?: SortOrder
   }
 
@@ -32456,14 +32255,12 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderMaxOrderByAggregateInput = {
     id?: SortOrder
     phaseTwoFolderId?: SortOrder
-    folderId?: SortOrder
     areaId?: SortOrder
   }
 
   export type PhaseTwoAreaFolderMinOrderByAggregateInput = {
     id?: SortOrder
     phaseTwoFolderId?: SortOrder
-    folderId?: SortOrder
     areaId?: SortOrder
   }
 
@@ -32493,7 +32290,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: SortOrder
     phaseTwoAreaFolderId?: SortOrder
     type?: SortOrder
-    fileId?: SortOrder
+    objectURL?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -32503,7 +32300,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: SortOrder
     phaseTwoAreaFolderId?: SortOrder
     type?: SortOrder
-    fileId?: SortOrder
+    objectURL?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -32513,7 +32310,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: SortOrder
     phaseTwoAreaFolderId?: SortOrder
     type?: SortOrder
-    fileId?: SortOrder
+    objectURL?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -34827,7 +34624,6 @@ export namespace Prisma {
     department: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    folderId: string
     accreditation?: AccreditationCreateNestedOneWithoutProgramInput
   }
 
@@ -34838,7 +34634,6 @@ export namespace Prisma {
     department: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    folderId: string
     accreditation?: AccreditationUncheckedCreateNestedOneWithoutProgramInput
   }
 
@@ -34948,7 +34743,6 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    folderId?: StringFieldUpdateOperationsInput | string
     accreditation?: AccreditationUpdateOneWithoutProgramNestedInput
   }
 
@@ -34959,7 +34753,6 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    folderId?: StringFieldUpdateOperationsInput | string
     accreditation?: AccreditationUncheckedUpdateOneWithoutProgramNestedInput
   }
 
@@ -35226,7 +35019,6 @@ export namespace Prisma {
 
   export type AreaFolderCreateWithoutAreaInput = {
     id?: string
-    folderId: string
     complete?: boolean
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
@@ -35237,7 +35029,6 @@ export namespace Prisma {
   export type AreaFolderUncheckedCreateWithoutAreaInput = {
     id?: string
     instrumentFolderId: string
-    folderId: string
     complete?: boolean
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
@@ -35256,7 +35047,6 @@ export namespace Prisma {
 
   export type PhaseTwoAreaFolderCreateWithoutAreaInput = {
     id?: string
-    folderId: string
     phaseTwoFolder: PhaseTwoFolderCreateNestedOneWithoutPhaseTwoAreaFoldersInput
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseTwoAreaFolderInput
   }
@@ -35264,7 +35054,6 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderUncheckedCreateWithoutAreaInput = {
     id?: string
     phaseTwoFolderId: string
-    folderId: string
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseTwoAreaFolderInput
   }
 
@@ -35359,7 +35148,6 @@ export namespace Prisma {
     NOT?: AreaFolderScalarWhereInput | AreaFolderScalarWhereInput[]
     id?: StringFilter<"AreaFolder"> | string
     instrumentFolderId?: StringFilter<"AreaFolder"> | string
-    folderId?: StringFilter<"AreaFolder"> | string
     areaId?: IntFilter<"AreaFolder"> | number
     complete?: BoolFilter<"AreaFolder"> | boolean
   }
@@ -35386,7 +35174,6 @@ export namespace Prisma {
     NOT?: PhaseTwoAreaFolderScalarWhereInput | PhaseTwoAreaFolderScalarWhereInput[]
     id?: StringFilter<"PhaseTwoAreaFolder"> | string
     phaseTwoFolderId?: StringFilter<"PhaseTwoAreaFolder"> | string
-    folderId?: StringFilter<"PhaseTwoAreaFolder"> | string
     areaId?: IntFilter<"PhaseTwoAreaFolder"> | number
   }
 
@@ -35451,7 +35238,6 @@ export namespace Prisma {
 
   export type ParameterFolderCreateWithoutParameterInput = {
     id?: string
-    folderId: string
     areaFolder: AreaFolderCreateNestedOneWithoutParameterFoldersInput
     indicatorFolders?: IndicatorFolderCreateNestedManyWithoutParameterFolderInput
     taskForceMember?: TaskForceMemberCreateNestedOneWithoutParameterFolderInput
@@ -35460,7 +35246,6 @@ export namespace Prisma {
   export type ParameterFolderUncheckedCreateWithoutParameterInput = {
     id?: string
     areaFolderId: string
-    folderId: string
     indicatorFolders?: IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput
     taskForceMember?: TaskForceMemberUncheckedCreateNestedOneWithoutParameterFolderInput
   }
@@ -35561,7 +35346,6 @@ export namespace Prisma {
     NOT?: ParameterFolderScalarWhereInput | ParameterFolderScalarWhereInput[]
     id?: StringFilter<"ParameterFolder"> | string
     areaFolderId?: StringFilter<"ParameterFolder"> | string
-    folderId?: StringFilter<"ParameterFolder"> | string
     parameterId?: IntFilter<"ParameterFolder"> | number
   }
 
@@ -35591,7 +35375,7 @@ export namespace Prisma {
 
   export type EvidenceFileCreateWithoutIndicatorInput = {
     id?: string
-    fileId?: string | null
+    ObjectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
@@ -35600,7 +35384,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedCreateWithoutIndicatorInput = {
     id?: string
     indicatorFolderId: string
-    fileId?: string | null
+    ObjectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -35667,7 +35451,7 @@ export namespace Prisma {
     NOT?: EvidenceFileScalarWhereInput | EvidenceFileScalarWhereInput[]
     id?: StringFilter<"EvidenceFile"> | string
     indicatorFolderId?: StringFilter<"EvidenceFile"> | string
-    fileId?: StringNullableFilter<"EvidenceFile"> | string | null
+    ObjectURL?: StringNullableFilter<"EvidenceFile"> | string | null
     indicatorId?: IntFilter<"EvidenceFile"> | number
     createdAt?: DateTimeFilter<"EvidenceFile"> | Date | string
     updatedAt?: DateTimeFilter<"EvidenceFile"> | Date | string
@@ -35797,7 +35581,6 @@ export namespace Prisma {
     department: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    folderId: string
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutProgramInput
   }
 
@@ -35808,7 +35591,6 @@ export namespace Prisma {
     department: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    folderId: string
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutProgramInput
   }
 
@@ -35894,7 +35676,6 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    folderId?: StringFieldUpdateOperationsInput | string
     programPersonnel?: ProgramPersonnelUpdateManyWithoutProgramNestedInput
   }
 
@@ -35905,7 +35686,6 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    folderId?: StringFieldUpdateOperationsInput | string
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutProgramNestedInput
   }
 
@@ -36204,13 +35984,11 @@ export namespace Prisma {
 
   export type InstrumentFolderCreateWithoutPhaseOneRequirementsInput = {
     id?: string
-    folderId: string
     areaFolders?: AreaFolderCreateNestedManyWithoutInstrumentFolderInput
   }
 
   export type InstrumentFolderUncheckedCreateWithoutPhaseOneRequirementsInput = {
     id?: string
-    folderId: string
     areaFolders?: AreaFolderUncheckedCreateNestedManyWithoutInstrumentFolderInput
   }
 
@@ -36296,13 +36074,11 @@ export namespace Prisma {
 
   export type InstrumentFolderUpdateWithoutPhaseOneRequirementsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaFolders?: AreaFolderUpdateManyWithoutInstrumentFolderNestedInput
   }
 
   export type InstrumentFolderUncheckedUpdateWithoutPhaseOneRequirementsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaFolders?: AreaFolderUncheckedUpdateManyWithoutInstrumentFolderNestedInput
   }
 
@@ -36325,7 +36101,6 @@ export namespace Prisma {
 
   export type AreaFolderCreateWithoutInstrumentFolderInput = {
     id?: string
-    folderId: string
     complete?: boolean
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
     area: AreaCreateNestedOneWithoutAreaFoldersInput
@@ -36335,7 +36110,6 @@ export namespace Prisma {
 
   export type AreaFolderUncheckedCreateWithoutInstrumentFolderInput = {
     id?: string
-    folderId: string
     areaId: number
     complete?: boolean
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
@@ -36394,14 +36168,12 @@ export namespace Prisma {
 
   export type InstrumentFolderCreateWithoutAreaFoldersInput = {
     id?: string
-    folderId: string
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutInstrumentFolderInput
   }
 
   export type InstrumentFolderUncheckedCreateWithoutAreaFoldersInput = {
     id?: string
     phaseOneRequirementsId?: string | null
-    folderId: string
   }
 
   export type InstrumentFolderCreateOrConnectWithoutAreaFoldersInput = {
@@ -36411,7 +36183,6 @@ export namespace Prisma {
 
   export type ParameterFolderCreateWithoutAreaFolderInput = {
     id?: string
-    folderId: string
     indicatorFolders?: IndicatorFolderCreateNestedManyWithoutParameterFolderInput
     parameter: ParameterCreateNestedOneWithoutParameterFoldersInput
     taskForceMember?: TaskForceMemberCreateNestedOneWithoutParameterFolderInput
@@ -36419,7 +36190,6 @@ export namespace Prisma {
 
   export type ParameterFolderUncheckedCreateWithoutAreaFolderInput = {
     id?: string
-    folderId: string
     parameterId: number
     indicatorFolders?: IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput
     taskForceMember?: TaskForceMemberUncheckedCreateNestedOneWithoutParameterFolderInput
@@ -36466,7 +36236,7 @@ export namespace Prisma {
   export type AreaFileCreateWithoutPhaseOneAreaFolderInput = {
     id?: string
     type: $Enums.AreaFileType
-    fileId: string
+    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     phaseTwoAreaFolder?: PhaseTwoAreaFolderCreateNestedOneWithoutAreaFilesInput
@@ -36476,7 +36246,7 @@ export namespace Prisma {
     id?: string
     phaseTwoAreaFolderId?: string | null
     type: $Enums.AreaFileType
-    fileId: string
+    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -36521,14 +36291,12 @@ export namespace Prisma {
 
   export type InstrumentFolderUpdateWithoutAreaFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutInstrumentFolderNestedInput
   }
 
   export type InstrumentFolderUncheckedUpdateWithoutAreaFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseOneRequirementsId?: NullableStringFieldUpdateOperationsInput | string | null
-    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ParameterFolderUpsertWithWhereUniqueWithoutAreaFolderInput = {
@@ -36605,7 +36373,7 @@ export namespace Prisma {
     phaseOneAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     phaseTwoAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     type?: EnumAreaFileTypeFilter<"AreaFile"> | $Enums.AreaFileType
-    fileId?: StringFilter<"AreaFile"> | string
+    objectURL?: StringNullableFilter<"AreaFile"> | string | null
     createdAt?: DateTimeFilter<"AreaFile"> | Date | string
     updatedAt?: DateTimeFilter<"AreaFile"> | Date | string
   }
@@ -36635,7 +36403,6 @@ export namespace Prisma {
 
   export type AreaFolderCreateWithoutParameterFoldersInput = {
     id?: string
-    folderId: string
     complete?: boolean
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     area: AreaCreateNestedOneWithoutAreaFoldersInput
@@ -36646,7 +36413,6 @@ export namespace Prisma {
   export type AreaFolderUncheckedCreateWithoutParameterFoldersInput = {
     id?: string
     instrumentFolderId: string
-    folderId: string
     areaId: number
     complete?: boolean
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
@@ -36660,14 +36426,12 @@ export namespace Prisma {
 
   export type IndicatorFolderCreateWithoutParameterFolderInput = {
     id?: string
-    folderId: string
     category: $Enums.Category
     evidenceFiles?: EvidenceFileCreateNestedManyWithoutIndicatorFolderInput
   }
 
   export type IndicatorFolderUncheckedCreateWithoutParameterFolderInput = {
     id?: string
-    folderId: string
     category: $Enums.Category
     evidenceFiles?: EvidenceFileUncheckedCreateNestedManyWithoutIndicatorFolderInput
   }
@@ -36736,7 +36500,6 @@ export namespace Prisma {
 
   export type AreaFolderUpdateWithoutParameterFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     complete?: BoolFieldUpdateOperationsInput | boolean
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
@@ -36747,7 +36510,6 @@ export namespace Prisma {
   export type AreaFolderUncheckedUpdateWithoutParameterFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
     complete?: BoolFieldUpdateOperationsInput | boolean
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
@@ -36776,7 +36538,6 @@ export namespace Prisma {
     NOT?: IndicatorFolderScalarWhereInput | IndicatorFolderScalarWhereInput[]
     id?: StringFilter<"IndicatorFolder"> | string
     parameterFolderId?: StringFilter<"IndicatorFolder"> | string
-    folderId?: StringFilter<"IndicatorFolder"> | string
     category?: EnumCategoryFilter<"IndicatorFolder"> | $Enums.Category
   }
 
@@ -36835,7 +36596,6 @@ export namespace Prisma {
 
   export type ParameterFolderCreateWithoutIndicatorFoldersInput = {
     id?: string
-    folderId: string
     areaFolder: AreaFolderCreateNestedOneWithoutParameterFoldersInput
     parameter: ParameterCreateNestedOneWithoutParameterFoldersInput
     taskForceMember?: TaskForceMemberCreateNestedOneWithoutParameterFolderInput
@@ -36844,7 +36604,6 @@ export namespace Prisma {
   export type ParameterFolderUncheckedCreateWithoutIndicatorFoldersInput = {
     id?: string
     areaFolderId: string
-    folderId: string
     parameterId: number
     taskForceMember?: TaskForceMemberUncheckedCreateNestedOneWithoutParameterFolderInput
   }
@@ -36856,7 +36615,7 @@ export namespace Prisma {
 
   export type EvidenceFileCreateWithoutIndicatorFolderInput = {
     id?: string
-    fileId?: string | null
+    ObjectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
@@ -36864,7 +36623,7 @@ export namespace Prisma {
 
   export type EvidenceFileUncheckedCreateWithoutIndicatorFolderInput = {
     id?: string
-    fileId?: string | null
+    ObjectURL?: string | null
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -36893,7 +36652,6 @@ export namespace Prisma {
 
   export type ParameterFolderUpdateWithoutIndicatorFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaFolder?: AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput
     parameter?: ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput
     taskForceMember?: TaskForceMemberUpdateOneWithoutParameterFolderNestedInput
@@ -36902,7 +36660,6 @@ export namespace Prisma {
   export type ParameterFolderUncheckedUpdateWithoutIndicatorFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
     taskForceMember?: TaskForceMemberUncheckedUpdateOneWithoutParameterFolderNestedInput
   }
@@ -36925,7 +36682,6 @@ export namespace Prisma {
 
   export type IndicatorFolderCreateWithoutEvidenceFilesInput = {
     id?: string
-    folderId: string
     category: $Enums.Category
     parameterFolder: ParameterFolderCreateNestedOneWithoutIndicatorFoldersInput
   }
@@ -36933,7 +36689,6 @@ export namespace Prisma {
   export type IndicatorFolderUncheckedCreateWithoutEvidenceFilesInput = {
     id?: string
     parameterFolderId: string
-    folderId: string
     category: $Enums.Category
   }
 
@@ -36981,7 +36736,6 @@ export namespace Prisma {
 
   export type IndicatorFolderUpdateWithoutEvidenceFilesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     parameterFolder?: ParameterFolderUpdateOneRequiredWithoutIndicatorFoldersNestedInput
   }
@@ -36989,7 +36743,6 @@ export namespace Prisma {
   export type IndicatorFolderUncheckedUpdateWithoutEvidenceFilesInput = {
     id?: StringFieldUpdateOperationsInput | string
     parameterFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   }
 
@@ -37079,13 +36832,11 @@ export namespace Prisma {
 
   export type PhaseTwoFolderCreateWithoutPhaseTwoRequirementsInput = {
     id?: string
-    folderId: string
     phaseTwoAreaFolders?: PhaseTwoAreaFolderCreateNestedManyWithoutPhaseTwoFolderInput
   }
 
   export type PhaseTwoFolderUncheckedCreateWithoutPhaseTwoRequirementsInput = {
     id?: string
-    folderId: string
     phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedCreateNestedManyWithoutPhaseTwoFolderInput
   }
 
@@ -37171,13 +36922,11 @@ export namespace Prisma {
 
   export type PhaseTwoFolderUpdateWithoutPhaseTwoRequirementsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     phaseTwoAreaFolders?: PhaseTwoAreaFolderUpdateManyWithoutPhaseTwoFolderNestedInput
   }
 
   export type PhaseTwoFolderUncheckedUpdateWithoutPhaseTwoRequirementsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     phaseTwoAreaFolders?: PhaseTwoAreaFolderUncheckedUpdateManyWithoutPhaseTwoFolderNestedInput
   }
 
@@ -37200,14 +36949,12 @@ export namespace Prisma {
 
   export type PhaseTwoAreaFolderCreateWithoutPhaseTwoFolderInput = {
     id?: string
-    folderId: string
     area: AreaCreateNestedOneWithoutPhaseTwoAreaFoldersInput
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseTwoAreaFolderInput
   }
 
   export type PhaseTwoAreaFolderUncheckedCreateWithoutPhaseTwoFolderInput = {
     id?: string
-    folderId: string
     areaId: number
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseTwoAreaFolderInput
   }
@@ -37263,14 +37010,12 @@ export namespace Prisma {
 
   export type PhaseTwoFolderCreateWithoutPhaseTwoAreaFoldersInput = {
     id?: string
-    folderId: string
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutPhaseTwoFolderInput
   }
 
   export type PhaseTwoFolderUncheckedCreateWithoutPhaseTwoAreaFoldersInput = {
     id?: string
     phaseTwoRequirementsId?: string | null
-    folderId: string
   }
 
   export type PhaseTwoFolderCreateOrConnectWithoutPhaseTwoAreaFoldersInput = {
@@ -37309,7 +37054,7 @@ export namespace Prisma {
   export type AreaFileCreateWithoutPhaseTwoAreaFolderInput = {
     id?: string
     type: $Enums.AreaFileType
-    fileId: string
+    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     phaseOneAreaFolder?: AreaFolderCreateNestedOneWithoutAreaFilesInput
@@ -37319,7 +37064,7 @@ export namespace Prisma {
     id?: string
     phaseOneAreaFolderId?: string | null
     type: $Enums.AreaFileType
-    fileId: string
+    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -37347,14 +37092,12 @@ export namespace Prisma {
 
   export type PhaseTwoFolderUpdateWithoutPhaseTwoAreaFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutPhaseTwoFolderNestedInput
   }
 
   export type PhaseTwoFolderUncheckedUpdateWithoutPhaseTwoAreaFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoRequirementsId?: NullableStringFieldUpdateOperationsInput | string | null
-    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AreaUpsertWithoutPhaseTwoAreaFoldersInput = {
@@ -37409,7 +37152,6 @@ export namespace Prisma {
 
   export type AreaFolderCreateWithoutAreaFilesInput = {
     id?: string
-    folderId: string
     complete?: boolean
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
@@ -37420,7 +37162,6 @@ export namespace Prisma {
   export type AreaFolderUncheckedCreateWithoutAreaFilesInput = {
     id?: string
     instrumentFolderId: string
-    folderId: string
     areaId: number
     complete?: boolean
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
@@ -37434,7 +37175,6 @@ export namespace Prisma {
 
   export type PhaseTwoAreaFolderCreateWithoutAreaFilesInput = {
     id?: string
-    folderId: string
     phaseTwoFolder: PhaseTwoFolderCreateNestedOneWithoutPhaseTwoAreaFoldersInput
     area: AreaCreateNestedOneWithoutPhaseTwoAreaFoldersInput
   }
@@ -37442,7 +37182,6 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderUncheckedCreateWithoutAreaFilesInput = {
     id?: string
     phaseTwoFolderId: string
-    folderId: string
     areaId: number
   }
 
@@ -37464,7 +37203,6 @@ export namespace Prisma {
 
   export type AreaFolderUpdateWithoutAreaFilesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     complete?: BoolFieldUpdateOperationsInput | boolean
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
@@ -37475,7 +37213,6 @@ export namespace Prisma {
   export type AreaFolderUncheckedUpdateWithoutAreaFilesInput = {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
     complete?: BoolFieldUpdateOperationsInput | boolean
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
@@ -37495,7 +37232,6 @@ export namespace Prisma {
 
   export type PhaseTwoAreaFolderUpdateWithoutAreaFilesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     phaseTwoFolder?: PhaseTwoFolderUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
     area?: AreaUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
   }
@@ -37503,13 +37239,11 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderUncheckedUpdateWithoutAreaFilesInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
   }
 
   export type AreaFolderCreateWithoutTaskForceInput = {
     id?: string
-    folderId: string
     complete?: boolean
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
@@ -37520,7 +37254,6 @@ export namespace Prisma {
   export type AreaFolderUncheckedCreateWithoutTaskForceInput = {
     id?: string
     instrumentFolderId: string
-    folderId: string
     areaId: number
     complete?: boolean
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
@@ -37588,7 +37321,6 @@ export namespace Prisma {
 
   export type AreaFolderUpdateWithoutTaskForceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     complete?: BoolFieldUpdateOperationsInput | boolean
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
@@ -37599,7 +37331,6 @@ export namespace Prisma {
   export type AreaFolderUncheckedUpdateWithoutTaskForceInput = {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
     complete?: BoolFieldUpdateOperationsInput | boolean
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
@@ -37689,7 +37420,6 @@ export namespace Prisma {
 
   export type ParameterFolderCreateWithoutTaskForceMemberInput = {
     id?: string
-    folderId: string
     areaFolder: AreaFolderCreateNestedOneWithoutParameterFoldersInput
     indicatorFolders?: IndicatorFolderCreateNestedManyWithoutParameterFolderInput
     parameter: ParameterCreateNestedOneWithoutParameterFoldersInput
@@ -37698,7 +37428,6 @@ export namespace Prisma {
   export type ParameterFolderUncheckedCreateWithoutTaskForceMemberInput = {
     id?: string
     areaFolderId: string
-    folderId: string
     parameterId: number
     indicatorFolders?: IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput
   }
@@ -37771,7 +37500,6 @@ export namespace Prisma {
 
   export type ParameterFolderUpdateWithoutTaskForceMemberInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaFolder?: AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput
     indicatorFolders?: IndicatorFolderUpdateManyWithoutParameterFolderNestedInput
     parameter?: ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput
@@ -37780,7 +37508,6 @@ export namespace Prisma {
   export type ParameterFolderUncheckedUpdateWithoutTaskForceMemberInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
     indicatorFolders?: IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput
   }
@@ -37983,14 +37710,12 @@ export namespace Prisma {
   export type AreaFolderCreateManyAreaInput = {
     id?: string
     instrumentFolderId: string
-    folderId: string
     complete?: boolean
   }
 
   export type PhaseTwoAreaFolderCreateManyAreaInput = {
     id?: string
     phaseTwoFolderId: string
-    folderId: string
   }
 
   export type ParameterUpdateWithoutAreaInput = {
@@ -38022,7 +37747,6 @@ export namespace Prisma {
 
   export type AreaFolderUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     complete?: BoolFieldUpdateOperationsInput | boolean
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
@@ -38033,7 +37757,6 @@ export namespace Prisma {
   export type AreaFolderUncheckedUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     complete?: BoolFieldUpdateOperationsInput | boolean
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
@@ -38043,13 +37766,11 @@ export namespace Prisma {
   export type AreaFolderUncheckedUpdateManyWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     complete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PhaseTwoAreaFolderUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     phaseTwoFolder?: PhaseTwoFolderUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
     areaFiles?: AreaFileUpdateManyWithoutPhaseTwoAreaFolderNestedInput
   }
@@ -38057,14 +37778,12 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderUncheckedUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderNestedInput
   }
 
   export type PhaseTwoAreaFolderUncheckedUpdateManyWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type IndicatorCreateManyParameterInput = {
@@ -38080,7 +37799,6 @@ export namespace Prisma {
   export type ParameterFolderCreateManyParameterInput = {
     id?: string
     areaFolderId: string
-    folderId: string
   }
 
   export type IndicatorUpdateWithoutParameterInput = {
@@ -38116,7 +37834,6 @@ export namespace Prisma {
 
   export type ParameterFolderUpdateWithoutParameterInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaFolder?: AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput
     indicatorFolders?: IndicatorFolderUpdateManyWithoutParameterFolderNestedInput
     taskForceMember?: TaskForceMemberUpdateOneWithoutParameterFolderNestedInput
@@ -38125,7 +37842,6 @@ export namespace Prisma {
   export type ParameterFolderUncheckedUpdateWithoutParameterInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     indicatorFolders?: IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput
     taskForceMember?: TaskForceMemberUncheckedUpdateOneWithoutParameterFolderNestedInput
   }
@@ -38133,20 +37849,19 @@ export namespace Prisma {
   export type ParameterFolderUncheckedUpdateManyWithoutParameterInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaFolderId?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type EvidenceFileCreateManyIndicatorInput = {
     id?: string
     indicatorFolderId: string
-    fileId?: string | null
+    ObjectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type EvidenceFileUpdateWithoutIndicatorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fileId?: NullableStringFieldUpdateOperationsInput | string | null
+    ObjectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
@@ -38155,7 +37870,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedUpdateWithoutIndicatorInput = {
     id?: StringFieldUpdateOperationsInput | string
     indicatorFolderId?: StringFieldUpdateOperationsInput | string
-    fileId?: NullableStringFieldUpdateOperationsInput | string | null
+    ObjectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38163,7 +37878,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedUpdateManyWithoutIndicatorInput = {
     id?: StringFieldUpdateOperationsInput | string
     indicatorFolderId?: StringFieldUpdateOperationsInput | string
-    fileId?: NullableStringFieldUpdateOperationsInput | string | null
+    ObjectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38284,14 +37999,12 @@ export namespace Prisma {
 
   export type AreaFolderCreateManyInstrumentFolderInput = {
     id?: string
-    folderId: string
     areaId: number
     complete?: boolean
   }
 
   export type AreaFolderUpdateWithoutInstrumentFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     complete?: BoolFieldUpdateOperationsInput | boolean
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
@@ -38301,7 +38014,6 @@ export namespace Prisma {
 
   export type AreaFolderUncheckedUpdateWithoutInstrumentFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
     complete?: BoolFieldUpdateOperationsInput | boolean
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
@@ -38311,14 +38023,12 @@ export namespace Prisma {
 
   export type AreaFolderUncheckedUpdateManyWithoutInstrumentFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
     complete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ParameterFolderCreateManyAreaFolderInput = {
     id?: string
-    folderId: string
     parameterId: number
   }
 
@@ -38326,14 +38036,13 @@ export namespace Prisma {
     id?: string
     phaseTwoAreaFolderId?: string | null
     type: $Enums.AreaFileType
-    fileId: string
+    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type ParameterFolderUpdateWithoutAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     indicatorFolders?: IndicatorFolderUpdateManyWithoutParameterFolderNestedInput
     parameter?: ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput
     taskForceMember?: TaskForceMemberUpdateOneWithoutParameterFolderNestedInput
@@ -38341,7 +38050,6 @@ export namespace Prisma {
 
   export type ParameterFolderUncheckedUpdateWithoutAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
     indicatorFolders?: IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput
     taskForceMember?: TaskForceMemberUncheckedUpdateOneWithoutParameterFolderNestedInput
@@ -38349,14 +38057,13 @@ export namespace Prisma {
 
   export type ParameterFolderUncheckedUpdateManyWithoutAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
   }
 
   export type AreaFileUpdateWithoutPhaseOneAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    fileId?: StringFieldUpdateOperationsInput | string
+    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseTwoAreaFolder?: PhaseTwoAreaFolderUpdateOneWithoutAreaFilesNestedInput
@@ -38366,7 +38073,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    fileId?: StringFieldUpdateOperationsInput | string
+    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38375,40 +38082,36 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    fileId?: StringFieldUpdateOperationsInput | string
+    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IndicatorFolderCreateManyParameterFolderInput = {
     id?: string
-    folderId: string
     category: $Enums.Category
   }
 
   export type IndicatorFolderUpdateWithoutParameterFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     evidenceFiles?: EvidenceFileUpdateManyWithoutIndicatorFolderNestedInput
   }
 
   export type IndicatorFolderUncheckedUpdateWithoutParameterFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
     evidenceFiles?: EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderNestedInput
   }
 
   export type IndicatorFolderUncheckedUpdateManyWithoutParameterFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     category?: EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   }
 
   export type EvidenceFileCreateManyIndicatorFolderInput = {
     id?: string
-    fileId?: string | null
+    ObjectURL?: string | null
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -38416,7 +38119,7 @@ export namespace Prisma {
 
   export type EvidenceFileUpdateWithoutIndicatorFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fileId?: NullableStringFieldUpdateOperationsInput | string | null
+    ObjectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
@@ -38424,7 +38127,7 @@ export namespace Prisma {
 
   export type EvidenceFileUncheckedUpdateWithoutIndicatorFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fileId?: NullableStringFieldUpdateOperationsInput | string | null
+    ObjectURL?: NullableStringFieldUpdateOperationsInput | string | null
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38432,7 +38135,7 @@ export namespace Prisma {
 
   export type EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    fileId?: NullableStringFieldUpdateOperationsInput | string | null
+    ObjectURL?: NullableStringFieldUpdateOperationsInput | string | null
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38440,27 +38143,23 @@ export namespace Prisma {
 
   export type PhaseTwoAreaFolderCreateManyPhaseTwoFolderInput = {
     id?: string
-    folderId: string
     areaId: number
   }
 
   export type PhaseTwoAreaFolderUpdateWithoutPhaseTwoFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     area?: AreaUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
     areaFiles?: AreaFileUpdateManyWithoutPhaseTwoAreaFolderNestedInput
   }
 
   export type PhaseTwoAreaFolderUncheckedUpdateWithoutPhaseTwoFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderNestedInput
   }
 
   export type PhaseTwoAreaFolderUncheckedUpdateManyWithoutPhaseTwoFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    folderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -38468,7 +38167,7 @@ export namespace Prisma {
     id?: string
     phaseOneAreaFolderId?: string | null
     type: $Enums.AreaFileType
-    fileId: string
+    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -38476,7 +38175,7 @@ export namespace Prisma {
   export type AreaFileUpdateWithoutPhaseTwoAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    fileId?: StringFieldUpdateOperationsInput | string
+    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneAreaFolder?: AreaFolderUpdateOneWithoutAreaFilesNestedInput
@@ -38486,7 +38185,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    fileId?: StringFieldUpdateOperationsInput | string
+    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38495,7 +38194,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    fileId?: StringFieldUpdateOperationsInput | string
+    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

@@ -4,7 +4,6 @@ import { prisma } from "../prisma";
 
 export async function createIndicatorFolder(
   parameterFolderId: string,
-  folderId: string,
   category: Category
 ) {
   const session = await verifySession();
@@ -16,7 +15,6 @@ export async function createIndicatorFolder(
           id: parameterFolderId,
         },
       },
-      folderId,
       category,
     },
   });

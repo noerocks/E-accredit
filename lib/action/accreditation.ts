@@ -9,11 +9,10 @@ import {
   SurveyStatus,
   SurveyVisitType,
 } from "../generated/prisma";
-import { createFolder } from "./drive";
 import { createSurveyVisit as createSurveyVisitDAL } from "../dal/survey-visit";
 import { getInstrumentStructureById } from "../dal/instrument";
 import { createAreaFolder } from "../dal/area-folder";
-import { createInstrumentFolder } from "./instrument-folder";
+import { createInstrumentFolder } from "../dal/instrument-folder";
 import { createParameterFolder } from "../dal/parameter-folder";
 import { createIndicatorFolder } from "../dal/indicator-folder";
 import { revalidateTag } from "next/cache";
@@ -33,20 +32,6 @@ export async function createSurveyVisit(
     !actualSurveyDate
   )
     throw new Error("Invalid parameter values");
-  const label = `${level.label} ${
-    ["Level IV", "Level III"].includes(level.label)
-      ? level.phase
-          .split("_")
-          .map((word) => word[0] + word.slice(1).toLocaleLowerCase())
-          .join(" ")
-      : ""
-  }`;
-  const { id: surveyVisitFolderId } = await createFolder(
-    label,
-    program.folderId
-  );
-  if (!surveyVisitFolderId)
-    throw new Error("Error in creating survey visit folder in drive");
   const surveyVisit = await createSurveyVisitDAL(
     program.accreditation.id,
     actualSurveyDate,
@@ -65,48 +50,23 @@ export async function createSurveyVisit(
       { name: Category.OUTCOME, label: "Outcome/s" },
     ];
     const instrumentFolder = await createInstrumentFolder(
-      surveyVisit.phaseOneRequirements?.id!,
-      surveyVisitFolderId
+      surveyVisit.phaseOneRequirements?.id!
     );
     if (!instrumentFolder)
       throw new Error("Error in creating instrument folder");
     instrumentStructure?.area.forEach(async (area) => {
-      const { id: areaFolderId } = await createFolder(
-        area.label,
-        surveyVisitFolderId
-      );
-      if (!areaFolderId)
-        throw new Error("Error in creating area folder in drive");
-      const areaFolder = await createAreaFolder(
-        instrumentFolder?.id,
-        area.id,
-        areaFolderId
-      );
+      const areaFolder = await createAreaFolder(instrumentFolder?.id, area.id);
       if (!areaFolder) throw new Error("Error in creating area folder");
       area.parameter.forEach(async (parameter) => {
-        const { id: parameterFolderId } = await createFolder(
-          parameter.label,
-          areaFolderId
-        );
-        if (!parameterFolderId)
-          throw new Error("Error in creating parameter folder in drive");
         const parameterFolder = await createParameterFolder(
           areaFolder.id,
-          parameter.id,
-          parameterFolderId
+          parameter.id
         );
         if (!parameterFolder)
           throw new Error("Error in creating parameter folder");
         category.forEach(async (category) => {
-          const { id: categoryFolderId } = await createFolder(
-            category.label,
-            parameterFolderId
-          );
-          if (!categoryFolderId)
-            throw new Error("Error in creating category folder");
           const indicatorFolder = await createIndicatorFolder(
             parameterFolder.id,
-            categoryFolderId,
             category.name
           );
           if (!indicatorFolder)

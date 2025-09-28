@@ -1,10 +1,7 @@
 import { prisma } from "../prisma";
-import { verifySession } from "./session";
+import { verifySession } from "../action/session";
 
-export async function createInstrumentFolder(
-  phaseOneRequirementsId: string,
-  folderId: string
-) {
+export async function createInstrumentFolder(phaseOneRequirementsId: string) {
   const session = verifySession();
   if (!session) return null;
   const instrumentFolder = prisma.instrumentFolder.create({
@@ -14,7 +11,6 @@ export async function createInstrumentFolder(
           id: phaseOneRequirementsId,
         },
       },
-      folderId,
     },
   });
   return instrumentFolder;

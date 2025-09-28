@@ -7,9 +7,30 @@ export async function createManyEvidenceFiles(
     indicatorId: number;
   }[]
 ) {
-  const session = verifySession();
+  const session = await verifySession();
   if (!session) return null;
   const evidences = await prisma.evidenceFile.createMany({
     data: evidenceFiles,
   });
+}
+
+export async function getEvidenceFileById(id: string) {
+  const evidence = await prisma.evidenceFile.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      indicator: true,
+      indicatorFolder: {
+        include: {
+          parameterFolder: {
+            include: {
+              parameter: true,
+            },
+          },
+        },
+      },
+    },
+  });
+  return evidence;
 }

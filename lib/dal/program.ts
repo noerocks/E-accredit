@@ -7,7 +7,7 @@ import { unstable_cache } from "next/cache";
 import { ProgramDTO } from "../dto/programs";
 
 export async function createProgram(
-  data: z.infer<typeof CreateProgramFormSchema> & { folderId: string }
+  data: z.infer<typeof CreateProgramFormSchema>
 ) {
   const session = await verifySession();
   if (!session) return null;
@@ -28,7 +28,6 @@ export const getPrograms = unstable_cache(
       name: program.name,
       code: program.code,
       department: program.department,
-      folderId: program.folderId,
       accreditation: program.accreditation,
     }));
   },
