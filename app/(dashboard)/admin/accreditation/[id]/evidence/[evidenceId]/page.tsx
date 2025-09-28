@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getEvidenceFileById } from "@/lib/dal/evidence-file";
-import { CheckCircle, SearchCheck, Tag } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 
 const EvidencePage = async ({
   params,
