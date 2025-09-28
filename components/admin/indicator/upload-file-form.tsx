@@ -1,5 +1,6 @@
 "use client";
 
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -12,9 +13,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { getSignedURL } from "@/lib/action/s3";
 import { IndicatorDTO } from "@/lib/dto/instrument";
 import { cn } from "@/lib/utils";
-import { Upload, X } from "lucide-react";
+import { Info, Upload, X } from "lucide-react";
 import { useCallback, useState } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
 import { toast } from "sonner";
@@ -25,8 +27,25 @@ const UploadFileForm = ({
   indicator: IndicatorDTO | undefined;
 }) => {
   const [file, setFile] = useState<File | null>();
-  const onClick = () => {
+  const unattachFile = () => {
     setFile(null);
+  };
+  const uploadFile = async () => {
+    if (!file) {
+      toast.error("Please attach a file");
+      return;
+    }
+    const { name, type, size } = file;
+    const signedURLResult = await getSignedURL(name, type, size);
+    if (signedURLResult.failure) return;
+    const url = signedURLResult.success.url;
+    await fetch(url, {
+      method: "PUT",
+      body: file,
+      headers: {
+        "Content-type": file.type,
+      },
+    });
   };
   const formatSize = (size: number) => {
     if (size < 1024 * 1024) return `${(size / 1024).toFixed(2)} KB`;
@@ -82,6 +101,15 @@ const UploadFileForm = ({
             Upload an Evidence File
           </DialogTitle>
           <DialogDescription>{`Attach an evidence file to ${indicator?.label}: ${indicator?.evidence}`}</DialogDescription>
+          <Alert className="bg-blue-400/5 border-blue-400 text-blue-400">
+            <Info />
+            <AlertTitle>Info</AlertTitle>
+            <AlertDescription className="text-blue-400">
+              Supported file types: PDF, Word (.doc, .docx), Excel (.xls,
+              .xlsx), PowerPoint (.ppt, .pptx), and images (PNG, JPG, JPEG). Max
+              size: 10 MB.
+            </AlertDescription>
+          </Alert>
         </DialogHeader>
         <Card
           className={cn(
@@ -99,7 +127,7 @@ const UploadFileForm = ({
                   {file.name} -{" "}
                   <span className="text-sm">{`${formatSize(file.size)}`}</span>
                 </p>
-                <span onClick={onClick}>
+                <span onClick={unattachFile}>
                   <X size={20} />
                 </span>
               </div>
@@ -122,7 +150,7 @@ const UploadFileForm = ({
           <DialogClose asChild>
             <Button variant="outline">Cancel</Button>
           </DialogClose>
-          <Button>Upload</Button>
+          <Button onClick={uploadFile}>Upload</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
