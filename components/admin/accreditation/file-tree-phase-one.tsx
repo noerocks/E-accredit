@@ -56,8 +56,7 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
             <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
             </CollapsibleTrigger>
-            <Folder />
-            {item.area.label}
+            {`📁 ${item.area.label}`}
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
@@ -79,8 +78,7 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
             <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
             </CollapsibleTrigger>
-            <Folder />
-            {item.parameter.label}
+            {`📁 ${item.parameter.label}`}
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
@@ -106,8 +104,7 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
             <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
             </CollapsibleTrigger>
-            <Folder />
-            {category[item.category]}
+            {`📁 ${category[item.category]}`}
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
@@ -128,8 +125,7 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
           data-type={"evidence"}
           isActive={item.id === String(params.evidenceId)}
         >
-          <File />
-          {item.indicator.label}
+          {`📄 ${item.indicator.label}`}
         </SidebarMenuButton>
       </SidebarMenuItem>
     );

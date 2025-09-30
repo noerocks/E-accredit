@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { getEvidenceFileById } from "@/lib/dal/evidence-file";
+import { getEvidenceFileById } from "@/lib/dal/evidence";
 import { CheckCircle } from "lucide-react";
 
 const EvidencePage = async ({
@@ -42,7 +42,7 @@ const EvidencePage = async ({
           </CardDescription>
         </CardHeader>
         <CardFooter className="flex justify-end">
-          <UploadFileForm indicator={indicator} />
+          <UploadFileForm indicator={indicator} evidenceId={evidenceId} />
         </CardFooter>
       </Card>
     </div>

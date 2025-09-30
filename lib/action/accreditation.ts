@@ -16,7 +16,7 @@ import { createInstrumentFolder } from "../dal/instrument-folder";
 import { createParameterFolder } from "../dal/parameter-folder";
 import { createIndicatorFolder } from "../dal/indicator-folder";
 import { revalidateTag } from "next/cache";
-import { createManyEvidenceFiles } from "../dal/evidence-file";
+import { createManyEvidenceFiles } from "../dal/evidence";
 
 export async function createSurveyVisit(
   program: ProgramDTO,

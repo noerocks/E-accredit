@@ -49,8 +49,7 @@ const FileTree = ({ item }: { item: TreeNode }) => {
             <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
             </CollapsibleTrigger>
-            <Folder />
-            {item.label}
+            {`📁 ${item.label}`}
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
@@ -89,8 +88,7 @@ const FileTree = ({ item }: { item: TreeNode }) => {
             <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
             </CollapsibleTrigger>
-            <Folder />
-            {item.label}
+            {`📁 ${item.label}`}
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
@@ -111,8 +109,7 @@ const FileTree = ({ item }: { item: TreeNode }) => {
             <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
             </CollapsibleTrigger>
-            <Folder />
-            {item.label}
+            {`📁 ${item.label}`}
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
@@ -133,8 +130,7 @@ const FileTree = ({ item }: { item: TreeNode }) => {
           data-type={"indicator"}
           isActive={item.id === Number(params.indicatorId)}
         >
-          <File />
-          {item.label}
+          {`📄 ${item.label}`}
         </SidebarMenuButton>
       </SidebarMenuItem>
     );

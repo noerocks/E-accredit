@@ -13,6 +13,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { updateEvidenceById } from "@/lib/action/evidence";
 import { getSignedURL } from "@/lib/action/s3";
 import { IndicatorDTO } from "@/lib/dto/instrument";
 import { cn } from "@/lib/utils";
@@ -23,8 +24,10 @@ import { toast } from "sonner";
 
 const UploadFileForm = ({
   indicator,
+  evidenceId,
 }: {
   indicator: IndicatorDTO | undefined;
+  evidenceId: string;
 }) => {
   const [file, setFile] = useState<File | null>();
   const unattachFile = () => {
@@ -46,6 +49,8 @@ const UploadFileForm = ({
         "Content-type": file.type,
       },
     });
+    const objectUrl = url.split("?")[0];
+    const evidence = updateEvidenceById(evidenceId, { ObjectURL: objectUrl });
   };
   const formatSize = (size: number) => {
     if (size < 1024 * 1024) return `${(size / 1024).toFixed(2)} KB`;

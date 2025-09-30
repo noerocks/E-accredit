@@ -1,4 +1,5 @@
 import { verifySession } from "../action/session";
+import { EvidenceFile } from "../generated/prisma";
 import { prisma } from "../prisma";
 
 export async function createManyEvidenceFiles(
@@ -31,6 +32,21 @@ export async function getEvidenceFileById(id: string) {
         },
       },
     },
+  });
+  return evidence;
+}
+
+export async function updateEvidenceById(
+  id: string,
+  data: Partial<Omit<EvidenceFile, "id">>
+) {
+  const session = await verifySession();
+  if (!session) return null;
+  const evidence = await prisma.evidenceFile.update({
+    where: {
+      id,
+    },
+    data,
   });
   return evidence;
 }
