@@ -1,11 +1,12 @@
 import { verifySession } from "../action/session";
-import { EvidenceFile } from "../generated/prisma";
+import { EvidenceStatus } from "../generated/prisma";
 import { prisma } from "../prisma";
 
 export async function createManyEvidenceFiles(
   evidenceFiles: {
     indicatorFolderId: string;
     indicatorId: number;
+    status: EvidenceStatus;
   }[]
 ) {
   const session = await verifySession();
@@ -13,6 +14,7 @@ export async function createManyEvidenceFiles(
   const evidences = await prisma.evidenceFile.createMany({
     data: evidenceFiles,
   });
+  return evidences;
 }
 
 export async function getEvidenceFileById(id: string) {
@@ -22,6 +24,11 @@ export async function getEvidenceFileById(id: string) {
     },
     include: {
       indicator: true,
+      evidenceVersions: {
+        include: {
+          evidenceFile: true,
+        },
+      },
       indicatorFolder: {
         include: {
           parameterFolder: {
@@ -32,21 +39,6 @@ export async function getEvidenceFileById(id: string) {
         },
       },
     },
-  });
-  return evidence;
-}
-
-export async function updateEvidenceById(
-  id: string,
-  data: Partial<Omit<EvidenceFile, "id">>
-) {
-  const session = await verifySession();
-  if (!session) return null;
-  const evidence = await prisma.evidenceFile.update({
-    where: {
-      id,
-    },
-    data,
   });
   return evidence;
 }

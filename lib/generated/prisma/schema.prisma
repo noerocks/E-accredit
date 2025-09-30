@@ -54,6 +54,26 @@ enum AreaFileType {
   NARRATIVE_PROFILE
 }
 
+enum EvidenceStatus {
+  EMPTY
+  FOR_REVIEW
+  REJECTED
+  ACCEPTED
+}
+
+enum FileVersionStatus {
+  ACTIVE
+  ARCHIVED
+}
+
+enum EvidenceFileType {
+  DOCUMENT
+  PDF
+  PRESENTATION
+  SPREADSHEET
+  IMAGE
+}
+
 model User {
   id               String             @id @default(uuid())
   firstName        String
@@ -232,14 +252,25 @@ model IndicatorFolder {
 }
 
 model EvidenceFile {
-  id                String          @id @default(uuid())
-  indicatorFolder   IndicatorFolder @relation(fields: [indicatorFolderId], references: [id], onDelete: Cascade)
+  id                String             @id @default(uuid())
+  indicatorFolder   IndicatorFolder    @relation(fields: [indicatorFolderId], references: [id], onDelete: Cascade)
   indicatorFolderId String
-  ObjectURL         String?
-  indicator         Indicator       @relation(fields: [indicatorId], references: [id], onDelete: Cascade)
+  status            EvidenceStatus
+  indicator         Indicator          @relation(fields: [indicatorId], references: [id], onDelete: Cascade)
   indicatorId       Int
-  createdAt         DateTime        @default(now())
-  updatedAt         DateTime        @updatedAt
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  evidenceVersions  EvidenceVersions[]
+}
+
+model EvidenceVersions {
+  id             String            @id @default(uuid())
+  evidenceFile   EvidenceFile      @relation(fields: [evidenceFileId], references: [id])
+  status         FileVersionStatus
+  evidenceFileId String
+  objectUrl      String
+  type           EvidenceFileType
+  uploadedAt     DateTime          @default(now())
 }
 
 model PhaseTwoRequirements {

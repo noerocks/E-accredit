@@ -5,6 +5,7 @@ import { LevelDTO } from "../dto/level";
 import { ProgramDTO } from "../dto/programs";
 import {
   Category,
+  EvidenceStatus,
   Phase,
   SurveyStatus,
   SurveyVisitType,
@@ -76,6 +77,7 @@ export async function createSurveyVisit(
             .map((indicator) => ({
               indicatorFolderId: indicatorFolder.id,
               indicatorId: indicator.id,
+              status: EvidenceStatus.EMPTY,
             }));
           await createManyEvidenceFiles(evidenceFiles);
         });

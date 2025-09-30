@@ -17,6 +17,7 @@ const EvidencePage = async ({
 }) => {
   const { evidenceId } = await params;
   const evidence = await getEvidenceFileById(evidenceId);
+  console.log(evidence);
   const indicator = evidence?.indicator;
   const parameter = evidence?.indicatorFolder.parameterFolder.parameter;
   const categories = {
