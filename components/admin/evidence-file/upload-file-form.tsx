@@ -1,6 +1,7 @@
 "use client";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -13,13 +14,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { createNewVersion } from "@/lib/action/evidence-version";
 import { getSignedURL } from "@/lib/action/s3";
 import { IndicatorDTO } from "@/lib/dto/instrument";
 import { cn } from "@/lib/utils";
-import { Info, Upload, X } from "lucide-react";
-import { useCallback, useState } from "react";
+import { Info, Loader, Upload, X } from "lucide-react";
+import { useCallback, useState, useTransition } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
 import { toast } from "sonner";
+import { Progress } from "@/components/ui/progress";
 
 const UploadFileForm = ({
   indicator,
@@ -29,26 +32,45 @@ const UploadFileForm = ({
   evidenceId: string;
 }) => {
   const [file, setFile] = useState<File | null>();
+  const [progress, setProgress] = useState<number>(0);
+  const [pending, startTransition] = useTransition();
   const unattachFile = () => {
     setFile(null);
   };
   const uploadFile = async () => {
-    if (!file) {
-      toast.error("Please attach a file");
-      return;
-    }
-    const { name, type, size } = file;
-    const signedURLResult = await getSignedURL(name, type, size);
-    if (signedURLResult.failure) return;
-    const url = signedURLResult.success.url;
-    await fetch(url, {
-      method: "PUT",
-      body: file,
-      headers: {
-        "Content-type": file.type,
-      },
+    startTransition(async () => {
+      if (!file) {
+        toast.error("Please attach a file");
+        return;
+      }
+      const { name, type, size } = file;
+      const signedURLResult = await getSignedURL(name, type, size);
+      if (signedURLResult.failure) return;
+      const url = signedURLResult.success.url;
+      const response = await axios.put(url, file, {
+        headers: {
+          "Content-Type": file.type,
+        },
+        onUploadProgress: (progressEvent) => {
+          const percent = Math.round(
+            (progressEvent.loaded * 100) / (progressEvent.total ?? 1)
+          );
+          setProgress(percent);
+        },
+      });
+      if (response.status !== 200) {
+        toast.error("Failed to upload file");
+        return;
+      }
+      toast.success("File uploaded successuly");
+      const objectUrl = url.split("?")[0];
+      const evidenceVersionResult = await createNewVersion(
+        name,
+        evidenceId,
+        objectUrl,
+        file.type
+      );
     });
-    const objectUrl = url.split("?")[0];
   };
   const formatSize = (size: number) => {
     if (size < 1024 * 1024) return `${(size / 1024).toFixed(2)} KB`;
@@ -125,14 +147,27 @@ const UploadFileForm = ({
         >
           <CardContent className="flex items-center justify-center h-full w-full">
             {file ? (
-              <div className="flex items-center gap-2 p-2 border">
-                <p>
-                  {file.name} -{" "}
-                  <span className="text-sm">{`${formatSize(file.size)}`}</span>
-                </p>
-                <span onClick={unattachFile}>
-                  <X size={20} />
-                </span>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 p-2 border">
+                  <p>
+                    {file.name} -{" "}
+                    <span className="text-sm">{`${formatSize(
+                      file.size
+                    )}`}</span>
+                  </p>
+                  <span onClick={unattachFile}>
+                    <X size={20} />
+                  </span>
+                </div>
+                {pending && (
+                  <div className="flex flex-col items-center gap-2">
+                    <Progress
+                      value={progress}
+                      className="border animate-pulse"
+                    />
+                    <p className="text-sm">{`${progress}% Uploaded`}</p>
+                  </div>
+                )}
               </div>
             ) : (
               <>
@@ -153,7 +188,16 @@ const UploadFileForm = ({
           <DialogClose asChild>
             <Button variant="outline">Cancel</Button>
           </DialogClose>
-          <Button onClick={uploadFile}>Upload</Button>
+          <Button onClick={uploadFile}>
+            {pending ? (
+              <>
+                <Loader className="animate-spin" />
+                Uploading...
+              </>
+            ) : (
+              "Upload"
+            )}
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

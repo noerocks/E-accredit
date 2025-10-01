@@ -3,9 +3,9 @@
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { verifySession } from "./session";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-
 import { v4 as uuidv4 } from "uuid";
 import { S3 } from "../s3";
+
 export async function getSignedURL(
   fileName: string,
   fileType: string,

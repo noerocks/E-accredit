@@ -13,12 +13,8 @@ export default function Spinner({
   message,
 }: SpinnerProps) {
   return (
-    <div className="flex items-center space-x-2">
-      <Loader
-        className={`animate-spin  ${className}`}
-        width={size}
-        height={size}
-      />
+    <div className={`flex items-center space-x-2 ${className}`}>
+      <Loader className="animate-spin" width={size} height={size} />
       <p>{message}</p>
     </div>
   );

@@ -28,6 +28,9 @@ export async function getEvidenceFileById(id: string) {
         include: {
           evidenceFile: true,
         },
+        orderBy: {
+          uploadedAt: "desc",
+        },
       },
       indicatorFolder: {
         include: {

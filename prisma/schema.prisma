@@ -66,14 +66,6 @@ enum FileVersionStatus {
   ARCHIVED
 }
 
-enum EvidenceFileType {
-  DOCUMENT
-  PDF
-  PRESENTATION
-  SPREADSHEET
-  IMAGE
-}
-
 model User {
   id               String             @id @default(uuid())
   firstName        String
@@ -265,11 +257,12 @@ model EvidenceFile {
 
 model EvidenceVersions {
   id             String            @id @default(uuid())
-  evidenceFile   EvidenceFile      @relation(fields: [evidenceFileId], references: [id])
+  evidenceFile   EvidenceFile      @relation(fields: [evidenceFileId], references: [id], onDelete: Cascade)
+  name           String
   status         FileVersionStatus
   evidenceFileId String
   objectUrl      String
-  type           EvidenceFileType
+  type           String
   uploadedAt     DateTime          @default(now())
 }
 
@@ -300,9 +293,9 @@ model PhaseTwoAreaFolder {
 
 model AreaFile {
   id                   String              @id @default(uuid())
-  phaseOneAreaFolder   AreaFolder?         @relation(fields: [phaseOneAreaFolderId], references: [id])
+  phaseOneAreaFolder   AreaFolder?         @relation(fields: [phaseOneAreaFolderId], references: [id], onDelete: Cascade)
   phaseOneAreaFolderId String?
-  phaseTwoAreaFolder   PhaseTwoAreaFolder? @relation(fields: [phaseTwoAreaFolderId], references: [id])
+  phaseTwoAreaFolder   PhaseTwoAreaFolder? @relation(fields: [phaseTwoAreaFolderId], references: [id], onDelete: Cascade)
   phaseTwoAreaFolderId String?
   type                 AreaFileType
   objectURL            String?
@@ -321,7 +314,7 @@ model TaskForce {
 
 model TaskForceMember {
   id                 String           @id @default(uuid())
-  programPersonnel   ProgramPersonnel @relation(fields: [programPersonnelId], references: [id])
+  programPersonnel   ProgramPersonnel @relation(fields: [programPersonnelId], references: [id], onDelete: Cascade)
   programPersonnelId String
   taskForce          TaskForce        @relation(fields: [taskForceId], references: [id], onDelete: Cascade)
   taskForceId        String

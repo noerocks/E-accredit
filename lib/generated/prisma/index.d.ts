@@ -211,17 +211,6 @@ export const FileVersionStatus: {
 
 export type FileVersionStatus = (typeof FileVersionStatus)[keyof typeof FileVersionStatus]
 
-
-export const EvidenceFileType: {
-  DOCUMENT: 'DOCUMENT',
-  PDF: 'PDF',
-  PRESENTATION: 'PRESENTATION',
-  SPREADSHEET: 'SPREADSHEET',
-  IMAGE: 'IMAGE'
-};
-
-export type EvidenceFileType = (typeof EvidenceFileType)[keyof typeof EvidenceFileType]
-
 }
 
 export type Role = $Enums.Role
@@ -259,10 +248,6 @@ export const EvidenceStatus: typeof $Enums.EvidenceStatus
 export type FileVersionStatus = $Enums.FileVersionStatus
 
 export const FileVersionStatus: typeof $Enums.FileVersionStatus
-
-export type EvidenceFileType = $Enums.EvidenceFileType
-
-export const EvidenceFileType: typeof $Enums.EvidenceFileType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -21720,24 +21705,27 @@ export namespace Prisma {
 
   export type EvidenceVersionsMinAggregateOutputType = {
     id: string | null
+    name: string | null
     status: $Enums.FileVersionStatus | null
     evidenceFileId: string | null
     objectUrl: string | null
-    type: $Enums.EvidenceFileType | null
+    type: string | null
     uploadedAt: Date | null
   }
 
   export type EvidenceVersionsMaxAggregateOutputType = {
     id: string | null
+    name: string | null
     status: $Enums.FileVersionStatus | null
     evidenceFileId: string | null
     objectUrl: string | null
-    type: $Enums.EvidenceFileType | null
+    type: string | null
     uploadedAt: Date | null
   }
 
   export type EvidenceVersionsCountAggregateOutputType = {
     id: number
+    name: number
     status: number
     evidenceFileId: number
     objectUrl: number
@@ -21749,6 +21737,7 @@ export namespace Prisma {
 
   export type EvidenceVersionsMinAggregateInputType = {
     id?: true
+    name?: true
     status?: true
     evidenceFileId?: true
     objectUrl?: true
@@ -21758,6 +21747,7 @@ export namespace Prisma {
 
   export type EvidenceVersionsMaxAggregateInputType = {
     id?: true
+    name?: true
     status?: true
     evidenceFileId?: true
     objectUrl?: true
@@ -21767,6 +21757,7 @@ export namespace Prisma {
 
   export type EvidenceVersionsCountAggregateInputType = {
     id?: true
+    name?: true
     status?: true
     evidenceFileId?: true
     objectUrl?: true
@@ -21849,10 +21840,11 @@ export namespace Prisma {
 
   export type EvidenceVersionsGroupByOutputType = {
     id: string
+    name: string
     status: $Enums.FileVersionStatus
     evidenceFileId: string
     objectUrl: string
-    type: $Enums.EvidenceFileType
+    type: string
     uploadedAt: Date
     _count: EvidenceVersionsCountAggregateOutputType | null
     _min: EvidenceVersionsMinAggregateOutputType | null
@@ -21875,6 +21867,7 @@ export namespace Prisma {
 
   export type EvidenceVersionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     status?: boolean
     evidenceFileId?: boolean
     objectUrl?: boolean
@@ -21885,6 +21878,7 @@ export namespace Prisma {
 
   export type EvidenceVersionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     status?: boolean
     evidenceFileId?: boolean
     objectUrl?: boolean
@@ -21895,6 +21889,7 @@ export namespace Prisma {
 
   export type EvidenceVersionsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     status?: boolean
     evidenceFileId?: boolean
     objectUrl?: boolean
@@ -21905,6 +21900,7 @@ export namespace Prisma {
 
   export type EvidenceVersionsSelectScalar = {
     id?: boolean
+    name?: boolean
     status?: boolean
     evidenceFileId?: boolean
     objectUrl?: boolean
@@ -21912,7 +21908,7 @@ export namespace Prisma {
     uploadedAt?: boolean
   }
 
-  export type EvidenceVersionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "status" | "evidenceFileId" | "objectUrl" | "type" | "uploadedAt", ExtArgs["result"]["evidenceVersions"]>
+  export type EvidenceVersionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "status" | "evidenceFileId" | "objectUrl" | "type" | "uploadedAt", ExtArgs["result"]["evidenceVersions"]>
   export type EvidenceVersionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     evidenceFile?: boolean | EvidenceFileDefaultArgs<ExtArgs>
   }
@@ -21930,10 +21926,11 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      name: string
       status: $Enums.FileVersionStatus
       evidenceFileId: string
       objectUrl: string
-      type: $Enums.EvidenceFileType
+      type: string
       uploadedAt: Date
     }, ExtArgs["result"]["evidenceVersions"]>
     composites: {}
@@ -22360,10 +22357,11 @@ export namespace Prisma {
    */
   interface EvidenceVersionsFieldRefs {
     readonly id: FieldRef<"EvidenceVersions", 'String'>
+    readonly name: FieldRef<"EvidenceVersions", 'String'>
     readonly status: FieldRef<"EvidenceVersions", 'FileVersionStatus'>
     readonly evidenceFileId: FieldRef<"EvidenceVersions", 'String'>
     readonly objectUrl: FieldRef<"EvidenceVersions", 'String'>
-    readonly type: FieldRef<"EvidenceVersions", 'EvidenceFileType'>
+    readonly type: FieldRef<"EvidenceVersions", 'String'>
     readonly uploadedAt: FieldRef<"EvidenceVersions", 'DateTime'>
   }
     
@@ -29494,6 +29492,7 @@ export namespace Prisma {
 
   export const EvidenceVersionsScalarFieldEnum: {
     id: 'id',
+    name: 'name',
     status: 'status',
     evidenceFileId: 'evidenceFileId',
     objectUrl: 'objectUrl',
@@ -29763,20 +29762,6 @@ export namespace Prisma {
    * Reference to a field of type 'FileVersionStatus[]'
    */
   export type ListEnumFileVersionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FileVersionStatus[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'EvidenceFileType'
-   */
-  export type EnumEvidenceFileTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EvidenceFileType'>
-    
-
-
-  /**
-   * Reference to a field of type 'EvidenceFileType[]'
-   */
-  export type ListEnumEvidenceFileTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EvidenceFileType[]'>
     
 
 
@@ -30846,16 +30831,18 @@ export namespace Prisma {
     OR?: EvidenceVersionsWhereInput[]
     NOT?: EvidenceVersionsWhereInput | EvidenceVersionsWhereInput[]
     id?: StringFilter<"EvidenceVersions"> | string
+    name?: StringFilter<"EvidenceVersions"> | string
     status?: EnumFileVersionStatusFilter<"EvidenceVersions"> | $Enums.FileVersionStatus
     evidenceFileId?: StringFilter<"EvidenceVersions"> | string
     objectUrl?: StringFilter<"EvidenceVersions"> | string
-    type?: EnumEvidenceFileTypeFilter<"EvidenceVersions"> | $Enums.EvidenceFileType
+    type?: StringFilter<"EvidenceVersions"> | string
     uploadedAt?: DateTimeFilter<"EvidenceVersions"> | Date | string
     evidenceFile?: XOR<EvidenceFileScalarRelationFilter, EvidenceFileWhereInput>
   }
 
   export type EvidenceVersionsOrderByWithRelationInput = {
     id?: SortOrder
+    name?: SortOrder
     status?: SortOrder
     evidenceFileId?: SortOrder
     objectUrl?: SortOrder
@@ -30869,16 +30856,18 @@ export namespace Prisma {
     AND?: EvidenceVersionsWhereInput | EvidenceVersionsWhereInput[]
     OR?: EvidenceVersionsWhereInput[]
     NOT?: EvidenceVersionsWhereInput | EvidenceVersionsWhereInput[]
+    name?: StringFilter<"EvidenceVersions"> | string
     status?: EnumFileVersionStatusFilter<"EvidenceVersions"> | $Enums.FileVersionStatus
     evidenceFileId?: StringFilter<"EvidenceVersions"> | string
     objectUrl?: StringFilter<"EvidenceVersions"> | string
-    type?: EnumEvidenceFileTypeFilter<"EvidenceVersions"> | $Enums.EvidenceFileType
+    type?: StringFilter<"EvidenceVersions"> | string
     uploadedAt?: DateTimeFilter<"EvidenceVersions"> | Date | string
     evidenceFile?: XOR<EvidenceFileScalarRelationFilter, EvidenceFileWhereInput>
   }, "id">
 
   export type EvidenceVersionsOrderByWithAggregationInput = {
     id?: SortOrder
+    name?: SortOrder
     status?: SortOrder
     evidenceFileId?: SortOrder
     objectUrl?: SortOrder
@@ -30894,10 +30883,11 @@ export namespace Prisma {
     OR?: EvidenceVersionsScalarWhereWithAggregatesInput[]
     NOT?: EvidenceVersionsScalarWhereWithAggregatesInput | EvidenceVersionsScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"EvidenceVersions"> | string
+    name?: StringWithAggregatesFilter<"EvidenceVersions"> | string
     status?: EnumFileVersionStatusWithAggregatesFilter<"EvidenceVersions"> | $Enums.FileVersionStatus
     evidenceFileId?: StringWithAggregatesFilter<"EvidenceVersions"> | string
     objectUrl?: StringWithAggregatesFilter<"EvidenceVersions"> | string
-    type?: EnumEvidenceFileTypeWithAggregatesFilter<"EvidenceVersions"> | $Enums.EvidenceFileType
+    type?: StringWithAggregatesFilter<"EvidenceVersions"> | string
     uploadedAt?: DateTimeWithAggregatesFilter<"EvidenceVersions"> | Date | string
   }
 
@@ -32261,63 +32251,70 @@ export namespace Prisma {
 
   export type EvidenceVersionsCreateInput = {
     id?: string
+    name: string
     status: $Enums.FileVersionStatus
     objectUrl: string
-    type: $Enums.EvidenceFileType
+    type: string
     uploadedAt?: Date | string
     evidenceFile: EvidenceFileCreateNestedOneWithoutEvidenceVersionsInput
   }
 
   export type EvidenceVersionsUncheckedCreateInput = {
     id?: string
+    name: string
     status: $Enums.FileVersionStatus
     evidenceFileId: string
     objectUrl: string
-    type: $Enums.EvidenceFileType
+    type: string
     uploadedAt?: Date | string
   }
 
   export type EvidenceVersionsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     status?: EnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus
     objectUrl?: StringFieldUpdateOperationsInput | string
-    type?: EnumEvidenceFileTypeFieldUpdateOperationsInput | $Enums.EvidenceFileType
+    type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     evidenceFile?: EvidenceFileUpdateOneRequiredWithoutEvidenceVersionsNestedInput
   }
 
   export type EvidenceVersionsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     status?: EnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus
     evidenceFileId?: StringFieldUpdateOperationsInput | string
     objectUrl?: StringFieldUpdateOperationsInput | string
-    type?: EnumEvidenceFileTypeFieldUpdateOperationsInput | $Enums.EvidenceFileType
+    type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EvidenceVersionsCreateManyInput = {
     id?: string
+    name: string
     status: $Enums.FileVersionStatus
     evidenceFileId: string
     objectUrl: string
-    type: $Enums.EvidenceFileType
+    type: string
     uploadedAt?: Date | string
   }
 
   export type EvidenceVersionsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     status?: EnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus
     objectUrl?: StringFieldUpdateOperationsInput | string
-    type?: EnumEvidenceFileTypeFieldUpdateOperationsInput | $Enums.EvidenceFileType
+    type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EvidenceVersionsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     status?: EnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus
     evidenceFileId?: StringFieldUpdateOperationsInput | string
     objectUrl?: StringFieldUpdateOperationsInput | string
-    type?: EnumEvidenceFileTypeFieldUpdateOperationsInput | $Enums.EvidenceFileType
+    type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -33680,13 +33677,6 @@ export namespace Prisma {
     not?: NestedEnumFileVersionStatusFilter<$PrismaModel> | $Enums.FileVersionStatus
   }
 
-  export type EnumEvidenceFileTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.EvidenceFileType | EnumEvidenceFileTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.EvidenceFileType[] | ListEnumEvidenceFileTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EvidenceFileType[] | ListEnumEvidenceFileTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumEvidenceFileTypeFilter<$PrismaModel> | $Enums.EvidenceFileType
-  }
-
   export type EvidenceFileScalarRelationFilter = {
     is?: EvidenceFileWhereInput
     isNot?: EvidenceFileWhereInput
@@ -33694,6 +33684,7 @@ export namespace Prisma {
 
   export type EvidenceVersionsCountOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     status?: SortOrder
     evidenceFileId?: SortOrder
     objectUrl?: SortOrder
@@ -33703,6 +33694,7 @@ export namespace Prisma {
 
   export type EvidenceVersionsMaxOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     status?: SortOrder
     evidenceFileId?: SortOrder
     objectUrl?: SortOrder
@@ -33712,6 +33704,7 @@ export namespace Prisma {
 
   export type EvidenceVersionsMinOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     status?: SortOrder
     evidenceFileId?: SortOrder
     objectUrl?: SortOrder
@@ -33727,16 +33720,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumFileVersionStatusFilter<$PrismaModel>
     _max?: NestedEnumFileVersionStatusFilter<$PrismaModel>
-  }
-
-  export type EnumEvidenceFileTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.EvidenceFileType | EnumEvidenceFileTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.EvidenceFileType[] | ListEnumEvidenceFileTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EvidenceFileType[] | ListEnumEvidenceFileTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumEvidenceFileTypeWithAggregatesFilter<$PrismaModel> | $Enums.EvidenceFileType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumEvidenceFileTypeFilter<$PrismaModel>
-    _max?: NestedEnumEvidenceFileTypeFilter<$PrismaModel>
   }
 
   export type PhaseTwoFolderNullableScalarRelationFilter = {
@@ -35376,10 +35359,6 @@ export namespace Prisma {
     set?: $Enums.FileVersionStatus
   }
 
-  export type EnumEvidenceFileTypeFieldUpdateOperationsInput = {
-    set?: $Enums.EvidenceFileType
-  }
-
   export type EvidenceFileUpdateOneRequiredWithoutEvidenceVersionsNestedInput = {
     create?: XOR<EvidenceFileCreateWithoutEvidenceVersionsInput, EvidenceFileUncheckedCreateWithoutEvidenceVersionsInput>
     connectOrCreate?: EvidenceFileCreateOrConnectWithoutEvidenceVersionsInput
@@ -36053,13 +36032,6 @@ export namespace Prisma {
     not?: NestedEnumFileVersionStatusFilter<$PrismaModel> | $Enums.FileVersionStatus
   }
 
-  export type NestedEnumEvidenceFileTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.EvidenceFileType | EnumEvidenceFileTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.EvidenceFileType[] | ListEnumEvidenceFileTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EvidenceFileType[] | ListEnumEvidenceFileTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumEvidenceFileTypeFilter<$PrismaModel> | $Enums.EvidenceFileType
-  }
-
   export type NestedEnumFileVersionStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.FileVersionStatus | EnumFileVersionStatusFieldRefInput<$PrismaModel>
     in?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel>
@@ -36068,16 +36040,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumFileVersionStatusFilter<$PrismaModel>
     _max?: NestedEnumFileVersionStatusFilter<$PrismaModel>
-  }
-
-  export type NestedEnumEvidenceFileTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.EvidenceFileType | EnumEvidenceFileTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.EvidenceFileType[] | ListEnumEvidenceFileTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EvidenceFileType[] | ListEnumEvidenceFileTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumEvidenceFileTypeWithAggregatesFilter<$PrismaModel> | $Enums.EvidenceFileType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumEvidenceFileTypeFilter<$PrismaModel>
-    _max?: NestedEnumEvidenceFileTypeFilter<$PrismaModel>
   }
 
   export type NestedEnumAreaFileTypeFilter<$PrismaModel = never> = {
@@ -38388,17 +38350,19 @@ export namespace Prisma {
 
   export type EvidenceVersionsCreateWithoutEvidenceFileInput = {
     id?: string
+    name: string
     status: $Enums.FileVersionStatus
     objectUrl: string
-    type: $Enums.EvidenceFileType
+    type: string
     uploadedAt?: Date | string
   }
 
   export type EvidenceVersionsUncheckedCreateWithoutEvidenceFileInput = {
     id?: string
+    name: string
     status: $Enums.FileVersionStatus
     objectUrl: string
-    type: $Enums.EvidenceFileType
+    type: string
     uploadedAt?: Date | string
   }
 
@@ -38488,10 +38452,11 @@ export namespace Prisma {
     OR?: EvidenceVersionsScalarWhereInput[]
     NOT?: EvidenceVersionsScalarWhereInput | EvidenceVersionsScalarWhereInput[]
     id?: StringFilter<"EvidenceVersions"> | string
+    name?: StringFilter<"EvidenceVersions"> | string
     status?: EnumFileVersionStatusFilter<"EvidenceVersions"> | $Enums.FileVersionStatus
     evidenceFileId?: StringFilter<"EvidenceVersions"> | string
     objectUrl?: StringFilter<"EvidenceVersions"> | string
-    type?: EnumEvidenceFileTypeFilter<"EvidenceVersions"> | $Enums.EvidenceFileType
+    type?: StringFilter<"EvidenceVersions"> | string
     uploadedAt?: DateTimeFilter<"EvidenceVersions"> | Date | string
   }
 
@@ -39916,33 +39881,37 @@ export namespace Prisma {
 
   export type EvidenceVersionsCreateManyEvidenceFileInput = {
     id?: string
+    name: string
     status: $Enums.FileVersionStatus
     objectUrl: string
-    type: $Enums.EvidenceFileType
+    type: string
     uploadedAt?: Date | string
   }
 
   export type EvidenceVersionsUpdateWithoutEvidenceFileInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     status?: EnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus
     objectUrl?: StringFieldUpdateOperationsInput | string
-    type?: EnumEvidenceFileTypeFieldUpdateOperationsInput | $Enums.EvidenceFileType
+    type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EvidenceVersionsUncheckedUpdateWithoutEvidenceFileInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     status?: EnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus
     objectUrl?: StringFieldUpdateOperationsInput | string
-    type?: EnumEvidenceFileTypeFieldUpdateOperationsInput | $Enums.EvidenceFileType
+    type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EvidenceVersionsUncheckedUpdateManyWithoutEvidenceFileInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     status?: EnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus
     objectUrl?: StringFieldUpdateOperationsInput | string
-    type?: EnumEvidenceFileTypeFieldUpdateOperationsInput | $Enums.EvidenceFileType
+    type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
