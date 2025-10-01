@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
 import { EvidenceStatus } from "../generated/prisma";
 import { prisma } from "../prisma";
@@ -17,31 +18,37 @@ export async function createManyEvidenceFiles(
   return evidences;
 }
 
-export async function getEvidenceFileById(id: string) {
-  const evidence = await prisma.evidenceFile.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      indicator: true,
-      evidenceVersions: {
-        include: {
-          evidenceFile: true,
-        },
-        orderBy: {
-          uploadedAt: "desc",
-        },
+export const getEvidenceFileById = unstable_cache(
+  async (id: string) => {
+    const evidence = await prisma.evidenceFile.findUnique({
+      where: {
+        id,
       },
-      indicatorFolder: {
-        include: {
-          parameterFolder: {
-            include: {
-              parameter: true,
+      include: {
+        indicator: true,
+        evidenceVersions: {
+          include: {
+            evidenceFile: true,
+          },
+          orderBy: {
+            uploadedAt: "desc",
+          },
+        },
+        indicatorFolder: {
+          include: {
+            parameterFolder: {
+              include: {
+                parameter: true,
+              },
             },
           },
         },
       },
-    },
-  });
-  return evidence;
-}
+    });
+    return evidence;
+  },
+  ["getEvidenceFileById"],
+  {
+    tags: ["evidenceFiles"],
+  }
+);

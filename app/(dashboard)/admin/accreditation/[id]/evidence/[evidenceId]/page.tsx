@@ -11,8 +11,6 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getEvidenceFileById } from "@/lib/dal/evidence";
 import { Category, EvidenceStatus } from "@/lib/generated/prisma";
-import { prisma } from "@/lib/prisma";
-import { cn } from "@/lib/utils";
 import clsx from "clsx";
 import { CheckCircle, CircleDot, Tag } from "lucide-react";
 
@@ -41,7 +39,7 @@ const EvidencePage = async ({
   };
   return (
     <ScrollArea className="h-full">
-      <div className="max-w-3/4 mx-auto mt-10 flex flex-col gap-5">
+      <div className="max-w-3/4 mx-auto my-10 flex flex-col gap-5">
         <p className="text-2xl flex items-center gap-2">
           <CheckCircle />
           Indicator

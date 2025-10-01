@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
 import {
   createNewEvidenceVersion,
   resetAllStatus,
@@ -32,4 +33,5 @@ export async function createNewVersion(
     id: evidenceFileId,
     status: EvidenceStatus.FOR_REVIEW,
   });
+  revalidateTag("evidenceFiles");
 }

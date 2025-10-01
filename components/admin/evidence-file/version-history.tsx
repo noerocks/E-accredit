@@ -32,7 +32,7 @@ const VersionHistory = ({ versions }: { versions: EvidenceVersions[] }) => {
                 </p>
                 <p className="flex items-center gap-2 text-gray-500">
                   <Calendar size={15} />
-                  {version.uploadedAt.toLocaleDateString("en-US")}
+                  {new Date(version.uploadedAt).toLocaleDateString("en-US")}
                 </p>
                 <p className="flex items-center gap-2">
                   <Link size={15} />
