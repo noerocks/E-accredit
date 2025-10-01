@@ -4,10 +4,12 @@ import { revalidateTag } from "next/cache";
 import {
   createNewEvidenceVersion,
   resetAllStatus,
+  updateVersionById,
 } from "../dal/evidence-version";
-import { EvidenceStatus } from "../generated/prisma";
+import { EvidenceStatus, FileVersionStatus } from "../generated/prisma";
 import { updateEvidenceFileById } from "./evidence-file";
 import { verifySession } from "./session";
+import { deleteVersionById as deleteVersionByIdDAL } from "../dal/evidence-version";
 
 export async function createNewVersion(
   name: string,
@@ -34,4 +36,23 @@ export async function createNewVersion(
     status: EvidenceStatus.FOR_REVIEW,
   });
   revalidateTag("evidenceFiles");
+}
+
+export async function changeActiveVersion(id: string) {
+  if (!id) return { failure: { error: "Id is required" } };
+  await resetAllStatus();
+  const evidenceVersion = await updateVersionById(id, {
+    status: FileVersionStatus.ACTIVE,
+  });
+  revalidateTag("evidenceFiles");
+  return {
+    success: { message: "Evidence version is successfuly set to active" },
+  };
+}
+
+export async function deleteVersionById(id: string) {
+  if (!id) return { failure: { error: "Id is required" } };
+  const evidenceVersion = await deleteVersionByIdDAL(id);
+  revalidateTag("evidenceFiles");
+  return { success: { message: "Evidence version is deleted" } };
 }
