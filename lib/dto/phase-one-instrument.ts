@@ -1,5 +1,6 @@
 import {
   Area,
+  AreaFile,
   AreaFolder,
   EvidenceFile,
   Indicator,
@@ -15,6 +16,7 @@ export type PhaseOneInstrumentDTO = InstrumentFolder & {
 export type AreaFolderDTO = AreaFolder & {
   area: Area;
   parameterFolders: ParameterFolderDTO[];
+  areaFiles: AreaFile[];
 };
 export type ParameterFolderDTO = ParameterFolder & {
   parameter: Parameter;

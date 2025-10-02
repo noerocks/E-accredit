@@ -4,6 +4,7 @@ import { InstrumentDisplayDTO } from "../dto/instrument";
 import { LevelDTO } from "../dto/level";
 import { ProgramDTO } from "../dto/programs";
 import {
+  AreaFileType,
   Category,
   EvidenceStatus,
   Phase,
@@ -18,6 +19,7 @@ import { createParameterFolder } from "../dal/parameter-folder";
 import { createIndicatorFolder } from "../dal/indicator-folder";
 import { revalidateTag } from "next/cache";
 import { createManyEvidenceFiles } from "../dal/evidence";
+import { createManyAreaFiles } from "../dal/area-file";
 
 export async function createSurveyVisit(
   program: ProgramDTO,
@@ -65,6 +67,13 @@ export async function createSurveyVisit(
         );
         if (!parameterFolder)
           throw new Error("Error in creating parameter folder");
+        const areaFiles = await createManyAreaFiles([
+          { phaseOneAreaFolderId: areaFolder.id, type: AreaFileType.PPP },
+          {
+            phaseOneAreaFolderId: areaFolder.id,
+            type: AreaFileType.COMPLIANCE_REPORT,
+          },
+        ]);
         category.forEach(async (category) => {
           const indicatorFolder = await createIndicatorFolder(
             parameterFolder.id,

@@ -14,7 +14,7 @@ import {
   IndicatorFolderDTO,
   ParameterFolderDTO,
 } from "@/lib/dto/phase-one-instrument";
-import { Category } from "@/lib/generated/prisma";
+import { AreaFileType, Category } from "@/lib/generated/prisma";
 import { ChevronRight, File, Folder } from "lucide-react";
 import { useParams } from "next/navigation";
 
@@ -41,9 +41,15 @@ const isEvidenceFile = (node: TreeNode): node is EvidenceFileDTO => {
 };
 
 const category = {
-  SYSTEM: "System",
-  IMPLEMENTATION: "Implementation",
-  OUTCOME: "Outcome/s",
+  [Category.SYSTEM]: "System",
+  [Category.IMPLEMENTATION]: "Implementation",
+  [Category.OUTCOME]: "Outcome/s",
+};
+
+const areaFileType = {
+  [AreaFileType.PPP]: "Program Performance Profile",
+  [AreaFileType.COMPLIANCE_REPORT]: "Compliance Report",
+  [AreaFileType.NARRATIVE_PROFILE]: "Narrative Profile",
 };
 
 const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
@@ -60,6 +66,11 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
+              {item.areaFiles.map((areaFile) => (
+                <SidebarMenuButton>{`📄 ${
+                  areaFileType[areaFile.type]
+                }`}</SidebarMenuButton>
+              ))}
               {item.parameterFolders.map((parameter) => (
                 <FileTreePhaseOne item={parameter} key={parameter.id} />
               ))}
