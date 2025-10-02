@@ -1,8 +1,8 @@
 import { verifySession } from "../action/session";
-import { EvidenceVersions, FileVersionStatus } from "../generated/prisma";
+import { FileVersion, FileVersionStatus } from "../generated/prisma";
 import { prisma } from "../prisma";
 
-export async function createNewEvidenceVersion(
+export async function createNewEvidenceFileVersion(
   name: string,
   evidenceFileId: string,
   objectUrl: string,
@@ -10,7 +10,7 @@ export async function createNewEvidenceVersion(
 ) {
   const session = await verifySession();
   if (!session) return null;
-  const evidenceVersion = await prisma.evidenceVersions.create({
+  const evidenceVersion = await prisma.fileVersion.create({
     data: {
       name,
       status: FileVersionStatus.ACTIVE,
@@ -26,10 +26,10 @@ export async function createNewEvidenceVersion(
   return evidenceVersion;
 }
 
-export async function resetAllStatus() {
+export async function resetAllEvidenceVersionStatus() {
   const session = await verifySession();
   if (!session) return null;
-  await prisma.evidenceVersions.updateMany({
+  await prisma.fileVersion.updateMany({
     data: {
       status: FileVersionStatus.ARCHIVED,
     },
@@ -38,11 +38,11 @@ export async function resetAllStatus() {
 
 export async function updateVersionById(
   id: string,
-  data: Partial<EvidenceVersions>
+  data: Partial<FileVersion>
 ) {
   const session = await verifySession();
   if (!session) return null;
-  const evidenceVersion = await prisma.evidenceVersions.update({
+  const evidenceVersion = await prisma.fileVersion.update({
     where: {
       id,
     },
@@ -54,7 +54,7 @@ export async function updateVersionById(
 export async function deleteVersionById(id: string) {
   const session = await verifySession();
   if (!session) return null;
-  const evidenceVersion = await prisma.evidenceVersions.delete({
+  const evidenceVersion = await prisma.fileVersion.delete({
     where: {
       id,
     },

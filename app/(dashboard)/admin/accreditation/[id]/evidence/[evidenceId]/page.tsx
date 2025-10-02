@@ -81,8 +81,8 @@ const EvidencePage = async ({
             <UploadFileForm indicator={indicator} evidenceId={evidenceId} />
           </CardFooter>
         </Card>
-        {evidence?.evidenceVersions && (
-          <VersionHistory versions={evidence?.evidenceVersions} />
+        {evidence?.fileVersions && (
+          <VersionHistory versions={evidence?.fileVersions} />
         )}
       </div>
     </ScrollArea>

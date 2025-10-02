@@ -13,7 +13,7 @@ import {
   changeActiveVersion,
   deleteVersionById,
 } from "@/lib/action/evidence-version";
-import { EvidenceVersions } from "@/lib/generated/prisma";
+import { FileVersion } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import {
   Calendar,
@@ -27,7 +27,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
-const VersionHistory = ({ versions }: { versions: EvidenceVersions[] }) => {
+const VersionHistory = ({ versions }: { versions: FileVersion[] }) => {
   const onClick = async (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     const menuItem = target.closest<HTMLDivElement>("[data-action]");
@@ -58,11 +58,11 @@ const VersionHistory = ({ versions }: { versions: EvidenceVersions[] }) => {
         </CardTitle>
       </CardHeader>
       <CardContent onClick={onClick}>
-        <div className="border rounded-sm p-2">
+        <div className="border rounded-sm">
           {versions.map((version) => (
             <div
               key={version.id}
-              className="p-2 border-b last:border-b-0 flex gap-2 items-center"
+              className="p-4 border-b last:border-b-0 flex gap-2 items-center"
             >
               <div
                 className={clsx("w-3 h-3 rounded-full mx-2", {

@@ -1,15 +1,15 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
-import {
-  createNewEvidenceVersion,
-  resetAllStatus,
-  updateVersionById,
-} from "../dal/evidence-version";
 import { EvidenceStatus, FileVersionStatus } from "../generated/prisma";
 import { updateEvidenceFileById } from "./evidence-file";
 import { verifySession } from "./session";
-import { deleteVersionById as deleteVersionByIdDAL } from "../dal/evidence-version";
+import {
+  createNewEvidenceFileVersion,
+  deleteVersionById as deleteVersionByIdDAL,
+  resetAllEvidenceVersionStatus,
+  updateVersionById,
+} from "../dal/file-version";
 
 export async function createNewVersion(
   name: string,
@@ -24,8 +24,8 @@ export async function createNewVersion(
         message: "Not authenticated",
       },
     };
-  await resetAllStatus();
-  const evidenceFileVersion = await createNewEvidenceVersion(
+  await resetAllEvidenceVersionStatus();
+  const evidenceFileVersion = await createNewEvidenceFileVersion(
     name,
     evidenceFileId,
     objectUrl,
@@ -40,7 +40,7 @@ export async function createNewVersion(
 
 export async function changeActiveVersion(id: string) {
   if (!id) return { failure: { error: "Id is required" } };
-  await resetAllStatus();
+  await resetAllEvidenceVersionStatus();
   const evidenceVersion = await updateVersionById(id, {
     status: FileVersionStatus.ACTIVE,
   });

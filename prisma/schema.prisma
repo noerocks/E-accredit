@@ -244,26 +244,28 @@ model IndicatorFolder {
 }
 
 model EvidenceFile {
-  id                String             @id @default(uuid())
-  indicatorFolder   IndicatorFolder    @relation(fields: [indicatorFolderId], references: [id], onDelete: Cascade)
+  id                String          @id @default(uuid())
+  indicatorFolder   IndicatorFolder @relation(fields: [indicatorFolderId], references: [id], onDelete: Cascade)
   indicatorFolderId String
   status            EvidenceStatus
-  indicator         Indicator          @relation(fields: [indicatorId], references: [id], onDelete: Cascade)
+  indicator         Indicator       @relation(fields: [indicatorId], references: [id], onDelete: Cascade)
   indicatorId       Int
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
-  evidenceVersions  EvidenceVersions[]
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  fileVersions      FileVersion[]
 }
 
-model EvidenceVersions {
-  id             String            @id @default(uuid())
-  evidenceFile   EvidenceFile      @relation(fields: [evidenceFileId], references: [id], onDelete: Cascade)
+model FileVersion {
+  id             String             @id @default(uuid())
+  evidenceFile   EvidenceFile?      @relation(fields: [evidenceFileId], references: [id], onDelete: Cascade)
+  evidenceFileId String?
+  areaFile       AreaFile?          @relation(fields: [areaFileId], references: [id], onDelete: Cascade)
+  areaFileId     String?
   name           String
-  status         FileVersionStatus
-  evidenceFileId String
+  status         FileVersionStatus?
   objectUrl      String
   type           String
-  uploadedAt     DateTime          @default(now())
+  uploadedAt     DateTime           @default(now())
 }
 
 model PhaseTwoRequirements {
@@ -298,9 +300,9 @@ model AreaFile {
   phaseTwoAreaFolder   PhaseTwoAreaFolder? @relation(fields: [phaseTwoAreaFolderId], references: [id], onDelete: Cascade)
   phaseTwoAreaFolderId String?
   type                 AreaFileType
-  objectURL            String?
   createdAt            DateTime            @default(now())
   updatedAt            DateTime            @updatedAt
+  fileVersions         FileVersion[]
 }
 
 model TaskForce {

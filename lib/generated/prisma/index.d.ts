@@ -94,10 +94,10 @@ export type IndicatorFolder = $Result.DefaultSelection<Prisma.$IndicatorFolderPa
  */
 export type EvidenceFile = $Result.DefaultSelection<Prisma.$EvidenceFilePayload>
 /**
- * Model EvidenceVersions
+ * Model FileVersion
  * 
  */
-export type EvidenceVersions = $Result.DefaultSelection<Prisma.$EvidenceVersionsPayload>
+export type FileVersion = $Result.DefaultSelection<Prisma.$FileVersionPayload>
 /**
  * Model PhaseTwoRequirements
  * 
@@ -528,14 +528,14 @@ export class PrismaClient<
   get evidenceFile(): Prisma.EvidenceFileDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.evidenceVersions`: Exposes CRUD operations for the **EvidenceVersions** model.
+   * `prisma.fileVersion`: Exposes CRUD operations for the **FileVersion** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more EvidenceVersions
-    * const evidenceVersions = await prisma.evidenceVersions.findMany()
+    * // Fetch zero or more FileVersions
+    * const fileVersions = await prisma.fileVersion.findMany()
     * ```
     */
-  get evidenceVersions(): Prisma.EvidenceVersionsDelegate<ExtArgs, ClientOptions>;
+  get fileVersion(): Prisma.FileVersionDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.phaseTwoRequirements`: Exposes CRUD operations for the **PhaseTwoRequirements** model.
@@ -1052,7 +1052,7 @@ export namespace Prisma {
     ParameterFolder: 'ParameterFolder',
     IndicatorFolder: 'IndicatorFolder',
     EvidenceFile: 'EvidenceFile',
-    EvidenceVersions: 'EvidenceVersions',
+    FileVersion: 'FileVersion',
     PhaseTwoRequirements: 'PhaseTwoRequirements',
     PhaseTwoFolder: 'PhaseTwoFolder',
     PhaseTwoAreaFolder: 'PhaseTwoAreaFolder',
@@ -1077,7 +1077,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level" | "accreditation" | "surveyVisit" | "phaseOneRequirements" | "instrumentFolder" | "areaFolder" | "parameterFolder" | "indicatorFolder" | "evidenceFile" | "evidenceVersions" | "phaseTwoRequirements" | "phaseTwoFolder" | "phaseTwoAreaFolder" | "areaFile" | "taskForce" | "taskForceMember"
+      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level" | "accreditation" | "surveyVisit" | "phaseOneRequirements" | "instrumentFolder" | "areaFolder" | "parameterFolder" | "indicatorFolder" | "evidenceFile" | "fileVersion" | "phaseTwoRequirements" | "phaseTwoFolder" | "phaseTwoAreaFolder" | "areaFile" | "taskForce" | "taskForceMember"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2265,77 +2265,77 @@ export namespace Prisma {
           }
         }
       }
-      EvidenceVersions: {
-        payload: Prisma.$EvidenceVersionsPayload<ExtArgs>
-        fields: Prisma.EvidenceVersionsFieldRefs
+      FileVersion: {
+        payload: Prisma.$FileVersionPayload<ExtArgs>
+        fields: Prisma.FileVersionFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.EvidenceVersionsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EvidenceVersionsPayload> | null
+            args: Prisma.FileVersionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileVersionPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.EvidenceVersionsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EvidenceVersionsPayload>
+            args: Prisma.FileVersionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileVersionPayload>
           }
           findFirst: {
-            args: Prisma.EvidenceVersionsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EvidenceVersionsPayload> | null
+            args: Prisma.FileVersionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileVersionPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.EvidenceVersionsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EvidenceVersionsPayload>
+            args: Prisma.FileVersionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileVersionPayload>
           }
           findMany: {
-            args: Prisma.EvidenceVersionsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EvidenceVersionsPayload>[]
+            args: Prisma.FileVersionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileVersionPayload>[]
           }
           create: {
-            args: Prisma.EvidenceVersionsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EvidenceVersionsPayload>
+            args: Prisma.FileVersionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileVersionPayload>
           }
           createMany: {
-            args: Prisma.EvidenceVersionsCreateManyArgs<ExtArgs>
+            args: Prisma.FileVersionCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.EvidenceVersionsCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EvidenceVersionsPayload>[]
+            args: Prisma.FileVersionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileVersionPayload>[]
           }
           delete: {
-            args: Prisma.EvidenceVersionsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EvidenceVersionsPayload>
+            args: Prisma.FileVersionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileVersionPayload>
           }
           update: {
-            args: Prisma.EvidenceVersionsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EvidenceVersionsPayload>
+            args: Prisma.FileVersionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileVersionPayload>
           }
           deleteMany: {
-            args: Prisma.EvidenceVersionsDeleteManyArgs<ExtArgs>
+            args: Prisma.FileVersionDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.EvidenceVersionsUpdateManyArgs<ExtArgs>
+            args: Prisma.FileVersionUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.EvidenceVersionsUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EvidenceVersionsPayload>[]
+            args: Prisma.FileVersionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileVersionPayload>[]
           }
           upsert: {
-            args: Prisma.EvidenceVersionsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EvidenceVersionsPayload>
+            args: Prisma.FileVersionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FileVersionPayload>
           }
           aggregate: {
-            args: Prisma.EvidenceVersionsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateEvidenceVersions>
+            args: Prisma.FileVersionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFileVersion>
           }
           groupBy: {
-            args: Prisma.EvidenceVersionsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<EvidenceVersionsGroupByOutputType>[]
+            args: Prisma.FileVersionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FileVersionGroupByOutputType>[]
           }
           count: {
-            args: Prisma.EvidenceVersionsCountArgs<ExtArgs>
-            result: $Utils.Optional<EvidenceVersionsCountAggregateOutputType> | number
+            args: Prisma.FileVersionCountArgs<ExtArgs>
+            result: $Utils.Optional<FileVersionCountAggregateOutputType> | number
           }
         }
       }
@@ -2891,7 +2891,7 @@ export namespace Prisma {
     parameterFolder?: ParameterFolderOmit
     indicatorFolder?: IndicatorFolderOmit
     evidenceFile?: EvidenceFileOmit
-    evidenceVersions?: EvidenceVersionsOmit
+    fileVersion?: FileVersionOmit
     phaseTwoRequirements?: PhaseTwoRequirementsOmit
     phaseTwoFolder?: PhaseTwoFolderOmit
     phaseTwoAreaFolder?: PhaseTwoAreaFolderOmit
@@ -3453,11 +3453,11 @@ export namespace Prisma {
    */
 
   export type EvidenceFileCountOutputType = {
-    evidenceVersions: number
+    fileVersions: number
   }
 
   export type EvidenceFileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    evidenceVersions?: boolean | EvidenceFileCountOutputTypeCountEvidenceVersionsArgs
+    fileVersions?: boolean | EvidenceFileCountOutputTypeCountFileVersionsArgs
   }
 
   // Custom InputTypes
@@ -3474,8 +3474,8 @@ export namespace Prisma {
   /**
    * EvidenceFileCountOutputType without action
    */
-  export type EvidenceFileCountOutputTypeCountEvidenceVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: EvidenceVersionsWhereInput
+  export type EvidenceFileCountOutputTypeCountFileVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FileVersionWhereInput
   }
 
 
@@ -3538,6 +3538,37 @@ export namespace Prisma {
    */
   export type PhaseTwoAreaFolderCountOutputTypeCountAreaFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AreaFileWhereInput
+  }
+
+
+  /**
+   * Count Type AreaFileCountOutputType
+   */
+
+  export type AreaFileCountOutputType = {
+    fileVersions: number
+  }
+
+  export type AreaFileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fileVersions?: boolean | AreaFileCountOutputTypeCountFileVersionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AreaFileCountOutputType without action
+   */
+  export type AreaFileCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFileCountOutputType
+     */
+    select?: AreaFileCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AreaFileCountOutputType without action
+   */
+  export type AreaFileCountOutputTypeCountFileVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FileVersionWhereInput
   }
 
 
@@ -20758,7 +20789,7 @@ export namespace Prisma {
     updatedAt?: boolean
     indicatorFolder?: boolean | IndicatorFolderDefaultArgs<ExtArgs>
     indicator?: boolean | IndicatorDefaultArgs<ExtArgs>
-    evidenceVersions?: boolean | EvidenceFile$evidenceVersionsArgs<ExtArgs>
+    fileVersions?: boolean | EvidenceFile$fileVersionsArgs<ExtArgs>
     _count?: boolean | EvidenceFileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["evidenceFile"]>
 
@@ -20797,7 +20828,7 @@ export namespace Prisma {
   export type EvidenceFileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     indicatorFolder?: boolean | IndicatorFolderDefaultArgs<ExtArgs>
     indicator?: boolean | IndicatorDefaultArgs<ExtArgs>
-    evidenceVersions?: boolean | EvidenceFile$evidenceVersionsArgs<ExtArgs>
+    fileVersions?: boolean | EvidenceFile$fileVersionsArgs<ExtArgs>
     _count?: boolean | EvidenceFileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EvidenceFileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20814,7 +20845,7 @@ export namespace Prisma {
     objects: {
       indicatorFolder: Prisma.$IndicatorFolderPayload<ExtArgs>
       indicator: Prisma.$IndicatorPayload<ExtArgs>
-      evidenceVersions: Prisma.$EvidenceVersionsPayload<ExtArgs>[]
+      fileVersions: Prisma.$FileVersionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -21219,7 +21250,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     indicatorFolder<T extends IndicatorFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, IndicatorFolderDefaultArgs<ExtArgs>>): Prisma__IndicatorFolderClient<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     indicator<T extends IndicatorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, IndicatorDefaultArgs<ExtArgs>>): Prisma__IndicatorClient<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    evidenceVersions<T extends EvidenceFile$evidenceVersionsArgs<ExtArgs> = {}>(args?: Subset<T, EvidenceFile$evidenceVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EvidenceVersionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    fileVersions<T extends EvidenceFile$fileVersionsArgs<ExtArgs> = {}>(args?: Subset<T, EvidenceFile$fileVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -21651,27 +21682,27 @@ export namespace Prisma {
   }
 
   /**
-   * EvidenceFile.evidenceVersions
+   * EvidenceFile.fileVersions
    */
-  export type EvidenceFile$evidenceVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EvidenceFile$fileVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EvidenceVersions
+     * Select specific fields to fetch from the FileVersion
      */
-    select?: EvidenceVersionsSelect<ExtArgs> | null
+    select?: FileVersionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the EvidenceVersions
+     * Omit specific fields from the FileVersion
      */
-    omit?: EvidenceVersionsOmit<ExtArgs> | null
+    omit?: FileVersionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EvidenceVersionsInclude<ExtArgs> | null
-    where?: EvidenceVersionsWhereInput
-    orderBy?: EvidenceVersionsOrderByWithRelationInput | EvidenceVersionsOrderByWithRelationInput[]
-    cursor?: EvidenceVersionsWhereUniqueInput
+    include?: FileVersionInclude<ExtArgs> | null
+    where?: FileVersionWhereInput
+    orderBy?: FileVersionOrderByWithRelationInput | FileVersionOrderByWithRelationInput[]
+    cursor?: FileVersionWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: EvidenceVersionsScalarFieldEnum | EvidenceVersionsScalarFieldEnum[]
+    distinct?: FileVersionScalarFieldEnum | FileVersionScalarFieldEnum[]
   }
 
   /**
@@ -21694,40 +21725,43 @@ export namespace Prisma {
 
 
   /**
-   * Model EvidenceVersions
+   * Model FileVersion
    */
 
-  export type AggregateEvidenceVersions = {
-    _count: EvidenceVersionsCountAggregateOutputType | null
-    _min: EvidenceVersionsMinAggregateOutputType | null
-    _max: EvidenceVersionsMaxAggregateOutputType | null
+  export type AggregateFileVersion = {
+    _count: FileVersionCountAggregateOutputType | null
+    _min: FileVersionMinAggregateOutputType | null
+    _max: FileVersionMaxAggregateOutputType | null
   }
 
-  export type EvidenceVersionsMinAggregateOutputType = {
+  export type FileVersionMinAggregateOutputType = {
     id: string | null
+    evidenceFileId: string | null
+    areaFileId: string | null
     name: string | null
     status: $Enums.FileVersionStatus | null
-    evidenceFileId: string | null
     objectUrl: string | null
     type: string | null
     uploadedAt: Date | null
   }
 
-  export type EvidenceVersionsMaxAggregateOutputType = {
+  export type FileVersionMaxAggregateOutputType = {
     id: string | null
+    evidenceFileId: string | null
+    areaFileId: string | null
     name: string | null
     status: $Enums.FileVersionStatus | null
-    evidenceFileId: string | null
     objectUrl: string | null
     type: string | null
     uploadedAt: Date | null
   }
 
-  export type EvidenceVersionsCountAggregateOutputType = {
+  export type FileVersionCountAggregateOutputType = {
     id: number
+    evidenceFileId: number
+    areaFileId: number
     name: number
     status: number
-    evidenceFileId: number
     objectUrl: number
     type: number
     uploadedAt: number
@@ -21735,333 +21769,349 @@ export namespace Prisma {
   }
 
 
-  export type EvidenceVersionsMinAggregateInputType = {
+  export type FileVersionMinAggregateInputType = {
     id?: true
+    evidenceFileId?: true
+    areaFileId?: true
     name?: true
     status?: true
-    evidenceFileId?: true
     objectUrl?: true
     type?: true
     uploadedAt?: true
   }
 
-  export type EvidenceVersionsMaxAggregateInputType = {
+  export type FileVersionMaxAggregateInputType = {
     id?: true
+    evidenceFileId?: true
+    areaFileId?: true
     name?: true
     status?: true
-    evidenceFileId?: true
     objectUrl?: true
     type?: true
     uploadedAt?: true
   }
 
-  export type EvidenceVersionsCountAggregateInputType = {
+  export type FileVersionCountAggregateInputType = {
     id?: true
+    evidenceFileId?: true
+    areaFileId?: true
     name?: true
     status?: true
-    evidenceFileId?: true
     objectUrl?: true
     type?: true
     uploadedAt?: true
     _all?: true
   }
 
-  export type EvidenceVersionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which EvidenceVersions to aggregate.
+     * Filter which FileVersion to aggregate.
      */
-    where?: EvidenceVersionsWhereInput
+    where?: FileVersionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of EvidenceVersions to fetch.
+     * Determine the order of FileVersions to fetch.
      */
-    orderBy?: EvidenceVersionsOrderByWithRelationInput | EvidenceVersionsOrderByWithRelationInput[]
+    orderBy?: FileVersionOrderByWithRelationInput | FileVersionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: EvidenceVersionsWhereUniqueInput
+    cursor?: FileVersionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` EvidenceVersions from the position of the cursor.
+     * Take `±n` FileVersions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` EvidenceVersions.
+     * Skip the first `n` FileVersions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned EvidenceVersions
+     * Count returned FileVersions
     **/
-    _count?: true | EvidenceVersionsCountAggregateInputType
+    _count?: true | FileVersionCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: EvidenceVersionsMinAggregateInputType
+    _min?: FileVersionMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: EvidenceVersionsMaxAggregateInputType
+    _max?: FileVersionMaxAggregateInputType
   }
 
-  export type GetEvidenceVersionsAggregateType<T extends EvidenceVersionsAggregateArgs> = {
-        [P in keyof T & keyof AggregateEvidenceVersions]: P extends '_count' | 'count'
+  export type GetFileVersionAggregateType<T extends FileVersionAggregateArgs> = {
+        [P in keyof T & keyof AggregateFileVersion]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateEvidenceVersions[P]>
-      : GetScalarType<T[P], AggregateEvidenceVersions[P]>
+        : GetScalarType<T[P], AggregateFileVersion[P]>
+      : GetScalarType<T[P], AggregateFileVersion[P]>
   }
 
 
 
 
-  export type EvidenceVersionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: EvidenceVersionsWhereInput
-    orderBy?: EvidenceVersionsOrderByWithAggregationInput | EvidenceVersionsOrderByWithAggregationInput[]
-    by: EvidenceVersionsScalarFieldEnum[] | EvidenceVersionsScalarFieldEnum
-    having?: EvidenceVersionsScalarWhereWithAggregatesInput
+  export type FileVersionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FileVersionWhereInput
+    orderBy?: FileVersionOrderByWithAggregationInput | FileVersionOrderByWithAggregationInput[]
+    by: FileVersionScalarFieldEnum[] | FileVersionScalarFieldEnum
+    having?: FileVersionScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: EvidenceVersionsCountAggregateInputType | true
-    _min?: EvidenceVersionsMinAggregateInputType
-    _max?: EvidenceVersionsMaxAggregateInputType
+    _count?: FileVersionCountAggregateInputType | true
+    _min?: FileVersionMinAggregateInputType
+    _max?: FileVersionMaxAggregateInputType
   }
 
-  export type EvidenceVersionsGroupByOutputType = {
+  export type FileVersionGroupByOutputType = {
     id: string
+    evidenceFileId: string | null
+    areaFileId: string | null
     name: string
-    status: $Enums.FileVersionStatus
-    evidenceFileId: string
+    status: $Enums.FileVersionStatus | null
     objectUrl: string
     type: string
     uploadedAt: Date
-    _count: EvidenceVersionsCountAggregateOutputType | null
-    _min: EvidenceVersionsMinAggregateOutputType | null
-    _max: EvidenceVersionsMaxAggregateOutputType | null
+    _count: FileVersionCountAggregateOutputType | null
+    _min: FileVersionMinAggregateOutputType | null
+    _max: FileVersionMaxAggregateOutputType | null
   }
 
-  type GetEvidenceVersionsGroupByPayload<T extends EvidenceVersionsGroupByArgs> = Prisma.PrismaPromise<
+  type GetFileVersionGroupByPayload<T extends FileVersionGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<EvidenceVersionsGroupByOutputType, T['by']> &
+      PickEnumerable<FileVersionGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof EvidenceVersionsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof FileVersionGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], EvidenceVersionsGroupByOutputType[P]>
-            : GetScalarType<T[P], EvidenceVersionsGroupByOutputType[P]>
+              : GetScalarType<T[P], FileVersionGroupByOutputType[P]>
+            : GetScalarType<T[P], FileVersionGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type EvidenceVersionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FileVersionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    evidenceFileId?: boolean
+    areaFileId?: boolean
     name?: boolean
     status?: boolean
-    evidenceFileId?: boolean
     objectUrl?: boolean
     type?: boolean
     uploadedAt?: boolean
-    evidenceFile?: boolean | EvidenceFileDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["evidenceVersions"]>
+    evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
+    areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+  }, ExtArgs["result"]["fileVersion"]>
 
-  export type EvidenceVersionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FileVersionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    evidenceFileId?: boolean
+    areaFileId?: boolean
     name?: boolean
     status?: boolean
-    evidenceFileId?: boolean
     objectUrl?: boolean
     type?: boolean
     uploadedAt?: boolean
-    evidenceFile?: boolean | EvidenceFileDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["evidenceVersions"]>
+    evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
+    areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+  }, ExtArgs["result"]["fileVersion"]>
 
-  export type EvidenceVersionsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type FileVersionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    evidenceFileId?: boolean
+    areaFileId?: boolean
     name?: boolean
     status?: boolean
-    evidenceFileId?: boolean
     objectUrl?: boolean
     type?: boolean
     uploadedAt?: boolean
-    evidenceFile?: boolean | EvidenceFileDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["evidenceVersions"]>
+    evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
+    areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+  }, ExtArgs["result"]["fileVersion"]>
 
-  export type EvidenceVersionsSelectScalar = {
+  export type FileVersionSelectScalar = {
     id?: boolean
+    evidenceFileId?: boolean
+    areaFileId?: boolean
     name?: boolean
     status?: boolean
-    evidenceFileId?: boolean
     objectUrl?: boolean
     type?: boolean
     uploadedAt?: boolean
   }
 
-  export type EvidenceVersionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "status" | "evidenceFileId" | "objectUrl" | "type" | "uploadedAt", ExtArgs["result"]["evidenceVersions"]>
-  export type EvidenceVersionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    evidenceFile?: boolean | EvidenceFileDefaultArgs<ExtArgs>
+  export type FileVersionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "evidenceFileId" | "areaFileId" | "name" | "status" | "objectUrl" | "type" | "uploadedAt", ExtArgs["result"]["fileVersion"]>
+  export type FileVersionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
+    areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
   }
-  export type EvidenceVersionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    evidenceFile?: boolean | EvidenceFileDefaultArgs<ExtArgs>
+  export type FileVersionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
+    areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
   }
-  export type EvidenceVersionsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    evidenceFile?: boolean | EvidenceFileDefaultArgs<ExtArgs>
+  export type FileVersionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
+    areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
   }
 
-  export type $EvidenceVersionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "EvidenceVersions"
+  export type $FileVersionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FileVersion"
     objects: {
-      evidenceFile: Prisma.$EvidenceFilePayload<ExtArgs>
+      evidenceFile: Prisma.$EvidenceFilePayload<ExtArgs> | null
+      areaFile: Prisma.$AreaFilePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      evidenceFileId: string | null
+      areaFileId: string | null
       name: string
-      status: $Enums.FileVersionStatus
-      evidenceFileId: string
+      status: $Enums.FileVersionStatus | null
       objectUrl: string
       type: string
       uploadedAt: Date
-    }, ExtArgs["result"]["evidenceVersions"]>
+    }, ExtArgs["result"]["fileVersion"]>
     composites: {}
   }
 
-  type EvidenceVersionsGetPayload<S extends boolean | null | undefined | EvidenceVersionsDefaultArgs> = $Result.GetResult<Prisma.$EvidenceVersionsPayload, S>
+  type FileVersionGetPayload<S extends boolean | null | undefined | FileVersionDefaultArgs> = $Result.GetResult<Prisma.$FileVersionPayload, S>
 
-  type EvidenceVersionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<EvidenceVersionsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: EvidenceVersionsCountAggregateInputType | true
+  type FileVersionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FileVersionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FileVersionCountAggregateInputType | true
     }
 
-  export interface EvidenceVersionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EvidenceVersions'], meta: { name: 'EvidenceVersions' } }
+  export interface FileVersionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FileVersion'], meta: { name: 'FileVersion' } }
     /**
-     * Find zero or one EvidenceVersions that matches the filter.
-     * @param {EvidenceVersionsFindUniqueArgs} args - Arguments to find a EvidenceVersions
+     * Find zero or one FileVersion that matches the filter.
+     * @param {FileVersionFindUniqueArgs} args - Arguments to find a FileVersion
      * @example
-     * // Get one EvidenceVersions
-     * const evidenceVersions = await prisma.evidenceVersions.findUnique({
+     * // Get one FileVersion
+     * const fileVersion = await prisma.fileVersion.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends EvidenceVersionsFindUniqueArgs>(args: SelectSubset<T, EvidenceVersionsFindUniqueArgs<ExtArgs>>): Prisma__EvidenceVersionsClient<$Result.GetResult<Prisma.$EvidenceVersionsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends FileVersionFindUniqueArgs>(args: SelectSubset<T, FileVersionFindUniqueArgs<ExtArgs>>): Prisma__FileVersionClient<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one EvidenceVersions that matches the filter or throw an error with `error.code='P2025'`
+     * Find one FileVersion that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {EvidenceVersionsFindUniqueOrThrowArgs} args - Arguments to find a EvidenceVersions
+     * @param {FileVersionFindUniqueOrThrowArgs} args - Arguments to find a FileVersion
      * @example
-     * // Get one EvidenceVersions
-     * const evidenceVersions = await prisma.evidenceVersions.findUniqueOrThrow({
+     * // Get one FileVersion
+     * const fileVersion = await prisma.fileVersion.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends EvidenceVersionsFindUniqueOrThrowArgs>(args: SelectSubset<T, EvidenceVersionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EvidenceVersionsClient<$Result.GetResult<Prisma.$EvidenceVersionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends FileVersionFindUniqueOrThrowArgs>(args: SelectSubset<T, FileVersionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FileVersionClient<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first EvidenceVersions that matches the filter.
+     * Find the first FileVersion that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EvidenceVersionsFindFirstArgs} args - Arguments to find a EvidenceVersions
+     * @param {FileVersionFindFirstArgs} args - Arguments to find a FileVersion
      * @example
-     * // Get one EvidenceVersions
-     * const evidenceVersions = await prisma.evidenceVersions.findFirst({
+     * // Get one FileVersion
+     * const fileVersion = await prisma.fileVersion.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends EvidenceVersionsFindFirstArgs>(args?: SelectSubset<T, EvidenceVersionsFindFirstArgs<ExtArgs>>): Prisma__EvidenceVersionsClient<$Result.GetResult<Prisma.$EvidenceVersionsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends FileVersionFindFirstArgs>(args?: SelectSubset<T, FileVersionFindFirstArgs<ExtArgs>>): Prisma__FileVersionClient<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first EvidenceVersions that matches the filter or
+     * Find the first FileVersion that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EvidenceVersionsFindFirstOrThrowArgs} args - Arguments to find a EvidenceVersions
+     * @param {FileVersionFindFirstOrThrowArgs} args - Arguments to find a FileVersion
      * @example
-     * // Get one EvidenceVersions
-     * const evidenceVersions = await prisma.evidenceVersions.findFirstOrThrow({
+     * // Get one FileVersion
+     * const fileVersion = await prisma.fileVersion.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends EvidenceVersionsFindFirstOrThrowArgs>(args?: SelectSubset<T, EvidenceVersionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__EvidenceVersionsClient<$Result.GetResult<Prisma.$EvidenceVersionsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends FileVersionFindFirstOrThrowArgs>(args?: SelectSubset<T, FileVersionFindFirstOrThrowArgs<ExtArgs>>): Prisma__FileVersionClient<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more EvidenceVersions that matches the filter.
+     * Find zero or more FileVersions that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EvidenceVersionsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {FileVersionFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all EvidenceVersions
-     * const evidenceVersions = await prisma.evidenceVersions.findMany()
+     * // Get all FileVersions
+     * const fileVersions = await prisma.fileVersion.findMany()
      * 
-     * // Get first 10 EvidenceVersions
-     * const evidenceVersions = await prisma.evidenceVersions.findMany({ take: 10 })
+     * // Get first 10 FileVersions
+     * const fileVersions = await prisma.fileVersion.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const evidenceVersionsWithIdOnly = await prisma.evidenceVersions.findMany({ select: { id: true } })
+     * const fileVersionWithIdOnly = await prisma.fileVersion.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends EvidenceVersionsFindManyArgs>(args?: SelectSubset<T, EvidenceVersionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EvidenceVersionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends FileVersionFindManyArgs>(args?: SelectSubset<T, FileVersionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a EvidenceVersions.
-     * @param {EvidenceVersionsCreateArgs} args - Arguments to create a EvidenceVersions.
+     * Create a FileVersion.
+     * @param {FileVersionCreateArgs} args - Arguments to create a FileVersion.
      * @example
-     * // Create one EvidenceVersions
-     * const EvidenceVersions = await prisma.evidenceVersions.create({
+     * // Create one FileVersion
+     * const FileVersion = await prisma.fileVersion.create({
      *   data: {
-     *     // ... data to create a EvidenceVersions
+     *     // ... data to create a FileVersion
      *   }
      * })
      * 
      */
-    create<T extends EvidenceVersionsCreateArgs>(args: SelectSubset<T, EvidenceVersionsCreateArgs<ExtArgs>>): Prisma__EvidenceVersionsClient<$Result.GetResult<Prisma.$EvidenceVersionsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends FileVersionCreateArgs>(args: SelectSubset<T, FileVersionCreateArgs<ExtArgs>>): Prisma__FileVersionClient<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many EvidenceVersions.
-     * @param {EvidenceVersionsCreateManyArgs} args - Arguments to create many EvidenceVersions.
+     * Create many FileVersions.
+     * @param {FileVersionCreateManyArgs} args - Arguments to create many FileVersions.
      * @example
-     * // Create many EvidenceVersions
-     * const evidenceVersions = await prisma.evidenceVersions.createMany({
+     * // Create many FileVersions
+     * const fileVersion = await prisma.fileVersion.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends EvidenceVersionsCreateManyArgs>(args?: SelectSubset<T, EvidenceVersionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends FileVersionCreateManyArgs>(args?: SelectSubset<T, FileVersionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many EvidenceVersions and returns the data saved in the database.
-     * @param {EvidenceVersionsCreateManyAndReturnArgs} args - Arguments to create many EvidenceVersions.
+     * Create many FileVersions and returns the data saved in the database.
+     * @param {FileVersionCreateManyAndReturnArgs} args - Arguments to create many FileVersions.
      * @example
-     * // Create many EvidenceVersions
-     * const evidenceVersions = await prisma.evidenceVersions.createManyAndReturn({
+     * // Create many FileVersions
+     * const fileVersion = await prisma.fileVersion.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many EvidenceVersions and only return the `id`
-     * const evidenceVersionsWithIdOnly = await prisma.evidenceVersions.createManyAndReturn({
+     * // Create many FileVersions and only return the `id`
+     * const fileVersionWithIdOnly = await prisma.fileVersion.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -22071,28 +22121,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends EvidenceVersionsCreateManyAndReturnArgs>(args?: SelectSubset<T, EvidenceVersionsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EvidenceVersionsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends FileVersionCreateManyAndReturnArgs>(args?: SelectSubset<T, FileVersionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a EvidenceVersions.
-     * @param {EvidenceVersionsDeleteArgs} args - Arguments to delete one EvidenceVersions.
+     * Delete a FileVersion.
+     * @param {FileVersionDeleteArgs} args - Arguments to delete one FileVersion.
      * @example
-     * // Delete one EvidenceVersions
-     * const EvidenceVersions = await prisma.evidenceVersions.delete({
+     * // Delete one FileVersion
+     * const FileVersion = await prisma.fileVersion.delete({
      *   where: {
-     *     // ... filter to delete one EvidenceVersions
+     *     // ... filter to delete one FileVersion
      *   }
      * })
      * 
      */
-    delete<T extends EvidenceVersionsDeleteArgs>(args: SelectSubset<T, EvidenceVersionsDeleteArgs<ExtArgs>>): Prisma__EvidenceVersionsClient<$Result.GetResult<Prisma.$EvidenceVersionsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends FileVersionDeleteArgs>(args: SelectSubset<T, FileVersionDeleteArgs<ExtArgs>>): Prisma__FileVersionClient<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one EvidenceVersions.
-     * @param {EvidenceVersionsUpdateArgs} args - Arguments to update one EvidenceVersions.
+     * Update one FileVersion.
+     * @param {FileVersionUpdateArgs} args - Arguments to update one FileVersion.
      * @example
-     * // Update one EvidenceVersions
-     * const evidenceVersions = await prisma.evidenceVersions.update({
+     * // Update one FileVersion
+     * const fileVersion = await prisma.fileVersion.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -22102,30 +22152,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends EvidenceVersionsUpdateArgs>(args: SelectSubset<T, EvidenceVersionsUpdateArgs<ExtArgs>>): Prisma__EvidenceVersionsClient<$Result.GetResult<Prisma.$EvidenceVersionsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends FileVersionUpdateArgs>(args: SelectSubset<T, FileVersionUpdateArgs<ExtArgs>>): Prisma__FileVersionClient<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more EvidenceVersions.
-     * @param {EvidenceVersionsDeleteManyArgs} args - Arguments to filter EvidenceVersions to delete.
+     * Delete zero or more FileVersions.
+     * @param {FileVersionDeleteManyArgs} args - Arguments to filter FileVersions to delete.
      * @example
-     * // Delete a few EvidenceVersions
-     * const { count } = await prisma.evidenceVersions.deleteMany({
+     * // Delete a few FileVersions
+     * const { count } = await prisma.fileVersion.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends EvidenceVersionsDeleteManyArgs>(args?: SelectSubset<T, EvidenceVersionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends FileVersionDeleteManyArgs>(args?: SelectSubset<T, FileVersionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more EvidenceVersions.
+     * Update zero or more FileVersions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EvidenceVersionsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {FileVersionUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many EvidenceVersions
-     * const evidenceVersions = await prisma.evidenceVersions.updateMany({
+     * // Update many FileVersions
+     * const fileVersion = await prisma.fileVersion.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -22135,14 +22185,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends EvidenceVersionsUpdateManyArgs>(args: SelectSubset<T, EvidenceVersionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends FileVersionUpdateManyArgs>(args: SelectSubset<T, FileVersionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more EvidenceVersions and returns the data updated in the database.
-     * @param {EvidenceVersionsUpdateManyAndReturnArgs} args - Arguments to update many EvidenceVersions.
+     * Update zero or more FileVersions and returns the data updated in the database.
+     * @param {FileVersionUpdateManyAndReturnArgs} args - Arguments to update many FileVersions.
      * @example
-     * // Update many EvidenceVersions
-     * const evidenceVersions = await prisma.evidenceVersions.updateManyAndReturn({
+     * // Update many FileVersions
+     * const fileVersion = await prisma.fileVersion.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -22151,8 +22201,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more EvidenceVersions and only return the `id`
-     * const evidenceVersionsWithIdOnly = await prisma.evidenceVersions.updateManyAndReturn({
+     * // Update zero or more FileVersions and only return the `id`
+     * const fileVersionWithIdOnly = await prisma.fileVersion.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -22165,56 +22215,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends EvidenceVersionsUpdateManyAndReturnArgs>(args: SelectSubset<T, EvidenceVersionsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EvidenceVersionsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends FileVersionUpdateManyAndReturnArgs>(args: SelectSubset<T, FileVersionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one EvidenceVersions.
-     * @param {EvidenceVersionsUpsertArgs} args - Arguments to update or create a EvidenceVersions.
+     * Create or update one FileVersion.
+     * @param {FileVersionUpsertArgs} args - Arguments to update or create a FileVersion.
      * @example
-     * // Update or create a EvidenceVersions
-     * const evidenceVersions = await prisma.evidenceVersions.upsert({
+     * // Update or create a FileVersion
+     * const fileVersion = await prisma.fileVersion.upsert({
      *   create: {
-     *     // ... data to create a EvidenceVersions
+     *     // ... data to create a FileVersion
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the EvidenceVersions we want to update
+     *     // ... the filter for the FileVersion we want to update
      *   }
      * })
      */
-    upsert<T extends EvidenceVersionsUpsertArgs>(args: SelectSubset<T, EvidenceVersionsUpsertArgs<ExtArgs>>): Prisma__EvidenceVersionsClient<$Result.GetResult<Prisma.$EvidenceVersionsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends FileVersionUpsertArgs>(args: SelectSubset<T, FileVersionUpsertArgs<ExtArgs>>): Prisma__FileVersionClient<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of EvidenceVersions.
+     * Count the number of FileVersions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EvidenceVersionsCountArgs} args - Arguments to filter EvidenceVersions to count.
+     * @param {FileVersionCountArgs} args - Arguments to filter FileVersions to count.
      * @example
-     * // Count the number of EvidenceVersions
-     * const count = await prisma.evidenceVersions.count({
+     * // Count the number of FileVersions
+     * const count = await prisma.fileVersion.count({
      *   where: {
-     *     // ... the filter for the EvidenceVersions we want to count
+     *     // ... the filter for the FileVersions we want to count
      *   }
      * })
     **/
-    count<T extends EvidenceVersionsCountArgs>(
-      args?: Subset<T, EvidenceVersionsCountArgs>,
+    count<T extends FileVersionCountArgs>(
+      args?: Subset<T, FileVersionCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], EvidenceVersionsCountAggregateOutputType>
+          : GetScalarType<T['select'], FileVersionCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a EvidenceVersions.
+     * Allows you to perform aggregations operations on a FileVersion.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EvidenceVersionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {FileVersionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -22234,13 +22284,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends EvidenceVersionsAggregateArgs>(args: Subset<T, EvidenceVersionsAggregateArgs>): Prisma.PrismaPromise<GetEvidenceVersionsAggregateType<T>>
+    aggregate<T extends FileVersionAggregateArgs>(args: Subset<T, FileVersionAggregateArgs>): Prisma.PrismaPromise<GetFileVersionAggregateType<T>>
 
     /**
-     * Group by EvidenceVersions.
+     * Group by FileVersion.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EvidenceVersionsGroupByArgs} args - Group by arguments.
+     * @param {FileVersionGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -22255,14 +22305,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends EvidenceVersionsGroupByArgs,
+      T extends FileVersionGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: EvidenceVersionsGroupByArgs['orderBy'] }
-        : { orderBy?: EvidenceVersionsGroupByArgs['orderBy'] },
+        ? { orderBy: FileVersionGroupByArgs['orderBy'] }
+        : { orderBy?: FileVersionGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -22311,22 +22361,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, EvidenceVersionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEvidenceVersionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, FileVersionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFileVersionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the EvidenceVersions model
+   * Fields of the FileVersion model
    */
-  readonly fields: EvidenceVersionsFieldRefs;
+  readonly fields: FileVersionFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for EvidenceVersions.
+   * The delegate class that acts as a "Promise-like" for FileVersion.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__EvidenceVersionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__FileVersionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    evidenceFile<T extends EvidenceFileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EvidenceFileDefaultArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    evidenceFile<T extends FileVersion$evidenceFileArgs<ExtArgs> = {}>(args?: Subset<T, FileVersion$evidenceFileArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    areaFile<T extends FileVersion$areaFileArgs<ExtArgs> = {}>(args?: Subset<T, FileVersion$areaFileArgs<ExtArgs>>): Prisma__AreaFileClient<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -22353,427 +22404,466 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the EvidenceVersions model
+   * Fields of the FileVersion model
    */
-  interface EvidenceVersionsFieldRefs {
-    readonly id: FieldRef<"EvidenceVersions", 'String'>
-    readonly name: FieldRef<"EvidenceVersions", 'String'>
-    readonly status: FieldRef<"EvidenceVersions", 'FileVersionStatus'>
-    readonly evidenceFileId: FieldRef<"EvidenceVersions", 'String'>
-    readonly objectUrl: FieldRef<"EvidenceVersions", 'String'>
-    readonly type: FieldRef<"EvidenceVersions", 'String'>
-    readonly uploadedAt: FieldRef<"EvidenceVersions", 'DateTime'>
+  interface FileVersionFieldRefs {
+    readonly id: FieldRef<"FileVersion", 'String'>
+    readonly evidenceFileId: FieldRef<"FileVersion", 'String'>
+    readonly areaFileId: FieldRef<"FileVersion", 'String'>
+    readonly name: FieldRef<"FileVersion", 'String'>
+    readonly status: FieldRef<"FileVersion", 'FileVersionStatus'>
+    readonly objectUrl: FieldRef<"FileVersion", 'String'>
+    readonly type: FieldRef<"FileVersion", 'String'>
+    readonly uploadedAt: FieldRef<"FileVersion", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * EvidenceVersions findUnique
+   * FileVersion findUnique
    */
-  export type EvidenceVersionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EvidenceVersions
+     * Select specific fields to fetch from the FileVersion
      */
-    select?: EvidenceVersionsSelect<ExtArgs> | null
+    select?: FileVersionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the EvidenceVersions
+     * Omit specific fields from the FileVersion
      */
-    omit?: EvidenceVersionsOmit<ExtArgs> | null
+    omit?: FileVersionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EvidenceVersionsInclude<ExtArgs> | null
+    include?: FileVersionInclude<ExtArgs> | null
     /**
-     * Filter, which EvidenceVersions to fetch.
+     * Filter, which FileVersion to fetch.
      */
-    where: EvidenceVersionsWhereUniqueInput
+    where: FileVersionWhereUniqueInput
   }
 
   /**
-   * EvidenceVersions findUniqueOrThrow
+   * FileVersion findUniqueOrThrow
    */
-  export type EvidenceVersionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EvidenceVersions
+     * Select specific fields to fetch from the FileVersion
      */
-    select?: EvidenceVersionsSelect<ExtArgs> | null
+    select?: FileVersionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the EvidenceVersions
+     * Omit specific fields from the FileVersion
      */
-    omit?: EvidenceVersionsOmit<ExtArgs> | null
+    omit?: FileVersionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EvidenceVersionsInclude<ExtArgs> | null
+    include?: FileVersionInclude<ExtArgs> | null
     /**
-     * Filter, which EvidenceVersions to fetch.
+     * Filter, which FileVersion to fetch.
      */
-    where: EvidenceVersionsWhereUniqueInput
+    where: FileVersionWhereUniqueInput
   }
 
   /**
-   * EvidenceVersions findFirst
+   * FileVersion findFirst
    */
-  export type EvidenceVersionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EvidenceVersions
+     * Select specific fields to fetch from the FileVersion
      */
-    select?: EvidenceVersionsSelect<ExtArgs> | null
+    select?: FileVersionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the EvidenceVersions
+     * Omit specific fields from the FileVersion
      */
-    omit?: EvidenceVersionsOmit<ExtArgs> | null
+    omit?: FileVersionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EvidenceVersionsInclude<ExtArgs> | null
+    include?: FileVersionInclude<ExtArgs> | null
     /**
-     * Filter, which EvidenceVersions to fetch.
+     * Filter, which FileVersion to fetch.
      */
-    where?: EvidenceVersionsWhereInput
+    where?: FileVersionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of EvidenceVersions to fetch.
+     * Determine the order of FileVersions to fetch.
      */
-    orderBy?: EvidenceVersionsOrderByWithRelationInput | EvidenceVersionsOrderByWithRelationInput[]
+    orderBy?: FileVersionOrderByWithRelationInput | FileVersionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for EvidenceVersions.
+     * Sets the position for searching for FileVersions.
      */
-    cursor?: EvidenceVersionsWhereUniqueInput
+    cursor?: FileVersionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` EvidenceVersions from the position of the cursor.
+     * Take `±n` FileVersions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` EvidenceVersions.
+     * Skip the first `n` FileVersions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of EvidenceVersions.
+     * Filter by unique combinations of FileVersions.
      */
-    distinct?: EvidenceVersionsScalarFieldEnum | EvidenceVersionsScalarFieldEnum[]
+    distinct?: FileVersionScalarFieldEnum | FileVersionScalarFieldEnum[]
   }
 
   /**
-   * EvidenceVersions findFirstOrThrow
+   * FileVersion findFirstOrThrow
    */
-  export type EvidenceVersionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EvidenceVersions
+     * Select specific fields to fetch from the FileVersion
      */
-    select?: EvidenceVersionsSelect<ExtArgs> | null
+    select?: FileVersionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the EvidenceVersions
+     * Omit specific fields from the FileVersion
      */
-    omit?: EvidenceVersionsOmit<ExtArgs> | null
+    omit?: FileVersionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EvidenceVersionsInclude<ExtArgs> | null
+    include?: FileVersionInclude<ExtArgs> | null
     /**
-     * Filter, which EvidenceVersions to fetch.
+     * Filter, which FileVersion to fetch.
      */
-    where?: EvidenceVersionsWhereInput
+    where?: FileVersionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of EvidenceVersions to fetch.
+     * Determine the order of FileVersions to fetch.
      */
-    orderBy?: EvidenceVersionsOrderByWithRelationInput | EvidenceVersionsOrderByWithRelationInput[]
+    orderBy?: FileVersionOrderByWithRelationInput | FileVersionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for EvidenceVersions.
+     * Sets the position for searching for FileVersions.
      */
-    cursor?: EvidenceVersionsWhereUniqueInput
+    cursor?: FileVersionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` EvidenceVersions from the position of the cursor.
+     * Take `±n` FileVersions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` EvidenceVersions.
+     * Skip the first `n` FileVersions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of EvidenceVersions.
+     * Filter by unique combinations of FileVersions.
      */
-    distinct?: EvidenceVersionsScalarFieldEnum | EvidenceVersionsScalarFieldEnum[]
+    distinct?: FileVersionScalarFieldEnum | FileVersionScalarFieldEnum[]
   }
 
   /**
-   * EvidenceVersions findMany
+   * FileVersion findMany
    */
-  export type EvidenceVersionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EvidenceVersions
+     * Select specific fields to fetch from the FileVersion
      */
-    select?: EvidenceVersionsSelect<ExtArgs> | null
+    select?: FileVersionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the EvidenceVersions
+     * Omit specific fields from the FileVersion
      */
-    omit?: EvidenceVersionsOmit<ExtArgs> | null
+    omit?: FileVersionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EvidenceVersionsInclude<ExtArgs> | null
+    include?: FileVersionInclude<ExtArgs> | null
     /**
-     * Filter, which EvidenceVersions to fetch.
+     * Filter, which FileVersions to fetch.
      */
-    where?: EvidenceVersionsWhereInput
+    where?: FileVersionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of EvidenceVersions to fetch.
+     * Determine the order of FileVersions to fetch.
      */
-    orderBy?: EvidenceVersionsOrderByWithRelationInput | EvidenceVersionsOrderByWithRelationInput[]
+    orderBy?: FileVersionOrderByWithRelationInput | FileVersionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing EvidenceVersions.
+     * Sets the position for listing FileVersions.
      */
-    cursor?: EvidenceVersionsWhereUniqueInput
+    cursor?: FileVersionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` EvidenceVersions from the position of the cursor.
+     * Take `±n` FileVersions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` EvidenceVersions.
+     * Skip the first `n` FileVersions.
      */
     skip?: number
-    distinct?: EvidenceVersionsScalarFieldEnum | EvidenceVersionsScalarFieldEnum[]
+    distinct?: FileVersionScalarFieldEnum | FileVersionScalarFieldEnum[]
   }
 
   /**
-   * EvidenceVersions create
+   * FileVersion create
    */
-  export type EvidenceVersionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EvidenceVersions
+     * Select specific fields to fetch from the FileVersion
      */
-    select?: EvidenceVersionsSelect<ExtArgs> | null
+    select?: FileVersionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the EvidenceVersions
+     * Omit specific fields from the FileVersion
      */
-    omit?: EvidenceVersionsOmit<ExtArgs> | null
+    omit?: FileVersionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EvidenceVersionsInclude<ExtArgs> | null
+    include?: FileVersionInclude<ExtArgs> | null
     /**
-     * The data needed to create a EvidenceVersions.
+     * The data needed to create a FileVersion.
      */
-    data: XOR<EvidenceVersionsCreateInput, EvidenceVersionsUncheckedCreateInput>
+    data: XOR<FileVersionCreateInput, FileVersionUncheckedCreateInput>
   }
 
   /**
-   * EvidenceVersions createMany
+   * FileVersion createMany
    */
-  export type EvidenceVersionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many EvidenceVersions.
+     * The data used to create many FileVersions.
      */
-    data: EvidenceVersionsCreateManyInput | EvidenceVersionsCreateManyInput[]
+    data: FileVersionCreateManyInput | FileVersionCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * EvidenceVersions createManyAndReturn
+   * FileVersion createManyAndReturn
    */
-  export type EvidenceVersionsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EvidenceVersions
+     * Select specific fields to fetch from the FileVersion
      */
-    select?: EvidenceVersionsSelectCreateManyAndReturn<ExtArgs> | null
+    select?: FileVersionSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the EvidenceVersions
+     * Omit specific fields from the FileVersion
      */
-    omit?: EvidenceVersionsOmit<ExtArgs> | null
+    omit?: FileVersionOmit<ExtArgs> | null
     /**
-     * The data used to create many EvidenceVersions.
+     * The data used to create many FileVersions.
      */
-    data: EvidenceVersionsCreateManyInput | EvidenceVersionsCreateManyInput[]
+    data: FileVersionCreateManyInput | FileVersionCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EvidenceVersionsIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: FileVersionIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * EvidenceVersions update
+   * FileVersion update
    */
-  export type EvidenceVersionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EvidenceVersions
+     * Select specific fields to fetch from the FileVersion
      */
-    select?: EvidenceVersionsSelect<ExtArgs> | null
+    select?: FileVersionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the EvidenceVersions
+     * Omit specific fields from the FileVersion
      */
-    omit?: EvidenceVersionsOmit<ExtArgs> | null
+    omit?: FileVersionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EvidenceVersionsInclude<ExtArgs> | null
+    include?: FileVersionInclude<ExtArgs> | null
     /**
-     * The data needed to update a EvidenceVersions.
+     * The data needed to update a FileVersion.
      */
-    data: XOR<EvidenceVersionsUpdateInput, EvidenceVersionsUncheckedUpdateInput>
+    data: XOR<FileVersionUpdateInput, FileVersionUncheckedUpdateInput>
     /**
-     * Choose, which EvidenceVersions to update.
+     * Choose, which FileVersion to update.
      */
-    where: EvidenceVersionsWhereUniqueInput
+    where: FileVersionWhereUniqueInput
   }
 
   /**
-   * EvidenceVersions updateMany
+   * FileVersion updateMany
    */
-  export type EvidenceVersionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update EvidenceVersions.
+     * The data used to update FileVersions.
      */
-    data: XOR<EvidenceVersionsUpdateManyMutationInput, EvidenceVersionsUncheckedUpdateManyInput>
+    data: XOR<FileVersionUpdateManyMutationInput, FileVersionUncheckedUpdateManyInput>
     /**
-     * Filter which EvidenceVersions to update
+     * Filter which FileVersions to update
      */
-    where?: EvidenceVersionsWhereInput
+    where?: FileVersionWhereInput
     /**
-     * Limit how many EvidenceVersions to update.
+     * Limit how many FileVersions to update.
      */
     limit?: number
   }
 
   /**
-   * EvidenceVersions updateManyAndReturn
+   * FileVersion updateManyAndReturn
    */
-  export type EvidenceVersionsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EvidenceVersions
+     * Select specific fields to fetch from the FileVersion
      */
-    select?: EvidenceVersionsSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: FileVersionSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the EvidenceVersions
+     * Omit specific fields from the FileVersion
      */
-    omit?: EvidenceVersionsOmit<ExtArgs> | null
+    omit?: FileVersionOmit<ExtArgs> | null
     /**
-     * The data used to update EvidenceVersions.
+     * The data used to update FileVersions.
      */
-    data: XOR<EvidenceVersionsUpdateManyMutationInput, EvidenceVersionsUncheckedUpdateManyInput>
+    data: XOR<FileVersionUpdateManyMutationInput, FileVersionUncheckedUpdateManyInput>
     /**
-     * Filter which EvidenceVersions to update
+     * Filter which FileVersions to update
      */
-    where?: EvidenceVersionsWhereInput
+    where?: FileVersionWhereInput
     /**
-     * Limit how many EvidenceVersions to update.
+     * Limit how many FileVersions to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EvidenceVersionsIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: FileVersionIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * EvidenceVersions upsert
+   * FileVersion upsert
    */
-  export type EvidenceVersionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EvidenceVersions
+     * Select specific fields to fetch from the FileVersion
      */
-    select?: EvidenceVersionsSelect<ExtArgs> | null
+    select?: FileVersionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the EvidenceVersions
+     * Omit specific fields from the FileVersion
      */
-    omit?: EvidenceVersionsOmit<ExtArgs> | null
+    omit?: FileVersionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EvidenceVersionsInclude<ExtArgs> | null
+    include?: FileVersionInclude<ExtArgs> | null
     /**
-     * The filter to search for the EvidenceVersions to update in case it exists.
+     * The filter to search for the FileVersion to update in case it exists.
      */
-    where: EvidenceVersionsWhereUniqueInput
+    where: FileVersionWhereUniqueInput
     /**
-     * In case the EvidenceVersions found by the `where` argument doesn't exist, create a new EvidenceVersions with this data.
+     * In case the FileVersion found by the `where` argument doesn't exist, create a new FileVersion with this data.
      */
-    create: XOR<EvidenceVersionsCreateInput, EvidenceVersionsUncheckedCreateInput>
+    create: XOR<FileVersionCreateInput, FileVersionUncheckedCreateInput>
     /**
-     * In case the EvidenceVersions was found with the provided `where` argument, update it with this data.
+     * In case the FileVersion was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<EvidenceVersionsUpdateInput, EvidenceVersionsUncheckedUpdateInput>
+    update: XOR<FileVersionUpdateInput, FileVersionUncheckedUpdateInput>
   }
 
   /**
-   * EvidenceVersions delete
+   * FileVersion delete
    */
-  export type EvidenceVersionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EvidenceVersions
+     * Select specific fields to fetch from the FileVersion
      */
-    select?: EvidenceVersionsSelect<ExtArgs> | null
+    select?: FileVersionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the EvidenceVersions
+     * Omit specific fields from the FileVersion
      */
-    omit?: EvidenceVersionsOmit<ExtArgs> | null
+    omit?: FileVersionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EvidenceVersionsInclude<ExtArgs> | null
+    include?: FileVersionInclude<ExtArgs> | null
     /**
-     * Filter which EvidenceVersions to delete.
+     * Filter which FileVersion to delete.
      */
-    where: EvidenceVersionsWhereUniqueInput
+    where: FileVersionWhereUniqueInput
   }
 
   /**
-   * EvidenceVersions deleteMany
+   * FileVersion deleteMany
    */
-  export type EvidenceVersionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which EvidenceVersions to delete
+     * Filter which FileVersions to delete
      */
-    where?: EvidenceVersionsWhereInput
+    where?: FileVersionWhereInput
     /**
-     * Limit how many EvidenceVersions to delete.
+     * Limit how many FileVersions to delete.
      */
     limit?: number
   }
 
   /**
-   * EvidenceVersions without action
+   * FileVersion.evidenceFile
    */
-  export type EvidenceVersionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FileVersion$evidenceFileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EvidenceVersions
+     * Select specific fields to fetch from the EvidenceFile
      */
-    select?: EvidenceVersionsSelect<ExtArgs> | null
+    select?: EvidenceFileSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the EvidenceVersions
+     * Omit specific fields from the EvidenceFile
      */
-    omit?: EvidenceVersionsOmit<ExtArgs> | null
+    omit?: EvidenceFileOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EvidenceVersionsInclude<ExtArgs> | null
+    include?: EvidenceFileInclude<ExtArgs> | null
+    where?: EvidenceFileWhereInput
+  }
+
+  /**
+   * FileVersion.areaFile
+   */
+  export type FileVersion$areaFileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileInclude<ExtArgs> | null
+    where?: AreaFileWhereInput
+  }
+
+  /**
+   * FileVersion without action
+   */
+  export type FileVersionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileVersion
+     */
+    select?: FileVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileVersion
+     */
+    omit?: FileVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileVersionInclude<ExtArgs> | null
   }
 
 
@@ -26046,7 +26136,6 @@ export namespace Prisma {
     phaseOneAreaFolderId: string | null
     phaseTwoAreaFolderId: string | null
     type: $Enums.AreaFileType | null
-    objectURL: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -26056,7 +26145,6 @@ export namespace Prisma {
     phaseOneAreaFolderId: string | null
     phaseTwoAreaFolderId: string | null
     type: $Enums.AreaFileType | null
-    objectURL: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -26066,7 +26154,6 @@ export namespace Prisma {
     phaseOneAreaFolderId: number
     phaseTwoAreaFolderId: number
     type: number
-    objectURL: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -26078,7 +26165,6 @@ export namespace Prisma {
     phaseOneAreaFolderId?: true
     phaseTwoAreaFolderId?: true
     type?: true
-    objectURL?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -26088,7 +26174,6 @@ export namespace Prisma {
     phaseOneAreaFolderId?: true
     phaseTwoAreaFolderId?: true
     type?: true
-    objectURL?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -26098,7 +26183,6 @@ export namespace Prisma {
     phaseOneAreaFolderId?: true
     phaseTwoAreaFolderId?: true
     type?: true
-    objectURL?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -26181,7 +26265,6 @@ export namespace Prisma {
     phaseOneAreaFolderId: string | null
     phaseTwoAreaFolderId: string | null
     type: $Enums.AreaFileType
-    objectURL: string | null
     createdAt: Date
     updatedAt: Date
     _count: AreaFileCountAggregateOutputType | null
@@ -26208,11 +26291,12 @@ export namespace Prisma {
     phaseOneAreaFolderId?: boolean
     phaseTwoAreaFolderId?: boolean
     type?: boolean
-    objectURL?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
     phaseTwoAreaFolder?: boolean | AreaFile$phaseTwoAreaFolderArgs<ExtArgs>
+    fileVersions?: boolean | AreaFile$fileVersionsArgs<ExtArgs>
+    _count?: boolean | AreaFileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["areaFile"]>
 
   export type AreaFileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -26220,7 +26304,6 @@ export namespace Prisma {
     phaseOneAreaFolderId?: boolean
     phaseTwoAreaFolderId?: boolean
     type?: boolean
-    objectURL?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
@@ -26232,7 +26315,6 @@ export namespace Prisma {
     phaseOneAreaFolderId?: boolean
     phaseTwoAreaFolderId?: boolean
     type?: boolean
-    objectURL?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
@@ -26244,15 +26326,16 @@ export namespace Prisma {
     phaseOneAreaFolderId?: boolean
     phaseTwoAreaFolderId?: boolean
     type?: boolean
-    objectURL?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AreaFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseOneAreaFolderId" | "phaseTwoAreaFolderId" | "type" | "objectURL" | "createdAt" | "updatedAt", ExtArgs["result"]["areaFile"]>
+  export type AreaFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseOneAreaFolderId" | "phaseTwoAreaFolderId" | "type" | "createdAt" | "updatedAt", ExtArgs["result"]["areaFile"]>
   export type AreaFileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
     phaseTwoAreaFolder?: boolean | AreaFile$phaseTwoAreaFolderArgs<ExtArgs>
+    fileVersions?: boolean | AreaFile$fileVersionsArgs<ExtArgs>
+    _count?: boolean | AreaFileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type AreaFileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
@@ -26268,13 +26351,13 @@ export namespace Prisma {
     objects: {
       phaseOneAreaFolder: Prisma.$AreaFolderPayload<ExtArgs> | null
       phaseTwoAreaFolder: Prisma.$PhaseTwoAreaFolderPayload<ExtArgs> | null
+      fileVersions: Prisma.$FileVersionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       phaseOneAreaFolderId: string | null
       phaseTwoAreaFolderId: string | null
       type: $Enums.AreaFileType
-      objectURL: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["areaFile"]>
@@ -26673,6 +26756,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     phaseOneAreaFolder<T extends AreaFile$phaseOneAreaFolderArgs<ExtArgs> = {}>(args?: Subset<T, AreaFile$phaseOneAreaFolderArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     phaseTwoAreaFolder<T extends AreaFile$phaseTwoAreaFolderArgs<ExtArgs> = {}>(args?: Subset<T, AreaFile$phaseTwoAreaFolderArgs<ExtArgs>>): Prisma__PhaseTwoAreaFolderClient<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    fileVersions<T extends AreaFile$fileVersionsArgs<ExtArgs> = {}>(args?: Subset<T, AreaFile$fileVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -26706,7 +26790,6 @@ export namespace Prisma {
     readonly phaseOneAreaFolderId: FieldRef<"AreaFile", 'String'>
     readonly phaseTwoAreaFolderId: FieldRef<"AreaFile", 'String'>
     readonly type: FieldRef<"AreaFile", 'AreaFileType'>
-    readonly objectURL: FieldRef<"AreaFile", 'String'>
     readonly createdAt: FieldRef<"AreaFile", 'DateTime'>
     readonly updatedAt: FieldRef<"AreaFile", 'DateTime'>
   }
@@ -27140,6 +27223,30 @@ export namespace Prisma {
      */
     include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
     where?: PhaseTwoAreaFolderWhereInput
+  }
+
+  /**
+   * AreaFile.fileVersions
+   */
+  export type AreaFile$fileVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileVersion
+     */
+    select?: FileVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileVersion
+     */
+    omit?: FileVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileVersionInclude<ExtArgs> | null
+    where?: FileVersionWhereInput
+    orderBy?: FileVersionOrderByWithRelationInput | FileVersionOrderByWithRelationInput[]
+    cursor?: FileVersionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FileVersionScalarFieldEnum | FileVersionScalarFieldEnum[]
   }
 
   /**
@@ -29490,17 +29597,18 @@ export namespace Prisma {
   export type EvidenceFileScalarFieldEnum = (typeof EvidenceFileScalarFieldEnum)[keyof typeof EvidenceFileScalarFieldEnum]
 
 
-  export const EvidenceVersionsScalarFieldEnum: {
+  export const FileVersionScalarFieldEnum: {
     id: 'id',
+    evidenceFileId: 'evidenceFileId',
+    areaFileId: 'areaFileId',
     name: 'name',
     status: 'status',
-    evidenceFileId: 'evidenceFileId',
     objectUrl: 'objectUrl',
     type: 'type',
     uploadedAt: 'uploadedAt'
   };
 
-  export type EvidenceVersionsScalarFieldEnum = (typeof EvidenceVersionsScalarFieldEnum)[keyof typeof EvidenceVersionsScalarFieldEnum]
+  export type FileVersionScalarFieldEnum = (typeof FileVersionScalarFieldEnum)[keyof typeof FileVersionScalarFieldEnum]
 
 
   export const PhaseTwoRequirementsScalarFieldEnum: {
@@ -29534,7 +29642,6 @@ export namespace Prisma {
     phaseOneAreaFolderId: 'phaseOneAreaFolderId',
     phaseTwoAreaFolderId: 'phaseTwoAreaFolderId',
     type: 'type',
-    objectURL: 'objectURL',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -30770,7 +30877,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"EvidenceFile"> | Date | string
     indicatorFolder?: XOR<IndicatorFolderScalarRelationFilter, IndicatorFolderWhereInput>
     indicator?: XOR<IndicatorScalarRelationFilter, IndicatorWhereInput>
-    evidenceVersions?: EvidenceVersionsListRelationFilter
+    fileVersions?: FileVersionListRelationFilter
   }
 
   export type EvidenceFileOrderByWithRelationInput = {
@@ -30782,7 +30889,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     indicatorFolder?: IndicatorFolderOrderByWithRelationInput
     indicator?: IndicatorOrderByWithRelationInput
-    evidenceVersions?: EvidenceVersionsOrderByRelationAggregateInput
+    fileVersions?: FileVersionOrderByRelationAggregateInput
   }
 
   export type EvidenceFileWhereUniqueInput = Prisma.AtLeast<{
@@ -30797,7 +30904,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"EvidenceFile"> | Date | string
     indicatorFolder?: XOR<IndicatorFolderScalarRelationFilter, IndicatorFolderWhereInput>
     indicator?: XOR<IndicatorScalarRelationFilter, IndicatorWhereInput>
-    evidenceVersions?: EvidenceVersionsListRelationFilter
+    fileVersions?: FileVersionListRelationFilter
   }, "id">
 
   export type EvidenceFileOrderByWithAggregationInput = {
@@ -30826,69 +30933,77 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"EvidenceFile"> | Date | string
   }
 
-  export type EvidenceVersionsWhereInput = {
-    AND?: EvidenceVersionsWhereInput | EvidenceVersionsWhereInput[]
-    OR?: EvidenceVersionsWhereInput[]
-    NOT?: EvidenceVersionsWhereInput | EvidenceVersionsWhereInput[]
-    id?: StringFilter<"EvidenceVersions"> | string
-    name?: StringFilter<"EvidenceVersions"> | string
-    status?: EnumFileVersionStatusFilter<"EvidenceVersions"> | $Enums.FileVersionStatus
-    evidenceFileId?: StringFilter<"EvidenceVersions"> | string
-    objectUrl?: StringFilter<"EvidenceVersions"> | string
-    type?: StringFilter<"EvidenceVersions"> | string
-    uploadedAt?: DateTimeFilter<"EvidenceVersions"> | Date | string
-    evidenceFile?: XOR<EvidenceFileScalarRelationFilter, EvidenceFileWhereInput>
+  export type FileVersionWhereInput = {
+    AND?: FileVersionWhereInput | FileVersionWhereInput[]
+    OR?: FileVersionWhereInput[]
+    NOT?: FileVersionWhereInput | FileVersionWhereInput[]
+    id?: StringFilter<"FileVersion"> | string
+    evidenceFileId?: StringNullableFilter<"FileVersion"> | string | null
+    areaFileId?: StringNullableFilter<"FileVersion"> | string | null
+    name?: StringFilter<"FileVersion"> | string
+    status?: EnumFileVersionStatusNullableFilter<"FileVersion"> | $Enums.FileVersionStatus | null
+    objectUrl?: StringFilter<"FileVersion"> | string
+    type?: StringFilter<"FileVersion"> | string
+    uploadedAt?: DateTimeFilter<"FileVersion"> | Date | string
+    evidenceFile?: XOR<EvidenceFileNullableScalarRelationFilter, EvidenceFileWhereInput> | null
+    areaFile?: XOR<AreaFileNullableScalarRelationFilter, AreaFileWhereInput> | null
   }
 
-  export type EvidenceVersionsOrderByWithRelationInput = {
+  export type FileVersionOrderByWithRelationInput = {
     id?: SortOrder
+    evidenceFileId?: SortOrderInput | SortOrder
+    areaFileId?: SortOrderInput | SortOrder
     name?: SortOrder
-    status?: SortOrder
-    evidenceFileId?: SortOrder
+    status?: SortOrderInput | SortOrder
     objectUrl?: SortOrder
     type?: SortOrder
     uploadedAt?: SortOrder
     evidenceFile?: EvidenceFileOrderByWithRelationInput
+    areaFile?: AreaFileOrderByWithRelationInput
   }
 
-  export type EvidenceVersionsWhereUniqueInput = Prisma.AtLeast<{
+  export type FileVersionWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: EvidenceVersionsWhereInput | EvidenceVersionsWhereInput[]
-    OR?: EvidenceVersionsWhereInput[]
-    NOT?: EvidenceVersionsWhereInput | EvidenceVersionsWhereInput[]
-    name?: StringFilter<"EvidenceVersions"> | string
-    status?: EnumFileVersionStatusFilter<"EvidenceVersions"> | $Enums.FileVersionStatus
-    evidenceFileId?: StringFilter<"EvidenceVersions"> | string
-    objectUrl?: StringFilter<"EvidenceVersions"> | string
-    type?: StringFilter<"EvidenceVersions"> | string
-    uploadedAt?: DateTimeFilter<"EvidenceVersions"> | Date | string
-    evidenceFile?: XOR<EvidenceFileScalarRelationFilter, EvidenceFileWhereInput>
+    AND?: FileVersionWhereInput | FileVersionWhereInput[]
+    OR?: FileVersionWhereInput[]
+    NOT?: FileVersionWhereInput | FileVersionWhereInput[]
+    evidenceFileId?: StringNullableFilter<"FileVersion"> | string | null
+    areaFileId?: StringNullableFilter<"FileVersion"> | string | null
+    name?: StringFilter<"FileVersion"> | string
+    status?: EnumFileVersionStatusNullableFilter<"FileVersion"> | $Enums.FileVersionStatus | null
+    objectUrl?: StringFilter<"FileVersion"> | string
+    type?: StringFilter<"FileVersion"> | string
+    uploadedAt?: DateTimeFilter<"FileVersion"> | Date | string
+    evidenceFile?: XOR<EvidenceFileNullableScalarRelationFilter, EvidenceFileWhereInput> | null
+    areaFile?: XOR<AreaFileNullableScalarRelationFilter, AreaFileWhereInput> | null
   }, "id">
 
-  export type EvidenceVersionsOrderByWithAggregationInput = {
+  export type FileVersionOrderByWithAggregationInput = {
     id?: SortOrder
+    evidenceFileId?: SortOrderInput | SortOrder
+    areaFileId?: SortOrderInput | SortOrder
     name?: SortOrder
-    status?: SortOrder
-    evidenceFileId?: SortOrder
+    status?: SortOrderInput | SortOrder
     objectUrl?: SortOrder
     type?: SortOrder
     uploadedAt?: SortOrder
-    _count?: EvidenceVersionsCountOrderByAggregateInput
-    _max?: EvidenceVersionsMaxOrderByAggregateInput
-    _min?: EvidenceVersionsMinOrderByAggregateInput
+    _count?: FileVersionCountOrderByAggregateInput
+    _max?: FileVersionMaxOrderByAggregateInput
+    _min?: FileVersionMinOrderByAggregateInput
   }
 
-  export type EvidenceVersionsScalarWhereWithAggregatesInput = {
-    AND?: EvidenceVersionsScalarWhereWithAggregatesInput | EvidenceVersionsScalarWhereWithAggregatesInput[]
-    OR?: EvidenceVersionsScalarWhereWithAggregatesInput[]
-    NOT?: EvidenceVersionsScalarWhereWithAggregatesInput | EvidenceVersionsScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"EvidenceVersions"> | string
-    name?: StringWithAggregatesFilter<"EvidenceVersions"> | string
-    status?: EnumFileVersionStatusWithAggregatesFilter<"EvidenceVersions"> | $Enums.FileVersionStatus
-    evidenceFileId?: StringWithAggregatesFilter<"EvidenceVersions"> | string
-    objectUrl?: StringWithAggregatesFilter<"EvidenceVersions"> | string
-    type?: StringWithAggregatesFilter<"EvidenceVersions"> | string
-    uploadedAt?: DateTimeWithAggregatesFilter<"EvidenceVersions"> | Date | string
+  export type FileVersionScalarWhereWithAggregatesInput = {
+    AND?: FileVersionScalarWhereWithAggregatesInput | FileVersionScalarWhereWithAggregatesInput[]
+    OR?: FileVersionScalarWhereWithAggregatesInput[]
+    NOT?: FileVersionScalarWhereWithAggregatesInput | FileVersionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FileVersion"> | string
+    evidenceFileId?: StringNullableWithAggregatesFilter<"FileVersion"> | string | null
+    areaFileId?: StringNullableWithAggregatesFilter<"FileVersion"> | string | null
+    name?: StringWithAggregatesFilter<"FileVersion"> | string
+    status?: EnumFileVersionStatusNullableWithAggregatesFilter<"FileVersion"> | $Enums.FileVersionStatus | null
+    objectUrl?: StringWithAggregatesFilter<"FileVersion"> | string
+    type?: StringWithAggregatesFilter<"FileVersion"> | string
+    uploadedAt?: DateTimeWithAggregatesFilter<"FileVersion"> | Date | string
   }
 
   export type PhaseTwoRequirementsWhereInput = {
@@ -31046,11 +31161,11 @@ export namespace Prisma {
     phaseOneAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     phaseTwoAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     type?: EnumAreaFileTypeFilter<"AreaFile"> | $Enums.AreaFileType
-    objectURL?: StringNullableFilter<"AreaFile"> | string | null
     createdAt?: DateTimeFilter<"AreaFile"> | Date | string
     updatedAt?: DateTimeFilter<"AreaFile"> | Date | string
     phaseOneAreaFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
     phaseTwoAreaFolder?: XOR<PhaseTwoAreaFolderNullableScalarRelationFilter, PhaseTwoAreaFolderWhereInput> | null
+    fileVersions?: FileVersionListRelationFilter
   }
 
   export type AreaFileOrderByWithRelationInput = {
@@ -31058,11 +31173,11 @@ export namespace Prisma {
     phaseOneAreaFolderId?: SortOrderInput | SortOrder
     phaseTwoAreaFolderId?: SortOrderInput | SortOrder
     type?: SortOrder
-    objectURL?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     phaseOneAreaFolder?: AreaFolderOrderByWithRelationInput
     phaseTwoAreaFolder?: PhaseTwoAreaFolderOrderByWithRelationInput
+    fileVersions?: FileVersionOrderByRelationAggregateInput
   }
 
   export type AreaFileWhereUniqueInput = Prisma.AtLeast<{
@@ -31073,11 +31188,11 @@ export namespace Prisma {
     phaseOneAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     phaseTwoAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     type?: EnumAreaFileTypeFilter<"AreaFile"> | $Enums.AreaFileType
-    objectURL?: StringNullableFilter<"AreaFile"> | string | null
     createdAt?: DateTimeFilter<"AreaFile"> | Date | string
     updatedAt?: DateTimeFilter<"AreaFile"> | Date | string
     phaseOneAreaFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
     phaseTwoAreaFolder?: XOR<PhaseTwoAreaFolderNullableScalarRelationFilter, PhaseTwoAreaFolderWhereInput> | null
+    fileVersions?: FileVersionListRelationFilter
   }, "id">
 
   export type AreaFileOrderByWithAggregationInput = {
@@ -31085,7 +31200,6 @@ export namespace Prisma {
     phaseOneAreaFolderId?: SortOrderInput | SortOrder
     phaseTwoAreaFolderId?: SortOrderInput | SortOrder
     type?: SortOrder
-    objectURL?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: AreaFileCountOrderByAggregateInput
@@ -31101,7 +31215,6 @@ export namespace Prisma {
     phaseOneAreaFolderId?: StringNullableWithAggregatesFilter<"AreaFile"> | string | null
     phaseTwoAreaFolderId?: StringNullableWithAggregatesFilter<"AreaFile"> | string | null
     type?: EnumAreaFileTypeWithAggregatesFilter<"AreaFile"> | $Enums.AreaFileType
-    objectURL?: StringNullableWithAggregatesFilter<"AreaFile"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"AreaFile"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"AreaFile"> | Date | string
   }
@@ -32191,7 +32304,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
     indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
-    evidenceVersions?: EvidenceVersionsCreateNestedManyWithoutEvidenceFileInput
+    fileVersions?: FileVersionCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUncheckedCreateInput = {
@@ -32201,7 +32314,7 @@ export namespace Prisma {
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    evidenceVersions?: EvidenceVersionsUncheckedCreateNestedManyWithoutEvidenceFileInput
+    fileVersions?: FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUpdateInput = {
@@ -32211,7 +32324,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
     indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
-    evidenceVersions?: EvidenceVersionsUpdateManyWithoutEvidenceFileNestedInput
+    fileVersions?: FileVersionUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateInput = {
@@ -32221,7 +32334,7 @@ export namespace Prisma {
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    evidenceVersions?: EvidenceVersionsUncheckedUpdateManyWithoutEvidenceFileNestedInput
+    fileVersions?: FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileCreateManyInput = {
@@ -32249,70 +32362,76 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EvidenceVersionsCreateInput = {
+  export type FileVersionCreateInput = {
     id?: string
     name: string
-    status: $Enums.FileVersionStatus
+    status?: $Enums.FileVersionStatus | null
     objectUrl: string
     type: string
     uploadedAt?: Date | string
-    evidenceFile: EvidenceFileCreateNestedOneWithoutEvidenceVersionsInput
+    evidenceFile?: EvidenceFileCreateNestedOneWithoutFileVersionsInput
+    areaFile?: AreaFileCreateNestedOneWithoutFileVersionsInput
   }
 
-  export type EvidenceVersionsUncheckedCreateInput = {
+  export type FileVersionUncheckedCreateInput = {
     id?: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
     name: string
-    status: $Enums.FileVersionStatus
-    evidenceFileId: string
-    objectUrl: string
-    type: string
-    uploadedAt?: Date | string
-  }
-
-  export type EvidenceVersionsUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    status?: EnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus
-    objectUrl?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    evidenceFile?: EvidenceFileUpdateOneRequiredWithoutEvidenceVersionsNestedInput
-  }
-
-  export type EvidenceVersionsUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    status?: EnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus
-    evidenceFileId?: StringFieldUpdateOperationsInput | string
-    objectUrl?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type EvidenceVersionsCreateManyInput = {
-    id?: string
-    name: string
-    status: $Enums.FileVersionStatus
-    evidenceFileId: string
+    status?: $Enums.FileVersionStatus | null
     objectUrl: string
     type: string
     uploadedAt?: Date | string
   }
 
-  export type EvidenceVersionsUpdateManyMutationInput = {
+  export type FileVersionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    status?: EnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
+    objectUrl?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidenceFile?: EvidenceFileUpdateOneWithoutFileVersionsNestedInput
+    areaFile?: AreaFileUpdateOneWithoutFileVersionsNestedInput
+  }
+
+  export type FileVersionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
     objectUrl?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EvidenceVersionsUncheckedUpdateManyInput = {
+  export type FileVersionCreateManyInput = {
+    id?: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
+    name: string
+    status?: $Enums.FileVersionStatus | null
+    objectUrl: string
+    type: string
+    uploadedAt?: Date | string
+  }
+
+  export type FileVersionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    status?: EnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus
-    evidenceFileId?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
+    objectUrl?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FileVersionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
     objectUrl?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32447,11 +32566,11 @@ export namespace Prisma {
   export type AreaFileCreateInput = {
     id?: string
     type: $Enums.AreaFileType
-    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     phaseOneAreaFolder?: AreaFolderCreateNestedOneWithoutAreaFilesInput
     phaseTwoAreaFolder?: PhaseTwoAreaFolderCreateNestedOneWithoutAreaFilesInput
+    fileVersions?: FileVersionCreateNestedManyWithoutAreaFileInput
   }
 
   export type AreaFileUncheckedCreateInput = {
@@ -32459,19 +32578,19 @@ export namespace Prisma {
     phaseOneAreaFolderId?: string | null
     phaseTwoAreaFolderId?: string | null
     type: $Enums.AreaFileType
-    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    fileVersions?: FileVersionUncheckedCreateNestedManyWithoutAreaFileInput
   }
 
   export type AreaFileUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneAreaFolder?: AreaFolderUpdateOneWithoutAreaFilesNestedInput
     phaseTwoAreaFolder?: PhaseTwoAreaFolderUpdateOneWithoutAreaFilesNestedInput
+    fileVersions?: FileVersionUpdateManyWithoutAreaFileNestedInput
   }
 
   export type AreaFileUncheckedUpdateInput = {
@@ -32479,9 +32598,9 @@ export namespace Prisma {
     phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileVersions?: FileVersionUncheckedUpdateManyWithoutAreaFileNestedInput
   }
 
   export type AreaFileCreateManyInput = {
@@ -32489,7 +32608,6 @@ export namespace Prisma {
     phaseOneAreaFolderId?: string | null
     phaseTwoAreaFolderId?: string | null
     type: $Enums.AreaFileType
-    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -32497,7 +32615,6 @@ export namespace Prisma {
   export type AreaFileUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -32507,7 +32624,6 @@ export namespace Prisma {
     phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -33615,13 +33731,13 @@ export namespace Prisma {
     isNot?: IndicatorWhereInput
   }
 
-  export type EvidenceVersionsListRelationFilter = {
-    every?: EvidenceVersionsWhereInput
-    some?: EvidenceVersionsWhereInput
-    none?: EvidenceVersionsWhereInput
+  export type FileVersionListRelationFilter = {
+    every?: FileVersionWhereInput
+    some?: FileVersionWhereInput
+    none?: FileVersionWhereInput
   }
 
-  export type EvidenceVersionsOrderByRelationAggregateInput = {
+  export type FileVersionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -33670,56 +33786,64 @@ export namespace Prisma {
     _max?: NestedEnumEvidenceStatusFilter<$PrismaModel>
   }
 
-  export type EnumFileVersionStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.FileVersionStatus | EnumFileVersionStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumFileVersionStatusFilter<$PrismaModel> | $Enums.FileVersionStatus
+  export type EnumFileVersionStatusNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.FileVersionStatus | EnumFileVersionStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumFileVersionStatusNullableFilter<$PrismaModel> | $Enums.FileVersionStatus | null
   }
 
-  export type EvidenceFileScalarRelationFilter = {
-    is?: EvidenceFileWhereInput
-    isNot?: EvidenceFileWhereInput
+  export type EvidenceFileNullableScalarRelationFilter = {
+    is?: EvidenceFileWhereInput | null
+    isNot?: EvidenceFileWhereInput | null
   }
 
-  export type EvidenceVersionsCountOrderByAggregateInput = {
+  export type AreaFileNullableScalarRelationFilter = {
+    is?: AreaFileWhereInput | null
+    isNot?: AreaFileWhereInput | null
+  }
+
+  export type FileVersionCountOrderByAggregateInput = {
     id?: SortOrder
+    evidenceFileId?: SortOrder
+    areaFileId?: SortOrder
     name?: SortOrder
     status?: SortOrder
-    evidenceFileId?: SortOrder
     objectUrl?: SortOrder
     type?: SortOrder
     uploadedAt?: SortOrder
   }
 
-  export type EvidenceVersionsMaxOrderByAggregateInput = {
+  export type FileVersionMaxOrderByAggregateInput = {
     id?: SortOrder
+    evidenceFileId?: SortOrder
+    areaFileId?: SortOrder
     name?: SortOrder
     status?: SortOrder
-    evidenceFileId?: SortOrder
     objectUrl?: SortOrder
     type?: SortOrder
     uploadedAt?: SortOrder
   }
 
-  export type EvidenceVersionsMinOrderByAggregateInput = {
+  export type FileVersionMinOrderByAggregateInput = {
     id?: SortOrder
+    evidenceFileId?: SortOrder
+    areaFileId?: SortOrder
     name?: SortOrder
     status?: SortOrder
-    evidenceFileId?: SortOrder
     objectUrl?: SortOrder
     type?: SortOrder
     uploadedAt?: SortOrder
   }
 
-  export type EnumFileVersionStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.FileVersionStatus | EnumFileVersionStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumFileVersionStatusWithAggregatesFilter<$PrismaModel> | $Enums.FileVersionStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumFileVersionStatusFilter<$PrismaModel>
-    _max?: NestedEnumFileVersionStatusFilter<$PrismaModel>
+  export type EnumFileVersionStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FileVersionStatus | EnumFileVersionStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumFileVersionStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.FileVersionStatus | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumFileVersionStatusNullableFilter<$PrismaModel>
+    _max?: NestedEnumFileVersionStatusNullableFilter<$PrismaModel>
   }
 
   export type PhaseTwoFolderNullableScalarRelationFilter = {
@@ -33813,7 +33937,6 @@ export namespace Prisma {
     phaseOneAreaFolderId?: SortOrder
     phaseTwoAreaFolderId?: SortOrder
     type?: SortOrder
-    objectURL?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -33823,7 +33946,6 @@ export namespace Prisma {
     phaseOneAreaFolderId?: SortOrder
     phaseTwoAreaFolderId?: SortOrder
     type?: SortOrder
-    objectURL?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -33833,7 +33955,6 @@ export namespace Prisma {
     phaseOneAreaFolderId?: SortOrder
     phaseTwoAreaFolderId?: SortOrder
     type?: SortOrder
-    objectURL?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -35287,18 +35408,18 @@ export namespace Prisma {
     connect?: IndicatorWhereUniqueInput
   }
 
-  export type EvidenceVersionsCreateNestedManyWithoutEvidenceFileInput = {
-    create?: XOR<EvidenceVersionsCreateWithoutEvidenceFileInput, EvidenceVersionsUncheckedCreateWithoutEvidenceFileInput> | EvidenceVersionsCreateWithoutEvidenceFileInput[] | EvidenceVersionsUncheckedCreateWithoutEvidenceFileInput[]
-    connectOrCreate?: EvidenceVersionsCreateOrConnectWithoutEvidenceFileInput | EvidenceVersionsCreateOrConnectWithoutEvidenceFileInput[]
-    createMany?: EvidenceVersionsCreateManyEvidenceFileInputEnvelope
-    connect?: EvidenceVersionsWhereUniqueInput | EvidenceVersionsWhereUniqueInput[]
+  export type FileVersionCreateNestedManyWithoutEvidenceFileInput = {
+    create?: XOR<FileVersionCreateWithoutEvidenceFileInput, FileVersionUncheckedCreateWithoutEvidenceFileInput> | FileVersionCreateWithoutEvidenceFileInput[] | FileVersionUncheckedCreateWithoutEvidenceFileInput[]
+    connectOrCreate?: FileVersionCreateOrConnectWithoutEvidenceFileInput | FileVersionCreateOrConnectWithoutEvidenceFileInput[]
+    createMany?: FileVersionCreateManyEvidenceFileInputEnvelope
+    connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
   }
 
-  export type EvidenceVersionsUncheckedCreateNestedManyWithoutEvidenceFileInput = {
-    create?: XOR<EvidenceVersionsCreateWithoutEvidenceFileInput, EvidenceVersionsUncheckedCreateWithoutEvidenceFileInput> | EvidenceVersionsCreateWithoutEvidenceFileInput[] | EvidenceVersionsUncheckedCreateWithoutEvidenceFileInput[]
-    connectOrCreate?: EvidenceVersionsCreateOrConnectWithoutEvidenceFileInput | EvidenceVersionsCreateOrConnectWithoutEvidenceFileInput[]
-    createMany?: EvidenceVersionsCreateManyEvidenceFileInputEnvelope
-    connect?: EvidenceVersionsWhereUniqueInput | EvidenceVersionsWhereUniqueInput[]
+  export type FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput = {
+    create?: XOR<FileVersionCreateWithoutEvidenceFileInput, FileVersionUncheckedCreateWithoutEvidenceFileInput> | FileVersionCreateWithoutEvidenceFileInput[] | FileVersionUncheckedCreateWithoutEvidenceFileInput[]
+    connectOrCreate?: FileVersionCreateOrConnectWithoutEvidenceFileInput | FileVersionCreateOrConnectWithoutEvidenceFileInput[]
+    createMany?: FileVersionCreateManyEvidenceFileInputEnvelope
+    connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
   }
 
   export type EnumEvidenceStatusFieldUpdateOperationsInput = {
@@ -35321,50 +35442,68 @@ export namespace Prisma {
     update?: XOR<XOR<IndicatorUpdateToOneWithWhereWithoutEvidenceFilesInput, IndicatorUpdateWithoutEvidenceFilesInput>, IndicatorUncheckedUpdateWithoutEvidenceFilesInput>
   }
 
-  export type EvidenceVersionsUpdateManyWithoutEvidenceFileNestedInput = {
-    create?: XOR<EvidenceVersionsCreateWithoutEvidenceFileInput, EvidenceVersionsUncheckedCreateWithoutEvidenceFileInput> | EvidenceVersionsCreateWithoutEvidenceFileInput[] | EvidenceVersionsUncheckedCreateWithoutEvidenceFileInput[]
-    connectOrCreate?: EvidenceVersionsCreateOrConnectWithoutEvidenceFileInput | EvidenceVersionsCreateOrConnectWithoutEvidenceFileInput[]
-    upsert?: EvidenceVersionsUpsertWithWhereUniqueWithoutEvidenceFileInput | EvidenceVersionsUpsertWithWhereUniqueWithoutEvidenceFileInput[]
-    createMany?: EvidenceVersionsCreateManyEvidenceFileInputEnvelope
-    set?: EvidenceVersionsWhereUniqueInput | EvidenceVersionsWhereUniqueInput[]
-    disconnect?: EvidenceVersionsWhereUniqueInput | EvidenceVersionsWhereUniqueInput[]
-    delete?: EvidenceVersionsWhereUniqueInput | EvidenceVersionsWhereUniqueInput[]
-    connect?: EvidenceVersionsWhereUniqueInput | EvidenceVersionsWhereUniqueInput[]
-    update?: EvidenceVersionsUpdateWithWhereUniqueWithoutEvidenceFileInput | EvidenceVersionsUpdateWithWhereUniqueWithoutEvidenceFileInput[]
-    updateMany?: EvidenceVersionsUpdateManyWithWhereWithoutEvidenceFileInput | EvidenceVersionsUpdateManyWithWhereWithoutEvidenceFileInput[]
-    deleteMany?: EvidenceVersionsScalarWhereInput | EvidenceVersionsScalarWhereInput[]
+  export type FileVersionUpdateManyWithoutEvidenceFileNestedInput = {
+    create?: XOR<FileVersionCreateWithoutEvidenceFileInput, FileVersionUncheckedCreateWithoutEvidenceFileInput> | FileVersionCreateWithoutEvidenceFileInput[] | FileVersionUncheckedCreateWithoutEvidenceFileInput[]
+    connectOrCreate?: FileVersionCreateOrConnectWithoutEvidenceFileInput | FileVersionCreateOrConnectWithoutEvidenceFileInput[]
+    upsert?: FileVersionUpsertWithWhereUniqueWithoutEvidenceFileInput | FileVersionUpsertWithWhereUniqueWithoutEvidenceFileInput[]
+    createMany?: FileVersionCreateManyEvidenceFileInputEnvelope
+    set?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    disconnect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    delete?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    update?: FileVersionUpdateWithWhereUniqueWithoutEvidenceFileInput | FileVersionUpdateWithWhereUniqueWithoutEvidenceFileInput[]
+    updateMany?: FileVersionUpdateManyWithWhereWithoutEvidenceFileInput | FileVersionUpdateManyWithWhereWithoutEvidenceFileInput[]
+    deleteMany?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
   }
 
-  export type EvidenceVersionsUncheckedUpdateManyWithoutEvidenceFileNestedInput = {
-    create?: XOR<EvidenceVersionsCreateWithoutEvidenceFileInput, EvidenceVersionsUncheckedCreateWithoutEvidenceFileInput> | EvidenceVersionsCreateWithoutEvidenceFileInput[] | EvidenceVersionsUncheckedCreateWithoutEvidenceFileInput[]
-    connectOrCreate?: EvidenceVersionsCreateOrConnectWithoutEvidenceFileInput | EvidenceVersionsCreateOrConnectWithoutEvidenceFileInput[]
-    upsert?: EvidenceVersionsUpsertWithWhereUniqueWithoutEvidenceFileInput | EvidenceVersionsUpsertWithWhereUniqueWithoutEvidenceFileInput[]
-    createMany?: EvidenceVersionsCreateManyEvidenceFileInputEnvelope
-    set?: EvidenceVersionsWhereUniqueInput | EvidenceVersionsWhereUniqueInput[]
-    disconnect?: EvidenceVersionsWhereUniqueInput | EvidenceVersionsWhereUniqueInput[]
-    delete?: EvidenceVersionsWhereUniqueInput | EvidenceVersionsWhereUniqueInput[]
-    connect?: EvidenceVersionsWhereUniqueInput | EvidenceVersionsWhereUniqueInput[]
-    update?: EvidenceVersionsUpdateWithWhereUniqueWithoutEvidenceFileInput | EvidenceVersionsUpdateWithWhereUniqueWithoutEvidenceFileInput[]
-    updateMany?: EvidenceVersionsUpdateManyWithWhereWithoutEvidenceFileInput | EvidenceVersionsUpdateManyWithWhereWithoutEvidenceFileInput[]
-    deleteMany?: EvidenceVersionsScalarWhereInput | EvidenceVersionsScalarWhereInput[]
+  export type FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput = {
+    create?: XOR<FileVersionCreateWithoutEvidenceFileInput, FileVersionUncheckedCreateWithoutEvidenceFileInput> | FileVersionCreateWithoutEvidenceFileInput[] | FileVersionUncheckedCreateWithoutEvidenceFileInput[]
+    connectOrCreate?: FileVersionCreateOrConnectWithoutEvidenceFileInput | FileVersionCreateOrConnectWithoutEvidenceFileInput[]
+    upsert?: FileVersionUpsertWithWhereUniqueWithoutEvidenceFileInput | FileVersionUpsertWithWhereUniqueWithoutEvidenceFileInput[]
+    createMany?: FileVersionCreateManyEvidenceFileInputEnvelope
+    set?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    disconnect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    delete?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    update?: FileVersionUpdateWithWhereUniqueWithoutEvidenceFileInput | FileVersionUpdateWithWhereUniqueWithoutEvidenceFileInput[]
+    updateMany?: FileVersionUpdateManyWithWhereWithoutEvidenceFileInput | FileVersionUpdateManyWithWhereWithoutEvidenceFileInput[]
+    deleteMany?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
   }
 
-  export type EvidenceFileCreateNestedOneWithoutEvidenceVersionsInput = {
-    create?: XOR<EvidenceFileCreateWithoutEvidenceVersionsInput, EvidenceFileUncheckedCreateWithoutEvidenceVersionsInput>
-    connectOrCreate?: EvidenceFileCreateOrConnectWithoutEvidenceVersionsInput
+  export type EvidenceFileCreateNestedOneWithoutFileVersionsInput = {
+    create?: XOR<EvidenceFileCreateWithoutFileVersionsInput, EvidenceFileUncheckedCreateWithoutFileVersionsInput>
+    connectOrCreate?: EvidenceFileCreateOrConnectWithoutFileVersionsInput
     connect?: EvidenceFileWhereUniqueInput
   }
 
-  export type EnumFileVersionStatusFieldUpdateOperationsInput = {
-    set?: $Enums.FileVersionStatus
+  export type AreaFileCreateNestedOneWithoutFileVersionsInput = {
+    create?: XOR<AreaFileCreateWithoutFileVersionsInput, AreaFileUncheckedCreateWithoutFileVersionsInput>
+    connectOrCreate?: AreaFileCreateOrConnectWithoutFileVersionsInput
+    connect?: AreaFileWhereUniqueInput
   }
 
-  export type EvidenceFileUpdateOneRequiredWithoutEvidenceVersionsNestedInput = {
-    create?: XOR<EvidenceFileCreateWithoutEvidenceVersionsInput, EvidenceFileUncheckedCreateWithoutEvidenceVersionsInput>
-    connectOrCreate?: EvidenceFileCreateOrConnectWithoutEvidenceVersionsInput
-    upsert?: EvidenceFileUpsertWithoutEvidenceVersionsInput
+  export type NullableEnumFileVersionStatusFieldUpdateOperationsInput = {
+    set?: $Enums.FileVersionStatus | null
+  }
+
+  export type EvidenceFileUpdateOneWithoutFileVersionsNestedInput = {
+    create?: XOR<EvidenceFileCreateWithoutFileVersionsInput, EvidenceFileUncheckedCreateWithoutFileVersionsInput>
+    connectOrCreate?: EvidenceFileCreateOrConnectWithoutFileVersionsInput
+    upsert?: EvidenceFileUpsertWithoutFileVersionsInput
+    disconnect?: EvidenceFileWhereInput | boolean
+    delete?: EvidenceFileWhereInput | boolean
     connect?: EvidenceFileWhereUniqueInput
-    update?: XOR<XOR<EvidenceFileUpdateToOneWithWhereWithoutEvidenceVersionsInput, EvidenceFileUpdateWithoutEvidenceVersionsInput>, EvidenceFileUncheckedUpdateWithoutEvidenceVersionsInput>
+    update?: XOR<XOR<EvidenceFileUpdateToOneWithWhereWithoutFileVersionsInput, EvidenceFileUpdateWithoutFileVersionsInput>, EvidenceFileUncheckedUpdateWithoutFileVersionsInput>
+  }
+
+  export type AreaFileUpdateOneWithoutFileVersionsNestedInput = {
+    create?: XOR<AreaFileCreateWithoutFileVersionsInput, AreaFileUncheckedCreateWithoutFileVersionsInput>
+    connectOrCreate?: AreaFileCreateOrConnectWithoutFileVersionsInput
+    upsert?: AreaFileUpsertWithoutFileVersionsInput
+    disconnect?: AreaFileWhereInput | boolean
+    delete?: AreaFileWhereInput | boolean
+    connect?: AreaFileWhereUniqueInput
+    update?: XOR<XOR<AreaFileUpdateToOneWithWhereWithoutFileVersionsInput, AreaFileUpdateWithoutFileVersionsInput>, AreaFileUncheckedUpdateWithoutFileVersionsInput>
   }
 
   export type SurveyVisitCreateNestedOneWithoutPhaseTwoRequirementsInput = {
@@ -35569,6 +35708,20 @@ export namespace Prisma {
     connect?: PhaseTwoAreaFolderWhereUniqueInput
   }
 
+  export type FileVersionCreateNestedManyWithoutAreaFileInput = {
+    create?: XOR<FileVersionCreateWithoutAreaFileInput, FileVersionUncheckedCreateWithoutAreaFileInput> | FileVersionCreateWithoutAreaFileInput[] | FileVersionUncheckedCreateWithoutAreaFileInput[]
+    connectOrCreate?: FileVersionCreateOrConnectWithoutAreaFileInput | FileVersionCreateOrConnectWithoutAreaFileInput[]
+    createMany?: FileVersionCreateManyAreaFileInputEnvelope
+    connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+  }
+
+  export type FileVersionUncheckedCreateNestedManyWithoutAreaFileInput = {
+    create?: XOR<FileVersionCreateWithoutAreaFileInput, FileVersionUncheckedCreateWithoutAreaFileInput> | FileVersionCreateWithoutAreaFileInput[] | FileVersionUncheckedCreateWithoutAreaFileInput[]
+    connectOrCreate?: FileVersionCreateOrConnectWithoutAreaFileInput | FileVersionCreateOrConnectWithoutAreaFileInput[]
+    createMany?: FileVersionCreateManyAreaFileInputEnvelope
+    connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+  }
+
   export type EnumAreaFileTypeFieldUpdateOperationsInput = {
     set?: $Enums.AreaFileType
   }
@@ -35591,6 +35744,34 @@ export namespace Prisma {
     delete?: PhaseTwoAreaFolderWhereInput | boolean
     connect?: PhaseTwoAreaFolderWhereUniqueInput
     update?: XOR<XOR<PhaseTwoAreaFolderUpdateToOneWithWhereWithoutAreaFilesInput, PhaseTwoAreaFolderUpdateWithoutAreaFilesInput>, PhaseTwoAreaFolderUncheckedUpdateWithoutAreaFilesInput>
+  }
+
+  export type FileVersionUpdateManyWithoutAreaFileNestedInput = {
+    create?: XOR<FileVersionCreateWithoutAreaFileInput, FileVersionUncheckedCreateWithoutAreaFileInput> | FileVersionCreateWithoutAreaFileInput[] | FileVersionUncheckedCreateWithoutAreaFileInput[]
+    connectOrCreate?: FileVersionCreateOrConnectWithoutAreaFileInput | FileVersionCreateOrConnectWithoutAreaFileInput[]
+    upsert?: FileVersionUpsertWithWhereUniqueWithoutAreaFileInput | FileVersionUpsertWithWhereUniqueWithoutAreaFileInput[]
+    createMany?: FileVersionCreateManyAreaFileInputEnvelope
+    set?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    disconnect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    delete?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    update?: FileVersionUpdateWithWhereUniqueWithoutAreaFileInput | FileVersionUpdateWithWhereUniqueWithoutAreaFileInput[]
+    updateMany?: FileVersionUpdateManyWithWhereWithoutAreaFileInput | FileVersionUpdateManyWithWhereWithoutAreaFileInput[]
+    deleteMany?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
+  }
+
+  export type FileVersionUncheckedUpdateManyWithoutAreaFileNestedInput = {
+    create?: XOR<FileVersionCreateWithoutAreaFileInput, FileVersionUncheckedCreateWithoutAreaFileInput> | FileVersionCreateWithoutAreaFileInput[] | FileVersionUncheckedCreateWithoutAreaFileInput[]
+    connectOrCreate?: FileVersionCreateOrConnectWithoutAreaFileInput | FileVersionCreateOrConnectWithoutAreaFileInput[]
+    upsert?: FileVersionUpsertWithWhereUniqueWithoutAreaFileInput | FileVersionUpsertWithWhereUniqueWithoutAreaFileInput[]
+    createMany?: FileVersionCreateManyAreaFileInputEnvelope
+    set?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    disconnect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    delete?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    update?: FileVersionUpdateWithWhereUniqueWithoutAreaFileInput | FileVersionUpdateWithWhereUniqueWithoutAreaFileInput[]
+    updateMany?: FileVersionUpdateManyWithWhereWithoutAreaFileInput | FileVersionUpdateManyWithWhereWithoutAreaFileInput[]
+    deleteMany?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
   }
 
   export type AreaFolderCreateNestedOneWithoutTaskForceInput = {
@@ -36025,21 +36206,21 @@ export namespace Prisma {
     _max?: NestedEnumEvidenceStatusFilter<$PrismaModel>
   }
 
-  export type NestedEnumFileVersionStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.FileVersionStatus | EnumFileVersionStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumFileVersionStatusFilter<$PrismaModel> | $Enums.FileVersionStatus
+  export type NestedEnumFileVersionStatusNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.FileVersionStatus | EnumFileVersionStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumFileVersionStatusNullableFilter<$PrismaModel> | $Enums.FileVersionStatus | null
   }
 
-  export type NestedEnumFileVersionStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.FileVersionStatus | EnumFileVersionStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumFileVersionStatusWithAggregatesFilter<$PrismaModel> | $Enums.FileVersionStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumFileVersionStatusFilter<$PrismaModel>
-    _max?: NestedEnumFileVersionStatusFilter<$PrismaModel>
+  export type NestedEnumFileVersionStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FileVersionStatus | EnumFileVersionStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumFileVersionStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.FileVersionStatus | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumFileVersionStatusNullableFilter<$PrismaModel>
+    _max?: NestedEnumFileVersionStatusNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumAreaFileTypeFilter<$PrismaModel = never> = {
@@ -37000,7 +37181,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
-    evidenceVersions?: EvidenceVersionsCreateNestedManyWithoutEvidenceFileInput
+    fileVersions?: FileVersionCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUncheckedCreateWithoutIndicatorInput = {
@@ -37009,7 +37190,7 @@ export namespace Prisma {
     status: $Enums.EvidenceStatus
     createdAt?: Date | string
     updatedAt?: Date | string
-    evidenceVersions?: EvidenceVersionsUncheckedCreateNestedManyWithoutEvidenceFileInput
+    fileVersions?: FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileCreateOrConnectWithoutIndicatorInput = {
@@ -37859,19 +38040,19 @@ export namespace Prisma {
   export type AreaFileCreateWithoutPhaseOneAreaFolderInput = {
     id?: string
     type: $Enums.AreaFileType
-    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     phaseTwoAreaFolder?: PhaseTwoAreaFolderCreateNestedOneWithoutAreaFilesInput
+    fileVersions?: FileVersionCreateNestedManyWithoutAreaFileInput
   }
 
   export type AreaFileUncheckedCreateWithoutPhaseOneAreaFolderInput = {
     id?: string
     phaseTwoAreaFolderId?: string | null
     type: $Enums.AreaFileType
-    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    fileVersions?: FileVersionUncheckedCreateNestedManyWithoutAreaFileInput
   }
 
   export type AreaFileCreateOrConnectWithoutPhaseOneAreaFolderInput = {
@@ -37996,7 +38177,6 @@ export namespace Prisma {
     phaseOneAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     phaseTwoAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     type?: EnumAreaFileTypeFilter<"AreaFile"> | $Enums.AreaFileType
-    objectURL?: StringNullableFilter<"AreaFile"> | string | null
     createdAt?: DateTimeFilter<"AreaFile"> | Date | string
     updatedAt?: DateTimeFilter<"AreaFile"> | Date | string
   }
@@ -38242,7 +38422,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
-    evidenceVersions?: EvidenceVersionsCreateNestedManyWithoutEvidenceFileInput
+    fileVersions?: FileVersionCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUncheckedCreateWithoutIndicatorFolderInput = {
@@ -38251,7 +38431,7 @@ export namespace Prisma {
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    evidenceVersions?: EvidenceVersionsUncheckedCreateNestedManyWithoutEvidenceFileInput
+    fileVersions?: FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileCreateOrConnectWithoutIndicatorFolderInput = {
@@ -38348,31 +38528,33 @@ export namespace Prisma {
     create: XOR<IndicatorCreateWithoutEvidenceFilesInput, IndicatorUncheckedCreateWithoutEvidenceFilesInput>
   }
 
-  export type EvidenceVersionsCreateWithoutEvidenceFileInput = {
+  export type FileVersionCreateWithoutEvidenceFileInput = {
     id?: string
     name: string
-    status: $Enums.FileVersionStatus
+    status?: $Enums.FileVersionStatus | null
+    objectUrl: string
+    type: string
+    uploadedAt?: Date | string
+    areaFile?: AreaFileCreateNestedOneWithoutFileVersionsInput
+  }
+
+  export type FileVersionUncheckedCreateWithoutEvidenceFileInput = {
+    id?: string
+    areaFileId?: string | null
+    name: string
+    status?: $Enums.FileVersionStatus | null
     objectUrl: string
     type: string
     uploadedAt?: Date | string
   }
 
-  export type EvidenceVersionsUncheckedCreateWithoutEvidenceFileInput = {
-    id?: string
-    name: string
-    status: $Enums.FileVersionStatus
-    objectUrl: string
-    type: string
-    uploadedAt?: Date | string
+  export type FileVersionCreateOrConnectWithoutEvidenceFileInput = {
+    where: FileVersionWhereUniqueInput
+    create: XOR<FileVersionCreateWithoutEvidenceFileInput, FileVersionUncheckedCreateWithoutEvidenceFileInput>
   }
 
-  export type EvidenceVersionsCreateOrConnectWithoutEvidenceFileInput = {
-    where: EvidenceVersionsWhereUniqueInput
-    create: XOR<EvidenceVersionsCreateWithoutEvidenceFileInput, EvidenceVersionsUncheckedCreateWithoutEvidenceFileInput>
-  }
-
-  export type EvidenceVersionsCreateManyEvidenceFileInputEnvelope = {
-    data: EvidenceVersionsCreateManyEvidenceFileInput | EvidenceVersionsCreateManyEvidenceFileInput[]
+  export type FileVersionCreateManyEvidenceFileInputEnvelope = {
+    data: FileVersionCreateManyEvidenceFileInput | FileVersionCreateManyEvidenceFileInput[]
     skipDuplicates?: boolean
   }
 
@@ -38431,36 +38613,37 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EvidenceVersionsUpsertWithWhereUniqueWithoutEvidenceFileInput = {
-    where: EvidenceVersionsWhereUniqueInput
-    update: XOR<EvidenceVersionsUpdateWithoutEvidenceFileInput, EvidenceVersionsUncheckedUpdateWithoutEvidenceFileInput>
-    create: XOR<EvidenceVersionsCreateWithoutEvidenceFileInput, EvidenceVersionsUncheckedCreateWithoutEvidenceFileInput>
+  export type FileVersionUpsertWithWhereUniqueWithoutEvidenceFileInput = {
+    where: FileVersionWhereUniqueInput
+    update: XOR<FileVersionUpdateWithoutEvidenceFileInput, FileVersionUncheckedUpdateWithoutEvidenceFileInput>
+    create: XOR<FileVersionCreateWithoutEvidenceFileInput, FileVersionUncheckedCreateWithoutEvidenceFileInput>
   }
 
-  export type EvidenceVersionsUpdateWithWhereUniqueWithoutEvidenceFileInput = {
-    where: EvidenceVersionsWhereUniqueInput
-    data: XOR<EvidenceVersionsUpdateWithoutEvidenceFileInput, EvidenceVersionsUncheckedUpdateWithoutEvidenceFileInput>
+  export type FileVersionUpdateWithWhereUniqueWithoutEvidenceFileInput = {
+    where: FileVersionWhereUniqueInput
+    data: XOR<FileVersionUpdateWithoutEvidenceFileInput, FileVersionUncheckedUpdateWithoutEvidenceFileInput>
   }
 
-  export type EvidenceVersionsUpdateManyWithWhereWithoutEvidenceFileInput = {
-    where: EvidenceVersionsScalarWhereInput
-    data: XOR<EvidenceVersionsUpdateManyMutationInput, EvidenceVersionsUncheckedUpdateManyWithoutEvidenceFileInput>
+  export type FileVersionUpdateManyWithWhereWithoutEvidenceFileInput = {
+    where: FileVersionScalarWhereInput
+    data: XOR<FileVersionUpdateManyMutationInput, FileVersionUncheckedUpdateManyWithoutEvidenceFileInput>
   }
 
-  export type EvidenceVersionsScalarWhereInput = {
-    AND?: EvidenceVersionsScalarWhereInput | EvidenceVersionsScalarWhereInput[]
-    OR?: EvidenceVersionsScalarWhereInput[]
-    NOT?: EvidenceVersionsScalarWhereInput | EvidenceVersionsScalarWhereInput[]
-    id?: StringFilter<"EvidenceVersions"> | string
-    name?: StringFilter<"EvidenceVersions"> | string
-    status?: EnumFileVersionStatusFilter<"EvidenceVersions"> | $Enums.FileVersionStatus
-    evidenceFileId?: StringFilter<"EvidenceVersions"> | string
-    objectUrl?: StringFilter<"EvidenceVersions"> | string
-    type?: StringFilter<"EvidenceVersions"> | string
-    uploadedAt?: DateTimeFilter<"EvidenceVersions"> | Date | string
+  export type FileVersionScalarWhereInput = {
+    AND?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
+    OR?: FileVersionScalarWhereInput[]
+    NOT?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
+    id?: StringFilter<"FileVersion"> | string
+    evidenceFileId?: StringNullableFilter<"FileVersion"> | string | null
+    areaFileId?: StringNullableFilter<"FileVersion"> | string | null
+    name?: StringFilter<"FileVersion"> | string
+    status?: EnumFileVersionStatusNullableFilter<"FileVersion"> | $Enums.FileVersionStatus | null
+    objectUrl?: StringFilter<"FileVersion"> | string
+    type?: StringFilter<"FileVersion"> | string
+    uploadedAt?: DateTimeFilter<"FileVersion"> | Date | string
   }
 
-  export type EvidenceFileCreateWithoutEvidenceVersionsInput = {
+  export type EvidenceFileCreateWithoutFileVersionsInput = {
     id?: string
     status: $Enums.EvidenceStatus
     createdAt?: Date | string
@@ -38469,7 +38652,7 @@ export namespace Prisma {
     indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
   }
 
-  export type EvidenceFileUncheckedCreateWithoutEvidenceVersionsInput = {
+  export type EvidenceFileUncheckedCreateWithoutFileVersionsInput = {
     id?: string
     indicatorFolderId: string
     status: $Enums.EvidenceStatus
@@ -38478,23 +38661,46 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type EvidenceFileCreateOrConnectWithoutEvidenceVersionsInput = {
+  export type EvidenceFileCreateOrConnectWithoutFileVersionsInput = {
     where: EvidenceFileWhereUniqueInput
-    create: XOR<EvidenceFileCreateWithoutEvidenceVersionsInput, EvidenceFileUncheckedCreateWithoutEvidenceVersionsInput>
+    create: XOR<EvidenceFileCreateWithoutFileVersionsInput, EvidenceFileUncheckedCreateWithoutFileVersionsInput>
   }
 
-  export type EvidenceFileUpsertWithoutEvidenceVersionsInput = {
-    update: XOR<EvidenceFileUpdateWithoutEvidenceVersionsInput, EvidenceFileUncheckedUpdateWithoutEvidenceVersionsInput>
-    create: XOR<EvidenceFileCreateWithoutEvidenceVersionsInput, EvidenceFileUncheckedCreateWithoutEvidenceVersionsInput>
+  export type AreaFileCreateWithoutFileVersionsInput = {
+    id?: string
+    type: $Enums.AreaFileType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    phaseOneAreaFolder?: AreaFolderCreateNestedOneWithoutAreaFilesInput
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderCreateNestedOneWithoutAreaFilesInput
+  }
+
+  export type AreaFileUncheckedCreateWithoutFileVersionsInput = {
+    id?: string
+    phaseOneAreaFolderId?: string | null
+    phaseTwoAreaFolderId?: string | null
+    type: $Enums.AreaFileType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AreaFileCreateOrConnectWithoutFileVersionsInput = {
+    where: AreaFileWhereUniqueInput
+    create: XOR<AreaFileCreateWithoutFileVersionsInput, AreaFileUncheckedCreateWithoutFileVersionsInput>
+  }
+
+  export type EvidenceFileUpsertWithoutFileVersionsInput = {
+    update: XOR<EvidenceFileUpdateWithoutFileVersionsInput, EvidenceFileUncheckedUpdateWithoutFileVersionsInput>
+    create: XOR<EvidenceFileCreateWithoutFileVersionsInput, EvidenceFileUncheckedCreateWithoutFileVersionsInput>
     where?: EvidenceFileWhereInput
   }
 
-  export type EvidenceFileUpdateToOneWithWhereWithoutEvidenceVersionsInput = {
+  export type EvidenceFileUpdateToOneWithWhereWithoutFileVersionsInput = {
     where?: EvidenceFileWhereInput
-    data: XOR<EvidenceFileUpdateWithoutEvidenceVersionsInput, EvidenceFileUncheckedUpdateWithoutEvidenceVersionsInput>
+    data: XOR<EvidenceFileUpdateWithoutFileVersionsInput, EvidenceFileUncheckedUpdateWithoutFileVersionsInput>
   }
 
-  export type EvidenceFileUpdateWithoutEvidenceVersionsInput = {
+  export type EvidenceFileUpdateWithoutFileVersionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38503,11 +38709,40 @@ export namespace Prisma {
     indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
   }
 
-  export type EvidenceFileUncheckedUpdateWithoutEvidenceVersionsInput = {
+  export type EvidenceFileUncheckedUpdateWithoutFileVersionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     indicatorFolderId?: StringFieldUpdateOperationsInput | string
     status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
     indicatorId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AreaFileUpsertWithoutFileVersionsInput = {
+    update: XOR<AreaFileUpdateWithoutFileVersionsInput, AreaFileUncheckedUpdateWithoutFileVersionsInput>
+    create: XOR<AreaFileCreateWithoutFileVersionsInput, AreaFileUncheckedCreateWithoutFileVersionsInput>
+    where?: AreaFileWhereInput
+  }
+
+  export type AreaFileUpdateToOneWithWhereWithoutFileVersionsInput = {
+    where?: AreaFileWhereInput
+    data: XOR<AreaFileUpdateWithoutFileVersionsInput, AreaFileUncheckedUpdateWithoutFileVersionsInput>
+  }
+
+  export type AreaFileUpdateWithoutFileVersionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phaseOneAreaFolder?: AreaFolderUpdateOneWithoutAreaFilesNestedInput
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderUpdateOneWithoutAreaFilesNestedInput
+  }
+
+  export type AreaFileUncheckedUpdateWithoutFileVersionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38788,19 +39023,19 @@ export namespace Prisma {
   export type AreaFileCreateWithoutPhaseTwoAreaFolderInput = {
     id?: string
     type: $Enums.AreaFileType
-    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     phaseOneAreaFolder?: AreaFolderCreateNestedOneWithoutAreaFilesInput
+    fileVersions?: FileVersionCreateNestedManyWithoutAreaFileInput
   }
 
   export type AreaFileUncheckedCreateWithoutPhaseTwoAreaFolderInput = {
     id?: string
     phaseOneAreaFolderId?: string | null
     type: $Enums.AreaFileType
-    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    fileVersions?: FileVersionUncheckedCreateNestedManyWithoutAreaFileInput
   }
 
   export type AreaFileCreateOrConnectWithoutPhaseTwoAreaFolderInput = {
@@ -38924,6 +39159,36 @@ export namespace Prisma {
     create: XOR<PhaseTwoAreaFolderCreateWithoutAreaFilesInput, PhaseTwoAreaFolderUncheckedCreateWithoutAreaFilesInput>
   }
 
+  export type FileVersionCreateWithoutAreaFileInput = {
+    id?: string
+    name: string
+    status?: $Enums.FileVersionStatus | null
+    objectUrl: string
+    type: string
+    uploadedAt?: Date | string
+    evidenceFile?: EvidenceFileCreateNestedOneWithoutFileVersionsInput
+  }
+
+  export type FileVersionUncheckedCreateWithoutAreaFileInput = {
+    id?: string
+    evidenceFileId?: string | null
+    name: string
+    status?: $Enums.FileVersionStatus | null
+    objectUrl: string
+    type: string
+    uploadedAt?: Date | string
+  }
+
+  export type FileVersionCreateOrConnectWithoutAreaFileInput = {
+    where: FileVersionWhereUniqueInput
+    create: XOR<FileVersionCreateWithoutAreaFileInput, FileVersionUncheckedCreateWithoutAreaFileInput>
+  }
+
+  export type FileVersionCreateManyAreaFileInputEnvelope = {
+    data: FileVersionCreateManyAreaFileInput | FileVersionCreateManyAreaFileInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AreaFolderUpsertWithoutAreaFilesInput = {
     update: XOR<AreaFolderUpdateWithoutAreaFilesInput, AreaFolderUncheckedUpdateWithoutAreaFilesInput>
     create: XOR<AreaFolderCreateWithoutAreaFilesInput, AreaFolderUncheckedCreateWithoutAreaFilesInput>
@@ -38974,6 +39239,22 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FileVersionUpsertWithWhereUniqueWithoutAreaFileInput = {
+    where: FileVersionWhereUniqueInput
+    update: XOR<FileVersionUpdateWithoutAreaFileInput, FileVersionUncheckedUpdateWithoutAreaFileInput>
+    create: XOR<FileVersionCreateWithoutAreaFileInput, FileVersionUncheckedCreateWithoutAreaFileInput>
+  }
+
+  export type FileVersionUpdateWithWhereUniqueWithoutAreaFileInput = {
+    where: FileVersionWhereUniqueInput
+    data: XOR<FileVersionUpdateWithoutAreaFileInput, FileVersionUncheckedUpdateWithoutAreaFileInput>
+  }
+
+  export type FileVersionUpdateManyWithWhereWithoutAreaFileInput = {
+    where: FileVersionScalarWhereInput
+    data: XOR<FileVersionUpdateManyMutationInput, FileVersionUncheckedUpdateManyWithoutAreaFileInput>
   }
 
   export type AreaFolderCreateWithoutTaskForceInput = {
@@ -39599,7 +39880,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
-    evidenceVersions?: EvidenceVersionsUpdateManyWithoutEvidenceFileNestedInput
+    fileVersions?: FileVersionUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateWithoutIndicatorInput = {
@@ -39608,7 +39889,7 @@ export namespace Prisma {
     status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    evidenceVersions?: EvidenceVersionsUncheckedUpdateManyWithoutEvidenceFileNestedInput
+    fileVersions?: FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateManyWithoutIndicatorInput = {
@@ -39772,7 +40053,6 @@ export namespace Prisma {
     id?: string
     phaseTwoAreaFolderId?: string | null
     type: $Enums.AreaFileType
-    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -39799,26 +40079,25 @@ export namespace Prisma {
   export type AreaFileUpdateWithoutPhaseOneAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseTwoAreaFolder?: PhaseTwoAreaFolderUpdateOneWithoutAreaFilesNestedInput
+    fileVersions?: FileVersionUpdateManyWithoutAreaFileNestedInput
   }
 
   export type AreaFileUncheckedUpdateWithoutPhaseOneAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileVersions?: FileVersionUncheckedUpdateManyWithoutAreaFileNestedInput
   }
 
   export type AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -39859,7 +40138,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
-    evidenceVersions?: EvidenceVersionsUpdateManyWithoutEvidenceFileNestedInput
+    fileVersions?: FileVersionUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateWithoutIndicatorFolderInput = {
@@ -39868,7 +40147,7 @@ export namespace Prisma {
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    evidenceVersions?: EvidenceVersionsUncheckedUpdateManyWithoutEvidenceFileNestedInput
+    fileVersions?: FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderInput = {
@@ -39879,37 +40158,41 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EvidenceVersionsCreateManyEvidenceFileInput = {
+  export type FileVersionCreateManyEvidenceFileInput = {
     id?: string
+    areaFileId?: string | null
     name: string
-    status: $Enums.FileVersionStatus
+    status?: $Enums.FileVersionStatus | null
     objectUrl: string
     type: string
     uploadedAt?: Date | string
   }
 
-  export type EvidenceVersionsUpdateWithoutEvidenceFileInput = {
+  export type FileVersionUpdateWithoutEvidenceFileInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    status?: EnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
+    objectUrl?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    areaFile?: AreaFileUpdateOneWithoutFileVersionsNestedInput
+  }
+
+  export type FileVersionUncheckedUpdateWithoutEvidenceFileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
     objectUrl?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EvidenceVersionsUncheckedUpdateWithoutEvidenceFileInput = {
+  export type FileVersionUncheckedUpdateManyWithoutEvidenceFileInput = {
     id?: StringFieldUpdateOperationsInput | string
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
-    status?: EnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus
-    objectUrl?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type EvidenceVersionsUncheckedUpdateManyWithoutEvidenceFileInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    status?: EnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
     objectUrl?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39941,7 +40224,6 @@ export namespace Prisma {
     id?: string
     phaseOneAreaFolderId?: string | null
     type: $Enums.AreaFileType
-    objectURL?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -39949,28 +40231,67 @@ export namespace Prisma {
   export type AreaFileUpdateWithoutPhaseTwoAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneAreaFolder?: AreaFolderUpdateOneWithoutAreaFilesNestedInput
+    fileVersions?: FileVersionUpdateManyWithoutAreaFileNestedInput
   }
 
   export type AreaFileUncheckedUpdateWithoutPhaseTwoAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileVersions?: FileVersionUncheckedUpdateManyWithoutAreaFileNestedInput
   }
 
   export type AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
-    objectURL?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FileVersionCreateManyAreaFileInput = {
+    id?: string
+    evidenceFileId?: string | null
+    name: string
+    status?: $Enums.FileVersionStatus | null
+    objectUrl: string
+    type: string
+    uploadedAt?: Date | string
+  }
+
+  export type FileVersionUpdateWithoutAreaFileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
+    objectUrl?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidenceFile?: EvidenceFileUpdateOneWithoutFileVersionsNestedInput
+  }
+
+  export type FileVersionUncheckedUpdateWithoutAreaFileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
+    objectUrl?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FileVersionUncheckedUpdateManyWithoutAreaFileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
+    objectUrl?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TaskForceMemberCreateManyTaskForceInput = {
