@@ -1,13 +1,13 @@
 import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
-import { EvidenceStatus } from "../generated/prisma";
+import { FileStatus } from "../generated/prisma";
 import { prisma } from "../prisma";
 
 export async function createManyEvidenceFiles(
   evidenceFiles: {
     indicatorFolderId: string;
     indicatorId: number;
-    status: EvidenceStatus;
+    status: FileStatus;
   }[]
 ) {
   const session = await verifySession();

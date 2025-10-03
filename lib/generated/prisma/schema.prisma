@@ -54,8 +54,9 @@ enum AreaFileType {
   NARRATIVE_PROFILE
 }
 
-enum EvidenceStatus {
+enum FileStatus {
   EMPTY
+  SUBMITTED
   FOR_REVIEW
   REJECTED
   ACCEPTED
@@ -247,7 +248,7 @@ model EvidenceFile {
   id                String          @id @default(uuid())
   indicatorFolder   IndicatorFolder @relation(fields: [indicatorFolderId], references: [id], onDelete: Cascade)
   indicatorFolderId String
-  status            EvidenceStatus
+  status            FileStatus
   indicator         Indicator       @relation(fields: [indicatorId], references: [id], onDelete: Cascade)
   indicatorId       Int
   createdAt         DateTime        @default(now())
@@ -299,6 +300,7 @@ model AreaFile {
   phaseOneAreaFolderId String?
   phaseTwoAreaFolder   PhaseTwoAreaFolder? @relation(fields: [phaseTwoAreaFolderId], references: [id], onDelete: Cascade)
   phaseTwoAreaFolderId String?
+  status               FileStatus
   type                 AreaFileType
   createdAt            DateTime            @default(now())
   updatedAt            DateTime            @updatedAt

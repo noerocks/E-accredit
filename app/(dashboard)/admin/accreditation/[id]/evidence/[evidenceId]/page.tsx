@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getEvidenceFileById } from "@/lib/dal/evidence";
-import { Category, EvidenceStatus } from "@/lib/generated/prisma";
+import { Category, FileStatus } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import { CheckCircle, CircleDot, Tag } from "lucide-react";
 
@@ -28,7 +28,7 @@ const EvidencePage = async ({
     [Category.IMPLEMENTATION]: "Implementation",
     [Category.OUTCOME]: "Outcome/s",
   };
-  const formatStatus = (status: EvidenceStatus) => {
+  const formatStatus = (status: FileStatus) => {
     return status
       .split("_")
       .map(
@@ -61,12 +61,12 @@ const EvidencePage = async ({
                 className={clsx(
                   "py-2 px-3 border-2 rounded-md flex items-center gap-2",
                   {
-                    "bg-yellow-400/5 text-yellow-400 border-yellow-400":
-                      evidence?.status === "FOR_REVIEW",
-                    "bg-green-400/5 text-green-400 border-green-400":
-                      evidence?.status === "ACCEPTED",
-                    "bg-red-400/5 text-red-400 border-red-400":
-                      evidence?.status === "REJECTED",
+                    "bg-yellow-400/5 text-yellow-600 border-yellow-400":
+                      evidence?.status === FileStatus.FOR_REVIEW,
+                    "bg-green-400/5 text-green-600 border-green-400":
+                      evidence?.status === FileStatus.ACCEPTED,
+                    "bg-red-400/5 text-red-600 border-red-400":
+                      evidence?.status === FileStatus.REJECTED,
                   }
                 )}
               >

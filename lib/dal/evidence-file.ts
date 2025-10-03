@@ -1,6 +1,6 @@
 import { EvidenceFile } from "../generated/prisma";
 import { prisma } from "../prisma";
-import { verifySession } from "./session";
+import { verifySession } from "../action/session";
 
 export async function updateEvidenceFileById(data: Partial<EvidenceFile>) {
   const session = await verifySession();

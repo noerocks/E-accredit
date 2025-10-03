@@ -1,5 +1,5 @@
 import { verifySession } from "../action/session";
-import { AreaFileType } from "../generated/prisma";
+import { AreaFile, AreaFileType, FileStatus } from "../generated/prisma";
 import { prisma } from "../prisma";
 
 export async function createManyAreaFiles(
@@ -7,6 +7,7 @@ export async function createManyAreaFiles(
     phaseOneAreaFolderId?: string;
     phaseTwoAreaFolderId?: string;
     type: AreaFileType;
+    status: FileStatus;
   }[]
 ) {
   const session = await verifySession();
@@ -36,6 +37,18 @@ export async function getAreaFileById(id: string) {
         },
       },
     },
+  });
+  return areaFile;
+}
+
+export async function updateAreaFileById(data: Partial<AreaFile>) {
+  const session = await verifySession();
+  if (!session) return null;
+  const areaFile = await prisma.areaFile.update({
+    where: {
+      id: data.id,
+    },
+    data,
   });
   return areaFile;
 }

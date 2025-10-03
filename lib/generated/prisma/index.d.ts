@@ -194,14 +194,15 @@ export const AreaFileType: {
 export type AreaFileType = (typeof AreaFileType)[keyof typeof AreaFileType]
 
 
-export const EvidenceStatus: {
+export const FileStatus: {
   EMPTY: 'EMPTY',
+  SUBMITTED: 'SUBMITTED',
   FOR_REVIEW: 'FOR_REVIEW',
   REJECTED: 'REJECTED',
   ACCEPTED: 'ACCEPTED'
 };
 
-export type EvidenceStatus = (typeof EvidenceStatus)[keyof typeof EvidenceStatus]
+export type FileStatus = (typeof FileStatus)[keyof typeof FileStatus]
 
 
 export const FileVersionStatus: {
@@ -241,9 +242,9 @@ export type AreaFileType = $Enums.AreaFileType
 
 export const AreaFileType: typeof $Enums.AreaFileType
 
-export type EvidenceStatus = $Enums.EvidenceStatus
+export type FileStatus = $Enums.FileStatus
 
-export const EvidenceStatus: typeof $Enums.EvidenceStatus
+export const FileStatus: typeof $Enums.FileStatus
 
 export type FileVersionStatus = $Enums.FileVersionStatus
 
@@ -20604,7 +20605,7 @@ export namespace Prisma {
   export type EvidenceFileMinAggregateOutputType = {
     id: string | null
     indicatorFolderId: string | null
-    status: $Enums.EvidenceStatus | null
+    status: $Enums.FileStatus | null
     indicatorId: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -20613,7 +20614,7 @@ export namespace Prisma {
   export type EvidenceFileMaxAggregateOutputType = {
     id: string | null
     indicatorFolderId: string | null
-    status: $Enums.EvidenceStatus | null
+    status: $Enums.FileStatus | null
     indicatorId: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -20755,7 +20756,7 @@ export namespace Prisma {
   export type EvidenceFileGroupByOutputType = {
     id: string
     indicatorFolderId: string
-    status: $Enums.EvidenceStatus
+    status: $Enums.FileStatus
     indicatorId: number
     createdAt: Date
     updatedAt: Date
@@ -20850,7 +20851,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       indicatorFolderId: string
-      status: $Enums.EvidenceStatus
+      status: $Enums.FileStatus
       indicatorId: number
       createdAt: Date
       updatedAt: Date
@@ -21282,7 +21283,7 @@ export namespace Prisma {
   interface EvidenceFileFieldRefs {
     readonly id: FieldRef<"EvidenceFile", 'String'>
     readonly indicatorFolderId: FieldRef<"EvidenceFile", 'String'>
-    readonly status: FieldRef<"EvidenceFile", 'EvidenceStatus'>
+    readonly status: FieldRef<"EvidenceFile", 'FileStatus'>
     readonly indicatorId: FieldRef<"EvidenceFile", 'Int'>
     readonly createdAt: FieldRef<"EvidenceFile", 'DateTime'>
     readonly updatedAt: FieldRef<"EvidenceFile", 'DateTime'>
@@ -26135,6 +26136,7 @@ export namespace Prisma {
     id: string | null
     phaseOneAreaFolderId: string | null
     phaseTwoAreaFolderId: string | null
+    status: $Enums.FileStatus | null
     type: $Enums.AreaFileType | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -26144,6 +26146,7 @@ export namespace Prisma {
     id: string | null
     phaseOneAreaFolderId: string | null
     phaseTwoAreaFolderId: string | null
+    status: $Enums.FileStatus | null
     type: $Enums.AreaFileType | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -26153,6 +26156,7 @@ export namespace Prisma {
     id: number
     phaseOneAreaFolderId: number
     phaseTwoAreaFolderId: number
+    status: number
     type: number
     createdAt: number
     updatedAt: number
@@ -26164,6 +26168,7 @@ export namespace Prisma {
     id?: true
     phaseOneAreaFolderId?: true
     phaseTwoAreaFolderId?: true
+    status?: true
     type?: true
     createdAt?: true
     updatedAt?: true
@@ -26173,6 +26178,7 @@ export namespace Prisma {
     id?: true
     phaseOneAreaFolderId?: true
     phaseTwoAreaFolderId?: true
+    status?: true
     type?: true
     createdAt?: true
     updatedAt?: true
@@ -26182,6 +26188,7 @@ export namespace Prisma {
     id?: true
     phaseOneAreaFolderId?: true
     phaseTwoAreaFolderId?: true
+    status?: true
     type?: true
     createdAt?: true
     updatedAt?: true
@@ -26264,6 +26271,7 @@ export namespace Prisma {
     id: string
     phaseOneAreaFolderId: string | null
     phaseTwoAreaFolderId: string | null
+    status: $Enums.FileStatus
     type: $Enums.AreaFileType
     createdAt: Date
     updatedAt: Date
@@ -26290,6 +26298,7 @@ export namespace Prisma {
     id?: boolean
     phaseOneAreaFolderId?: boolean
     phaseTwoAreaFolderId?: boolean
+    status?: boolean
     type?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -26303,6 +26312,7 @@ export namespace Prisma {
     id?: boolean
     phaseOneAreaFolderId?: boolean
     phaseTwoAreaFolderId?: boolean
+    status?: boolean
     type?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -26314,6 +26324,7 @@ export namespace Prisma {
     id?: boolean
     phaseOneAreaFolderId?: boolean
     phaseTwoAreaFolderId?: boolean
+    status?: boolean
     type?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -26325,12 +26336,13 @@ export namespace Prisma {
     id?: boolean
     phaseOneAreaFolderId?: boolean
     phaseTwoAreaFolderId?: boolean
+    status?: boolean
     type?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AreaFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseOneAreaFolderId" | "phaseTwoAreaFolderId" | "type" | "createdAt" | "updatedAt", ExtArgs["result"]["areaFile"]>
+  export type AreaFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseOneAreaFolderId" | "phaseTwoAreaFolderId" | "status" | "type" | "createdAt" | "updatedAt", ExtArgs["result"]["areaFile"]>
   export type AreaFileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
     phaseTwoAreaFolder?: boolean | AreaFile$phaseTwoAreaFolderArgs<ExtArgs>
@@ -26357,6 +26369,7 @@ export namespace Prisma {
       id: string
       phaseOneAreaFolderId: string | null
       phaseTwoAreaFolderId: string | null
+      status: $Enums.FileStatus
       type: $Enums.AreaFileType
       createdAt: Date
       updatedAt: Date
@@ -26789,6 +26802,7 @@ export namespace Prisma {
     readonly id: FieldRef<"AreaFile", 'String'>
     readonly phaseOneAreaFolderId: FieldRef<"AreaFile", 'String'>
     readonly phaseTwoAreaFolderId: FieldRef<"AreaFile", 'String'>
+    readonly status: FieldRef<"AreaFile", 'FileStatus'>
     readonly type: FieldRef<"AreaFile", 'AreaFileType'>
     readonly createdAt: FieldRef<"AreaFile", 'DateTime'>
     readonly updatedAt: FieldRef<"AreaFile", 'DateTime'>
@@ -29641,6 +29655,7 @@ export namespace Prisma {
     id: 'id',
     phaseOneAreaFolderId: 'phaseOneAreaFolderId',
     phaseTwoAreaFolderId: 'phaseTwoAreaFolderId',
+    status: 'status',
     type: 'type',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -29845,16 +29860,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'EvidenceStatus'
+   * Reference to a field of type 'FileStatus'
    */
-  export type EnumEvidenceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EvidenceStatus'>
+  export type EnumFileStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FileStatus'>
     
 
 
   /**
-   * Reference to a field of type 'EvidenceStatus[]'
+   * Reference to a field of type 'FileStatus[]'
    */
-  export type ListEnumEvidenceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EvidenceStatus[]'>
+  export type ListEnumFileStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FileStatus[]'>
     
 
 
@@ -30871,7 +30886,7 @@ export namespace Prisma {
     NOT?: EvidenceFileWhereInput | EvidenceFileWhereInput[]
     id?: StringFilter<"EvidenceFile"> | string
     indicatorFolderId?: StringFilter<"EvidenceFile"> | string
-    status?: EnumEvidenceStatusFilter<"EvidenceFile"> | $Enums.EvidenceStatus
+    status?: EnumFileStatusFilter<"EvidenceFile"> | $Enums.FileStatus
     indicatorId?: IntFilter<"EvidenceFile"> | number
     createdAt?: DateTimeFilter<"EvidenceFile"> | Date | string
     updatedAt?: DateTimeFilter<"EvidenceFile"> | Date | string
@@ -30898,7 +30913,7 @@ export namespace Prisma {
     OR?: EvidenceFileWhereInput[]
     NOT?: EvidenceFileWhereInput | EvidenceFileWhereInput[]
     indicatorFolderId?: StringFilter<"EvidenceFile"> | string
-    status?: EnumEvidenceStatusFilter<"EvidenceFile"> | $Enums.EvidenceStatus
+    status?: EnumFileStatusFilter<"EvidenceFile"> | $Enums.FileStatus
     indicatorId?: IntFilter<"EvidenceFile"> | number
     createdAt?: DateTimeFilter<"EvidenceFile"> | Date | string
     updatedAt?: DateTimeFilter<"EvidenceFile"> | Date | string
@@ -30927,7 +30942,7 @@ export namespace Prisma {
     NOT?: EvidenceFileScalarWhereWithAggregatesInput | EvidenceFileScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"EvidenceFile"> | string
     indicatorFolderId?: StringWithAggregatesFilter<"EvidenceFile"> | string
-    status?: EnumEvidenceStatusWithAggregatesFilter<"EvidenceFile"> | $Enums.EvidenceStatus
+    status?: EnumFileStatusWithAggregatesFilter<"EvidenceFile"> | $Enums.FileStatus
     indicatorId?: IntWithAggregatesFilter<"EvidenceFile"> | number
     createdAt?: DateTimeWithAggregatesFilter<"EvidenceFile"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"EvidenceFile"> | Date | string
@@ -31160,6 +31175,7 @@ export namespace Prisma {
     id?: StringFilter<"AreaFile"> | string
     phaseOneAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     phaseTwoAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
+    status?: EnumFileStatusFilter<"AreaFile"> | $Enums.FileStatus
     type?: EnumAreaFileTypeFilter<"AreaFile"> | $Enums.AreaFileType
     createdAt?: DateTimeFilter<"AreaFile"> | Date | string
     updatedAt?: DateTimeFilter<"AreaFile"> | Date | string
@@ -31172,6 +31188,7 @@ export namespace Prisma {
     id?: SortOrder
     phaseOneAreaFolderId?: SortOrderInput | SortOrder
     phaseTwoAreaFolderId?: SortOrderInput | SortOrder
+    status?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -31187,6 +31204,7 @@ export namespace Prisma {
     NOT?: AreaFileWhereInput | AreaFileWhereInput[]
     phaseOneAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     phaseTwoAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
+    status?: EnumFileStatusFilter<"AreaFile"> | $Enums.FileStatus
     type?: EnumAreaFileTypeFilter<"AreaFile"> | $Enums.AreaFileType
     createdAt?: DateTimeFilter<"AreaFile"> | Date | string
     updatedAt?: DateTimeFilter<"AreaFile"> | Date | string
@@ -31199,6 +31217,7 @@ export namespace Prisma {
     id?: SortOrder
     phaseOneAreaFolderId?: SortOrderInput | SortOrder
     phaseTwoAreaFolderId?: SortOrderInput | SortOrder
+    status?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -31214,6 +31233,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"AreaFile"> | string
     phaseOneAreaFolderId?: StringNullableWithAggregatesFilter<"AreaFile"> | string | null
     phaseTwoAreaFolderId?: StringNullableWithAggregatesFilter<"AreaFile"> | string | null
+    status?: EnumFileStatusWithAggregatesFilter<"AreaFile"> | $Enums.FileStatus
     type?: EnumAreaFileTypeWithAggregatesFilter<"AreaFile"> | $Enums.AreaFileType
     createdAt?: DateTimeWithAggregatesFilter<"AreaFile"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"AreaFile"> | Date | string
@@ -32299,7 +32319,7 @@ export namespace Prisma {
 
   export type EvidenceFileCreateInput = {
     id?: string
-    status: $Enums.EvidenceStatus
+    status: $Enums.FileStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
@@ -32310,7 +32330,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedCreateInput = {
     id?: string
     indicatorFolderId: string
-    status: $Enums.EvidenceStatus
+    status: $Enums.FileStatus
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32319,7 +32339,7 @@ export namespace Prisma {
 
   export type EvidenceFileUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
@@ -32330,7 +32350,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     indicatorFolderId?: StringFieldUpdateOperationsInput | string
-    status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32340,7 +32360,7 @@ export namespace Prisma {
   export type EvidenceFileCreateManyInput = {
     id?: string
     indicatorFolderId: string
-    status: $Enums.EvidenceStatus
+    status: $Enums.FileStatus
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32348,7 +32368,7 @@ export namespace Prisma {
 
   export type EvidenceFileUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -32356,7 +32376,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     indicatorFolderId?: StringFieldUpdateOperationsInput | string
-    status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32565,6 +32585,7 @@ export namespace Prisma {
 
   export type AreaFileCreateInput = {
     id?: string
+    status: $Enums.FileStatus
     type: $Enums.AreaFileType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32577,6 +32598,7 @@ export namespace Prisma {
     id?: string
     phaseOneAreaFolderId?: string | null
     phaseTwoAreaFolderId?: string | null
+    status: $Enums.FileStatus
     type: $Enums.AreaFileType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32585,6 +32607,7 @@ export namespace Prisma {
 
   export type AreaFileUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32597,6 +32620,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32607,6 +32631,7 @@ export namespace Prisma {
     id?: string
     phaseOneAreaFolderId?: string | null
     phaseTwoAreaFolderId?: string | null
+    status: $Enums.FileStatus
     type: $Enums.AreaFileType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32614,6 +32639,7 @@ export namespace Prisma {
 
   export type AreaFileUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32623,6 +32649,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33714,11 +33741,11 @@ export namespace Prisma {
     category?: SortOrder
   }
 
-  export type EnumEvidenceStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.EvidenceStatus | EnumEvidenceStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.EvidenceStatus[] | ListEnumEvidenceStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EvidenceStatus[] | ListEnumEvidenceStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumEvidenceStatusFilter<$PrismaModel> | $Enums.EvidenceStatus
+  export type EnumFileStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.FileStatus | EnumFileStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FileStatus[] | ListEnumFileStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FileStatus[] | ListEnumFileStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFileStatusFilter<$PrismaModel> | $Enums.FileStatus
   }
 
   export type IndicatorFolderScalarRelationFilter = {
@@ -33776,14 +33803,14 @@ export namespace Prisma {
     indicatorId?: SortOrder
   }
 
-  export type EnumEvidenceStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.EvidenceStatus | EnumEvidenceStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.EvidenceStatus[] | ListEnumEvidenceStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EvidenceStatus[] | ListEnumEvidenceStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumEvidenceStatusWithAggregatesFilter<$PrismaModel> | $Enums.EvidenceStatus
+  export type EnumFileStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FileStatus | EnumFileStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FileStatus[] | ListEnumFileStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FileStatus[] | ListEnumFileStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFileStatusWithAggregatesFilter<$PrismaModel> | $Enums.FileStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumEvidenceStatusFilter<$PrismaModel>
-    _max?: NestedEnumEvidenceStatusFilter<$PrismaModel>
+    _min?: NestedEnumFileStatusFilter<$PrismaModel>
+    _max?: NestedEnumFileStatusFilter<$PrismaModel>
   }
 
   export type EnumFileVersionStatusNullableFilter<$PrismaModel = never> = {
@@ -33936,6 +33963,7 @@ export namespace Prisma {
     id?: SortOrder
     phaseOneAreaFolderId?: SortOrder
     phaseTwoAreaFolderId?: SortOrder
+    status?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -33945,6 +33973,7 @@ export namespace Prisma {
     id?: SortOrder
     phaseOneAreaFolderId?: SortOrder
     phaseTwoAreaFolderId?: SortOrder
+    status?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -33954,6 +33983,7 @@ export namespace Prisma {
     id?: SortOrder
     phaseOneAreaFolderId?: SortOrder
     phaseTwoAreaFolderId?: SortOrder
+    status?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -35422,8 +35452,8 @@ export namespace Prisma {
     connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
   }
 
-  export type EnumEvidenceStatusFieldUpdateOperationsInput = {
-    set?: $Enums.EvidenceStatus
+  export type EnumFileStatusFieldUpdateOperationsInput = {
+    set?: $Enums.FileStatus
   }
 
   export type IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput = {
@@ -36189,21 +36219,21 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type NestedEnumEvidenceStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.EvidenceStatus | EnumEvidenceStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.EvidenceStatus[] | ListEnumEvidenceStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EvidenceStatus[] | ListEnumEvidenceStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumEvidenceStatusFilter<$PrismaModel> | $Enums.EvidenceStatus
+  export type NestedEnumFileStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.FileStatus | EnumFileStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FileStatus[] | ListEnumFileStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FileStatus[] | ListEnumFileStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFileStatusFilter<$PrismaModel> | $Enums.FileStatus
   }
 
-  export type NestedEnumEvidenceStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.EvidenceStatus | EnumEvidenceStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.EvidenceStatus[] | ListEnumEvidenceStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EvidenceStatus[] | ListEnumEvidenceStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumEvidenceStatusWithAggregatesFilter<$PrismaModel> | $Enums.EvidenceStatus
+  export type NestedEnumFileStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FileStatus | EnumFileStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FileStatus[] | ListEnumFileStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FileStatus[] | ListEnumFileStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFileStatusWithAggregatesFilter<$PrismaModel> | $Enums.FileStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumEvidenceStatusFilter<$PrismaModel>
-    _max?: NestedEnumEvidenceStatusFilter<$PrismaModel>
+    _min?: NestedEnumFileStatusFilter<$PrismaModel>
+    _max?: NestedEnumFileStatusFilter<$PrismaModel>
   }
 
   export type NestedEnumFileVersionStatusNullableFilter<$PrismaModel = never> = {
@@ -37177,7 +37207,7 @@ export namespace Prisma {
 
   export type EvidenceFileCreateWithoutIndicatorInput = {
     id?: string
-    status: $Enums.EvidenceStatus
+    status: $Enums.FileStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
@@ -37187,7 +37217,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedCreateWithoutIndicatorInput = {
     id?: string
     indicatorFolderId: string
-    status: $Enums.EvidenceStatus
+    status: $Enums.FileStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     fileVersions?: FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput
@@ -37255,7 +37285,7 @@ export namespace Prisma {
     NOT?: EvidenceFileScalarWhereInput | EvidenceFileScalarWhereInput[]
     id?: StringFilter<"EvidenceFile"> | string
     indicatorFolderId?: StringFilter<"EvidenceFile"> | string
-    status?: EnumEvidenceStatusFilter<"EvidenceFile"> | $Enums.EvidenceStatus
+    status?: EnumFileStatusFilter<"EvidenceFile"> | $Enums.FileStatus
     indicatorId?: IntFilter<"EvidenceFile"> | number
     createdAt?: DateTimeFilter<"EvidenceFile"> | Date | string
     updatedAt?: DateTimeFilter<"EvidenceFile"> | Date | string
@@ -38039,6 +38069,7 @@ export namespace Prisma {
 
   export type AreaFileCreateWithoutPhaseOneAreaFolderInput = {
     id?: string
+    status: $Enums.FileStatus
     type: $Enums.AreaFileType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -38049,6 +38080,7 @@ export namespace Prisma {
   export type AreaFileUncheckedCreateWithoutPhaseOneAreaFolderInput = {
     id?: string
     phaseTwoAreaFolderId?: string | null
+    status: $Enums.FileStatus
     type: $Enums.AreaFileType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -38176,6 +38208,7 @@ export namespace Prisma {
     id?: StringFilter<"AreaFile"> | string
     phaseOneAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
     phaseTwoAreaFolderId?: StringNullableFilter<"AreaFile"> | string | null
+    status?: EnumFileStatusFilter<"AreaFile"> | $Enums.FileStatus
     type?: EnumAreaFileTypeFilter<"AreaFile"> | $Enums.AreaFileType
     createdAt?: DateTimeFilter<"AreaFile"> | Date | string
     updatedAt?: DateTimeFilter<"AreaFile"> | Date | string
@@ -38418,7 +38451,7 @@ export namespace Prisma {
 
   export type EvidenceFileCreateWithoutIndicatorFolderInput = {
     id?: string
-    status: $Enums.EvidenceStatus
+    status: $Enums.FileStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
@@ -38427,7 +38460,7 @@ export namespace Prisma {
 
   export type EvidenceFileUncheckedCreateWithoutIndicatorFolderInput = {
     id?: string
-    status: $Enums.EvidenceStatus
+    status: $Enums.FileStatus
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -38645,7 +38678,7 @@ export namespace Prisma {
 
   export type EvidenceFileCreateWithoutFileVersionsInput = {
     id?: string
-    status: $Enums.EvidenceStatus
+    status: $Enums.FileStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
@@ -38655,7 +38688,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedCreateWithoutFileVersionsInput = {
     id?: string
     indicatorFolderId: string
-    status: $Enums.EvidenceStatus
+    status: $Enums.FileStatus
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -38668,6 +38701,7 @@ export namespace Prisma {
 
   export type AreaFileCreateWithoutFileVersionsInput = {
     id?: string
+    status: $Enums.FileStatus
     type: $Enums.AreaFileType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -38679,6 +38713,7 @@ export namespace Prisma {
     id?: string
     phaseOneAreaFolderId?: string | null
     phaseTwoAreaFolderId?: string | null
+    status: $Enums.FileStatus
     type: $Enums.AreaFileType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -38702,7 +38737,7 @@ export namespace Prisma {
 
   export type EvidenceFileUpdateWithoutFileVersionsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
@@ -38712,7 +38747,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedUpdateWithoutFileVersionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     indicatorFolderId?: StringFieldUpdateOperationsInput | string
-    status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38731,6 +38766,7 @@ export namespace Prisma {
 
   export type AreaFileUpdateWithoutFileVersionsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38742,6 +38778,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39022,6 +39059,7 @@ export namespace Prisma {
 
   export type AreaFileCreateWithoutPhaseTwoAreaFolderInput = {
     id?: string
+    status: $Enums.FileStatus
     type: $Enums.AreaFileType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -39032,6 +39070,7 @@ export namespace Prisma {
   export type AreaFileUncheckedCreateWithoutPhaseTwoAreaFolderInput = {
     id?: string
     phaseOneAreaFolderId?: string | null
+    status: $Enums.FileStatus
     type: $Enums.AreaFileType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -39869,14 +39908,14 @@ export namespace Prisma {
   export type EvidenceFileCreateManyIndicatorInput = {
     id?: string
     indicatorFolderId: string
-    status: $Enums.EvidenceStatus
+    status: $Enums.FileStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type EvidenceFileUpdateWithoutIndicatorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
@@ -39886,7 +39925,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedUpdateWithoutIndicatorInput = {
     id?: StringFieldUpdateOperationsInput | string
     indicatorFolderId?: StringFieldUpdateOperationsInput | string
-    status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fileVersions?: FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput
@@ -39895,7 +39934,7 @@ export namespace Prisma {
   export type EvidenceFileUncheckedUpdateManyWithoutIndicatorInput = {
     id?: StringFieldUpdateOperationsInput | string
     indicatorFolderId?: StringFieldUpdateOperationsInput | string
-    status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -40052,6 +40091,7 @@ export namespace Prisma {
   export type AreaFileCreateManyPhaseOneAreaFolderInput = {
     id?: string
     phaseTwoAreaFolderId?: string | null
+    status: $Enums.FileStatus
     type: $Enums.AreaFileType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -40078,6 +40118,7 @@ export namespace Prisma {
 
   export type AreaFileUpdateWithoutPhaseOneAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -40088,6 +40129,7 @@ export namespace Prisma {
   export type AreaFileUncheckedUpdateWithoutPhaseOneAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -40097,6 +40139,7 @@ export namespace Prisma {
   export type AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -40126,7 +40169,7 @@ export namespace Prisma {
 
   export type EvidenceFileCreateManyIndicatorFolderInput = {
     id?: string
-    status: $Enums.EvidenceStatus
+    status: $Enums.FileStatus
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -40134,7 +40177,7 @@ export namespace Prisma {
 
   export type EvidenceFileUpdateWithoutIndicatorFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
@@ -40143,7 +40186,7 @@ export namespace Prisma {
 
   export type EvidenceFileUncheckedUpdateWithoutIndicatorFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -40152,7 +40195,7 @@ export namespace Prisma {
 
   export type EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    status?: EnumEvidenceStatusFieldUpdateOperationsInput | $Enums.EvidenceStatus
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -40223,6 +40266,7 @@ export namespace Prisma {
   export type AreaFileCreateManyPhaseTwoAreaFolderInput = {
     id?: string
     phaseOneAreaFolderId?: string | null
+    status: $Enums.FileStatus
     type: $Enums.AreaFileType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -40230,6 +40274,7 @@ export namespace Prisma {
 
   export type AreaFileUpdateWithoutPhaseTwoAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -40240,6 +40285,7 @@ export namespace Prisma {
   export type AreaFileUncheckedUpdateWithoutPhaseTwoAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -40249,6 +40295,7 @@ export namespace Prisma {
   export type AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

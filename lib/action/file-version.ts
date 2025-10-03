@@ -1,8 +1,8 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
-import { EvidenceStatus, FileVersionStatus } from "../generated/prisma";
-import { updateEvidenceFileById } from "./evidence-file";
+import { FileStatus, FileVersionStatus } from "../generated/prisma";
+import { updateEvidenceFileById } from "../dal/evidence-file";
 import { verifySession } from "./session";
 import {
   createNewAreaFileVersion,
@@ -12,6 +12,7 @@ import {
   resetAllEvidenceVersionStatus,
   updateVersionById,
 } from "../dal/file-version";
+import { updateAreaFileById } from "../dal/area-file";
 
 type FileVersionType = {
   name: string;
@@ -45,7 +46,7 @@ export async function createNewVersion({
     );
     const evidenceFile = await updateEvidenceFileById({
       id: evidenceFileId,
-      status: EvidenceStatus.FOR_REVIEW,
+      status: FileStatus.FOR_REVIEW,
     });
   }
   if (areaFileId) {
@@ -56,6 +57,10 @@ export async function createNewVersion({
       objectUrl,
       fileType
     );
+    const areaFile = await updateAreaFileById({
+      id: areaFileId,
+      status: FileStatus.SUBMITTED,
+    });
   }
   revalidateTag("evidenceFiles");
 }

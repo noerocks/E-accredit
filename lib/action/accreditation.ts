@@ -6,7 +6,7 @@ import { ProgramDTO } from "../dto/programs";
 import {
   AreaFileType,
   Category,
-  EvidenceStatus,
+  FileStatus,
   Phase,
   SurveyStatus,
   SurveyVisitType,
@@ -68,10 +68,15 @@ export async function createSurveyVisit(
         if (!parameterFolder)
           throw new Error("Error in creating parameter folder");
         const areaFiles = await createManyAreaFiles([
-          { phaseOneAreaFolderId: areaFolder.id, type: AreaFileType.PPP },
+          {
+            phaseOneAreaFolderId: areaFolder.id,
+            type: AreaFileType.PPP,
+            status: FileStatus.EMPTY,
+          },
           {
             phaseOneAreaFolderId: areaFolder.id,
             type: AreaFileType.COMPLIANCE_REPORT,
+            status: FileStatus.EMPTY,
           },
         ]);
         category.forEach(async (category) => {
@@ -86,7 +91,7 @@ export async function createSurveyVisit(
             .map((indicator) => ({
               indicatorFolderId: indicatorFolder.id,
               indicatorId: indicator.id,
-              status: EvidenceStatus.EMPTY,
+              status: FileStatus.EMPTY,
             }));
           await createManyEvidenceFiles(evidenceFiles);
         });

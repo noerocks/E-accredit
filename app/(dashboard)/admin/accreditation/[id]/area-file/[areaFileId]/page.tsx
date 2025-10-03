@@ -10,8 +10,9 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getAreaById } from "@/lib/dal/area";
 import { getAreaFileById } from "@/lib/dal/area-file";
-import { AreaFileType } from "@/lib/generated/prisma";
-import { Layers } from "lucide-react";
+import { AreaFileType, FileStatus } from "@/lib/generated/prisma";
+import clsx from "clsx";
+import { CircleDot, Layers } from "lucide-react";
 
 const AreaFilePage = async ({
   params,
@@ -25,6 +26,15 @@ const AreaFilePage = async ({
     [AreaFileType.PPP]: "Program Performance Profile",
     [AreaFileType.COMPLIANCE_REPORT]: "Compliance Report",
     [AreaFileType.NARRATIVE_PROFILE]: "Narrative Profile",
+  };
+  const formatStatus = (status: FileStatus) => {
+    return status
+      .split("_")
+      .map(
+        (word) =>
+          word[0].toLocaleUpperCase() + word.slice(1).toLocaleLowerCase()
+      )
+      .join(" ");
   };
   return (
     <ScrollArea className="h-full">
@@ -40,7 +50,19 @@ const AreaFilePage = async ({
             </CardTitle>
             <CardDescription className="text-lg">{`${area?.label}: ${area?.description}`}</CardDescription>
           </CardHeader>
-          <CardFooter>
+          <CardFooter className="flex items-center justify-between">
+            <p
+              className={clsx(
+                "py-2 px-3 border-2 rounded-md flex items-center gap-2",
+                {
+                  "bg-green-400/5 text-green-600 border-green-400":
+                    areaFile?.status === FileStatus.SUBMITTED,
+                }
+              )}
+            >
+              <CircleDot size={15} />
+              {formatStatus(areaFile?.status!)}
+            </p>
             <UploadFileForm area={area} areaFileId={areaFile?.id} />
           </CardFooter>
         </Card>
