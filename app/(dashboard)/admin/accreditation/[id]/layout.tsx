@@ -11,7 +11,6 @@ const AccreditationLayout = async ({
 }) => {
   const { id } = await params;
   const surveyVisitStructure = await getSurveyVisitStructureById(id);
-  console.log(surveyVisitStructure);
   return (
     <div className="flex h-full">
       <AccreditationSidebar

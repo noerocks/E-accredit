@@ -12,7 +12,7 @@ import {
 import {
   changeActiveVersion,
   deleteVersionById,
-} from "@/lib/action/evidence-version";
+} from "@/lib/action/file-version";
 import { FileVersion } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import {
@@ -27,7 +27,15 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
-const VersionHistory = ({ versions }: { versions: FileVersion[] }) => {
+const VersionHistory = ({
+  fileId,
+  versions,
+  fileType,
+}: {
+  fileId: string;
+  versions: FileVersion[];
+  fileType: "Evidence" | "AreaFile";
+}) => {
   const onClick = async (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     const menuItem = target.closest<HTMLDivElement>("[data-action]");
@@ -36,7 +44,7 @@ const VersionHistory = ({ versions }: { versions: FileVersion[] }) => {
     if (!id || !action) return;
     switch (action) {
       case "setAsActive": {
-        const result = await changeActiveVersion(id);
+        const result = await changeActiveVersion(id, fileId, fileType);
         if (result.failure) toast.error(result.failure.error);
         if (result.success) toast.success(result.success.message);
         break;

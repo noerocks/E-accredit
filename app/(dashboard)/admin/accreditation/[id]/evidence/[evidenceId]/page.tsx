@@ -51,7 +51,7 @@ const EvidencePage = async ({
                 {`${indicator?.label}: ${indicator?.description}`}
               </p>
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-lg">
               {`${parameter?.label}: ${parameter?.description}`}
             </CardDescription>
           </CardHeader>
@@ -78,11 +78,15 @@ const EvidencePage = async ({
                 {formattedCategory[indicator?.category!]}
               </p>
             </div>
-            <UploadFileForm indicator={indicator} evidenceId={evidenceId} />
+            <UploadFileForm indicator={indicator} evidenceFileId={evidenceId} />
           </CardFooter>
         </Card>
         {evidence?.fileVersions && (
-          <VersionHistory versions={evidence?.fileVersions} />
+          <VersionHistory
+            fileId={evidenceId}
+            versions={evidence?.fileVersions}
+            fileType="Evidence"
+          />
         )}
       </div>
     </ScrollArea>

@@ -67,9 +67,11 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
           <CollapsibleContent>
             <SidebarMenuSub>
               {item.areaFiles.map((areaFile) => (
-                <SidebarMenuButton>{`📄 ${
-                  areaFileType[areaFile.type]
-                }`}</SidebarMenuButton>
+                <SidebarMenuButton
+                  key={areaFile.id}
+                  data-id={areaFile.id}
+                  data-type={"area-file"}
+                >{`📄 ${areaFileType[areaFile.type]}`}</SidebarMenuButton>
               ))}
               {item.parameterFolders.map((parameter) => (
                 <FileTreePhaseOne item={parameter} key={parameter.id} />

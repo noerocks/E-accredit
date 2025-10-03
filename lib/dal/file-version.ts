@@ -26,10 +26,50 @@ export async function createNewEvidenceFileVersion(
   return evidenceVersion;
 }
 
-export async function resetAllEvidenceVersionStatus() {
+export async function createNewAreaFileVersion(
+  name: string,
+  areaFileId: string,
+  objectUrl: string,
+  type: string
+) {
+  const session = await verifySession();
+  if (!session) return null;
+  const areaFileVersion = await prisma.fileVersion.create({
+    data: {
+      name,
+      status: FileVersionStatus.ACTIVE,
+      areaFile: {
+        connect: {
+          id: areaFileId,
+        },
+      },
+      objectUrl,
+      type,
+    },
+  });
+  return areaFileVersion;
+}
+
+export async function resetAllEvidenceVersionStatus(fileId: string) {
   const session = await verifySession();
   if (!session) return null;
   await prisma.fileVersion.updateMany({
+    where: {
+      evidenceFileId: fileId,
+    },
+    data: {
+      status: FileVersionStatus.ARCHIVED,
+    },
+  });
+}
+
+export async function resetAllAreaFileVersionStatus(fileId: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  await prisma.fileVersion.updateMany({
+    where: {
+      areaFileId: fileId,
+    },
     data: {
       status: FileVersionStatus.ARCHIVED,
     },

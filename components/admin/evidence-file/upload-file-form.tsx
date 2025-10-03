@@ -14,7 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { createNewVersion } from "@/lib/action/evidence-version";
+import { createNewVersion } from "@/lib/action/file-version";
 import { getSignedURL } from "@/lib/action/s3";
 import { IndicatorDTO } from "@/lib/dto/instrument";
 import { cn } from "@/lib/utils";
@@ -23,13 +23,18 @@ import { useCallback, useState, useTransition } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
 import { toast } from "sonner";
 import { Progress } from "@/components/ui/progress";
+import { Area } from "@/lib/generated/prisma";
 
 const UploadFileForm = ({
   indicator,
-  evidenceId,
+  evidenceFileId,
+  area,
+  areaFileId,
 }: {
-  indicator: IndicatorDTO | undefined;
-  evidenceId: string;
+  indicator?: IndicatorDTO | undefined;
+  evidenceFileId?: string;
+  area?: Area;
+  areaFileId?: string;
 }) => {
   const [file, setFile] = useState<File | null>();
   const [progress, setProgress] = useState<number>(0);
@@ -64,12 +69,22 @@ const UploadFileForm = ({
       }
       toast.success("File uploaded successuly");
       const objectUrl = url.split("?")[0];
-      const evidenceVersionResult = await createNewVersion(
-        name,
-        evidenceId,
-        objectUrl,
-        file.type
-      );
+      if (evidenceFileId) {
+        const fileVersionResult = await createNewVersion({
+          name,
+          objectUrl,
+          fileType: file.type,
+          evidenceFileId,
+        });
+      }
+      if (areaFileId) {
+        const fileVersionResult = await createNewVersion({
+          name,
+          objectUrl,
+          fileType: file.type,
+          areaFileId,
+        });
+      }
     });
   };
   const formatSize = (size: number) => {
@@ -123,9 +138,13 @@ const UploadFileForm = ({
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-2xl text-center">
-            Upload an Evidence File
+            Upload a File
           </DialogTitle>
-          <DialogDescription>{`Attach an evidence file to ${indicator?.label}: ${indicator?.evidence}`}</DialogDescription>
+          <DialogDescription>{`Attach a file to ${
+            indicator
+              ? `${indicator?.label}: ${indicator?.description} - ${indicator.evidence}`
+              : `${area?.label}: ${area?.description}`
+          }`}</DialogDescription>
           <Alert className="bg-blue-400/5 border-blue-400 text-blue-400">
             <Info />
             <AlertTitle>Info</AlertTitle>

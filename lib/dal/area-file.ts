@@ -16,3 +16,26 @@ export async function createManyAreaFiles(
   });
   return areaFiles;
 }
+
+export async function getAreaFileById(id: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const areaFile = await prisma.areaFile.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      fileVersions: {
+        orderBy: {
+          uploadedAt: "desc",
+        },
+      },
+      phaseOneAreaFolder: {
+        include: {
+          area: true,
+        },
+      },
+    },
+  });
+  return areaFile;
+}

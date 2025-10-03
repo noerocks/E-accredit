@@ -15,6 +15,7 @@ import { PhaseOneInstrumentDTO } from "@/lib/dto/phase-one-instrument";
 import FileTreePhaseOne from "./file-tree-phase-one";
 import React from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const AccreditationSidebar = ({
   instrumentFolder,
@@ -48,14 +49,16 @@ const AccreditationSidebar = ({
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Areas</SidebarGroupLabel>
-          <SidebarMenu onDoubleClick={onDoubleClick}>
-            {instrumentFolder?.areaFolders.map((area) => (
-              <FileTreePhaseOne key={area.id} item={area} />
-            ))}
-          </SidebarMenu>
-        </SidebarGroup>
+        <ScrollArea className="h-full">
+          <SidebarGroup>
+            <SidebarGroupLabel>Areas</SidebarGroupLabel>
+            <SidebarMenu onDoubleClick={onDoubleClick}>
+              {instrumentFolder?.areaFolders.map((area) => (
+                <FileTreePhaseOne key={area.id} item={area} />
+              ))}
+            </SidebarMenu>
+          </SidebarGroup>
+        </ScrollArea>
       </SidebarContent>
       <SidebarFooter className="border-t">
         <SidebarMenu>
