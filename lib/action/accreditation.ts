@@ -8,7 +8,7 @@ import {
   Category,
   FileStatus,
   Phase,
-  SurveyStatus,
+  Progress,
   SurveyVisitType,
 } from "../generated/prisma";
 import { createSurveyVisit as createSurveyVisitDAL } from "../dal/survey-visit";
@@ -40,7 +40,7 @@ export async function createSurveyVisit(
     actualSurveyDate,
     SurveyVisitType.FIRST,
     level.id,
-    SurveyStatus.IN_PROGRESS,
+    Progress.IN_PROGRESS,
     instrument.id
   );
   revalidateTag("accreditations");
@@ -58,7 +58,11 @@ export async function createSurveyVisit(
     if (!instrumentFolder)
       throw new Error("Error in creating instrument folder");
     instrumentStructure?.area.forEach(async (area) => {
-      const areaFolder = await createAreaFolder(instrumentFolder?.id, area.id);
+      const areaFolder = await createAreaFolder(
+        instrumentFolder?.id,
+        area.id,
+        Progress.IN_PROGRESS
+      );
       if (!areaFolder) throw new Error("Error in creating area folder");
       area.parameter.forEach(async (parameter) => {
         const parameterFolder = await createParameterFolder(

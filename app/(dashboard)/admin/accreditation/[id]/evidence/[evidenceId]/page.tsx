@@ -1,8 +1,8 @@
+import Comments from "@/components/admin/evidence-file/comments";
 import UploadFileForm from "@/components/admin/evidence-file/upload-file-form";
 import VersionHistory from "@/components/admin/evidence-file/version-history";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -78,7 +78,13 @@ const EvidencePage = async ({
                 {formattedCategory[indicator?.category!]}
               </p>
             </div>
-            <UploadFileForm indicator={indicator} evidenceFileId={evidenceId} />
+            <div className="flex items-center gap-2">
+              <Comments />
+              <UploadFileForm
+                indicator={indicator}
+                evidenceFileId={evidenceId}
+              />
+            </div>
           </CardFooter>
         </Card>
         {evidence?.fileVersions && (

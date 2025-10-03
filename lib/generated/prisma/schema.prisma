@@ -32,7 +32,7 @@ enum Phase {
   PHASE_2
 }
 
-enum SurveyStatus {
+enum Progress {
   IN_PROGRESS
   COMPLETE
 }
@@ -194,7 +194,7 @@ model SurveyVisit {
   targetLevel          String
   phaseOneRequirements PhaseOneRequirements?
   phaseTwoRequirements PhaseTwoRequirements?
-  status               SurveyStatus
+  status               Progress
   createdAt            DateTime              @default(now())
 }
 
@@ -222,7 +222,7 @@ model AreaFolder {
   area               Area              @relation(fields: [areaId], references: [id], onDelete: Cascade)
   areaId             Int
   areaFiles          AreaFile[]
-  complete           Boolean           @default(false)
+  status             Progress
   taskForce          TaskForce?
 }
 

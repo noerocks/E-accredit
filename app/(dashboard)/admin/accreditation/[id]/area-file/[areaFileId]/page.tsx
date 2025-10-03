@@ -1,3 +1,4 @@
+import Comments from "@/components/admin/evidence-file/comments";
 import UploadFileForm from "@/components/admin/evidence-file/upload-file-form";
 import VersionHistory from "@/components/admin/evidence-file/version-history";
 import {
@@ -63,7 +64,10 @@ const AreaFilePage = async ({
               <CircleDot size={15} />
               {formatStatus(areaFile?.status!)}
             </p>
-            <UploadFileForm area={area} areaFileId={areaFile?.id} />
+            <div className="flex items-center gap-2">
+              <Comments />
+              <UploadFileForm area={area} areaFileId={areaFile?.id} />
+            </div>
           </CardFooter>
         </Card>
         {areaFile?.fileVersions && (

@@ -1,9 +1,11 @@
 import { verifySession } from "../action/session";
+import { Progress } from "../generated/prisma";
 import { prisma } from "../prisma";
 
 export async function createAreaFolder(
   instrumentFolderId: string,
-  areaId: number
+  areaId: number,
+  status: Progress
 ) {
   const session = await verifySession();
   if (!session) return null;
@@ -19,6 +21,21 @@ export async function createAreaFolder(
           id: areaId,
         },
       },
+      status,
+    },
+  });
+  return areaFolder;
+}
+
+export async function getAreaFolderById(id: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const areaFolder = await prisma.areaFolder.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      area: true,
     },
   });
   return areaFolder;
