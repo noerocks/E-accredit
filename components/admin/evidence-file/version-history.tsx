@@ -32,10 +32,16 @@ const VersionHistory = ({
   fileId,
   versions,
   fileType,
+  isMember,
+  isAdmin,
+  isChairPerson,
 }: {
   fileId: string;
   versions: FileVersion[];
   fileType: "Evidence" | "AreaFile";
+  isAdmin: boolean | undefined;
+  isMember?: boolean | undefined;
+  isChairPerson?: boolean | undefined;
 }) => {
   const onClick = async (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
@@ -99,7 +105,8 @@ const VersionHistory = ({
                   </a>
                 </p>
               </div>
-              {version.status === "ARCHIVED" ? (
+              {version.status === "ARCHIVED" &&
+              (isAdmin || isMember || isChairPerson) ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger>
                     <MoreHorizontal size={15} />

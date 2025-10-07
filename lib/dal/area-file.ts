@@ -34,6 +34,11 @@ export async function getAreaFileById(id: string) {
       phaseOneAreaFolder: {
         include: {
           area: true,
+          taskForce: {
+            include: {
+              chairPerson: true,
+            },
+          },
         },
       },
     },

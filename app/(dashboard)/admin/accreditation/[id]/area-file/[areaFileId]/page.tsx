@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { verifySession } from "@/lib/action/session";
 import { getAreaById } from "@/lib/dal/area";
 import { getAreaFileById } from "@/lib/dal/area-file";
 import { AreaFileType, FileStatus } from "@/lib/generated/prisma";
@@ -22,6 +23,11 @@ const AreaFilePage = async ({
 }) => {
   const { areaFileId } = await params;
   const areaFile = await getAreaFileById(areaFileId);
+  const session = await verifySession();
+  const user = session.user;
+  const isChairperson =
+    areaFile?.phaseOneAreaFolder?.taskForce?.chairPerson?.userId === user.id;
+  const isAdmin = user.role === "ADMIN";
   const area = areaFile?.phaseOneAreaFolder?.area;
   const areaFileType = {
     [AreaFileType.PPP]: "Program Performance Profile",
@@ -66,7 +72,9 @@ const AreaFilePage = async ({
             </p>
             <div className="flex items-center gap-2">
               <Comments />
-              <UploadFileForm area={area} areaFileId={areaFile?.id} />
+              {(isAdmin || isChairperson) && (
+                <UploadFileForm area={area} areaFileId={areaFile?.id} />
+              )}
             </div>
           </CardFooter>
         </Card>
@@ -75,6 +83,8 @@ const AreaFilePage = async ({
             fileId={areaFileId}
             versions={areaFile?.fileVersions}
             fileType="AreaFile"
+            isAdmin={isAdmin}
+            isChairPerson={isChairperson}
           />
         )}
       </div>

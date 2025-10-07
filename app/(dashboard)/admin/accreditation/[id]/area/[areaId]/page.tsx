@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { verifySession } from "@/lib/action/session";
 import { getAreaFolderById } from "@/lib/dal/area-folder";
 import { getProgramPersonnelByProgramId } from "@/lib/dal/program-personnel";
 import { Progress } from "@/lib/generated/prisma";
@@ -21,6 +22,9 @@ const AreaFolderPage = async ({
   params: Promise<{ areaId: string }>;
   searchParams: Promise<{ accreditation: string }>;
 }) => {
+  const session = await verifySession();
+  const user = session.user;
+  const isAdmin = user.role === "ADMIN";
   const { areaId } = await params;
   const { accreditation } = await searchParams;
   const areaFolder = await getAreaFolderById(areaId);
@@ -71,6 +75,7 @@ const AreaFolderPage = async ({
               programPersonnel={programPersonnel}
               taskForce={areaFolder?.taskForce}
               areaFolderId={areaFolder?.id}
+              isAdmin={isAdmin}
             />
           </CardFooter>
         </Card>

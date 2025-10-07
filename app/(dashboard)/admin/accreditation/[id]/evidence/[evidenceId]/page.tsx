@@ -93,15 +93,15 @@ const EvidencePage = async ({
             </div>
             <div className="flex items-center gap-2">
               <Comments />
-              {isMember ||
-                (isAdmin && (
-                  <UploadFileForm
-                    indicator={indicator}
-                    evidenceFileId={evidenceId}
-                  />
-                ))}
-              {isChairperson ||
-                (isAdmin && <AcceptOrReject evidenceId={evidenceId} />)}
+              {(isMember || isAdmin) && (
+                <UploadFileForm
+                  indicator={indicator}
+                  evidenceFileId={evidenceId}
+                />
+              )}
+              {(isChairperson || isAdmin) && (
+                <AcceptOrReject evidenceId={evidenceId} />
+              )}
             </div>
           </CardFooter>
         </Card>
@@ -110,6 +110,8 @@ const EvidencePage = async ({
             fileId={evidenceId}
             versions={evidence?.fileVersions}
             fileType="Evidence"
+            isMember={isMember}
+            isAdmin={isAdmin}
           />
         )}
       </div>

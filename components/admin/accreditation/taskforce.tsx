@@ -28,10 +28,12 @@ const TaskForce = ({
   programPersonnel,
   taskForce,
   areaFolderId,
+  isAdmin,
 }: {
   programPersonnel: ProgramPersonnelDTO[] | null;
   taskForce: TaskforceDTO | null | undefined;
   areaFolderId: string | undefined;
+  isAdmin: boolean;
 }) => {
   const assignChairperson = async (id: string) => {
     const member = taskForce?.taskForceMember.find(
@@ -87,6 +89,7 @@ const TaskForce = ({
                   ? taskForce.chairPersonId!
                   : undefined
               }
+              disabled={!isAdmin}
             >
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Please select a program personnel" />
@@ -120,7 +123,7 @@ const TaskForce = ({
                         personnel.id
                       )}
                       checked={isMember(personnel.id)}
-                      disabled={pending}
+                      disabled={pending || !isAdmin}
                     />
                     <p className="text-sm">{`${personnel.user.firstName} ${personnel.user.lastName}`}</p>
                   </div>
