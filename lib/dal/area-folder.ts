@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
 import { Progress } from "../generated/prisma";
 import { prisma } from "../prisma";
@@ -27,47 +28,51 @@ export async function createAreaFolder(
   return areaFolder;
 }
 
-export async function getAreaFolderById(id: string) {
-  const session = await verifySession();
-  if (!session) return null;
-  const areaFolder = await prisma.areaFolder.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      area: true,
-      taskForce: {
-        include: {
-          chairPerson: {
-            include: {
-              user: true,
+export const getAreaFolderById = unstable_cache(
+  async (id: string) => {
+    const areaFolder = await prisma.areaFolder.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        area: true,
+        taskForce: {
+          include: {
+            chairPerson: {
+              include: {
+                user: true,
+              },
+            },
+            taskForceMember: {
+              include: {
+                programPersonnel: {
+                  include: {
+                    user: true,
+                  },
+                },
+              },
             },
           },
-          taskForceMember: {
-            include: {
-              programPersonnel: {
-                include: {
-                  user: true,
+        },
+        instrumentFolder: {
+          include: {
+            phaseOneRequirements: {
+              include: {
+                surveyVisit: {
+                  include: {
+                    accreditation: true,
+                  },
                 },
               },
             },
           },
         },
       },
-      instrumentFolder: {
-        include: {
-          phaseOneRequirements: {
-            include: {
-              surveyVisit: {
-                include: {
-                  accreditation: true,
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  });
-  return areaFolder;
-}
+    });
+    return areaFolder;
+  },
+  ["getAreaFolderById"],
+  {
+    tags: ["areaFolder"],
+  }
+);

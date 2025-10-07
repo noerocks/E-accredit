@@ -233,7 +233,6 @@ model ParameterFolder {
   indicatorFolders IndicatorFolder[]
   parameter        Parameter         @relation(fields: [parameterId], references: [id], onDelete: Cascade)
   parameterId      Int
-  taskForceMember  TaskForceMember?
 }
 
 model IndicatorFolder {
@@ -322,6 +321,4 @@ model TaskForceMember {
   programPersonnelId String
   taskForce          TaskForce        @relation(fields: [taskForceId], references: [id], onDelete: Cascade)
   taskForceId        String
-  parameterFolder    ParameterFolder  @relation(fields: [parameterFolderId], references: [id], onDelete: Cascade)
-  parameterFolderId  String           @unique
 }

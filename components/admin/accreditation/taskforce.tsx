@@ -20,6 +20,9 @@ import { ProgramPersonnelDTO } from "@/lib/dto/program-personnel";
 import { TaskforceDTO } from "@/lib/dto/taskforce";
 import { Users } from "lucide-react";
 import { assignChairperson as assignChairpersonAction } from "@/lib/action/taskforce";
+import { Checkbox } from "@/components/ui/checkbox";
+import { assignMember, deleteMember } from "@/lib/action/member";
+import { useTransition } from "react";
 
 const TaskForce = ({
   programPersonnel,
@@ -33,7 +36,30 @@ const TaskForce = ({
   const assignChairperson = async (id: string) => {
     const result = await assignChairpersonAction(id, areaFolderId);
   };
-  console.log(taskForce?.chairPerson);
+  const [pending, startTransition] = useTransition();
+  const toggleAssignMember = async (personnelId: string, checked: boolean) => {
+    if (checked) {
+      startTransition(async () => {
+        const result = await assignMember(personnelId, taskForce?.id);
+      });
+    } else {
+      startTransition(async () => {
+        const member = taskForce?.taskForceMember.find(
+          (member) => (member.programPersonnelId = personnelId)
+        );
+        if (member?.id) {
+          const result = await deleteMember(member.id);
+        }
+      });
+    }
+  };
+  const isMember = (personnelId: string) => {
+    return taskForce?.taskForceMember.find(
+      (member) => member.programPersonnelId === personnelId
+    )
+      ? true
+      : false;
+  };
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -71,6 +97,28 @@ const TaskForce = ({
                 ))}
               </SelectContent>
             </Select>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="flex flex-col gap-2">
+            <p className="text-sm text-muted-foreground text-balance text-center">
+              Members
+            </p>
+            <div className="flex flex-col gap-1">
+              {programPersonnel?.map((personnel) => (
+                <div className="flex items-center gap-2" key={personnel.id}>
+                  <Checkbox
+                    onCheckedChange={toggleAssignMember.bind(
+                      null,
+                      personnel.id
+                    )}
+                    checked={isMember(personnel.id)}
+                    disabled={pending}
+                  />
+                  <p className="text-sm">{`${personnel.user.firstName} ${personnel.user.lastName}`}</p>
+                </div>
+              ))}
+            </div>
           </CardContent>
         </Card>
       </SheetContent>
