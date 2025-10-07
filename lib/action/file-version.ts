@@ -87,6 +87,10 @@ export async function changeActiveVersion(
       break;
     }
   }
+  const evidenceFile = await updateEvidenceFileById({
+    id: fileId,
+    status: FileStatus.FOR_REVIEW,
+  });
   revalidateTag("evidenceFiles");
   return {
     success: { message: "File version is successfuly set to active" },

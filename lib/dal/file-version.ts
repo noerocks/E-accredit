@@ -1,5 +1,9 @@
 import { verifySession } from "../action/session";
-import { FileVersion, FileVersionStatus } from "../generated/prisma";
+import {
+  FileStatus,
+  FileVersion,
+  FileVersionStatus,
+} from "../generated/prisma";
 import { prisma } from "../prisma";
 
 export async function createNewEvidenceFileVersion(
@@ -56,6 +60,9 @@ export async function resetAllEvidenceVersionStatus(fileId: string) {
   await prisma.fileVersion.updateMany({
     where: {
       evidenceFileId: fileId,
+      NOT: {
+        status: FileVersionStatus.REJECTED,
+      },
     },
     data: {
       status: FileVersionStatus.ARCHIVED,
@@ -89,6 +96,20 @@ export async function updateVersionById(
     data,
   });
   return evidenceVersion;
+}
+
+export async function rejectActiveVersion(evidenceFileId: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const evidenceVersion = await prisma.fileVersion.updateMany({
+    where: {
+      status: FileVersionStatus.ACTIVE,
+      evidenceFileId: evidenceFileId,
+    },
+    data: {
+      status: FileVersionStatus.REJECTED,
+    },
+  });
 }
 
 export async function deleteVersionById(id: string) {

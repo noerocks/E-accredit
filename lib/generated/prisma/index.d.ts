@@ -207,7 +207,8 @@ export type FileStatus = (typeof FileStatus)[keyof typeof FileStatus]
 
 export const FileVersionStatus: {
   ACTIVE: 'ACTIVE',
-  ARCHIVED: 'ARCHIVED'
+  ARCHIVED: 'ARCHIVED',
+  REJECTED: 'REJECTED'
 };
 
 export type FileVersionStatus = (typeof FileVersionStatus)[keyof typeof FileVersionStatus]

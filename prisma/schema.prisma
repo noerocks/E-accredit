@@ -65,6 +65,7 @@ enum FileStatus {
 enum FileVersionStatus {
   ACTIVE
   ARCHIVED
+  REJECTED
 }
 
 model User {

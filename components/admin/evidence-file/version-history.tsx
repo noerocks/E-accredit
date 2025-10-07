@@ -24,6 +24,7 @@ import {
   MoreHorizontal,
   Trash,
   X,
+  XCircle,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -75,6 +76,7 @@ const VersionHistory = ({
               <div
                 className={clsx("w-3 h-3 rounded-full mx-2", {
                   "bg-green-500": version.status === "ACTIVE",
+                  "bg-red-500": version.status === "REJECTED",
                   "bg-gray-300": version.status === "ARCHIVED",
                 })}
               />
@@ -97,7 +99,7 @@ const VersionHistory = ({
                   </a>
                 </p>
               </div>
-              {version.status !== "ACTIVE" ? (
+              {version.status === "ARCHIVED" ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger>
                     <MoreHorizontal size={15} />
@@ -120,7 +122,7 @@ const VersionHistory = ({
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-              ) : (
+              ) : version.status === "ACTIVE" ? (
                 <p className="text-sm py-1 px-3 border border-green-400 text-green-400 rounded-full flex items-center gap-2">
                   <CheckCircle2 size={15} />
                   {`${
@@ -128,7 +130,15 @@ const VersionHistory = ({
                     version.status.slice(1).toLowerCase()
                   }`}
                 </p>
-              )}
+              ) : version.status === "REJECTED" ? (
+                <p className="text-sm py-1 px-3 border border-red-400 text-red-400 rounded-full flex items-center gap-2">
+                  <XCircle size={15} />
+                  {`${
+                    version.status[0].toLocaleUpperCase() +
+                    version.status.slice(1).toLowerCase()
+                  }`}
+                </p>
+              ) : null}
             </div>
           ))}
         </div>
