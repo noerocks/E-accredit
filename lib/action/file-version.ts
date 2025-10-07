@@ -63,6 +63,7 @@ export async function createNewVersion({
     });
   }
   revalidateTag("evidenceFiles");
+  revalidateTag("parameterFolder");
 }
 
 export async function changeActiveVersion(
@@ -92,6 +93,7 @@ export async function changeActiveVersion(
     status: FileStatus.FOR_REVIEW,
   });
   revalidateTag("evidenceFiles");
+  revalidateTag("parameterFolder");
   return {
     success: { message: "File version is successfuly set to active" },
   };
@@ -101,5 +103,6 @@ export async function deleteVersionById(id: string) {
   if (!id) return { failure: { error: "Id is required" } };
   const evidenceVersion = await deleteVersionByIdDAL(id);
   revalidateTag("evidenceFiles");
+  revalidateTag("parameterFolder");
   return { success: { message: "File version is deleted" } };
 }

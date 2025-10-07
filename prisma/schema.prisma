@@ -234,6 +234,7 @@ model ParameterFolder {
   indicatorFolders IndicatorFolder[]
   parameter        Parameter         @relation(fields: [parameterId], references: [id], onDelete: Cascade)
   parameterId      Int
+  status           Progress
 }
 
 model IndicatorFolder {

@@ -105,19 +105,23 @@ const TaskForce = ({
               Members
             </p>
             <div className="flex flex-col gap-1">
-              {programPersonnel?.map((personnel) => (
-                <div className="flex items-center gap-2" key={personnel.id}>
-                  <Checkbox
-                    onCheckedChange={toggleAssignMember.bind(
-                      null,
-                      personnel.id
-                    )}
-                    checked={isMember(personnel.id)}
-                    disabled={pending}
-                  />
-                  <p className="text-sm">{`${personnel.user.firstName} ${personnel.user.lastName}`}</p>
-                </div>
-              ))}
+              {programPersonnel
+                ?.filter(
+                  (personnel) => personnel.id !== taskForce?.chairPerson?.id
+                )
+                .map((personnel) => (
+                  <div className="flex items-center gap-2" key={personnel.id}>
+                    <Checkbox
+                      onCheckedChange={toggleAssignMember.bind(
+                        null,
+                        personnel.id
+                      )}
+                      checked={isMember(personnel.id)}
+                      disabled={pending}
+                    />
+                    <p className="text-sm">{`${personnel.user.firstName} ${personnel.user.lastName}`}</p>
+                  </div>
+                ))}
             </div>
           </CardContent>
         </Card>

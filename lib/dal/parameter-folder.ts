@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
 import { prisma } from "../prisma";
 
@@ -23,3 +24,34 @@ export async function createParameterFolder(
   });
   return parameterFolder;
 }
+
+export const getParameterFolderById = unstable_cache(
+  async (id: string) => {
+    const parameterFolder = await prisma.parameterFolder.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        parameter: {
+          include: {
+            area: true,
+          },
+        },
+        indicatorFolders: {
+          include: {
+            evidenceFiles: {
+              include: {
+                fileVersions: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    return parameterFolder;
+  },
+  ["getParameterFolderById"],
+  {
+    tags: ["parameterFolder"],
+  }
+);

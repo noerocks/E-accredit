@@ -27,4 +27,5 @@ export async function acceptOrReject(evidenceFileId: string, action: string) {
     await rejectActiveVersion(evidenceFileId);
   }
   revalidateTag("evidenceFiles");
+  revalidateTag("parameterFolder");
 }
