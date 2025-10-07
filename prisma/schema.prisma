@@ -311,8 +311,8 @@ model TaskForce {
   id              String            @id @default(uuid())
   areaFolder      AreaFolder        @relation(fields: [areaFolderId], references: [id], onDelete: Cascade)
   areaFolderId    String            @unique
-  chairPerson     ProgramPersonnel  @relation(fields: [chairPersonId], references: [id], onDelete: Cascade)
-  chairPersonId   String
+  chairPerson     ProgramPersonnel? @relation(fields: [chairPersonId], references: [id], onDelete: Cascade)
+  chairPersonId   String?
   taskForceMember TaskForceMember[]
 }
 

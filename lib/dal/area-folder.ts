@@ -36,6 +36,37 @@ export async function getAreaFolderById(id: string) {
     },
     include: {
       area: true,
+      taskForce: {
+        include: {
+          chairPerson: {
+            include: {
+              user: true,
+            },
+          },
+          taskForceMember: {
+            include: {
+              programPersonnel: {
+                include: {
+                  user: true,
+                },
+              },
+            },
+          },
+        },
+      },
+      instrumentFolder: {
+        include: {
+          phaseOneRequirements: {
+            include: {
+              surveyVisit: {
+                include: {
+                  accreditation: true,
+                },
+              },
+            },
+          },
+        },
+      },
     },
   });
   return areaFolder;

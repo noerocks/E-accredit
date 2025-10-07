@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getAreaFolderById } from "@/lib/dal/area-folder";
+import { getProgramPersonnelByProgramId } from "@/lib/dal/program-personnel";
 import { Progress } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import { CircleDot, Layers, Users } from "lucide-react";
@@ -24,6 +25,10 @@ const AreaFolderPage = async ({
   const { accreditation } = await searchParams;
   const areaFolder = await getAreaFolderById(areaId);
   const area = areaFolder?.area;
+  const programId =
+    areaFolder?.instrumentFolder.phaseOneRequirements?.surveyVisit
+      ?.accreditation.programId;
+  const programPersonnel = await getProgramPersonnelByProgramId(programId!);
   const formatStatus = (status: Progress) => {
     return status
       .split("_")
@@ -62,7 +67,11 @@ const AreaFolderPage = async ({
               <CircleDot size={15} />
               {formatStatus(areaFolder?.status!)}
             </p>
-            <TaskForce />
+            <TaskForce
+              programPersonnel={programPersonnel}
+              taskForce={areaFolder?.taskForce}
+              areaFolderId={areaFolder?.id}
+            />
           </CardFooter>
         </Card>
       </div>

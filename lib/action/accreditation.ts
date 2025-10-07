@@ -20,6 +20,7 @@ import { createIndicatorFolder } from "../dal/indicator-folder";
 import { revalidateTag } from "next/cache";
 import { createManyEvidenceFiles } from "../dal/evidence";
 import { createManyAreaFiles } from "../dal/area-file";
+import { createTaskforce } from "../dal/taskforce";
 
 export async function createSurveyVisit(
   program: ProgramDTO,
@@ -64,6 +65,19 @@ export async function createSurveyVisit(
         Progress.IN_PROGRESS
       );
       if (!areaFolder) throw new Error("Error in creating area folder");
+      const areaFiles = await createManyAreaFiles([
+        {
+          phaseOneAreaFolderId: areaFolder.id,
+          type: AreaFileType.PPP,
+          status: FileStatus.EMPTY,
+        },
+        {
+          phaseOneAreaFolderId: areaFolder.id,
+          type: AreaFileType.COMPLIANCE_REPORT,
+          status: FileStatus.EMPTY,
+        },
+      ]);
+      const taskforce = await createTaskforce(areaFolder.id);
       area.parameter.forEach(async (parameter) => {
         const parameterFolder = await createParameterFolder(
           areaFolder.id,
@@ -71,18 +85,6 @@ export async function createSurveyVisit(
         );
         if (!parameterFolder)
           throw new Error("Error in creating parameter folder");
-        const areaFiles = await createManyAreaFiles([
-          {
-            phaseOneAreaFolderId: areaFolder.id,
-            type: AreaFileType.PPP,
-            status: FileStatus.EMPTY,
-          },
-          {
-            phaseOneAreaFolderId: areaFolder.id,
-            type: AreaFileType.COMPLIANCE_REPORT,
-            status: FileStatus.EMPTY,
-          },
-        ]);
         category.forEach(async (category) => {
           const indicatorFolder = await createIndicatorFolder(
             parameterFolder.id,
