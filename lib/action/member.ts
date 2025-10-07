@@ -11,10 +11,12 @@ export async function assignMember(
     return { failure: { error: "Invalid input" } };
   const member = await createMember(personnelId, taskforceId);
   revalidateTag("areaFolder");
+  revalidateTag("evidenceFiles");
 }
 
 export async function deleteMember(memberId: string | undefined) {
   if (!memberId) return { failure: { error: "Invalid input" } };
   const member = await deleteMemberDAL(memberId);
   revalidateTag("areaFolder");
+  revalidateTag("evidenceFiles");
 }

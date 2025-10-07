@@ -39,6 +39,20 @@ export const getEvidenceFileById = unstable_cache(
             parameterFolder: {
               include: {
                 parameter: true,
+                areaFolder: {
+                  include: {
+                    taskForce: {
+                      include: {
+                        chairPerson: true,
+                        taskForceMember: {
+                          include: {
+                            programPersonnel: true,
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
               },
             },
           },

@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { verifySession } from "@/lib/action/session";
 import { getEvidenceFileById } from "@/lib/dal/evidence";
 import { Category, FileStatus } from "@/lib/generated/prisma";
 import clsx from "clsx";
@@ -39,6 +40,16 @@ const EvidencePage = async ({
       )
       .join(" ");
   };
+  const session = await verifySession();
+  const user = session.user;
+  const isAdmin = user.role === "ADMIN";
+  const isMember =
+    evidence?.indicatorFolder.parameterFolder.areaFolder.taskForce?.taskForceMember.some(
+      (member) => member.programPersonnel.userId === user.id
+    );
+  const isChairperson =
+    evidence?.indicatorFolder.parameterFolder.areaFolder.taskForce?.chairPerson
+      ?.userId === user.id;
   return (
     <ScrollArea className="h-full">
       <div className="max-w-3/4 mx-auto my-10 flex flex-col gap-5">
@@ -82,11 +93,15 @@ const EvidencePage = async ({
             </div>
             <div className="flex items-center gap-2">
               <Comments />
-              <UploadFileForm
-                indicator={indicator}
-                evidenceFileId={evidenceId}
-              />
-              <AcceptOrReject evidenceId={evidenceId} />
+              {isMember ||
+                (isAdmin && (
+                  <UploadFileForm
+                    indicator={indicator}
+                    evidenceFileId={evidenceId}
+                  />
+                ))}
+              {isChairperson ||
+                (isAdmin && <AcceptOrReject evidenceId={evidenceId} />)}
             </div>
           </CardFooter>
         </Card>

@@ -34,7 +34,10 @@ const TaskForce = ({
   areaFolderId: string | undefined;
 }) => {
   const assignChairperson = async (id: string) => {
-    const result = await assignChairpersonAction(id, areaFolderId);
+    const member = taskForce?.taskForceMember.find(
+      (member) => member.programPersonnelId === id
+    );
+    const result = await assignChairpersonAction(id, areaFolderId, member?.id);
   };
   const [pending, startTransition] = useTransition();
   const toggleAssignMember = async (personnelId: string, checked: boolean) => {
