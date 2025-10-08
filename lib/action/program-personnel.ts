@@ -8,6 +8,7 @@ import {
 import { AddProgramPersonnelFormSchema } from "../zod-definitions";
 import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/library";
 import { revalidateTag } from "next/cache";
+import { assignProgramHead as assignProgramHeadDAL } from "../dal/program";
 
 export async function AddProgramPersonnel(
   programId: string,
@@ -78,4 +79,18 @@ export async function removeProgramPersonnel(personnelId: string | undefined) {
       message: "Something went wrong",
     };
   }
+}
+
+export async function assignProgramHead(
+  userId: string,
+  programId: string,
+  personnelId?: string | undefined
+) {
+  if (!userId || !programId) return { failure: { error: "Invalid input" } };
+  if (personnelId) {
+    await deleteProgramPersonnelById(personnelId);
+  }
+  const program = await assignProgramHeadDAL(userId, programId);
+  revalidateTag("programs");
+  revalidateTag("programPersonnel");
 }

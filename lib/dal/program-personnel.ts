@@ -51,6 +51,7 @@ export const getProgramPersonnelByProgramId = unstable_cache(
       id: personnel.id,
       assignedAt: personnel.assignedAt,
       user: {
+        id: personnel.user.id,
         firstName: personnel.user.firstName,
         lastName: personnel.user.lastName,
       },

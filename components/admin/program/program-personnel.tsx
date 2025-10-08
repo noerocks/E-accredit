@@ -36,29 +36,32 @@ const ProgramPersonnel = ({
     }
   };
   return (
-    <Card
-      className="flex flex-col gap-2 p-2 rounded-sm max-h-52 overflow-auto"
-      onClick={onClick}
-    >
-      {programPersonnel?.map((personnel) => (
-        <div className="flex justify-between items-center" key={personnel.id}>
-          <p className="text-sm">{`${personnel.user.firstName} ${personnel.user.lastName}`}</p>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="destructive"
-                className="h-6 w-6"
-                data-action="remove"
-                data-id={personnel.id}
-              >
-                <Minus />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Remove personnel</TooltipContent>
-          </Tooltip>
-        </div>
-      ))}
-    </Card>
+    <div className="flex flex-col gap-2">
+      <p className="text-sm text-muted-foreground text-center">Personnel</p>
+      <Card
+        className="flex flex-col gap-2 p-2 rounded-sm max-h-52 overflow-auto"
+        onClick={onClick}
+      >
+        {programPersonnel?.map((personnel) => (
+          <div className="flex justify-between items-center" key={personnel.id}>
+            <p className="text-sm">{`${personnel.user.firstName} ${personnel.user.lastName}`}</p>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="destructive"
+                  className="h-6 w-6"
+                  data-action="remove"
+                  data-id={personnel.id}
+                >
+                  <Minus />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Remove personnel</TooltipContent>
+            </Tooltip>
+          </div>
+        ))}
+      </Card>
+    </div>
   );
 };
 

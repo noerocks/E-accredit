@@ -32,9 +32,11 @@ import { UsersDTO } from "@/lib/dto/user";
 const AddProgramPersonnelForm = ({
   programId,
   accreditationOfficers,
+  programHeadUserId,
 }: {
   programId: string;
   accreditationOfficers: UsersDTO[] | null;
+  programHeadUserId: string | undefined;
 }) => {
   const form = useForm<z.infer<typeof AddProgramPersonnelFormSchema>>({
     resolver: zodResolver(AddProgramPersonnelFormSchema),
@@ -72,12 +74,14 @@ const AddProgramPersonnelForm = ({
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {accreditationOfficers?.map((officer) => (
-                    <SelectItem
-                      value={officer.id}
-                      key={officer.id}
-                    >{`${officer.firstName} ${officer.lastName}`}</SelectItem>
-                  ))}
+                  {accreditationOfficers
+                    ?.filter((officer) => officer.id !== programHeadUserId)
+                    .map((officer) => (
+                      <SelectItem
+                        value={officer.id}
+                        key={officer.id}
+                      >{`${officer.firstName} ${officer.lastName}`}</SelectItem>
+                    ))}
                 </SelectContent>
               </Select>
               <FormDescription>

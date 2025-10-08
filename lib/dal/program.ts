@@ -5,6 +5,7 @@ import { prisma } from "../prisma";
 import { verifySession } from "../action/session";
 import { unstable_cache } from "next/cache";
 import { ProgramDTO } from "../dto/programs";
+import { Program } from "../generated/prisma";
 
 export async function createProgram(
   data: z.infer<typeof CreateProgramFormSchema>
@@ -21,12 +22,15 @@ export const getPrograms = unstable_cache(
     const programs = await prisma.program.findMany({
       include: {
         accreditation: true,
+        programHead: true,
       },
     });
     return programs.map((program) => ({
       id: program.id,
       name: program.name,
       code: program.code,
+      major: program.major,
+      programHead: program.programHead,
       department: program.department,
       accreditation: program.accreditation,
     }));
@@ -36,3 +40,35 @@ export const getPrograms = unstable_cache(
     tags: ["programs"],
   }
 );
+
+export async function getProgramById(id: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const program = await prisma.program.findMany({
+    where: {
+      id,
+    },
+    include: {
+      programHead: true,
+    },
+  });
+  return program[0];
+}
+
+export async function assignProgramHead(userId: string, programId: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const program = prisma.program.update({
+    where: {
+      id: programId,
+    },
+    data: {
+      programHead: {
+        connect: {
+          id: userId,
+        },
+      },
+    },
+  });
+  return program;
+}

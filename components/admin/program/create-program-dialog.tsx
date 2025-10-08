@@ -43,6 +43,7 @@ const CreateProgramDialog = () => {
       name: "",
       code: "",
       department: "",
+      major: "",
     },
   });
   const [pending, startTransition] = useTransition();
@@ -117,6 +118,20 @@ const CreateProgramDialog = () => {
                       <Input {...field} autoComplete="off" />
                     </FormControl>
                     <FormDescription>e.g. BSIT</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="major"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{`Major (Optional)`}</FormLabel>
+                    <FormControl>
+                      <Input {...field} autoComplete="off" />
+                    </FormControl>
+                    <FormDescription>e.g. Major in Programming</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}

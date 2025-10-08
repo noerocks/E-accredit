@@ -2,7 +2,6 @@ import AcceptOrReject from "@/components/admin/evidence-file/acceptOrReject";
 import Comments from "@/components/admin/evidence-file/comments";
 import UploadFileForm from "@/components/admin/evidence-file/upload-file-form";
 import VersionHistory from "@/components/admin/evidence-file/version-history";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardDescription,

@@ -2981,10 +2981,12 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     programPersonnel: number
+    programHead: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     programPersonnel?: boolean | UserCountOutputTypeCountProgramPersonnelArgs
+    programHead?: boolean | UserCountOutputTypeCountProgramHeadArgs
   }
 
   // Custom InputTypes
@@ -3003,6 +3005,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountProgramPersonnelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProgramPersonnelWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountProgramHeadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgramWhereInput
   }
 
 
@@ -3822,6 +3831,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     programPersonnel?: boolean | User$programPersonnelArgs<ExtArgs>
+    programHead?: boolean | User$programHeadArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3870,6 +3880,7 @@ export namespace Prisma {
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "phoneNumber" | "email" | "hashedPassword" | "photoURL" | "address" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     programPersonnel?: boolean | User$programPersonnelArgs<ExtArgs>
+    programHead?: boolean | User$programHeadArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3879,6 +3890,7 @@ export namespace Prisma {
     name: "User"
     objects: {
       programPersonnel: Prisma.$ProgramPersonnelPayload<ExtArgs>[]
+      programHead: Prisma.$ProgramPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4287,6 +4299,7 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     programPersonnel<T extends User$programPersonnelArgs<ExtArgs> = {}>(args?: Subset<T, User$programPersonnelArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    programHead<T extends User$programHeadArgs<ExtArgs> = {}>(args?: Subset<T, User$programHeadArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4739,6 +4752,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.programHead
+   */
+  export type User$programHeadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Program
+     */
+    select?: ProgramSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Program
+     */
+    omit?: ProgramOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramInclude<ExtArgs> | null
+    where?: ProgramWhereInput
+    orderBy?: ProgramOrderByWithRelationInput | ProgramOrderByWithRelationInput[]
+    cursor?: ProgramWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProgramScalarFieldEnum | ProgramScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4772,6 +4809,8 @@ export namespace Prisma {
     name: string | null
     code: string | null
     department: string | null
+    major: string | null
+    programHeadId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4781,6 +4820,8 @@ export namespace Prisma {
     name: string | null
     code: string | null
     department: string | null
+    major: string | null
+    programHeadId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4790,6 +4831,8 @@ export namespace Prisma {
     name: number
     code: number
     department: number
+    major: number
+    programHeadId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -4801,6 +4844,8 @@ export namespace Prisma {
     name?: true
     code?: true
     department?: true
+    major?: true
+    programHeadId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -4810,6 +4855,8 @@ export namespace Prisma {
     name?: true
     code?: true
     department?: true
+    major?: true
+    programHeadId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -4819,6 +4866,8 @@ export namespace Prisma {
     name?: true
     code?: true
     department?: true
+    major?: true
+    programHeadId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -4901,6 +4950,8 @@ export namespace Prisma {
     name: string
     code: string
     department: string
+    major: string | null
+    programHeadId: string | null
     createdAt: Date
     updatedAt: Date
     _count: ProgramCountAggregateOutputType | null
@@ -4927,8 +4978,11 @@ export namespace Prisma {
     name?: boolean
     code?: boolean
     department?: boolean
+    major?: boolean
+    programHeadId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    programHead?: boolean | Program$programHeadArgs<ExtArgs>
     programPersonnel?: boolean | Program$programPersonnelArgs<ExtArgs>
     accreditation?: boolean | Program$accreditationArgs<ExtArgs>
     _count?: boolean | ProgramCountOutputTypeDefaultArgs<ExtArgs>
@@ -4939,8 +4993,11 @@ export namespace Prisma {
     name?: boolean
     code?: boolean
     department?: boolean
+    major?: boolean
+    programHeadId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    programHead?: boolean | Program$programHeadArgs<ExtArgs>
   }, ExtArgs["result"]["program"]>
 
   export type ProgramSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4948,8 +5005,11 @@ export namespace Prisma {
     name?: boolean
     code?: boolean
     department?: boolean
+    major?: boolean
+    programHeadId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    programHead?: boolean | Program$programHeadArgs<ExtArgs>
   }, ExtArgs["result"]["program"]>
 
   export type ProgramSelectScalar = {
@@ -4957,22 +5017,30 @@ export namespace Prisma {
     name?: boolean
     code?: boolean
     department?: boolean
+    major?: boolean
+    programHeadId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ProgramOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "code" | "department" | "createdAt" | "updatedAt", ExtArgs["result"]["program"]>
+  export type ProgramOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "code" | "department" | "major" | "programHeadId" | "createdAt" | "updatedAt", ExtArgs["result"]["program"]>
   export type ProgramInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    programHead?: boolean | Program$programHeadArgs<ExtArgs>
     programPersonnel?: boolean | Program$programPersonnelArgs<ExtArgs>
     accreditation?: boolean | Program$accreditationArgs<ExtArgs>
     _count?: boolean | ProgramCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type ProgramIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type ProgramIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ProgramIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    programHead?: boolean | Program$programHeadArgs<ExtArgs>
+  }
+  export type ProgramIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    programHead?: boolean | Program$programHeadArgs<ExtArgs>
+  }
 
   export type $ProgramPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Program"
     objects: {
+      programHead: Prisma.$UserPayload<ExtArgs> | null
       programPersonnel: Prisma.$ProgramPersonnelPayload<ExtArgs>[]
       accreditation: Prisma.$AccreditationPayload<ExtArgs> | null
     }
@@ -4981,6 +5049,8 @@ export namespace Prisma {
       name: string
       code: string
       department: string
+      major: string | null
+      programHeadId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["program"]>
@@ -5377,6 +5447,7 @@ export namespace Prisma {
    */
   export interface Prisma__ProgramClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    programHead<T extends Program$programHeadArgs<ExtArgs> = {}>(args?: Subset<T, Program$programHeadArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     programPersonnel<T extends Program$programPersonnelArgs<ExtArgs> = {}>(args?: Subset<T, Program$programPersonnelArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     accreditation<T extends Program$accreditationArgs<ExtArgs> = {}>(args?: Subset<T, Program$accreditationArgs<ExtArgs>>): Prisma__AccreditationClient<$Result.GetResult<Prisma.$AccreditationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
@@ -5412,6 +5483,8 @@ export namespace Prisma {
     readonly name: FieldRef<"Program", 'String'>
     readonly code: FieldRef<"Program", 'String'>
     readonly department: FieldRef<"Program", 'String'>
+    readonly major: FieldRef<"Program", 'String'>
+    readonly programHeadId: FieldRef<"Program", 'String'>
     readonly createdAt: FieldRef<"Program", 'DateTime'>
     readonly updatedAt: FieldRef<"Program", 'DateTime'>
   }
@@ -5663,6 +5736,10 @@ export namespace Prisma {
      */
     data: ProgramCreateManyInput | ProgramCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -5733,6 +5810,10 @@ export namespace Prisma {
      * Limit how many Programs to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgramIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -5799,6 +5880,25 @@ export namespace Prisma {
      * Limit how many Programs to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Program.programHead
+   */
+  export type Program$programHeadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
   }
 
   /**
@@ -18418,18 +18518,21 @@ export namespace Prisma {
     id: string | null
     areaFolderId: string | null
     parameterId: number | null
+    status: $Enums.Progress | null
   }
 
   export type ParameterFolderMaxAggregateOutputType = {
     id: string | null
     areaFolderId: string | null
     parameterId: number | null
+    status: $Enums.Progress | null
   }
 
   export type ParameterFolderCountAggregateOutputType = {
     id: number
     areaFolderId: number
     parameterId: number
+    status: number
     _all: number
   }
 
@@ -18446,18 +18549,21 @@ export namespace Prisma {
     id?: true
     areaFolderId?: true
     parameterId?: true
+    status?: true
   }
 
   export type ParameterFolderMaxAggregateInputType = {
     id?: true
     areaFolderId?: true
     parameterId?: true
+    status?: true
   }
 
   export type ParameterFolderCountAggregateInputType = {
     id?: true
     areaFolderId?: true
     parameterId?: true
+    status?: true
     _all?: true
   }
 
@@ -18551,6 +18657,7 @@ export namespace Prisma {
     id: string
     areaFolderId: string
     parameterId: number
+    status: $Enums.Progress
     _count: ParameterFolderCountAggregateOutputType | null
     _avg: ParameterFolderAvgAggregateOutputType | null
     _sum: ParameterFolderSumAggregateOutputType | null
@@ -18576,6 +18683,7 @@ export namespace Prisma {
     id?: boolean
     areaFolderId?: boolean
     parameterId?: boolean
+    status?: boolean
     areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
     indicatorFolders?: boolean | ParameterFolder$indicatorFoldersArgs<ExtArgs>
     parameter?: boolean | ParameterDefaultArgs<ExtArgs>
@@ -18586,6 +18694,7 @@ export namespace Prisma {
     id?: boolean
     areaFolderId?: boolean
     parameterId?: boolean
+    status?: boolean
     areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
     parameter?: boolean | ParameterDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["parameterFolder"]>
@@ -18594,6 +18703,7 @@ export namespace Prisma {
     id?: boolean
     areaFolderId?: boolean
     parameterId?: boolean
+    status?: boolean
     areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
     parameter?: boolean | ParameterDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["parameterFolder"]>
@@ -18602,9 +18712,10 @@ export namespace Prisma {
     id?: boolean
     areaFolderId?: boolean
     parameterId?: boolean
+    status?: boolean
   }
 
-  export type ParameterFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "areaFolderId" | "parameterId", ExtArgs["result"]["parameterFolder"]>
+  export type ParameterFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "areaFolderId" | "parameterId" | "status", ExtArgs["result"]["parameterFolder"]>
   export type ParameterFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
     indicatorFolders?: boolean | ParameterFolder$indicatorFoldersArgs<ExtArgs>
@@ -18631,6 +18742,7 @@ export namespace Prisma {
       id: string
       areaFolderId: string
       parameterId: number
+      status: $Enums.Progress
     }, ExtArgs["result"]["parameterFolder"]>
     composites: {}
   }
@@ -19060,6 +19172,7 @@ export namespace Prisma {
     readonly id: FieldRef<"ParameterFolder", 'String'>
     readonly areaFolderId: FieldRef<"ParameterFolder", 'String'>
     readonly parameterId: FieldRef<"ParameterFolder", 'Int'>
+    readonly status: FieldRef<"ParameterFolder", 'Progress'>
   }
     
 
@@ -29425,6 +29538,8 @@ export namespace Prisma {
     name: 'name',
     code: 'code',
     department: 'department',
+    major: 'major',
+    programHeadId: 'programHeadId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -29560,7 +29675,8 @@ export namespace Prisma {
   export const ParameterFolderScalarFieldEnum: {
     id: 'id',
     areaFolderId: 'areaFolderId',
-    parameterId: 'parameterId'
+    parameterId: 'parameterId',
+    status: 'status'
   };
 
   export type ParameterFolderScalarFieldEnum = (typeof ParameterFolderScalarFieldEnum)[keyof typeof ParameterFolderScalarFieldEnum]
@@ -29902,6 +30018,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     programPersonnel?: ProgramPersonnelListRelationFilter
+    programHead?: ProgramListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -29917,6 +30034,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     programPersonnel?: ProgramPersonnelOrderByRelationAggregateInput
+    programHead?: ProgramOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -29935,6 +30053,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     programPersonnel?: ProgramPersonnelListRelationFilter
+    programHead?: ProgramListRelationFilter
   }, "id" | "phoneNumber" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -29979,8 +30098,11 @@ export namespace Prisma {
     name?: StringFilter<"Program"> | string
     code?: StringFilter<"Program"> | string
     department?: StringFilter<"Program"> | string
+    major?: StringNullableFilter<"Program"> | string | null
+    programHeadId?: StringNullableFilter<"Program"> | string | null
     createdAt?: DateTimeFilter<"Program"> | Date | string
     updatedAt?: DateTimeFilter<"Program"> | Date | string
+    programHead?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     programPersonnel?: ProgramPersonnelListRelationFilter
     accreditation?: XOR<AccreditationNullableScalarRelationFilter, AccreditationWhereInput> | null
   }
@@ -29990,8 +30112,11 @@ export namespace Prisma {
     name?: SortOrder
     code?: SortOrder
     department?: SortOrder
+    major?: SortOrderInput | SortOrder
+    programHeadId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    programHead?: UserOrderByWithRelationInput
     programPersonnel?: ProgramPersonnelOrderByRelationAggregateInput
     accreditation?: AccreditationOrderByWithRelationInput
   }
@@ -30005,8 +30130,11 @@ export namespace Prisma {
     name?: StringFilter<"Program"> | string
     code?: StringFilter<"Program"> | string
     department?: StringFilter<"Program"> | string
+    major?: StringNullableFilter<"Program"> | string | null
+    programHeadId?: StringNullableFilter<"Program"> | string | null
     createdAt?: DateTimeFilter<"Program"> | Date | string
     updatedAt?: DateTimeFilter<"Program"> | Date | string
+    programHead?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     programPersonnel?: ProgramPersonnelListRelationFilter
     accreditation?: XOR<AccreditationNullableScalarRelationFilter, AccreditationWhereInput> | null
   }, "id" | "name_code">
@@ -30016,6 +30144,8 @@ export namespace Prisma {
     name?: SortOrder
     code?: SortOrder
     department?: SortOrder
+    major?: SortOrderInput | SortOrder
+    programHeadId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ProgramCountOrderByAggregateInput
@@ -30031,6 +30161,8 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Program"> | string
     code?: StringWithAggregatesFilter<"Program"> | string
     department?: StringWithAggregatesFilter<"Program"> | string
+    major?: StringNullableWithAggregatesFilter<"Program"> | string | null
+    programHeadId?: StringNullableWithAggregatesFilter<"Program"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Program"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Program"> | Date | string
   }
@@ -30751,6 +30883,7 @@ export namespace Prisma {
     id?: StringFilter<"ParameterFolder"> | string
     areaFolderId?: StringFilter<"ParameterFolder"> | string
     parameterId?: IntFilter<"ParameterFolder"> | number
+    status?: EnumProgressFilter<"ParameterFolder"> | $Enums.Progress
     areaFolder?: XOR<AreaFolderScalarRelationFilter, AreaFolderWhereInput>
     indicatorFolders?: IndicatorFolderListRelationFilter
     parameter?: XOR<ParameterScalarRelationFilter, ParameterWhereInput>
@@ -30760,6 +30893,7 @@ export namespace Prisma {
     id?: SortOrder
     areaFolderId?: SortOrder
     parameterId?: SortOrder
+    status?: SortOrder
     areaFolder?: AreaFolderOrderByWithRelationInput
     indicatorFolders?: IndicatorFolderOrderByRelationAggregateInput
     parameter?: ParameterOrderByWithRelationInput
@@ -30772,6 +30906,7 @@ export namespace Prisma {
     NOT?: ParameterFolderWhereInput | ParameterFolderWhereInput[]
     areaFolderId?: StringFilter<"ParameterFolder"> | string
     parameterId?: IntFilter<"ParameterFolder"> | number
+    status?: EnumProgressFilter<"ParameterFolder"> | $Enums.Progress
     areaFolder?: XOR<AreaFolderScalarRelationFilter, AreaFolderWhereInput>
     indicatorFolders?: IndicatorFolderListRelationFilter
     parameter?: XOR<ParameterScalarRelationFilter, ParameterWhereInput>
@@ -30781,6 +30916,7 @@ export namespace Prisma {
     id?: SortOrder
     areaFolderId?: SortOrder
     parameterId?: SortOrder
+    status?: SortOrder
     _count?: ParameterFolderCountOrderByAggregateInput
     _avg?: ParameterFolderAvgOrderByAggregateInput
     _max?: ParameterFolderMaxOrderByAggregateInput
@@ -30795,6 +30931,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"ParameterFolder"> | string
     areaFolderId?: StringWithAggregatesFilter<"ParameterFolder"> | string
     parameterId?: IntWithAggregatesFilter<"ParameterFolder"> | number
+    status?: EnumProgressWithAggregatesFilter<"ParameterFolder"> | $Enums.Progress
   }
 
   export type IndicatorFolderWhereInput = {
@@ -31316,6 +31453,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
+    programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -31331,6 +31469,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
+    programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
   }
 
   export type UserUpdateInput = {
@@ -31346,6 +31485,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
+    programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -31361,6 +31501,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
+    programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -31410,8 +31551,10 @@ export namespace Prisma {
     name: string
     code: string
     department: string
+    major?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    programHead?: UserCreateNestedOneWithoutProgramHeadInput
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutProgramInput
     accreditation?: AccreditationCreateNestedOneWithoutProgramInput
   }
@@ -31421,6 +31564,8 @@ export namespace Prisma {
     name: string
     code: string
     department: string
+    major?: string | null
+    programHeadId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutProgramInput
@@ -31432,8 +31577,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     department?: StringFieldUpdateOperationsInput | string
+    major?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programHead?: UserUpdateOneWithoutProgramHeadNestedInput
     programPersonnel?: ProgramPersonnelUpdateManyWithoutProgramNestedInput
     accreditation?: AccreditationUpdateOneWithoutProgramNestedInput
   }
@@ -31443,6 +31590,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     department?: StringFieldUpdateOperationsInput | string
+    major?: NullableStringFieldUpdateOperationsInput | string | null
+    programHeadId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutProgramNestedInput
@@ -31454,6 +31603,8 @@ export namespace Prisma {
     name: string
     code: string
     department: string
+    major?: string | null
+    programHeadId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -31463,6 +31614,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     department?: StringFieldUpdateOperationsInput | string
+    major?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -31472,6 +31624,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     department?: StringFieldUpdateOperationsInput | string
+    major?: NullableStringFieldUpdateOperationsInput | string | null
+    programHeadId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -32183,6 +32337,7 @@ export namespace Prisma {
 
   export type ParameterFolderCreateInput = {
     id?: string
+    status: $Enums.Progress
     areaFolder: AreaFolderCreateNestedOneWithoutParameterFoldersInput
     indicatorFolders?: IndicatorFolderCreateNestedManyWithoutParameterFolderInput
     parameter: ParameterCreateNestedOneWithoutParameterFoldersInput
@@ -32192,11 +32347,13 @@ export namespace Prisma {
     id?: string
     areaFolderId: string
     parameterId: number
+    status: $Enums.Progress
     indicatorFolders?: IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput
   }
 
   export type ParameterFolderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     areaFolder?: AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput
     indicatorFolders?: IndicatorFolderUpdateManyWithoutParameterFolderNestedInput
     parameter?: ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput
@@ -32206,6 +32363,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     areaFolderId?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     indicatorFolders?: IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput
   }
 
@@ -32213,16 +32371,19 @@ export namespace Prisma {
     id?: string
     areaFolderId: string
     parameterId: number
+    status: $Enums.Progress
   }
 
   export type ParameterFolderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
   }
 
   export type ParameterFolderUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaFolderId?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
   }
 
   export type IndicatorFolderCreateInput = {
@@ -32746,12 +32907,22 @@ export namespace Prisma {
     none?: ProgramPersonnelWhereInput
   }
 
+  export type ProgramListRelationFilter = {
+    every?: ProgramWhereInput
+    some?: ProgramWhereInput
+    none?: ProgramWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type ProgramPersonnelOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProgramOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -32857,6 +33028,11 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
   export type AccreditationNullableScalarRelationFilter = {
     is?: AccreditationWhereInput | null
     isNot?: AccreditationWhereInput | null
@@ -32872,6 +33048,8 @@ export namespace Prisma {
     name?: SortOrder
     code?: SortOrder
     department?: SortOrder
+    major?: SortOrder
+    programHeadId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -32881,6 +33059,8 @@ export namespace Prisma {
     name?: SortOrder
     code?: SortOrder
     department?: SortOrder
+    major?: SortOrder
+    programHeadId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -32890,6 +33070,8 @@ export namespace Prisma {
     name?: SortOrder
     code?: SortOrder
     department?: SortOrder
+    major?: SortOrder
+    programHeadId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -33625,6 +33807,7 @@ export namespace Prisma {
     id?: SortOrder
     areaFolderId?: SortOrder
     parameterId?: SortOrder
+    status?: SortOrder
   }
 
   export type ParameterFolderAvgOrderByAggregateInput = {
@@ -33635,12 +33818,14 @@ export namespace Prisma {
     id?: SortOrder
     areaFolderId?: SortOrder
     parameterId?: SortOrder
+    status?: SortOrder
   }
 
   export type ParameterFolderMinOrderByAggregateInput = {
     id?: SortOrder
     areaFolderId?: SortOrder
     parameterId?: SortOrder
+    status?: SortOrder
   }
 
   export type ParameterFolderSumOrderByAggregateInput = {
@@ -33986,11 +34171,25 @@ export namespace Prisma {
     connect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
   }
 
+  export type ProgramCreateNestedManyWithoutProgramHeadInput = {
+    create?: XOR<ProgramCreateWithoutProgramHeadInput, ProgramUncheckedCreateWithoutProgramHeadInput> | ProgramCreateWithoutProgramHeadInput[] | ProgramUncheckedCreateWithoutProgramHeadInput[]
+    connectOrCreate?: ProgramCreateOrConnectWithoutProgramHeadInput | ProgramCreateOrConnectWithoutProgramHeadInput[]
+    createMany?: ProgramCreateManyProgramHeadInputEnvelope
+    connect?: ProgramWhereUniqueInput | ProgramWhereUniqueInput[]
+  }
+
   export type ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
     createMany?: ProgramPersonnelCreateManyUserInputEnvelope
     connect?: ProgramPersonnelWhereUniqueInput | ProgramPersonnelWhereUniqueInput[]
+  }
+
+  export type ProgramUncheckedCreateNestedManyWithoutProgramHeadInput = {
+    create?: XOR<ProgramCreateWithoutProgramHeadInput, ProgramUncheckedCreateWithoutProgramHeadInput> | ProgramCreateWithoutProgramHeadInput[] | ProgramUncheckedCreateWithoutProgramHeadInput[]
+    connectOrCreate?: ProgramCreateOrConnectWithoutProgramHeadInput | ProgramCreateOrConnectWithoutProgramHeadInput[]
+    createMany?: ProgramCreateManyProgramHeadInputEnvelope
+    connect?: ProgramWhereUniqueInput | ProgramWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -34023,6 +34222,20 @@ export namespace Prisma {
     deleteMany?: ProgramPersonnelScalarWhereInput | ProgramPersonnelScalarWhereInput[]
   }
 
+  export type ProgramUpdateManyWithoutProgramHeadNestedInput = {
+    create?: XOR<ProgramCreateWithoutProgramHeadInput, ProgramUncheckedCreateWithoutProgramHeadInput> | ProgramCreateWithoutProgramHeadInput[] | ProgramUncheckedCreateWithoutProgramHeadInput[]
+    connectOrCreate?: ProgramCreateOrConnectWithoutProgramHeadInput | ProgramCreateOrConnectWithoutProgramHeadInput[]
+    upsert?: ProgramUpsertWithWhereUniqueWithoutProgramHeadInput | ProgramUpsertWithWhereUniqueWithoutProgramHeadInput[]
+    createMany?: ProgramCreateManyProgramHeadInputEnvelope
+    set?: ProgramWhereUniqueInput | ProgramWhereUniqueInput[]
+    disconnect?: ProgramWhereUniqueInput | ProgramWhereUniqueInput[]
+    delete?: ProgramWhereUniqueInput | ProgramWhereUniqueInput[]
+    connect?: ProgramWhereUniqueInput | ProgramWhereUniqueInput[]
+    update?: ProgramUpdateWithWhereUniqueWithoutProgramHeadInput | ProgramUpdateWithWhereUniqueWithoutProgramHeadInput[]
+    updateMany?: ProgramUpdateManyWithWhereWithoutProgramHeadInput | ProgramUpdateManyWithWhereWithoutProgramHeadInput[]
+    deleteMany?: ProgramScalarWhereInput | ProgramScalarWhereInput[]
+  }
+
   export type ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
@@ -34035,6 +34248,26 @@ export namespace Prisma {
     update?: ProgramPersonnelUpdateWithWhereUniqueWithoutUserInput | ProgramPersonnelUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: ProgramPersonnelUpdateManyWithWhereWithoutUserInput | ProgramPersonnelUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: ProgramPersonnelScalarWhereInput | ProgramPersonnelScalarWhereInput[]
+  }
+
+  export type ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput = {
+    create?: XOR<ProgramCreateWithoutProgramHeadInput, ProgramUncheckedCreateWithoutProgramHeadInput> | ProgramCreateWithoutProgramHeadInput[] | ProgramUncheckedCreateWithoutProgramHeadInput[]
+    connectOrCreate?: ProgramCreateOrConnectWithoutProgramHeadInput | ProgramCreateOrConnectWithoutProgramHeadInput[]
+    upsert?: ProgramUpsertWithWhereUniqueWithoutProgramHeadInput | ProgramUpsertWithWhereUniqueWithoutProgramHeadInput[]
+    createMany?: ProgramCreateManyProgramHeadInputEnvelope
+    set?: ProgramWhereUniqueInput | ProgramWhereUniqueInput[]
+    disconnect?: ProgramWhereUniqueInput | ProgramWhereUniqueInput[]
+    delete?: ProgramWhereUniqueInput | ProgramWhereUniqueInput[]
+    connect?: ProgramWhereUniqueInput | ProgramWhereUniqueInput[]
+    update?: ProgramUpdateWithWhereUniqueWithoutProgramHeadInput | ProgramUpdateWithWhereUniqueWithoutProgramHeadInput[]
+    updateMany?: ProgramUpdateManyWithWhereWithoutProgramHeadInput | ProgramUpdateManyWithWhereWithoutProgramHeadInput[]
+    deleteMany?: ProgramScalarWhereInput | ProgramScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutProgramHeadInput = {
+    create?: XOR<UserCreateWithoutProgramHeadInput, UserUncheckedCreateWithoutProgramHeadInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProgramHeadInput
+    connect?: UserWhereUniqueInput
   }
 
   export type ProgramPersonnelCreateNestedManyWithoutProgramInput = {
@@ -34061,6 +34294,16 @@ export namespace Prisma {
     create?: XOR<AccreditationCreateWithoutProgramInput, AccreditationUncheckedCreateWithoutProgramInput>
     connectOrCreate?: AccreditationCreateOrConnectWithoutProgramInput
     connect?: AccreditationWhereUniqueInput
+  }
+
+  export type UserUpdateOneWithoutProgramHeadNestedInput = {
+    create?: XOR<UserCreateWithoutProgramHeadInput, UserUncheckedCreateWithoutProgramHeadInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProgramHeadInput
+    upsert?: UserUpsertWithoutProgramHeadInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProgramHeadInput, UserUpdateWithoutProgramHeadInput>, UserUncheckedUpdateWithoutProgramHeadInput>
   }
 
   export type ProgramPersonnelUpdateManyWithoutProgramNestedInput = {
@@ -36166,6 +36409,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ProgramCreateWithoutProgramHeadInput = {
+    id?: string
+    name: string
+    code: string
+    department: string
+    major?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelCreateNestedManyWithoutProgramInput
+    accreditation?: AccreditationCreateNestedOneWithoutProgramInput
+  }
+
+  export type ProgramUncheckedCreateWithoutProgramHeadInput = {
+    id?: string
+    name: string
+    code: string
+    department: string
+    major?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutProgramInput
+    accreditation?: AccreditationUncheckedCreateNestedOneWithoutProgramInput
+  }
+
+  export type ProgramCreateOrConnectWithoutProgramHeadInput = {
+    where: ProgramWhereUniqueInput
+    create: XOR<ProgramCreateWithoutProgramHeadInput, ProgramUncheckedCreateWithoutProgramHeadInput>
+  }
+
+  export type ProgramCreateManyProgramHeadInputEnvelope = {
+    data: ProgramCreateManyProgramHeadInput | ProgramCreateManyProgramHeadInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ProgramPersonnelUpsertWithWhereUniqueWithoutUserInput = {
     where: ProgramPersonnelWhereUniqueInput
     update: XOR<ProgramPersonnelUpdateWithoutUserInput, ProgramPersonnelUncheckedUpdateWithoutUserInput>
@@ -36190,6 +36467,71 @@ export namespace Prisma {
     userId?: StringFilter<"ProgramPersonnel"> | string
     programId?: StringFilter<"ProgramPersonnel"> | string
     assignedAt?: DateTimeFilter<"ProgramPersonnel"> | Date | string
+  }
+
+  export type ProgramUpsertWithWhereUniqueWithoutProgramHeadInput = {
+    where: ProgramWhereUniqueInput
+    update: XOR<ProgramUpdateWithoutProgramHeadInput, ProgramUncheckedUpdateWithoutProgramHeadInput>
+    create: XOR<ProgramCreateWithoutProgramHeadInput, ProgramUncheckedCreateWithoutProgramHeadInput>
+  }
+
+  export type ProgramUpdateWithWhereUniqueWithoutProgramHeadInput = {
+    where: ProgramWhereUniqueInput
+    data: XOR<ProgramUpdateWithoutProgramHeadInput, ProgramUncheckedUpdateWithoutProgramHeadInput>
+  }
+
+  export type ProgramUpdateManyWithWhereWithoutProgramHeadInput = {
+    where: ProgramScalarWhereInput
+    data: XOR<ProgramUpdateManyMutationInput, ProgramUncheckedUpdateManyWithoutProgramHeadInput>
+  }
+
+  export type ProgramScalarWhereInput = {
+    AND?: ProgramScalarWhereInput | ProgramScalarWhereInput[]
+    OR?: ProgramScalarWhereInput[]
+    NOT?: ProgramScalarWhereInput | ProgramScalarWhereInput[]
+    id?: StringFilter<"Program"> | string
+    name?: StringFilter<"Program"> | string
+    code?: StringFilter<"Program"> | string
+    department?: StringFilter<"Program"> | string
+    major?: StringNullableFilter<"Program"> | string | null
+    programHeadId?: StringNullableFilter<"Program"> | string | null
+    createdAt?: DateTimeFilter<"Program"> | Date | string
+    updatedAt?: DateTimeFilter<"Program"> | Date | string
+  }
+
+  export type UserCreateWithoutProgramHeadInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutProgramHeadInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutProgramHeadInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutProgramHeadInput, UserUncheckedCreateWithoutProgramHeadInput>
   }
 
   export type ProgramPersonnelCreateWithoutProgramInput = {
@@ -36239,6 +36581,47 @@ export namespace Prisma {
   export type AccreditationCreateOrConnectWithoutProgramInput = {
     where: AccreditationWhereUniqueInput
     create: XOR<AccreditationCreateWithoutProgramInput, AccreditationUncheckedCreateWithoutProgramInput>
+  }
+
+  export type UserUpsertWithoutProgramHeadInput = {
+    update: XOR<UserUpdateWithoutProgramHeadInput, UserUncheckedUpdateWithoutProgramHeadInput>
+    create: XOR<UserCreateWithoutProgramHeadInput, UserUncheckedCreateWithoutProgramHeadInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutProgramHeadInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutProgramHeadInput, UserUncheckedUpdateWithoutProgramHeadInput>
+  }
+
+  export type UserUpdateWithoutProgramHeadInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutProgramHeadInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProgramPersonnelUpsertWithWhereUniqueWithoutProgramInput = {
@@ -36298,6 +36681,7 @@ export namespace Prisma {
     role?: $Enums.Role
     createdAt?: Date | string
     updatedAt?: Date | string
+    programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
   }
 
   export type UserUncheckedCreateWithoutProgramPersonnelInput = {
@@ -36312,6 +36696,7 @@ export namespace Prisma {
     role?: $Enums.Role
     createdAt?: Date | string
     updatedAt?: Date | string
+    programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
   }
 
   export type UserCreateOrConnectWithoutProgramPersonnelInput = {
@@ -36324,8 +36709,10 @@ export namespace Prisma {
     name: string
     code: string
     department: string
+    major?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    programHead?: UserCreateNestedOneWithoutProgramHeadInput
     accreditation?: AccreditationCreateNestedOneWithoutProgramInput
   }
 
@@ -36334,6 +36721,8 @@ export namespace Prisma {
     name: string
     code: string
     department: string
+    major?: string | null
+    programHeadId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accreditation?: AccreditationUncheckedCreateNestedOneWithoutProgramInput
@@ -36409,6 +36798,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgramPersonnelInput = {
@@ -36423,6 +36813,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
   }
 
   export type ProgramUpsertWithoutProgramPersonnelInput = {
@@ -36441,8 +36832,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     department?: StringFieldUpdateOperationsInput | string
+    major?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programHead?: UserUpdateOneWithoutProgramHeadNestedInput
     accreditation?: AccreditationUpdateOneWithoutProgramNestedInput
   }
 
@@ -36451,6 +36844,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     department?: StringFieldUpdateOperationsInput | string
+    major?: NullableStringFieldUpdateOperationsInput | string | null
+    programHeadId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accreditation?: AccreditationUncheckedUpdateOneWithoutProgramNestedInput
@@ -36937,6 +37332,7 @@ export namespace Prisma {
 
   export type ParameterFolderCreateWithoutParameterInput = {
     id?: string
+    status: $Enums.Progress
     areaFolder: AreaFolderCreateNestedOneWithoutParameterFoldersInput
     indicatorFolders?: IndicatorFolderCreateNestedManyWithoutParameterFolderInput
   }
@@ -36944,6 +37340,7 @@ export namespace Prisma {
   export type ParameterFolderUncheckedCreateWithoutParameterInput = {
     id?: string
     areaFolderId: string
+    status: $Enums.Progress
     indicatorFolders?: IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput
   }
 
@@ -37044,6 +37441,7 @@ export namespace Prisma {
     id?: StringFilter<"ParameterFolder"> | string
     areaFolderId?: StringFilter<"ParameterFolder"> | string
     parameterId?: IntFilter<"ParameterFolder"> | number
+    status?: EnumProgressFilter<"ParameterFolder"> | $Enums.Progress
   }
 
   export type ParameterCreateWithoutIndicatorInput = {
@@ -37278,8 +37676,10 @@ export namespace Prisma {
     name: string
     code: string
     department: string
+    major?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    programHead?: UserCreateNestedOneWithoutProgramHeadInput
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutProgramInput
   }
 
@@ -37288,6 +37688,8 @@ export namespace Prisma {
     name: string
     code: string
     department: string
+    major?: string | null
+    programHeadId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutProgramInput
@@ -37373,8 +37775,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     department?: StringFieldUpdateOperationsInput | string
+    major?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programHead?: UserUpdateOneWithoutProgramHeadNestedInput
     programPersonnel?: ProgramPersonnelUpdateManyWithoutProgramNestedInput
   }
 
@@ -37383,6 +37787,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     department?: StringFieldUpdateOperationsInput | string
+    major?: NullableStringFieldUpdateOperationsInput | string | null
+    programHeadId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutProgramNestedInput
@@ -37882,6 +38288,7 @@ export namespace Prisma {
 
   export type ParameterFolderCreateWithoutAreaFolderInput = {
     id?: string
+    status: $Enums.Progress
     indicatorFolders?: IndicatorFolderCreateNestedManyWithoutParameterFolderInput
     parameter: ParameterCreateNestedOneWithoutParameterFoldersInput
   }
@@ -37889,6 +38296,7 @@ export namespace Prisma {
   export type ParameterFolderUncheckedCreateWithoutAreaFolderInput = {
     id?: string
     parameterId: number
+    status: $Enums.Progress
     indicatorFolders?: IndicatorFolderUncheckedCreateNestedManyWithoutParameterFolderInput
   }
 
@@ -38255,6 +38663,7 @@ export namespace Prisma {
 
   export type ParameterFolderCreateWithoutIndicatorFoldersInput = {
     id?: string
+    status: $Enums.Progress
     areaFolder: AreaFolderCreateNestedOneWithoutParameterFoldersInput
     parameter: ParameterCreateNestedOneWithoutParameterFoldersInput
   }
@@ -38263,6 +38672,7 @@ export namespace Prisma {
     id?: string
     areaFolderId: string
     parameterId: number
+    status: $Enums.Progress
   }
 
   export type ParameterFolderCreateOrConnectWithoutIndicatorFoldersInput = {
@@ -38311,6 +38721,7 @@ export namespace Prisma {
 
   export type ParameterFolderUpdateWithoutIndicatorFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     areaFolder?: AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput
     parameter?: ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput
   }
@@ -38319,6 +38730,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     areaFolderId?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
   }
 
   export type EvidenceFileUpsertWithWhereUniqueWithoutIndicatorFolderInput = {
@@ -39345,6 +39757,16 @@ export namespace Prisma {
     assignedAt?: Date | string
   }
 
+  export type ProgramCreateManyProgramHeadInput = {
+    id?: string
+    name: string
+    code: string
+    department: string
+    major?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type ProgramPersonnelUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39365,6 +39787,40 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     programId?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgramUpdateWithoutProgramHeadInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    major?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUpdateManyWithoutProgramNestedInput
+    accreditation?: AccreditationUpdateOneWithoutProgramNestedInput
+  }
+
+  export type ProgramUncheckedUpdateWithoutProgramHeadInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    major?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutProgramNestedInput
+    accreditation?: AccreditationUncheckedUpdateOneWithoutProgramNestedInput
+  }
+
+  export type ProgramUncheckedUpdateManyWithoutProgramHeadInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    major?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProgramPersonnelCreateManyProgramInput = {
@@ -39622,6 +40078,7 @@ export namespace Prisma {
   export type ParameterFolderCreateManyParameterInput = {
     id?: string
     areaFolderId: string
+    status: $Enums.Progress
   }
 
   export type IndicatorUpdateWithoutParameterInput = {
@@ -39657,6 +40114,7 @@ export namespace Prisma {
 
   export type ParameterFolderUpdateWithoutParameterInput = {
     id?: StringFieldUpdateOperationsInput | string
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     areaFolder?: AreaFolderUpdateOneRequiredWithoutParameterFoldersNestedInput
     indicatorFolders?: IndicatorFolderUpdateManyWithoutParameterFolderNestedInput
   }
@@ -39664,12 +40122,14 @@ export namespace Prisma {
   export type ParameterFolderUncheckedUpdateWithoutParameterInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaFolderId?: StringFieldUpdateOperationsInput | string
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     indicatorFolders?: IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput
   }
 
   export type ParameterFolderUncheckedUpdateManyWithoutParameterInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaFolderId?: StringFieldUpdateOperationsInput | string
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
   }
 
   export type EvidenceFileCreateManyIndicatorInput = {
@@ -39853,6 +40313,7 @@ export namespace Prisma {
   export type ParameterFolderCreateManyAreaFolderInput = {
     id?: string
     parameterId: number
+    status: $Enums.Progress
   }
 
   export type AreaFileCreateManyPhaseOneAreaFolderInput = {
@@ -39866,6 +40327,7 @@ export namespace Prisma {
 
   export type ParameterFolderUpdateWithoutAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     indicatorFolders?: IndicatorFolderUpdateManyWithoutParameterFolderNestedInput
     parameter?: ParameterUpdateOneRequiredWithoutParameterFoldersNestedInput
   }
@@ -39873,12 +40335,14 @@ export namespace Prisma {
   export type ParameterFolderUncheckedUpdateWithoutAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     indicatorFolders?: IndicatorFolderUncheckedUpdateManyWithoutParameterFolderNestedInput
   }
 
   export type ParameterFolderUncheckedUpdateManyWithoutAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     parameterId?: IntFieldUpdateOperationsInput | number
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
   }
 
   export type AreaFileUpdateWithoutPhaseOneAreaFolderInput = {

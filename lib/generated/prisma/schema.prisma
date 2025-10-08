@@ -81,6 +81,7 @@ model User {
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
   programPersonnel ProgramPersonnel[]
+  programHead      Program[]
 }
 
 model Program {
@@ -88,6 +89,9 @@ model Program {
   name             String
   code             String
   department       String
+  major            String?
+  programHead      User?              @relation(fields: [programHeadId], references: [id])
+  programHeadId    String?
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
   programPersonnel ProgramPersonnel[]
@@ -234,6 +238,7 @@ model ParameterFolder {
   indicatorFolders IndicatorFolder[]
   parameter        Parameter         @relation(fields: [parameterId], references: [id], onDelete: Cascade)
   parameterId      Int
+  status           Progress
 }
 
 model IndicatorFolder {

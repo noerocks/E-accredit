@@ -63,36 +63,40 @@ const ProgramsCards = ({
   return (
     <>
       <div className="flex flex-wrap gap-5" onClick={onClick}>
-        {programs.map((program) => (
-          <Card
-            key={program.id}
-            className="basis-[calc(33.33%-1rem)] grow-0 shrink"
-          >
-            <CardHeader>
-              <CardTitle className="text-xl">{program.code}</CardTitle>
-              <CardDescription>{program.name}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="flex justify-end gap-2">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      size="icon"
-                      variant="outline"
-                      data-action="viewPersonnel"
-                      data-id={program.id}
-                    >
-                      <Users />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Personnel</p>
-                  </TooltipContent>
-                </Tooltip>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+        {programs
+          ?.sort((a, b) => a.code.localeCompare(b.code))
+          .map((program) => (
+            <Card
+              key={program.id}
+              className="basis-[calc(33.33%-1rem)] grow-0 shrink flex flex-col"
+            >
+              <CardHeader className="flex-1 flex flex-col">
+                <CardTitle className="text-xl">{program.code}</CardTitle>
+                <CardDescription>{`${program.name}\n${
+                  program.major && program.major
+                }`}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-end gap-2">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        size="icon"
+                        variant="outline"
+                        data-action="viewPersonnel"
+                        data-id={program.id}
+                      >
+                        <Users />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Personnel</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
       </div>
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent>

@@ -34,6 +34,7 @@ export const CreateProgramFormSchema = z.object({
   name: z.string().min(1, "This field is required").trim(),
   code: z.string().min(1, "This field is required").trim(),
   department: z.string().min(1, "This field is required").trim(),
+  major: z.string().trim().optional(),
 });
 
 export const AcceptUserFormSchema = z.object({

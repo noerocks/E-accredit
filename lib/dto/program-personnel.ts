@@ -1,5 +1,5 @@
 export type ProgramPersonnelDTO = {
   id: string;
-  user: { firstName: string; lastName: string };
+  user: { id: string; firstName: string; lastName: string };
   assignedAt: Date;
 };
