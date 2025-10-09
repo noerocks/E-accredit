@@ -3,7 +3,10 @@
 import { z } from "zod";
 import { CreateProgramFormSchema } from "../zod-definitions";
 import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/library";
-import { createProgram as createProgramDAL } from "../dal/program";
+import {
+  createProgram as createProgramDAL,
+  getProgramCurrentAccreditation,
+} from "../dal/program";
 import { revalidateTag } from "next/cache";
 import { createAccreditation } from "../dal/accreditation";
 import { AccreditationStatus } from "../generated/prisma";
@@ -41,4 +44,10 @@ export async function createProgram(
       message: "Failed to create program",
     };
   }
+}
+
+export async function getProgramCurrentAccredidtationStatus(id: string) {
+  if (!id) return null;
+  const program = await getProgramCurrentAccreditation(id);
+  return program?.accreditation?.level?.rank;
 }

@@ -21,6 +21,11 @@ import { revalidateTag } from "next/cache";
 import { createManyEvidenceFiles } from "../dal/evidence";
 import { createManyAreaFiles } from "../dal/area-file";
 import { createTaskforce } from "../dal/taskforce";
+import {
+  createPhaseOneRequirements,
+  createPhaseTwoRequirements,
+} from "../dal/requirements";
+import { createPhaseTwoAreaFolder } from "../dal/phase-two-area-folder";
 
 export async function createSurveyVisit(
   program: ProgramDTO,
@@ -41,8 +46,7 @@ export async function createSurveyVisit(
     actualSurveyDate,
     SurveyVisitType.FIRST,
     level.id,
-    Progress.IN_PROGRESS,
-    instrument.id
+    Progress.IN_PROGRESS
   );
   revalidateTag("accreditations");
   if (!surveyVisit) throw new Error("Error in creating survey visit");
@@ -53,8 +57,14 @@ export async function createSurveyVisit(
       { name: Category.IMPLEMENTATION, label: "Implementation" },
       { name: Category.OUTCOME, label: "Outcome/s" },
     ];
+    const phaseOneRequirements = await createPhaseOneRequirements(
+      surveyVisit.id,
+      instrument.id
+    );
+    if (!phaseOneRequirements)
+      throw new Error("Error in creating phase one requirements");
     const instrumentFolder = await createInstrumentFolder(
-      surveyVisit.phaseOneRequirements?.id!
+      phaseOneRequirements.id
     );
     if (!instrumentFolder)
       throw new Error("Error in creating instrument folder");
@@ -103,6 +113,32 @@ export async function createSurveyVisit(
         });
       });
     });
-  } else {
+  } else if (level.phase === Phase.PHASE_2) {
+    const phaseTwoRequirements = await createPhaseTwoRequirements(
+      surveyVisit.id,
+      instrument.id
+    );
+    if (!phaseTwoRequirements)
+      throw new Error("Error in creating phase two requirements");
+    instrumentStructure?.area.forEach(async (area) => {
+      const areaFolder = await createPhaseTwoAreaFolder(
+        phaseTwoRequirements.phaseTwoFolder?.id!,
+        area.id
+      );
+      if (!areaFolder)
+        throw new Error("Error in creating phase two area folder");
+      const areaFiles = await createManyAreaFiles([
+        {
+          phaseTwoAreaFolderId: areaFolder.id,
+          type: AreaFileType.NARRATIVE_PROFILE,
+          status: FileStatus.EMPTY,
+        },
+        {
+          phaseTwoAreaFolderId: areaFolder.id,
+          type: AreaFileType.COMPLIANCE_REPORT,
+          status: FileStatus.EMPTY,
+        },
+      ]);
+    });
   }
 }

@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
 import { prisma } from "../prisma";
+import { Progress } from "../generated/prisma";
 
 export async function createParameterFolder(
   areaFolderId: string,
@@ -20,6 +21,7 @@ export async function createParameterFolder(
           id: parameterId,
         },
       },
+      status: Progress.IN_PROGRESS,
     },
   });
   return parameterFolder;

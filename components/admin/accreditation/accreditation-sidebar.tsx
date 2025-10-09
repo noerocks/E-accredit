@@ -11,7 +11,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { PhaseOneInstrumentDTO } from "@/lib/dto/phase-one-instrument";
+import {
+  PhaseOneInstrumentDTO,
+  PhaseTwoInstrumentDTO,
+} from "@/lib/dto/accreditation-instrument";
 import FileTreePhaseOne from "./file-tree-phase-one";
 import React from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
@@ -19,9 +22,12 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 const AccreditationSidebar = ({
   instrumentFolder,
+  phaseTwoFolder,
 }: {
   instrumentFolder: PhaseOneInstrumentDTO | null | undefined;
+  phaseTwoFolder: PhaseTwoInstrumentDTO | null | undefined;
 }) => {
+  console.log(phaseTwoFolder);
   const params = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -36,6 +42,7 @@ const AccreditationSidebar = ({
       )}/${type}/${id}?${searchParams.toString()}`
     );
   };
+  console.log(phaseTwoFolder?.phaseTwoAreaFolders);
   return (
     <Sidebar
       collapsible="none"
@@ -53,9 +60,14 @@ const AccreditationSidebar = ({
           <SidebarGroup>
             <SidebarGroupLabel>Areas</SidebarGroupLabel>
             <SidebarMenu onDoubleClick={onDoubleClick}>
-              {instrumentFolder?.areaFolders.map((area) => (
-                <FileTreePhaseOne key={area.id} item={area} />
-              ))}
+              {instrumentFolder &&
+                instrumentFolder.areaFolders.map((area) => (
+                  <FileTreePhaseOne key={area.id} item={area} />
+                ))}
+              {phaseTwoFolder &&
+                phaseTwoFolder.phaseTwoAreaFolders.map((area) => (
+                  <FileTreePhaseOne key={area.id} item={area} />
+                ))}
             </SidebarMenu>
           </SidebarGroup>
         </ScrollArea>

@@ -8,7 +8,13 @@ import {
   InstrumentFolder,
   Parameter,
   ParameterFolder,
+  PhaseTwoAreaFolder,
+  PhaseTwoFolder,
 } from "../generated/prisma";
+
+export type PhaseTwoInstrumentDTO = PhaseTwoFolder & {
+  phaseTwoAreaFolders: PhaseTwoAreaFolderDTO[];
+};
 
 export type PhaseOneInstrumentDTO = InstrumentFolder & {
   areaFolders: AreaFolderDTO[];
@@ -16,6 +22,10 @@ export type PhaseOneInstrumentDTO = InstrumentFolder & {
 export type AreaFolderDTO = AreaFolder & {
   area: Area;
   parameterFolders: ParameterFolderDTO[];
+  areaFiles: AreaFile[];
+};
+export type PhaseTwoAreaFolderDTO = PhaseTwoAreaFolder & {
+  area: Area;
   areaFiles: AreaFile[];
 };
 export type ParameterFolderDTO = ParameterFolder & {

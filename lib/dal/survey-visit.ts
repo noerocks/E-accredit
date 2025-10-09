@@ -7,8 +7,7 @@ export async function createSurveyVisit(
   actualSurveyDate: Date,
   surveyVisitType: SurveyVisitType,
   targetLevelId: string,
-  status: Progress,
-  instrumentId: string
+  status: Progress
 ) {
   const session = await verifySession();
   if (!session) return null;
@@ -24,11 +23,6 @@ export async function createSurveyVisit(
       accreditation: {
         connect: {
           id: accreditationId,
-        },
-      },
-      phaseOneRequirements: {
-        create: {
-          instrumentId,
         },
       },
       status: status,
@@ -70,6 +64,20 @@ export async function getSurveyVisitStructureById(id: string) {
                       },
                     },
                   },
+                },
+              },
+            },
+          },
+        },
+      },
+      phaseTwoRequirements: {
+        include: {
+          phaseTwoFolder: {
+            include: {
+              phaseTwoAreaFolders: {
+                include: {
+                  area: true,
+                  areaFiles: true,
                 },
               },
             },

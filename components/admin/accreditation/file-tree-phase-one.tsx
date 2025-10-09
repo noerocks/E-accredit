@@ -13,7 +13,8 @@ import {
   EvidenceFileDTO,
   IndicatorFolderDTO,
   ParameterFolderDTO,
-} from "@/lib/dto/phase-one-instrument";
+  PhaseTwoAreaFolderDTO,
+} from "@/lib/dto/accreditation-instrument";
 import { AreaFileType, Category } from "@/lib/generated/prisma";
 import { ChevronRight, File, Folder } from "lucide-react";
 import { useParams } from "next/navigation";
@@ -22,10 +23,17 @@ type TreeNode =
   | AreaFolderDTO
   | ParameterFolderDTO
   | IndicatorFolderDTO
-  | EvidenceFileDTO;
+  | EvidenceFileDTO
+  | PhaseTwoAreaFolderDTO;
 
 const isAreaFolder = (node: TreeNode): node is AreaFolderDTO => {
-  return "areaId" in node;
+  return "instrumentFolderId" in node;
+};
+
+const isPhaseTwoAreaFolder = (
+  node: TreeNode
+): node is PhaseTwoAreaFolderDTO => {
+  return "phaseTwoFolderId" in node;
 };
 
 const isParameterFolder = (node: TreeNode): node is ParameterFolderDTO => {
@@ -75,6 +83,31 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
               ))}
               {item.parameterFolders.map((parameter) => (
                 <FileTreePhaseOne item={parameter} key={parameter.id} />
+              ))}
+            </SidebarMenuSub>
+          </CollapsibleContent>
+        </Collapsible>
+      </SidebarMenuItem>
+    );
+  }
+  if (isPhaseTwoAreaFolder(item)) {
+    return (
+      <SidebarMenuItem>
+        <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
+          <SidebarMenuButton data-id={item.id} data-type={"area"}>
+            <CollapsibleTrigger asChild>
+              <ChevronRight className="transition-transform" />
+            </CollapsibleTrigger>
+            {`📁 ${item.area.label}`}
+          </SidebarMenuButton>
+          <CollapsibleContent>
+            <SidebarMenuSub>
+              {item.areaFiles.map((areaFile) => (
+                <SidebarMenuButton
+                  key={areaFile.id}
+                  data-id={areaFile.id}
+                  data-type={"area-file"}
+                >{`📄 ${areaFileType[areaFile.type]}`}</SidebarMenuButton>
               ))}
             </SidebarMenuSub>
           </CollapsibleContent>

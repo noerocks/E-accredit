@@ -21,7 +21,11 @@ export const getPrograms = unstable_cache(
   async (): Promise<ProgramDTO[]> => {
     const programs = await prisma.program.findMany({
       include: {
-        accreditation: true,
+        accreditation: {
+          include: {
+            level: true,
+          },
+        },
         programHead: true,
       },
     });
@@ -53,6 +57,24 @@ export async function getProgramById(id: string) {
     },
   });
   return program[0];
+}
+
+export async function getProgramCurrentAccreditation(id: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const program = await prisma.program.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      accreditation: {
+        include: {
+          level: true,
+        },
+      },
+    },
+  });
+  return program;
 }
 
 export async function assignProgramHead(userId: string, programId: string) {

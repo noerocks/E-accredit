@@ -32,17 +32,19 @@ const AccreditationCards = ({
     );
   };
   const formatAccreditationLabel = (
-    programCode: String,
-    accreditationLabel: String,
-    accreditationPhase: String
+    programCode: string,
+    accreditationLabel: string,
+    accreditationPhase: string,
+    levelRank: number
   ) => {
-    return `${programCode} - ${accreditationLabel} ${accreditationPhase
-      .split("_")
-      .map(
-        (word) =>
-          word[0].toLocaleUpperCase() + word.slice(1).toLocaleLowerCase()
-      )
-      .join(" ")}`;
+    return `${programCode} - ${accreditationLabel} ${
+      levelRank <= 4
+        ? accreditationPhase
+            .split("_")
+            .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
+            .join(" ")
+        : ""
+    }`;
   };
   return (
     <div className="flex flex-wrap gap-5">
@@ -56,7 +58,8 @@ const AccreditationCards = ({
                   {formatAccreditationLabel(
                     a.program.code,
                     surveyVisit.level.label,
-                    surveyVisit.level.phase
+                    surveyVisit.level.phase,
+                    surveyVisit.level.rank
                   )}
                 </CardTitle>
                 <CardDescription>{a.program.name}</CardDescription>
@@ -68,7 +71,8 @@ const AccreditationCards = ({
                   }?accreditation=${formatAccreditationLabel(
                     a.program.code,
                     surveyVisit.level.label,
-                    surveyVisit.level.phase
+                    surveyVisit.level.phase,
+                    surveyVisit.level.rank
                   )
                     .split(" ")
                     .join("+")}`}

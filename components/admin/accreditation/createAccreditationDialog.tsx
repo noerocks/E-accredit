@@ -34,6 +34,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { createSurveyVisit } from "@/lib/action/accreditation";
+import { getProgramCurrentAccredidtationStatus } from "@/lib/action/program";
 import { InstrumentDisplayDTO } from "@/lib/dto/instrument";
 import { LevelDTO } from "@/lib/dto/level";
 import { ProgramDTO } from "@/lib/dto/programs";
@@ -62,6 +63,7 @@ const CreateAccreditationDialog = ({
       instrumentId: "",
     },
   });
+  const [selectedProgramRank, setSelectedProgramRank] = useState<number>(8);
   const [pending, startTransition] = useTransition();
   const [datePickerOpen, setDatePickerOpen] = useState(false);
   const onSubmit = async (
@@ -114,7 +116,12 @@ const CreateAccreditationDialog = ({
                 <FormItem>
                   <FormLabel>Program</FormLabel>
                   <Select
-                    onValueChange={field.onChange}
+                    onValueChange={async (value) => {
+                      const currentRank =
+                        await getProgramCurrentAccredidtationStatus(value);
+                      setSelectedProgramRank(currentRank || 8);
+                      field.onChange(value);
+                    }}
                     defaultValue={field.value}
                   >
                     <FormControl>
@@ -154,7 +161,11 @@ const CreateAccreditationDialog = ({
                       {levels
                         ?.sort((a, b) => a.rank - b.rank)
                         .map((level) => (
-                          <SelectItem value={level.id} key={level.id}>
+                          <SelectItem
+                            value={level.id}
+                            key={level.id}
+                            // disabled={level.rank !== selectedProgramRank - 1}
+                          >
                             {`${level.label} ${
                               ["Level IV", "Level III"].includes(level.label)
                                 ? level.phase

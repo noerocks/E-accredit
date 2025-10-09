@@ -17,6 +17,9 @@ const AccreditationLayout = async ({
         instrumentFolder={
           surveyVisitStructure?.phaseOneRequirements?.instrumentFolder
         }
+        phaseTwoFolder={
+          surveyVisitStructure?.phaseTwoRequirements?.phaseTwoFolder
+        }
       />
       <div className="flex-1 h-full bg-muted overflow-auto">{children}</div>
     </div>

@@ -1,4 +1,5 @@
 import { Accreditation, User } from "../generated/prisma";
+import { LevelDTO } from "./level";
 
 export type ProgramsNamesAndIdDTO = {
   id: string;

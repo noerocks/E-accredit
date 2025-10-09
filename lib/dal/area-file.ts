@@ -41,6 +41,11 @@ export async function getAreaFileById(id: string) {
           },
         },
       },
+      phaseTwoAreaFolder: {
+        include: {
+          area: true,
+        },
+      },
     },
   });
   return areaFile;
