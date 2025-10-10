@@ -47,7 +47,7 @@ export const getUserProfile = cache(
 );
 
 export const getUsers = unstable_cache(
-  async (): Promise<UsersDTO[] | null> => {
+  async (): Promise<UsersDTO[] | []> => {
     try {
       const users = await prisma.user.findMany();
       return users.map((user) => ({
@@ -61,7 +61,7 @@ export const getUsers = unstable_cache(
       }));
     } catch (error) {
       console.log("Failed to fetch users");
-      return null;
+      return [];
     }
   },
   ["users"],

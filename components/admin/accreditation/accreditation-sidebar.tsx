@@ -46,7 +46,7 @@ const AccreditationSidebar = ({
   return (
     <Sidebar
       collapsible="none"
-      className="border-r overflow-auto w-[300px] flex flex-col"
+      className="border-r overflow-auto w-[300px] flex flex-col bg-background"
     >
       <SidebarHeader className="border-b">
         <SidebarMenu>

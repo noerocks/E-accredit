@@ -104,15 +104,6 @@ const EvidencePage = async ({
             </div>
           </CardFooter>
         </Card>
-        {evidence?.fileVersions && (
-          <VersionHistory
-            fileId={evidenceId}
-            versions={evidence?.fileVersions}
-            fileType="Evidence"
-            isMember={isMember}
-            isAdmin={isAdmin}
-          />
-        )}
       </div>
     </ScrollArea>
   );

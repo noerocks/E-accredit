@@ -21,7 +21,7 @@ const AccreditationLayout = async ({
           surveyVisitStructure?.phaseTwoRequirements?.phaseTwoFolder
         }
       />
-      <div className="flex-1 h-full bg-muted overflow-auto">{children}</div>
+      <div className="flex-1 h-full overflow-auto">{children}</div>
     </div>
   );
 };
