@@ -65,7 +65,10 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
   if (isAreaFolder(item)) {
     return (
       <SidebarMenuItem>
-        <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
+        <Collapsible
+          className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90"
+          defaultOpen
+        >
           <SidebarMenuButton data-id={item.id} data-type={"area"}>
             <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
@@ -93,7 +96,10 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
   if (isPhaseTwoAreaFolder(item)) {
     return (
       <SidebarMenuItem>
-        <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
+        <Collapsible
+          className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90"
+          defaultOpen
+        >
           <SidebarMenuButton data-id={item.id} data-type={"area"}>
             <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
@@ -119,7 +125,10 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
     const order = [Category.SYSTEM, Category.IMPLEMENTATION, Category.OUTCOME];
     return (
       <SidebarMenuItem>
-        <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
+        <Collapsible
+          className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90"
+          defaultOpen
+        >
           <SidebarMenuButton data-id={item.id} data-type={"parameter"}>
             <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
@@ -145,7 +154,10 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
   if (isIndicatorFolder(item)) {
     return (
       <SidebarMenuItem>
-        <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
+        <Collapsible
+          className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90"
+          defaultOpen
+        >
           <SidebarMenuButton>
             <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />

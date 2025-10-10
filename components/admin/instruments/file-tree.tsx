@@ -40,7 +40,10 @@ const FileTree = ({ item }: { item: TreeNode }) => {
     const parameters = item.parameter as Parameter[];
     return (
       <SidebarMenuItem>
-        <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
+        <Collapsible
+          className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90"
+          defaultOpen
+        >
           <SidebarMenuButton
             data-id={item.id}
             data-type={"area"}
@@ -79,7 +82,10 @@ const FileTree = ({ item }: { item: TreeNode }) => {
     const groupedIndicators = [system, implementation, outcomes];
     return (
       <SidebarMenuItem>
-        <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
+        <Collapsible
+          className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90"
+          defaultOpen
+        >
           <SidebarMenuButton
             data-id={item.id}
             data-type={"parameter"}
@@ -104,7 +110,10 @@ const FileTree = ({ item }: { item: TreeNode }) => {
   if (isIndicatorGroup(item)) {
     return (
       <SidebarMenuItem>
-        <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
+        <Collapsible
+          className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90"
+          defaultOpen
+        >
           <SidebarMenuButton>
             <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />

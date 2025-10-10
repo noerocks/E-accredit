@@ -67,11 +67,12 @@ export async function createNewVersion({
 }
 
 export async function changeActiveVersion(
-  id: string,
-  fileId: string,
+  id: string | undefined,
+  fileId: string | undefined,
   fileType: "Evidence" | "AreaFile"
 ) {
-  if (!id) return { failure: { error: "Id is required" } };
+  if (!id || !fileId || !fileType)
+    return { failure: { error: "Invalid input" } };
   switch (fileType) {
     case "Evidence": {
       await resetAllEvidenceVersionStatus(fileId);

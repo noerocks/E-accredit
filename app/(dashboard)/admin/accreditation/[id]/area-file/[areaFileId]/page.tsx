@@ -1,6 +1,6 @@
 import Comments from "@/components/admin/evidence-file/comments";
+import FileVersions from "@/components/admin/evidence-file/file-versions";
 import UploadFileForm from "@/components/admin/evidence-file/upload-file-form";
-import VersionHistory from "@/components/admin/evidence-file/version-history";
 import {
   Card,
   CardDescription,
@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { verifySession } from "@/lib/action/session";
-import { getAreaById } from "@/lib/dal/area";
 import { getAreaFileById } from "@/lib/dal/area-file";
 import { AreaFileType, FileStatus } from "@/lib/generated/prisma";
 import clsx from "clsx";
@@ -78,15 +77,13 @@ const AreaFilePage = async ({
             </div>
           </CardFooter>
         </Card>
-        {areaFile?.fileVersions && (
-          <VersionHistory
-            fileId={areaFileId}
-            versions={areaFile?.fileVersions}
-            fileType="AreaFile"
-            isAdmin={isAdmin}
-            isChairPerson={isChairperson}
-          />
-        )}
+        <FileVersions
+          fileId={areaFileId}
+          versions={areaFile?.fileVersions}
+          fileType="AreaFile"
+          isAdmin={isAdmin}
+          isChairPerson={isChairperson}
+        />
       </div>
     </ScrollArea>
   );

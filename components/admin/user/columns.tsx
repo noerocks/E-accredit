@@ -68,13 +68,15 @@ export const columns: ColumnDef<UsersDTO>[] = [
       <DataTableColumnHeader column={column} title="Registration Date" />
     ),
     cell: ({ row }) => {
-      const formattedDate = new Date(
+      const formattedDate = `${new Date(
         row.original.registrationDate
       ).toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
         day: "numeric",
-      });
+      })} - ${new Date(row.original.registrationDate).toLocaleTimeString(
+        "en-US"
+      )}`;
       return <div>{formattedDate}</div>;
     },
   },
