@@ -27,7 +27,8 @@ const AreaFilePage = async ({
   const isChairperson =
     areaFile?.phaseOneAreaFolder?.taskForce?.chairPerson?.userId === user.id;
   const isAdmin = user.role === "ADMIN";
-  const area = areaFile?.phaseTwoAreaFolder?.area;
+  const area =
+    areaFile?.phaseOneAreaFolder?.area || areaFile?.phaseTwoAreaFolder?.area;
   const areaFileType = {
     [AreaFileType.PPP]: "Program Performance Profile",
     [AreaFileType.COMPLIANCE_REPORT]: "Compliance Report",

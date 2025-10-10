@@ -60,7 +60,7 @@ const areaFileType = {
   [AreaFileType.NARRATIVE_PROFILE]: "Narrative Profile",
 };
 
-const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
+const FileTree = ({ item }: { item: TreeNode }) => {
   const params = useParams();
   if (isAreaFolder(item)) {
     return (
@@ -77,15 +77,17 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
-              {item.areaFiles.map((areaFile) => (
-                <SidebarMenuButton
-                  key={areaFile.id}
-                  data-id={areaFile.id}
-                  data-type={"area-file"}
-                >{`📄 ${areaFileType[areaFile.type]}`}</SidebarMenuButton>
-              ))}
+              {item.areaFiles
+                .sort((a, b) => a.type.localeCompare(b.type))
+                .map((areaFile) => (
+                  <SidebarMenuButton
+                    key={areaFile.id}
+                    data-id={areaFile.id}
+                    data-type={"area-file"}
+                  >{`📄 ${areaFileType[areaFile.type]}`}</SidebarMenuButton>
+                ))}
               {item.parameterFolders.map((parameter) => (
-                <FileTreePhaseOne item={parameter} key={parameter.id} />
+                <FileTree item={parameter} key={parameter.id} />
               ))}
             </SidebarMenuSub>
           </CollapsibleContent>
@@ -108,13 +110,15 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
-              {item.areaFiles.map((areaFile) => (
-                <SidebarMenuButton
-                  key={areaFile.id}
-                  data-id={areaFile.id}
-                  data-type={"area-file"}
-                >{`📄 ${areaFileType[areaFile.type]}`}</SidebarMenuButton>
-              ))}
+              {item.areaFiles
+                .sort((a, b) => a.type.localeCompare(b.type))
+                .map((areaFile) => (
+                  <SidebarMenuButton
+                    key={areaFile.id}
+                    data-id={areaFile.id}
+                    data-type={"area-file"}
+                  >{`📄 ${areaFileType[areaFile.type]}`}</SidebarMenuButton>
+                ))}
             </SidebarMenuSub>
           </CollapsibleContent>
         </Collapsible>
@@ -143,7 +147,7 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
                     order.indexOf(a.category) - order.indexOf(b.category)
                 )
                 .map((category) => (
-                  <FileTreePhaseOne item={category} key={category.id} />
+                  <FileTree item={category} key={category.id} />
                 ))}
             </SidebarMenuSub>
           </CollapsibleContent>
@@ -166,9 +170,13 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
-              {item.evidenceFiles.map((file) => (
-                <FileTreePhaseOne item={file} key={file.id} />
-              ))}
+              {item.evidenceFiles
+                .sort((a, b) =>
+                  a.indicator.label.localeCompare(b.indicator.label)
+                )
+                .map((file) => (
+                  <FileTree item={file} key={file.id} />
+                ))}
             </SidebarMenuSub>
           </CollapsibleContent>
         </Collapsible>
@@ -190,4 +198,4 @@ const FileTreePhaseOne = ({ item }: { item: TreeNode }) => {
   }
 };
 
-export default FileTreePhaseOne;
+export default FileTree;

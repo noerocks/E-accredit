@@ -5,6 +5,7 @@ import {
   Archive,
   CheckCircle2,
   Copy,
+  File,
   MoreHorizontal,
   Trash,
   XCircle,
@@ -54,16 +55,23 @@ export const columns: ColumnDef<FileVersion>[] = [
     cell: ({ row }) => {
       const version = row.original;
       return (
-        <a href={version.objectUrl} target="_blank" className="hover:underline">
-          {version.name}
-        </a>
+        <div className="flex items-center gap-1">
+          <File size={15} />
+          <a
+            href={version.objectUrl}
+            target="_blank"
+            className="hover:underline"
+          >
+            {version.name}
+          </a>
+        </div>
       );
     },
   },
   {
     accessorKey: "uploadedAt",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Uploaded at" />
+      <DataTableColumnHeader column={column} title="Uploaded At" />
     ),
     cell: ({ row }) => {
       const formattedDate = `${new Date(
@@ -96,17 +104,17 @@ export const columns: ColumnDef<FileVersion>[] = [
             })}
           >
             {status === "ACTIVE" ? (
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-1">
                 <CheckCircle2 size={15} />
                 Active
               </span>
             ) : status === "REJECTED" ? (
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-1">
                 <XCircle size={15} />
                 Rejected
               </span>
             ) : (
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-1">
                 <Archive size={15} />
                 Archived
               </span>

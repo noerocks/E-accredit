@@ -164,7 +164,7 @@ const CreateAccreditationDialog = ({
                           <SelectItem
                             value={level.id}
                             key={level.id}
-                            // disabled={level.rank !== selectedProgramRank - 1}
+                            disabled={level.rank !== selectedProgramRank - 1}
                           >
                             {`${level.label} ${
                               ["Level IV", "Level III"].includes(level.label)

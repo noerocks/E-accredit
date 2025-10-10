@@ -15,7 +15,7 @@ import {
   PhaseOneInstrumentDTO,
   PhaseTwoInstrumentDTO,
 } from "@/lib/dto/accreditation-instrument";
-import FileTreePhaseOne from "./file-tree-phase-one";
+import FileTree from "./file-tree";
 import React from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -61,12 +61,12 @@ const AccreditationSidebar = ({
             <SidebarGroupLabel>Areas</SidebarGroupLabel>
             <SidebarMenu onDoubleClick={onDoubleClick}>
               {instrumentFolder &&
-                instrumentFolder.areaFolders.map((area) => (
-                  <FileTreePhaseOne key={area.id} item={area} />
-                ))}
+                instrumentFolder.areaFolders
+                  .sort((a, b) => a.area.label.localeCompare(b.area.label))
+                  .map((area) => <FileTree key={area.id} item={area} />)}
               {phaseTwoFolder &&
                 phaseTwoFolder.phaseTwoAreaFolders.map((area) => (
-                  <FileTreePhaseOne key={area.id} item={area} />
+                  <FileTree key={area.id} item={area} />
                 ))}
             </SidebarMenu>
           </SidebarGroup>

@@ -56,9 +56,11 @@ const FileTree = ({ item }: { item: TreeNode }) => {
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
-              {parameters.map((parameter) => (
-                <FileTree item={parameter} key={parameter.id} />
-              ))}
+              {parameters
+                .sort((a, b) => a.label.localeCompare(b.label))
+                .map((parameter) => (
+                  <FileTree item={parameter} key={parameter.id} />
+                ))}
             </SidebarMenuSub>
           </CollapsibleContent>
         </Collapsible>

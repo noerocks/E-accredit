@@ -83,9 +83,11 @@ const InstrumentSidebar = ({
             <CreateAreaDialog />
             <SidebarGroupContent>
               <SidebarMenu onDoubleClick={onDoubleClick}>
-                {instrument?.area.map((item, index) => (
-                  <FileTree key={index} item={item} />
-                ))}
+                {instrument?.area
+                  .sort((a, b) => a.label.localeCompare(b.label))
+                  .map((item, index) => (
+                    <FileTree key={index} item={item} />
+                  ))}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
