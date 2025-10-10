@@ -2,7 +2,7 @@
 
 import { UsersDTO } from "@/lib/dto/user";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, Pencil, Trash } from "lucide-react";
+import { MoreHorizontal, Pencil, Trash, UserPlus, UserX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DataTableColumnHeader } from "@/components/data-table-column-header";
+import { usePathname } from "next/navigation";
 
 export const columns: ColumnDef<UsersDTO>[] = [
   {
@@ -104,6 +105,7 @@ export const columns: ColumnDef<UsersDTO>[] = [
     id: "actions",
     cell: ({ row }) => {
       const user = row.original;
+      const pathName = usePathname();
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -115,14 +117,29 @@ export const columns: ColumnDef<UsersDTO>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem data-action="edit" data-id={user.id}>
-              <Pencil />
-              Edit
-            </DropdownMenuItem>
-            <DropdownMenuItem data-action="delete" data-id={user.id}>
-              <Trash />
-              Delete
-            </DropdownMenuItem>
+            {pathName === "/admin/users" ? (
+              <>
+                <DropdownMenuItem data-action="edit" data-id={user.id}>
+                  <Pencil />
+                  Edit
+                </DropdownMenuItem>
+                <DropdownMenuItem data-action="delete" data-id={user.id}>
+                  <Trash />
+                  Delete
+                </DropdownMenuItem>
+              </>
+            ) : (
+              <>
+                <DropdownMenuItem data-action="accept" data-id={user.id}>
+                  <UserPlus />
+                  Accept
+                </DropdownMenuItem>
+                <DropdownMenuItem data-action="reject" data-id={user.id}>
+                  <UserX />
+                  Reject
+                </DropdownMenuItem>
+              </>
+            )}
           </DropdownMenuContent>
         </DropdownMenu>
       );

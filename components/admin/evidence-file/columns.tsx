@@ -51,6 +51,14 @@ export const columns: ColumnDef<FileVersion>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="File name" />
     ),
+    cell: ({ row }) => {
+      const version = row.original;
+      return (
+        <a href={version.objectUrl} target="_blank" className="hover:underline">
+          {version.name}
+        </a>
+      );
+    },
   },
   {
     accessorKey: "uploadedAt",

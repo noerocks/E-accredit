@@ -77,7 +77,7 @@ const TaskForce = ({
         <SheetHeader>
           <SheetTitle>Taskforce</SheetTitle>
         </SheetHeader>
-        <Card>
+        <Card className="bg-background">
           <CardContent className="flex flex-col gap-2">
             <p className="text-sm text-muted-foreground text-balance text-center">
               Chairperson
@@ -105,7 +105,7 @@ const TaskForce = ({
             </Select>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-background">
           <CardContent className="flex flex-col gap-2">
             <p className="text-sm text-muted-foreground text-balance text-center">
               Members

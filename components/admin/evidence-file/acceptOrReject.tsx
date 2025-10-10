@@ -16,18 +16,10 @@ const AcceptOrReject = ({ evidenceId }: { evidenceId: string }) => {
   };
   return (
     <div className="flex items-center gap-2">
-      <Button
-        className="text-white bg-blue-500 hover:bg-blue-500/90"
-        data-action="accept"
-        onClick={onClick}
-      >
+      <Button data-action="accept" onClick={onClick}>
         Accept
       </Button>
-      <Button
-        className="text-white bg-red-500 hover:bg-red-500/90"
-        data-action="reject"
-        onClick={onClick}
-      >
+      <Button variant="outline" data-action="reject" onClick={onClick}>
         Reject
       </Button>
     </div>

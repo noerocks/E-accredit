@@ -85,7 +85,7 @@ export const getPendingUserCount = cache(async () => {
 });
 
 export const getPendingUsers = unstable_cache(
-  async (): Promise<UsersDTO[] | null> => {
+  async (): Promise<UsersDTO[] | []> => {
     try {
       const pendingUsers = await prisma.user.findMany({
         where: {
@@ -103,7 +103,7 @@ export const getPendingUsers = unstable_cache(
       }));
     } catch (error) {
       console.log("Failed to fetch pending users");
-      return null;
+      return [];
     }
   },
   ["pendingUsers"],

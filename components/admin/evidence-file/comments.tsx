@@ -24,7 +24,7 @@ const Comments = () => {
           <SheetTitle>Comments</SheetTitle>
         </SheetHeader>
         <ScrollArea className="flex-1 min-h-0"></ScrollArea>
-        <SheetFooter className="bg-muted">
+        <SheetFooter className="border-t">
           <div className="flex items-center gap-2 w-full">
             <Input className="focus-visible:ring-0 ring-offset-0" />
             <Button>

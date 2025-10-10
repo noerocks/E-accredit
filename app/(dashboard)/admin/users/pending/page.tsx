@@ -1,14 +1,20 @@
-import PendingUserTable from "@/components/admin/user/pending-user-table";
-import Search from "@/components/admin/user/search";
+import { columns } from "@/components/admin/user/columns";
+import { DataTable } from "@/components/admin/user/data-table";
+import { Card, CardContent } from "@/components/ui/card";
+import { getPendingUsers } from "@/lib/dal/user";
 
-const UsersPendingPage = () => {
+const UsersPendingPage = async () => {
+  const pendingUsers = await getPendingUsers();
   return (
     <div className="max-w-3/4 mx-auto mt-10">
       <div className="mb-10 flex items-center justify-between">
-        <div className="text-2xl">Pending Users</div>
-        <Search />
+        <div className="text-3xl">Pending Users</div>
       </div>
-      <PendingUserTable />
+      <Card className="bg-background">
+        <CardContent>
+          <DataTable columns={columns} data={pendingUsers} />
+        </CardContent>
+      </Card>
     </div>
   );
 };

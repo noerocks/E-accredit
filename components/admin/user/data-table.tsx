@@ -33,6 +33,8 @@ import {
 import { UsersDTO } from "@/lib/dto/user";
 import { Dialog } from "@/components/ui/dialog";
 import DeleteUserDialog from "./delete-user-dialog";
+import AcceptUserDialog from "./accept-user-dialog";
+import RejectUserDialog from "./reject-user-dialog";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -69,17 +71,30 @@ export function DataTable<TData, TValue>({
     },
   });
   const [open, setOpen] = React.useState<boolean>(false);
+  const [openPending, setOpenPending] = React.useState<boolean>(false);
+  const [pendingAction, setPendingAction] = React.useState<string>("");
   const [selectedUser, setSelectedUser] = React.useState<UsersDTO>();
   const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     const menuItem = target.closest<HTMLDivElement>("[data-action]");
     if (!menuItem) return;
-    const { id, action } = menuItem.dataset;
+    const { id, action, type } = menuItem.dataset;
     const user = (data as UsersDTO[]).find((user) => user.id === id);
     setSelectedUser(user);
     switch (action) {
+      case "accept": {
+        setPendingAction("accept");
+        setOpenPending(true);
+        break;
+      }
       case "delete": {
         setOpen(true);
+        break;
+      }
+      case "reject": {
+        setPendingAction("reject");
+        setOpenPending(true);
+        break;
       }
     }
   };
@@ -197,6 +212,13 @@ export function DataTable<TData, TValue>({
       </div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DeleteUserDialog selectedUser={selectedUser} />
+      </Dialog>
+      <Dialog open={openPending} onOpenChange={setOpenPending}>
+        {pendingAction === "accept" ? (
+          <AcceptUserDialog selectedUser={selectedUser} />
+        ) : (
+          <RejectUserDialog selectedUser={selectedUser} />
+        )}
       </Dialog>
     </>
   );

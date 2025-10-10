@@ -67,7 +67,7 @@ const ParameterFolderPage = async ({
         <p className="text-lg">Progress</p>
         <div className="flex items-center gap-2">
           {report.map((report) => (
-            <Card key={report.category} className="flex-1">
+            <Card key={report.category} className="flex-1 bg-background">
               <CardHeader>
                 <CardTitle>
                   {report.category[0].toUpperCase() +
