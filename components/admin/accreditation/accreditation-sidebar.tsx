@@ -8,6 +8,7 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
@@ -19,7 +20,8 @@ import FileTree from "./file-tree";
 import React from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { FolderCheckIcon } from "lucide-react";
+import { FolderCheckIcon, Home } from "lucide-react";
+import Link from "next/link";
 
 const AccreditationSidebar = ({
   instrumentFolder,
@@ -28,7 +30,6 @@ const AccreditationSidebar = ({
   instrumentFolder: PhaseOneInstrumentDTO | null | undefined;
   phaseTwoFolder: PhaseTwoInstrumentDTO | null | undefined;
 }) => {
-  console.log(phaseTwoFolder);
   const params = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -43,7 +44,6 @@ const AccreditationSidebar = ({
       )}/${type}/${id}?${searchParams.toString()}`
     );
   };
-  console.log(phaseTwoFolder?.phaseTwoAreaFolders);
   return (
     <Sidebar
       collapsible="none"
@@ -56,6 +56,15 @@ const AccreditationSidebar = ({
               <FolderCheckIcon />
               File Explorer
             </SidebarMenuButton>
+            <SidebarMenuAction asChild>
+              <Link
+                href={`/admin/accreditation/${String(
+                  params.id
+                )}?${searchParams.toString()}`}
+              >
+                <Home />
+              </Link>
+            </SidebarMenuAction>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

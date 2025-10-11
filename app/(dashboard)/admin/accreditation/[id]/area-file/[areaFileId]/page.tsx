@@ -11,7 +11,8 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { verifySession } from "@/lib/action/session";
 import { getAreaFileById } from "@/lib/dal/area-file";
-import { AreaFileType, FileStatus } from "@/lib/generated/prisma";
+import { getFilteredComments } from "@/lib/dal/comment";
+import { AreaFileType, CommentType, FileStatus } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import { CircleDot, Layers } from "lucide-react";
 
@@ -34,6 +35,10 @@ const AreaFilePage = async ({
     [AreaFileType.COMPLIANCE_REPORT]: "Compliance Report",
     [AreaFileType.NARRATIVE_PROFILE]: "Narrative Profile",
   };
+  const comments = await getFilteredComments({
+    areaFileId: areaFile?.id,
+    type: CommentType.TASKFORCE,
+  });
   const formatStatus = (status: FileStatus) => {
     return status
       .split("_")
@@ -71,7 +76,12 @@ const AreaFilePage = async ({
               {formatStatus(areaFile?.status!)}
             </p>
             <div className="flex items-center gap-2">
-              <Comments />
+              <Comments
+                user={user}
+                type={CommentType.TASKFORCE}
+                areaFileId={areaFile?.id}
+                comments={comments}
+              />
               {(isAdmin || isChairperson) && (
                 <UploadFileForm
                   area={area}

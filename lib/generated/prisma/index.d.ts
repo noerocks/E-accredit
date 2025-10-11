@@ -128,6 +128,11 @@ export type TaskForce = $Result.DefaultSelection<Prisma.$TaskForcePayload>
  * 
  */
 export type TaskForceMember = $Result.DefaultSelection<Prisma.$TaskForceMemberPayload>
+/**
+ * Model Comment
+ * 
+ */
+export type Comment = $Result.DefaultSelection<Prisma.$CommentPayload>
 
 /**
  * Enums
@@ -213,6 +218,15 @@ export const FileVersionStatus: {
 
 export type FileVersionStatus = (typeof FileVersionStatus)[keyof typeof FileVersionStatus]
 
+
+export const CommentType: {
+  TASKFORCE: 'TASKFORCE',
+  SELF_SURVEY: 'SELF_SURVEY',
+  ACTUAL_SURVEY: 'ACTUAL_SURVEY'
+};
+
+export type CommentType = (typeof CommentType)[keyof typeof CommentType]
+
 }
 
 export type Role = $Enums.Role
@@ -250,6 +264,10 @@ export const FileStatus: typeof $Enums.FileStatus
 export type FileVersionStatus = $Enums.FileVersionStatus
 
 export const FileVersionStatus: typeof $Enums.FileVersionStatus
+
+export type CommentType = $Enums.CommentType
+
+export const CommentType: typeof $Enums.CommentType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -598,6 +616,16 @@ export class PrismaClient<
     * ```
     */
   get taskForceMember(): Prisma.TaskForceMemberDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.comment`: Exposes CRUD operations for the **Comment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Comments
+    * const comments = await prisma.comment.findMany()
+    * ```
+    */
+  get comment(): Prisma.CommentDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1060,7 +1088,8 @@ export namespace Prisma {
     PhaseTwoAreaFolder: 'PhaseTwoAreaFolder',
     AreaFile: 'AreaFile',
     TaskForce: 'TaskForce',
-    TaskForceMember: 'TaskForceMember'
+    TaskForceMember: 'TaskForceMember',
+    Comment: 'Comment'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1079,7 +1108,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level" | "accreditation" | "surveyVisit" | "phaseOneRequirements" | "instrumentFolder" | "areaFolder" | "parameterFolder" | "indicatorFolder" | "evidenceFile" | "fileVersion" | "phaseTwoRequirements" | "phaseTwoFolder" | "phaseTwoAreaFolder" | "areaFile" | "taskForce" | "taskForceMember"
+      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level" | "accreditation" | "surveyVisit" | "phaseOneRequirements" | "instrumentFolder" | "areaFolder" | "parameterFolder" | "indicatorFolder" | "evidenceFile" | "fileVersion" | "phaseTwoRequirements" | "phaseTwoFolder" | "phaseTwoAreaFolder" | "areaFile" | "taskForce" | "taskForceMember" | "comment"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2785,6 +2814,80 @@ export namespace Prisma {
           }
         }
       }
+      Comment: {
+        payload: Prisma.$CommentPayload<ExtArgs>
+        fields: Prisma.CommentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CommentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CommentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommentPayload>
+          }
+          findFirst: {
+            args: Prisma.CommentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CommentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommentPayload>
+          }
+          findMany: {
+            args: Prisma.CommentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommentPayload>[]
+          }
+          create: {
+            args: Prisma.CommentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommentPayload>
+          }
+          createMany: {
+            args: Prisma.CommentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CommentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommentPayload>[]
+          }
+          delete: {
+            args: Prisma.CommentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommentPayload>
+          }
+          update: {
+            args: Prisma.CommentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommentPayload>
+          }
+          deleteMany: {
+            args: Prisma.CommentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CommentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CommentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommentPayload>[]
+          }
+          upsert: {
+            args: Prisma.CommentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommentPayload>
+          }
+          aggregate: {
+            args: Prisma.CommentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateComment>
+          }
+          groupBy: {
+            args: Prisma.CommentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CommentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CommentCountArgs<ExtArgs>
+            result: $Utils.Optional<CommentCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2900,6 +3003,7 @@ export namespace Prisma {
     areaFile?: AreaFileOmit
     taskForce?: TaskForceOmit
     taskForceMember?: TaskForceMemberOmit
+    comment?: CommentOmit
   }
 
   /* Types for Logging */
@@ -2983,12 +3087,14 @@ export namespace Prisma {
     programPersonnel: number
     programHead: number
     uploads: number
+    comments: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     programPersonnel?: boolean | UserCountOutputTypeCountProgramPersonnelArgs
     programHead?: boolean | UserCountOutputTypeCountProgramHeadArgs
     uploads?: boolean | UserCountOutputTypeCountUploadsArgs
+    comments?: boolean | UserCountOutputTypeCountCommentsArgs
   }
 
   // Custom InputTypes
@@ -3021,6 +3127,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountUploadsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FileVersionWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentWhereInput
   }
 
 
@@ -3474,10 +3587,12 @@ export namespace Prisma {
 
   export type EvidenceFileCountOutputType = {
     fileVersions: number
+    comments: number
   }
 
   export type EvidenceFileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     fileVersions?: boolean | EvidenceFileCountOutputTypeCountFileVersionsArgs
+    comments?: boolean | EvidenceFileCountOutputTypeCountCommentsArgs
   }
 
   // Custom InputTypes
@@ -3496,6 +3611,13 @@ export namespace Prisma {
    */
   export type EvidenceFileCountOutputTypeCountFileVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FileVersionWhereInput
+  }
+
+  /**
+   * EvidenceFileCountOutputType without action
+   */
+  export type EvidenceFileCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentWhereInput
   }
 
 
@@ -3567,10 +3689,12 @@ export namespace Prisma {
 
   export type AreaFileCountOutputType = {
     fileVersions: number
+    comments: number
   }
 
   export type AreaFileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     fileVersions?: boolean | AreaFileCountOutputTypeCountFileVersionsArgs
+    comments?: boolean | AreaFileCountOutputTypeCountCommentsArgs
   }
 
   // Custom InputTypes
@@ -3589,6 +3713,13 @@ export namespace Prisma {
    */
   export type AreaFileCountOutputTypeCountFileVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FileVersionWhereInput
+  }
+
+  /**
+   * AreaFileCountOutputType without action
+   */
+  export type AreaFileCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentWhereInput
   }
 
 
@@ -3842,6 +3973,7 @@ export namespace Prisma {
     programPersonnel?: boolean | User$programPersonnelArgs<ExtArgs>
     programHead?: boolean | User$programHeadArgs<ExtArgs>
     uploads?: boolean | User$uploadsArgs<ExtArgs>
+    comments?: boolean | User$commentsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3892,6 +4024,7 @@ export namespace Prisma {
     programPersonnel?: boolean | User$programPersonnelArgs<ExtArgs>
     programHead?: boolean | User$programHeadArgs<ExtArgs>
     uploads?: boolean | User$uploadsArgs<ExtArgs>
+    comments?: boolean | User$commentsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3903,6 +4036,7 @@ export namespace Prisma {
       programPersonnel: Prisma.$ProgramPersonnelPayload<ExtArgs>[]
       programHead: Prisma.$ProgramPayload<ExtArgs>[]
       uploads: Prisma.$FileVersionPayload<ExtArgs>[]
+      comments: Prisma.$CommentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4313,6 +4447,7 @@ export namespace Prisma {
     programPersonnel<T extends User$programPersonnelArgs<ExtArgs> = {}>(args?: Subset<T, User$programPersonnelArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     programHead<T extends User$programHeadArgs<ExtArgs> = {}>(args?: Subset<T, User$programHeadArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     uploads<T extends User$uploadsArgs<ExtArgs> = {}>(args?: Subset<T, User$uploadsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comments<T extends User$commentsArgs<ExtArgs> = {}>(args?: Subset<T, User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4810,6 +4945,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FileVersionScalarFieldEnum | FileVersionScalarFieldEnum[]
+  }
+
+  /**
+   * User.comments
+   */
+  export type User$commentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByWithRelationInput | CommentOrderByWithRelationInput[]
+    cursor?: CommentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
   }
 
   /**
@@ -20919,6 +21078,7 @@ export namespace Prisma {
     indicatorFolder?: boolean | IndicatorFolderDefaultArgs<ExtArgs>
     indicator?: boolean | IndicatorDefaultArgs<ExtArgs>
     fileVersions?: boolean | EvidenceFile$fileVersionsArgs<ExtArgs>
+    comments?: boolean | EvidenceFile$commentsArgs<ExtArgs>
     _count?: boolean | EvidenceFileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["evidenceFile"]>
 
@@ -20958,6 +21118,7 @@ export namespace Prisma {
     indicatorFolder?: boolean | IndicatorFolderDefaultArgs<ExtArgs>
     indicator?: boolean | IndicatorDefaultArgs<ExtArgs>
     fileVersions?: boolean | EvidenceFile$fileVersionsArgs<ExtArgs>
+    comments?: boolean | EvidenceFile$commentsArgs<ExtArgs>
     _count?: boolean | EvidenceFileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EvidenceFileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20975,6 +21136,7 @@ export namespace Prisma {
       indicatorFolder: Prisma.$IndicatorFolderPayload<ExtArgs>
       indicator: Prisma.$IndicatorPayload<ExtArgs>
       fileVersions: Prisma.$FileVersionPayload<ExtArgs>[]
+      comments: Prisma.$CommentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -21380,6 +21542,7 @@ export namespace Prisma {
     indicatorFolder<T extends IndicatorFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, IndicatorFolderDefaultArgs<ExtArgs>>): Prisma__IndicatorFolderClient<$Result.GetResult<Prisma.$IndicatorFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     indicator<T extends IndicatorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, IndicatorDefaultArgs<ExtArgs>>): Prisma__IndicatorClient<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     fileVersions<T extends EvidenceFile$fileVersionsArgs<ExtArgs> = {}>(args?: Subset<T, EvidenceFile$fileVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comments<T extends EvidenceFile$commentsArgs<ExtArgs> = {}>(args?: Subset<T, EvidenceFile$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -21832,6 +21995,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FileVersionScalarFieldEnum | FileVersionScalarFieldEnum[]
+  }
+
+  /**
+   * EvidenceFile.comments
+   */
+  export type EvidenceFile$commentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByWithRelationInput | CommentOrderByWithRelationInput[]
+    cursor?: CommentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
   }
 
   /**
@@ -26473,6 +26660,7 @@ export namespace Prisma {
     phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
     phaseTwoAreaFolder?: boolean | AreaFile$phaseTwoAreaFolderArgs<ExtArgs>
     fileVersions?: boolean | AreaFile$fileVersionsArgs<ExtArgs>
+    comments?: boolean | AreaFile$commentsArgs<ExtArgs>
     _count?: boolean | AreaFileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["areaFile"]>
 
@@ -26515,6 +26703,7 @@ export namespace Prisma {
     phaseOneAreaFolder?: boolean | AreaFile$phaseOneAreaFolderArgs<ExtArgs>
     phaseTwoAreaFolder?: boolean | AreaFile$phaseTwoAreaFolderArgs<ExtArgs>
     fileVersions?: boolean | AreaFile$fileVersionsArgs<ExtArgs>
+    comments?: boolean | AreaFile$commentsArgs<ExtArgs>
     _count?: boolean | AreaFileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type AreaFileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -26532,6 +26721,7 @@ export namespace Prisma {
       phaseOneAreaFolder: Prisma.$AreaFolderPayload<ExtArgs> | null
       phaseTwoAreaFolder: Prisma.$PhaseTwoAreaFolderPayload<ExtArgs> | null
       fileVersions: Prisma.$FileVersionPayload<ExtArgs>[]
+      comments: Prisma.$CommentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -26938,6 +27128,7 @@ export namespace Prisma {
     phaseOneAreaFolder<T extends AreaFile$phaseOneAreaFolderArgs<ExtArgs> = {}>(args?: Subset<T, AreaFile$phaseOneAreaFolderArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     phaseTwoAreaFolder<T extends AreaFile$phaseTwoAreaFolderArgs<ExtArgs> = {}>(args?: Subset<T, AreaFile$phaseTwoAreaFolderArgs<ExtArgs>>): Prisma__PhaseTwoAreaFolderClient<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     fileVersions<T extends AreaFile$fileVersionsArgs<ExtArgs> = {}>(args?: Subset<T, AreaFile$fileVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comments<T extends AreaFile$commentsArgs<ExtArgs> = {}>(args?: Subset<T, AreaFile$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -27429,6 +27620,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FileVersionScalarFieldEnum | FileVersionScalarFieldEnum[]
+  }
+
+  /**
+   * AreaFile.comments
+   */
+  export type AreaFile$commentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByWithRelationInput | CommentOrderByWithRelationInput[]
+    cursor?: CommentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
   }
 
   /**
@@ -29580,6 +29795,1144 @@ export namespace Prisma {
 
 
   /**
+   * Model Comment
+   */
+
+  export type AggregateComment = {
+    _count: CommentCountAggregateOutputType | null
+    _min: CommentMinAggregateOutputType | null
+    _max: CommentMaxAggregateOutputType | null
+  }
+
+  export type CommentMinAggregateOutputType = {
+    id: string | null
+    authorId: string | null
+    evidenceFileId: string | null
+    areaFileId: string | null
+    content: string | null
+    type: $Enums.CommentType | null
+    createdAt: Date | null
+  }
+
+  export type CommentMaxAggregateOutputType = {
+    id: string | null
+    authorId: string | null
+    evidenceFileId: string | null
+    areaFileId: string | null
+    content: string | null
+    type: $Enums.CommentType | null
+    createdAt: Date | null
+  }
+
+  export type CommentCountAggregateOutputType = {
+    id: number
+    authorId: number
+    evidenceFileId: number
+    areaFileId: number
+    content: number
+    type: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CommentMinAggregateInputType = {
+    id?: true
+    authorId?: true
+    evidenceFileId?: true
+    areaFileId?: true
+    content?: true
+    type?: true
+    createdAt?: true
+  }
+
+  export type CommentMaxAggregateInputType = {
+    id?: true
+    authorId?: true
+    evidenceFileId?: true
+    areaFileId?: true
+    content?: true
+    type?: true
+    createdAt?: true
+  }
+
+  export type CommentCountAggregateInputType = {
+    id?: true
+    authorId?: true
+    evidenceFileId?: true
+    areaFileId?: true
+    content?: true
+    type?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CommentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Comment to aggregate.
+     */
+    where?: CommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comments to fetch.
+     */
+    orderBy?: CommentOrderByWithRelationInput | CommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Comments
+    **/
+    _count?: true | CommentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CommentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CommentMaxAggregateInputType
+  }
+
+  export type GetCommentAggregateType<T extends CommentAggregateArgs> = {
+        [P in keyof T & keyof AggregateComment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateComment[P]>
+      : GetScalarType<T[P], AggregateComment[P]>
+  }
+
+
+
+
+  export type CommentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByWithAggregationInput | CommentOrderByWithAggregationInput[]
+    by: CommentScalarFieldEnum[] | CommentScalarFieldEnum
+    having?: CommentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CommentCountAggregateInputType | true
+    _min?: CommentMinAggregateInputType
+    _max?: CommentMaxAggregateInputType
+  }
+
+  export type CommentGroupByOutputType = {
+    id: string
+    authorId: string
+    evidenceFileId: string | null
+    areaFileId: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt: Date
+    _count: CommentCountAggregateOutputType | null
+    _min: CommentMinAggregateOutputType | null
+    _max: CommentMaxAggregateOutputType | null
+  }
+
+  type GetCommentGroupByPayload<T extends CommentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CommentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CommentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CommentGroupByOutputType[P]>
+            : GetScalarType<T[P], CommentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CommentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    authorId?: boolean
+    evidenceFileId?: boolean
+    areaFileId?: boolean
+    content?: boolean
+    type?: boolean
+    createdAt?: boolean
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    evidenceFile?: boolean | Comment$evidenceFileArgs<ExtArgs>
+    areaFile?: boolean | Comment$areaFileArgs<ExtArgs>
+  }, ExtArgs["result"]["comment"]>
+
+  export type CommentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    authorId?: boolean
+    evidenceFileId?: boolean
+    areaFileId?: boolean
+    content?: boolean
+    type?: boolean
+    createdAt?: boolean
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    evidenceFile?: boolean | Comment$evidenceFileArgs<ExtArgs>
+    areaFile?: boolean | Comment$areaFileArgs<ExtArgs>
+  }, ExtArgs["result"]["comment"]>
+
+  export type CommentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    authorId?: boolean
+    evidenceFileId?: boolean
+    areaFileId?: boolean
+    content?: boolean
+    type?: boolean
+    createdAt?: boolean
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    evidenceFile?: boolean | Comment$evidenceFileArgs<ExtArgs>
+    areaFile?: boolean | Comment$areaFileArgs<ExtArgs>
+  }, ExtArgs["result"]["comment"]>
+
+  export type CommentSelectScalar = {
+    id?: boolean
+    authorId?: boolean
+    evidenceFileId?: boolean
+    areaFileId?: boolean
+    content?: boolean
+    type?: boolean
+    createdAt?: boolean
+  }
+
+  export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "evidenceFileId" | "areaFileId" | "content" | "type" | "createdAt", ExtArgs["result"]["comment"]>
+  export type CommentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    evidenceFile?: boolean | Comment$evidenceFileArgs<ExtArgs>
+    areaFile?: boolean | Comment$areaFileArgs<ExtArgs>
+  }
+  export type CommentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    evidenceFile?: boolean | Comment$evidenceFileArgs<ExtArgs>
+    areaFile?: boolean | Comment$areaFileArgs<ExtArgs>
+  }
+  export type CommentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    evidenceFile?: boolean | Comment$evidenceFileArgs<ExtArgs>
+    areaFile?: boolean | Comment$areaFileArgs<ExtArgs>
+  }
+
+  export type $CommentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Comment"
+    objects: {
+      author: Prisma.$UserPayload<ExtArgs>
+      evidenceFile: Prisma.$EvidenceFilePayload<ExtArgs> | null
+      areaFile: Prisma.$AreaFilePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      authorId: string
+      evidenceFileId: string | null
+      areaFileId: string | null
+      content: string
+      type: $Enums.CommentType
+      createdAt: Date
+    }, ExtArgs["result"]["comment"]>
+    composites: {}
+  }
+
+  type CommentGetPayload<S extends boolean | null | undefined | CommentDefaultArgs> = $Result.GetResult<Prisma.$CommentPayload, S>
+
+  type CommentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CommentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CommentCountAggregateInputType | true
+    }
+
+  export interface CommentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Comment'], meta: { name: 'Comment' } }
+    /**
+     * Find zero or one Comment that matches the filter.
+     * @param {CommentFindUniqueArgs} args - Arguments to find a Comment
+     * @example
+     * // Get one Comment
+     * const comment = await prisma.comment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CommentFindUniqueArgs>(args: SelectSubset<T, CommentFindUniqueArgs<ExtArgs>>): Prisma__CommentClient<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Comment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CommentFindUniqueOrThrowArgs} args - Arguments to find a Comment
+     * @example
+     * // Get one Comment
+     * const comment = await prisma.comment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CommentFindUniqueOrThrowArgs>(args: SelectSubset<T, CommentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CommentClient<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Comment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentFindFirstArgs} args - Arguments to find a Comment
+     * @example
+     * // Get one Comment
+     * const comment = await prisma.comment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CommentFindFirstArgs>(args?: SelectSubset<T, CommentFindFirstArgs<ExtArgs>>): Prisma__CommentClient<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Comment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentFindFirstOrThrowArgs} args - Arguments to find a Comment
+     * @example
+     * // Get one Comment
+     * const comment = await prisma.comment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CommentFindFirstOrThrowArgs>(args?: SelectSubset<T, CommentFindFirstOrThrowArgs<ExtArgs>>): Prisma__CommentClient<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Comments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Comments
+     * const comments = await prisma.comment.findMany()
+     * 
+     * // Get first 10 Comments
+     * const comments = await prisma.comment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const commentWithIdOnly = await prisma.comment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CommentFindManyArgs>(args?: SelectSubset<T, CommentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Comment.
+     * @param {CommentCreateArgs} args - Arguments to create a Comment.
+     * @example
+     * // Create one Comment
+     * const Comment = await prisma.comment.create({
+     *   data: {
+     *     // ... data to create a Comment
+     *   }
+     * })
+     * 
+     */
+    create<T extends CommentCreateArgs>(args: SelectSubset<T, CommentCreateArgs<ExtArgs>>): Prisma__CommentClient<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Comments.
+     * @param {CommentCreateManyArgs} args - Arguments to create many Comments.
+     * @example
+     * // Create many Comments
+     * const comment = await prisma.comment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CommentCreateManyArgs>(args?: SelectSubset<T, CommentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Comments and returns the data saved in the database.
+     * @param {CommentCreateManyAndReturnArgs} args - Arguments to create many Comments.
+     * @example
+     * // Create many Comments
+     * const comment = await prisma.comment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Comments and only return the `id`
+     * const commentWithIdOnly = await prisma.comment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CommentCreateManyAndReturnArgs>(args?: SelectSubset<T, CommentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Comment.
+     * @param {CommentDeleteArgs} args - Arguments to delete one Comment.
+     * @example
+     * // Delete one Comment
+     * const Comment = await prisma.comment.delete({
+     *   where: {
+     *     // ... filter to delete one Comment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CommentDeleteArgs>(args: SelectSubset<T, CommentDeleteArgs<ExtArgs>>): Prisma__CommentClient<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Comment.
+     * @param {CommentUpdateArgs} args - Arguments to update one Comment.
+     * @example
+     * // Update one Comment
+     * const comment = await prisma.comment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CommentUpdateArgs>(args: SelectSubset<T, CommentUpdateArgs<ExtArgs>>): Prisma__CommentClient<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Comments.
+     * @param {CommentDeleteManyArgs} args - Arguments to filter Comments to delete.
+     * @example
+     * // Delete a few Comments
+     * const { count } = await prisma.comment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CommentDeleteManyArgs>(args?: SelectSubset<T, CommentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Comments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Comments
+     * const comment = await prisma.comment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CommentUpdateManyArgs>(args: SelectSubset<T, CommentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Comments and returns the data updated in the database.
+     * @param {CommentUpdateManyAndReturnArgs} args - Arguments to update many Comments.
+     * @example
+     * // Update many Comments
+     * const comment = await prisma.comment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Comments and only return the `id`
+     * const commentWithIdOnly = await prisma.comment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CommentUpdateManyAndReturnArgs>(args: SelectSubset<T, CommentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Comment.
+     * @param {CommentUpsertArgs} args - Arguments to update or create a Comment.
+     * @example
+     * // Update or create a Comment
+     * const comment = await prisma.comment.upsert({
+     *   create: {
+     *     // ... data to create a Comment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Comment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CommentUpsertArgs>(args: SelectSubset<T, CommentUpsertArgs<ExtArgs>>): Prisma__CommentClient<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Comments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentCountArgs} args - Arguments to filter Comments to count.
+     * @example
+     * // Count the number of Comments
+     * const count = await prisma.comment.count({
+     *   where: {
+     *     // ... the filter for the Comments we want to count
+     *   }
+     * })
+    **/
+    count<T extends CommentCountArgs>(
+      args?: Subset<T, CommentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CommentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Comment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CommentAggregateArgs>(args: Subset<T, CommentAggregateArgs>): Prisma.PrismaPromise<GetCommentAggregateType<T>>
+
+    /**
+     * Group by Comment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CommentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CommentGroupByArgs['orderBy'] }
+        : { orderBy?: CommentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CommentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCommentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Comment model
+   */
+  readonly fields: CommentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Comment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CommentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    evidenceFile<T extends Comment$evidenceFileArgs<ExtArgs> = {}>(args?: Subset<T, Comment$evidenceFileArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    areaFile<T extends Comment$areaFileArgs<ExtArgs> = {}>(args?: Subset<T, Comment$areaFileArgs<ExtArgs>>): Prisma__AreaFileClient<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Comment model
+   */
+  interface CommentFieldRefs {
+    readonly id: FieldRef<"Comment", 'String'>
+    readonly authorId: FieldRef<"Comment", 'String'>
+    readonly evidenceFileId: FieldRef<"Comment", 'String'>
+    readonly areaFileId: FieldRef<"Comment", 'String'>
+    readonly content: FieldRef<"Comment", 'String'>
+    readonly type: FieldRef<"Comment", 'CommentType'>
+    readonly createdAt: FieldRef<"Comment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Comment findUnique
+   */
+  export type CommentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    /**
+     * Filter, which Comment to fetch.
+     */
+    where: CommentWhereUniqueInput
+  }
+
+  /**
+   * Comment findUniqueOrThrow
+   */
+  export type CommentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    /**
+     * Filter, which Comment to fetch.
+     */
+    where: CommentWhereUniqueInput
+  }
+
+  /**
+   * Comment findFirst
+   */
+  export type CommentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    /**
+     * Filter, which Comment to fetch.
+     */
+    where?: CommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comments to fetch.
+     */
+    orderBy?: CommentOrderByWithRelationInput | CommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Comments.
+     */
+    cursor?: CommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Comments.
+     */
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * Comment findFirstOrThrow
+   */
+  export type CommentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    /**
+     * Filter, which Comment to fetch.
+     */
+    where?: CommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comments to fetch.
+     */
+    orderBy?: CommentOrderByWithRelationInput | CommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Comments.
+     */
+    cursor?: CommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Comments.
+     */
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * Comment findMany
+   */
+  export type CommentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    /**
+     * Filter, which Comments to fetch.
+     */
+    where?: CommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comments to fetch.
+     */
+    orderBy?: CommentOrderByWithRelationInput | CommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Comments.
+     */
+    cursor?: CommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comments.
+     */
+    skip?: number
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * Comment create
+   */
+  export type CommentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Comment.
+     */
+    data: XOR<CommentCreateInput, CommentUncheckedCreateInput>
+  }
+
+  /**
+   * Comment createMany
+   */
+  export type CommentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Comments.
+     */
+    data: CommentCreateManyInput | CommentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Comment createManyAndReturn
+   */
+  export type CommentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * The data used to create many Comments.
+     */
+    data: CommentCreateManyInput | CommentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Comment update
+   */
+  export type CommentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Comment.
+     */
+    data: XOR<CommentUpdateInput, CommentUncheckedUpdateInput>
+    /**
+     * Choose, which Comment to update.
+     */
+    where: CommentWhereUniqueInput
+  }
+
+  /**
+   * Comment updateMany
+   */
+  export type CommentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Comments.
+     */
+    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyInput>
+    /**
+     * Filter which Comments to update
+     */
+    where?: CommentWhereInput
+    /**
+     * Limit how many Comments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Comment updateManyAndReturn
+   */
+  export type CommentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * The data used to update Comments.
+     */
+    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyInput>
+    /**
+     * Filter which Comments to update
+     */
+    where?: CommentWhereInput
+    /**
+     * Limit how many Comments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Comment upsert
+   */
+  export type CommentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Comment to update in case it exists.
+     */
+    where: CommentWhereUniqueInput
+    /**
+     * In case the Comment found by the `where` argument doesn't exist, create a new Comment with this data.
+     */
+    create: XOR<CommentCreateInput, CommentUncheckedCreateInput>
+    /**
+     * In case the Comment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CommentUpdateInput, CommentUncheckedUpdateInput>
+  }
+
+  /**
+   * Comment delete
+   */
+  export type CommentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    /**
+     * Filter which Comment to delete.
+     */
+    where: CommentWhereUniqueInput
+  }
+
+  /**
+   * Comment deleteMany
+   */
+  export type CommentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Comments to delete
+     */
+    where?: CommentWhereInput
+    /**
+     * Limit how many Comments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Comment.evidenceFile
+   */
+  export type Comment$evidenceFileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EvidenceFile
+     */
+    select?: EvidenceFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EvidenceFile
+     */
+    omit?: EvidenceFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EvidenceFileInclude<ExtArgs> | null
+    where?: EvidenceFileWhereInput
+  }
+
+  /**
+   * Comment.areaFile
+   */
+  export type Comment$areaFileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFile
+     */
+    select?: AreaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFile
+     */
+    omit?: AreaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFileInclude<ExtArgs> | null
+    where?: AreaFileWhereInput
+  }
+
+  /**
+   * Comment without action
+   */
+  export type CommentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -29852,6 +31205,19 @@ export namespace Prisma {
   export type TaskForceMemberScalarFieldEnum = (typeof TaskForceMemberScalarFieldEnum)[keyof typeof TaskForceMemberScalarFieldEnum]
 
 
+  export const CommentScalarFieldEnum: {
+    id: 'id',
+    authorId: 'authorId',
+    evidenceFileId: 'evidenceFileId',
+    areaFileId: 'areaFileId',
+    content: 'content',
+    type: 'type',
+    createdAt: 'createdAt'
+  };
+
+  export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -30064,6 +31430,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'CommentType'
+   */
+  export type EnumCommentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CommentType'>
+    
+
+
+  /**
+   * Reference to a field of type 'CommentType[]'
+   */
+  export type ListEnumCommentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CommentType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -30098,6 +31478,7 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelListRelationFilter
     programHead?: ProgramListRelationFilter
     uploads?: FileVersionListRelationFilter
+    comments?: CommentListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -30115,6 +31496,7 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelOrderByRelationAggregateInput
     programHead?: ProgramOrderByRelationAggregateInput
     uploads?: FileVersionOrderByRelationAggregateInput
+    comments?: CommentOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -30135,6 +31517,7 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelListRelationFilter
     programHead?: ProgramListRelationFilter
     uploads?: FileVersionListRelationFilter
+    comments?: CommentListRelationFilter
   }, "id" | "phoneNumber" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -31076,6 +32459,7 @@ export namespace Prisma {
     indicatorFolder?: XOR<IndicatorFolderScalarRelationFilter, IndicatorFolderWhereInput>
     indicator?: XOR<IndicatorScalarRelationFilter, IndicatorWhereInput>
     fileVersions?: FileVersionListRelationFilter
+    comments?: CommentListRelationFilter
   }
 
   export type EvidenceFileOrderByWithRelationInput = {
@@ -31088,6 +32472,7 @@ export namespace Prisma {
     indicatorFolder?: IndicatorFolderOrderByWithRelationInput
     indicator?: IndicatorOrderByWithRelationInput
     fileVersions?: FileVersionOrderByRelationAggregateInput
+    comments?: CommentOrderByRelationAggregateInput
   }
 
   export type EvidenceFileWhereUniqueInput = Prisma.AtLeast<{
@@ -31103,6 +32488,7 @@ export namespace Prisma {
     indicatorFolder?: XOR<IndicatorFolderScalarRelationFilter, IndicatorFolderWhereInput>
     indicator?: XOR<IndicatorScalarRelationFilter, IndicatorWhereInput>
     fileVersions?: FileVersionListRelationFilter
+    comments?: CommentListRelationFilter
   }, "id">
 
   export type EvidenceFileOrderByWithAggregationInput = {
@@ -31373,6 +32759,7 @@ export namespace Prisma {
     phaseOneAreaFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
     phaseTwoAreaFolder?: XOR<PhaseTwoAreaFolderNullableScalarRelationFilter, PhaseTwoAreaFolderWhereInput> | null
     fileVersions?: FileVersionListRelationFilter
+    comments?: CommentListRelationFilter
   }
 
   export type AreaFileOrderByWithRelationInput = {
@@ -31386,6 +32773,7 @@ export namespace Prisma {
     phaseOneAreaFolder?: AreaFolderOrderByWithRelationInput
     phaseTwoAreaFolder?: PhaseTwoAreaFolderOrderByWithRelationInput
     fileVersions?: FileVersionOrderByRelationAggregateInput
+    comments?: CommentOrderByRelationAggregateInput
   }
 
   export type AreaFileWhereUniqueInput = Prisma.AtLeast<{
@@ -31402,6 +32790,7 @@ export namespace Prisma {
     phaseOneAreaFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
     phaseTwoAreaFolder?: XOR<PhaseTwoAreaFolderNullableScalarRelationFilter, PhaseTwoAreaFolderWhereInput> | null
     fileVersions?: FileVersionListRelationFilter
+    comments?: CommentListRelationFilter
   }, "id">
 
   export type AreaFileOrderByWithAggregationInput = {
@@ -31529,6 +32918,77 @@ export namespace Prisma {
     taskForceId?: StringWithAggregatesFilter<"TaskForceMember"> | string
   }
 
+  export type CommentWhereInput = {
+    AND?: CommentWhereInput | CommentWhereInput[]
+    OR?: CommentWhereInput[]
+    NOT?: CommentWhereInput | CommentWhereInput[]
+    id?: StringFilter<"Comment"> | string
+    authorId?: StringFilter<"Comment"> | string
+    evidenceFileId?: StringNullableFilter<"Comment"> | string | null
+    areaFileId?: StringNullableFilter<"Comment"> | string | null
+    content?: StringFilter<"Comment"> | string
+    type?: EnumCommentTypeFilter<"Comment"> | $Enums.CommentType
+    createdAt?: DateTimeFilter<"Comment"> | Date | string
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    evidenceFile?: XOR<EvidenceFileNullableScalarRelationFilter, EvidenceFileWhereInput> | null
+    areaFile?: XOR<AreaFileNullableScalarRelationFilter, AreaFileWhereInput> | null
+  }
+
+  export type CommentOrderByWithRelationInput = {
+    id?: SortOrder
+    authorId?: SortOrder
+    evidenceFileId?: SortOrderInput | SortOrder
+    areaFileId?: SortOrderInput | SortOrder
+    content?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    author?: UserOrderByWithRelationInput
+    evidenceFile?: EvidenceFileOrderByWithRelationInput
+    areaFile?: AreaFileOrderByWithRelationInput
+  }
+
+  export type CommentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CommentWhereInput | CommentWhereInput[]
+    OR?: CommentWhereInput[]
+    NOT?: CommentWhereInput | CommentWhereInput[]
+    authorId?: StringFilter<"Comment"> | string
+    evidenceFileId?: StringNullableFilter<"Comment"> | string | null
+    areaFileId?: StringNullableFilter<"Comment"> | string | null
+    content?: StringFilter<"Comment"> | string
+    type?: EnumCommentTypeFilter<"Comment"> | $Enums.CommentType
+    createdAt?: DateTimeFilter<"Comment"> | Date | string
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    evidenceFile?: XOR<EvidenceFileNullableScalarRelationFilter, EvidenceFileWhereInput> | null
+    areaFile?: XOR<AreaFileNullableScalarRelationFilter, AreaFileWhereInput> | null
+  }, "id">
+
+  export type CommentOrderByWithAggregationInput = {
+    id?: SortOrder
+    authorId?: SortOrder
+    evidenceFileId?: SortOrderInput | SortOrder
+    areaFileId?: SortOrderInput | SortOrder
+    content?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    _count?: CommentCountOrderByAggregateInput
+    _max?: CommentMaxOrderByAggregateInput
+    _min?: CommentMinOrderByAggregateInput
+  }
+
+  export type CommentScalarWhereWithAggregatesInput = {
+    AND?: CommentScalarWhereWithAggregatesInput | CommentScalarWhereWithAggregatesInput[]
+    OR?: CommentScalarWhereWithAggregatesInput[]
+    NOT?: CommentScalarWhereWithAggregatesInput | CommentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Comment"> | string
+    authorId?: StringWithAggregatesFilter<"Comment"> | string
+    evidenceFileId?: StringNullableWithAggregatesFilter<"Comment"> | string | null
+    areaFileId?: StringNullableWithAggregatesFilter<"Comment"> | string | null
+    content?: StringWithAggregatesFilter<"Comment"> | string
+    type?: EnumCommentTypeWithAggregatesFilter<"Comment"> | $Enums.CommentType
+    createdAt?: DateTimeWithAggregatesFilter<"Comment"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     firstName: string
@@ -31544,6 +33004,7 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
     programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
     uploads?: FileVersionCreateNestedManyWithoutUploaderInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -31561,6 +33022,7 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
     programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
     uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUpdateInput = {
@@ -31578,6 +33040,7 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
     programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
     uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -31595,6 +33058,7 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
     programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
     uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -32532,6 +33996,7 @@ export namespace Prisma {
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
     indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
     fileVersions?: FileVersionCreateNestedManyWithoutEvidenceFileInput
+    comments?: CommentCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUncheckedCreateInput = {
@@ -32542,6 +34007,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     fileVersions?: FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput
+    comments?: CommentUncheckedCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUpdateInput = {
@@ -32552,6 +34018,7 @@ export namespace Prisma {
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
     indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
     fileVersions?: FileVersionUpdateManyWithoutEvidenceFileNestedInput
+    comments?: CommentUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateInput = {
@@ -32562,6 +34029,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fileVersions?: FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileCreateManyInput = {
@@ -32805,6 +34273,7 @@ export namespace Prisma {
     phaseOneAreaFolder?: AreaFolderCreateNestedOneWithoutAreaFilesInput
     phaseTwoAreaFolder?: PhaseTwoAreaFolderCreateNestedOneWithoutAreaFilesInput
     fileVersions?: FileVersionCreateNestedManyWithoutAreaFileInput
+    comments?: CommentCreateNestedManyWithoutAreaFileInput
   }
 
   export type AreaFileUncheckedCreateInput = {
@@ -32816,6 +34285,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     fileVersions?: FileVersionUncheckedCreateNestedManyWithoutAreaFileInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAreaFileInput
   }
 
   export type AreaFileUpdateInput = {
@@ -32827,6 +34297,7 @@ export namespace Prisma {
     phaseOneAreaFolder?: AreaFolderUpdateOneWithoutAreaFilesNestedInput
     phaseTwoAreaFolder?: PhaseTwoAreaFolderUpdateOneWithoutAreaFilesNestedInput
     fileVersions?: FileVersionUpdateManyWithoutAreaFileNestedInput
+    comments?: CommentUpdateManyWithoutAreaFileNestedInput
   }
 
   export type AreaFileUncheckedUpdateInput = {
@@ -32838,6 +34309,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fileVersions?: FileVersionUncheckedUpdateManyWithoutAreaFileNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAreaFileNestedInput
   }
 
   export type AreaFileCreateManyInput = {
@@ -32952,6 +34424,73 @@ export namespace Prisma {
     taskForceId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type CommentCreateInput = {
+    id?: string
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+    author: UserCreateNestedOneWithoutCommentsInput
+    evidenceFile?: EvidenceFileCreateNestedOneWithoutCommentsInput
+    areaFile?: AreaFileCreateNestedOneWithoutCommentsInput
+  }
+
+  export type CommentUncheckedCreateInput = {
+    id?: string
+    authorId: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+  }
+
+  export type CommentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    evidenceFile?: EvidenceFileUpdateOneWithoutCommentsNestedInput
+    areaFile?: AreaFileUpdateOneWithoutCommentsNestedInput
+  }
+
+  export type CommentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentCreateManyInput = {
+    id?: string
+    authorId: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+  }
+
+  export type CommentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -33018,6 +34557,12 @@ export namespace Prisma {
     none?: FileVersionWhereInput
   }
 
+  export type CommentListRelationFilter = {
+    every?: CommentWhereInput
+    some?: CommentWhereInput
+    none?: CommentWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -33032,6 +34577,10 @@ export namespace Prisma {
   }
 
   export type FileVersionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CommentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -34266,6 +35815,53 @@ export namespace Prisma {
     taskForceId?: SortOrder
   }
 
+  export type EnumCommentTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommentType | EnumCommentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommentType[] | ListEnumCommentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommentType[] | ListEnumCommentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommentTypeFilter<$PrismaModel> | $Enums.CommentType
+  }
+
+  export type CommentCountOrderByAggregateInput = {
+    id?: SortOrder
+    authorId?: SortOrder
+    evidenceFileId?: SortOrder
+    areaFileId?: SortOrder
+    content?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CommentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    authorId?: SortOrder
+    evidenceFileId?: SortOrder
+    areaFileId?: SortOrder
+    content?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CommentMinOrderByAggregateInput = {
+    id?: SortOrder
+    authorId?: SortOrder
+    evidenceFileId?: SortOrder
+    areaFileId?: SortOrder
+    content?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EnumCommentTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommentType | EnumCommentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommentType[] | ListEnumCommentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommentType[] | ListEnumCommentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommentTypeWithAggregatesFilter<$PrismaModel> | $Enums.CommentType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCommentTypeFilter<$PrismaModel>
+    _max?: NestedEnumCommentTypeFilter<$PrismaModel>
+  }
+
   export type ProgramPersonnelCreateNestedManyWithoutUserInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
@@ -34287,6 +35883,13 @@ export namespace Prisma {
     connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
   }
 
+  export type CommentCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<CommentCreateWithoutAuthorInput, CommentUncheckedCreateWithoutAuthorInput> | CommentCreateWithoutAuthorInput[] | CommentUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutAuthorInput | CommentCreateOrConnectWithoutAuthorInput[]
+    createMany?: CommentCreateManyAuthorInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
   export type ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
@@ -34306,6 +35909,13 @@ export namespace Prisma {
     connectOrCreate?: FileVersionCreateOrConnectWithoutUploaderInput | FileVersionCreateOrConnectWithoutUploaderInput[]
     createMany?: FileVersionCreateManyUploaderInputEnvelope
     connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+  }
+
+  export type CommentUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<CommentCreateWithoutAuthorInput, CommentUncheckedCreateWithoutAuthorInput> | CommentCreateWithoutAuthorInput[] | CommentUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutAuthorInput | CommentCreateOrConnectWithoutAuthorInput[]
+    createMany?: CommentCreateManyAuthorInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -34366,6 +35976,20 @@ export namespace Prisma {
     deleteMany?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
   }
 
+  export type CommentUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<CommentCreateWithoutAuthorInput, CommentUncheckedCreateWithoutAuthorInput> | CommentCreateWithoutAuthorInput[] | CommentUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutAuthorInput | CommentCreateOrConnectWithoutAuthorInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutAuthorInput | CommentUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: CommentCreateManyAuthorInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutAuthorInput | CommentUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutAuthorInput | CommentUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
   export type ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
@@ -34406,6 +36030,20 @@ export namespace Prisma {
     update?: FileVersionUpdateWithWhereUniqueWithoutUploaderInput | FileVersionUpdateWithWhereUniqueWithoutUploaderInput[]
     updateMany?: FileVersionUpdateManyWithWhereWithoutUploaderInput | FileVersionUpdateManyWithWhereWithoutUploaderInput[]
     deleteMany?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
+  }
+
+  export type CommentUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<CommentCreateWithoutAuthorInput, CommentUncheckedCreateWithoutAuthorInput> | CommentCreateWithoutAuthorInput[] | CommentUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutAuthorInput | CommentCreateOrConnectWithoutAuthorInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutAuthorInput | CommentUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: CommentCreateManyAuthorInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutAuthorInput | CommentUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutAuthorInput | CommentUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutProgramHeadInput = {
@@ -35727,11 +37365,25 @@ export namespace Prisma {
     connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
   }
 
+  export type CommentCreateNestedManyWithoutEvidenceFileInput = {
+    create?: XOR<CommentCreateWithoutEvidenceFileInput, CommentUncheckedCreateWithoutEvidenceFileInput> | CommentCreateWithoutEvidenceFileInput[] | CommentUncheckedCreateWithoutEvidenceFileInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutEvidenceFileInput | CommentCreateOrConnectWithoutEvidenceFileInput[]
+    createMany?: CommentCreateManyEvidenceFileInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
   export type FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput = {
     create?: XOR<FileVersionCreateWithoutEvidenceFileInput, FileVersionUncheckedCreateWithoutEvidenceFileInput> | FileVersionCreateWithoutEvidenceFileInput[] | FileVersionUncheckedCreateWithoutEvidenceFileInput[]
     connectOrCreate?: FileVersionCreateOrConnectWithoutEvidenceFileInput | FileVersionCreateOrConnectWithoutEvidenceFileInput[]
     createMany?: FileVersionCreateManyEvidenceFileInputEnvelope
     connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+  }
+
+  export type CommentUncheckedCreateNestedManyWithoutEvidenceFileInput = {
+    create?: XOR<CommentCreateWithoutEvidenceFileInput, CommentUncheckedCreateWithoutEvidenceFileInput> | CommentCreateWithoutEvidenceFileInput[] | CommentUncheckedCreateWithoutEvidenceFileInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutEvidenceFileInput | CommentCreateOrConnectWithoutEvidenceFileInput[]
+    createMany?: CommentCreateManyEvidenceFileInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
   export type EnumFileStatusFieldUpdateOperationsInput = {
@@ -35768,6 +37420,20 @@ export namespace Prisma {
     deleteMany?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
   }
 
+  export type CommentUpdateManyWithoutEvidenceFileNestedInput = {
+    create?: XOR<CommentCreateWithoutEvidenceFileInput, CommentUncheckedCreateWithoutEvidenceFileInput> | CommentCreateWithoutEvidenceFileInput[] | CommentUncheckedCreateWithoutEvidenceFileInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutEvidenceFileInput | CommentCreateOrConnectWithoutEvidenceFileInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutEvidenceFileInput | CommentUpsertWithWhereUniqueWithoutEvidenceFileInput[]
+    createMany?: CommentCreateManyEvidenceFileInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutEvidenceFileInput | CommentUpdateWithWhereUniqueWithoutEvidenceFileInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutEvidenceFileInput | CommentUpdateManyWithWhereWithoutEvidenceFileInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
   export type FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput = {
     create?: XOR<FileVersionCreateWithoutEvidenceFileInput, FileVersionUncheckedCreateWithoutEvidenceFileInput> | FileVersionCreateWithoutEvidenceFileInput[] | FileVersionUncheckedCreateWithoutEvidenceFileInput[]
     connectOrCreate?: FileVersionCreateOrConnectWithoutEvidenceFileInput | FileVersionCreateOrConnectWithoutEvidenceFileInput[]
@@ -35780,6 +37446,20 @@ export namespace Prisma {
     update?: FileVersionUpdateWithWhereUniqueWithoutEvidenceFileInput | FileVersionUpdateWithWhereUniqueWithoutEvidenceFileInput[]
     updateMany?: FileVersionUpdateManyWithWhereWithoutEvidenceFileInput | FileVersionUpdateManyWithWhereWithoutEvidenceFileInput[]
     deleteMany?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
+  }
+
+  export type CommentUncheckedUpdateManyWithoutEvidenceFileNestedInput = {
+    create?: XOR<CommentCreateWithoutEvidenceFileInput, CommentUncheckedCreateWithoutEvidenceFileInput> | CommentCreateWithoutEvidenceFileInput[] | CommentUncheckedCreateWithoutEvidenceFileInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutEvidenceFileInput | CommentCreateOrConnectWithoutEvidenceFileInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutEvidenceFileInput | CommentUpsertWithWhereUniqueWithoutEvidenceFileInput[]
+    createMany?: CommentCreateManyEvidenceFileInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutEvidenceFileInput | CommentUpdateWithWhereUniqueWithoutEvidenceFileInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutEvidenceFileInput | CommentUpdateManyWithWhereWithoutEvidenceFileInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
   export type EvidenceFileCreateNestedOneWithoutFileVersionsInput = {
@@ -36043,11 +37723,25 @@ export namespace Prisma {
     connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
   }
 
+  export type CommentCreateNestedManyWithoutAreaFileInput = {
+    create?: XOR<CommentCreateWithoutAreaFileInput, CommentUncheckedCreateWithoutAreaFileInput> | CommentCreateWithoutAreaFileInput[] | CommentUncheckedCreateWithoutAreaFileInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutAreaFileInput | CommentCreateOrConnectWithoutAreaFileInput[]
+    createMany?: CommentCreateManyAreaFileInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
   export type FileVersionUncheckedCreateNestedManyWithoutAreaFileInput = {
     create?: XOR<FileVersionCreateWithoutAreaFileInput, FileVersionUncheckedCreateWithoutAreaFileInput> | FileVersionCreateWithoutAreaFileInput[] | FileVersionUncheckedCreateWithoutAreaFileInput[]
     connectOrCreate?: FileVersionCreateOrConnectWithoutAreaFileInput | FileVersionCreateOrConnectWithoutAreaFileInput[]
     createMany?: FileVersionCreateManyAreaFileInputEnvelope
     connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+  }
+
+  export type CommentUncheckedCreateNestedManyWithoutAreaFileInput = {
+    create?: XOR<CommentCreateWithoutAreaFileInput, CommentUncheckedCreateWithoutAreaFileInput> | CommentCreateWithoutAreaFileInput[] | CommentUncheckedCreateWithoutAreaFileInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutAreaFileInput | CommentCreateOrConnectWithoutAreaFileInput[]
+    createMany?: CommentCreateManyAreaFileInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
   export type EnumAreaFileTypeFieldUpdateOperationsInput = {
@@ -36088,6 +37782,20 @@ export namespace Prisma {
     deleteMany?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
   }
 
+  export type CommentUpdateManyWithoutAreaFileNestedInput = {
+    create?: XOR<CommentCreateWithoutAreaFileInput, CommentUncheckedCreateWithoutAreaFileInput> | CommentCreateWithoutAreaFileInput[] | CommentUncheckedCreateWithoutAreaFileInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutAreaFileInput | CommentCreateOrConnectWithoutAreaFileInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutAreaFileInput | CommentUpsertWithWhereUniqueWithoutAreaFileInput[]
+    createMany?: CommentCreateManyAreaFileInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutAreaFileInput | CommentUpdateWithWhereUniqueWithoutAreaFileInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutAreaFileInput | CommentUpdateManyWithWhereWithoutAreaFileInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
   export type FileVersionUncheckedUpdateManyWithoutAreaFileNestedInput = {
     create?: XOR<FileVersionCreateWithoutAreaFileInput, FileVersionUncheckedCreateWithoutAreaFileInput> | FileVersionCreateWithoutAreaFileInput[] | FileVersionUncheckedCreateWithoutAreaFileInput[]
     connectOrCreate?: FileVersionCreateOrConnectWithoutAreaFileInput | FileVersionCreateOrConnectWithoutAreaFileInput[]
@@ -36100,6 +37808,20 @@ export namespace Prisma {
     update?: FileVersionUpdateWithWhereUniqueWithoutAreaFileInput | FileVersionUpdateWithWhereUniqueWithoutAreaFileInput[]
     updateMany?: FileVersionUpdateManyWithWhereWithoutAreaFileInput | FileVersionUpdateManyWithWhereWithoutAreaFileInput[]
     deleteMany?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
+  }
+
+  export type CommentUncheckedUpdateManyWithoutAreaFileNestedInput = {
+    create?: XOR<CommentCreateWithoutAreaFileInput, CommentUncheckedCreateWithoutAreaFileInput> | CommentCreateWithoutAreaFileInput[] | CommentUncheckedCreateWithoutAreaFileInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutAreaFileInput | CommentCreateOrConnectWithoutAreaFileInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutAreaFileInput | CommentUpsertWithWhereUniqueWithoutAreaFileInput[]
+    createMany?: CommentCreateManyAreaFileInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutAreaFileInput | CommentUpdateWithWhereUniqueWithoutAreaFileInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutAreaFileInput | CommentUpdateManyWithWhereWithoutAreaFileInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
   export type AreaFolderCreateNestedOneWithoutTaskForceInput = {
@@ -36200,6 +37922,56 @@ export namespace Prisma {
     upsert?: TaskForceUpsertWithoutTaskForceMemberInput
     connect?: TaskForceWhereUniqueInput
     update?: XOR<XOR<TaskForceUpdateToOneWithWhereWithoutTaskForceMemberInput, TaskForceUpdateWithoutTaskForceMemberInput>, TaskForceUncheckedUpdateWithoutTaskForceMemberInput>
+  }
+
+  export type UserCreateNestedOneWithoutCommentsInput = {
+    create?: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCommentsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EvidenceFileCreateNestedOneWithoutCommentsInput = {
+    create?: XOR<EvidenceFileCreateWithoutCommentsInput, EvidenceFileUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: EvidenceFileCreateOrConnectWithoutCommentsInput
+    connect?: EvidenceFileWhereUniqueInput
+  }
+
+  export type AreaFileCreateNestedOneWithoutCommentsInput = {
+    create?: XOR<AreaFileCreateWithoutCommentsInput, AreaFileUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: AreaFileCreateOrConnectWithoutCommentsInput
+    connect?: AreaFileWhereUniqueInput
+  }
+
+  export type EnumCommentTypeFieldUpdateOperationsInput = {
+    set?: $Enums.CommentType
+  }
+
+  export type UserUpdateOneRequiredWithoutCommentsNestedInput = {
+    create?: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCommentsInput
+    upsert?: UserUpsertWithoutCommentsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCommentsInput, UserUpdateWithoutCommentsInput>, UserUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type EvidenceFileUpdateOneWithoutCommentsNestedInput = {
+    create?: XOR<EvidenceFileCreateWithoutCommentsInput, EvidenceFileUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: EvidenceFileCreateOrConnectWithoutCommentsInput
+    upsert?: EvidenceFileUpsertWithoutCommentsInput
+    disconnect?: EvidenceFileWhereInput | boolean
+    delete?: EvidenceFileWhereInput | boolean
+    connect?: EvidenceFileWhereUniqueInput
+    update?: XOR<XOR<EvidenceFileUpdateToOneWithWhereWithoutCommentsInput, EvidenceFileUpdateWithoutCommentsInput>, EvidenceFileUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type AreaFileUpdateOneWithoutCommentsNestedInput = {
+    create?: XOR<AreaFileCreateWithoutCommentsInput, AreaFileUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: AreaFileCreateOrConnectWithoutCommentsInput
+    upsert?: AreaFileUpsertWithoutCommentsInput
+    disconnect?: AreaFileWhereInput | boolean
+    delete?: AreaFileWhereInput | boolean
+    connect?: AreaFileWhereUniqueInput
+    update?: XOR<XOR<AreaFileUpdateToOneWithWhereWithoutCommentsInput, AreaFileUpdateWithoutCommentsInput>, AreaFileUncheckedUpdateWithoutCommentsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -36543,6 +38315,23 @@ export namespace Prisma {
     _max?: NestedEnumAreaFileTypeFilter<$PrismaModel>
   }
 
+  export type NestedEnumCommentTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommentType | EnumCommentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommentType[] | ListEnumCommentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommentType[] | ListEnumCommentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommentTypeFilter<$PrismaModel> | $Enums.CommentType
+  }
+
+  export type NestedEnumCommentTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommentType | EnumCommentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommentType[] | ListEnumCommentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommentType[] | ListEnumCommentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommentTypeWithAggregatesFilter<$PrismaModel> | $Enums.CommentType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCommentTypeFilter<$PrismaModel>
+    _max?: NestedEnumCommentTypeFilter<$PrismaModel>
+  }
+
   export type ProgramPersonnelCreateWithoutUserInput = {
     id?: string
     assignedAt?: Date | string
@@ -36635,6 +38424,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CommentCreateWithoutAuthorInput = {
+    id?: string
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+    evidenceFile?: EvidenceFileCreateNestedOneWithoutCommentsInput
+    areaFile?: AreaFileCreateNestedOneWithoutCommentsInput
+  }
+
+  export type CommentUncheckedCreateWithoutAuthorInput = {
+    id?: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+  }
+
+  export type CommentCreateOrConnectWithoutAuthorInput = {
+    where: CommentWhereUniqueInput
+    create: XOR<CommentCreateWithoutAuthorInput, CommentUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type CommentCreateManyAuthorInputEnvelope = {
+    data: CommentCreateManyAuthorInput | CommentCreateManyAuthorInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ProgramPersonnelUpsertWithWhereUniqueWithoutUserInput = {
     where: ProgramPersonnelWhereUniqueInput
     update: XOR<ProgramPersonnelUpdateWithoutUserInput, ProgramPersonnelUncheckedUpdateWithoutUserInput>
@@ -36722,6 +38539,35 @@ export namespace Prisma {
     uploadedAt?: DateTimeFilter<"FileVersion"> | Date | string
   }
 
+  export type CommentUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: CommentWhereUniqueInput
+    update: XOR<CommentUpdateWithoutAuthorInput, CommentUncheckedUpdateWithoutAuthorInput>
+    create: XOR<CommentCreateWithoutAuthorInput, CommentUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type CommentUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: CommentWhereUniqueInput
+    data: XOR<CommentUpdateWithoutAuthorInput, CommentUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type CommentUpdateManyWithWhereWithoutAuthorInput = {
+    where: CommentScalarWhereInput
+    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutAuthorInput>
+  }
+
+  export type CommentScalarWhereInput = {
+    AND?: CommentScalarWhereInput | CommentScalarWhereInput[]
+    OR?: CommentScalarWhereInput[]
+    NOT?: CommentScalarWhereInput | CommentScalarWhereInput[]
+    id?: StringFilter<"Comment"> | string
+    authorId?: StringFilter<"Comment"> | string
+    evidenceFileId?: StringNullableFilter<"Comment"> | string | null
+    areaFileId?: StringNullableFilter<"Comment"> | string | null
+    content?: StringFilter<"Comment"> | string
+    type?: EnumCommentTypeFilter<"Comment"> | $Enums.CommentType
+    createdAt?: DateTimeFilter<"Comment"> | Date | string
+  }
+
   export type UserCreateWithoutProgramHeadInput = {
     id?: string
     firstName: string
@@ -36736,6 +38582,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
     uploads?: FileVersionCreateNestedManyWithoutUploaderInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutProgramHeadInput = {
@@ -36752,6 +38599,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
     uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutProgramHeadInput = {
@@ -36833,6 +38681,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
     uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgramHeadInput = {
@@ -36849,6 +38698,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
     uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type ProgramPersonnelUpsertWithWhereUniqueWithoutProgramInput = {
@@ -36910,6 +38760,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
     uploads?: FileVersionCreateNestedManyWithoutUploaderInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutProgramPersonnelInput = {
@@ -36926,6 +38777,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
     uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutProgramPersonnelInput = {
@@ -37029,6 +38881,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
     uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgramPersonnelInput = {
@@ -37045,6 +38898,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
     uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type ProgramUpsertWithoutProgramPersonnelInput = {
@@ -37706,6 +39560,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
     fileVersions?: FileVersionCreateNestedManyWithoutEvidenceFileInput
+    comments?: CommentCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUncheckedCreateWithoutIndicatorInput = {
@@ -37715,6 +39570,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     fileVersions?: FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput
+    comments?: CommentUncheckedCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileCreateOrConnectWithoutIndicatorInput = {
@@ -38577,6 +40433,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     phaseTwoAreaFolder?: PhaseTwoAreaFolderCreateNestedOneWithoutAreaFilesInput
     fileVersions?: FileVersionCreateNestedManyWithoutAreaFileInput
+    comments?: CommentCreateNestedManyWithoutAreaFileInput
   }
 
   export type AreaFileUncheckedCreateWithoutPhaseOneAreaFolderInput = {
@@ -38587,6 +40444,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     fileVersions?: FileVersionUncheckedCreateNestedManyWithoutAreaFileInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAreaFileInput
   }
 
   export type AreaFileCreateOrConnectWithoutPhaseOneAreaFolderInput = {
@@ -38918,6 +40776,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
     fileVersions?: FileVersionCreateNestedManyWithoutEvidenceFileInput
+    comments?: CommentCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUncheckedCreateWithoutIndicatorFolderInput = {
@@ -38927,6 +40786,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     fileVersions?: FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput
+    comments?: CommentUncheckedCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileCreateOrConnectWithoutIndicatorFolderInput = {
@@ -39055,6 +40915,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CommentCreateWithoutEvidenceFileInput = {
+    id?: string
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+    author: UserCreateNestedOneWithoutCommentsInput
+    areaFile?: AreaFileCreateNestedOneWithoutCommentsInput
+  }
+
+  export type CommentUncheckedCreateWithoutEvidenceFileInput = {
+    id?: string
+    authorId: string
+    areaFileId?: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+  }
+
+  export type CommentCreateOrConnectWithoutEvidenceFileInput = {
+    where: CommentWhereUniqueInput
+    create: XOR<CommentCreateWithoutEvidenceFileInput, CommentUncheckedCreateWithoutEvidenceFileInput>
+  }
+
+  export type CommentCreateManyEvidenceFileInputEnvelope = {
+    data: CommentCreateManyEvidenceFileInput | CommentCreateManyEvidenceFileInput[]
+    skipDuplicates?: boolean
+  }
+
   export type IndicatorFolderUpsertWithoutEvidenceFilesInput = {
     update: XOR<IndicatorFolderUpdateWithoutEvidenceFilesInput, IndicatorFolderUncheckedUpdateWithoutEvidenceFilesInput>
     create: XOR<IndicatorFolderCreateWithoutEvidenceFilesInput, IndicatorFolderUncheckedCreateWithoutEvidenceFilesInput>
@@ -39126,6 +41014,22 @@ export namespace Prisma {
     data: XOR<FileVersionUpdateManyMutationInput, FileVersionUncheckedUpdateManyWithoutEvidenceFileInput>
   }
 
+  export type CommentUpsertWithWhereUniqueWithoutEvidenceFileInput = {
+    where: CommentWhereUniqueInput
+    update: XOR<CommentUpdateWithoutEvidenceFileInput, CommentUncheckedUpdateWithoutEvidenceFileInput>
+    create: XOR<CommentCreateWithoutEvidenceFileInput, CommentUncheckedCreateWithoutEvidenceFileInput>
+  }
+
+  export type CommentUpdateWithWhereUniqueWithoutEvidenceFileInput = {
+    where: CommentWhereUniqueInput
+    data: XOR<CommentUpdateWithoutEvidenceFileInput, CommentUncheckedUpdateWithoutEvidenceFileInput>
+  }
+
+  export type CommentUpdateManyWithWhereWithoutEvidenceFileInput = {
+    where: CommentScalarWhereInput
+    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutEvidenceFileInput>
+  }
+
   export type EvidenceFileCreateWithoutFileVersionsInput = {
     id?: string
     status: $Enums.FileStatus
@@ -39133,6 +41037,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
     indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
+    comments?: CommentCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUncheckedCreateWithoutFileVersionsInput = {
@@ -39142,6 +41047,7 @@ export namespace Prisma {
     indicatorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    comments?: CommentUncheckedCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileCreateOrConnectWithoutFileVersionsInput = {
@@ -39157,6 +41063,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     phaseOneAreaFolder?: AreaFolderCreateNestedOneWithoutAreaFilesInput
     phaseTwoAreaFolder?: PhaseTwoAreaFolderCreateNestedOneWithoutAreaFilesInput
+    comments?: CommentCreateNestedManyWithoutAreaFileInput
   }
 
   export type AreaFileUncheckedCreateWithoutFileVersionsInput = {
@@ -39167,6 +41074,7 @@ export namespace Prisma {
     type: $Enums.AreaFileType
     createdAt?: Date | string
     updatedAt?: Date | string
+    comments?: CommentUncheckedCreateNestedManyWithoutAreaFileInput
   }
 
   export type AreaFileCreateOrConnectWithoutFileVersionsInput = {
@@ -39188,6 +41096,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
     programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutUploadsInput = {
@@ -39204,6 +41113,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
     programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutUploadsInput = {
@@ -39229,6 +41139,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
     indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
+    comments?: CommentUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateWithoutFileVersionsInput = {
@@ -39238,6 +41149,7 @@ export namespace Prisma {
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: CommentUncheckedUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type AreaFileUpsertWithoutFileVersionsInput = {
@@ -39259,6 +41171,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneAreaFolder?: AreaFolderUpdateOneWithoutAreaFilesNestedInput
     phaseTwoAreaFolder?: PhaseTwoAreaFolderUpdateOneWithoutAreaFilesNestedInput
+    comments?: CommentUpdateManyWithoutAreaFileNestedInput
   }
 
   export type AreaFileUncheckedUpdateWithoutFileVersionsInput = {
@@ -39269,6 +41182,7 @@ export namespace Prisma {
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: CommentUncheckedUpdateManyWithoutAreaFileNestedInput
   }
 
   export type UserUpsertWithoutUploadsInput = {
@@ -39296,6 +41210,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
     programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUploadsInput = {
@@ -39312,6 +41227,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
     programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type SurveyVisitCreateWithoutPhaseTwoRequirementsInput = {
@@ -39595,6 +41511,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     phaseOneAreaFolder?: AreaFolderCreateNestedOneWithoutAreaFilesInput
     fileVersions?: FileVersionCreateNestedManyWithoutAreaFileInput
+    comments?: CommentCreateNestedManyWithoutAreaFileInput
   }
 
   export type AreaFileUncheckedCreateWithoutPhaseTwoAreaFolderInput = {
@@ -39605,6 +41522,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     fileVersions?: FileVersionUncheckedCreateNestedManyWithoutAreaFileInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAreaFileInput
   }
 
   export type AreaFileCreateOrConnectWithoutPhaseTwoAreaFolderInput = {
@@ -39760,6 +41678,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CommentCreateWithoutAreaFileInput = {
+    id?: string
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+    author: UserCreateNestedOneWithoutCommentsInput
+    evidenceFile?: EvidenceFileCreateNestedOneWithoutCommentsInput
+  }
+
+  export type CommentUncheckedCreateWithoutAreaFileInput = {
+    id?: string
+    authorId: string
+    evidenceFileId?: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+  }
+
+  export type CommentCreateOrConnectWithoutAreaFileInput = {
+    where: CommentWhereUniqueInput
+    create: XOR<CommentCreateWithoutAreaFileInput, CommentUncheckedCreateWithoutAreaFileInput>
+  }
+
+  export type CommentCreateManyAreaFileInputEnvelope = {
+    data: CommentCreateManyAreaFileInput | CommentCreateManyAreaFileInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AreaFolderUpsertWithoutAreaFilesInput = {
     update: XOR<AreaFolderUpdateWithoutAreaFilesInput, AreaFolderUncheckedUpdateWithoutAreaFilesInput>
     create: XOR<AreaFolderCreateWithoutAreaFilesInput, AreaFolderUncheckedCreateWithoutAreaFilesInput>
@@ -39826,6 +41772,22 @@ export namespace Prisma {
   export type FileVersionUpdateManyWithWhereWithoutAreaFileInput = {
     where: FileVersionScalarWhereInput
     data: XOR<FileVersionUpdateManyMutationInput, FileVersionUncheckedUpdateManyWithoutAreaFileInput>
+  }
+
+  export type CommentUpsertWithWhereUniqueWithoutAreaFileInput = {
+    where: CommentWhereUniqueInput
+    update: XOR<CommentUpdateWithoutAreaFileInput, CommentUncheckedUpdateWithoutAreaFileInput>
+    create: XOR<CommentCreateWithoutAreaFileInput, CommentUncheckedCreateWithoutAreaFileInput>
+  }
+
+  export type CommentUpdateWithWhereUniqueWithoutAreaFileInput = {
+    where: CommentWhereUniqueInput
+    data: XOR<CommentUpdateWithoutAreaFileInput, CommentUncheckedUpdateWithoutAreaFileInput>
+  }
+
+  export type CommentUpdateManyWithWhereWithoutAreaFileInput = {
+    where: CommentScalarWhereInput
+    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutAreaFileInput>
   }
 
   export type AreaFolderCreateWithoutTaskForceInput = {
@@ -40052,6 +42014,206 @@ export namespace Prisma {
     chairPersonId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type UserCreateWithoutCommentsInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
+    programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
+    uploads?: FileVersionCreateNestedManyWithoutUploaderInput
+  }
+
+  export type UserUncheckedCreateWithoutCommentsInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
+    programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
+    uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
+  }
+
+  export type UserCreateOrConnectWithoutCommentsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+  }
+
+  export type EvidenceFileCreateWithoutCommentsInput = {
+    id?: string
+    status: $Enums.FileStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
+    indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
+    fileVersions?: FileVersionCreateNestedManyWithoutEvidenceFileInput
+  }
+
+  export type EvidenceFileUncheckedCreateWithoutCommentsInput = {
+    id?: string
+    indicatorFolderId: string
+    status: $Enums.FileStatus
+    indicatorId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    fileVersions?: FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput
+  }
+
+  export type EvidenceFileCreateOrConnectWithoutCommentsInput = {
+    where: EvidenceFileWhereUniqueInput
+    create: XOR<EvidenceFileCreateWithoutCommentsInput, EvidenceFileUncheckedCreateWithoutCommentsInput>
+  }
+
+  export type AreaFileCreateWithoutCommentsInput = {
+    id?: string
+    status: $Enums.FileStatus
+    type: $Enums.AreaFileType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    phaseOneAreaFolder?: AreaFolderCreateNestedOneWithoutAreaFilesInput
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderCreateNestedOneWithoutAreaFilesInput
+    fileVersions?: FileVersionCreateNestedManyWithoutAreaFileInput
+  }
+
+  export type AreaFileUncheckedCreateWithoutCommentsInput = {
+    id?: string
+    phaseOneAreaFolderId?: string | null
+    phaseTwoAreaFolderId?: string | null
+    status: $Enums.FileStatus
+    type: $Enums.AreaFileType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    fileVersions?: FileVersionUncheckedCreateNestedManyWithoutAreaFileInput
+  }
+
+  export type AreaFileCreateOrConnectWithoutCommentsInput = {
+    where: AreaFileWhereUniqueInput
+    create: XOR<AreaFileCreateWithoutCommentsInput, AreaFileUncheckedCreateWithoutCommentsInput>
+  }
+
+  export type UserUpsertWithoutCommentsInput = {
+    update: XOR<UserUpdateWithoutCommentsInput, UserUncheckedUpdateWithoutCommentsInput>
+    create: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCommentsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCommentsInput, UserUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type UserUpdateWithoutCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
+    programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
+    uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
+    programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
+    uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
+  }
+
+  export type EvidenceFileUpsertWithoutCommentsInput = {
+    update: XOR<EvidenceFileUpdateWithoutCommentsInput, EvidenceFileUncheckedUpdateWithoutCommentsInput>
+    create: XOR<EvidenceFileCreateWithoutCommentsInput, EvidenceFileUncheckedCreateWithoutCommentsInput>
+    where?: EvidenceFileWhereInput
+  }
+
+  export type EvidenceFileUpdateToOneWithWhereWithoutCommentsInput = {
+    where?: EvidenceFileWhereInput
+    data: XOR<EvidenceFileUpdateWithoutCommentsInput, EvidenceFileUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type EvidenceFileUpdateWithoutCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
+    indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
+    fileVersions?: FileVersionUpdateManyWithoutEvidenceFileNestedInput
+  }
+
+  export type EvidenceFileUncheckedUpdateWithoutCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    indicatorFolderId?: StringFieldUpdateOperationsInput | string
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
+    indicatorId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileVersions?: FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput
+  }
+
+  export type AreaFileUpsertWithoutCommentsInput = {
+    update: XOR<AreaFileUpdateWithoutCommentsInput, AreaFileUncheckedUpdateWithoutCommentsInput>
+    create: XOR<AreaFileCreateWithoutCommentsInput, AreaFileUncheckedCreateWithoutCommentsInput>
+    where?: AreaFileWhereInput
+  }
+
+  export type AreaFileUpdateToOneWithWhereWithoutCommentsInput = {
+    where?: AreaFileWhereInput
+    data: XOR<AreaFileUpdateWithoutCommentsInput, AreaFileUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type AreaFileUpdateWithoutCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
+    type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phaseOneAreaFolder?: AreaFolderUpdateOneWithoutAreaFilesNestedInput
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderUpdateOneWithoutAreaFilesNestedInput
+    fileVersions?: FileVersionUpdateManyWithoutAreaFileNestedInput
+  }
+
+  export type AreaFileUncheckedUpdateWithoutCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseOneAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
+    type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileVersions?: FileVersionUncheckedUpdateManyWithoutAreaFileNestedInput
+  }
+
   export type ProgramPersonnelCreateManyUserInput = {
     id?: string
     programId: string
@@ -40077,6 +42239,15 @@ export namespace Prisma {
     objectUrl: string
     type: string
     uploadedAt?: Date | string
+  }
+
+  export type CommentCreateManyAuthorInput = {
+    id?: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
   }
 
   export type ProgramPersonnelUpdateWithoutUserInput = {
@@ -40166,6 +42337,33 @@ export namespace Prisma {
     objectUrl?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidenceFile?: EvidenceFileUpdateOneWithoutCommentsNestedInput
+    areaFile?: AreaFileUpdateOneWithoutCommentsNestedInput
+  }
+
+  export type CommentUncheckedUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentUncheckedUpdateManyWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProgramPersonnelCreateManyProgramInput = {
@@ -40492,6 +42690,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
     fileVersions?: FileVersionUpdateManyWithoutEvidenceFileNestedInput
+    comments?: CommentUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateWithoutIndicatorInput = {
@@ -40501,6 +42700,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fileVersions?: FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateManyWithoutIndicatorInput = {
@@ -40698,6 +42898,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseTwoAreaFolder?: PhaseTwoAreaFolderUpdateOneWithoutAreaFilesNestedInput
     fileVersions?: FileVersionUpdateManyWithoutAreaFileNestedInput
+    comments?: CommentUpdateManyWithoutAreaFileNestedInput
   }
 
   export type AreaFileUncheckedUpdateWithoutPhaseOneAreaFolderInput = {
@@ -40708,6 +42909,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fileVersions?: FileVersionUncheckedUpdateManyWithoutAreaFileNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAreaFileNestedInput
   }
 
   export type AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderInput = {
@@ -40756,6 +42958,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
     fileVersions?: FileVersionUpdateManyWithoutEvidenceFileNestedInput
+    comments?: CommentUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateWithoutIndicatorFolderInput = {
@@ -40765,6 +42968,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fileVersions?: FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderInput = {
@@ -40784,6 +42988,15 @@ export namespace Prisma {
     objectUrl: string
     type: string
     uploadedAt?: Date | string
+  }
+
+  export type CommentCreateManyEvidenceFileInput = {
+    id?: string
+    authorId: string
+    areaFileId?: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
   }
 
   export type FileVersionUpdateWithoutEvidenceFileInput = {
@@ -40817,6 +43030,33 @@ export namespace Prisma {
     objectUrl?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentUpdateWithoutEvidenceFileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    areaFile?: AreaFileUpdateOneWithoutCommentsNestedInput
+  }
+
+  export type CommentUncheckedUpdateWithoutEvidenceFileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentUncheckedUpdateManyWithoutEvidenceFileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PhaseTwoAreaFolderCreateManyPhaseTwoFolderInput = {
@@ -40858,6 +43098,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneAreaFolder?: AreaFolderUpdateOneWithoutAreaFilesNestedInput
     fileVersions?: FileVersionUpdateManyWithoutAreaFileNestedInput
+    comments?: CommentUpdateManyWithoutAreaFileNestedInput
   }
 
   export type AreaFileUncheckedUpdateWithoutPhaseTwoAreaFolderInput = {
@@ -40868,6 +43109,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fileVersions?: FileVersionUncheckedUpdateManyWithoutAreaFileNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAreaFileNestedInput
   }
 
   export type AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderInput = {
@@ -40888,6 +43130,15 @@ export namespace Prisma {
     objectUrl: string
     type: string
     uploadedAt?: Date | string
+  }
+
+  export type CommentCreateManyAreaFileInput = {
+    id?: string
+    authorId: string
+    evidenceFileId?: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
   }
 
   export type FileVersionUpdateWithoutAreaFileInput = {
@@ -40921,6 +43172,33 @@ export namespace Prisma {
     objectUrl?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentUpdateWithoutAreaFileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    evidenceFile?: EvidenceFileUpdateOneWithoutCommentsNestedInput
+  }
+
+  export type CommentUncheckedUpdateWithoutAreaFileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentUncheckedUpdateManyWithoutAreaFileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TaskForceMemberCreateManyTaskForceInput = {

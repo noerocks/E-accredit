@@ -68,6 +68,12 @@ enum FileVersionStatus {
   REJECTED
 }
 
+enum CommentType {
+  TASKFORCE
+  SELF_SURVEY
+  ACTUAL_SURVEY
+}
+
 model User {
   id               String             @id @default(uuid())
   firstName        String
@@ -83,6 +89,7 @@ model User {
   programPersonnel ProgramPersonnel[]
   programHead      Program[]
   uploads          FileVersion[]
+  comments         Comment[]
 }
 
 model Program {
@@ -260,6 +267,7 @@ model EvidenceFile {
   createdAt         DateTime        @default(now())
   updatedAt         DateTime        @updatedAt
   fileVersions      FileVersion[]
+  comments          Comment[]
 }
 
 model FileVersion {
@@ -313,6 +321,7 @@ model AreaFile {
   createdAt            DateTime            @default(now())
   updatedAt            DateTime            @updatedAt
   fileVersions         FileVersion[]
+  comments             Comment[]
 }
 
 model TaskForce {
@@ -330,4 +339,17 @@ model TaskForceMember {
   programPersonnelId String
   taskForce          TaskForce        @relation(fields: [taskForceId], references: [id], onDelete: Cascade)
   taskForceId        String
+}
+
+model Comment {
+  id             String        @id @default(uuid())
+  author         User          @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId       String
+  evidenceFile   EvidenceFile? @relation(fields: [evidenceFileId], references: [id], onDelete: Cascade)
+  evidenceFileId String?
+  areaFile       AreaFile?     @relation(fields: [areaFileId], references: [id], onDelete: Cascade)
+  areaFileId     String?
+  content        String
+  type           CommentType
+  createdAt      DateTime      @default(now())
 }

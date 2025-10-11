@@ -11,8 +11,9 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { verifySession } from "@/lib/action/session";
+import { getFilteredComments } from "@/lib/dal/comment";
 import { getEvidenceFileById } from "@/lib/dal/evidence";
-import { Category, FileStatus } from "@/lib/generated/prisma";
+import { Category, CommentType, FileStatus } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import { CheckCircle, CircleDot, Tag } from "lucide-react";
 
@@ -30,6 +31,10 @@ const EvidencePage = async ({
     [Category.IMPLEMENTATION]: "Implementation",
     [Category.OUTCOME]: "Outcome/s",
   };
+  const comments = await getFilteredComments({
+    evidenceFileId: evidence?.id,
+    type: CommentType.TASKFORCE,
+  });
   const formatStatus = (status: FileStatus) => {
     return status
       .split("_")
@@ -91,7 +96,12 @@ const EvidencePage = async ({
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <Comments />
+              <Comments
+                user={user}
+                type={CommentType.TASKFORCE}
+                evidenceFileId={evidence?.id}
+                comments={comments}
+              />
               {(isMember || isAdmin) && (
                 <UploadFileForm
                   indicator={indicator}
@@ -99,9 +109,10 @@ const EvidencePage = async ({
                   user={user}
                 />
               )}
-              {(isChairperson || isAdmin) && (
-                <AcceptOrReject evidenceId={evidenceId} />
-              )}
+              {(isChairperson || isAdmin) &&
+                evidence?.status === "FOR_REVIEW" && (
+                  <AcceptOrReject evidenceId={evidenceId} />
+                )}
             </div>
           </CardFooter>
         </Card>
