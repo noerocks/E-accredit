@@ -85,6 +85,12 @@ export const columns: ColumnDef<FileVersion>[] = [
     },
   },
   {
+    accessorKey: "uploaderEmail",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Uploader" />
+    ),
+  },
+  {
     accessorKey: "status",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Status" />

@@ -16,6 +16,7 @@ import { updateAreaFileById } from "../dal/area-file";
 
 type FileVersionType = {
   name: string;
+  uploaderEmail: string;
   objectUrl: string;
   fileType: string;
   evidenceFileId?: string;
@@ -24,6 +25,7 @@ type FileVersionType = {
 
 export async function createNewVersion({
   name,
+  uploaderEmail,
   objectUrl,
   fileType,
   evidenceFileId,
@@ -40,6 +42,7 @@ export async function createNewVersion({
     await resetAllEvidenceVersionStatus(evidenceFileId);
     const evidenceFileVersion = await createNewEvidenceFileVersion(
       name,
+      uploaderEmail,
       evidenceFileId,
       objectUrl,
       fileType
@@ -53,6 +56,7 @@ export async function createNewVersion({
     await resetAllAreaFileVersionStatus(areaFileId);
     const areaFileVersion = await createNewAreaFileVersion(
       name,
+      uploaderEmail,
       areaFileId,
       objectUrl,
       fileType
@@ -79,6 +83,10 @@ export async function changeActiveVersion(
       const evidenceVersion = await updateVersionById(id, {
         status: FileVersionStatus.ACTIVE,
       });
+      const evidenceFile = await updateEvidenceFileById({
+        id: fileId,
+        status: FileStatus.FOR_REVIEW,
+      });
       break;
     }
     case "AreaFile": {
@@ -89,10 +97,6 @@ export async function changeActiveVersion(
       break;
     }
   }
-  const evidenceFile = await updateEvidenceFileById({
-    id: fileId,
-    status: FileStatus.FOR_REVIEW,
-  });
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");
   return {

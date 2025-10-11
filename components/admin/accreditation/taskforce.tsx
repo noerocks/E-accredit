@@ -68,7 +68,7 @@ const TaskForce = ({
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="flex items-center gap-2">
+        <Button className="flex items-center gap-2" variant="outline">
           <Users size={15} />
           Taskforce
         </Button>

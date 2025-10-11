@@ -19,6 +19,7 @@ import FileTree from "./file-tree";
 import React from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { FolderCheckIcon } from "lucide-react";
 
 const AccreditationSidebar = ({
   instrumentFolder,
@@ -51,7 +52,10 @@ const AccreditationSidebar = ({
       <SidebarHeader className="border-b">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton className="hover:bg-transparent active:bg-transparent"></SidebarMenuButton>
+            <SidebarMenuButton className="hover:bg-transparent active:bg-transparent">
+              <FolderCheckIcon />
+              File Explorer
+            </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

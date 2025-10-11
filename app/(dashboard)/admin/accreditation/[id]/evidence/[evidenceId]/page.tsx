@@ -96,6 +96,7 @@ const EvidencePage = async ({
                 <UploadFileForm
                   indicator={indicator}
                   evidenceFileId={evidenceId}
+                  user={user}
                 />
               )}
               {(isChairperson || isAdmin) && (

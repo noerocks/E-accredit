@@ -2982,11 +2982,13 @@ export namespace Prisma {
   export type UserCountOutputType = {
     programPersonnel: number
     programHead: number
+    uploads: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     programPersonnel?: boolean | UserCountOutputTypeCountProgramPersonnelArgs
     programHead?: boolean | UserCountOutputTypeCountProgramHeadArgs
+    uploads?: boolean | UserCountOutputTypeCountUploadsArgs
   }
 
   // Custom InputTypes
@@ -3012,6 +3014,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountProgramHeadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProgramWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountUploadsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FileVersionWhereInput
   }
 
 
@@ -3832,6 +3841,7 @@ export namespace Prisma {
     updatedAt?: boolean
     programPersonnel?: boolean | User$programPersonnelArgs<ExtArgs>
     programHead?: boolean | User$programHeadArgs<ExtArgs>
+    uploads?: boolean | User$uploadsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3881,6 +3891,7 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     programPersonnel?: boolean | User$programPersonnelArgs<ExtArgs>
     programHead?: boolean | User$programHeadArgs<ExtArgs>
+    uploads?: boolean | User$uploadsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3891,6 +3902,7 @@ export namespace Prisma {
     objects: {
       programPersonnel: Prisma.$ProgramPersonnelPayload<ExtArgs>[]
       programHead: Prisma.$ProgramPayload<ExtArgs>[]
+      uploads: Prisma.$FileVersionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4300,6 +4312,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     programPersonnel<T extends User$programPersonnelArgs<ExtArgs> = {}>(args?: Subset<T, User$programPersonnelArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     programHead<T extends User$programHeadArgs<ExtArgs> = {}>(args?: Subset<T, User$programHeadArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    uploads<T extends User$uploadsArgs<ExtArgs> = {}>(args?: Subset<T, User$uploadsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4773,6 +4786,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProgramScalarFieldEnum | ProgramScalarFieldEnum[]
+  }
+
+  /**
+   * User.uploads
+   */
+  export type User$uploadsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileVersion
+     */
+    select?: FileVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileVersion
+     */
+    omit?: FileVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileVersionInclude<ExtArgs> | null
+    where?: FileVersionWhereInput
+    orderBy?: FileVersionOrderByWithRelationInput | FileVersionOrderByWithRelationInput[]
+    cursor?: FileVersionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FileVersionScalarFieldEnum | FileVersionScalarFieldEnum[]
   }
 
   /**
@@ -21830,6 +21867,7 @@ export namespace Prisma {
     id: string | null
     evidenceFileId: string | null
     areaFileId: string | null
+    uploaderEmail: string | null
     name: string | null
     status: $Enums.FileVersionStatus | null
     objectUrl: string | null
@@ -21841,6 +21879,7 @@ export namespace Prisma {
     id: string | null
     evidenceFileId: string | null
     areaFileId: string | null
+    uploaderEmail: string | null
     name: string | null
     status: $Enums.FileVersionStatus | null
     objectUrl: string | null
@@ -21852,6 +21891,7 @@ export namespace Prisma {
     id: number
     evidenceFileId: number
     areaFileId: number
+    uploaderEmail: number
     name: number
     status: number
     objectUrl: number
@@ -21865,6 +21905,7 @@ export namespace Prisma {
     id?: true
     evidenceFileId?: true
     areaFileId?: true
+    uploaderEmail?: true
     name?: true
     status?: true
     objectUrl?: true
@@ -21876,6 +21917,7 @@ export namespace Prisma {
     id?: true
     evidenceFileId?: true
     areaFileId?: true
+    uploaderEmail?: true
     name?: true
     status?: true
     objectUrl?: true
@@ -21887,6 +21929,7 @@ export namespace Prisma {
     id?: true
     evidenceFileId?: true
     areaFileId?: true
+    uploaderEmail?: true
     name?: true
     status?: true
     objectUrl?: true
@@ -21971,6 +22014,7 @@ export namespace Prisma {
     id: string
     evidenceFileId: string | null
     areaFileId: string | null
+    uploaderEmail: string | null
     name: string
     status: $Enums.FileVersionStatus | null
     objectUrl: string
@@ -21999,6 +22043,7 @@ export namespace Prisma {
     id?: boolean
     evidenceFileId?: boolean
     areaFileId?: boolean
+    uploaderEmail?: boolean
     name?: boolean
     status?: boolean
     objectUrl?: boolean
@@ -22006,12 +22051,14 @@ export namespace Prisma {
     uploadedAt?: boolean
     evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+    uploader?: boolean | FileVersion$uploaderArgs<ExtArgs>
   }, ExtArgs["result"]["fileVersion"]>
 
   export type FileVersionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     evidenceFileId?: boolean
     areaFileId?: boolean
+    uploaderEmail?: boolean
     name?: boolean
     status?: boolean
     objectUrl?: boolean
@@ -22019,12 +22066,14 @@ export namespace Prisma {
     uploadedAt?: boolean
     evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+    uploader?: boolean | FileVersion$uploaderArgs<ExtArgs>
   }, ExtArgs["result"]["fileVersion"]>
 
   export type FileVersionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     evidenceFileId?: boolean
     areaFileId?: boolean
+    uploaderEmail?: boolean
     name?: boolean
     status?: boolean
     objectUrl?: boolean
@@ -22032,12 +22081,14 @@ export namespace Prisma {
     uploadedAt?: boolean
     evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+    uploader?: boolean | FileVersion$uploaderArgs<ExtArgs>
   }, ExtArgs["result"]["fileVersion"]>
 
   export type FileVersionSelectScalar = {
     id?: boolean
     evidenceFileId?: boolean
     areaFileId?: boolean
+    uploaderEmail?: boolean
     name?: boolean
     status?: boolean
     objectUrl?: boolean
@@ -22045,18 +22096,21 @@ export namespace Prisma {
     uploadedAt?: boolean
   }
 
-  export type FileVersionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "evidenceFileId" | "areaFileId" | "name" | "status" | "objectUrl" | "type" | "uploadedAt", ExtArgs["result"]["fileVersion"]>
+  export type FileVersionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "evidenceFileId" | "areaFileId" | "uploaderEmail" | "name" | "status" | "objectUrl" | "type" | "uploadedAt", ExtArgs["result"]["fileVersion"]>
   export type FileVersionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+    uploader?: boolean | FileVersion$uploaderArgs<ExtArgs>
   }
   export type FileVersionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+    uploader?: boolean | FileVersion$uploaderArgs<ExtArgs>
   }
   export type FileVersionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+    uploader?: boolean | FileVersion$uploaderArgs<ExtArgs>
   }
 
   export type $FileVersionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -22064,11 +22118,13 @@ export namespace Prisma {
     objects: {
       evidenceFile: Prisma.$EvidenceFilePayload<ExtArgs> | null
       areaFile: Prisma.$AreaFilePayload<ExtArgs> | null
+      uploader: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       evidenceFileId: string | null
       areaFileId: string | null
+      uploaderEmail: string | null
       name: string
       status: $Enums.FileVersionStatus | null
       objectUrl: string
@@ -22470,6 +22526,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     evidenceFile<T extends FileVersion$evidenceFileArgs<ExtArgs> = {}>(args?: Subset<T, FileVersion$evidenceFileArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     areaFile<T extends FileVersion$areaFileArgs<ExtArgs> = {}>(args?: Subset<T, FileVersion$areaFileArgs<ExtArgs>>): Prisma__AreaFileClient<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    uploader<T extends FileVersion$uploaderArgs<ExtArgs> = {}>(args?: Subset<T, FileVersion$uploaderArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -22502,6 +22559,7 @@ export namespace Prisma {
     readonly id: FieldRef<"FileVersion", 'String'>
     readonly evidenceFileId: FieldRef<"FileVersion", 'String'>
     readonly areaFileId: FieldRef<"FileVersion", 'String'>
+    readonly uploaderEmail: FieldRef<"FileVersion", 'String'>
     readonly name: FieldRef<"FileVersion", 'String'>
     readonly status: FieldRef<"FileVersion", 'FileVersionStatus'>
     readonly objectUrl: FieldRef<"FileVersion", 'String'>
@@ -22938,6 +22996,25 @@ export namespace Prisma {
      */
     include?: AreaFileInclude<ExtArgs> | null
     where?: AreaFileWhereInput
+  }
+
+  /**
+   * FileVersion.uploader
+   */
+  export type FileVersion$uploaderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
   }
 
   /**
@@ -29707,6 +29784,7 @@ export namespace Prisma {
     id: 'id',
     evidenceFileId: 'evidenceFileId',
     areaFileId: 'areaFileId',
+    uploaderEmail: 'uploaderEmail',
     name: 'name',
     status: 'status',
     objectUrl: 'objectUrl',
@@ -30019,6 +30097,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     programPersonnel?: ProgramPersonnelListRelationFilter
     programHead?: ProgramListRelationFilter
+    uploads?: FileVersionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -30035,6 +30114,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     programPersonnel?: ProgramPersonnelOrderByRelationAggregateInput
     programHead?: ProgramOrderByRelationAggregateInput
+    uploads?: FileVersionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -30054,6 +30134,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     programPersonnel?: ProgramPersonnelListRelationFilter
     programHead?: ProgramListRelationFilter
+    uploads?: FileVersionListRelationFilter
   }, "id" | "phoneNumber" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -31057,6 +31138,7 @@ export namespace Prisma {
     id?: StringFilter<"FileVersion"> | string
     evidenceFileId?: StringNullableFilter<"FileVersion"> | string | null
     areaFileId?: StringNullableFilter<"FileVersion"> | string | null
+    uploaderEmail?: StringNullableFilter<"FileVersion"> | string | null
     name?: StringFilter<"FileVersion"> | string
     status?: EnumFileVersionStatusNullableFilter<"FileVersion"> | $Enums.FileVersionStatus | null
     objectUrl?: StringFilter<"FileVersion"> | string
@@ -31064,12 +31146,14 @@ export namespace Prisma {
     uploadedAt?: DateTimeFilter<"FileVersion"> | Date | string
     evidenceFile?: XOR<EvidenceFileNullableScalarRelationFilter, EvidenceFileWhereInput> | null
     areaFile?: XOR<AreaFileNullableScalarRelationFilter, AreaFileWhereInput> | null
+    uploader?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type FileVersionOrderByWithRelationInput = {
     id?: SortOrder
     evidenceFileId?: SortOrderInput | SortOrder
     areaFileId?: SortOrderInput | SortOrder
+    uploaderEmail?: SortOrderInput | SortOrder
     name?: SortOrder
     status?: SortOrderInput | SortOrder
     objectUrl?: SortOrder
@@ -31077,6 +31161,7 @@ export namespace Prisma {
     uploadedAt?: SortOrder
     evidenceFile?: EvidenceFileOrderByWithRelationInput
     areaFile?: AreaFileOrderByWithRelationInput
+    uploader?: UserOrderByWithRelationInput
   }
 
   export type FileVersionWhereUniqueInput = Prisma.AtLeast<{
@@ -31086,6 +31171,7 @@ export namespace Prisma {
     NOT?: FileVersionWhereInput | FileVersionWhereInput[]
     evidenceFileId?: StringNullableFilter<"FileVersion"> | string | null
     areaFileId?: StringNullableFilter<"FileVersion"> | string | null
+    uploaderEmail?: StringNullableFilter<"FileVersion"> | string | null
     name?: StringFilter<"FileVersion"> | string
     status?: EnumFileVersionStatusNullableFilter<"FileVersion"> | $Enums.FileVersionStatus | null
     objectUrl?: StringFilter<"FileVersion"> | string
@@ -31093,12 +31179,14 @@ export namespace Prisma {
     uploadedAt?: DateTimeFilter<"FileVersion"> | Date | string
     evidenceFile?: XOR<EvidenceFileNullableScalarRelationFilter, EvidenceFileWhereInput> | null
     areaFile?: XOR<AreaFileNullableScalarRelationFilter, AreaFileWhereInput> | null
+    uploader?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type FileVersionOrderByWithAggregationInput = {
     id?: SortOrder
     evidenceFileId?: SortOrderInput | SortOrder
     areaFileId?: SortOrderInput | SortOrder
+    uploaderEmail?: SortOrderInput | SortOrder
     name?: SortOrder
     status?: SortOrderInput | SortOrder
     objectUrl?: SortOrder
@@ -31116,6 +31204,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"FileVersion"> | string
     evidenceFileId?: StringNullableWithAggregatesFilter<"FileVersion"> | string | null
     areaFileId?: StringNullableWithAggregatesFilter<"FileVersion"> | string | null
+    uploaderEmail?: StringNullableWithAggregatesFilter<"FileVersion"> | string | null
     name?: StringWithAggregatesFilter<"FileVersion"> | string
     status?: EnumFileVersionStatusNullableWithAggregatesFilter<"FileVersion"> | $Enums.FileVersionStatus | null
     objectUrl?: StringWithAggregatesFilter<"FileVersion"> | string
@@ -31454,6 +31543,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
     programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
+    uploads?: FileVersionCreateNestedManyWithoutUploaderInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -31470,6 +31560,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
     programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
+    uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
   }
 
   export type UserUpdateInput = {
@@ -31486,6 +31577,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
     programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
+    uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -31502,6 +31594,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
     programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
+    uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -32505,12 +32598,14 @@ export namespace Prisma {
     uploadedAt?: Date | string
     evidenceFile?: EvidenceFileCreateNestedOneWithoutFileVersionsInput
     areaFile?: AreaFileCreateNestedOneWithoutFileVersionsInput
+    uploader?: UserCreateNestedOneWithoutUploadsInput
   }
 
   export type FileVersionUncheckedCreateInput = {
     id?: string
     evidenceFileId?: string | null
     areaFileId?: string | null
+    uploaderEmail?: string | null
     name: string
     status?: $Enums.FileVersionStatus | null
     objectUrl: string
@@ -32527,12 +32622,14 @@ export namespace Prisma {
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     evidenceFile?: EvidenceFileUpdateOneWithoutFileVersionsNestedInput
     areaFile?: AreaFileUpdateOneWithoutFileVersionsNestedInput
+    uploader?: UserUpdateOneWithoutUploadsNestedInput
   }
 
   export type FileVersionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaderEmail?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
     objectUrl?: StringFieldUpdateOperationsInput | string
@@ -32544,6 +32641,7 @@ export namespace Prisma {
     id?: string
     evidenceFileId?: string | null
     areaFileId?: string | null
+    uploaderEmail?: string | null
     name: string
     status?: $Enums.FileVersionStatus | null
     objectUrl: string
@@ -32564,6 +32662,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaderEmail?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
     objectUrl?: StringFieldUpdateOperationsInput | string
@@ -32913,6 +33012,12 @@ export namespace Prisma {
     none?: ProgramWhereInput
   }
 
+  export type FileVersionListRelationFilter = {
+    every?: FileVersionWhereInput
+    some?: FileVersionWhereInput
+    none?: FileVersionWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -32923,6 +33028,10 @@ export namespace Prisma {
   }
 
   export type ProgramOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FileVersionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -33872,16 +33981,6 @@ export namespace Prisma {
     isNot?: IndicatorWhereInput
   }
 
-  export type FileVersionListRelationFilter = {
-    every?: FileVersionWhereInput
-    some?: FileVersionWhereInput
-    none?: FileVersionWhereInput
-  }
-
-  export type FileVersionOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type EvidenceFileCountOrderByAggregateInput = {
     id?: SortOrder
     indicatorFolderId?: SortOrder
@@ -33948,6 +34047,7 @@ export namespace Prisma {
     id?: SortOrder
     evidenceFileId?: SortOrder
     areaFileId?: SortOrder
+    uploaderEmail?: SortOrder
     name?: SortOrder
     status?: SortOrder
     objectUrl?: SortOrder
@@ -33959,6 +34059,7 @@ export namespace Prisma {
     id?: SortOrder
     evidenceFileId?: SortOrder
     areaFileId?: SortOrder
+    uploaderEmail?: SortOrder
     name?: SortOrder
     status?: SortOrder
     objectUrl?: SortOrder
@@ -33970,6 +34071,7 @@ export namespace Prisma {
     id?: SortOrder
     evidenceFileId?: SortOrder
     areaFileId?: SortOrder
+    uploaderEmail?: SortOrder
     name?: SortOrder
     status?: SortOrder
     objectUrl?: SortOrder
@@ -34178,6 +34280,13 @@ export namespace Prisma {
     connect?: ProgramWhereUniqueInput | ProgramWhereUniqueInput[]
   }
 
+  export type FileVersionCreateNestedManyWithoutUploaderInput = {
+    create?: XOR<FileVersionCreateWithoutUploaderInput, FileVersionUncheckedCreateWithoutUploaderInput> | FileVersionCreateWithoutUploaderInput[] | FileVersionUncheckedCreateWithoutUploaderInput[]
+    connectOrCreate?: FileVersionCreateOrConnectWithoutUploaderInput | FileVersionCreateOrConnectWithoutUploaderInput[]
+    createMany?: FileVersionCreateManyUploaderInputEnvelope
+    connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+  }
+
   export type ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
@@ -34190,6 +34299,13 @@ export namespace Prisma {
     connectOrCreate?: ProgramCreateOrConnectWithoutProgramHeadInput | ProgramCreateOrConnectWithoutProgramHeadInput[]
     createMany?: ProgramCreateManyProgramHeadInputEnvelope
     connect?: ProgramWhereUniqueInput | ProgramWhereUniqueInput[]
+  }
+
+  export type FileVersionUncheckedCreateNestedManyWithoutUploaderInput = {
+    create?: XOR<FileVersionCreateWithoutUploaderInput, FileVersionUncheckedCreateWithoutUploaderInput> | FileVersionCreateWithoutUploaderInput[] | FileVersionUncheckedCreateWithoutUploaderInput[]
+    connectOrCreate?: FileVersionCreateOrConnectWithoutUploaderInput | FileVersionCreateOrConnectWithoutUploaderInput[]
+    createMany?: FileVersionCreateManyUploaderInputEnvelope
+    connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -34236,6 +34352,20 @@ export namespace Prisma {
     deleteMany?: ProgramScalarWhereInput | ProgramScalarWhereInput[]
   }
 
+  export type FileVersionUpdateManyWithoutUploaderNestedInput = {
+    create?: XOR<FileVersionCreateWithoutUploaderInput, FileVersionUncheckedCreateWithoutUploaderInput> | FileVersionCreateWithoutUploaderInput[] | FileVersionUncheckedCreateWithoutUploaderInput[]
+    connectOrCreate?: FileVersionCreateOrConnectWithoutUploaderInput | FileVersionCreateOrConnectWithoutUploaderInput[]
+    upsert?: FileVersionUpsertWithWhereUniqueWithoutUploaderInput | FileVersionUpsertWithWhereUniqueWithoutUploaderInput[]
+    createMany?: FileVersionCreateManyUploaderInputEnvelope
+    set?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    disconnect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    delete?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    update?: FileVersionUpdateWithWhereUniqueWithoutUploaderInput | FileVersionUpdateWithWhereUniqueWithoutUploaderInput[]
+    updateMany?: FileVersionUpdateManyWithWhereWithoutUploaderInput | FileVersionUpdateManyWithWhereWithoutUploaderInput[]
+    deleteMany?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
+  }
+
   export type ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
@@ -34262,6 +34392,20 @@ export namespace Prisma {
     update?: ProgramUpdateWithWhereUniqueWithoutProgramHeadInput | ProgramUpdateWithWhereUniqueWithoutProgramHeadInput[]
     updateMany?: ProgramUpdateManyWithWhereWithoutProgramHeadInput | ProgramUpdateManyWithWhereWithoutProgramHeadInput[]
     deleteMany?: ProgramScalarWhereInput | ProgramScalarWhereInput[]
+  }
+
+  export type FileVersionUncheckedUpdateManyWithoutUploaderNestedInput = {
+    create?: XOR<FileVersionCreateWithoutUploaderInput, FileVersionUncheckedCreateWithoutUploaderInput> | FileVersionCreateWithoutUploaderInput[] | FileVersionUncheckedCreateWithoutUploaderInput[]
+    connectOrCreate?: FileVersionCreateOrConnectWithoutUploaderInput | FileVersionCreateOrConnectWithoutUploaderInput[]
+    upsert?: FileVersionUpsertWithWhereUniqueWithoutUploaderInput | FileVersionUpsertWithWhereUniqueWithoutUploaderInput[]
+    createMany?: FileVersionCreateManyUploaderInputEnvelope
+    set?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    disconnect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    delete?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    connect?: FileVersionWhereUniqueInput | FileVersionWhereUniqueInput[]
+    update?: FileVersionUpdateWithWhereUniqueWithoutUploaderInput | FileVersionUpdateWithWhereUniqueWithoutUploaderInput[]
+    updateMany?: FileVersionUpdateManyWithWhereWithoutUploaderInput | FileVersionUpdateManyWithWhereWithoutUploaderInput[]
+    deleteMany?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutProgramHeadInput = {
@@ -35650,6 +35794,12 @@ export namespace Prisma {
     connect?: AreaFileWhereUniqueInput
   }
 
+  export type UserCreateNestedOneWithoutUploadsInput = {
+    create?: XOR<UserCreateWithoutUploadsInput, UserUncheckedCreateWithoutUploadsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUploadsInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type NullableEnumFileVersionStatusFieldUpdateOperationsInput = {
     set?: $Enums.FileVersionStatus | null
   }
@@ -35672,6 +35822,16 @@ export namespace Prisma {
     delete?: AreaFileWhereInput | boolean
     connect?: AreaFileWhereUniqueInput
     update?: XOR<XOR<AreaFileUpdateToOneWithWhereWithoutFileVersionsInput, AreaFileUpdateWithoutFileVersionsInput>, AreaFileUncheckedUpdateWithoutFileVersionsInput>
+  }
+
+  export type UserUpdateOneWithoutUploadsNestedInput = {
+    create?: XOR<UserCreateWithoutUploadsInput, UserUncheckedCreateWithoutUploadsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUploadsInput
+    upsert?: UserUpsertWithoutUploadsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUploadsInput, UserUpdateWithoutUploadsInput>, UserUncheckedUpdateWithoutUploadsInput>
   }
 
   export type SurveyVisitCreateNestedOneWithoutPhaseTwoRequirementsInput = {
@@ -36443,6 +36603,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type FileVersionCreateWithoutUploaderInput = {
+    id?: string
+    name: string
+    status?: $Enums.FileVersionStatus | null
+    objectUrl: string
+    type: string
+    uploadedAt?: Date | string
+    evidenceFile?: EvidenceFileCreateNestedOneWithoutFileVersionsInput
+    areaFile?: AreaFileCreateNestedOneWithoutFileVersionsInput
+  }
+
+  export type FileVersionUncheckedCreateWithoutUploaderInput = {
+    id?: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
+    name: string
+    status?: $Enums.FileVersionStatus | null
+    objectUrl: string
+    type: string
+    uploadedAt?: Date | string
+  }
+
+  export type FileVersionCreateOrConnectWithoutUploaderInput = {
+    where: FileVersionWhereUniqueInput
+    create: XOR<FileVersionCreateWithoutUploaderInput, FileVersionUncheckedCreateWithoutUploaderInput>
+  }
+
+  export type FileVersionCreateManyUploaderInputEnvelope = {
+    data: FileVersionCreateManyUploaderInput | FileVersionCreateManyUploaderInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ProgramPersonnelUpsertWithWhereUniqueWithoutUserInput = {
     where: ProgramPersonnelWhereUniqueInput
     update: XOR<ProgramPersonnelUpdateWithoutUserInput, ProgramPersonnelUncheckedUpdateWithoutUserInput>
@@ -36499,6 +36691,37 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Program"> | Date | string
   }
 
+  export type FileVersionUpsertWithWhereUniqueWithoutUploaderInput = {
+    where: FileVersionWhereUniqueInput
+    update: XOR<FileVersionUpdateWithoutUploaderInput, FileVersionUncheckedUpdateWithoutUploaderInput>
+    create: XOR<FileVersionCreateWithoutUploaderInput, FileVersionUncheckedCreateWithoutUploaderInput>
+  }
+
+  export type FileVersionUpdateWithWhereUniqueWithoutUploaderInput = {
+    where: FileVersionWhereUniqueInput
+    data: XOR<FileVersionUpdateWithoutUploaderInput, FileVersionUncheckedUpdateWithoutUploaderInput>
+  }
+
+  export type FileVersionUpdateManyWithWhereWithoutUploaderInput = {
+    where: FileVersionScalarWhereInput
+    data: XOR<FileVersionUpdateManyMutationInput, FileVersionUncheckedUpdateManyWithoutUploaderInput>
+  }
+
+  export type FileVersionScalarWhereInput = {
+    AND?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
+    OR?: FileVersionScalarWhereInput[]
+    NOT?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
+    id?: StringFilter<"FileVersion"> | string
+    evidenceFileId?: StringNullableFilter<"FileVersion"> | string | null
+    areaFileId?: StringNullableFilter<"FileVersion"> | string | null
+    uploaderEmail?: StringNullableFilter<"FileVersion"> | string | null
+    name?: StringFilter<"FileVersion"> | string
+    status?: EnumFileVersionStatusNullableFilter<"FileVersion"> | $Enums.FileVersionStatus | null
+    objectUrl?: StringFilter<"FileVersion"> | string
+    type?: StringFilter<"FileVersion"> | string
+    uploadedAt?: DateTimeFilter<"FileVersion"> | Date | string
+  }
+
   export type UserCreateWithoutProgramHeadInput = {
     id?: string
     firstName: string
@@ -36512,6 +36735,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
+    uploads?: FileVersionCreateNestedManyWithoutUploaderInput
   }
 
   export type UserUncheckedCreateWithoutProgramHeadInput = {
@@ -36527,6 +36751,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
+    uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
   }
 
   export type UserCreateOrConnectWithoutProgramHeadInput = {
@@ -36607,6 +36832,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
+    uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgramHeadInput = {
@@ -36622,6 +36848,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
+    uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
   }
 
   export type ProgramPersonnelUpsertWithWhereUniqueWithoutProgramInput = {
@@ -36682,6 +36909,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
+    uploads?: FileVersionCreateNestedManyWithoutUploaderInput
   }
 
   export type UserUncheckedCreateWithoutProgramPersonnelInput = {
@@ -36697,6 +36925,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
+    uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
   }
 
   export type UserCreateOrConnectWithoutProgramPersonnelInput = {
@@ -36799,6 +37028,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
+    uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgramPersonnelInput = {
@@ -36814,6 +37044,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
+    uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
   }
 
   export type ProgramUpsertWithoutProgramPersonnelInput = {
@@ -38800,11 +39031,13 @@ export namespace Prisma {
     type: string
     uploadedAt?: Date | string
     areaFile?: AreaFileCreateNestedOneWithoutFileVersionsInput
+    uploader?: UserCreateNestedOneWithoutUploadsInput
   }
 
   export type FileVersionUncheckedCreateWithoutEvidenceFileInput = {
     id?: string
     areaFileId?: string | null
+    uploaderEmail?: string | null
     name: string
     status?: $Enums.FileVersionStatus | null
     objectUrl: string
@@ -38893,20 +39126,6 @@ export namespace Prisma {
     data: XOR<FileVersionUpdateManyMutationInput, FileVersionUncheckedUpdateManyWithoutEvidenceFileInput>
   }
 
-  export type FileVersionScalarWhereInput = {
-    AND?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
-    OR?: FileVersionScalarWhereInput[]
-    NOT?: FileVersionScalarWhereInput | FileVersionScalarWhereInput[]
-    id?: StringFilter<"FileVersion"> | string
-    evidenceFileId?: StringNullableFilter<"FileVersion"> | string | null
-    areaFileId?: StringNullableFilter<"FileVersion"> | string | null
-    name?: StringFilter<"FileVersion"> | string
-    status?: EnumFileVersionStatusNullableFilter<"FileVersion"> | $Enums.FileVersionStatus | null
-    objectUrl?: StringFilter<"FileVersion"> | string
-    type?: StringFilter<"FileVersion"> | string
-    uploadedAt?: DateTimeFilter<"FileVersion"> | Date | string
-  }
-
   export type EvidenceFileCreateWithoutFileVersionsInput = {
     id?: string
     status: $Enums.FileStatus
@@ -38953,6 +39172,43 @@ export namespace Prisma {
   export type AreaFileCreateOrConnectWithoutFileVersionsInput = {
     where: AreaFileWhereUniqueInput
     create: XOR<AreaFileCreateWithoutFileVersionsInput, AreaFileUncheckedCreateWithoutFileVersionsInput>
+  }
+
+  export type UserCreateWithoutUploadsInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
+    programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
+  }
+
+  export type UserUncheckedCreateWithoutUploadsInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
+    programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
+  }
+
+  export type UserCreateOrConnectWithoutUploadsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUploadsInput, UserUncheckedCreateWithoutUploadsInput>
   }
 
   export type EvidenceFileUpsertWithoutFileVersionsInput = {
@@ -39013,6 +39269,49 @@ export namespace Prisma {
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpsertWithoutUploadsInput = {
+    update: XOR<UserUpdateWithoutUploadsInput, UserUncheckedUpdateWithoutUploadsInput>
+    create: XOR<UserCreateWithoutUploadsInput, UserUncheckedCreateWithoutUploadsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUploadsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUploadsInput, UserUncheckedUpdateWithoutUploadsInput>
+  }
+
+  export type UserUpdateWithoutUploadsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
+    programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUploadsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
+    programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
   }
 
   export type SurveyVisitCreateWithoutPhaseTwoRequirementsInput = {
@@ -39437,11 +39736,13 @@ export namespace Prisma {
     type: string
     uploadedAt?: Date | string
     evidenceFile?: EvidenceFileCreateNestedOneWithoutFileVersionsInput
+    uploader?: UserCreateNestedOneWithoutUploadsInput
   }
 
   export type FileVersionUncheckedCreateWithoutAreaFileInput = {
     id?: string
     evidenceFileId?: string | null
+    uploaderEmail?: string | null
     name: string
     status?: $Enums.FileVersionStatus | null
     objectUrl: string
@@ -39767,6 +40068,17 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type FileVersionCreateManyUploaderInput = {
+    id?: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
+    name: string
+    status?: $Enums.FileVersionStatus | null
+    objectUrl: string
+    type: string
+    uploadedAt?: Date | string
+  }
+
   export type ProgramPersonnelUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39821,6 +40133,39 @@ export namespace Prisma {
     major?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FileVersionUpdateWithoutUploaderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
+    objectUrl?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidenceFile?: EvidenceFileUpdateOneWithoutFileVersionsNestedInput
+    areaFile?: AreaFileUpdateOneWithoutFileVersionsNestedInput
+  }
+
+  export type FileVersionUncheckedUpdateWithoutUploaderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
+    objectUrl?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FileVersionUncheckedUpdateManyWithoutUploaderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
+    objectUrl?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProgramPersonnelCreateManyProgramInput = {
@@ -40433,6 +40778,7 @@ export namespace Prisma {
   export type FileVersionCreateManyEvidenceFileInput = {
     id?: string
     areaFileId?: string | null
+    uploaderEmail?: string | null
     name: string
     status?: $Enums.FileVersionStatus | null
     objectUrl: string
@@ -40448,11 +40794,13 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     areaFile?: AreaFileUpdateOneWithoutFileVersionsNestedInput
+    uploader?: UserUpdateOneWithoutUploadsNestedInput
   }
 
   export type FileVersionUncheckedUpdateWithoutEvidenceFileInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaderEmail?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
     objectUrl?: StringFieldUpdateOperationsInput | string
@@ -40463,6 +40811,7 @@ export namespace Prisma {
   export type FileVersionUncheckedUpdateManyWithoutEvidenceFileInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaderEmail?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
     objectUrl?: StringFieldUpdateOperationsInput | string
@@ -40533,6 +40882,7 @@ export namespace Prisma {
   export type FileVersionCreateManyAreaFileInput = {
     id?: string
     evidenceFileId?: string | null
+    uploaderEmail?: string | null
     name: string
     status?: $Enums.FileVersionStatus | null
     objectUrl: string
@@ -40548,11 +40898,13 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     evidenceFile?: EvidenceFileUpdateOneWithoutFileVersionsNestedInput
+    uploader?: UserUpdateOneWithoutUploadsNestedInput
   }
 
   export type FileVersionUncheckedUpdateWithoutAreaFileInput = {
     id?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaderEmail?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
     objectUrl?: StringFieldUpdateOperationsInput | string
@@ -40563,6 +40915,7 @@ export namespace Prisma {
   export type FileVersionUncheckedUpdateManyWithoutAreaFileInput = {
     id?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaderEmail?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
     objectUrl?: StringFieldUpdateOperationsInput | string

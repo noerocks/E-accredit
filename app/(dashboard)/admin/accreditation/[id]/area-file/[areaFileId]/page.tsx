@@ -73,7 +73,11 @@ const AreaFilePage = async ({
             <div className="flex items-center gap-2">
               <Comments />
               {(isAdmin || isChairperson) && (
-                <UploadFileForm area={area} areaFileId={areaFile?.id} />
+                <UploadFileForm
+                  area={area}
+                  areaFileId={areaFile?.id}
+                  user={user}
+                />
               )}
             </div>
           </CardFooter>

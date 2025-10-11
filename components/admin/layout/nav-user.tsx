@@ -52,7 +52,7 @@ const NavUser = ({
                 </Avatar>
                 <div className="flex flex-col leading-none">
                   <span>{user?.fullName}</span>
-                  <span>{user?.email}</span>
+                  <span className="text-muted-foreground">{user?.email}</span>
                 </div>
                 <ChevronsUpDown className="ml-auto" />
               </SidebarMenuButton>
@@ -79,7 +79,7 @@ const NavUser = ({
                   </Avatar>
                   <div className="flex flex-col leading-none">
                     <span>{user?.fullName}</span>
-                    <span>{user?.email}</span>
+                    <span className="text-muted-foreground">{user?.email}</span>
                   </div>
                 </div>
               </DropdownMenuLabel>

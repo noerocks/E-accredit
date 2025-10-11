@@ -82,6 +82,7 @@ model User {
   updatedAt        DateTime           @updatedAt
   programPersonnel ProgramPersonnel[]
   programHead      Program[]
+  uploads          FileVersion[]
 }
 
 model Program {
@@ -267,6 +268,8 @@ model FileVersion {
   evidenceFileId String?
   areaFile       AreaFile?          @relation(fields: [areaFileId], references: [id], onDelete: Cascade)
   areaFileId     String?
+  uploader       User?              @relation(fields: [uploaderEmail], references: [email], onDelete: SetNull)
+  uploaderEmail  String?
   name           String
   status         FileVersionStatus?
   objectUrl      String

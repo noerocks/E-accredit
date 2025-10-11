@@ -24,17 +24,20 @@ import { FileRejection, useDropzone } from "react-dropzone";
 import { toast } from "sonner";
 import { Progress } from "@/components/ui/progress";
 import { Area } from "@/lib/generated/prisma";
+import { SessionPayload } from "@/lib/definitions";
 
 const UploadFileForm = ({
   indicator,
   evidenceFileId,
   area,
   areaFileId,
+  user,
 }: {
   indicator?: IndicatorDTO | undefined;
   evidenceFileId?: string;
   area?: Area;
   areaFileId?: string;
+  user: SessionPayload;
 }) => {
   const [file, setFile] = useState<File | null>();
   const [progress, setProgress] = useState<number>(0);
@@ -72,6 +75,7 @@ const UploadFileForm = ({
       if (evidenceFileId) {
         const fileVersionResult = await createNewVersion({
           name,
+          uploaderEmail: user.email,
           objectUrl,
           fileType: file.type,
           evidenceFileId,
@@ -80,6 +84,7 @@ const UploadFileForm = ({
       if (areaFileId) {
         const fileVersionResult = await createNewVersion({
           name,
+          uploaderEmail: user.email,
           objectUrl,
           fileType: file.type,
           areaFileId,

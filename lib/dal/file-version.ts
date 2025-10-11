@@ -8,6 +8,7 @@ import { prisma } from "../prisma";
 
 export async function createNewEvidenceFileVersion(
   name: string,
+  uploaderEmail: string,
   evidenceFileId: string,
   objectUrl: string,
   type: string
@@ -17,6 +18,11 @@ export async function createNewEvidenceFileVersion(
   const evidenceVersion = await prisma.fileVersion.create({
     data: {
       name,
+      uploader: {
+        connect: {
+          email: uploaderEmail,
+        },
+      },
       status: FileVersionStatus.ACTIVE,
       evidenceFile: {
         connect: {
@@ -32,6 +38,7 @@ export async function createNewEvidenceFileVersion(
 
 export async function createNewAreaFileVersion(
   name: string,
+  uploaderEmail: string,
   areaFileId: string,
   objectUrl: string,
   type: string
@@ -41,6 +48,11 @@ export async function createNewAreaFileVersion(
   const areaFileVersion = await prisma.fileVersion.create({
     data: {
       name,
+      uploader: {
+        connect: {
+          email: uploaderEmail,
+        },
+      },
       status: FileVersionStatus.ACTIVE,
       areaFile: {
         connect: {
