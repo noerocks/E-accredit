@@ -28,12 +28,15 @@ const NavUser = ({
   } | null;
 }) => {
   return (
-    <SidebarFooter>
+    <SidebarFooter className="p-0">
       <SidebarMenu>
         <SidebarMenuItem>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <SidebarMenuButton size="lg">
+              <SidebarMenuButton
+                size="lg"
+                className="hover:bg-transparent focus-visible:ring-0 focus:ring-0"
+              >
                 <Avatar className="border p-2 rounded-full bg-muted">
                   <AvatarImage
                     src={user?.photoURL || ""}

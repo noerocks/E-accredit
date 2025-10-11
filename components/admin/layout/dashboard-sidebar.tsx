@@ -21,24 +21,25 @@ import {
 import Link from "next/link";
 import NavUser from "./nav-user";
 import { getUserProfile } from "@/lib/dal/user";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 const DashboardSidebar = async () => {
   const user = await getUserProfile();
   return (
-    <Sidebar>
+    <Sidebar collapsible="icon">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <a>
-                <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <FolderCheck className="size-4" />
-                </div>
-                <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-medium">EAccredit</span>
-                  <span>Admin</span>
-                </div>
-              </a>
+            <SidebarMenuButton size="lg" className="hover:bg-transparent">
+              <Avatar>
+                <AvatarImage src={"/ctu-logo.png"} />
+              </Avatar>
+              <div className="flex flex-col">
+                <p className="text-lg">E-Accredit AMS</p>
+                <p className="text-xs text-muted-foreground leading-none">
+                  CTU Naga Ext. Campus
+                </p>
+              </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
