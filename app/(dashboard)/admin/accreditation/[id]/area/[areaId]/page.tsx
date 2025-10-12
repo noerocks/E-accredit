@@ -1,6 +1,5 @@
 import Accreditors from "@/components/admin/accreditation/accreditors";
 import TaskForce from "@/components/admin/accreditation/taskforce";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardDescription,
@@ -12,22 +11,23 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { verifySession } from "@/lib/action/session";
 import { getAreaFolderById } from "@/lib/dal/area-folder";
 import { getProgramPersonnelByProgramId } from "@/lib/dal/program-personnel";
+import { getSurveyVisitById } from "@/lib/dal/survey-visit";
 import { getUsersByRole } from "@/lib/dal/user";
 import { Progress, Role } from "@/lib/generated/prisma";
 import clsx from "clsx";
-import { CircleDot, Layers, Users } from "lucide-react";
+import { CircleDot, Layers } from "lucide-react";
 
 const AreaFolderPage = async ({
   params,
   searchParams,
 }: {
-  params: Promise<{ areaId: string }>;
+  params: Promise<{ areaId: string; id: string }>;
   searchParams: Promise<{ accreditation: string }>;
 }) => {
   const session = await verifySession();
   const user = session.user;
   const isAdmin = user.role === "ADMIN";
-  const { areaId } = await params;
+  const { areaId, id: surveyVisitId } = await params;
   const { accreditation } = await searchParams;
   const areaFolder = await getAreaFolderById(areaId);
   const area = areaFolder?.area;
@@ -36,6 +36,7 @@ const AreaFolderPage = async ({
       ?.accreditation.programId;
   const programPersonnel = await getProgramPersonnelByProgramId(programId!);
   const accreditors = await getUsersByRole(Role.ACCREDITOR);
+  const surveyVisit = await getSurveyVisitById(surveyVisitId);
   const formatStatus = (status: Progress) => {
     return status
       .split("_")
@@ -75,7 +76,11 @@ const AreaFolderPage = async ({
               {formatStatus(areaFolder?.status!)}
             </p>
             <div className="flex items-center gap-2">
-              <Accreditors />
+              <Accreditors
+                accreditors={accreditors}
+                surveyVisit={surveyVisit}
+                areaFolderId={areaFolder?.id}
+              />
               <TaskForce
                 programPersonnel={programPersonnel}
                 taskForce={areaFolder?.taskForce}

@@ -35,6 +35,22 @@ export async function createSurveyVisit(
   return surveyVisit;
 }
 
+export async function getSurveyVisitById(id: string) {
+  const surveyVisit = await prisma.surveyVisit.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      surveyTeam: {
+        include: {
+          areaChairs: true,
+        },
+      },
+    },
+  });
+  return surveyVisit;
+}
+
 export async function getSurveyVisitStructureById(id: string) {
   const surveyVisitStructure = await prisma.surveyVisit.findUnique({
     where: {
