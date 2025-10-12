@@ -17,7 +17,7 @@ datasource db {
 enum Role {
   ADMIN
   ACCREDITATION_OFFICER
-  INTERNAL_ACCREDITOR
+  ACCREDITOR
   PENDING
 }
 
@@ -74,6 +74,11 @@ enum CommentType {
   ACTUAL_SURVEY
 }
 
+enum SurveyTeamType {
+  INTERNAL
+  EXTERNAL
+}
+
 model User {
   id               String             @id @default(uuid())
   firstName        String
@@ -90,6 +95,8 @@ model User {
   programHead      Program[]
   uploads          FileVersion[]
   comments         Comment[]
+  teamLead         SurveyTeam[]
+  areaChair        AreaChair[]
 }
 
 model Program {
@@ -209,6 +216,27 @@ model SurveyVisit {
   phaseTwoRequirements PhaseTwoRequirements?
   status               Progress
   createdAt            DateTime              @default(now())
+  surveyTeam           SurveyTeam[]
+}
+
+model SurveyTeam {
+  id            String         @id @default(uuid())
+  surveyVisit   SurveyVisit    @relation(fields: [surveyVisitId], references: [id], onDelete: Cascade)
+  surveyVisitId String         
+  type          SurveyTeamType
+  teamLead      User?          @relation(fields: [teamLeadId], references: [id], onDelete: Cascade)
+  teamLeadId    String?
+  areaChairs    AreaChair[]
+}
+
+model AreaChair {
+  id           String     @id @default(uuid())
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String
+  surveyTeam   SurveyTeam @relation(fields: [surveyTeamId], references: [id], onDelete: Cascade)
+  surveyTeamId String
+  areaFolder   AreaFolder @relation(fields: [areaFolderId], references: [id], onDelete: Cascade)
+  areaFolderId String
 }
 
 model PhaseOneRequirements {
@@ -237,6 +265,7 @@ model AreaFolder {
   areaFiles          AreaFile[]
   status             Progress
   taskForce          TaskForce?
+  areaChair          AreaChair[]
 }
 
 model ParameterFolder {

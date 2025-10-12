@@ -46,7 +46,7 @@ const NavUser = ({
                     .split(" ")
                     .reduce(
                       (initial, name) =>
-                        (initial += name[0].toUpperCase()).slice(0, 3),
+                        (initial += name[0].toUpperCase()).slice(0, 2),
                       ""
                     )}`}</AvatarFallback>
                 </Avatar>
@@ -75,7 +75,8 @@ const NavUser = ({
                       .reduce(
                         (initial, name) => (initial += name[0].toUpperCase()),
                         ""
-                      )}`}</AvatarFallback>
+                      )
+                      .slice(0, 2)}`}</AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col leading-none">
                     <span>{user?.fullName}</span>

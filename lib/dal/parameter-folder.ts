@@ -44,6 +44,7 @@ export const getParameterFolderById = unstable_cache(
             evidenceFiles: {
               include: {
                 fileVersions: true,
+                indicator: true,
               },
             },
           },

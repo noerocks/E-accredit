@@ -2,7 +2,8 @@ import CreateProgramDialog from "@/components/admin/program/create-program-dialo
 import ProgramPersonnelList from "@/components/admin/program/program-personell-list";
 import ProgramsCards from "@/components/admin/program/programs-cards";
 import { getPrograms } from "@/lib/dal/program";
-import { getAccreditationOfficers } from "@/lib/dal/user";
+import { getUsersByRole } from "@/lib/dal/user";
+import { Role } from "@/lib/generated/prisma";
 
 const ProgramsPage = async ({
   searchParams,
@@ -11,7 +12,9 @@ const ProgramsPage = async ({
 }) => {
   const params = await searchParams;
   const programs = await getPrograms();
-  const accreditationOfficers = await getAccreditationOfficers();
+  const accreditationOfficers = await getUsersByRole(
+    Role.ACCREDITATION_OFFICER
+  );
   return (
     <div className="max-w-3/4 mx-auto mt-10">
       <div className="flex justify-between items-center mb-10">

@@ -3,6 +3,7 @@ import {
   AreaFile,
   AreaFolder,
   EvidenceFile,
+  FileVersion,
   Indicator,
   IndicatorFolder,
   InstrumentFolder,
@@ -35,4 +36,7 @@ export type ParameterFolderDTO = ParameterFolder & {
 export type IndicatorFolderDTO = IndicatorFolder & {
   evidenceFiles: EvidenceFileDTO[];
 };
-export type EvidenceFileDTO = EvidenceFile & { indicator: Indicator };
+export type EvidenceFileDTO = EvidenceFile & {
+  indicator: Indicator;
+  fileVersions: FileVersion[];
+};

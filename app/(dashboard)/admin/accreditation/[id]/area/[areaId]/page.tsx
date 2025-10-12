@@ -1,3 +1,4 @@
+import Accreditors from "@/components/admin/accreditation/accreditors";
 import TaskForce from "@/components/admin/accreditation/taskforce";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,7 +12,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { verifySession } from "@/lib/action/session";
 import { getAreaFolderById } from "@/lib/dal/area-folder";
 import { getProgramPersonnelByProgramId } from "@/lib/dal/program-personnel";
-import { Progress } from "@/lib/generated/prisma";
+import { getUsersByRole } from "@/lib/dal/user";
+import { Progress, Role } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import { CircleDot, Layers, Users } from "lucide-react";
 
@@ -33,6 +35,7 @@ const AreaFolderPage = async ({
     areaFolder?.instrumentFolder.phaseOneRequirements?.surveyVisit
       ?.accreditation.programId;
   const programPersonnel = await getProgramPersonnelByProgramId(programId!);
+  const accreditors = await getUsersByRole(Role.ACCREDITOR);
   const formatStatus = (status: Progress) => {
     return status
       .split("_")
@@ -71,12 +74,15 @@ const AreaFolderPage = async ({
               <CircleDot size={15} />
               {formatStatus(areaFolder?.status!)}
             </p>
-            <TaskForce
-              programPersonnel={programPersonnel}
-              taskForce={areaFolder?.taskForce}
-              areaFolderId={areaFolder?.id}
-              isAdmin={isAdmin}
-            />
+            <div className="flex items-center gap-2">
+              <Accreditors />
+              <TaskForce
+                programPersonnel={programPersonnel}
+                taskForce={areaFolder?.taskForce}
+                areaFolderId={areaFolder?.id}
+                isAdmin={isAdmin}
+              />
+            </div>
           </CardFooter>
         </Card>
       </div>

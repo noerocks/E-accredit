@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/sheet";
 import { ProgramPersonnelDTO } from "@/lib/dto/program-personnel";
 import { TaskforceDTO } from "@/lib/dto/taskforce";
-import { Users } from "lucide-react";
+import { UserCog } from "lucide-react";
 import { assignChairperson as assignChairpersonAction } from "@/lib/action/taskforce";
 import { Checkbox } from "@/components/ui/checkbox";
 import { assignMember, deleteMember } from "@/lib/action/member";
@@ -68,20 +68,22 @@ const TaskForce = ({
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="flex items-center gap-2" variant="outline">
-          <Users size={15} />
+        <Button variant="outline">
+          <UserCog />
           Taskforce
         </Button>
       </SheetTrigger>
-      <SheetContent className="p-5">
+      <SheetContent className="p-4">
         <SheetHeader>
           <SheetTitle>Taskforce</SheetTitle>
         </SheetHeader>
-        <Card className="bg-background">
-          <CardContent className="flex flex-col gap-2">
-            <p className="text-sm text-muted-foreground text-balance text-center">
+        <Card className="bg-background rounded-md">
+          <CardHeader>
+            <CardTitle className="text-sm text-muted-foreground text-balance text-center">
               Chairperson
-            </p>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-2">
             <Select
               onValueChange={assignChairperson}
               defaultValue={
@@ -105,11 +107,13 @@ const TaskForce = ({
             </Select>
           </CardContent>
         </Card>
-        <Card className="bg-background">
-          <CardContent className="flex flex-col gap-2">
-            <p className="text-sm text-muted-foreground text-balance text-center">
+        <Card className="bg-background rounded-md">
+          <CardHeader>
+            <CardTitle className="text-sm text-muted-foreground text-balance text-center">
               Members
-            </p>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-2">
             <div className="flex flex-col gap-1">
               {programPersonnel
                 ?.filter(

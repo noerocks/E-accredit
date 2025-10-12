@@ -10,7 +10,6 @@ export async function rejectUser(
   currentState: { status: string; message: string } | undefined,
   data: FormData
 ) {
-  console.log(userID);
   if (!userID) return { status: "error", message: "User id is required" };
   try {
     const user = await rejectUserDAL(userID);
@@ -39,6 +38,7 @@ export async function rejectUser(
 export async function acceptUser(id: string | undefined, role: Role) {
   if (!id || !role) return { status: "error", message: "Invalid form data" };
   try {
+    console.log(id, role);
     const user = await updateRole(id, role);
     revalidateTag("users");
     return {

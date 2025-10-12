@@ -139,16 +139,14 @@ export async function updateRole(id: string, role: Role) {
   return user;
 }
 
-export async function getAccreditationOfficers(): Promise<UsersDTO[] | null> {
-  const session = await verifySession();
-  if (!session) return null;
-  try {
-    const users = await prisma.user.findMany({
+export const getUsersByRole = unstable_cache(
+  async (role: Role): Promise<UsersDTO[] | null> => {
+    const accreditors = await prisma.user.findMany({
       where: {
-        role: "ACCREDITATION_OFFICER",
+        role,
       },
     });
-    return users.map((user) => ({
+    return accreditors.map((user) => ({
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
@@ -157,8 +155,7 @@ export async function getAccreditationOfficers(): Promise<UsersDTO[] | null> {
       registrationDate: user.createdAt,
       role: user.role,
     }));
-  } catch (error) {
-    console.log("Failed to fetch accreditation officers");
-    return null;
-  }
-}
+  },
+  ["getUsersByRole"],
+  { tags: ["users"] }
+);

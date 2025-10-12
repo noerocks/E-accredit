@@ -64,6 +64,16 @@ export type Accreditation = $Result.DefaultSelection<Prisma.$AccreditationPayloa
  */
 export type SurveyVisit = $Result.DefaultSelection<Prisma.$SurveyVisitPayload>
 /**
+ * Model SurveyTeam
+ * 
+ */
+export type SurveyTeam = $Result.DefaultSelection<Prisma.$SurveyTeamPayload>
+/**
+ * Model AreaChair
+ * 
+ */
+export type AreaChair = $Result.DefaultSelection<Prisma.$AreaChairPayload>
+/**
  * Model PhaseOneRequirements
  * 
  */
@@ -141,7 +151,7 @@ export namespace $Enums {
   export const Role: {
   ADMIN: 'ADMIN',
   ACCREDITATION_OFFICER: 'ACCREDITATION_OFFICER',
-  INTERNAL_ACCREDITOR: 'INTERNAL_ACCREDITOR',
+  ACCREDITOR: 'ACCREDITOR',
   PENDING: 'PENDING'
 };
 
@@ -227,6 +237,14 @@ export const CommentType: {
 
 export type CommentType = (typeof CommentType)[keyof typeof CommentType]
 
+
+export const SurveyTeamType: {
+  INTERNAL: 'INTERNAL',
+  EXTERNAL: 'EXTERNAL'
+};
+
+export type SurveyTeamType = (typeof SurveyTeamType)[keyof typeof SurveyTeamType]
+
 }
 
 export type Role = $Enums.Role
@@ -268,6 +286,10 @@ export const FileVersionStatus: typeof $Enums.FileVersionStatus
 export type CommentType = $Enums.CommentType
 
 export const CommentType: typeof $Enums.CommentType
+
+export type SurveyTeamType = $Enums.SurveyTeamType
+
+export const SurveyTeamType: typeof $Enums.SurveyTeamType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -486,6 +508,26 @@ export class PrismaClient<
     * ```
     */
   get surveyVisit(): Prisma.SurveyVisitDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.surveyTeam`: Exposes CRUD operations for the **SurveyTeam** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SurveyTeams
+    * const surveyTeams = await prisma.surveyTeam.findMany()
+    * ```
+    */
+  get surveyTeam(): Prisma.SurveyTeamDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.areaChair`: Exposes CRUD operations for the **AreaChair** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AreaChairs
+    * const areaChairs = await prisma.areaChair.findMany()
+    * ```
+    */
+  get areaChair(): Prisma.AreaChairDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.phaseOneRequirements`: Exposes CRUD operations for the **PhaseOneRequirements** model.
@@ -1076,6 +1118,8 @@ export namespace Prisma {
     Level: 'Level',
     Accreditation: 'Accreditation',
     SurveyVisit: 'SurveyVisit',
+    SurveyTeam: 'SurveyTeam',
+    AreaChair: 'AreaChair',
     PhaseOneRequirements: 'PhaseOneRequirements',
     InstrumentFolder: 'InstrumentFolder',
     AreaFolder: 'AreaFolder',
@@ -1108,7 +1152,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level" | "accreditation" | "surveyVisit" | "phaseOneRequirements" | "instrumentFolder" | "areaFolder" | "parameterFolder" | "indicatorFolder" | "evidenceFile" | "fileVersion" | "phaseTwoRequirements" | "phaseTwoFolder" | "phaseTwoAreaFolder" | "areaFile" | "taskForce" | "taskForceMember" | "comment"
+      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level" | "accreditation" | "surveyVisit" | "surveyTeam" | "areaChair" | "phaseOneRequirements" | "instrumentFolder" | "areaFolder" | "parameterFolder" | "indicatorFolder" | "evidenceFile" | "fileVersion" | "phaseTwoRequirements" | "phaseTwoFolder" | "phaseTwoAreaFolder" | "areaFile" | "taskForce" | "taskForceMember" | "comment"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1849,6 +1893,154 @@ export namespace Prisma {
           count: {
             args: Prisma.SurveyVisitCountArgs<ExtArgs>
             result: $Utils.Optional<SurveyVisitCountAggregateOutputType> | number
+          }
+        }
+      }
+      SurveyTeam: {
+        payload: Prisma.$SurveyTeamPayload<ExtArgs>
+        fields: Prisma.SurveyTeamFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SurveyTeamFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyTeamPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SurveyTeamFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyTeamPayload>
+          }
+          findFirst: {
+            args: Prisma.SurveyTeamFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyTeamPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SurveyTeamFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyTeamPayload>
+          }
+          findMany: {
+            args: Prisma.SurveyTeamFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyTeamPayload>[]
+          }
+          create: {
+            args: Prisma.SurveyTeamCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyTeamPayload>
+          }
+          createMany: {
+            args: Prisma.SurveyTeamCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SurveyTeamCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyTeamPayload>[]
+          }
+          delete: {
+            args: Prisma.SurveyTeamDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyTeamPayload>
+          }
+          update: {
+            args: Prisma.SurveyTeamUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyTeamPayload>
+          }
+          deleteMany: {
+            args: Prisma.SurveyTeamDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SurveyTeamUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SurveyTeamUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyTeamPayload>[]
+          }
+          upsert: {
+            args: Prisma.SurveyTeamUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurveyTeamPayload>
+          }
+          aggregate: {
+            args: Prisma.SurveyTeamAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSurveyTeam>
+          }
+          groupBy: {
+            args: Prisma.SurveyTeamGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SurveyTeamGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SurveyTeamCountArgs<ExtArgs>
+            result: $Utils.Optional<SurveyTeamCountAggregateOutputType> | number
+          }
+        }
+      }
+      AreaChair: {
+        payload: Prisma.$AreaChairPayload<ExtArgs>
+        fields: Prisma.AreaChairFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AreaChairFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaChairPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AreaChairFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaChairPayload>
+          }
+          findFirst: {
+            args: Prisma.AreaChairFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaChairPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AreaChairFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaChairPayload>
+          }
+          findMany: {
+            args: Prisma.AreaChairFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaChairPayload>[]
+          }
+          create: {
+            args: Prisma.AreaChairCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaChairPayload>
+          }
+          createMany: {
+            args: Prisma.AreaChairCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AreaChairCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaChairPayload>[]
+          }
+          delete: {
+            args: Prisma.AreaChairDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaChairPayload>
+          }
+          update: {
+            args: Prisma.AreaChairUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaChairPayload>
+          }
+          deleteMany: {
+            args: Prisma.AreaChairDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AreaChairUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AreaChairUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaChairPayload>[]
+          }
+          upsert: {
+            args: Prisma.AreaChairUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AreaChairPayload>
+          }
+          aggregate: {
+            args: Prisma.AreaChairAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAreaChair>
+          }
+          groupBy: {
+            args: Prisma.AreaChairGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AreaChairGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AreaChairCountArgs<ExtArgs>
+            result: $Utils.Optional<AreaChairCountAggregateOutputType> | number
           }
         }
       }
@@ -2990,6 +3182,8 @@ export namespace Prisma {
     level?: LevelOmit
     accreditation?: AccreditationOmit
     surveyVisit?: SurveyVisitOmit
+    surveyTeam?: SurveyTeamOmit
+    areaChair?: AreaChairOmit
     phaseOneRequirements?: PhaseOneRequirementsOmit
     instrumentFolder?: InstrumentFolderOmit
     areaFolder?: AreaFolderOmit
@@ -3088,6 +3282,8 @@ export namespace Prisma {
     programHead: number
     uploads: number
     comments: number
+    teamLead: number
+    areaChair: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3095,6 +3291,8 @@ export namespace Prisma {
     programHead?: boolean | UserCountOutputTypeCountProgramHeadArgs
     uploads?: boolean | UserCountOutputTypeCountUploadsArgs
     comments?: boolean | UserCountOutputTypeCountCommentsArgs
+    teamLead?: boolean | UserCountOutputTypeCountTeamLeadArgs
+    areaChair?: boolean | UserCountOutputTypeCountAreaChairArgs
   }
 
   // Custom InputTypes
@@ -3134,6 +3332,20 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CommentWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTeamLeadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SurveyTeamWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAreaChairArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AreaChairWhereInput
   }
 
 
@@ -3449,6 +3661,68 @@ export namespace Prisma {
 
 
   /**
+   * Count Type SurveyVisitCountOutputType
+   */
+
+  export type SurveyVisitCountOutputType = {
+    surveyTeam: number
+  }
+
+  export type SurveyVisitCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surveyTeam?: boolean | SurveyVisitCountOutputTypeCountSurveyTeamArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SurveyVisitCountOutputType without action
+   */
+  export type SurveyVisitCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisitCountOutputType
+     */
+    select?: SurveyVisitCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SurveyVisitCountOutputType without action
+   */
+  export type SurveyVisitCountOutputTypeCountSurveyTeamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SurveyTeamWhereInput
+  }
+
+
+  /**
+   * Count Type SurveyTeamCountOutputType
+   */
+
+  export type SurveyTeamCountOutputType = {
+    areaChairs: number
+  }
+
+  export type SurveyTeamCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    areaChairs?: boolean | SurveyTeamCountOutputTypeCountAreaChairsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SurveyTeamCountOutputType without action
+   */
+  export type SurveyTeamCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeamCountOutputType
+     */
+    select?: SurveyTeamCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SurveyTeamCountOutputType without action
+   */
+  export type SurveyTeamCountOutputTypeCountAreaChairsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AreaChairWhereInput
+  }
+
+
+  /**
    * Count Type InstrumentFolderCountOutputType
    */
 
@@ -3486,11 +3760,13 @@ export namespace Prisma {
   export type AreaFolderCountOutputType = {
     parameterFolders: number
     areaFiles: number
+    areaChair: number
   }
 
   export type AreaFolderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     parameterFolders?: boolean | AreaFolderCountOutputTypeCountParameterFoldersArgs
     areaFiles?: boolean | AreaFolderCountOutputTypeCountAreaFilesArgs
+    areaChair?: boolean | AreaFolderCountOutputTypeCountAreaChairArgs
   }
 
   // Custom InputTypes
@@ -3516,6 +3792,13 @@ export namespace Prisma {
    */
   export type AreaFolderCountOutputTypeCountAreaFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AreaFileWhereInput
+  }
+
+  /**
+   * AreaFolderCountOutputType without action
+   */
+  export type AreaFolderCountOutputTypeCountAreaChairArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AreaChairWhereInput
   }
 
 
@@ -3974,6 +4257,8 @@ export namespace Prisma {
     programHead?: boolean | User$programHeadArgs<ExtArgs>
     uploads?: boolean | User$uploadsArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
+    teamLead?: boolean | User$teamLeadArgs<ExtArgs>
+    areaChair?: boolean | User$areaChairArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -4025,6 +4310,8 @@ export namespace Prisma {
     programHead?: boolean | User$programHeadArgs<ExtArgs>
     uploads?: boolean | User$uploadsArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
+    teamLead?: boolean | User$teamLeadArgs<ExtArgs>
+    areaChair?: boolean | User$areaChairArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -4037,6 +4324,8 @@ export namespace Prisma {
       programHead: Prisma.$ProgramPayload<ExtArgs>[]
       uploads: Prisma.$FileVersionPayload<ExtArgs>[]
       comments: Prisma.$CommentPayload<ExtArgs>[]
+      teamLead: Prisma.$SurveyTeamPayload<ExtArgs>[]
+      areaChair: Prisma.$AreaChairPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4448,6 +4737,8 @@ export namespace Prisma {
     programHead<T extends User$programHeadArgs<ExtArgs> = {}>(args?: Subset<T, User$programHeadArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgramPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     uploads<T extends User$uploadsArgs<ExtArgs> = {}>(args?: Subset<T, User$uploadsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends User$commentsArgs<ExtArgs> = {}>(args?: Subset<T, User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    teamLead<T extends User$teamLeadArgs<ExtArgs> = {}>(args?: Subset<T, User$teamLeadArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    areaChair<T extends User$areaChairArgs<ExtArgs> = {}>(args?: Subset<T, User$areaChairArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4969,6 +5260,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * User.teamLead
+   */
+  export type User$teamLeadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeam
+     */
+    select?: SurveyTeamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyTeam
+     */
+    omit?: SurveyTeamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyTeamInclude<ExtArgs> | null
+    where?: SurveyTeamWhereInput
+    orderBy?: SurveyTeamOrderByWithRelationInput | SurveyTeamOrderByWithRelationInput[]
+    cursor?: SurveyTeamWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SurveyTeamScalarFieldEnum | SurveyTeamScalarFieldEnum[]
+  }
+
+  /**
+   * User.areaChair
+   */
+  export type User$areaChairArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairInclude<ExtArgs> | null
+    where?: AreaChairWhereInput
+    orderBy?: AreaChairOrderByWithRelationInput | AreaChairOrderByWithRelationInput[]
+    cursor?: AreaChairWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AreaChairScalarFieldEnum | AreaChairScalarFieldEnum[]
   }
 
   /**
@@ -14418,6 +14757,8 @@ export namespace Prisma {
     level?: boolean | LevelDefaultArgs<ExtArgs>
     phaseOneRequirements?: boolean | SurveyVisit$phaseOneRequirementsArgs<ExtArgs>
     phaseTwoRequirements?: boolean | SurveyVisit$phaseTwoRequirementsArgs<ExtArgs>
+    surveyTeam?: boolean | SurveyVisit$surveyTeamArgs<ExtArgs>
+    _count?: boolean | SurveyVisitCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["surveyVisit"]>
 
   export type SurveyVisitSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -14460,6 +14801,8 @@ export namespace Prisma {
     level?: boolean | LevelDefaultArgs<ExtArgs>
     phaseOneRequirements?: boolean | SurveyVisit$phaseOneRequirementsArgs<ExtArgs>
     phaseTwoRequirements?: boolean | SurveyVisit$phaseTwoRequirementsArgs<ExtArgs>
+    surveyTeam?: boolean | SurveyVisit$surveyTeamArgs<ExtArgs>
+    _count?: boolean | SurveyVisitCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SurveyVisitIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
@@ -14477,6 +14820,7 @@ export namespace Prisma {
       level: Prisma.$LevelPayload<ExtArgs>
       phaseOneRequirements: Prisma.$PhaseOneRequirementsPayload<ExtArgs> | null
       phaseTwoRequirements: Prisma.$PhaseTwoRequirementsPayload<ExtArgs> | null
+      surveyTeam: Prisma.$SurveyTeamPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -14884,6 +15228,7 @@ export namespace Prisma {
     level<T extends LevelDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LevelDefaultArgs<ExtArgs>>): Prisma__LevelClient<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     phaseOneRequirements<T extends SurveyVisit$phaseOneRequirementsArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$phaseOneRequirementsArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     phaseTwoRequirements<T extends SurveyVisit$phaseTwoRequirementsArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$phaseTwoRequirementsArgs<ExtArgs>>): Prisma__PhaseTwoRequirementsClient<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    surveyTeam<T extends SurveyVisit$surveyTeamArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$surveyTeamArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15354,6 +15699,30 @@ export namespace Prisma {
   }
 
   /**
+   * SurveyVisit.surveyTeam
+   */
+  export type SurveyVisit$surveyTeamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeam
+     */
+    select?: SurveyTeamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyTeam
+     */
+    omit?: SurveyTeamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyTeamInclude<ExtArgs> | null
+    where?: SurveyTeamWhereInput
+    orderBy?: SurveyTeamOrderByWithRelationInput | SurveyTeamOrderByWithRelationInput[]
+    cursor?: SurveyTeamWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SurveyTeamScalarFieldEnum | SurveyTeamScalarFieldEnum[]
+  }
+
+  /**
    * SurveyVisit without action
    */
   export type SurveyVisitDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15369,6 +15738,2169 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: SurveyVisitInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SurveyTeam
+   */
+
+  export type AggregateSurveyTeam = {
+    _count: SurveyTeamCountAggregateOutputType | null
+    _min: SurveyTeamMinAggregateOutputType | null
+    _max: SurveyTeamMaxAggregateOutputType | null
+  }
+
+  export type SurveyTeamMinAggregateOutputType = {
+    id: string | null
+    surveyVisitId: string | null
+    type: $Enums.SurveyTeamType | null
+    teamLeadId: string | null
+  }
+
+  export type SurveyTeamMaxAggregateOutputType = {
+    id: string | null
+    surveyVisitId: string | null
+    type: $Enums.SurveyTeamType | null
+    teamLeadId: string | null
+  }
+
+  export type SurveyTeamCountAggregateOutputType = {
+    id: number
+    surveyVisitId: number
+    type: number
+    teamLeadId: number
+    _all: number
+  }
+
+
+  export type SurveyTeamMinAggregateInputType = {
+    id?: true
+    surveyVisitId?: true
+    type?: true
+    teamLeadId?: true
+  }
+
+  export type SurveyTeamMaxAggregateInputType = {
+    id?: true
+    surveyVisitId?: true
+    type?: true
+    teamLeadId?: true
+  }
+
+  export type SurveyTeamCountAggregateInputType = {
+    id?: true
+    surveyVisitId?: true
+    type?: true
+    teamLeadId?: true
+    _all?: true
+  }
+
+  export type SurveyTeamAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SurveyTeam to aggregate.
+     */
+    where?: SurveyTeamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SurveyTeams to fetch.
+     */
+    orderBy?: SurveyTeamOrderByWithRelationInput | SurveyTeamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SurveyTeamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SurveyTeams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SurveyTeams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SurveyTeams
+    **/
+    _count?: true | SurveyTeamCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SurveyTeamMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SurveyTeamMaxAggregateInputType
+  }
+
+  export type GetSurveyTeamAggregateType<T extends SurveyTeamAggregateArgs> = {
+        [P in keyof T & keyof AggregateSurveyTeam]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSurveyTeam[P]>
+      : GetScalarType<T[P], AggregateSurveyTeam[P]>
+  }
+
+
+
+
+  export type SurveyTeamGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SurveyTeamWhereInput
+    orderBy?: SurveyTeamOrderByWithAggregationInput | SurveyTeamOrderByWithAggregationInput[]
+    by: SurveyTeamScalarFieldEnum[] | SurveyTeamScalarFieldEnum
+    having?: SurveyTeamScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SurveyTeamCountAggregateInputType | true
+    _min?: SurveyTeamMinAggregateInputType
+    _max?: SurveyTeamMaxAggregateInputType
+  }
+
+  export type SurveyTeamGroupByOutputType = {
+    id: string
+    surveyVisitId: string
+    type: $Enums.SurveyTeamType
+    teamLeadId: string | null
+    _count: SurveyTeamCountAggregateOutputType | null
+    _min: SurveyTeamMinAggregateOutputType | null
+    _max: SurveyTeamMaxAggregateOutputType | null
+  }
+
+  type GetSurveyTeamGroupByPayload<T extends SurveyTeamGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SurveyTeamGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SurveyTeamGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SurveyTeamGroupByOutputType[P]>
+            : GetScalarType<T[P], SurveyTeamGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SurveyTeamSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    surveyVisitId?: boolean
+    type?: boolean
+    teamLeadId?: boolean
+    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    teamLead?: boolean | SurveyTeam$teamLeadArgs<ExtArgs>
+    areaChairs?: boolean | SurveyTeam$areaChairsArgs<ExtArgs>
+    _count?: boolean | SurveyTeamCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["surveyTeam"]>
+
+  export type SurveyTeamSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    surveyVisitId?: boolean
+    type?: boolean
+    teamLeadId?: boolean
+    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    teamLead?: boolean | SurveyTeam$teamLeadArgs<ExtArgs>
+  }, ExtArgs["result"]["surveyTeam"]>
+
+  export type SurveyTeamSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    surveyVisitId?: boolean
+    type?: boolean
+    teamLeadId?: boolean
+    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    teamLead?: boolean | SurveyTeam$teamLeadArgs<ExtArgs>
+  }, ExtArgs["result"]["surveyTeam"]>
+
+  export type SurveyTeamSelectScalar = {
+    id?: boolean
+    surveyVisitId?: boolean
+    type?: boolean
+    teamLeadId?: boolean
+  }
+
+  export type SurveyTeamOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "surveyVisitId" | "type" | "teamLeadId", ExtArgs["result"]["surveyTeam"]>
+  export type SurveyTeamInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    teamLead?: boolean | SurveyTeam$teamLeadArgs<ExtArgs>
+    areaChairs?: boolean | SurveyTeam$areaChairsArgs<ExtArgs>
+    _count?: boolean | SurveyTeamCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SurveyTeamIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    teamLead?: boolean | SurveyTeam$teamLeadArgs<ExtArgs>
+  }
+  export type SurveyTeamIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surveyVisit?: boolean | SurveyVisitDefaultArgs<ExtArgs>
+    teamLead?: boolean | SurveyTeam$teamLeadArgs<ExtArgs>
+  }
+
+  export type $SurveyTeamPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SurveyTeam"
+    objects: {
+      surveyVisit: Prisma.$SurveyVisitPayload<ExtArgs>
+      teamLead: Prisma.$UserPayload<ExtArgs> | null
+      areaChairs: Prisma.$AreaChairPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      surveyVisitId: string
+      type: $Enums.SurveyTeamType
+      teamLeadId: string | null
+    }, ExtArgs["result"]["surveyTeam"]>
+    composites: {}
+  }
+
+  type SurveyTeamGetPayload<S extends boolean | null | undefined | SurveyTeamDefaultArgs> = $Result.GetResult<Prisma.$SurveyTeamPayload, S>
+
+  type SurveyTeamCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SurveyTeamFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SurveyTeamCountAggregateInputType | true
+    }
+
+  export interface SurveyTeamDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SurveyTeam'], meta: { name: 'SurveyTeam' } }
+    /**
+     * Find zero or one SurveyTeam that matches the filter.
+     * @param {SurveyTeamFindUniqueArgs} args - Arguments to find a SurveyTeam
+     * @example
+     * // Get one SurveyTeam
+     * const surveyTeam = await prisma.surveyTeam.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SurveyTeamFindUniqueArgs>(args: SelectSubset<T, SurveyTeamFindUniqueArgs<ExtArgs>>): Prisma__SurveyTeamClient<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SurveyTeam that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SurveyTeamFindUniqueOrThrowArgs} args - Arguments to find a SurveyTeam
+     * @example
+     * // Get one SurveyTeam
+     * const surveyTeam = await prisma.surveyTeam.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SurveyTeamFindUniqueOrThrowArgs>(args: SelectSubset<T, SurveyTeamFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SurveyTeamClient<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SurveyTeam that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurveyTeamFindFirstArgs} args - Arguments to find a SurveyTeam
+     * @example
+     * // Get one SurveyTeam
+     * const surveyTeam = await prisma.surveyTeam.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SurveyTeamFindFirstArgs>(args?: SelectSubset<T, SurveyTeamFindFirstArgs<ExtArgs>>): Prisma__SurveyTeamClient<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SurveyTeam that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurveyTeamFindFirstOrThrowArgs} args - Arguments to find a SurveyTeam
+     * @example
+     * // Get one SurveyTeam
+     * const surveyTeam = await prisma.surveyTeam.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SurveyTeamFindFirstOrThrowArgs>(args?: SelectSubset<T, SurveyTeamFindFirstOrThrowArgs<ExtArgs>>): Prisma__SurveyTeamClient<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SurveyTeams that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurveyTeamFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SurveyTeams
+     * const surveyTeams = await prisma.surveyTeam.findMany()
+     * 
+     * // Get first 10 SurveyTeams
+     * const surveyTeams = await prisma.surveyTeam.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const surveyTeamWithIdOnly = await prisma.surveyTeam.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SurveyTeamFindManyArgs>(args?: SelectSubset<T, SurveyTeamFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SurveyTeam.
+     * @param {SurveyTeamCreateArgs} args - Arguments to create a SurveyTeam.
+     * @example
+     * // Create one SurveyTeam
+     * const SurveyTeam = await prisma.surveyTeam.create({
+     *   data: {
+     *     // ... data to create a SurveyTeam
+     *   }
+     * })
+     * 
+     */
+    create<T extends SurveyTeamCreateArgs>(args: SelectSubset<T, SurveyTeamCreateArgs<ExtArgs>>): Prisma__SurveyTeamClient<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SurveyTeams.
+     * @param {SurveyTeamCreateManyArgs} args - Arguments to create many SurveyTeams.
+     * @example
+     * // Create many SurveyTeams
+     * const surveyTeam = await prisma.surveyTeam.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SurveyTeamCreateManyArgs>(args?: SelectSubset<T, SurveyTeamCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SurveyTeams and returns the data saved in the database.
+     * @param {SurveyTeamCreateManyAndReturnArgs} args - Arguments to create many SurveyTeams.
+     * @example
+     * // Create many SurveyTeams
+     * const surveyTeam = await prisma.surveyTeam.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SurveyTeams and only return the `id`
+     * const surveyTeamWithIdOnly = await prisma.surveyTeam.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SurveyTeamCreateManyAndReturnArgs>(args?: SelectSubset<T, SurveyTeamCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SurveyTeam.
+     * @param {SurveyTeamDeleteArgs} args - Arguments to delete one SurveyTeam.
+     * @example
+     * // Delete one SurveyTeam
+     * const SurveyTeam = await prisma.surveyTeam.delete({
+     *   where: {
+     *     // ... filter to delete one SurveyTeam
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SurveyTeamDeleteArgs>(args: SelectSubset<T, SurveyTeamDeleteArgs<ExtArgs>>): Prisma__SurveyTeamClient<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SurveyTeam.
+     * @param {SurveyTeamUpdateArgs} args - Arguments to update one SurveyTeam.
+     * @example
+     * // Update one SurveyTeam
+     * const surveyTeam = await prisma.surveyTeam.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SurveyTeamUpdateArgs>(args: SelectSubset<T, SurveyTeamUpdateArgs<ExtArgs>>): Prisma__SurveyTeamClient<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SurveyTeams.
+     * @param {SurveyTeamDeleteManyArgs} args - Arguments to filter SurveyTeams to delete.
+     * @example
+     * // Delete a few SurveyTeams
+     * const { count } = await prisma.surveyTeam.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SurveyTeamDeleteManyArgs>(args?: SelectSubset<T, SurveyTeamDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SurveyTeams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurveyTeamUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SurveyTeams
+     * const surveyTeam = await prisma.surveyTeam.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SurveyTeamUpdateManyArgs>(args: SelectSubset<T, SurveyTeamUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SurveyTeams and returns the data updated in the database.
+     * @param {SurveyTeamUpdateManyAndReturnArgs} args - Arguments to update many SurveyTeams.
+     * @example
+     * // Update many SurveyTeams
+     * const surveyTeam = await prisma.surveyTeam.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SurveyTeams and only return the `id`
+     * const surveyTeamWithIdOnly = await prisma.surveyTeam.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SurveyTeamUpdateManyAndReturnArgs>(args: SelectSubset<T, SurveyTeamUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SurveyTeam.
+     * @param {SurveyTeamUpsertArgs} args - Arguments to update or create a SurveyTeam.
+     * @example
+     * // Update or create a SurveyTeam
+     * const surveyTeam = await prisma.surveyTeam.upsert({
+     *   create: {
+     *     // ... data to create a SurveyTeam
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SurveyTeam we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SurveyTeamUpsertArgs>(args: SelectSubset<T, SurveyTeamUpsertArgs<ExtArgs>>): Prisma__SurveyTeamClient<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SurveyTeams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurveyTeamCountArgs} args - Arguments to filter SurveyTeams to count.
+     * @example
+     * // Count the number of SurveyTeams
+     * const count = await prisma.surveyTeam.count({
+     *   where: {
+     *     // ... the filter for the SurveyTeams we want to count
+     *   }
+     * })
+    **/
+    count<T extends SurveyTeamCountArgs>(
+      args?: Subset<T, SurveyTeamCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SurveyTeamCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SurveyTeam.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurveyTeamAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SurveyTeamAggregateArgs>(args: Subset<T, SurveyTeamAggregateArgs>): Prisma.PrismaPromise<GetSurveyTeamAggregateType<T>>
+
+    /**
+     * Group by SurveyTeam.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurveyTeamGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SurveyTeamGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SurveyTeamGroupByArgs['orderBy'] }
+        : { orderBy?: SurveyTeamGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SurveyTeamGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSurveyTeamGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SurveyTeam model
+   */
+  readonly fields: SurveyTeamFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SurveyTeam.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SurveyTeamClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    surveyVisit<T extends SurveyVisitDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisitDefaultArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    teamLead<T extends SurveyTeam$teamLeadArgs<ExtArgs> = {}>(args?: Subset<T, SurveyTeam$teamLeadArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    areaChairs<T extends SurveyTeam$areaChairsArgs<ExtArgs> = {}>(args?: Subset<T, SurveyTeam$areaChairsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SurveyTeam model
+   */
+  interface SurveyTeamFieldRefs {
+    readonly id: FieldRef<"SurveyTeam", 'String'>
+    readonly surveyVisitId: FieldRef<"SurveyTeam", 'String'>
+    readonly type: FieldRef<"SurveyTeam", 'SurveyTeamType'>
+    readonly teamLeadId: FieldRef<"SurveyTeam", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SurveyTeam findUnique
+   */
+  export type SurveyTeamFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeam
+     */
+    select?: SurveyTeamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyTeam
+     */
+    omit?: SurveyTeamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyTeamInclude<ExtArgs> | null
+    /**
+     * Filter, which SurveyTeam to fetch.
+     */
+    where: SurveyTeamWhereUniqueInput
+  }
+
+  /**
+   * SurveyTeam findUniqueOrThrow
+   */
+  export type SurveyTeamFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeam
+     */
+    select?: SurveyTeamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyTeam
+     */
+    omit?: SurveyTeamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyTeamInclude<ExtArgs> | null
+    /**
+     * Filter, which SurveyTeam to fetch.
+     */
+    where: SurveyTeamWhereUniqueInput
+  }
+
+  /**
+   * SurveyTeam findFirst
+   */
+  export type SurveyTeamFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeam
+     */
+    select?: SurveyTeamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyTeam
+     */
+    omit?: SurveyTeamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyTeamInclude<ExtArgs> | null
+    /**
+     * Filter, which SurveyTeam to fetch.
+     */
+    where?: SurveyTeamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SurveyTeams to fetch.
+     */
+    orderBy?: SurveyTeamOrderByWithRelationInput | SurveyTeamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SurveyTeams.
+     */
+    cursor?: SurveyTeamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SurveyTeams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SurveyTeams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SurveyTeams.
+     */
+    distinct?: SurveyTeamScalarFieldEnum | SurveyTeamScalarFieldEnum[]
+  }
+
+  /**
+   * SurveyTeam findFirstOrThrow
+   */
+  export type SurveyTeamFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeam
+     */
+    select?: SurveyTeamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyTeam
+     */
+    omit?: SurveyTeamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyTeamInclude<ExtArgs> | null
+    /**
+     * Filter, which SurveyTeam to fetch.
+     */
+    where?: SurveyTeamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SurveyTeams to fetch.
+     */
+    orderBy?: SurveyTeamOrderByWithRelationInput | SurveyTeamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SurveyTeams.
+     */
+    cursor?: SurveyTeamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SurveyTeams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SurveyTeams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SurveyTeams.
+     */
+    distinct?: SurveyTeamScalarFieldEnum | SurveyTeamScalarFieldEnum[]
+  }
+
+  /**
+   * SurveyTeam findMany
+   */
+  export type SurveyTeamFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeam
+     */
+    select?: SurveyTeamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyTeam
+     */
+    omit?: SurveyTeamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyTeamInclude<ExtArgs> | null
+    /**
+     * Filter, which SurveyTeams to fetch.
+     */
+    where?: SurveyTeamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SurveyTeams to fetch.
+     */
+    orderBy?: SurveyTeamOrderByWithRelationInput | SurveyTeamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SurveyTeams.
+     */
+    cursor?: SurveyTeamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SurveyTeams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SurveyTeams.
+     */
+    skip?: number
+    distinct?: SurveyTeamScalarFieldEnum | SurveyTeamScalarFieldEnum[]
+  }
+
+  /**
+   * SurveyTeam create
+   */
+  export type SurveyTeamCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeam
+     */
+    select?: SurveyTeamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyTeam
+     */
+    omit?: SurveyTeamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyTeamInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SurveyTeam.
+     */
+    data: XOR<SurveyTeamCreateInput, SurveyTeamUncheckedCreateInput>
+  }
+
+  /**
+   * SurveyTeam createMany
+   */
+  export type SurveyTeamCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SurveyTeams.
+     */
+    data: SurveyTeamCreateManyInput | SurveyTeamCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SurveyTeam createManyAndReturn
+   */
+  export type SurveyTeamCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeam
+     */
+    select?: SurveyTeamSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyTeam
+     */
+    omit?: SurveyTeamOmit<ExtArgs> | null
+    /**
+     * The data used to create many SurveyTeams.
+     */
+    data: SurveyTeamCreateManyInput | SurveyTeamCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyTeamIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SurveyTeam update
+   */
+  export type SurveyTeamUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeam
+     */
+    select?: SurveyTeamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyTeam
+     */
+    omit?: SurveyTeamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyTeamInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SurveyTeam.
+     */
+    data: XOR<SurveyTeamUpdateInput, SurveyTeamUncheckedUpdateInput>
+    /**
+     * Choose, which SurveyTeam to update.
+     */
+    where: SurveyTeamWhereUniqueInput
+  }
+
+  /**
+   * SurveyTeam updateMany
+   */
+  export type SurveyTeamUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SurveyTeams.
+     */
+    data: XOR<SurveyTeamUpdateManyMutationInput, SurveyTeamUncheckedUpdateManyInput>
+    /**
+     * Filter which SurveyTeams to update
+     */
+    where?: SurveyTeamWhereInput
+    /**
+     * Limit how many SurveyTeams to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SurveyTeam updateManyAndReturn
+   */
+  export type SurveyTeamUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeam
+     */
+    select?: SurveyTeamSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyTeam
+     */
+    omit?: SurveyTeamOmit<ExtArgs> | null
+    /**
+     * The data used to update SurveyTeams.
+     */
+    data: XOR<SurveyTeamUpdateManyMutationInput, SurveyTeamUncheckedUpdateManyInput>
+    /**
+     * Filter which SurveyTeams to update
+     */
+    where?: SurveyTeamWhereInput
+    /**
+     * Limit how many SurveyTeams to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyTeamIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SurveyTeam upsert
+   */
+  export type SurveyTeamUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeam
+     */
+    select?: SurveyTeamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyTeam
+     */
+    omit?: SurveyTeamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyTeamInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SurveyTeam to update in case it exists.
+     */
+    where: SurveyTeamWhereUniqueInput
+    /**
+     * In case the SurveyTeam found by the `where` argument doesn't exist, create a new SurveyTeam with this data.
+     */
+    create: XOR<SurveyTeamCreateInput, SurveyTeamUncheckedCreateInput>
+    /**
+     * In case the SurveyTeam was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SurveyTeamUpdateInput, SurveyTeamUncheckedUpdateInput>
+  }
+
+  /**
+   * SurveyTeam delete
+   */
+  export type SurveyTeamDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeam
+     */
+    select?: SurveyTeamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyTeam
+     */
+    omit?: SurveyTeamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyTeamInclude<ExtArgs> | null
+    /**
+     * Filter which SurveyTeam to delete.
+     */
+    where: SurveyTeamWhereUniqueInput
+  }
+
+  /**
+   * SurveyTeam deleteMany
+   */
+  export type SurveyTeamDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SurveyTeams to delete
+     */
+    where?: SurveyTeamWhereInput
+    /**
+     * Limit how many SurveyTeams to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SurveyTeam.teamLead
+   */
+  export type SurveyTeam$teamLeadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * SurveyTeam.areaChairs
+   */
+  export type SurveyTeam$areaChairsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairInclude<ExtArgs> | null
+    where?: AreaChairWhereInput
+    orderBy?: AreaChairOrderByWithRelationInput | AreaChairOrderByWithRelationInput[]
+    cursor?: AreaChairWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AreaChairScalarFieldEnum | AreaChairScalarFieldEnum[]
+  }
+
+  /**
+   * SurveyTeam without action
+   */
+  export type SurveyTeamDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyTeam
+     */
+    select?: SurveyTeamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyTeam
+     */
+    omit?: SurveyTeamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyTeamInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AreaChair
+   */
+
+  export type AggregateAreaChair = {
+    _count: AreaChairCountAggregateOutputType | null
+    _min: AreaChairMinAggregateOutputType | null
+    _max: AreaChairMaxAggregateOutputType | null
+  }
+
+  export type AreaChairMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    surveyTeamId: string | null
+    areaFolderId: string | null
+  }
+
+  export type AreaChairMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    surveyTeamId: string | null
+    areaFolderId: string | null
+  }
+
+  export type AreaChairCountAggregateOutputType = {
+    id: number
+    userId: number
+    surveyTeamId: number
+    areaFolderId: number
+    _all: number
+  }
+
+
+  export type AreaChairMinAggregateInputType = {
+    id?: true
+    userId?: true
+    surveyTeamId?: true
+    areaFolderId?: true
+  }
+
+  export type AreaChairMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    surveyTeamId?: true
+    areaFolderId?: true
+  }
+
+  export type AreaChairCountAggregateInputType = {
+    id?: true
+    userId?: true
+    surveyTeamId?: true
+    areaFolderId?: true
+    _all?: true
+  }
+
+  export type AreaChairAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AreaChair to aggregate.
+     */
+    where?: AreaChairWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AreaChairs to fetch.
+     */
+    orderBy?: AreaChairOrderByWithRelationInput | AreaChairOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AreaChairWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AreaChairs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AreaChairs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AreaChairs
+    **/
+    _count?: true | AreaChairCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AreaChairMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AreaChairMaxAggregateInputType
+  }
+
+  export type GetAreaChairAggregateType<T extends AreaChairAggregateArgs> = {
+        [P in keyof T & keyof AggregateAreaChair]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAreaChair[P]>
+      : GetScalarType<T[P], AggregateAreaChair[P]>
+  }
+
+
+
+
+  export type AreaChairGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AreaChairWhereInput
+    orderBy?: AreaChairOrderByWithAggregationInput | AreaChairOrderByWithAggregationInput[]
+    by: AreaChairScalarFieldEnum[] | AreaChairScalarFieldEnum
+    having?: AreaChairScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AreaChairCountAggregateInputType | true
+    _min?: AreaChairMinAggregateInputType
+    _max?: AreaChairMaxAggregateInputType
+  }
+
+  export type AreaChairGroupByOutputType = {
+    id: string
+    userId: string
+    surveyTeamId: string
+    areaFolderId: string
+    _count: AreaChairCountAggregateOutputType | null
+    _min: AreaChairMinAggregateOutputType | null
+    _max: AreaChairMaxAggregateOutputType | null
+  }
+
+  type GetAreaChairGroupByPayload<T extends AreaChairGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AreaChairGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AreaChairGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AreaChairGroupByOutputType[P]>
+            : GetScalarType<T[P], AreaChairGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AreaChairSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    surveyTeamId?: boolean
+    areaFolderId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    surveyTeam?: boolean | SurveyTeamDefaultArgs<ExtArgs>
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["areaChair"]>
+
+  export type AreaChairSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    surveyTeamId?: boolean
+    areaFolderId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    surveyTeam?: boolean | SurveyTeamDefaultArgs<ExtArgs>
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["areaChair"]>
+
+  export type AreaChairSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    surveyTeamId?: boolean
+    areaFolderId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    surveyTeam?: boolean | SurveyTeamDefaultArgs<ExtArgs>
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["areaChair"]>
+
+  export type AreaChairSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    surveyTeamId?: boolean
+    areaFolderId?: boolean
+  }
+
+  export type AreaChairOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "surveyTeamId" | "areaFolderId", ExtArgs["result"]["areaChair"]>
+  export type AreaChairInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    surveyTeam?: boolean | SurveyTeamDefaultArgs<ExtArgs>
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+  }
+  export type AreaChairIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    surveyTeam?: boolean | SurveyTeamDefaultArgs<ExtArgs>
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+  }
+  export type AreaChairIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    surveyTeam?: boolean | SurveyTeamDefaultArgs<ExtArgs>
+    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+  }
+
+  export type $AreaChairPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AreaChair"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      surveyTeam: Prisma.$SurveyTeamPayload<ExtArgs>
+      areaFolder: Prisma.$AreaFolderPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      surveyTeamId: string
+      areaFolderId: string
+    }, ExtArgs["result"]["areaChair"]>
+    composites: {}
+  }
+
+  type AreaChairGetPayload<S extends boolean | null | undefined | AreaChairDefaultArgs> = $Result.GetResult<Prisma.$AreaChairPayload, S>
+
+  type AreaChairCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AreaChairFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AreaChairCountAggregateInputType | true
+    }
+
+  export interface AreaChairDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AreaChair'], meta: { name: 'AreaChair' } }
+    /**
+     * Find zero or one AreaChair that matches the filter.
+     * @param {AreaChairFindUniqueArgs} args - Arguments to find a AreaChair
+     * @example
+     * // Get one AreaChair
+     * const areaChair = await prisma.areaChair.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AreaChairFindUniqueArgs>(args: SelectSubset<T, AreaChairFindUniqueArgs<ExtArgs>>): Prisma__AreaChairClient<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AreaChair that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AreaChairFindUniqueOrThrowArgs} args - Arguments to find a AreaChair
+     * @example
+     * // Get one AreaChair
+     * const areaChair = await prisma.areaChair.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AreaChairFindUniqueOrThrowArgs>(args: SelectSubset<T, AreaChairFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AreaChairClient<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AreaChair that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaChairFindFirstArgs} args - Arguments to find a AreaChair
+     * @example
+     * // Get one AreaChair
+     * const areaChair = await prisma.areaChair.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AreaChairFindFirstArgs>(args?: SelectSubset<T, AreaChairFindFirstArgs<ExtArgs>>): Prisma__AreaChairClient<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AreaChair that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaChairFindFirstOrThrowArgs} args - Arguments to find a AreaChair
+     * @example
+     * // Get one AreaChair
+     * const areaChair = await prisma.areaChair.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AreaChairFindFirstOrThrowArgs>(args?: SelectSubset<T, AreaChairFindFirstOrThrowArgs<ExtArgs>>): Prisma__AreaChairClient<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AreaChairs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaChairFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AreaChairs
+     * const areaChairs = await prisma.areaChair.findMany()
+     * 
+     * // Get first 10 AreaChairs
+     * const areaChairs = await prisma.areaChair.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const areaChairWithIdOnly = await prisma.areaChair.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AreaChairFindManyArgs>(args?: SelectSubset<T, AreaChairFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AreaChair.
+     * @param {AreaChairCreateArgs} args - Arguments to create a AreaChair.
+     * @example
+     * // Create one AreaChair
+     * const AreaChair = await prisma.areaChair.create({
+     *   data: {
+     *     // ... data to create a AreaChair
+     *   }
+     * })
+     * 
+     */
+    create<T extends AreaChairCreateArgs>(args: SelectSubset<T, AreaChairCreateArgs<ExtArgs>>): Prisma__AreaChairClient<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AreaChairs.
+     * @param {AreaChairCreateManyArgs} args - Arguments to create many AreaChairs.
+     * @example
+     * // Create many AreaChairs
+     * const areaChair = await prisma.areaChair.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AreaChairCreateManyArgs>(args?: SelectSubset<T, AreaChairCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AreaChairs and returns the data saved in the database.
+     * @param {AreaChairCreateManyAndReturnArgs} args - Arguments to create many AreaChairs.
+     * @example
+     * // Create many AreaChairs
+     * const areaChair = await prisma.areaChair.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AreaChairs and only return the `id`
+     * const areaChairWithIdOnly = await prisma.areaChair.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AreaChairCreateManyAndReturnArgs>(args?: SelectSubset<T, AreaChairCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AreaChair.
+     * @param {AreaChairDeleteArgs} args - Arguments to delete one AreaChair.
+     * @example
+     * // Delete one AreaChair
+     * const AreaChair = await prisma.areaChair.delete({
+     *   where: {
+     *     // ... filter to delete one AreaChair
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AreaChairDeleteArgs>(args: SelectSubset<T, AreaChairDeleteArgs<ExtArgs>>): Prisma__AreaChairClient<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AreaChair.
+     * @param {AreaChairUpdateArgs} args - Arguments to update one AreaChair.
+     * @example
+     * // Update one AreaChair
+     * const areaChair = await prisma.areaChair.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AreaChairUpdateArgs>(args: SelectSubset<T, AreaChairUpdateArgs<ExtArgs>>): Prisma__AreaChairClient<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AreaChairs.
+     * @param {AreaChairDeleteManyArgs} args - Arguments to filter AreaChairs to delete.
+     * @example
+     * // Delete a few AreaChairs
+     * const { count } = await prisma.areaChair.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AreaChairDeleteManyArgs>(args?: SelectSubset<T, AreaChairDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AreaChairs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaChairUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AreaChairs
+     * const areaChair = await prisma.areaChair.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AreaChairUpdateManyArgs>(args: SelectSubset<T, AreaChairUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AreaChairs and returns the data updated in the database.
+     * @param {AreaChairUpdateManyAndReturnArgs} args - Arguments to update many AreaChairs.
+     * @example
+     * // Update many AreaChairs
+     * const areaChair = await prisma.areaChair.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AreaChairs and only return the `id`
+     * const areaChairWithIdOnly = await prisma.areaChair.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AreaChairUpdateManyAndReturnArgs>(args: SelectSubset<T, AreaChairUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AreaChair.
+     * @param {AreaChairUpsertArgs} args - Arguments to update or create a AreaChair.
+     * @example
+     * // Update or create a AreaChair
+     * const areaChair = await prisma.areaChair.upsert({
+     *   create: {
+     *     // ... data to create a AreaChair
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AreaChair we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AreaChairUpsertArgs>(args: SelectSubset<T, AreaChairUpsertArgs<ExtArgs>>): Prisma__AreaChairClient<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AreaChairs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaChairCountArgs} args - Arguments to filter AreaChairs to count.
+     * @example
+     * // Count the number of AreaChairs
+     * const count = await prisma.areaChair.count({
+     *   where: {
+     *     // ... the filter for the AreaChairs we want to count
+     *   }
+     * })
+    **/
+    count<T extends AreaChairCountArgs>(
+      args?: Subset<T, AreaChairCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AreaChairCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AreaChair.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaChairAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AreaChairAggregateArgs>(args: Subset<T, AreaChairAggregateArgs>): Prisma.PrismaPromise<GetAreaChairAggregateType<T>>
+
+    /**
+     * Group by AreaChair.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AreaChairGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AreaChairGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AreaChairGroupByArgs['orderBy'] }
+        : { orderBy?: AreaChairGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AreaChairGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAreaChairGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AreaChair model
+   */
+  readonly fields: AreaChairFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AreaChair.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AreaChairClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    surveyTeam<T extends SurveyTeamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SurveyTeamDefaultArgs<ExtArgs>>): Prisma__SurveyTeamClient<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    areaFolder<T extends AreaFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolderDefaultArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AreaChair model
+   */
+  interface AreaChairFieldRefs {
+    readonly id: FieldRef<"AreaChair", 'String'>
+    readonly userId: FieldRef<"AreaChair", 'String'>
+    readonly surveyTeamId: FieldRef<"AreaChair", 'String'>
+    readonly areaFolderId: FieldRef<"AreaChair", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AreaChair findUnique
+   */
+  export type AreaChairFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaChair to fetch.
+     */
+    where: AreaChairWhereUniqueInput
+  }
+
+  /**
+   * AreaChair findUniqueOrThrow
+   */
+  export type AreaChairFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaChair to fetch.
+     */
+    where: AreaChairWhereUniqueInput
+  }
+
+  /**
+   * AreaChair findFirst
+   */
+  export type AreaChairFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaChair to fetch.
+     */
+    where?: AreaChairWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AreaChairs to fetch.
+     */
+    orderBy?: AreaChairOrderByWithRelationInput | AreaChairOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AreaChairs.
+     */
+    cursor?: AreaChairWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AreaChairs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AreaChairs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AreaChairs.
+     */
+    distinct?: AreaChairScalarFieldEnum | AreaChairScalarFieldEnum[]
+  }
+
+  /**
+   * AreaChair findFirstOrThrow
+   */
+  export type AreaChairFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaChair to fetch.
+     */
+    where?: AreaChairWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AreaChairs to fetch.
+     */
+    orderBy?: AreaChairOrderByWithRelationInput | AreaChairOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AreaChairs.
+     */
+    cursor?: AreaChairWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AreaChairs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AreaChairs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AreaChairs.
+     */
+    distinct?: AreaChairScalarFieldEnum | AreaChairScalarFieldEnum[]
+  }
+
+  /**
+   * AreaChair findMany
+   */
+  export type AreaChairFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairInclude<ExtArgs> | null
+    /**
+     * Filter, which AreaChairs to fetch.
+     */
+    where?: AreaChairWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AreaChairs to fetch.
+     */
+    orderBy?: AreaChairOrderByWithRelationInput | AreaChairOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AreaChairs.
+     */
+    cursor?: AreaChairWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AreaChairs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AreaChairs.
+     */
+    skip?: number
+    distinct?: AreaChairScalarFieldEnum | AreaChairScalarFieldEnum[]
+  }
+
+  /**
+   * AreaChair create
+   */
+  export type AreaChairCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AreaChair.
+     */
+    data: XOR<AreaChairCreateInput, AreaChairUncheckedCreateInput>
+  }
+
+  /**
+   * AreaChair createMany
+   */
+  export type AreaChairCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AreaChairs.
+     */
+    data: AreaChairCreateManyInput | AreaChairCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AreaChair createManyAndReturn
+   */
+  export type AreaChairCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * The data used to create many AreaChairs.
+     */
+    data: AreaChairCreateManyInput | AreaChairCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AreaChair update
+   */
+  export type AreaChairUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AreaChair.
+     */
+    data: XOR<AreaChairUpdateInput, AreaChairUncheckedUpdateInput>
+    /**
+     * Choose, which AreaChair to update.
+     */
+    where: AreaChairWhereUniqueInput
+  }
+
+  /**
+   * AreaChair updateMany
+   */
+  export type AreaChairUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AreaChairs.
+     */
+    data: XOR<AreaChairUpdateManyMutationInput, AreaChairUncheckedUpdateManyInput>
+    /**
+     * Filter which AreaChairs to update
+     */
+    where?: AreaChairWhereInput
+    /**
+     * Limit how many AreaChairs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AreaChair updateManyAndReturn
+   */
+  export type AreaChairUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * The data used to update AreaChairs.
+     */
+    data: XOR<AreaChairUpdateManyMutationInput, AreaChairUncheckedUpdateManyInput>
+    /**
+     * Filter which AreaChairs to update
+     */
+    where?: AreaChairWhereInput
+    /**
+     * Limit how many AreaChairs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AreaChair upsert
+   */
+  export type AreaChairUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AreaChair to update in case it exists.
+     */
+    where: AreaChairWhereUniqueInput
+    /**
+     * In case the AreaChair found by the `where` argument doesn't exist, create a new AreaChair with this data.
+     */
+    create: XOR<AreaChairCreateInput, AreaChairUncheckedCreateInput>
+    /**
+     * In case the AreaChair was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AreaChairUpdateInput, AreaChairUncheckedUpdateInput>
+  }
+
+  /**
+   * AreaChair delete
+   */
+  export type AreaChairDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairInclude<ExtArgs> | null
+    /**
+     * Filter which AreaChair to delete.
+     */
+    where: AreaChairWhereUniqueInput
+  }
+
+  /**
+   * AreaChair deleteMany
+   */
+  export type AreaChairDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AreaChairs to delete
+     */
+    where?: AreaChairWhereInput
+    /**
+     * Limit how many AreaChairs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AreaChair without action
+   */
+  export type AreaChairDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairInclude<ExtArgs> | null
   }
 
 
@@ -17717,6 +20249,7 @@ export namespace Prisma {
     area?: boolean | AreaDefaultArgs<ExtArgs>
     areaFiles?: boolean | AreaFolder$areaFilesArgs<ExtArgs>
     taskForce?: boolean | AreaFolder$taskForceArgs<ExtArgs>
+    areaChair?: boolean | AreaFolder$areaChairArgs<ExtArgs>
     _count?: boolean | AreaFolderCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["areaFolder"]>
 
@@ -17752,6 +20285,7 @@ export namespace Prisma {
     area?: boolean | AreaDefaultArgs<ExtArgs>
     areaFiles?: boolean | AreaFolder$areaFilesArgs<ExtArgs>
     taskForce?: boolean | AreaFolder$taskForceArgs<ExtArgs>
+    areaChair?: boolean | AreaFolder$areaChairArgs<ExtArgs>
     _count?: boolean | AreaFolderCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type AreaFolderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -17771,6 +20305,7 @@ export namespace Prisma {
       area: Prisma.$AreaPayload<ExtArgs>
       areaFiles: Prisma.$AreaFilePayload<ExtArgs>[]
       taskForce: Prisma.$TaskForcePayload<ExtArgs> | null
+      areaChair: Prisma.$AreaChairPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -18176,6 +20711,7 @@ export namespace Prisma {
     area<T extends AreaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AreaDefaultArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     areaFiles<T extends AreaFolder$areaFilesArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolder$areaFilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     taskForce<T extends AreaFolder$taskForceArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolder$taskForceArgs<ExtArgs>>): Prisma__TaskForceClient<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    areaChair<T extends AreaFolder$areaChairArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolder$areaChairArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18669,6 +21205,30 @@ export namespace Prisma {
      */
     include?: TaskForceInclude<ExtArgs> | null
     where?: TaskForceWhereInput
+  }
+
+  /**
+   * AreaFolder.areaChair
+   */
+  export type AreaFolder$areaChairArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaChair
+     */
+    select?: AreaChairSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaChair
+     */
+    omit?: AreaChairOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaChairInclude<ExtArgs> | null
+    where?: AreaChairWhereInput
+    orderBy?: AreaChairOrderByWithRelationInput | AreaChairOrderByWithRelationInput[]
+    cursor?: AreaChairWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AreaChairScalarFieldEnum | AreaChairScalarFieldEnum[]
   }
 
   /**
@@ -31075,6 +33635,26 @@ export namespace Prisma {
   export type SurveyVisitScalarFieldEnum = (typeof SurveyVisitScalarFieldEnum)[keyof typeof SurveyVisitScalarFieldEnum]
 
 
+  export const SurveyTeamScalarFieldEnum: {
+    id: 'id',
+    surveyVisitId: 'surveyVisitId',
+    type: 'type',
+    teamLeadId: 'teamLeadId'
+  };
+
+  export type SurveyTeamScalarFieldEnum = (typeof SurveyTeamScalarFieldEnum)[keyof typeof SurveyTeamScalarFieldEnum]
+
+
+  export const AreaChairScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    surveyTeamId: 'surveyTeamId',
+    areaFolderId: 'areaFolderId'
+  };
+
+  export type AreaChairScalarFieldEnum = (typeof AreaChairScalarFieldEnum)[keyof typeof AreaChairScalarFieldEnum]
+
+
   export const PhaseOneRequirementsScalarFieldEnum: {
     id: 'id',
     surveyVisitId: 'surveyVisitId',
@@ -31388,6 +33968,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'SurveyTeamType'
+   */
+  export type EnumSurveyTeamTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurveyTeamType'>
+    
+
+
+  /**
+   * Reference to a field of type 'SurveyTeamType[]'
+   */
+  export type ListEnumSurveyTeamTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurveyTeamType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'FileStatus'
    */
   export type EnumFileStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FileStatus'>
@@ -31479,6 +34073,8 @@ export namespace Prisma {
     programHead?: ProgramListRelationFilter
     uploads?: FileVersionListRelationFilter
     comments?: CommentListRelationFilter
+    teamLead?: SurveyTeamListRelationFilter
+    areaChair?: AreaChairListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -31497,6 +34093,8 @@ export namespace Prisma {
     programHead?: ProgramOrderByRelationAggregateInput
     uploads?: FileVersionOrderByRelationAggregateInput
     comments?: CommentOrderByRelationAggregateInput
+    teamLead?: SurveyTeamOrderByRelationAggregateInput
+    areaChair?: AreaChairOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -31518,6 +34116,8 @@ export namespace Prisma {
     programHead?: ProgramListRelationFilter
     uploads?: FileVersionListRelationFilter
     comments?: CommentListRelationFilter
+    teamLead?: SurveyTeamListRelationFilter
+    areaChair?: AreaChairListRelationFilter
   }, "id" | "phoneNumber" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -32123,6 +34723,7 @@ export namespace Prisma {
     level?: XOR<LevelScalarRelationFilter, LevelWhereInput>
     phaseOneRequirements?: XOR<PhaseOneRequirementsNullableScalarRelationFilter, PhaseOneRequirementsWhereInput> | null
     phaseTwoRequirements?: XOR<PhaseTwoRequirementsNullableScalarRelationFilter, PhaseTwoRequirementsWhereInput> | null
+    surveyTeam?: SurveyTeamListRelationFilter
   }
 
   export type SurveyVisitOrderByWithRelationInput = {
@@ -32137,6 +34738,7 @@ export namespace Prisma {
     level?: LevelOrderByWithRelationInput
     phaseOneRequirements?: PhaseOneRequirementsOrderByWithRelationInput
     phaseTwoRequirements?: PhaseTwoRequirementsOrderByWithRelationInput
+    surveyTeam?: SurveyTeamOrderByRelationAggregateInput
   }
 
   export type SurveyVisitWhereUniqueInput = Prisma.AtLeast<{
@@ -32154,6 +34756,7 @@ export namespace Prisma {
     level?: XOR<LevelScalarRelationFilter, LevelWhereInput>
     phaseOneRequirements?: XOR<PhaseOneRequirementsNullableScalarRelationFilter, PhaseOneRequirementsWhereInput> | null
     phaseTwoRequirements?: XOR<PhaseTwoRequirementsNullableScalarRelationFilter, PhaseTwoRequirementsWhereInput> | null
+    surveyTeam?: SurveyTeamListRelationFilter
   }, "id">
 
   export type SurveyVisitOrderByWithAggregationInput = {
@@ -32180,6 +34783,118 @@ export namespace Prisma {
     targetLevel?: StringWithAggregatesFilter<"SurveyVisit"> | string
     status?: EnumProgressWithAggregatesFilter<"SurveyVisit"> | $Enums.Progress
     createdAt?: DateTimeWithAggregatesFilter<"SurveyVisit"> | Date | string
+  }
+
+  export type SurveyTeamWhereInput = {
+    AND?: SurveyTeamWhereInput | SurveyTeamWhereInput[]
+    OR?: SurveyTeamWhereInput[]
+    NOT?: SurveyTeamWhereInput | SurveyTeamWhereInput[]
+    id?: StringFilter<"SurveyTeam"> | string
+    surveyVisitId?: StringFilter<"SurveyTeam"> | string
+    type?: EnumSurveyTeamTypeFilter<"SurveyTeam"> | $Enums.SurveyTeamType
+    teamLeadId?: StringNullableFilter<"SurveyTeam"> | string | null
+    surveyVisit?: XOR<SurveyVisitScalarRelationFilter, SurveyVisitWhereInput>
+    teamLead?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    areaChairs?: AreaChairListRelationFilter
+  }
+
+  export type SurveyTeamOrderByWithRelationInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrder
+    type?: SortOrder
+    teamLeadId?: SortOrderInput | SortOrder
+    surveyVisit?: SurveyVisitOrderByWithRelationInput
+    teamLead?: UserOrderByWithRelationInput
+    areaChairs?: AreaChairOrderByRelationAggregateInput
+  }
+
+  export type SurveyTeamWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SurveyTeamWhereInput | SurveyTeamWhereInput[]
+    OR?: SurveyTeamWhereInput[]
+    NOT?: SurveyTeamWhereInput | SurveyTeamWhereInput[]
+    surveyVisitId?: StringFilter<"SurveyTeam"> | string
+    type?: EnumSurveyTeamTypeFilter<"SurveyTeam"> | $Enums.SurveyTeamType
+    teamLeadId?: StringNullableFilter<"SurveyTeam"> | string | null
+    surveyVisit?: XOR<SurveyVisitScalarRelationFilter, SurveyVisitWhereInput>
+    teamLead?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    areaChairs?: AreaChairListRelationFilter
+  }, "id">
+
+  export type SurveyTeamOrderByWithAggregationInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrder
+    type?: SortOrder
+    teamLeadId?: SortOrderInput | SortOrder
+    _count?: SurveyTeamCountOrderByAggregateInput
+    _max?: SurveyTeamMaxOrderByAggregateInput
+    _min?: SurveyTeamMinOrderByAggregateInput
+  }
+
+  export type SurveyTeamScalarWhereWithAggregatesInput = {
+    AND?: SurveyTeamScalarWhereWithAggregatesInput | SurveyTeamScalarWhereWithAggregatesInput[]
+    OR?: SurveyTeamScalarWhereWithAggregatesInput[]
+    NOT?: SurveyTeamScalarWhereWithAggregatesInput | SurveyTeamScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SurveyTeam"> | string
+    surveyVisitId?: StringWithAggregatesFilter<"SurveyTeam"> | string
+    type?: EnumSurveyTeamTypeWithAggregatesFilter<"SurveyTeam"> | $Enums.SurveyTeamType
+    teamLeadId?: StringNullableWithAggregatesFilter<"SurveyTeam"> | string | null
+  }
+
+  export type AreaChairWhereInput = {
+    AND?: AreaChairWhereInput | AreaChairWhereInput[]
+    OR?: AreaChairWhereInput[]
+    NOT?: AreaChairWhereInput | AreaChairWhereInput[]
+    id?: StringFilter<"AreaChair"> | string
+    userId?: StringFilter<"AreaChair"> | string
+    surveyTeamId?: StringFilter<"AreaChair"> | string
+    areaFolderId?: StringFilter<"AreaChair"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    surveyTeam?: XOR<SurveyTeamScalarRelationFilter, SurveyTeamWhereInput>
+    areaFolder?: XOR<AreaFolderScalarRelationFilter, AreaFolderWhereInput>
+  }
+
+  export type AreaChairOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    surveyTeamId?: SortOrder
+    areaFolderId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    surveyTeam?: SurveyTeamOrderByWithRelationInput
+    areaFolder?: AreaFolderOrderByWithRelationInput
+  }
+
+  export type AreaChairWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AreaChairWhereInput | AreaChairWhereInput[]
+    OR?: AreaChairWhereInput[]
+    NOT?: AreaChairWhereInput | AreaChairWhereInput[]
+    userId?: StringFilter<"AreaChair"> | string
+    surveyTeamId?: StringFilter<"AreaChair"> | string
+    areaFolderId?: StringFilter<"AreaChair"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    surveyTeam?: XOR<SurveyTeamScalarRelationFilter, SurveyTeamWhereInput>
+    areaFolder?: XOR<AreaFolderScalarRelationFilter, AreaFolderWhereInput>
+  }, "id">
+
+  export type AreaChairOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    surveyTeamId?: SortOrder
+    areaFolderId?: SortOrder
+    _count?: AreaChairCountOrderByAggregateInput
+    _max?: AreaChairMaxOrderByAggregateInput
+    _min?: AreaChairMinOrderByAggregateInput
+  }
+
+  export type AreaChairScalarWhereWithAggregatesInput = {
+    AND?: AreaChairScalarWhereWithAggregatesInput | AreaChairScalarWhereWithAggregatesInput[]
+    OR?: AreaChairScalarWhereWithAggregatesInput[]
+    NOT?: AreaChairScalarWhereWithAggregatesInput | AreaChairScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AreaChair"> | string
+    userId?: StringWithAggregatesFilter<"AreaChair"> | string
+    surveyTeamId?: StringWithAggregatesFilter<"AreaChair"> | string
+    areaFolderId?: StringWithAggregatesFilter<"AreaChair"> | string
   }
 
   export type PhaseOneRequirementsWhereInput = {
@@ -32289,6 +35004,7 @@ export namespace Prisma {
     area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
     areaFiles?: AreaFileListRelationFilter
     taskForce?: XOR<TaskForceNullableScalarRelationFilter, TaskForceWhereInput> | null
+    areaChair?: AreaChairListRelationFilter
   }
 
   export type AreaFolderOrderByWithRelationInput = {
@@ -32301,6 +35017,7 @@ export namespace Prisma {
     area?: AreaOrderByWithRelationInput
     areaFiles?: AreaFileOrderByRelationAggregateInput
     taskForce?: TaskForceOrderByWithRelationInput
+    areaChair?: AreaChairOrderByRelationAggregateInput
   }
 
   export type AreaFolderWhereUniqueInput = Prisma.AtLeast<{
@@ -32316,6 +35033,7 @@ export namespace Prisma {
     area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
     areaFiles?: AreaFileListRelationFilter
     taskForce?: XOR<TaskForceNullableScalarRelationFilter, TaskForceWhereInput> | null
+    areaChair?: AreaChairListRelationFilter
   }, "id">
 
   export type AreaFolderOrderByWithAggregationInput = {
@@ -33005,6 +35723,8 @@ export namespace Prisma {
     programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
     uploads?: FileVersionCreateNestedManyWithoutUploaderInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
+    teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
+    areaChair?: AreaChairCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -33023,6 +35743,8 @@ export namespace Prisma {
     programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
     uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -33041,6 +35763,8 @@ export namespace Prisma {
     programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
     uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
+    teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
+    areaChair?: AreaChairUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -33059,6 +35783,8 @@ export namespace Prisma {
     programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
     uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -33685,6 +36411,7 @@ export namespace Prisma {
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateInput = {
@@ -33697,6 +36424,7 @@ export namespace Prisma {
     createdAt?: Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUpdateInput = {
@@ -33709,6 +36437,7 @@ export namespace Prisma {
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateInput = {
@@ -33721,6 +36450,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitCreateManyInput = {
@@ -33749,6 +36479,103 @@ export namespace Prisma {
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SurveyTeamCreateInput = {
+    id?: string
+    type: $Enums.SurveyTeamType
+    surveyVisit: SurveyVisitCreateNestedOneWithoutSurveyTeamInput
+    teamLead?: UserCreateNestedOneWithoutTeamLeadInput
+    areaChairs?: AreaChairCreateNestedManyWithoutSurveyTeamInput
+  }
+
+  export type SurveyTeamUncheckedCreateInput = {
+    id?: string
+    surveyVisitId: string
+    type: $Enums.SurveyTeamType
+    teamLeadId?: string | null
+    areaChairs?: AreaChairUncheckedCreateNestedManyWithoutSurveyTeamInput
+  }
+
+  export type SurveyTeamUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    surveyVisit?: SurveyVisitUpdateOneRequiredWithoutSurveyTeamNestedInput
+    teamLead?: UserUpdateOneWithoutTeamLeadNestedInput
+    areaChairs?: AreaChairUpdateManyWithoutSurveyTeamNestedInput
+  }
+
+  export type SurveyTeamUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    teamLeadId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaChairs?: AreaChairUncheckedUpdateManyWithoutSurveyTeamNestedInput
+  }
+
+  export type SurveyTeamCreateManyInput = {
+    id?: string
+    surveyVisitId: string
+    type: $Enums.SurveyTeamType
+    teamLeadId?: string | null
+  }
+
+  export type SurveyTeamUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+  }
+
+  export type SurveyTeamUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    teamLeadId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AreaChairCreateInput = {
+    id?: string
+    user: UserCreateNestedOneWithoutAreaChairInput
+    surveyTeam: SurveyTeamCreateNestedOneWithoutAreaChairsInput
+    areaFolder: AreaFolderCreateNestedOneWithoutAreaChairInput
+  }
+
+  export type AreaChairUncheckedCreateInput = {
+    id?: string
+    userId: string
+    surveyTeamId: string
+    areaFolderId: string
+  }
+
+  export type AreaChairUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutAreaChairNestedInput
+    surveyTeam?: SurveyTeamUpdateOneRequiredWithoutAreaChairsNestedInput
+    areaFolder?: AreaFolderUpdateOneRequiredWithoutAreaChairNestedInput
+  }
+
+  export type AreaChairUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    surveyTeamId?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AreaChairCreateManyInput = {
+    id?: string
+    userId: string
+    surveyTeamId: string
+    areaFolderId: string
+  }
+
+  export type AreaChairUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AreaChairUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    surveyTeamId?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PhaseOneRequirementsCreateInput = {
@@ -33841,6 +36668,7 @@ export namespace Prisma {
     area: AreaCreateNestedOneWithoutAreaFoldersInput
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
+    areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
   }
 
   export type AreaFolderUncheckedCreateInput = {
@@ -33851,6 +36679,7 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
   }
 
   export type AreaFolderUpdateInput = {
@@ -33861,6 +36690,7 @@ export namespace Prisma {
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
     areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
+    areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateInput = {
@@ -33871,6 +36701,7 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderCreateManyInput = {
@@ -34563,6 +37394,18 @@ export namespace Prisma {
     none?: CommentWhereInput
   }
 
+  export type SurveyTeamListRelationFilter = {
+    every?: SurveyTeamWhereInput
+    some?: SurveyTeamWhereInput
+    none?: SurveyTeamWhereInput
+  }
+
+  export type AreaChairListRelationFilter = {
+    every?: AreaChairWhereInput
+    some?: AreaChairWhereInput
+    none?: AreaChairWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -34581,6 +37424,14 @@ export namespace Prisma {
   }
 
   export type CommentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SurveyTeamOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AreaChairOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -35354,6 +38205,80 @@ export namespace Prisma {
     _max?: NestedEnumProgressFilter<$PrismaModel>
   }
 
+  export type EnumSurveyTeamTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyTeamType | EnumSurveyTeamTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyTeamType[] | ListEnumSurveyTeamTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyTeamType[] | ListEnumSurveyTeamTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyTeamTypeFilter<$PrismaModel> | $Enums.SurveyTeamType
+  }
+
+  export type SurveyVisitScalarRelationFilter = {
+    is?: SurveyVisitWhereInput
+    isNot?: SurveyVisitWhereInput
+  }
+
+  export type SurveyTeamCountOrderByAggregateInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrder
+    type?: SortOrder
+    teamLeadId?: SortOrder
+  }
+
+  export type SurveyTeamMaxOrderByAggregateInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrder
+    type?: SortOrder
+    teamLeadId?: SortOrder
+  }
+
+  export type SurveyTeamMinOrderByAggregateInput = {
+    id?: SortOrder
+    surveyVisitId?: SortOrder
+    type?: SortOrder
+    teamLeadId?: SortOrder
+  }
+
+  export type EnumSurveyTeamTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyTeamType | EnumSurveyTeamTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyTeamType[] | ListEnumSurveyTeamTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyTeamType[] | ListEnumSurveyTeamTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyTeamTypeWithAggregatesFilter<$PrismaModel> | $Enums.SurveyTeamType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSurveyTeamTypeFilter<$PrismaModel>
+    _max?: NestedEnumSurveyTeamTypeFilter<$PrismaModel>
+  }
+
+  export type SurveyTeamScalarRelationFilter = {
+    is?: SurveyTeamWhereInput
+    isNot?: SurveyTeamWhereInput
+  }
+
+  export type AreaFolderScalarRelationFilter = {
+    is?: AreaFolderWhereInput
+    isNot?: AreaFolderWhereInput
+  }
+
+  export type AreaChairCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    surveyTeamId?: SortOrder
+    areaFolderId?: SortOrder
+  }
+
+  export type AreaChairMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    surveyTeamId?: SortOrder
+    areaFolderId?: SortOrder
+  }
+
+  export type AreaChairMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    surveyTeamId?: SortOrder
+    areaFolderId?: SortOrder
+  }
+
   export type SurveyVisitNullableScalarRelationFilter = {
     is?: SurveyVisitWhereInput | null
     isNot?: SurveyVisitWhereInput | null
@@ -35444,11 +38369,6 @@ export namespace Prisma {
 
   export type AreaFolderSumOrderByAggregateInput = {
     areaId?: SortOrder
-  }
-
-  export type AreaFolderScalarRelationFilter = {
-    is?: AreaFolderWhereInput
-    isNot?: AreaFolderWhereInput
   }
 
   export type IndicatorFolderListRelationFilter = {
@@ -35890,6 +38810,20 @@ export namespace Prisma {
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
+  export type SurveyTeamCreateNestedManyWithoutTeamLeadInput = {
+    create?: XOR<SurveyTeamCreateWithoutTeamLeadInput, SurveyTeamUncheckedCreateWithoutTeamLeadInput> | SurveyTeamCreateWithoutTeamLeadInput[] | SurveyTeamUncheckedCreateWithoutTeamLeadInput[]
+    connectOrCreate?: SurveyTeamCreateOrConnectWithoutTeamLeadInput | SurveyTeamCreateOrConnectWithoutTeamLeadInput[]
+    createMany?: SurveyTeamCreateManyTeamLeadInputEnvelope
+    connect?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+  }
+
+  export type AreaChairCreateNestedManyWithoutUserInput = {
+    create?: XOR<AreaChairCreateWithoutUserInput, AreaChairUncheckedCreateWithoutUserInput> | AreaChairCreateWithoutUserInput[] | AreaChairUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AreaChairCreateOrConnectWithoutUserInput | AreaChairCreateOrConnectWithoutUserInput[]
+    createMany?: AreaChairCreateManyUserInputEnvelope
+    connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+  }
+
   export type ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
@@ -35916,6 +38850,20 @@ export namespace Prisma {
     connectOrCreate?: CommentCreateOrConnectWithoutAuthorInput | CommentCreateOrConnectWithoutAuthorInput[]
     createMany?: CommentCreateManyAuthorInputEnvelope
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
+  export type SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput = {
+    create?: XOR<SurveyTeamCreateWithoutTeamLeadInput, SurveyTeamUncheckedCreateWithoutTeamLeadInput> | SurveyTeamCreateWithoutTeamLeadInput[] | SurveyTeamUncheckedCreateWithoutTeamLeadInput[]
+    connectOrCreate?: SurveyTeamCreateOrConnectWithoutTeamLeadInput | SurveyTeamCreateOrConnectWithoutTeamLeadInput[]
+    createMany?: SurveyTeamCreateManyTeamLeadInputEnvelope
+    connect?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+  }
+
+  export type AreaChairUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<AreaChairCreateWithoutUserInput, AreaChairUncheckedCreateWithoutUserInput> | AreaChairCreateWithoutUserInput[] | AreaChairUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AreaChairCreateOrConnectWithoutUserInput | AreaChairCreateOrConnectWithoutUserInput[]
+    createMany?: AreaChairCreateManyUserInputEnvelope
+    connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -35990,6 +38938,34 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
+  export type SurveyTeamUpdateManyWithoutTeamLeadNestedInput = {
+    create?: XOR<SurveyTeamCreateWithoutTeamLeadInput, SurveyTeamUncheckedCreateWithoutTeamLeadInput> | SurveyTeamCreateWithoutTeamLeadInput[] | SurveyTeamUncheckedCreateWithoutTeamLeadInput[]
+    connectOrCreate?: SurveyTeamCreateOrConnectWithoutTeamLeadInput | SurveyTeamCreateOrConnectWithoutTeamLeadInput[]
+    upsert?: SurveyTeamUpsertWithWhereUniqueWithoutTeamLeadInput | SurveyTeamUpsertWithWhereUniqueWithoutTeamLeadInput[]
+    createMany?: SurveyTeamCreateManyTeamLeadInputEnvelope
+    set?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    disconnect?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    delete?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    connect?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    update?: SurveyTeamUpdateWithWhereUniqueWithoutTeamLeadInput | SurveyTeamUpdateWithWhereUniqueWithoutTeamLeadInput[]
+    updateMany?: SurveyTeamUpdateManyWithWhereWithoutTeamLeadInput | SurveyTeamUpdateManyWithWhereWithoutTeamLeadInput[]
+    deleteMany?: SurveyTeamScalarWhereInput | SurveyTeamScalarWhereInput[]
+  }
+
+  export type AreaChairUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AreaChairCreateWithoutUserInput, AreaChairUncheckedCreateWithoutUserInput> | AreaChairCreateWithoutUserInput[] | AreaChairUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AreaChairCreateOrConnectWithoutUserInput | AreaChairCreateOrConnectWithoutUserInput[]
+    upsert?: AreaChairUpsertWithWhereUniqueWithoutUserInput | AreaChairUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AreaChairCreateManyUserInputEnvelope
+    set?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    disconnect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    delete?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    update?: AreaChairUpdateWithWhereUniqueWithoutUserInput | AreaChairUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AreaChairUpdateManyWithWhereWithoutUserInput | AreaChairUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AreaChairScalarWhereInput | AreaChairScalarWhereInput[]
+  }
+
   export type ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
@@ -36044,6 +39020,34 @@ export namespace Prisma {
     update?: CommentUpdateWithWhereUniqueWithoutAuthorInput | CommentUpdateWithWhereUniqueWithoutAuthorInput[]
     updateMany?: CommentUpdateManyWithWhereWithoutAuthorInput | CommentUpdateManyWithWhereWithoutAuthorInput[]
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
+  export type SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput = {
+    create?: XOR<SurveyTeamCreateWithoutTeamLeadInput, SurveyTeamUncheckedCreateWithoutTeamLeadInput> | SurveyTeamCreateWithoutTeamLeadInput[] | SurveyTeamUncheckedCreateWithoutTeamLeadInput[]
+    connectOrCreate?: SurveyTeamCreateOrConnectWithoutTeamLeadInput | SurveyTeamCreateOrConnectWithoutTeamLeadInput[]
+    upsert?: SurveyTeamUpsertWithWhereUniqueWithoutTeamLeadInput | SurveyTeamUpsertWithWhereUniqueWithoutTeamLeadInput[]
+    createMany?: SurveyTeamCreateManyTeamLeadInputEnvelope
+    set?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    disconnect?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    delete?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    connect?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    update?: SurveyTeamUpdateWithWhereUniqueWithoutTeamLeadInput | SurveyTeamUpdateWithWhereUniqueWithoutTeamLeadInput[]
+    updateMany?: SurveyTeamUpdateManyWithWhereWithoutTeamLeadInput | SurveyTeamUpdateManyWithWhereWithoutTeamLeadInput[]
+    deleteMany?: SurveyTeamScalarWhereInput | SurveyTeamScalarWhereInput[]
+  }
+
+  export type AreaChairUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AreaChairCreateWithoutUserInput, AreaChairUncheckedCreateWithoutUserInput> | AreaChairCreateWithoutUserInput[] | AreaChairUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AreaChairCreateOrConnectWithoutUserInput | AreaChairCreateOrConnectWithoutUserInput[]
+    upsert?: AreaChairUpsertWithWhereUniqueWithoutUserInput | AreaChairUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AreaChairCreateManyUserInputEnvelope
+    set?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    disconnect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    delete?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    update?: AreaChairUpdateWithWhereUniqueWithoutUserInput | AreaChairUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AreaChairUpdateManyWithWhereWithoutUserInput | AreaChairUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AreaChairScalarWhereInput | AreaChairScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutProgramHeadInput = {
@@ -36880,6 +39884,13 @@ export namespace Prisma {
     connect?: PhaseTwoRequirementsWhereUniqueInput
   }
 
+  export type SurveyTeamCreateNestedManyWithoutSurveyVisitInput = {
+    create?: XOR<SurveyTeamCreateWithoutSurveyVisitInput, SurveyTeamUncheckedCreateWithoutSurveyVisitInput> | SurveyTeamCreateWithoutSurveyVisitInput[] | SurveyTeamUncheckedCreateWithoutSurveyVisitInput[]
+    connectOrCreate?: SurveyTeamCreateOrConnectWithoutSurveyVisitInput | SurveyTeamCreateOrConnectWithoutSurveyVisitInput[]
+    createMany?: SurveyTeamCreateManySurveyVisitInputEnvelope
+    connect?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+  }
+
   export type PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput = {
     create?: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
     connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutSurveyVisitInput
@@ -36890,6 +39901,13 @@ export namespace Prisma {
     create?: XOR<PhaseTwoRequirementsCreateWithoutSurveyVisitInput, PhaseTwoRequirementsUncheckedCreateWithoutSurveyVisitInput>
     connectOrCreate?: PhaseTwoRequirementsCreateOrConnectWithoutSurveyVisitInput
     connect?: PhaseTwoRequirementsWhereUniqueInput
+  }
+
+  export type SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput = {
+    create?: XOR<SurveyTeamCreateWithoutSurveyVisitInput, SurveyTeamUncheckedCreateWithoutSurveyVisitInput> | SurveyTeamCreateWithoutSurveyVisitInput[] | SurveyTeamUncheckedCreateWithoutSurveyVisitInput[]
+    connectOrCreate?: SurveyTeamCreateOrConnectWithoutSurveyVisitInput | SurveyTeamCreateOrConnectWithoutSurveyVisitInput[]
+    createMany?: SurveyTeamCreateManySurveyVisitInputEnvelope
+    connect?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
   }
 
   export type EnumSurveyVisitTypeFieldUpdateOperationsInput = {
@@ -36936,6 +39954,20 @@ export namespace Prisma {
     update?: XOR<XOR<PhaseTwoRequirementsUpdateToOneWithWhereWithoutSurveyVisitInput, PhaseTwoRequirementsUpdateWithoutSurveyVisitInput>, PhaseTwoRequirementsUncheckedUpdateWithoutSurveyVisitInput>
   }
 
+  export type SurveyTeamUpdateManyWithoutSurveyVisitNestedInput = {
+    create?: XOR<SurveyTeamCreateWithoutSurveyVisitInput, SurveyTeamUncheckedCreateWithoutSurveyVisitInput> | SurveyTeamCreateWithoutSurveyVisitInput[] | SurveyTeamUncheckedCreateWithoutSurveyVisitInput[]
+    connectOrCreate?: SurveyTeamCreateOrConnectWithoutSurveyVisitInput | SurveyTeamCreateOrConnectWithoutSurveyVisitInput[]
+    upsert?: SurveyTeamUpsertWithWhereUniqueWithoutSurveyVisitInput | SurveyTeamUpsertWithWhereUniqueWithoutSurveyVisitInput[]
+    createMany?: SurveyTeamCreateManySurveyVisitInputEnvelope
+    set?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    disconnect?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    delete?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    connect?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    update?: SurveyTeamUpdateWithWhereUniqueWithoutSurveyVisitInput | SurveyTeamUpdateWithWhereUniqueWithoutSurveyVisitInput[]
+    updateMany?: SurveyTeamUpdateManyWithWhereWithoutSurveyVisitInput | SurveyTeamUpdateManyWithWhereWithoutSurveyVisitInput[]
+    deleteMany?: SurveyTeamScalarWhereInput | SurveyTeamScalarWhereInput[]
+  }
+
   export type PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput = {
     create?: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
     connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutSurveyVisitInput
@@ -36954,6 +39986,138 @@ export namespace Prisma {
     delete?: PhaseTwoRequirementsWhereInput | boolean
     connect?: PhaseTwoRequirementsWhereUniqueInput
     update?: XOR<XOR<PhaseTwoRequirementsUpdateToOneWithWhereWithoutSurveyVisitInput, PhaseTwoRequirementsUpdateWithoutSurveyVisitInput>, PhaseTwoRequirementsUncheckedUpdateWithoutSurveyVisitInput>
+  }
+
+  export type SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput = {
+    create?: XOR<SurveyTeamCreateWithoutSurveyVisitInput, SurveyTeamUncheckedCreateWithoutSurveyVisitInput> | SurveyTeamCreateWithoutSurveyVisitInput[] | SurveyTeamUncheckedCreateWithoutSurveyVisitInput[]
+    connectOrCreate?: SurveyTeamCreateOrConnectWithoutSurveyVisitInput | SurveyTeamCreateOrConnectWithoutSurveyVisitInput[]
+    upsert?: SurveyTeamUpsertWithWhereUniqueWithoutSurveyVisitInput | SurveyTeamUpsertWithWhereUniqueWithoutSurveyVisitInput[]
+    createMany?: SurveyTeamCreateManySurveyVisitInputEnvelope
+    set?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    disconnect?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    delete?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    connect?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+    update?: SurveyTeamUpdateWithWhereUniqueWithoutSurveyVisitInput | SurveyTeamUpdateWithWhereUniqueWithoutSurveyVisitInput[]
+    updateMany?: SurveyTeamUpdateManyWithWhereWithoutSurveyVisitInput | SurveyTeamUpdateManyWithWhereWithoutSurveyVisitInput[]
+    deleteMany?: SurveyTeamScalarWhereInput | SurveyTeamScalarWhereInput[]
+  }
+
+  export type SurveyVisitCreateNestedOneWithoutSurveyTeamInput = {
+    create?: XOR<SurveyVisitCreateWithoutSurveyTeamInput, SurveyVisitUncheckedCreateWithoutSurveyTeamInput>
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutSurveyTeamInput
+    connect?: SurveyVisitWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutTeamLeadInput = {
+    create?: XOR<UserCreateWithoutTeamLeadInput, UserUncheckedCreateWithoutTeamLeadInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTeamLeadInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type AreaChairCreateNestedManyWithoutSurveyTeamInput = {
+    create?: XOR<AreaChairCreateWithoutSurveyTeamInput, AreaChairUncheckedCreateWithoutSurveyTeamInput> | AreaChairCreateWithoutSurveyTeamInput[] | AreaChairUncheckedCreateWithoutSurveyTeamInput[]
+    connectOrCreate?: AreaChairCreateOrConnectWithoutSurveyTeamInput | AreaChairCreateOrConnectWithoutSurveyTeamInput[]
+    createMany?: AreaChairCreateManySurveyTeamInputEnvelope
+    connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+  }
+
+  export type AreaChairUncheckedCreateNestedManyWithoutSurveyTeamInput = {
+    create?: XOR<AreaChairCreateWithoutSurveyTeamInput, AreaChairUncheckedCreateWithoutSurveyTeamInput> | AreaChairCreateWithoutSurveyTeamInput[] | AreaChairUncheckedCreateWithoutSurveyTeamInput[]
+    connectOrCreate?: AreaChairCreateOrConnectWithoutSurveyTeamInput | AreaChairCreateOrConnectWithoutSurveyTeamInput[]
+    createMany?: AreaChairCreateManySurveyTeamInputEnvelope
+    connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+  }
+
+  export type EnumSurveyTeamTypeFieldUpdateOperationsInput = {
+    set?: $Enums.SurveyTeamType
+  }
+
+  export type SurveyVisitUpdateOneRequiredWithoutSurveyTeamNestedInput = {
+    create?: XOR<SurveyVisitCreateWithoutSurveyTeamInput, SurveyVisitUncheckedCreateWithoutSurveyTeamInput>
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutSurveyTeamInput
+    upsert?: SurveyVisitUpsertWithoutSurveyTeamInput
+    connect?: SurveyVisitWhereUniqueInput
+    update?: XOR<XOR<SurveyVisitUpdateToOneWithWhereWithoutSurveyTeamInput, SurveyVisitUpdateWithoutSurveyTeamInput>, SurveyVisitUncheckedUpdateWithoutSurveyTeamInput>
+  }
+
+  export type UserUpdateOneWithoutTeamLeadNestedInput = {
+    create?: XOR<UserCreateWithoutTeamLeadInput, UserUncheckedCreateWithoutTeamLeadInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTeamLeadInput
+    upsert?: UserUpsertWithoutTeamLeadInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTeamLeadInput, UserUpdateWithoutTeamLeadInput>, UserUncheckedUpdateWithoutTeamLeadInput>
+  }
+
+  export type AreaChairUpdateManyWithoutSurveyTeamNestedInput = {
+    create?: XOR<AreaChairCreateWithoutSurveyTeamInput, AreaChairUncheckedCreateWithoutSurveyTeamInput> | AreaChairCreateWithoutSurveyTeamInput[] | AreaChairUncheckedCreateWithoutSurveyTeamInput[]
+    connectOrCreate?: AreaChairCreateOrConnectWithoutSurveyTeamInput | AreaChairCreateOrConnectWithoutSurveyTeamInput[]
+    upsert?: AreaChairUpsertWithWhereUniqueWithoutSurveyTeamInput | AreaChairUpsertWithWhereUniqueWithoutSurveyTeamInput[]
+    createMany?: AreaChairCreateManySurveyTeamInputEnvelope
+    set?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    disconnect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    delete?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    update?: AreaChairUpdateWithWhereUniqueWithoutSurveyTeamInput | AreaChairUpdateWithWhereUniqueWithoutSurveyTeamInput[]
+    updateMany?: AreaChairUpdateManyWithWhereWithoutSurveyTeamInput | AreaChairUpdateManyWithWhereWithoutSurveyTeamInput[]
+    deleteMany?: AreaChairScalarWhereInput | AreaChairScalarWhereInput[]
+  }
+
+  export type AreaChairUncheckedUpdateManyWithoutSurveyTeamNestedInput = {
+    create?: XOR<AreaChairCreateWithoutSurveyTeamInput, AreaChairUncheckedCreateWithoutSurveyTeamInput> | AreaChairCreateWithoutSurveyTeamInput[] | AreaChairUncheckedCreateWithoutSurveyTeamInput[]
+    connectOrCreate?: AreaChairCreateOrConnectWithoutSurveyTeamInput | AreaChairCreateOrConnectWithoutSurveyTeamInput[]
+    upsert?: AreaChairUpsertWithWhereUniqueWithoutSurveyTeamInput | AreaChairUpsertWithWhereUniqueWithoutSurveyTeamInput[]
+    createMany?: AreaChairCreateManySurveyTeamInputEnvelope
+    set?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    disconnect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    delete?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    update?: AreaChairUpdateWithWhereUniqueWithoutSurveyTeamInput | AreaChairUpdateWithWhereUniqueWithoutSurveyTeamInput[]
+    updateMany?: AreaChairUpdateManyWithWhereWithoutSurveyTeamInput | AreaChairUpdateManyWithWhereWithoutSurveyTeamInput[]
+    deleteMany?: AreaChairScalarWhereInput | AreaChairScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutAreaChairInput = {
+    create?: XOR<UserCreateWithoutAreaChairInput, UserUncheckedCreateWithoutAreaChairInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAreaChairInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type SurveyTeamCreateNestedOneWithoutAreaChairsInput = {
+    create?: XOR<SurveyTeamCreateWithoutAreaChairsInput, SurveyTeamUncheckedCreateWithoutAreaChairsInput>
+    connectOrCreate?: SurveyTeamCreateOrConnectWithoutAreaChairsInput
+    connect?: SurveyTeamWhereUniqueInput
+  }
+
+  export type AreaFolderCreateNestedOneWithoutAreaChairInput = {
+    create?: XOR<AreaFolderCreateWithoutAreaChairInput, AreaFolderUncheckedCreateWithoutAreaChairInput>
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutAreaChairInput
+    connect?: AreaFolderWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutAreaChairNestedInput = {
+    create?: XOR<UserCreateWithoutAreaChairInput, UserUncheckedCreateWithoutAreaChairInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAreaChairInput
+    upsert?: UserUpsertWithoutAreaChairInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAreaChairInput, UserUpdateWithoutAreaChairInput>, UserUncheckedUpdateWithoutAreaChairInput>
+  }
+
+  export type SurveyTeamUpdateOneRequiredWithoutAreaChairsNestedInput = {
+    create?: XOR<SurveyTeamCreateWithoutAreaChairsInput, SurveyTeamUncheckedCreateWithoutAreaChairsInput>
+    connectOrCreate?: SurveyTeamCreateOrConnectWithoutAreaChairsInput
+    upsert?: SurveyTeamUpsertWithoutAreaChairsInput
+    connect?: SurveyTeamWhereUniqueInput
+    update?: XOR<XOR<SurveyTeamUpdateToOneWithWhereWithoutAreaChairsInput, SurveyTeamUpdateWithoutAreaChairsInput>, SurveyTeamUncheckedUpdateWithoutAreaChairsInput>
+  }
+
+  export type AreaFolderUpdateOneRequiredWithoutAreaChairNestedInput = {
+    create?: XOR<AreaFolderCreateWithoutAreaChairInput, AreaFolderUncheckedCreateWithoutAreaChairInput>
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutAreaChairInput
+    upsert?: AreaFolderUpsertWithoutAreaChairInput
+    connect?: AreaFolderWhereUniqueInput
+    update?: XOR<XOR<AreaFolderUpdateToOneWithWhereWithoutAreaChairInput, AreaFolderUpdateWithoutAreaChairInput>, AreaFolderUncheckedUpdateWithoutAreaChairInput>
   }
 
   export type SurveyVisitCreateNestedOneWithoutPhaseOneRequirementsInput = {
@@ -37108,6 +40272,13 @@ export namespace Prisma {
     connect?: TaskForceWhereUniqueInput
   }
 
+  export type AreaChairCreateNestedManyWithoutAreaFolderInput = {
+    create?: XOR<AreaChairCreateWithoutAreaFolderInput, AreaChairUncheckedCreateWithoutAreaFolderInput> | AreaChairCreateWithoutAreaFolderInput[] | AreaChairUncheckedCreateWithoutAreaFolderInput[]
+    connectOrCreate?: AreaChairCreateOrConnectWithoutAreaFolderInput | AreaChairCreateOrConnectWithoutAreaFolderInput[]
+    createMany?: AreaChairCreateManyAreaFolderInputEnvelope
+    connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+  }
+
   export type ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput = {
     create?: XOR<ParameterFolderCreateWithoutAreaFolderInput, ParameterFolderUncheckedCreateWithoutAreaFolderInput> | ParameterFolderCreateWithoutAreaFolderInput[] | ParameterFolderUncheckedCreateWithoutAreaFolderInput[]
     connectOrCreate?: ParameterFolderCreateOrConnectWithoutAreaFolderInput | ParameterFolderCreateOrConnectWithoutAreaFolderInput[]
@@ -37126,6 +40297,13 @@ export namespace Prisma {
     create?: XOR<TaskForceCreateWithoutAreaFolderInput, TaskForceUncheckedCreateWithoutAreaFolderInput>
     connectOrCreate?: TaskForceCreateOrConnectWithoutAreaFolderInput
     connect?: TaskForceWhereUniqueInput
+  }
+
+  export type AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput = {
+    create?: XOR<AreaChairCreateWithoutAreaFolderInput, AreaChairUncheckedCreateWithoutAreaFolderInput> | AreaChairCreateWithoutAreaFolderInput[] | AreaChairUncheckedCreateWithoutAreaFolderInput[]
+    connectOrCreate?: AreaChairCreateOrConnectWithoutAreaFolderInput | AreaChairCreateOrConnectWithoutAreaFolderInput[]
+    createMany?: AreaChairCreateManyAreaFolderInputEnvelope
+    connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
   }
 
   export type InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput = {
@@ -37182,6 +40360,20 @@ export namespace Prisma {
     update?: XOR<XOR<TaskForceUpdateToOneWithWhereWithoutAreaFolderInput, TaskForceUpdateWithoutAreaFolderInput>, TaskForceUncheckedUpdateWithoutAreaFolderInput>
   }
 
+  export type AreaChairUpdateManyWithoutAreaFolderNestedInput = {
+    create?: XOR<AreaChairCreateWithoutAreaFolderInput, AreaChairUncheckedCreateWithoutAreaFolderInput> | AreaChairCreateWithoutAreaFolderInput[] | AreaChairUncheckedCreateWithoutAreaFolderInput[]
+    connectOrCreate?: AreaChairCreateOrConnectWithoutAreaFolderInput | AreaChairCreateOrConnectWithoutAreaFolderInput[]
+    upsert?: AreaChairUpsertWithWhereUniqueWithoutAreaFolderInput | AreaChairUpsertWithWhereUniqueWithoutAreaFolderInput[]
+    createMany?: AreaChairCreateManyAreaFolderInputEnvelope
+    set?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    disconnect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    delete?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    update?: AreaChairUpdateWithWhereUniqueWithoutAreaFolderInput | AreaChairUpdateWithWhereUniqueWithoutAreaFolderInput[]
+    updateMany?: AreaChairUpdateManyWithWhereWithoutAreaFolderInput | AreaChairUpdateManyWithWhereWithoutAreaFolderInput[]
+    deleteMany?: AreaChairScalarWhereInput | AreaChairScalarWhereInput[]
+  }
+
   export type ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput = {
     create?: XOR<ParameterFolderCreateWithoutAreaFolderInput, ParameterFolderUncheckedCreateWithoutAreaFolderInput> | ParameterFolderCreateWithoutAreaFolderInput[] | ParameterFolderUncheckedCreateWithoutAreaFolderInput[]
     connectOrCreate?: ParameterFolderCreateOrConnectWithoutAreaFolderInput | ParameterFolderCreateOrConnectWithoutAreaFolderInput[]
@@ -37218,6 +40410,20 @@ export namespace Prisma {
     delete?: TaskForceWhereInput | boolean
     connect?: TaskForceWhereUniqueInput
     update?: XOR<XOR<TaskForceUpdateToOneWithWhereWithoutAreaFolderInput, TaskForceUpdateWithoutAreaFolderInput>, TaskForceUncheckedUpdateWithoutAreaFolderInput>
+  }
+
+  export type AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput = {
+    create?: XOR<AreaChairCreateWithoutAreaFolderInput, AreaChairUncheckedCreateWithoutAreaFolderInput> | AreaChairCreateWithoutAreaFolderInput[] | AreaChairUncheckedCreateWithoutAreaFolderInput[]
+    connectOrCreate?: AreaChairCreateOrConnectWithoutAreaFolderInput | AreaChairCreateOrConnectWithoutAreaFolderInput[]
+    upsert?: AreaChairUpsertWithWhereUniqueWithoutAreaFolderInput | AreaChairUpsertWithWhereUniqueWithoutAreaFolderInput[]
+    createMany?: AreaChairCreateManyAreaFolderInputEnvelope
+    set?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    disconnect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    delete?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+    update?: AreaChairUpdateWithWhereUniqueWithoutAreaFolderInput | AreaChairUpdateWithWhereUniqueWithoutAreaFolderInput[]
+    updateMany?: AreaChairUpdateManyWithWhereWithoutAreaFolderInput | AreaChairUpdateManyWithWhereWithoutAreaFolderInput[]
+    deleteMany?: AreaChairScalarWhereInput | AreaChairScalarWhereInput[]
   }
 
   export type AreaFolderCreateNestedOneWithoutParameterFoldersInput = {
@@ -38264,6 +41470,23 @@ export namespace Prisma {
     _max?: NestedEnumProgressFilter<$PrismaModel>
   }
 
+  export type NestedEnumSurveyTeamTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyTeamType | EnumSurveyTeamTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyTeamType[] | ListEnumSurveyTeamTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyTeamType[] | ListEnumSurveyTeamTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyTeamTypeFilter<$PrismaModel> | $Enums.SurveyTeamType
+  }
+
+  export type NestedEnumSurveyTeamTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyTeamType | EnumSurveyTeamTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyTeamType[] | ListEnumSurveyTeamTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyTeamType[] | ListEnumSurveyTeamTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyTeamTypeWithAggregatesFilter<$PrismaModel> | $Enums.SurveyTeamType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSurveyTeamTypeFilter<$PrismaModel>
+    _max?: NestedEnumSurveyTeamTypeFilter<$PrismaModel>
+  }
+
   export type NestedEnumFileStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.FileStatus | EnumFileStatusFieldRefInput<$PrismaModel>
     in?: $Enums.FileStatus[] | ListEnumFileStatusFieldRefInput<$PrismaModel>
@@ -38452,6 +41675,52 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type SurveyTeamCreateWithoutTeamLeadInput = {
+    id?: string
+    type: $Enums.SurveyTeamType
+    surveyVisit: SurveyVisitCreateNestedOneWithoutSurveyTeamInput
+    areaChairs?: AreaChairCreateNestedManyWithoutSurveyTeamInput
+  }
+
+  export type SurveyTeamUncheckedCreateWithoutTeamLeadInput = {
+    id?: string
+    surveyVisitId: string
+    type: $Enums.SurveyTeamType
+    areaChairs?: AreaChairUncheckedCreateNestedManyWithoutSurveyTeamInput
+  }
+
+  export type SurveyTeamCreateOrConnectWithoutTeamLeadInput = {
+    where: SurveyTeamWhereUniqueInput
+    create: XOR<SurveyTeamCreateWithoutTeamLeadInput, SurveyTeamUncheckedCreateWithoutTeamLeadInput>
+  }
+
+  export type SurveyTeamCreateManyTeamLeadInputEnvelope = {
+    data: SurveyTeamCreateManyTeamLeadInput | SurveyTeamCreateManyTeamLeadInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AreaChairCreateWithoutUserInput = {
+    id?: string
+    surveyTeam: SurveyTeamCreateNestedOneWithoutAreaChairsInput
+    areaFolder: AreaFolderCreateNestedOneWithoutAreaChairInput
+  }
+
+  export type AreaChairUncheckedCreateWithoutUserInput = {
+    id?: string
+    surveyTeamId: string
+    areaFolderId: string
+  }
+
+  export type AreaChairCreateOrConnectWithoutUserInput = {
+    where: AreaChairWhereUniqueInput
+    create: XOR<AreaChairCreateWithoutUserInput, AreaChairUncheckedCreateWithoutUserInput>
+  }
+
+  export type AreaChairCreateManyUserInputEnvelope = {
+    data: AreaChairCreateManyUserInput | AreaChairCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ProgramPersonnelUpsertWithWhereUniqueWithoutUserInput = {
     where: ProgramPersonnelWhereUniqueInput
     update: XOR<ProgramPersonnelUpdateWithoutUserInput, ProgramPersonnelUncheckedUpdateWithoutUserInput>
@@ -38568,6 +41837,58 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Comment"> | Date | string
   }
 
+  export type SurveyTeamUpsertWithWhereUniqueWithoutTeamLeadInput = {
+    where: SurveyTeamWhereUniqueInput
+    update: XOR<SurveyTeamUpdateWithoutTeamLeadInput, SurveyTeamUncheckedUpdateWithoutTeamLeadInput>
+    create: XOR<SurveyTeamCreateWithoutTeamLeadInput, SurveyTeamUncheckedCreateWithoutTeamLeadInput>
+  }
+
+  export type SurveyTeamUpdateWithWhereUniqueWithoutTeamLeadInput = {
+    where: SurveyTeamWhereUniqueInput
+    data: XOR<SurveyTeamUpdateWithoutTeamLeadInput, SurveyTeamUncheckedUpdateWithoutTeamLeadInput>
+  }
+
+  export type SurveyTeamUpdateManyWithWhereWithoutTeamLeadInput = {
+    where: SurveyTeamScalarWhereInput
+    data: XOR<SurveyTeamUpdateManyMutationInput, SurveyTeamUncheckedUpdateManyWithoutTeamLeadInput>
+  }
+
+  export type SurveyTeamScalarWhereInput = {
+    AND?: SurveyTeamScalarWhereInput | SurveyTeamScalarWhereInput[]
+    OR?: SurveyTeamScalarWhereInput[]
+    NOT?: SurveyTeamScalarWhereInput | SurveyTeamScalarWhereInput[]
+    id?: StringFilter<"SurveyTeam"> | string
+    surveyVisitId?: StringFilter<"SurveyTeam"> | string
+    type?: EnumSurveyTeamTypeFilter<"SurveyTeam"> | $Enums.SurveyTeamType
+    teamLeadId?: StringNullableFilter<"SurveyTeam"> | string | null
+  }
+
+  export type AreaChairUpsertWithWhereUniqueWithoutUserInput = {
+    where: AreaChairWhereUniqueInput
+    update: XOR<AreaChairUpdateWithoutUserInput, AreaChairUncheckedUpdateWithoutUserInput>
+    create: XOR<AreaChairCreateWithoutUserInput, AreaChairUncheckedCreateWithoutUserInput>
+  }
+
+  export type AreaChairUpdateWithWhereUniqueWithoutUserInput = {
+    where: AreaChairWhereUniqueInput
+    data: XOR<AreaChairUpdateWithoutUserInput, AreaChairUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AreaChairUpdateManyWithWhereWithoutUserInput = {
+    where: AreaChairScalarWhereInput
+    data: XOR<AreaChairUpdateManyMutationInput, AreaChairUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type AreaChairScalarWhereInput = {
+    AND?: AreaChairScalarWhereInput | AreaChairScalarWhereInput[]
+    OR?: AreaChairScalarWhereInput[]
+    NOT?: AreaChairScalarWhereInput | AreaChairScalarWhereInput[]
+    id?: StringFilter<"AreaChair"> | string
+    userId?: StringFilter<"AreaChair"> | string
+    surveyTeamId?: StringFilter<"AreaChair"> | string
+    areaFolderId?: StringFilter<"AreaChair"> | string
+  }
+
   export type UserCreateWithoutProgramHeadInput = {
     id?: string
     firstName: string
@@ -38583,6 +41904,8 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
     uploads?: FileVersionCreateNestedManyWithoutUploaderInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
+    teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
+    areaChair?: AreaChairCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProgramHeadInput = {
@@ -38600,6 +41923,8 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
     uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProgramHeadInput = {
@@ -38682,6 +42007,8 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
     uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
+    teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
+    areaChair?: AreaChairUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgramHeadInput = {
@@ -38699,6 +42026,8 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
     uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProgramPersonnelUpsertWithWhereUniqueWithoutProgramInput = {
@@ -38761,6 +42090,8 @@ export namespace Prisma {
     programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
     uploads?: FileVersionCreateNestedManyWithoutUploaderInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
+    teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
+    areaChair?: AreaChairCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProgramPersonnelInput = {
@@ -38778,6 +42109,8 @@ export namespace Prisma {
     programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
     uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProgramPersonnelInput = {
@@ -38882,6 +42215,8 @@ export namespace Prisma {
     programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
     uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
+    teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
+    areaChair?: AreaChairUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgramPersonnelInput = {
@@ -38899,6 +42234,8 @@ export namespace Prisma {
     programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
     uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProgramUpsertWithoutProgramPersonnelInput = {
@@ -39203,6 +42540,7 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
+    areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutAreaInput = {
@@ -39212,6 +42550,7 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutAreaInput = {
@@ -39678,6 +43017,7 @@ export namespace Prisma {
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutLevelInput = {
@@ -39689,6 +43029,7 @@ export namespace Prisma {
     createdAt?: Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutLevelInput = {
@@ -39823,6 +43164,7 @@ export namespace Prisma {
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutAccreditationInput = {
@@ -39834,6 +43176,7 @@ export namespace Prisma {
     createdAt?: Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutAccreditationInput = {
@@ -40014,6 +43357,30 @@ export namespace Prisma {
     create: XOR<PhaseTwoRequirementsCreateWithoutSurveyVisitInput, PhaseTwoRequirementsUncheckedCreateWithoutSurveyVisitInput>
   }
 
+  export type SurveyTeamCreateWithoutSurveyVisitInput = {
+    id?: string
+    type: $Enums.SurveyTeamType
+    teamLead?: UserCreateNestedOneWithoutTeamLeadInput
+    areaChairs?: AreaChairCreateNestedManyWithoutSurveyTeamInput
+  }
+
+  export type SurveyTeamUncheckedCreateWithoutSurveyVisitInput = {
+    id?: string
+    type: $Enums.SurveyTeamType
+    teamLeadId?: string | null
+    areaChairs?: AreaChairUncheckedCreateNestedManyWithoutSurveyTeamInput
+  }
+
+  export type SurveyTeamCreateOrConnectWithoutSurveyVisitInput = {
+    where: SurveyTeamWhereUniqueInput
+    create: XOR<SurveyTeamCreateWithoutSurveyVisitInput, SurveyTeamUncheckedCreateWithoutSurveyVisitInput>
+  }
+
+  export type SurveyTeamCreateManySurveyVisitInputEnvelope = {
+    data: SurveyTeamCreateManySurveyVisitInput | SurveyTeamCreateManySurveyVisitInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccreditationUpsertWithoutSurveyVisitsInput = {
     update: XOR<AccreditationUpdateWithoutSurveyVisitsInput, AccreditationUncheckedUpdateWithoutSurveyVisitsInput>
     create: XOR<AccreditationCreateWithoutSurveyVisitsInput, AccreditationUncheckedCreateWithoutSurveyVisitsInput>
@@ -40122,6 +43489,408 @@ export namespace Prisma {
     phaseTwoFolder?: PhaseTwoFolderUncheckedUpdateOneWithoutPhaseTwoRequirementsNestedInput
   }
 
+  export type SurveyTeamUpsertWithWhereUniqueWithoutSurveyVisitInput = {
+    where: SurveyTeamWhereUniqueInput
+    update: XOR<SurveyTeamUpdateWithoutSurveyVisitInput, SurveyTeamUncheckedUpdateWithoutSurveyVisitInput>
+    create: XOR<SurveyTeamCreateWithoutSurveyVisitInput, SurveyTeamUncheckedCreateWithoutSurveyVisitInput>
+  }
+
+  export type SurveyTeamUpdateWithWhereUniqueWithoutSurveyVisitInput = {
+    where: SurveyTeamWhereUniqueInput
+    data: XOR<SurveyTeamUpdateWithoutSurveyVisitInput, SurveyTeamUncheckedUpdateWithoutSurveyVisitInput>
+  }
+
+  export type SurveyTeamUpdateManyWithWhereWithoutSurveyVisitInput = {
+    where: SurveyTeamScalarWhereInput
+    data: XOR<SurveyTeamUpdateManyMutationInput, SurveyTeamUncheckedUpdateManyWithoutSurveyVisitInput>
+  }
+
+  export type SurveyVisitCreateWithoutSurveyTeamInput = {
+    id?: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    status: $Enums.Progress
+    createdAt?: Date | string
+    accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
+    level: LevelCreateNestedOneWithoutSurveyVisitsInput
+    phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
+    phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitUncheckedCreateWithoutSurveyTeamInput = {
+    id?: string
+    accreditationId: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    targetLevel: string
+    status: $Enums.Progress
+    createdAt?: Date | string
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitCreateOrConnectWithoutSurveyTeamInput = {
+    where: SurveyVisitWhereUniqueInput
+    create: XOR<SurveyVisitCreateWithoutSurveyTeamInput, SurveyVisitUncheckedCreateWithoutSurveyTeamInput>
+  }
+
+  export type UserCreateWithoutTeamLeadInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
+    programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
+    uploads?: FileVersionCreateNestedManyWithoutUploaderInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    areaChair?: AreaChairCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTeamLeadInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
+    programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
+    uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTeamLeadInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTeamLeadInput, UserUncheckedCreateWithoutTeamLeadInput>
+  }
+
+  export type AreaChairCreateWithoutSurveyTeamInput = {
+    id?: string
+    user: UserCreateNestedOneWithoutAreaChairInput
+    areaFolder: AreaFolderCreateNestedOneWithoutAreaChairInput
+  }
+
+  export type AreaChairUncheckedCreateWithoutSurveyTeamInput = {
+    id?: string
+    userId: string
+    areaFolderId: string
+  }
+
+  export type AreaChairCreateOrConnectWithoutSurveyTeamInput = {
+    where: AreaChairWhereUniqueInput
+    create: XOR<AreaChairCreateWithoutSurveyTeamInput, AreaChairUncheckedCreateWithoutSurveyTeamInput>
+  }
+
+  export type AreaChairCreateManySurveyTeamInputEnvelope = {
+    data: AreaChairCreateManySurveyTeamInput | AreaChairCreateManySurveyTeamInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SurveyVisitUpsertWithoutSurveyTeamInput = {
+    update: XOR<SurveyVisitUpdateWithoutSurveyTeamInput, SurveyVisitUncheckedUpdateWithoutSurveyTeamInput>
+    create: XOR<SurveyVisitCreateWithoutSurveyTeamInput, SurveyVisitUncheckedCreateWithoutSurveyTeamInput>
+    where?: SurveyVisitWhereInput
+  }
+
+  export type SurveyVisitUpdateToOneWithWhereWithoutSurveyTeamInput = {
+    where?: SurveyVisitWhereInput
+    data: XOR<SurveyVisitUpdateWithoutSurveyTeamInput, SurveyVisitUncheckedUpdateWithoutSurveyTeamInput>
+  }
+
+  export type SurveyVisitUpdateWithoutSurveyTeamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
+  }
+
+  export type SurveyVisitUncheckedUpdateWithoutSurveyTeamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accreditationId?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    targetLevel?: StringFieldUpdateOperationsInput | string
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+  }
+
+  export type UserUpsertWithoutTeamLeadInput = {
+    update: XOR<UserUpdateWithoutTeamLeadInput, UserUncheckedUpdateWithoutTeamLeadInput>
+    create: XOR<UserCreateWithoutTeamLeadInput, UserUncheckedCreateWithoutTeamLeadInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTeamLeadInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTeamLeadInput, UserUncheckedUpdateWithoutTeamLeadInput>
+  }
+
+  export type UserUpdateWithoutTeamLeadInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
+    programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
+    uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    areaChair?: AreaChairUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTeamLeadInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
+    programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
+    uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type AreaChairUpsertWithWhereUniqueWithoutSurveyTeamInput = {
+    where: AreaChairWhereUniqueInput
+    update: XOR<AreaChairUpdateWithoutSurveyTeamInput, AreaChairUncheckedUpdateWithoutSurveyTeamInput>
+    create: XOR<AreaChairCreateWithoutSurveyTeamInput, AreaChairUncheckedCreateWithoutSurveyTeamInput>
+  }
+
+  export type AreaChairUpdateWithWhereUniqueWithoutSurveyTeamInput = {
+    where: AreaChairWhereUniqueInput
+    data: XOR<AreaChairUpdateWithoutSurveyTeamInput, AreaChairUncheckedUpdateWithoutSurveyTeamInput>
+  }
+
+  export type AreaChairUpdateManyWithWhereWithoutSurveyTeamInput = {
+    where: AreaChairScalarWhereInput
+    data: XOR<AreaChairUpdateManyMutationInput, AreaChairUncheckedUpdateManyWithoutSurveyTeamInput>
+  }
+
+  export type UserCreateWithoutAreaChairInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
+    programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
+    uploads?: FileVersionCreateNestedManyWithoutUploaderInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
+  }
+
+  export type UserUncheckedCreateWithoutAreaChairInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
+    programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
+    uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
+  }
+
+  export type UserCreateOrConnectWithoutAreaChairInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAreaChairInput, UserUncheckedCreateWithoutAreaChairInput>
+  }
+
+  export type SurveyTeamCreateWithoutAreaChairsInput = {
+    id?: string
+    type: $Enums.SurveyTeamType
+    surveyVisit: SurveyVisitCreateNestedOneWithoutSurveyTeamInput
+    teamLead?: UserCreateNestedOneWithoutTeamLeadInput
+  }
+
+  export type SurveyTeamUncheckedCreateWithoutAreaChairsInput = {
+    id?: string
+    surveyVisitId: string
+    type: $Enums.SurveyTeamType
+    teamLeadId?: string | null
+  }
+
+  export type SurveyTeamCreateOrConnectWithoutAreaChairsInput = {
+    where: SurveyTeamWhereUniqueInput
+    create: XOR<SurveyTeamCreateWithoutAreaChairsInput, SurveyTeamUncheckedCreateWithoutAreaChairsInput>
+  }
+
+  export type AreaFolderCreateWithoutAreaChairInput = {
+    id?: string
+    status: $Enums.Progress
+    instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
+    parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
+    area: AreaCreateNestedOneWithoutAreaFoldersInput
+    areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
+    taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
+  }
+
+  export type AreaFolderUncheckedCreateWithoutAreaChairInput = {
+    id?: string
+    instrumentFolderId: string
+    areaId: number
+    status: $Enums.Progress
+    parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
+    areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
+    taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
+  }
+
+  export type AreaFolderCreateOrConnectWithoutAreaChairInput = {
+    where: AreaFolderWhereUniqueInput
+    create: XOR<AreaFolderCreateWithoutAreaChairInput, AreaFolderUncheckedCreateWithoutAreaChairInput>
+  }
+
+  export type UserUpsertWithoutAreaChairInput = {
+    update: XOR<UserUpdateWithoutAreaChairInput, UserUncheckedUpdateWithoutAreaChairInput>
+    create: XOR<UserCreateWithoutAreaChairInput, UserUncheckedCreateWithoutAreaChairInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAreaChairInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAreaChairInput, UserUncheckedUpdateWithoutAreaChairInput>
+  }
+
+  export type UserUpdateWithoutAreaChairInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
+    programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
+    uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutAreaChairInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
+    programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
+    uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
+  }
+
+  export type SurveyTeamUpsertWithoutAreaChairsInput = {
+    update: XOR<SurveyTeamUpdateWithoutAreaChairsInput, SurveyTeamUncheckedUpdateWithoutAreaChairsInput>
+    create: XOR<SurveyTeamCreateWithoutAreaChairsInput, SurveyTeamUncheckedCreateWithoutAreaChairsInput>
+    where?: SurveyTeamWhereInput
+  }
+
+  export type SurveyTeamUpdateToOneWithWhereWithoutAreaChairsInput = {
+    where?: SurveyTeamWhereInput
+    data: XOR<SurveyTeamUpdateWithoutAreaChairsInput, SurveyTeamUncheckedUpdateWithoutAreaChairsInput>
+  }
+
+  export type SurveyTeamUpdateWithoutAreaChairsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    surveyVisit?: SurveyVisitUpdateOneRequiredWithoutSurveyTeamNestedInput
+    teamLead?: UserUpdateOneWithoutTeamLeadNestedInput
+  }
+
+  export type SurveyTeamUncheckedUpdateWithoutAreaChairsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    teamLeadId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AreaFolderUpsertWithoutAreaChairInput = {
+    update: XOR<AreaFolderUpdateWithoutAreaChairInput, AreaFolderUncheckedUpdateWithoutAreaChairInput>
+    create: XOR<AreaFolderCreateWithoutAreaChairInput, AreaFolderUncheckedCreateWithoutAreaChairInput>
+    where?: AreaFolderWhereInput
+  }
+
+  export type AreaFolderUpdateToOneWithWhereWithoutAreaChairInput = {
+    where?: AreaFolderWhereInput
+    data: XOR<AreaFolderUpdateWithoutAreaChairInput, AreaFolderUncheckedUpdateWithoutAreaChairInput>
+  }
+
+  export type AreaFolderUpdateWithoutAreaChairInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
+    parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
+    area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
+    areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
+  }
+
+  export type AreaFolderUncheckedUpdateWithoutAreaChairInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instrumentFolderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
+    areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
+  }
+
   export type SurveyVisitCreateWithoutPhaseOneRequirementsInput = {
     id?: string
     actualSurveyDate: Date | string
@@ -40131,6 +43900,7 @@ export namespace Prisma {
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutPhaseOneRequirementsInput = {
@@ -40142,6 +43912,7 @@ export namespace Prisma {
     status: $Enums.Progress
     createdAt?: Date | string
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutPhaseOneRequirementsInput = {
@@ -40209,6 +43980,7 @@ export namespace Prisma {
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutPhaseOneRequirementsInput = {
@@ -40220,6 +43992,7 @@ export namespace Prisma {
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type InstrumentUpsertWithoutPhaseOneRequirementsInput = {
@@ -40298,6 +44071,7 @@ export namespace Prisma {
     area: AreaCreateNestedOneWithoutAreaFoldersInput
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
+    areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutInstrumentFolderInput = {
@@ -40307,6 +44081,7 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutInstrumentFolderInput = {
@@ -40474,6 +44249,28 @@ export namespace Prisma {
     create: XOR<TaskForceCreateWithoutAreaFolderInput, TaskForceUncheckedCreateWithoutAreaFolderInput>
   }
 
+  export type AreaChairCreateWithoutAreaFolderInput = {
+    id?: string
+    user: UserCreateNestedOneWithoutAreaChairInput
+    surveyTeam: SurveyTeamCreateNestedOneWithoutAreaChairsInput
+  }
+
+  export type AreaChairUncheckedCreateWithoutAreaFolderInput = {
+    id?: string
+    userId: string
+    surveyTeamId: string
+  }
+
+  export type AreaChairCreateOrConnectWithoutAreaFolderInput = {
+    where: AreaChairWhereUniqueInput
+    create: XOR<AreaChairCreateWithoutAreaFolderInput, AreaChairUncheckedCreateWithoutAreaFolderInput>
+  }
+
+  export type AreaChairCreateManyAreaFolderInputEnvelope = {
+    data: AreaChairCreateManyAreaFolderInput | AreaChairCreateManyAreaFolderInput[]
+    skipDuplicates?: boolean
+  }
+
   export type InstrumentFolderUpsertWithoutAreaFoldersInput = {
     update: XOR<InstrumentFolderUpdateWithoutAreaFoldersInput, InstrumentFolderUncheckedUpdateWithoutAreaFoldersInput>
     create: XOR<InstrumentFolderCreateWithoutAreaFoldersInput, InstrumentFolderUncheckedCreateWithoutAreaFoldersInput>
@@ -40597,6 +44394,22 @@ export namespace Prisma {
     taskForceMember?: TaskForceMemberUncheckedUpdateManyWithoutTaskForceNestedInput
   }
 
+  export type AreaChairUpsertWithWhereUniqueWithoutAreaFolderInput = {
+    where: AreaChairWhereUniqueInput
+    update: XOR<AreaChairUpdateWithoutAreaFolderInput, AreaChairUncheckedUpdateWithoutAreaFolderInput>
+    create: XOR<AreaChairCreateWithoutAreaFolderInput, AreaChairUncheckedCreateWithoutAreaFolderInput>
+  }
+
+  export type AreaChairUpdateWithWhereUniqueWithoutAreaFolderInput = {
+    where: AreaChairWhereUniqueInput
+    data: XOR<AreaChairUpdateWithoutAreaFolderInput, AreaChairUncheckedUpdateWithoutAreaFolderInput>
+  }
+
+  export type AreaChairUpdateManyWithWhereWithoutAreaFolderInput = {
+    where: AreaChairScalarWhereInput
+    data: XOR<AreaChairUpdateManyMutationInput, AreaChairUncheckedUpdateManyWithoutAreaFolderInput>
+  }
+
   export type AreaFolderCreateWithoutParameterFoldersInput = {
     id?: string
     status: $Enums.Progress
@@ -40604,6 +44417,7 @@ export namespace Prisma {
     area: AreaCreateNestedOneWithoutAreaFoldersInput
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
+    areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutParameterFoldersInput = {
@@ -40613,6 +44427,7 @@ export namespace Prisma {
     status: $Enums.Progress
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutParameterFoldersInput = {
@@ -40684,6 +44499,7 @@ export namespace Prisma {
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
     areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
+    areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutParameterFoldersInput = {
@@ -40693,6 +44509,7 @@ export namespace Prisma {
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
   }
 
   export type IndicatorFolderUpsertWithWhereUniqueWithoutParameterFolderInput = {
@@ -41097,6 +44914,8 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
     programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
+    teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
+    areaChair?: AreaChairCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUploadsInput = {
@@ -41114,6 +44933,8 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
     programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUploadsInput = {
@@ -41211,6 +45032,8 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
     programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
+    teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
+    areaChair?: AreaChairUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUploadsInput = {
@@ -41228,6 +45051,8 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
     programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type SurveyVisitCreateWithoutPhaseTwoRequirementsInput = {
@@ -41239,6 +45064,7 @@ export namespace Prisma {
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutPhaseTwoRequirementsInput = {
@@ -41250,6 +45076,7 @@ export namespace Prisma {
     status: $Enums.Progress
     createdAt?: Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutPhaseTwoRequirementsInput = {
@@ -41317,6 +45144,7 @@ export namespace Prisma {
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutPhaseTwoRequirementsInput = {
@@ -41328,6 +45156,7 @@ export namespace Prisma {
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type InstrumentUpsertWithoutPhaseTwoRequirementsInput = {
@@ -41613,6 +45442,7 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
     area: AreaCreateNestedOneWithoutAreaFoldersInput
     taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
+    areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutAreaFilesInput = {
@@ -41622,6 +45452,7 @@ export namespace Prisma {
     status: $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutAreaFilesInput = {
@@ -41724,6 +45555,7 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
     taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
+    areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutAreaFilesInput = {
@@ -41733,6 +45565,7 @@ export namespace Prisma {
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
   }
 
   export type PhaseTwoAreaFolderUpsertWithoutAreaFilesInput = {
@@ -41797,6 +45630,7 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
     area: AreaCreateNestedOneWithoutAreaFoldersInput
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
+    areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutTaskForceInput = {
@@ -41806,6 +45640,7 @@ export namespace Prisma {
     status: $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutTaskForceInput = {
@@ -41872,6 +45707,7 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
     areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutTaskForceInput = {
@@ -41881,6 +45717,7 @@ export namespace Prisma {
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
   }
 
   export type ProgramPersonnelUpsertWithoutChairPersonInput = {
@@ -42029,6 +45866,8 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
     programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
     uploads?: FileVersionCreateNestedManyWithoutUploaderInput
+    teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
+    areaChair?: AreaChairCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCommentsInput = {
@@ -42046,6 +45885,8 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
     programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
     uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
+    teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCommentsInput = {
@@ -42131,6 +45972,8 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
     programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
     uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
+    teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
+    areaChair?: AreaChairUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -42148,6 +45991,8 @@ export namespace Prisma {
     programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
     programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
     uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
+    teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type EvidenceFileUpsertWithoutCommentsInput = {
@@ -42248,6 +46093,18 @@ export namespace Prisma {
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
+  }
+
+  export type SurveyTeamCreateManyTeamLeadInput = {
+    id?: string
+    surveyVisitId: string
+    type: $Enums.SurveyTeamType
+  }
+
+  export type AreaChairCreateManyUserInput = {
+    id?: string
+    surveyTeamId: string
+    areaFolderId: string
   }
 
   export type ProgramPersonnelUpdateWithoutUserInput = {
@@ -42364,6 +46221,44 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SurveyTeamUpdateWithoutTeamLeadInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    surveyVisit?: SurveyVisitUpdateOneRequiredWithoutSurveyTeamNestedInput
+    areaChairs?: AreaChairUpdateManyWithoutSurveyTeamNestedInput
+  }
+
+  export type SurveyTeamUncheckedUpdateWithoutTeamLeadInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    areaChairs?: AreaChairUncheckedUpdateManyWithoutSurveyTeamNestedInput
+  }
+
+  export type SurveyTeamUncheckedUpdateManyWithoutTeamLeadInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyVisitId?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+  }
+
+  export type AreaChairUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyTeam?: SurveyTeamUpdateOneRequiredWithoutAreaChairsNestedInput
+    areaFolder?: AreaFolderUpdateOneRequiredWithoutAreaChairNestedInput
+  }
+
+  export type AreaChairUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyTeamId?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AreaChairUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surveyTeamId?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProgramPersonnelCreateManyProgramInput = {
@@ -42574,6 +46469,7 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
+    areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutAreaInput = {
@@ -42583,6 +46479,7 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateManyWithoutAreaInput = {
@@ -42763,6 +46660,7 @@ export namespace Prisma {
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutLevelInput = {
@@ -42774,6 +46672,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateManyWithoutLevelInput = {
@@ -42803,6 +46702,7 @@ export namespace Prisma {
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutAccreditationInput = {
@@ -42814,6 +46714,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateManyWithoutAccreditationInput = {
@@ -42823,6 +46724,56 @@ export namespace Prisma {
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SurveyTeamCreateManySurveyVisitInput = {
+    id?: string
+    type: $Enums.SurveyTeamType
+    teamLeadId?: string | null
+  }
+
+  export type SurveyTeamUpdateWithoutSurveyVisitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    teamLead?: UserUpdateOneWithoutTeamLeadNestedInput
+    areaChairs?: AreaChairUpdateManyWithoutSurveyTeamNestedInput
+  }
+
+  export type SurveyTeamUncheckedUpdateWithoutSurveyVisitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    teamLeadId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaChairs?: AreaChairUncheckedUpdateManyWithoutSurveyTeamNestedInput
+  }
+
+  export type SurveyTeamUncheckedUpdateManyWithoutSurveyVisitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    teamLeadId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AreaChairCreateManySurveyTeamInput = {
+    id?: string
+    userId: string
+    areaFolderId: string
+  }
+
+  export type AreaChairUpdateWithoutSurveyTeamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutAreaChairNestedInput
+    areaFolder?: AreaFolderUpdateOneRequiredWithoutAreaChairNestedInput
+  }
+
+  export type AreaChairUncheckedUpdateWithoutSurveyTeamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AreaChairUncheckedUpdateManyWithoutSurveyTeamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AreaFolderCreateManyInstrumentFolderInput = {
@@ -42838,6 +46789,7 @@ export namespace Prisma {
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
     areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
+    areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutInstrumentFolderInput = {
@@ -42847,6 +46799,7 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateManyWithoutInstrumentFolderInput = {
@@ -42868,6 +46821,12 @@ export namespace Prisma {
     type: $Enums.AreaFileType
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type AreaChairCreateManyAreaFolderInput = {
+    id?: string
+    userId: string
+    surveyTeamId: string
   }
 
   export type ParameterFolderUpdateWithoutAreaFolderInput = {
@@ -42919,6 +46878,24 @@ export namespace Prisma {
     type?: EnumAreaFileTypeFieldUpdateOperationsInput | $Enums.AreaFileType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AreaChairUpdateWithoutAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutAreaChairNestedInput
+    surveyTeam?: SurveyTeamUpdateOneRequiredWithoutAreaChairsNestedInput
+  }
+
+  export type AreaChairUncheckedUpdateWithoutAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    surveyTeamId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AreaChairUncheckedUpdateManyWithoutAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    surveyTeamId?: StringFieldUpdateOperationsInput | string
   }
 
   export type IndicatorFolderCreateManyParameterFolderInput = {

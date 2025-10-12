@@ -1,3 +1,5 @@
+import { columns } from "@/components/admin/parameter/columns";
+import { DataTable } from "@/components/admin/parameter/data-table";
 import {
   Card,
   CardContent,
@@ -25,6 +27,9 @@ const ParameterFolderPage = async ({
     getCompliedPercentage: () => number;
     getPercentageByStatus: (status: FileStatus) => number;
   };
+  const allEvidenceFiles = parameterFolder?.indicatorFolders.flatMap(
+    (folder) => folder.evidenceFiles
+  );
   const report = Object.values(Category).reduce((categories, category) => {
     const evidenceFiles =
       parameterFolder?.indicatorFolders.find(
@@ -119,6 +124,11 @@ const ParameterFolderPage = async ({
             </Card>
           ))}
         </div>
+        <Card className="bg-background">
+          <CardContent>
+            <DataTable columns={columns} data={allEvidenceFiles || []} />
+          </CardContent>
+        </Card>
       </div>
     </ScrollArea>
   );

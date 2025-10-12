@@ -9,6 +9,7 @@ import {
   FileStatus,
   Phase,
   Progress,
+  SurveyTeamType,
   SurveyVisitType,
 } from "../generated/prisma";
 import { createSurveyVisit as createSurveyVisitDAL } from "../dal/survey-visit";
@@ -26,6 +27,7 @@ import {
   createPhaseTwoRequirements,
 } from "../dal/requirements";
 import { createPhaseTwoAreaFolder } from "../dal/phase-two-area-folder";
+import { createManySurveyTeam } from "../dal/survey-team";
 
 export async function createSurveyVisit(
   program: ProgramDTO,
@@ -57,6 +59,16 @@ export async function createSurveyVisit(
       { name: Category.IMPLEMENTATION, label: "Implementation" },
       { name: Category.OUTCOME, label: "Outcome/s" },
     ];
+    const surveyTeam = await createManySurveyTeam([
+      {
+        surveyVisitId: surveyVisit.id,
+        type: SurveyTeamType.INTERNAL,
+      },
+      {
+        surveyVisitId: surveyVisit.id,
+        type: SurveyTeamType.EXTERNAL,
+      },
+    ]);
     const phaseOneRequirements = await createPhaseOneRequirements(
       surveyVisit.id,
       instrument.id
