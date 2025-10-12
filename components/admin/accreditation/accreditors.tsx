@@ -16,9 +16,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { assignAreaChair } from "@/lib/action/area-chair";
+import { assignAreaChair as assignAreaChairAction } from "@/lib/action/area-chair";
 import { SurveyVisitDTO } from "@/lib/dto/survey-visit";
 import { UsersDTO } from "@/lib/dto/user";
+import { SurveyTeamType } from "@/lib/generated/prisma";
 import { UserCheck } from "lucide-react";
 import { toast } from "sonner";
 
@@ -38,14 +39,28 @@ const Accreditors = ({
   const externalSurveyTeam = surveyVisit?.surveyTeam.find(
     (team) => team.type === "EXTERNAL"
   );
-  const assignInternalAreaChair = async (value: string) => {
+  const externalAreaChair = externalSurveyTeam?.areaChairs[0];
+  const assignAreaChair = async (type: SurveyTeamType, value: string) => {
     const accreditor = accreditors?.find(
       (accreditor) => accreditor.id === value
     );
-    const result = await assignAreaChair(
+    let surveyTeamId;
+    switch (type) {
+      case "INTERNAL": {
+        surveyTeamId = internalSurveyTeam?.id;
+        break;
+      }
+      case "EXTERNAL": {
+        surveyTeamId = externalSurveyTeam?.id;
+        break;
+      }
+    }
+    const areaChair = internalAreaChair || externalAreaChair;
+    const result = await assignAreaChairAction(
       accreditor?.id,
-      internalSurveyTeam?.id,
-      areaFolderId
+      surveyTeamId,
+      areaFolderId,
+      areaChair?.id
     );
     if (result.failure) toast.error(result.failure.error);
   };
@@ -69,7 +84,10 @@ const Accreditors = ({
           </CardHeader>
           <CardContent>
             <Select
-              onValueChange={assignInternalAreaChair}
+              onValueChange={assignAreaChair.bind(
+                null,
+                SurveyTeamType.INTERNAL
+              )}
               defaultValue={internalAreaChair?.userId}
             >
               <SelectTrigger className="w-full">
@@ -94,9 +112,11 @@ const Accreditors = ({
           </CardHeader>
           <CardContent>
             <Select
-              onValueChange={(value) => {
-                console.log(value);
-              }}
+              onValueChange={assignAreaChair.bind(
+                null,
+                SurveyTeamType.EXTERNAL
+              )}
+              defaultValue={externalAreaChair?.userId}
             >
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Please select an accreditor" />

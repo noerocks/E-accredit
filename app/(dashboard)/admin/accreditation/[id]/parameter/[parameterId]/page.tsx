@@ -47,7 +47,7 @@ const ParameterFolderPage = async ({
       getPercentageByStatus: function (status) {
         return (
           (this.submittedFiles.filter((file) => file.status === status).length /
-            this.evidenceFiles.length) *
+            this.submittedFiles.length) *
             100 || 0
         );
       },

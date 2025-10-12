@@ -29,3 +29,14 @@ export async function createNewAreaChair(
   });
   return areaChair;
 }
+
+export async function deleteAreaChairById(id: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const areaChair = await prisma.areaChair.delete({
+    where: {
+      id,
+    },
+  });
+  return areaChair;
+}
