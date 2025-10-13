@@ -7,6 +7,8 @@ const FileVersions = ({
   fileId,
   versions,
   fileType,
+  parameterFolderId,
+  areaFolderId,
   isMember,
   isAdmin,
   isChairPerson,
@@ -14,6 +16,8 @@ const FileVersions = ({
   fileId: string;
   versions: FileVersion[] | undefined;
   fileType: "Evidence" | "AreaFile";
+  parameterFolderId?: string | undefined;
+  areaFolderId: string | undefined;
   isAdmin: boolean | undefined;
   isMember?: boolean | undefined;
   isChairPerson?: boolean | undefined;
@@ -26,6 +30,8 @@ const FileVersions = ({
           data={versions || []}
           fileId={fileId}
           fileType={fileType}
+          parameterFolderId={parameterFolderId}
+          areaFolderId={areaFolderId}
         />
       </CardContent>
     </Card>

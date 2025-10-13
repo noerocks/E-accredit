@@ -58,9 +58,7 @@ export const columns: ColumnDef<AreaFileDTO>[] = [
   },
   {
     accessorKey: "latestUpload",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Latest Upload" />
-    ),
+    header: "Latest Upload",
     cell: ({ row }) => {
       const areaFile = row.original;
       const fileVersions = areaFile.fileVersions ?? [];
@@ -72,7 +70,10 @@ export const columns: ColumnDef<AreaFileDTO>[] = [
                 Math.max(
                   ...fileVersions.map((v) => new Date(v.uploadedAt).getTime())
                 )
-              )
+              ),
+              {
+                addSuffix: true,
+              }
             )
           : "-";
 
@@ -80,7 +81,6 @@ export const columns: ColumnDef<AreaFileDTO>[] = [
     },
   },
   {
-    id: "status",
     accessorKey: "status",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Status" />

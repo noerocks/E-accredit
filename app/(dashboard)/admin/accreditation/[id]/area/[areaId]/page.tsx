@@ -4,7 +4,6 @@ import { columns as parameterColumns } from "@/components/admin/area/columns";
 import { columns as areaFilesColumns } from "@/components/admin/area-file/columns";
 import { DataTable as DataTableParameters } from "@/components/admin/area/data-table";
 import { DataTable as DataTableAreaFiles } from "@/components/admin/area-file/data-table";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -23,7 +22,8 @@ import { getSurveyVisitById } from "@/lib/dal/survey-visit";
 import { getUsersByRole } from "@/lib/dal/user";
 import { Progress, Role } from "@/lib/generated/prisma";
 import clsx from "clsx";
-import { CheckCircle2, CircleDot, Layers } from "lucide-react";
+import { CircleDot, Layers } from "lucide-react";
+import MarkAsCompleteButton from "@/components/admin/parameter/mark-as-complete";
 
 const AreaFolderPage = async ({
   params,
@@ -49,6 +49,12 @@ const AreaFolderPage = async ({
   const surveyVisit = await getSurveyVisitById(surveyVisitId);
   const parameters = areaFolder?.parameterFolders;
   const areaFiles = areaFolder?.areaFiles;
+  const markAsCompleteVisible =
+    areaFolder?.parameterFolders.every(
+      (parameter) => parameter.status === "COMPLETE"
+    ) &&
+    areaFolder.areaFiles.every((file) => file.status === "SUBMITTED") &&
+    areaFolder.status !== "COMPLETE";
   const formatStatus = (status: Progress) => {
     return status
       .split("_")
@@ -88,11 +94,8 @@ const AreaFolderPage = async ({
                 <CircleDot size={15} />
                 {formatStatus(areaFolder?.status!)}
               </p>
-              {(isAdmin || isProgramHead) && (
-                <Button>
-                  <CheckCircle2 />
-                  Mark as Complete
-                </Button>
+              {(isAdmin || isProgramHead) && markAsCompleteVisible && (
+                <MarkAsCompleteButton areaFolderId={areaFolder?.id} />
               )}
             </div>
             <div className="flex items-center gap-2">

@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
-import { FileStatus, FileVersionStatus } from "../generated/prisma";
+import { FileStatus, FileVersionStatus, Progress } from "../generated/prisma";
 import { updateEvidenceFileById } from "../dal/evidence-file";
 import { verifySession } from "./session";
 import {
@@ -13,6 +13,8 @@ import {
   updateVersionById,
 } from "../dal/file-version";
 import { updateAreaFileById } from "../dal/area-file";
+import { updateParameterFolderById } from "../dal/parameter-folder";
+import { updateAreaFolderById } from "../dal/area-folder";
 
 type FileVersionType = {
   name: string;
@@ -21,6 +23,8 @@ type FileVersionType = {
   fileType: string;
   evidenceFileId?: string;
   areaFileId?: string;
+  parameterFolderId: string | undefined;
+  areaFolderId: string | undefined;
 };
 
 export async function createNewVersion({
@@ -30,6 +34,8 @@ export async function createNewVersion({
   fileType,
   evidenceFileId,
   areaFileId,
+  parameterFolderId,
+  areaFolderId,
 }: FileVersionType) {
   const session = await verifySession();
   if (!session)
@@ -51,6 +57,14 @@ export async function createNewVersion({
       id: evidenceFileId,
       status: FileStatus.FOR_REVIEW,
     });
+    const parameterFolder = await updateParameterFolderById({
+      id: parameterFolderId,
+      status: Progress.IN_PROGRESS,
+    });
+    const areaFolder = await updateAreaFolderById({
+      id: areaFolderId,
+      status: Progress.IN_PROGRESS,
+    });
   }
   if (areaFileId) {
     await resetAllAreaFileVersionStatus(areaFileId);
@@ -68,12 +82,15 @@ export async function createNewVersion({
   }
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");
+  revalidateTag("areaFolder");
 }
 
 export async function changeActiveVersion(
   id: string | undefined,
   fileId: string | undefined,
-  fileType: "Evidence" | "AreaFile"
+  fileType: "Evidence" | "AreaFile",
+  parameterFolderId: string | undefined,
+  areaFolderId: string | undefined
 ) {
   if (!id || !fileId || !fileType)
     return { failure: { error: "Invalid input" } };
@@ -87,6 +104,14 @@ export async function changeActiveVersion(
         id: fileId,
         status: FileStatus.FOR_REVIEW,
       });
+      const parameterFolder = await updateParameterFolderById({
+        id: parameterFolderId!,
+        status: Progress.IN_PROGRESS,
+      });
+      const areaFolder = await updateAreaFolderById({
+        id: areaFolderId,
+        status: Progress.IN_PROGRESS,
+      });
       break;
     }
     case "AreaFile": {
@@ -99,6 +124,7 @@ export async function changeActiveVersion(
   }
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");
+  revalidateTag("areaFolder");
   return {
     success: { message: "File version is successfuly set to active" },
   };
@@ -109,5 +135,6 @@ export async function deleteVersionById(id: string) {
   const evidenceVersion = await deleteVersionByIdDAL(id);
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");
+  revalidateTag("areaFolder");
   return { success: { message: "File version is deleted" } };
 }

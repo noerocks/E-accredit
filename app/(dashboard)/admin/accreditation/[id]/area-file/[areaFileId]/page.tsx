@@ -23,6 +23,10 @@ const AreaFilePage = async ({
 }) => {
   const { areaFileId } = await params;
   const areaFile = await getAreaFileById(areaFileId);
+  const areaFolderId =
+    areaFile?.phaseOneAreaFolderId ||
+    areaFile?.phaseTwoAreaFolderId ||
+    undefined;
   const session = await verifySession();
   const user = session.user;
   const isChairperson =

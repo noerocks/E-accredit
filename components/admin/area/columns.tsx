@@ -68,9 +68,9 @@ export const columns: ColumnDef<ParameterFolderDTO>[] = [
     },
   },
   {
-    accessorKey: "completion",
+    accessorKey: "acceptedFiles",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Completion" />
+      <DataTableColumnHeader column={column} title="Accepted Files %" />
     ),
     cell: ({ row }) => {
       const { indicatorFolders } = row.original;
@@ -80,8 +80,8 @@ export const columns: ColumnDef<ParameterFolderDTO>[] = [
       const acceptedIndicators = indicators.filter(
         (i) => i.status === "ACCEPTED"
       );
-      const completion = (acceptedIndicators.length / indicators.length) * 100;
-      return <div>{`${completion}%`}</div>;
+      const percentage = (acceptedIndicators.length / indicators.length) * 100;
+      return <div>{`${percentage}%`}</div>;
     },
   },
   {

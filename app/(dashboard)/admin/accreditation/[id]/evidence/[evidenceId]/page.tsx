@@ -26,6 +26,8 @@ const EvidencePage = async ({
   const evidence = await getEvidenceFileById(evidenceId);
   const indicator = evidence?.indicator;
   const parameter = evidence?.indicatorFolder.parameterFolder.parameter;
+  const parameterFolderId = evidence?.indicatorFolder.parameterFolderId;
+  const areaFolderId = evidence?.indicatorFolder.parameterFolder.areaFolderId;
   const formattedCategory = {
     [Category.SYSTEM]: "System",
     [Category.IMPLEMENTATION]: "Implementation",
@@ -107,6 +109,8 @@ const EvidencePage = async ({
                   indicator={indicator}
                   evidenceFileId={evidenceId}
                   user={user}
+                  parameterFolderId={parameterFolderId}
+                  areaFolderId={areaFolderId}
                 />
               )}
               {(isChairperson || isAdmin) &&
@@ -120,6 +124,8 @@ const EvidencePage = async ({
           fileId={evidenceId}
           versions={evidence?.fileVersions}
           fileType="Evidence"
+          parameterFolderId={parameterFolderId}
+          areaFolderId={areaFolderId}
           isMember={isMember}
           isAdmin={isAdmin}
         />

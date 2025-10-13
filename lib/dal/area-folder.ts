@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
-import { Progress } from "../generated/prisma";
+import { AreaFolder, Progress } from "../generated/prisma";
 import { prisma } from "../prisma";
 
 export async function createAreaFolder(
@@ -95,3 +95,15 @@ export const getAreaFolderById = unstable_cache(
     tags: ["areaFolder"],
   }
 );
+
+export async function updateAreaFolderById(data: Partial<AreaFolder>) {
+  const session = await verifySession();
+  if (!session) return null;
+  const areaFolder = await prisma.areaFolder.update({
+    where: {
+      id: data.id,
+    },
+    data,
+  });
+  return areaFolder;
+}

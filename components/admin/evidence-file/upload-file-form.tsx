@@ -32,13 +32,18 @@ const UploadFileForm = ({
   area,
   areaFileId,
   user,
+  parameterFolderId,
+  areaFolderId,
 }: {
   indicator?: IndicatorDTO | undefined;
   evidenceFileId?: string;
   area?: Area;
   areaFileId?: string;
   user: SessionPayload;
+  parameterFolderId?: string | undefined;
+  areaFolderId?: string | undefined;
 }) => {
+  console.log(areaFolderId);
   const [file, setFile] = useState<File | null>();
   const [progress, setProgress] = useState<number>(0);
   const [pending, startTransition] = useTransition();
@@ -79,6 +84,8 @@ const UploadFileForm = ({
           objectUrl,
           fileType: file.type,
           evidenceFileId,
+          parameterFolderId,
+          areaFolderId,
         });
       }
       if (areaFileId) {
@@ -88,6 +95,8 @@ const UploadFileForm = ({
           objectUrl,
           fileType: file.type,
           areaFileId,
+          parameterFolderId,
+          areaFolderId,
         });
       }
     });

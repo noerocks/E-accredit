@@ -41,6 +41,8 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
   fileId: string;
   fileType: "Evidence" | "AreaFile";
+  parameterFolderId: string | undefined;
+  areaFolderId: string | undefined;
 }
 
 export function DataTable<TData, TValue>({
@@ -48,6 +50,8 @@ export function DataTable<TData, TValue>({
   data,
   fileId,
   fileType,
+  parameterFolderId,
+  areaFolderId,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -90,7 +94,13 @@ export function DataTable<TData, TValue>({
       }
       case "setAsActive": {
         if (!id) break;
-        const result = await changeActiveVersion(id, fileId, fileType);
+        const result = await changeActiveVersion(
+          id,
+          fileId,
+          fileType,
+          parameterFolderId,
+          areaFolderId
+        );
         if (result.failure) toast.error(result.failure.error);
         if (result.success) toast.success(result.success.message);
         break;

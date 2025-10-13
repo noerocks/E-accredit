@@ -1,13 +1,13 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
-import { updateParameterFolderById } from "../dal/parameter-folder";
 import { Progress } from "../generated/prisma";
+import { updateAreaFolderById } from "../dal/area-folder";
 
-export async function markAsComplete(parameterFolderId: string) {
+export async function markAsComplete(areaFolderId: string) {
   try {
-    const parameterFolder = await updateParameterFolderById({
-      id: parameterFolderId,
+    const areaFolder = await updateAreaFolderById({
+      id: areaFolderId,
       status: Progress.COMPLETE,
     });
     revalidateTag("parameterFolder");
