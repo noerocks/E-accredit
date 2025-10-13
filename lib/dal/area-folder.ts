@@ -36,6 +36,11 @@ export const getAreaFolderById = unstable_cache(
       },
       include: {
         area: true,
+        areaFiles: {
+          include: {
+            fileVersions: true,
+          },
+        },
         parameterFolders: {
           include: {
             parameter: true,

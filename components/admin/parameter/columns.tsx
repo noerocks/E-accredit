@@ -72,7 +72,7 @@ export const columns: ColumnDef<EvidenceFileDTO>[] = [
     id: "fileVersions",
     accessorKey: "fileVersions.length",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="File Versions" />
+      <DataTableColumnHeader column={column} title="# Versions" />
     ),
     cell: ({ row }) => {
       const evidence = row.original;

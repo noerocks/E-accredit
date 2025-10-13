@@ -1,7 +1,9 @@
 import Accreditors from "@/components/admin/accreditation/accreditors";
 import TaskForce from "@/components/admin/accreditation/taskforce";
-import { columns } from "@/components/admin/area/columns";
-import { DataTable } from "@/components/admin/area/data-table";
+import { columns as parameterColumns } from "@/components/admin/area/columns";
+import { columns as areaFilesColumns } from "@/components/admin/area-file/columns";
+import { DataTable as DataTableParameters } from "@/components/admin/area/data-table";
+import { DataTable as DataTableAreaFiles } from "@/components/admin/area-file/data-table";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,6 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { verifySession } from "@/lib/action/session";
 import { getAreaFolderById } from "@/lib/dal/area-folder";
 import { getProgramheadById } from "@/lib/dal/program";
@@ -45,7 +48,7 @@ const AreaFolderPage = async ({
   const accreditors = await getUsersByRole(Role.ACCREDITOR);
   const surveyVisit = await getSurveyVisitById(surveyVisitId);
   const parameters = areaFolder?.parameterFolders;
-  console.log(parameters);
+  const areaFiles = areaFolder?.areaFiles;
   const formatStatus = (status: Progress) => {
     return status
       .split("_")
@@ -107,11 +110,32 @@ const AreaFolderPage = async ({
             </div>
           </CardFooter>
         </Card>
-        <Card className="bg-background">
-          <CardContent>
-            <DataTable columns={columns} data={parameters || []} />
-          </CardContent>
-        </Card>
+        <Tabs defaultValue="parameters">
+          <TabsList className="bg-background border">
+            <TabsTrigger value="parameters">Parameters</TabsTrigger>
+            <TabsTrigger value="areaFiles">Area Files</TabsTrigger>
+          </TabsList>
+          <TabsContent value="parameters">
+            <Card className="bg-background">
+              <CardContent>
+                <DataTableParameters
+                  columns={parameterColumns}
+                  data={parameters || []}
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="areaFiles">
+            <Card className="bg-background">
+              <CardContent>
+                <DataTableAreaFiles
+                  columns={areaFilesColumns}
+                  data={areaFiles || []}
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
       </div>
     </ScrollArea>
   );

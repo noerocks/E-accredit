@@ -40,3 +40,6 @@ export type EvidenceFileDTO = EvidenceFile & {
   indicator: Indicator;
   fileVersions: FileVersion[];
 };
+export type AreaFileDTO = AreaFile & {
+  fileVersions: FileVersion[];
+};
