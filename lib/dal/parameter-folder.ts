@@ -1,7 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
 import { prisma } from "../prisma";
-import { Progress } from "../generated/prisma";
+import { ParameterFolder, Progress } from "../generated/prisma";
 
 export async function createParameterFolder(
   areaFolderId: string,
@@ -49,6 +49,15 @@ export const getParameterFolderById = unstable_cache(
             },
           },
         },
+        areaFolder: {
+          include: {
+            taskForce: {
+              include: {
+                chairPerson: true,
+              },
+            },
+          },
+        },
       },
     });
     return parameterFolder;
@@ -58,3 +67,17 @@ export const getParameterFolderById = unstable_cache(
     tags: ["parameterFolder"],
   }
 );
+
+export async function updateParameterFolderById(
+  data: Partial<ParameterFolder>
+) {
+  const session = await verifySession();
+  if (!session) return null;
+  const parameterFolder = await prisma.parameterFolder.update({
+    where: {
+      id: data.id,
+    },
+    data,
+  });
+  return parameterFolder;
+}

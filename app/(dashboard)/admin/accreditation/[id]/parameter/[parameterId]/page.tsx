@@ -1,23 +1,34 @@
 import { columns } from "@/components/admin/parameter/columns";
 import { DataTable } from "@/components/admin/parameter/data-table";
+import MarkAsCompleteButton from "@/components/admin/parameter/mark-as-complete";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { verifySession } from "@/lib/action/session";
 import { getParameterFolderById } from "@/lib/dal/parameter-folder";
-import { Category, EvidenceFile, FileStatus } from "@/lib/generated/prisma";
-import { ClipboardList } from "lucide-react";
+import {
+  Category,
+  EvidenceFile,
+  FileStatus,
+  Progress as ProgressEnum,
+} from "@/lib/generated/prisma";
+import clsx from "clsx";
+import { CheckCircle2, CircleDot, ClipboardList } from "lucide-react";
 
 const ParameterFolderPage = async ({
   params,
 }: {
   params: Promise<{ parameterId: string }>;
 }) => {
+  const { user } = await verifySession();
   const { parameterId } = await params;
   const parameterFolder = await getParameterFolderById(parameterId);
   type CategoryReport = {
@@ -30,6 +41,9 @@ const ParameterFolderPage = async ({
   const allEvidenceFiles = parameterFolder?.indicatorFolders.flatMap(
     (folder) => folder.evidenceFiles
   );
+  const isChairperson =
+    user.id === parameterFolder?.areaFolder.taskForce?.chairPerson?.userId;
+  const isAdmin = user.role === "ADMIN";
   const report = Object.values(Category).reduce((categories, category) => {
     const evidenceFiles =
       parameterFolder?.indicatorFolders.find(
@@ -68,6 +82,32 @@ const ParameterFolderPage = async ({
               {`${parameterFolder?.parameter.area?.label}: ${parameterFolder?.parameter.area?.description}`}
             </CardDescription>
           </CardHeader>
+          <CardFooter className="flex justify-between items-center">
+            <p
+              className={clsx(
+                "py-2 px-3 border-2 rounded-md flex items-center gap-2",
+                {
+                  "bg-yellow-400/5 text-yellow-600 border-yellow-400":
+                    parameterFolder?.status === ProgressEnum.IN_PROGRESS,
+                  "bg-green-400/5 text-green-600 border-green-400":
+                    parameterFolder?.status === ProgressEnum.COMPLETE,
+                }
+              )}
+            >
+              <CircleDot size={15} />
+              {parameterFolder?.status
+                .split("_")
+                .map(
+                  (word) =>
+                    word[0].toLocaleUpperCase() +
+                    word.slice(1).toLocaleLowerCase()
+                )
+                .join(" ")}
+            </p>
+            {(isChairperson || isAdmin) && (
+              <MarkAsCompleteButton parameterFolderId={parameterFolder?.id} />
+            )}
+          </CardFooter>
         </Card>
         <p className="text-lg">Progress</p>
         <div className="flex items-center gap-2">

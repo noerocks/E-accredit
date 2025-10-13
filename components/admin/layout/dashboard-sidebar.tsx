@@ -5,6 +5,7 @@ import {
   Home,
   Landmark,
   LayoutDashboard,
+  SearchCheck,
   Users,
 } from "lucide-react";
 import {
@@ -95,6 +96,14 @@ const DashboardSidebar = async () => {
                 <Link href={"/admin/instruments"}>
                   <ClipboardCheck />
                   <span>Instruments</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href={"/admin/instruments"}>
+                  <SearchCheck />
+                  <span>Self Survey</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

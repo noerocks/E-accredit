@@ -57,6 +57,11 @@ export async function getSurveyVisitStructureById(id: string) {
       id,
     },
     include: {
+      accreditation: {
+        include: {
+          program: true,
+        },
+      },
       level: true,
       phaseOneRequirements: {
         include: {

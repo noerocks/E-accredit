@@ -94,3 +94,25 @@ export async function assignProgramHead(userId: string, programId: string) {
   });
   return program;
 }
+
+export async function getProgramheadById(id: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const programHead = prisma.program.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      programHead: {
+        include: {
+          programPersonnel: {
+            include: {
+              user: true,
+            },
+          },
+        },
+      },
+    },
+  });
+  return programHead;
+}

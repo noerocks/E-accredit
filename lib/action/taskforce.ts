@@ -17,4 +17,5 @@ export async function assignChairperson(
   const taskforce = await assignChairpersonDAL(personnelId, areaFolderId);
   revalidateTag("areaFolder");
   revalidateTag("evidenceFiles");
+  revalidateTag("parameterFolder");
 }

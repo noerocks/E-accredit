@@ -4,7 +4,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DataTableColumnHeader } from "@/components/data-table-column-header";
 import { EvidenceFileDTO } from "@/lib/dto/accreditation-instrument";
-import Link from "next/link";
 
 export const columns: ColumnDef<EvidenceFileDTO>[] = [
   {
@@ -41,7 +40,8 @@ export const columns: ColumnDef<EvidenceFileDTO>[] = [
     },
   },
   {
-    accessorKey: "indicatorDescription",
+    id: "description",
+    accessorKey: "indicator.description",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Description" />
     ),
@@ -51,7 +51,8 @@ export const columns: ColumnDef<EvidenceFileDTO>[] = [
     },
   },
   {
-    accessorKey: "category",
+    id: "category",
+    accessorKey: "indicator.category",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Category" />
     ),
@@ -68,7 +69,8 @@ export const columns: ColumnDef<EvidenceFileDTO>[] = [
     },
   },
   {
-    accessorKey: "fileVersions",
+    id: "fileVersions",
+    accessorKey: "fileVersions.length",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="File Versions" />
     ),
