@@ -68,9 +68,9 @@ export const columns: ColumnDef<ParameterFolderDTO>[] = [
     },
   },
   {
-    accessorKey: "acceptedFiles",
+    accessorKey: "completion",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Accepted Files %" />
+      <DataTableColumnHeader column={column} title="Completion" />
     ),
     cell: ({ row }) => {
       const { indicatorFolders } = row.original;

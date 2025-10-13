@@ -58,7 +58,7 @@ const EvidencePage = async ({
       ?.userId === user.id;
   return (
     <ScrollArea className="h-full">
-      <div className="max-w-3/4 mx-auto my-10 flex flex-col gap-5">
+      <div className="max-w-5/6 mx-auto my-10 flex flex-col gap-5">
         <p className="text-2xl flex items-center gap-2">
           <CheckCircle />
           Indicator

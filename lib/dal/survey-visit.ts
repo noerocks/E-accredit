@@ -69,6 +69,16 @@ export async function getSurveyVisitStructureById(id: string) {
             include: {
               areaFolders: {
                 include: {
+                  taskForce: {
+                    include: {
+                      chairPerson: {
+                        include: {
+                          user: true,
+                        },
+                      },
+                      taskForceMember: true,
+                    },
+                  },
                   area: true,
                   areaFiles: true,
                   parameterFolders: {

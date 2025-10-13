@@ -47,7 +47,9 @@ const AreaFolderPage = async ({
   const isProgramHead = user.id === program?.programHead?.id;
   const accreditors = await getUsersByRole(Role.ACCREDITOR);
   const surveyVisit = await getSurveyVisitById(surveyVisitId);
-  const parameters = areaFolder?.parameterFolders;
+  const parameterFolders = areaFolder?.parameterFolders.sort((a, b) =>
+    a.parameter.label.localeCompare(b.parameter.label)
+  );
   const areaFiles = areaFolder?.areaFiles;
   const markAsCompleteVisible =
     areaFolder?.parameterFolders.every(
@@ -66,7 +68,7 @@ const AreaFolderPage = async ({
   };
   return (
     <ScrollArea className="h-full">
-      <div className="max-w-3/4 mx-auto my-10 flex flex-col gap-5">
+      <div className="max-w-5/6 mx-auto my-10 flex flex-col gap-5">
         <p className="text-2xl flex items-center gap-2">
           <Layers />
           Area
@@ -123,7 +125,7 @@ const AreaFolderPage = async ({
               <CardContent>
                 <DataTableParameters
                   columns={parameterColumns}
-                  data={parameters || []}
+                  data={parameterFolders || []}
                 />
               </CardContent>
             </Card>

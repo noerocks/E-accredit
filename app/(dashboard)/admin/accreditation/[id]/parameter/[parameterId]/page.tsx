@@ -38,9 +38,9 @@ const ParameterFolderPage = async ({
     getCompliedPercentage: () => number;
     getPercentageByStatus: (status: FileStatus) => number;
   };
-  const allEvidenceFiles = parameterFolder?.indicatorFolders.flatMap(
-    (folder) => folder.evidenceFiles
-  );
+  const allEvidenceFiles = parameterFolder?.indicatorFolders
+    .flatMap((folder) => folder.evidenceFiles)
+    .sort((a, b) => a.indicator.label.localeCompare(b.indicator.label));
   const isChairperson =
     user.id === parameterFolder?.areaFolder.taskForce?.chairPerson?.userId;
   const isAdmin = user.role === "ADMIN";
@@ -73,7 +73,7 @@ const ParameterFolderPage = async ({
     parameterFolder?.status !== "COMPLETE";
   return (
     <ScrollArea className="h-full">
-      <div className="max-w-3/4 mx-auto my-10 flex flex-col gap-5">
+      <div className="max-w-5/6 mx-auto my-10 flex flex-col gap-5">
         <p className="text-2xl flex items-center gap-2">
           <ClipboardList />
           Parameter
@@ -113,7 +113,7 @@ const ParameterFolderPage = async ({
           </CardFooter>
         </Card>
         <p className="text-lg">Progress</p>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-5">
           {report.map((report) => (
             <Card key={report.category} className="flex-1 bg-background">
               <CardHeader>

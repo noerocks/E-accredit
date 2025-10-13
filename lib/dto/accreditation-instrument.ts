@@ -12,6 +12,7 @@ import {
   PhaseTwoAreaFolder,
   PhaseTwoFolder,
 } from "../generated/prisma";
+import { TaskforceDTO } from "./taskforce";
 
 export type PhaseTwoInstrumentDTO = PhaseTwoFolder & {
   phaseTwoAreaFolders: PhaseTwoAreaFolderDTO[];
@@ -24,6 +25,7 @@ export type AreaFolderDTO = AreaFolder & {
   area: Area;
   parameterFolders: ParameterFolderDTO[];
   areaFiles: AreaFile[];
+  taskForce: TaskforceDTO;
 };
 export type PhaseTwoAreaFolderDTO = PhaseTwoAreaFolder & {
   area: Area;
