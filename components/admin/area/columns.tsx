@@ -81,7 +81,11 @@ export const columns: ColumnDef<ParameterFolderDTO>[] = [
         (i) => i.status === "ACCEPTED"
       );
       const percentage = (acceptedIndicators.length / indicators.length) * 100;
-      return <div>{`${percentage}%`}</div>;
+      return (
+        <div>{`${
+          Number.isInteger(percentage) ? percentage : percentage.toFixed(2)
+        }%`}</div>
+      );
     },
   },
   {

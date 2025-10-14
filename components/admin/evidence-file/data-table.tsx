@@ -35,6 +35,7 @@ import { Clock } from "lucide-react";
 import { toast } from "sonner";
 import { changeActiveVersion } from "@/lib/action/file-version";
 import { deleteVersionById } from "@/lib/action/file-version";
+import { useParams } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -78,6 +79,7 @@ export function DataTable<TData, TValue>({
       rowSelection,
     },
   });
+  const { id: surveyVisitId } = useParams();
   const [open, setOpen] = React.useState<boolean>(false);
   const [selectedUser, setSelectedUser] = React.useState<UsersDTO>();
   const onClick = async (e: React.MouseEvent<HTMLDivElement>) => {
@@ -99,7 +101,8 @@ export function DataTable<TData, TValue>({
           fileId,
           fileType,
           parameterFolderId,
-          areaFolderId
+          areaFolderId,
+          String(surveyVisitId)
         );
         if (result.failure) toast.error(result.failure.error);
         if (result.success) toast.success(result.success.message);

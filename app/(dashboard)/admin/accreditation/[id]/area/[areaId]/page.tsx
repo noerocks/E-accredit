@@ -24,6 +24,10 @@ import { Progress, Role } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import { CircleDot, Layers } from "lucide-react";
 import MarkAsCompleteButton from "@/components/admin/parameter/mark-as-complete";
+import {
+  AreaFileDTO,
+  ParameterFolderDTO,
+} from "@/lib/dto/accreditation-instrument";
 
 const AreaFolderPage = async ({
   params,
@@ -56,7 +60,8 @@ const AreaFolderPage = async ({
       (parameter) => parameter.status === "COMPLETE"
     ) &&
     areaFolder.areaFiles.every((file) => file.status === "SUBMITTED") &&
-    areaFolder.status !== "COMPLETE";
+    areaFolder.status !== "COMPLETE" &&
+    (isAdmin || isProgramHead);
   const formatStatus = (status: Progress) => {
     return status
       .split("_")
@@ -96,7 +101,7 @@ const AreaFolderPage = async ({
                 <CircleDot size={15} />
                 {formatStatus(areaFolder?.status!)}
               </p>
-              {(isAdmin || isProgramHead) && markAsCompleteVisible && (
+              {markAsCompleteVisible && (
                 <MarkAsCompleteButton areaFolderId={areaFolder?.id} />
               )}
             </div>
@@ -125,7 +130,9 @@ const AreaFolderPage = async ({
               <CardContent>
                 <DataTableParameters
                   columns={parameterColumns}
-                  data={parameterFolders || []}
+                  data={
+                    (parameterFolders as unknown as ParameterFolderDTO[]) || []
+                  }
                 />
               </CardContent>
             </Card>
@@ -135,7 +142,7 @@ const AreaFolderPage = async ({
               <CardContent>
                 <DataTableAreaFiles
                   columns={areaFilesColumns}
-                  data={areaFiles || []}
+                  data={(areaFiles as unknown as AreaFileDTO[]) || []}
                 />
               </CardContent>
             </Card>

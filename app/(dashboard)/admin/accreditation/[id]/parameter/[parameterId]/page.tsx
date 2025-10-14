@@ -21,7 +21,7 @@ import {
   Progress as ProgressEnum,
 } from "@/lib/generated/prisma";
 import clsx from "clsx";
-import { CheckCircle2, CircleDot, ClipboardList } from "lucide-react";
+import { CircleDot, ClipboardList } from "lucide-react";
 
 const ParameterFolderPage = async ({
   params,
@@ -70,7 +70,8 @@ const ParameterFolderPage = async ({
   }, [] as CategoryReport[]);
   const markAsCompleteVisible =
     allEvidenceFiles?.every((file) => file.status === "ACCEPTED") &&
-    parameterFolder?.status !== "COMPLETE";
+    parameterFolder?.status !== "COMPLETE" &&
+    (isAdmin || isChairperson);
   return (
     <ScrollArea className="h-full">
       <div className="max-w-5/6 mx-auto my-10 flex flex-col gap-5">
@@ -107,7 +108,7 @@ const ParameterFolderPage = async ({
                 )
                 .join(" ")}
             </p>
-            {(isChairperson || isAdmin) && markAsCompleteVisible && (
+            {markAsCompleteVisible && (
               <MarkAsCompleteButton parameterFolderId={parameterFolder?.id} />
             )}
           </CardFooter>

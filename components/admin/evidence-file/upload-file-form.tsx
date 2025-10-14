@@ -18,13 +18,14 @@ import { createNewVersion } from "@/lib/action/file-version";
 import { getSignedURL } from "@/lib/action/s3";
 import { IndicatorDTO } from "@/lib/dto/instrument";
 import { cn } from "@/lib/utils";
-import { Info, Loader, Upload, X } from "lucide-react";
+import { File, Info, Loader, Upload, X } from "lucide-react";
 import { useCallback, useState, useTransition } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
 import { toast } from "sonner";
 import { Progress } from "@/components/ui/progress";
 import { Area } from "@/lib/generated/prisma";
 import { SessionPayload } from "@/lib/definitions";
+import { useParams } from "next/navigation";
 
 const UploadFileForm = ({
   indicator,
@@ -43,7 +44,7 @@ const UploadFileForm = ({
   parameterFolderId?: string | undefined;
   areaFolderId?: string | undefined;
 }) => {
-  console.log(areaFolderId);
+  const { id: surveyVisitId } = useParams();
   const [file, setFile] = useState<File | null>();
   const [progress, setProgress] = useState<number>(0);
   const [pending, startTransition] = useTransition();
@@ -86,6 +87,7 @@ const UploadFileForm = ({
           evidenceFileId,
           parameterFolderId,
           areaFolderId,
+          surveyVisitId: String(surveyVisitId),
         });
       }
       if (areaFileId) {
@@ -97,6 +99,7 @@ const UploadFileForm = ({
           areaFileId,
           parameterFolderId,
           areaFolderId,
+          surveyVisitId: String(surveyVisitId),
         });
       }
     });
@@ -182,6 +185,7 @@ const UploadFileForm = ({
             {file ? (
               <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2 p-2 border">
+                  <File size={15} />
                   <p>
                     {file.name} -{" "}
                     <span className="text-sm">{`${formatSize(

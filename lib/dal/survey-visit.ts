@@ -1,5 +1,6 @@
+import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
-import { Progress, SurveyVisitType } from "../generated/prisma";
+import { Progress, SurveyVisit, SurveyVisitType } from "../generated/prisma";
 import { prisma } from "../prisma";
 
 export async function createSurveyVisit(
@@ -51,44 +52,54 @@ export async function getSurveyVisitById(id: string) {
   return surveyVisit;
 }
 
-export async function getSurveyVisitStructureById(id: string) {
-  const surveyVisitStructure = await prisma.surveyVisit.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      accreditation: {
-        include: {
-          program: true,
-        },
+export const getSurveyVisitStructureById = unstable_cache(
+  async (id: string) => {
+    const surveyVisitStructure = await prisma.surveyVisit.findUnique({
+      where: {
+        id,
       },
-      level: true,
-      phaseOneRequirements: {
-        include: {
-          instrumentFolder: {
-            include: {
-              areaFolders: {
-                include: {
-                  taskForce: {
-                    include: {
-                      chairPerson: {
-                        include: {
-                          user: true,
+      include: {
+        accreditation: {
+          include: {
+            program: {
+              include: {
+                programHead: true,
+              },
+            },
+          },
+        },
+        level: true,
+        phaseOneRequirements: {
+          include: {
+            instrumentFolder: {
+              include: {
+                areaFolders: {
+                  include: {
+                    taskForce: {
+                      include: {
+                        chairPerson: {
+                          include: {
+                            user: true,
+                          },
+                        },
+                        taskForceMember: {
+                          include: {
+                            programPersonnel: true,
+                          },
                         },
                       },
-                      taskForceMember: true,
                     },
-                  },
-                  area: true,
-                  areaFiles: true,
-                  parameterFolders: {
-                    include: {
-                      parameter: true,
-                      indicatorFolders: {
-                        include: {
-                          evidenceFiles: {
-                            include: {
-                              indicator: true,
+                    area: true,
+                    areaFiles: true,
+                    parameterFolders: {
+                      include: {
+                        parameter: true,
+                        indicatorFolders: {
+                          include: {
+                            evidenceFiles: {
+                              include: {
+                                indicator: true,
+                              },
                             },
                           },
                         },
@@ -100,22 +111,36 @@ export async function getSurveyVisitStructureById(id: string) {
             },
           },
         },
-      },
-      phaseTwoRequirements: {
-        include: {
-          phaseTwoFolder: {
-            include: {
-              phaseTwoAreaFolders: {
-                include: {
-                  area: true,
-                  areaFiles: true,
+        phaseTwoRequirements: {
+          include: {
+            phaseTwoFolder: {
+              include: {
+                phaseTwoAreaFolders: {
+                  include: {
+                    area: true,
+                    areaFiles: true,
+                  },
                 },
               },
             },
           },
         },
       },
+    });
+    return surveyVisitStructure;
+  },
+  ["getSurveyVisitStructureById"],
+  { tags: ["surveyVisitStructure"] }
+);
+
+export async function updateSurveyVisitById(data: Partial<SurveyVisit>) {
+  const session = await verifySession();
+  if (!session) return null;
+  const surveyVisit = await prisma.surveyVisit.update({
+    where: {
+      id: data.id,
     },
+    data,
   });
-  return surveyVisitStructure;
+  return surveyVisit;
 }

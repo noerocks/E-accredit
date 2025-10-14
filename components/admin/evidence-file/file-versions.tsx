@@ -17,7 +17,7 @@ const FileVersions = ({
   versions: FileVersion[] | undefined;
   fileType: "Evidence" | "AreaFile";
   parameterFolderId?: string | undefined;
-  areaFolderId: string | undefined;
+  areaFolderId?: string | undefined;
   isAdmin: boolean | undefined;
   isMember?: boolean | undefined;
   isChairPerson?: boolean | undefined;

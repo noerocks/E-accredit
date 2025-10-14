@@ -2,12 +2,12 @@
 
 import { revalidateTag } from "next/cache";
 import { Progress } from "../generated/prisma";
-import { updateAreaFolderById } from "../dal/area-folder";
+import { updateSurveyVisitById } from "../dal/survey-visit";
 
-export async function markAsComplete(areaFolderId: string) {
+export async function markAsComplete(surveyVisitId: string) {
   try {
-    const areaFolder = await updateAreaFolderById({
-      id: areaFolderId,
+    const surveyVisit = await updateSurveyVisitById({
+      id: surveyVisitId,
       status: Progress.COMPLETE,
     });
     revalidateTag("parameterFolder");

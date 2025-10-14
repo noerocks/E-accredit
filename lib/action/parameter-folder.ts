@@ -12,6 +12,7 @@ export async function markAsComplete(parameterFolderId: string) {
     });
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
+    revalidateTag("surveyVisitStructure");
     return { success: { message: "Parameter folder is marked as complete" } };
   } catch (error) {
     const e = error as Error;

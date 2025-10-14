@@ -104,7 +104,11 @@ export const columns: ColumnDef<AreaFolderDTO>[] = [
       );
       const percentage =
         (acceptedAndSubmittedFiles.length / evidenceAndAreaFiles.length) * 100;
-      return <div>{`${percentage}%`}</div>;
+      return (
+        <div>{`${
+          Number.isInteger(percentage) ? percentage : percentage.toFixed(2)
+        }%`}</div>
+      );
     },
   },
   {

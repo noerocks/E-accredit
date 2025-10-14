@@ -45,7 +45,7 @@ const AreaFilePage = async ({
   });
   const formatStatus = (status: FileStatus) => {
     return status
-      .split("_")
+      ?.split("_")
       .map(
         (word) =>
           word[0].toLocaleUpperCase() + word.slice(1).toLocaleLowerCase()
@@ -54,7 +54,7 @@ const AreaFilePage = async ({
   };
   return (
     <ScrollArea className="h-full">
-      <div className="max-w-3/4 mx-auto my-10 flex flex-col gap-5">
+      <div className="max-w-5/6 mx-auto my-10 flex flex-col gap-5">
         <p className="text-2xl flex items-center gap-2">
           <Layers />
           Area

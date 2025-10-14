@@ -15,6 +15,7 @@ import {
 import { updateAreaFileById } from "../dal/area-file";
 import { updateParameterFolderById } from "../dal/parameter-folder";
 import { updateAreaFolderById } from "../dal/area-folder";
+import { updateSurveyVisitById } from "../dal/survey-visit";
 
 type FileVersionType = {
   name: string;
@@ -25,6 +26,7 @@ type FileVersionType = {
   areaFileId?: string;
   parameterFolderId: string | undefined;
   areaFolderId: string | undefined;
+  surveyVisitId: string | undefined;
 };
 
 export async function createNewVersion({
@@ -36,6 +38,7 @@ export async function createNewVersion({
   areaFileId,
   parameterFolderId,
   areaFolderId,
+  surveyVisitId,
 }: FileVersionType) {
   const session = await verifySession();
   if (!session)
@@ -65,6 +68,10 @@ export async function createNewVersion({
       id: areaFolderId,
       status: Progress.IN_PROGRESS,
     });
+    const surveyVisit = await updateSurveyVisitById({
+      id: surveyVisitId,
+      status: Progress.IN_PROGRESS,
+    });
   }
   if (areaFileId) {
     await resetAllAreaFileVersionStatus(areaFileId);
@@ -79,10 +86,15 @@ export async function createNewVersion({
       id: areaFileId,
       status: FileStatus.SUBMITTED,
     });
+    const surveyVisit = await updateSurveyVisitById({
+      id: surveyVisitId,
+      status: Progress.IN_PROGRESS,
+    });
   }
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");
   revalidateTag("areaFolder");
+  revalidateTag("surveyVisitStructure");
 }
 
 export async function changeActiveVersion(
@@ -90,7 +102,8 @@ export async function changeActiveVersion(
   fileId: string | undefined,
   fileType: "Evidence" | "AreaFile",
   parameterFolderId: string | undefined,
-  areaFolderId: string | undefined
+  areaFolderId: string | undefined,
+  surveyVisitId: string | undefined
 ) {
   if (!id || !fileId || !fileType)
     return { failure: { error: "Invalid input" } };
@@ -112,6 +125,10 @@ export async function changeActiveVersion(
         id: areaFolderId,
         status: Progress.IN_PROGRESS,
       });
+      const surveyVisit = await updateSurveyVisitById({
+        id: surveyVisitId,
+        status: Progress.IN_PROGRESS,
+      });
       break;
     }
     case "AreaFile": {
@@ -125,6 +142,7 @@ export async function changeActiveVersion(
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");
   revalidateTag("areaFolder");
+  revalidateTag("surveyVisitStructure");
   return {
     success: { message: "File version is successfuly set to active" },
   };
@@ -136,5 +154,6 @@ export async function deleteVersionById(id: string) {
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");
   revalidateTag("areaFolder");
+  revalidateTag("surveyVisitStructure");
   return { success: { message: "File version is deleted" } };
 }

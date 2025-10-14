@@ -29,4 +29,5 @@ export async function acceptOrReject(evidenceFileId: string, action: string) {
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");
   revalidateTag("areaFolder");
+  revalidateTag("surveyVisitStructure");
 }
