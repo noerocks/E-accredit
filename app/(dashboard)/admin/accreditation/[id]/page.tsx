@@ -14,6 +14,7 @@ import { verifySession } from "@/lib/action/session";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
 import { Progress } from "@/lib/generated/prisma";
+import { formatAccreditationName, screamingSnakeToTitle } from "@/lib/utils";
 import clsx from "clsx";
 import { BadgeCheck, CircleDot } from "lucide-react";
 
@@ -31,15 +32,6 @@ const ProgramAccreditationPage = async ({
     surveyVisitStructure?.phaseOneRequirements?.instrumentFolder?.areaFolders.sort(
       (a, b) => a.area.label.localeCompare(b.area.label)
     );
-  const formatStatus = (status: Progress) => {
-    return status
-      .split("_")
-      .map(
-        (word) =>
-          word[0].toLocaleUpperCase() + word.slice(1).toLocaleLowerCase()
-      )
-      .join(" ");
-  };
   const isAdmin = user.role === "ADMIN";
   const isProgramHead = user.id === program?.programHead?.id;
   const marksAsCompleteVisible =
@@ -54,19 +46,10 @@ const ProgramAccreditationPage = async ({
       </p>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">{`${program?.code} - ${
-            level?.label
-          } ${
-            level?.rank! <= 4
-              ? level?.phase
-                  .split("_")
-                  .map(
-                    (word) =>
-                      word[0].toUpperCase() + word.slice(1).toLowerCase()
-                  )
-                  .join(" ")
-              : ""
-          }`}</CardTitle>
+          <CardTitle className="text-2xl">{`${formatAccreditationName(
+            program?.code!,
+            level!
+          )}`}</CardTitle>
           <CardDescription>{program?.name}</CardDescription>
         </CardHeader>
         <CardFooter className="flex items-center justify-between">
@@ -83,7 +66,7 @@ const ProgramAccreditationPage = async ({
               )}
             >
               <CircleDot size={15} />
-              {formatStatus(surveyVisitStructure?.status!)}
+              {screamingSnakeToTitle(String(surveyVisitStructure?.status!))}
             </p>
             {marksAsCompleteVisible && (
               <MarkAsCompleteButton surveyVisitId={surveyVisitStructure?.id} />

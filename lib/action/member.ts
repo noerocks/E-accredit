@@ -12,6 +12,8 @@ export async function assignMember(
   const member = await createMember(personnelId, taskforceId);
   revalidateTag("areaFolder");
   revalidateTag("evidenceFiles");
+  revalidateTag("parameterFolder");
+  revalidateTag("surveyVisitStructure");
 }
 
 export async function deleteMember(memberId: string | undefined) {
@@ -19,4 +21,6 @@ export async function deleteMember(memberId: string | undefined) {
   const member = await deleteMemberDAL(memberId);
   revalidateTag("areaFolder");
   revalidateTag("evidenceFiles");
+  revalidateTag("parameterFolder");
+  revalidateTag("surveyVisitStructure");
 }

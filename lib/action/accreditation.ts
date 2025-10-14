@@ -7,6 +7,7 @@ import {
   AreaFileType,
   Category,
   FileStatus,
+  LevelEnum,
   Phase,
   Progress,
   SurveyTeamType,
@@ -28,6 +29,7 @@ import {
 } from "../dal/requirements";
 import { createPhaseTwoAreaFolder } from "../dal/phase-two-area-folder";
 import { createManySurveyTeam } from "../dal/survey-team";
+import { getLevelById } from "../dal/levels";
 
 export async function createSurveyVisit(
   program: ProgramDTO,
@@ -93,11 +95,15 @@ export async function createSurveyVisit(
           type: AreaFileType.PPP,
           status: FileStatus.EMPTY,
         },
-        {
-          phaseOneAreaFolderId: areaFolder.id,
-          type: AreaFileType.COMPLIANCE_REPORT,
-          status: FileStatus.EMPTY,
-        },
+        ...(level.label !== LevelEnum.PRELIMINARY_SURVEY_VISIT
+          ? [
+              {
+                phaseOneAreaFolderId: areaFolder.id,
+                type: AreaFileType.COMPLIANCE_REPORT,
+                status: FileStatus.EMPTY,
+              },
+            ]
+          : []),
       ]);
       const taskforce = await createTaskforce(areaFolder.id);
       area.parameter.forEach(async (parameter) => {

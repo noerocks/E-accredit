@@ -18,4 +18,5 @@ export async function assignChairperson(
   revalidateTag("areaFolder");
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");
+  revalidateTag("surveyVisitStructure");
 }

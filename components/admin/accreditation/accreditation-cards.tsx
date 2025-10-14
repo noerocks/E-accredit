@@ -13,6 +13,7 @@ import {
   SafeLevel,
   SurveyVisitWithSafeLevel,
 } from "@/lib/dto/accreditation";
+import { formatAccreditationName } from "@/lib/utils";
 import { FolderOpen } from "lucide-react";
 import Link from "next/link";
 
@@ -31,21 +32,6 @@ const AccreditationCards = ({
       } as SurveyVisitWithSafeLevel
     );
   };
-  const formatAccreditationLabel = (
-    programCode: string,
-    accreditationLabel: string,
-    accreditationPhase: string,
-    levelRank: number
-  ) => {
-    return `${programCode} - ${accreditationLabel} ${
-      levelRank <= 4
-        ? accreditationPhase
-            .split("_")
-            .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
-            .join(" ")
-        : ""
-    }`;
-  };
   return (
     <div className="flex flex-wrap gap-5">
       {accreditations?.map((a) => {
@@ -55,12 +41,7 @@ const AccreditationCards = ({
             <Card key={a.id} className="basis-[calc(33.33%-1rem)]">
               <CardHeader>
                 <CardTitle className="text-xl">
-                  {formatAccreditationLabel(
-                    a.program.code,
-                    surveyVisit.level.label,
-                    surveyVisit.level.phase,
-                    surveyVisit.level.rank
-                  )}
+                  {formatAccreditationName(a.program.code, surveyVisit.level)}
                 </CardTitle>
                 <CardDescription>{a.program.name}</CardDescription>
               </CardHeader>
@@ -68,11 +49,9 @@ const AccreditationCards = ({
                 <Link
                   href={`/admin/accreditation/${
                     surveyVisit.id
-                  }?accreditation=${formatAccreditationLabel(
+                  }?accreditation=${formatAccreditationName(
                     a.program.code,
-                    surveyVisit.level.label,
-                    surveyVisit.level.phase,
-                    surveyVisit.level.rank
+                    surveyVisit.level
                   )
                     .split(" ")
                     .join("+")}`}

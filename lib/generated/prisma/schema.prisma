@@ -79,6 +79,14 @@ enum SurveyTeamType {
   EXTERNAL
 }
 
+enum LevelEnum {
+  PRELIMINARY_SURVEY_VISIT
+  LEVEL_I
+  LEVEL_II
+  LEVEL_III
+  LEVEL_IV
+}
+
 model User {
   id               String             @id @default(uuid())
   firstName        String
@@ -183,7 +191,7 @@ model Indicator {
 model Level {
   id                String          @id @default(uuid())
   rank              Int
-  label             String
+  label             LevelEnum
   phase             Phase
   requiredGrandMean Decimal
   requiredAreaMean  Decimal

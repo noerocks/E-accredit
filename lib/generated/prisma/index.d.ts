@@ -245,6 +245,17 @@ export const SurveyTeamType: {
 
 export type SurveyTeamType = (typeof SurveyTeamType)[keyof typeof SurveyTeamType]
 
+
+export const LevelEnum: {
+  PRELIMINARY_SURVEY_VISIT: 'PRELIMINARY_SURVEY_VISIT',
+  LEVEL_I: 'LEVEL_I',
+  LEVEL_II: 'LEVEL_II',
+  LEVEL_III: 'LEVEL_III',
+  LEVEL_IV: 'LEVEL_IV'
+};
+
+export type LevelEnum = (typeof LevelEnum)[keyof typeof LevelEnum]
+
 }
 
 export type Role = $Enums.Role
@@ -290,6 +301,10 @@ export const CommentType: typeof $Enums.CommentType
 export type SurveyTeamType = $Enums.SurveyTeamType
 
 export const SurveyTeamType: typeof $Enums.SurveyTeamType
+
+export type LevelEnum = $Enums.LevelEnum
+
+export const LevelEnum: typeof $Enums.LevelEnum
 
 /**
  * ##  Prisma Client ʲˢ
@@ -12304,7 +12319,7 @@ export namespace Prisma {
   export type LevelMinAggregateOutputType = {
     id: string | null
     rank: number | null
-    label: string | null
+    label: $Enums.LevelEnum | null
     phase: $Enums.Phase | null
     requiredGrandMean: Decimal | null
     requiredAreaMean: Decimal | null
@@ -12314,7 +12329,7 @@ export namespace Prisma {
   export type LevelMaxAggregateOutputType = {
     id: string | null
     rank: number | null
-    label: string | null
+    label: $Enums.LevelEnum | null
     phase: $Enums.Phase | null
     requiredGrandMean: Decimal | null
     requiredAreaMean: Decimal | null
@@ -12467,7 +12482,7 @@ export namespace Prisma {
   export type LevelGroupByOutputType = {
     id: string
     rank: number
-    label: string
+    label: $Enums.LevelEnum
     phase: $Enums.Phase
     requiredGrandMean: Decimal
     requiredAreaMean: Decimal
@@ -12554,7 +12569,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       rank: number
-      label: string
+      label: $Enums.LevelEnum
       phase: $Enums.Phase
       requiredGrandMean: Prisma.Decimal
       requiredAreaMean: Prisma.Decimal
@@ -12986,7 +13001,7 @@ export namespace Prisma {
   interface LevelFieldRefs {
     readonly id: FieldRef<"Level", 'String'>
     readonly rank: FieldRef<"Level", 'Int'>
-    readonly label: FieldRef<"Level", 'String'>
+    readonly label: FieldRef<"Level", 'LevelEnum'>
     readonly phase: FieldRef<"Level", 'Phase'>
     readonly requiredGrandMean: FieldRef<"Level", 'Decimal'>
     readonly requiredAreaMean: FieldRef<"Level", 'Decimal'>
@@ -33898,6 +33913,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'LevelEnum'
+   */
+  export type EnumLevelEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LevelEnum'>
+    
+
+
+  /**
+   * Reference to a field of type 'LevelEnum[]'
+   */
+  export type ListEnumLevelEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LevelEnum[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Phase'
    */
   export type EnumPhaseFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Phase'>
@@ -34578,7 +34607,7 @@ export namespace Prisma {
     NOT?: LevelWhereInput | LevelWhereInput[]
     id?: StringFilter<"Level"> | string
     rank?: IntFilter<"Level"> | number
-    label?: StringFilter<"Level"> | string
+    label?: EnumLevelEnumFilter<"Level"> | $Enums.LevelEnum
     phase?: EnumPhaseFilter<"Level"> | $Enums.Phase
     requiredGrandMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
@@ -34605,7 +34634,7 @@ export namespace Prisma {
     OR?: LevelWhereInput[]
     NOT?: LevelWhereInput | LevelWhereInput[]
     rank?: IntFilter<"Level"> | number
-    label?: StringFilter<"Level"> | string
+    label?: EnumLevelEnumFilter<"Level"> | $Enums.LevelEnum
     phase?: EnumPhaseFilter<"Level"> | $Enums.Phase
     requiredGrandMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
@@ -34635,7 +34664,7 @@ export namespace Prisma {
     NOT?: LevelScalarWhereWithAggregatesInput | LevelScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Level"> | string
     rank?: IntWithAggregatesFilter<"Level"> | number
-    label?: StringWithAggregatesFilter<"Level"> | string
+    label?: EnumLevelEnumWithAggregatesFilter<"Level"> | $Enums.LevelEnum
     phase?: EnumPhaseWithAggregatesFilter<"Level"> | $Enums.Phase
     requiredGrandMean?: DecimalWithAggregatesFilter<"Level"> | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalWithAggregatesFilter<"Level"> | Decimal | DecimalJsLike | number | string
@@ -36261,7 +36290,7 @@ export namespace Prisma {
   export type LevelCreateInput = {
     id?: string
     rank: number
-    label: string
+    label: $Enums.LevelEnum
     phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
@@ -36273,7 +36302,7 @@ export namespace Prisma {
   export type LevelUncheckedCreateInput = {
     id?: string
     rank: number
-    label: string
+    label: $Enums.LevelEnum
     phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
@@ -36285,7 +36314,7 @@ export namespace Prisma {
   export type LevelUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
+    label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -36297,7 +36326,7 @@ export namespace Prisma {
   export type LevelUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
+    label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -36309,7 +36338,7 @@ export namespace Prisma {
   export type LevelCreateManyInput = {
     id?: string
     rank: number
-    label: string
+    label: $Enums.LevelEnum
     phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
@@ -36319,7 +36348,7 @@ export namespace Prisma {
   export type LevelUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
+    label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -36329,7 +36358,7 @@ export namespace Prisma {
   export type LevelUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
+    label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -37939,6 +37968,13 @@ export namespace Prisma {
     _max?: NestedEnumCategoryFilter<$PrismaModel>
   }
 
+  export type EnumLevelEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.LevelEnum | EnumLevelEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.LevelEnum[] | ListEnumLevelEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LevelEnum[] | ListEnumLevelEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumLevelEnumFilter<$PrismaModel> | $Enums.LevelEnum
+  }
+
   export type EnumPhaseFilter<$PrismaModel = never> = {
     equals?: $Enums.Phase | EnumPhaseFieldRefInput<$PrismaModel>
     in?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel>
@@ -38019,6 +38055,16 @@ export namespace Prisma {
     requiredGrandMean?: SortOrder
     requiredAreaMean?: SortOrder
     yearsEffective?: SortOrder
+  }
+
+  export type EnumLevelEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LevelEnum | EnumLevelEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.LevelEnum[] | ListEnumLevelEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LevelEnum[] | ListEnumLevelEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumLevelEnumWithAggregatesFilter<$PrismaModel> | $Enums.LevelEnum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLevelEnumFilter<$PrismaModel>
+    _max?: NestedEnumLevelEnumFilter<$PrismaModel>
   }
 
   export type EnumPhaseWithAggregatesFilter<$PrismaModel = never> = {
@@ -39712,6 +39758,10 @@ export namespace Prisma {
     connect?: SurveyVisitWhereUniqueInput | SurveyVisitWhereUniqueInput[]
   }
 
+  export type EnumLevelEnumFieldUpdateOperationsInput = {
+    set?: $Enums.LevelEnum
+  }
+
   export type EnumPhaseFieldUpdateOperationsInput = {
     set?: $Enums.Phase
   }
@@ -41350,6 +41400,13 @@ export namespace Prisma {
     _max?: NestedEnumCategoryFilter<$PrismaModel>
   }
 
+  export type NestedEnumLevelEnumFilter<$PrismaModel = never> = {
+    equals?: $Enums.LevelEnum | EnumLevelEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.LevelEnum[] | ListEnumLevelEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LevelEnum[] | ListEnumLevelEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumLevelEnumFilter<$PrismaModel> | $Enums.LevelEnum
+  }
+
   export type NestedEnumPhaseFilter<$PrismaModel = never> = {
     equals?: $Enums.Phase | EnumPhaseFieldRefInput<$PrismaModel>
     in?: $Enums.Phase[] | ListEnumPhaseFieldRefInput<$PrismaModel>
@@ -41366,6 +41423,16 @@ export namespace Prisma {
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedEnumLevelEnumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LevelEnum | EnumLevelEnumFieldRefInput<$PrismaModel>
+    in?: $Enums.LevelEnum[] | ListEnumLevelEnumFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LevelEnum[] | ListEnumLevelEnumFieldRefInput<$PrismaModel>
+    not?: NestedEnumLevelEnumWithAggregatesFilter<$PrismaModel> | $Enums.LevelEnum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLevelEnumFilter<$PrismaModel>
+    _max?: NestedEnumLevelEnumFilter<$PrismaModel>
   }
 
   export type NestedEnumPhaseWithAggregatesFilter<$PrismaModel = never> = {
@@ -43131,7 +43198,7 @@ export namespace Prisma {
   export type LevelCreateWithoutAccreditationsInput = {
     id?: string
     rank: number
-    label: string
+    label: $Enums.LevelEnum
     phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
@@ -43142,7 +43209,7 @@ export namespace Prisma {
   export type LevelUncheckedCreateWithoutAccreditationsInput = {
     id?: string
     rank: number
-    label: string
+    label: $Enums.LevelEnum
     phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
@@ -43238,7 +43305,7 @@ export namespace Prisma {
   export type LevelUpdateWithoutAccreditationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
+    label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -43249,7 +43316,7 @@ export namespace Prisma {
   export type LevelUncheckedUpdateWithoutAccreditationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
+    label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -43299,7 +43366,7 @@ export namespace Prisma {
   export type LevelCreateWithoutSurveyVisitsInput = {
     id?: string
     rank: number
-    label: string
+    label: $Enums.LevelEnum
     phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
@@ -43310,7 +43377,7 @@ export namespace Prisma {
   export type LevelUncheckedCreateWithoutSurveyVisitsInput = {
     id?: string
     rank: number
-    label: string
+    label: $Enums.LevelEnum
     phase: $Enums.Phase
     requiredGrandMean: Decimal | DecimalJsLike | number | string
     requiredAreaMean: Decimal | DecimalJsLike | number | string
@@ -43424,7 +43491,7 @@ export namespace Prisma {
   export type LevelUpdateWithoutSurveyVisitsInput = {
     id?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
+    label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -43435,7 +43502,7 @@ export namespace Prisma {
   export type LevelUncheckedUpdateWithoutSurveyVisitsInput = {
     id?: StringFieldUpdateOperationsInput | string
     rank?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
+    label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
     requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string

@@ -13,3 +13,14 @@ export async function getLevels(): Promise<LevelDTO[] | null> {
     phase: level.phase,
   }));
 }
+
+export async function getLevelById(id: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const level = await prisma.level.findUnique({
+    where: {
+      id,
+    },
+  });
+  return level;
+}
