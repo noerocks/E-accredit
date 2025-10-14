@@ -1,3 +1,4 @@
+import Banner from "@/components/admin/accreditation/banner";
 import { columns } from "@/components/admin/parameter/columns";
 import { DataTable } from "@/components/admin/parameter/data-table";
 import MarkAsCompleteButton from "@/components/admin/parameter/mark-as-complete";
@@ -26,10 +27,10 @@ import { CircleDot, ClipboardList } from "lucide-react";
 const ParameterFolderPage = async ({
   params,
 }: {
-  params: Promise<{ parameterId: string }>;
+  params: Promise<{ parameterId: string; id: string }>;
 }) => {
   const { user } = await verifySession();
-  const { parameterId } = await params;
+  const { parameterId, id: surveyVisitId } = await params;
   const parameterFolder = await getParameterFolderById(parameterId);
   type CategoryReport = {
     category: Category;
@@ -74,6 +75,7 @@ const ParameterFolderPage = async ({
     (isAdmin || isChairperson);
   return (
     <ScrollArea className="h-full">
+      <Banner surveyVisitId={surveyVisitId} />
       <div className="max-w-5/6 mx-auto my-10 flex flex-col gap-5">
         <p className="text-2xl flex items-center gap-2">
           <ClipboardList />

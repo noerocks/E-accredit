@@ -15,7 +15,7 @@ import {
 import { updateAreaFileById } from "../dal/area-file";
 import { updateParameterFolderById } from "../dal/parameter-folder";
 import { updateAreaFolderById } from "../dal/area-folder";
-import { updateSurveyVisitById } from "../dal/survey-visit";
+import { getSurveyVisitById, updateSurveyVisitById } from "../dal/survey-visit";
 
 type FileVersionType = {
   name: string;
@@ -107,6 +107,9 @@ export async function changeActiveVersion(
 ) {
   if (!id || !fileId || !fileType)
     return { failure: { error: "Invalid input" } };
+  const surveyVisit = await getSurveyVisitById(surveyVisitId!);
+  if (!surveyVisit?.allowEdits)
+    return { failure: { error: "This action is currently disabled" } };
   switch (fileType) {
     case "Evidence": {
       await resetAllEvidenceVersionStatus(fileId);
@@ -148,8 +151,14 @@ export async function changeActiveVersion(
   };
 }
 
-export async function deleteVersionById(id: string) {
+export async function deleteVersionById(
+  id: string,
+  surveyVisitId: string | undefined
+) {
   if (!id) return { failure: { error: "Id is required" } };
+  const surveyVisit = await getSurveyVisitById(surveyVisitId!);
+  if (!surveyVisit?.allowEdits)
+    return { failure: { error: "This action is currently disabled" } };
   const evidenceVersion = await deleteVersionByIdDAL(id);
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");

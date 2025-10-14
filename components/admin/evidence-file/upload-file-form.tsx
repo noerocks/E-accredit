@@ -35,6 +35,7 @@ const UploadFileForm = ({
   user,
   parameterFolderId,
   areaFolderId,
+  allowFileUploads,
 }: {
   indicator?: IndicatorDTO | undefined;
   evidenceFileId?: string;
@@ -43,6 +44,7 @@ const UploadFileForm = ({
   user: SessionPayload;
   parameterFolderId?: string | undefined;
   areaFolderId?: string | undefined;
+  allowFileUploads: boolean | undefined;
 }) => {
   const { id: surveyVisitId } = useParams();
   const [file, setFile] = useState<File | null>();
@@ -147,7 +149,7 @@ const UploadFileForm = ({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="flex items-center">
+        <Button className="flex items-center" disabled={!allowFileUploads}>
           <Upload />
           <span>Upload a file</span>
         </Button>

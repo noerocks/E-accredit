@@ -28,6 +28,7 @@ import {
   AreaFileDTO,
   ParameterFolderDTO,
 } from "@/lib/dto/accreditation-instrument";
+import Banner from "@/components/admin/accreditation/banner";
 
 const AreaFolderPage = async ({
   params,
@@ -73,6 +74,7 @@ const AreaFolderPage = async ({
   };
   return (
     <ScrollArea className="h-full">
+      <Banner surveyVisitId={surveyVisitId} />
       <div className="max-w-5/6 mx-auto my-10 flex flex-col gap-5">
         <p className="text-2xl flex items-center gap-2">
           <Layers />

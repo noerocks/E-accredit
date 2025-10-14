@@ -8,23 +8,31 @@ import { useTransition } from "react";
 import {
   toggleFileUpload as toggleFileUploadAction,
   toggleEdit as toggleEditAction,
+  toggleSelfSurvey as toggleSelfSurveyAction,
 } from "@/lib/action/surveyVisit";
 import { toast } from "sonner";
+import { Progress } from "@/lib/generated/prisma";
 
 const AccreditationSettings = ({
   allowFileUploads,
   allowEdits,
   openForSelfSurvey,
   openForActualSurvey,
+  status,
 }: {
   allowFileUploads: boolean | undefined;
   allowEdits: boolean | undefined;
   openForSelfSurvey: boolean | undefined;
   openForActualSurvey: boolean | undefined;
+  status: Progress | undefined;
 }) => {
   const params = useParams();
   const [pending, startTransition] = useTransition();
   const toggleFileUpload = async () => {
+    if (openForSelfSurvey) {
+      toast.error("Can't allow uploads if self survey is open.");
+      return;
+    }
     startTransition(async () => {
       const result = await toggleFileUploadAction(
         String(params.id),
@@ -36,8 +44,27 @@ const AccreditationSettings = ({
     });
   };
   const toggleEdit = async () => {
+    if (openForSelfSurvey) {
+      toast.error("Can't allow edits if self survey is open.");
+      return;
+    }
     startTransition(async () => {
       const result = await toggleEditAction(String(params.id), allowEdits!);
+      if (result?.failure) {
+        toast.error(result.failure.error);
+      }
+    });
+  };
+  const toggleSelfSurvey = async () => {
+    if (status !== "COMPLETE") {
+      toast.error("Status must be complete to open for self survey");
+      return;
+    }
+    startTransition(async () => {
+      const result = await toggleSelfSurveyAction(
+        String(params.id),
+        openForSelfSurvey!
+      );
       if (result?.failure) {
         toast.error(result.failure.error);
       }
@@ -74,7 +101,7 @@ const AccreditationSettings = ({
             <CircleQuestionMark size={15} />
             <p className="text-sm">Open for Self Survey</p>
           </div>
-          <Switch checked={openForSelfSurvey} />
+          <Switch checked={openForSelfSurvey} onClick={toggleSelfSurvey} />
         </div>
         <div className="flex items-center justify-between">
           <div className="flex-1 flex items-center gap-2 text-muted-foreground">

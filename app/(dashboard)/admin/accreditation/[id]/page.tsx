@@ -1,4 +1,5 @@
 import AccreditationSettings from "@/components/admin/accreditation/accreditation-settings";
+import Banner from "@/components/admin/accreditation/banner";
 import { columns } from "@/components/admin/accreditation/columns";
 import { DataTable } from "@/components/admin/accreditation/data-table";
 import TargetLevel from "@/components/admin/accreditation/target-level";
@@ -29,6 +30,7 @@ import {
   CheckCircle2,
   CircleDot,
   CircleQuestionMark,
+  Info,
   Settings,
 } from "lucide-react";
 
@@ -52,10 +54,9 @@ const ProgramAccreditationPage = async ({
     areaFolders?.every((area) => area.status === "COMPLETE") &&
     surveyVisitStructure?.status !== "COMPLETE" &&
     (isProgramHead || isAdmin);
-  const openSelfSurveyVisible =
-    user.role === "ADMIN" && surveyVisitStructure?.status === "COMPLETE";
   return (
     <ScrollArea className="h-full">
+      <Banner surveyVisitId={String(id!)} />
       <div className="max-w-5/6 mx-auto my-10 flex flex-col gap-5">
         <p className="text-2xl flex items-center gap-2">
           <BadgeCheck />
@@ -99,6 +100,7 @@ const ProgramAccreditationPage = async ({
             allowEdits={surveyVisitStructure?.allowEdits}
             openForSelfSurvey={surveyVisitStructure?.openForSelfSurvey}
             openForActualSurvey={surveyVisitStructure?.openForActualSurvey}
+            status={surveyVisitStructure?.status}
           />
           <TargetLevel level={level!} />
           <Card className="flex-1 bg-background"></Card>

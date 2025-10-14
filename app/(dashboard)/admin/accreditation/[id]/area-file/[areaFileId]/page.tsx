@@ -1,3 +1,4 @@
+import Banner from "@/components/admin/accreditation/banner";
 import Comments from "@/components/admin/evidence-file/comments";
 import FileVersions from "@/components/admin/evidence-file/file-versions";
 import UploadFileForm from "@/components/admin/evidence-file/upload-file-form";
@@ -12,6 +13,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { verifySession } from "@/lib/action/session";
 import { getAreaFileById } from "@/lib/dal/area-file";
 import { getFilteredComments } from "@/lib/dal/comment";
+import { getSurveyVisitById } from "@/lib/dal/survey-visit";
 import { AreaFileType, CommentType, FileStatus } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import { CircleDot, Layers } from "lucide-react";
@@ -19,9 +21,10 @@ import { CircleDot, Layers } from "lucide-react";
 const AreaFilePage = async ({
   params,
 }: {
-  params: Promise<{ areaFileId: string }>;
+  params: Promise<{ areaFileId: string; id: string }>;
 }) => {
-  const { areaFileId } = await params;
+  const { areaFileId, id: surveyVisitId } = await params;
+  const surveyVisit = await getSurveyVisitById(surveyVisitId);
   const areaFile = await getAreaFileById(areaFileId);
   const areaFolderId =
     areaFile?.phaseOneAreaFolderId ||
@@ -54,6 +57,7 @@ const AreaFilePage = async ({
   };
   return (
     <ScrollArea className="h-full">
+      <Banner surveyVisitId={surveyVisitId} />
       <div className="max-w-5/6 mx-auto my-10 flex flex-col gap-5">
         <p className="text-2xl flex items-center gap-2">
           <Layers />
@@ -91,6 +95,7 @@ const AreaFilePage = async ({
                   area={area}
                   areaFileId={areaFile?.id}
                   user={user}
+                  allowFileUploads={surveyVisit?.allowFileUploads}
                 />
               )}
             </div>

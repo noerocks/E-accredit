@@ -36,6 +36,7 @@ import { toast } from "sonner";
 import { changeActiveVersion } from "@/lib/action/file-version";
 import { deleteVersionById } from "@/lib/action/file-version";
 import { useParams } from "next/navigation";
+import { getSurveyVisitById } from "@/lib/dal/survey-visit";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -110,7 +111,7 @@ export function DataTable<TData, TValue>({
       }
       case "delete": {
         if (!id) break;
-        const result = await deleteVersionById(id);
+        const result = await deleteVersionById(id, String(surveyVisitId));
         if (result.failure) toast.error(result.failure.error);
         if (result.success) toast.info(result.success.message);
         break;

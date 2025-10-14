@@ -1,3 +1,4 @@
+import Banner from "@/components/admin/accreditation/banner";
 import AcceptOrReject from "@/components/admin/evidence-file/acceptOrReject";
 import Comments from "@/components/admin/evidence-file/comments";
 import FileVersions from "@/components/admin/evidence-file/file-versions";
@@ -13,6 +14,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { verifySession } from "@/lib/action/session";
 import { getFilteredComments } from "@/lib/dal/comment";
 import { getEvidenceFileById } from "@/lib/dal/evidence";
+import { getSurveyVisitById } from "@/lib/dal/survey-visit";
 import { Category, CommentType, FileStatus } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import { CheckCircle, CircleDot, Tag } from "lucide-react";
@@ -20,10 +22,11 @@ import { CheckCircle, CircleDot, Tag } from "lucide-react";
 const EvidencePage = async ({
   params,
 }: {
-  params: Promise<{ evidenceId: string }>;
+  params: Promise<{ evidenceId: string; id: string }>;
 }) => {
-  const { evidenceId } = await params;
+  const { evidenceId, id: surveyVisitId } = await params;
   const evidence = await getEvidenceFileById(evidenceId);
+  const surveyVisit = await getSurveyVisitById(String(surveyVisitId!));
   const indicator = evidence?.indicator;
   const parameter = evidence?.indicatorFolder.parameterFolder.parameter;
   const parameterFolderId = evidence?.indicatorFolder.parameterFolderId;
@@ -58,6 +61,7 @@ const EvidencePage = async ({
       ?.userId === user.id;
   return (
     <ScrollArea className="h-full">
+      <Banner surveyVisitId={surveyVisitId} />
       <div className="max-w-5/6 mx-auto my-10 flex flex-col gap-5">
         <p className="text-2xl flex items-center gap-2">
           <CheckCircle />
@@ -111,6 +115,7 @@ const EvidencePage = async ({
                   user={user}
                   parameterFolderId={parameterFolderId}
                   areaFolderId={areaFolderId}
+                  allowFileUploads={surveyVisit?.allowFileUploads}
                 />
               )}
               {(isChairperson || isAdmin) &&

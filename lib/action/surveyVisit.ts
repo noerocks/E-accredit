@@ -52,3 +52,23 @@ export async function toggleEdit(surveyVisitId: string, allowEdits: boolean) {
     return { failure: { error: e.message } };
   }
 }
+
+export async function toggleSelfSurvey(
+  surveyVisitId: string,
+  openForSelfSurvey: boolean
+) {
+  try {
+    const surveyVisit = await updateSurveyVisitById({
+      id: surveyVisitId,
+      openForSelfSurvey: !openForSelfSurvey,
+      allowFileUploads: false,
+      allowEdits: false,
+    });
+    revalidateTag("parameterFolder");
+    revalidateTag("areaFolder");
+    revalidateTag("surveyVisitStructure");
+  } catch (error) {
+    const e = error as Error;
+    return { failure: { error: e.message } };
+  }
+}
