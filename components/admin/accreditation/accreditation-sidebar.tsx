@@ -67,11 +67,7 @@ const AccreditationSidebar = ({
               File Explorer
             </SidebarMenuButton>
             <SidebarMenuAction asChild>
-              <Link
-                href={`/admin/accreditation/${String(
-                  params.id
-                )}?${searchParams.toString()}`}
-              >
+              <Link href={`/${base.join("/")}?${searchParams.toString()}`}>
                 <Home />
               </Link>
             </SidebarMenuAction>
