@@ -18,7 +18,12 @@ import {
 } from "@/lib/dto/accreditation-instrument";
 import FileTree from "./file-tree";
 import React from "react";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { FolderCheckIcon, Home } from "lucide-react";
 import Link from "next/link";
@@ -30,6 +35,11 @@ const AccreditationSidebar = ({
   instrumentFolder: PhaseOneInstrumentDTO | null | undefined;
   phaseTwoFolder: PhaseTwoInstrumentDTO | null | undefined;
 }) => {
+  const pathName = usePathname();
+  const base = pathName
+    .split("/")
+    .filter((segment) => segment !== "")
+    .slice(0, 3);
   const params = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -38,10 +48,10 @@ const AccreditationSidebar = ({
     const button = target.closest<HTMLButtonElement>("[data-id]");
     if (!button || target.tagName !== "BUTTON") return null;
     const { id, type } = button.dataset;
+    if (base[1] === "self-survey" && (type === "area" || type === "parameter"))
+      return;
     router.replace(
-      `/admin/accreditation/${String(
-        params.id
-      )}/${type}/${id}?${searchParams.toString()}`
+      `/${base.join("/")}/${type}/${id}?${searchParams.toString()}`
     );
   };
   return (

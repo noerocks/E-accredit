@@ -2,6 +2,7 @@ import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
 import { Progress, SurveyVisit, SurveyVisitType } from "../generated/prisma";
 import { prisma } from "../prisma";
+import { SurveyVisitDisplayDTO } from "../dto/survey-visit";
 
 export async function createSurveyVisit(
   accreditationId: string,
@@ -144,3 +145,26 @@ export async function updateSurveyVisitById(data: Partial<SurveyVisit>) {
   });
   return surveyVisit;
 }
+
+export const getAllSurveyVisitOpenForSelfSurvey = unstable_cache(
+  async (): Promise<SurveyVisitDisplayDTO[] | null> => {
+    const surveyVisit = await prisma.surveyVisit.findMany({
+      where: {
+        openForSelfSurvey: true,
+      },
+      include: {
+        accreditation: {
+          include: {
+            program: true,
+          },
+        },
+        level: true,
+      },
+    });
+    return surveyVisit;
+  },
+  ["getAllSurveyVisitOpenForSelfSurvey"],
+  {
+    tags: ["surveyVisitSelfSurvey"],
+  }
+);

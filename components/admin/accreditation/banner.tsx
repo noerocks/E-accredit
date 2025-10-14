@@ -22,7 +22,7 @@ const Banner = async ({ surveyVisitId }: { surveyVisitId: string }) => {
   }
   if (openForSelfSurvey) {
     message =
-      "This program is undergoing a self survey. File uploads and edits are temporarily disabled.";
+      "This program is undergoing a self survey. File uploads and edits are temporarily disabled by the QA.";
   }
   return (
     <div>

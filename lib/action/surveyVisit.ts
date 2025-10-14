@@ -67,6 +67,7 @@ export async function toggleSelfSurvey(
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("surveyVisitStructure");
+    revalidateTag("surveyVisitSelfSurvey");
   } catch (error) {
     const e = error as Error;
     return { failure: { error: e.message } };

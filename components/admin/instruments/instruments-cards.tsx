@@ -23,7 +23,7 @@ const InstrumentCards = ({
           className="basis-[calc(33.33%-1rem)] grow-0 shrink"
         >
           <CardHeader>
-            <CardTitle className="text-lg">{instrument.name}</CardTitle>
+            <CardTitle className="text-xl">{instrument.name}</CardTitle>
             <CardDescription>{instrument.accreditingBody}</CardDescription>
           </CardHeader>
           <CardFooter className="flex justify-end">
