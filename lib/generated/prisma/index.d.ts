@@ -14606,6 +14606,10 @@ export namespace Prisma {
     targetLevel: string | null
     status: $Enums.Progress | null
     createdAt: Date | null
+    allowFileUploads: boolean | null
+    allowEdits: boolean | null
+    openForSelfSurvey: boolean | null
+    openForActualSurvey: boolean | null
   }
 
   export type SurveyVisitMaxAggregateOutputType = {
@@ -14616,6 +14620,10 @@ export namespace Prisma {
     targetLevel: string | null
     status: $Enums.Progress | null
     createdAt: Date | null
+    allowFileUploads: boolean | null
+    allowEdits: boolean | null
+    openForSelfSurvey: boolean | null
+    openForActualSurvey: boolean | null
   }
 
   export type SurveyVisitCountAggregateOutputType = {
@@ -14626,6 +14634,10 @@ export namespace Prisma {
     targetLevel: number
     status: number
     createdAt: number
+    allowFileUploads: number
+    allowEdits: number
+    openForSelfSurvey: number
+    openForActualSurvey: number
     _all: number
   }
 
@@ -14638,6 +14650,10 @@ export namespace Prisma {
     targetLevel?: true
     status?: true
     createdAt?: true
+    allowFileUploads?: true
+    allowEdits?: true
+    openForSelfSurvey?: true
+    openForActualSurvey?: true
   }
 
   export type SurveyVisitMaxAggregateInputType = {
@@ -14648,6 +14664,10 @@ export namespace Prisma {
     targetLevel?: true
     status?: true
     createdAt?: true
+    allowFileUploads?: true
+    allowEdits?: true
+    openForSelfSurvey?: true
+    openForActualSurvey?: true
   }
 
   export type SurveyVisitCountAggregateInputType = {
@@ -14658,6 +14678,10 @@ export namespace Prisma {
     targetLevel?: true
     status?: true
     createdAt?: true
+    allowFileUploads?: true
+    allowEdits?: true
+    openForSelfSurvey?: true
+    openForActualSurvey?: true
     _all?: true
   }
 
@@ -14741,6 +14765,10 @@ export namespace Prisma {
     targetLevel: string
     status: $Enums.Progress
     createdAt: Date
+    allowFileUploads: boolean
+    allowEdits: boolean
+    openForSelfSurvey: boolean
+    openForActualSurvey: boolean
     _count: SurveyVisitCountAggregateOutputType | null
     _min: SurveyVisitMinAggregateOutputType | null
     _max: SurveyVisitMaxAggregateOutputType | null
@@ -14768,6 +14796,10 @@ export namespace Prisma {
     targetLevel?: boolean
     status?: boolean
     createdAt?: boolean
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
     level?: boolean | LevelDefaultArgs<ExtArgs>
     phaseOneRequirements?: boolean | SurveyVisit$phaseOneRequirementsArgs<ExtArgs>
@@ -14784,6 +14816,10 @@ export namespace Prisma {
     targetLevel?: boolean
     status?: boolean
     createdAt?: boolean
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
     level?: boolean | LevelDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["surveyVisit"]>
@@ -14796,6 +14832,10 @@ export namespace Prisma {
     targetLevel?: boolean
     status?: boolean
     createdAt?: boolean
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
     level?: boolean | LevelDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["surveyVisit"]>
@@ -14808,9 +14848,13 @@ export namespace Prisma {
     targetLevel?: boolean
     status?: boolean
     createdAt?: boolean
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
   }
 
-  export type SurveyVisitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accreditationId" | "actualSurveyDate" | "type" | "targetLevel" | "status" | "createdAt", ExtArgs["result"]["surveyVisit"]>
+  export type SurveyVisitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accreditationId" | "actualSurveyDate" | "type" | "targetLevel" | "status" | "createdAt" | "allowFileUploads" | "allowEdits" | "openForSelfSurvey" | "openForActualSurvey", ExtArgs["result"]["surveyVisit"]>
   export type SurveyVisitInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
     level?: boolean | LevelDefaultArgs<ExtArgs>
@@ -14845,6 +14889,10 @@ export namespace Prisma {
       targetLevel: string
       status: $Enums.Progress
       createdAt: Date
+      allowFileUploads: boolean
+      allowEdits: boolean
+      openForSelfSurvey: boolean
+      openForActualSurvey: boolean
     }, ExtArgs["result"]["surveyVisit"]>
     composites: {}
   }
@@ -15280,6 +15328,10 @@ export namespace Prisma {
     readonly targetLevel: FieldRef<"SurveyVisit", 'String'>
     readonly status: FieldRef<"SurveyVisit", 'Progress'>
     readonly createdAt: FieldRef<"SurveyVisit", 'DateTime'>
+    readonly allowFileUploads: FieldRef<"SurveyVisit", 'Boolean'>
+    readonly allowEdits: FieldRef<"SurveyVisit", 'Boolean'>
+    readonly openForSelfSurvey: FieldRef<"SurveyVisit", 'Boolean'>
+    readonly openForActualSurvey: FieldRef<"SurveyVisit", 'Boolean'>
   }
     
 
@@ -33644,7 +33696,11 @@ export namespace Prisma {
     type: 'type',
     targetLevel: 'targetLevel',
     status: 'status',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    allowFileUploads: 'allowFileUploads',
+    allowEdits: 'allowEdits',
+    openForSelfSurvey: 'openForSelfSurvey',
+    openForActualSurvey: 'openForActualSurvey'
   };
 
   export type SurveyVisitScalarFieldEnum = (typeof SurveyVisitScalarFieldEnum)[keyof typeof SurveyVisitScalarFieldEnum]
@@ -33993,6 +34049,13 @@ export namespace Prisma {
    * Reference to a field of type 'Progress[]'
    */
   export type ListEnumProgressFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Progress[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -34748,6 +34811,10 @@ export namespace Prisma {
     targetLevel?: StringFilter<"SurveyVisit"> | string
     status?: EnumProgressFilter<"SurveyVisit"> | $Enums.Progress
     createdAt?: DateTimeFilter<"SurveyVisit"> | Date | string
+    allowFileUploads?: BoolFilter<"SurveyVisit"> | boolean
+    allowEdits?: BoolFilter<"SurveyVisit"> | boolean
+    openForSelfSurvey?: BoolFilter<"SurveyVisit"> | boolean
+    openForActualSurvey?: BoolFilter<"SurveyVisit"> | boolean
     accreditation?: XOR<AccreditationScalarRelationFilter, AccreditationWhereInput>
     level?: XOR<LevelScalarRelationFilter, LevelWhereInput>
     phaseOneRequirements?: XOR<PhaseOneRequirementsNullableScalarRelationFilter, PhaseOneRequirementsWhereInput> | null
@@ -34763,6 +34830,10 @@ export namespace Prisma {
     targetLevel?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    allowFileUploads?: SortOrder
+    allowEdits?: SortOrder
+    openForSelfSurvey?: SortOrder
+    openForActualSurvey?: SortOrder
     accreditation?: AccreditationOrderByWithRelationInput
     level?: LevelOrderByWithRelationInput
     phaseOneRequirements?: PhaseOneRequirementsOrderByWithRelationInput
@@ -34781,6 +34852,10 @@ export namespace Prisma {
     targetLevel?: StringFilter<"SurveyVisit"> | string
     status?: EnumProgressFilter<"SurveyVisit"> | $Enums.Progress
     createdAt?: DateTimeFilter<"SurveyVisit"> | Date | string
+    allowFileUploads?: BoolFilter<"SurveyVisit"> | boolean
+    allowEdits?: BoolFilter<"SurveyVisit"> | boolean
+    openForSelfSurvey?: BoolFilter<"SurveyVisit"> | boolean
+    openForActualSurvey?: BoolFilter<"SurveyVisit"> | boolean
     accreditation?: XOR<AccreditationScalarRelationFilter, AccreditationWhereInput>
     level?: XOR<LevelScalarRelationFilter, LevelWhereInput>
     phaseOneRequirements?: XOR<PhaseOneRequirementsNullableScalarRelationFilter, PhaseOneRequirementsWhereInput> | null
@@ -34796,6 +34871,10 @@ export namespace Prisma {
     targetLevel?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    allowFileUploads?: SortOrder
+    allowEdits?: SortOrder
+    openForSelfSurvey?: SortOrder
+    openForActualSurvey?: SortOrder
     _count?: SurveyVisitCountOrderByAggregateInput
     _max?: SurveyVisitMaxOrderByAggregateInput
     _min?: SurveyVisitMinOrderByAggregateInput
@@ -34812,6 +34891,10 @@ export namespace Prisma {
     targetLevel?: StringWithAggregatesFilter<"SurveyVisit"> | string
     status?: EnumProgressWithAggregatesFilter<"SurveyVisit"> | $Enums.Progress
     createdAt?: DateTimeWithAggregatesFilter<"SurveyVisit"> | Date | string
+    allowFileUploads?: BoolWithAggregatesFilter<"SurveyVisit"> | boolean
+    allowEdits?: BoolWithAggregatesFilter<"SurveyVisit"> | boolean
+    openForSelfSurvey?: BoolWithAggregatesFilter<"SurveyVisit"> | boolean
+    openForActualSurvey?: BoolWithAggregatesFilter<"SurveyVisit"> | boolean
   }
 
   export type SurveyTeamWhereInput = {
@@ -36436,6 +36519,10 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
@@ -36451,6 +36538,10 @@ export namespace Prisma {
     targetLevel: string
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
@@ -36462,6 +36553,10 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
@@ -36477,6 +36572,10 @@ export namespace Prisma {
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
@@ -36490,6 +36589,10 @@ export namespace Prisma {
     targetLevel: string
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
   }
 
   export type SurveyVisitUpdateManyMutationInput = {
@@ -36498,6 +36601,10 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SurveyVisitUncheckedUpdateManyInput = {
@@ -36508,6 +36615,10 @@ export namespace Prisma {
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SurveyTeamCreateInput = {
@@ -38181,6 +38292,11 @@ export namespace Prisma {
     not?: NestedEnumProgressFilter<$PrismaModel> | $Enums.Progress
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type AccreditationScalarRelationFilter = {
     is?: AccreditationWhereInput
     isNot?: AccreditationWhereInput
@@ -38209,6 +38325,10 @@ export namespace Prisma {
     targetLevel?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    allowFileUploads?: SortOrder
+    allowEdits?: SortOrder
+    openForSelfSurvey?: SortOrder
+    openForActualSurvey?: SortOrder
   }
 
   export type SurveyVisitMaxOrderByAggregateInput = {
@@ -38219,6 +38339,10 @@ export namespace Prisma {
     targetLevel?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    allowFileUploads?: SortOrder
+    allowEdits?: SortOrder
+    openForSelfSurvey?: SortOrder
+    openForActualSurvey?: SortOrder
   }
 
   export type SurveyVisitMinOrderByAggregateInput = {
@@ -38229,6 +38353,10 @@ export namespace Prisma {
     targetLevel?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    allowFileUploads?: SortOrder
+    allowEdits?: SortOrder
+    openForSelfSurvey?: SortOrder
+    openForActualSurvey?: SortOrder
   }
 
   export type EnumSurveyVisitTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -38249,6 +38377,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumProgressFilter<$PrismaModel>
     _max?: NestedEnumProgressFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type EnumSurveyTeamTypeFilter<$PrismaModel = never> = {
@@ -39968,6 +40104,10 @@ export namespace Prisma {
     set?: $Enums.Progress
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput = {
     create?: XOR<AccreditationCreateWithoutSurveyVisitsInput, AccreditationUncheckedCreateWithoutSurveyVisitsInput>
     connectOrCreate?: AccreditationCreateOrConnectWithoutSurveyVisitsInput
@@ -41517,6 +41657,11 @@ export namespace Prisma {
     not?: NestedEnumProgressFilter<$PrismaModel> | $Enums.Progress
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedEnumSurveyVisitTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.SurveyVisitType | EnumSurveyVisitTypeFieldRefInput<$PrismaModel>
     in?: $Enums.SurveyVisitType[] | ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel>
@@ -41535,6 +41680,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumProgressFilter<$PrismaModel>
     _max?: NestedEnumProgressFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedEnumSurveyTeamTypeFilter<$PrismaModel = never> = {
@@ -43081,6 +43234,10 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
@@ -43094,6 +43251,10 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
@@ -43164,6 +43325,10 @@ export namespace Prisma {
     targetLevel?: StringFilter<"SurveyVisit"> | string
     status?: EnumProgressFilter<"SurveyVisit"> | $Enums.Progress
     createdAt?: DateTimeFilter<"SurveyVisit"> | Date | string
+    allowFileUploads?: BoolFilter<"SurveyVisit"> | boolean
+    allowEdits?: BoolFilter<"SurveyVisit"> | boolean
+    openForSelfSurvey?: BoolFilter<"SurveyVisit"> | boolean
+    openForActualSurvey?: BoolFilter<"SurveyVisit"> | boolean
   }
 
   export type ProgramCreateWithoutAccreditationInput = {
@@ -43228,6 +43393,10 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
@@ -43241,6 +43410,10 @@ export namespace Prisma {
     targetLevel: string
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
@@ -43578,6 +43751,10 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
@@ -43592,6 +43769,10 @@ export namespace Prisma {
     targetLevel: string
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
   }
@@ -43683,6 +43864,10 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
@@ -43697,6 +43882,10 @@ export namespace Prisma {
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
   }
@@ -43964,6 +44153,10 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
@@ -43978,6 +44171,10 @@ export namespace Prisma {
     targetLevel: string
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
@@ -44044,6 +44241,10 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
@@ -44058,6 +44259,10 @@ export namespace Prisma {
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
@@ -45128,6 +45333,10 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
@@ -45142,6 +45351,10 @@ export namespace Prisma {
     targetLevel: string
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
@@ -45208,6 +45421,10 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
@@ -45222,6 +45439,10 @@ export namespace Prisma {
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
@@ -46690,6 +46911,10 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
   }
 
   export type AccreditationUpdateWithoutLevelInput = {
@@ -46724,6 +46949,10 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
@@ -46737,6 +46966,10 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
@@ -46749,6 +46982,10 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SurveyVisitCreateManyAccreditationInput = {
@@ -46758,6 +46995,10 @@ export namespace Prisma {
     targetLevel: string
     status: $Enums.Progress
     createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    openForActualSurvey?: boolean
   }
 
   export type SurveyVisitUpdateWithoutAccreditationInput = {
@@ -46766,6 +47007,10 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
@@ -46779,6 +47024,10 @@ export namespace Prisma {
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
@@ -46791,6 +47040,10 @@ export namespace Prisma {
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SurveyTeamCreateManySurveyVisitInput = {

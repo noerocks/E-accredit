@@ -19,3 +19,36 @@ export async function markAsComplete(surveyVisitId: string) {
     return { failure: { error: e.message } };
   }
 }
+
+export async function toggleFileUpload(
+  surveyVisitId: string,
+  allowFileUploads: boolean
+) {
+  try {
+    const surveyVisit = await updateSurveyVisitById({
+      id: surveyVisitId,
+      allowFileUploads: !allowFileUploads,
+    });
+    revalidateTag("parameterFolder");
+    revalidateTag("areaFolder");
+    revalidateTag("surveyVisitStructure");
+  } catch (error) {
+    const e = error as Error;
+    return { failure: { error: e.message } };
+  }
+}
+
+export async function toggleEdit(surveyVisitId: string, allowEdits: boolean) {
+  try {
+    const surveyVisit = await updateSurveyVisitById({
+      id: surveyVisitId,
+      allowEdits: !allowEdits,
+    });
+    revalidateTag("parameterFolder");
+    revalidateTag("areaFolder");
+    revalidateTag("surveyVisitStructure");
+  } catch (error) {
+    const e = error as Error;
+    return { failure: { error: e.message } };
+  }
+}

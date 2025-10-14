@@ -225,6 +225,10 @@ model SurveyVisit {
   status               Progress
   createdAt            DateTime              @default(now())
   surveyTeam           SurveyTeam[]
+  allowFileUploads     Boolean               @default(true)
+  allowEdits           Boolean               @default(true)
+  openForSelfSurvey    Boolean               @default(false)
+  openForActualSurvey  Boolean               @default(false)
 }
 
 model SurveyTeam {

@@ -38,7 +38,7 @@ import { getProgramCurrentAccredidtationStatus } from "@/lib/action/program";
 import { InstrumentDisplayDTO } from "@/lib/dto/instrument";
 import { LevelDTO } from "@/lib/dto/level";
 import { ProgramDTO } from "@/lib/dto/programs";
-import { cn, formatLevelName } from "@/lib/utils";
+import { cn, formatLevelNameAndPhase } from "@/lib/utils";
 import { CreateAccreditationFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon, Plus } from "lucide-react";
@@ -166,7 +166,7 @@ const CreateAccreditationDialog = ({
                             key={level.id}
                             disabled={level.rank !== selectedProgramRank - 1}
                           >
-                            {formatLevelName(level)}
+                            {formatLevelNameAndPhase(level)}
                           </SelectItem>
                         ))}
                     </SelectContent>

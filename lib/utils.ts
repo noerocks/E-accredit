@@ -13,7 +13,7 @@ export function screamingSnakeToTitle(text: string) {
     .join(" ");
 }
 
-export function formatLevelName(level: LevelDTO) {
+export function formatLevelNameAndPhase(level: LevelDTO) {
   const label = level.label;
   if (level.label === "PRELIMINARY_SURVEY_VISIT") {
     return screamingSnakeToTitle(label);
@@ -27,10 +27,19 @@ export function formatLevelName(level: LevelDTO) {
     )
     .join(" ");
   return level.rank <= 4
-    ? `${name} - ${screamingSnakeToTitle(level.phase)}`
+    ? `${name} ${screamingSnakeToTitle(level.phase)}`
     : name;
 }
 
 export function formatAccreditationName(programCode: string, level: LevelDTO) {
-  return `${programCode} - ${formatLevelName(level)}`;
+  return `${programCode} - ${formatLevelNameAndPhase(level)}`;
+}
+
+export async function formatLevelName(level: LevelDTO) {
+  return level.label
+    .split("_")
+    .map((word, i) =>
+      i === 0 ? word[0].toUpperCase() + word.slice(1).toLowerCase() : word
+    )
+    .join(" ");
 }

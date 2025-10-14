@@ -101,7 +101,7 @@ const DashboardSidebar = async () => {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href={"/admin/instruments"}>
+                <Link href={"/admin/self-survey"}>
                   <SearchCheck />
                   <span>Self Survey</span>
                 </Link>
