@@ -21,7 +21,7 @@ const PDFViewer = ({ fileUrl }: { fileUrl: string }) => {
   }, [theme]);
   return (
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-      <div className="h-full p-2">
+      <div className="h-full p-3">
         <Viewer
           fileUrl={fileUrl}
           plugins={[defaultLayoutPluginInstance]}
