@@ -1,3 +1,4 @@
+import AccreditorSidebar from "@/components/admin/self-survey/accreditor-sidebar";
 import PDFViewer from "@/components/pdf-viewer";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getAreaFileById } from "@/lib/dal/area-file";
@@ -13,11 +14,12 @@ const AreaFilePage = async ({
     (file) => file.status === "ACTIVE"
   );
   return (
-    <ScrollArea className="h-full">
-      <div>
+    <div className="h-full flex">
+      <ScrollArea className="h-full flex-1">
         <PDFViewer fileUrl={activeFile?.objectUrl!} />
-      </div>
-    </ScrollArea>
+      </ScrollArea>
+      <AccreditorSidebar />
+    </div>
   );
 };
 

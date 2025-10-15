@@ -1,30 +1,33 @@
 "use client";
-
-import { Viewer, Worker } from "@react-pdf-viewer/core";
-import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
-
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
-import { useTheme } from "next-themes";
+import { Viewer, Worker } from "@react-pdf-viewer/core";
+import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import { useSidebar } from "@/components/ui/sidebar";
-import { useEffect } from "react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const PDFViewer = ({ fileUrl }: { fileUrl: string }) => {
-  const { theme, setTheme } = useTheme();
+  const [pdfTheme, setPdfTheme] = useState<string>();
   const { setOpen } = useSidebar();
+  const { theme } = useTheme();
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
-  useEffect(() => {
+  const onDocumentLoad = () => {
     setOpen(false);
-    setTheme("white");
-  }, []);
+    setPdfTheme(theme);
+  };
+  useEffect(() => {
+    setPdfTheme(theme);
+  }, [theme]);
   return (
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-      <div className="h-full">
+      <div className="h-full p-2">
         <Viewer
           fileUrl={fileUrl}
           plugins={[defaultLayoutPluginInstance]}
-          theme={theme}
           defaultScale={1.3}
+          onDocumentLoad={onDocumentLoad}
+          theme={pdfTheme}
         />
       </div>
     </Worker>
