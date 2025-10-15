@@ -35,8 +35,9 @@ import { Clock } from "lucide-react";
 import { toast } from "sonner";
 import { changeActiveVersion } from "@/lib/action/file-version";
 import { deleteVersionById } from "@/lib/action/file-version";
-import { useParams } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { getSurveyVisitById } from "@/lib/dal/survey-visit";
+import { useRouter } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -81,6 +82,16 @@ export function DataTable<TData, TValue>({
     },
   });
   const { id: surveyVisitId } = useParams();
+  const pathName = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const base =
+    "/" +
+    pathName
+      .split("/")
+      .filter((segment) => segment)
+      .slice(0, 3)
+      .join("/");
   const [open, setOpen] = React.useState<boolean>(false);
   const [selectedUser, setSelectedUser] = React.useState<UsersDTO>();
   const onClick = async (e: React.MouseEvent<HTMLDivElement>) => {
@@ -93,6 +104,13 @@ export function DataTable<TData, TValue>({
         if (!url) break;
         toast.success("Copied to clipboard");
         navigator.clipboard.writeText(url);
+        break;
+      }
+      case "view": {
+        if (!id) break;
+        const prevURL = `${pathName}?${searchParams.toString()}`;
+        localStorage.setItem("prev", prevURL);
+        router.replace(`${base}/file-version/${id}?${searchParams.toString()}`);
         break;
       }
       case "setAsActive": {

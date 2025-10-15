@@ -5,6 +5,7 @@ import {
   Archive,
   CheckCircle2,
   Copy,
+  Eye,
   File,
   MoreHorizontal,
   Trash,
@@ -151,6 +152,10 @@ export const columns: ColumnDef<FileVersion>[] = [
             >
               <Copy />
               Copy URL
+            </DropdownMenuItem>
+            <DropdownMenuItem data-action="view" data-id={version.id}>
+              <Eye />
+              View
             </DropdownMenuItem>
             <DropdownMenuItem
               data-action="setAsActive"

@@ -134,3 +134,14 @@ export async function deleteVersionById(id: string) {
   });
   return evidenceVersion;
 }
+
+export async function getFileVersionById(id: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const fileVersion = await prisma.fileVersion.findUnique({
+    where: {
+      id,
+    },
+  });
+  return fileVersion;
+}

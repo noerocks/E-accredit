@@ -6,14 +6,19 @@ import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import { useSidebar } from "@/components/ui/sidebar";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const PDFViewer = ({ fileUrl }: { fileUrl: string }) => {
+  const pathName = usePathname();
+  const segments = pathName.split("/").filter((segment) => segment);
   const [pdfTheme, setPdfTheme] = useState<string>();
   const { setOpen } = useSidebar();
   const { theme } = useTheme();
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
   const onDocumentLoad = () => {
-    setOpen(false);
+    if (segments[1] === "self-survey" && segments[3] === "evidence")
+      setOpen(false);
+    else setOpen(true);
     setPdfTheme(theme);
   };
   useEffect(() => {

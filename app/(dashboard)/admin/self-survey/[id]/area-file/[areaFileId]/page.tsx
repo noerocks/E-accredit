@@ -18,7 +18,6 @@ const AreaFilePage = async ({
       <ScrollArea className="h-full flex-1">
         <PDFViewer fileUrl={activeFile?.objectUrl!} />
       </ScrollArea>
-      <AccreditorSidebar />
     </div>
   );
 };
