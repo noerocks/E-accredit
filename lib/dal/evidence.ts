@@ -26,6 +26,11 @@ export const getEvidenceFileById = unstable_cache(
       },
       include: {
         indicator: true,
+        comments: {
+          include: {
+            author: true,
+          },
+        },
         fileVersions: {
           include: {
             evidenceFile: true,

@@ -28,6 +28,7 @@ export async function createNewComment({
       areaFileId,
     });
     revalidateTag("comments");
+    revalidateTag("evidenceFiles");
     return { success: { message: "Comment created successfuly" } };
   } catch (error) {
     const e = error as Error;
