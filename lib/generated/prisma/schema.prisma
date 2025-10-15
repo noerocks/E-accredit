@@ -105,6 +105,7 @@ model User {
   comments         Comment[]
   teamLead         SurveyTeam[]
   areaChair        AreaChair[]
+  ratings          Rating[]
 }
 
 model Program {
@@ -309,6 +310,21 @@ model EvidenceFile {
   updatedAt         DateTime        @updatedAt
   fileVersions      FileVersion[]
   comments          Comment[]
+  ratings           Rating[]
+}
+
+model Rating {
+  id             String         @id @default(uuid())
+  evidenceFile   EvidenceFile   @relation(fields: [evidenceFileId], references: [id], onDelete: Cascade)
+  evidenceFileId String
+  type           SurveyTeamType
+  accreditor     User           @relation(fields: [accreditorId], references: [id], onDelete: Cascade)
+  accreditorId   String
+  adequacy       Int?
+  effectiveness  Int?
+  finalRate      Decimal?       @db.Decimal(10, 2)
+  NA             Boolean?
+  createdAt      DateTime       @default(now())
 }
 
 model FileVersion {

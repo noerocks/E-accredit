@@ -3,10 +3,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { CircleSlash, Puzzle, RotateCcw, Zap } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { fa } from "zod/v4/locales";
-const Rating = () => {
+import { giveRating } from "@/lib/action/rating";
+import { SessionPayload } from "@/lib/definitions";
+import { RatingDTO } from "@/lib/dto/survey-visit";
+import { SurveyTeamType } from "@/lib/generated/prisma";
+import { CircleSlash, Loader, Puzzle, RotateCcw, Zap } from "lucide-react";
+import { useParams } from "next/navigation";
+import { useEffect, useRef, useState, useTransition } from "react";
+import { toast } from "sonner";
+const Rating = ({
+  user,
+  rating,
+}: {
+  user: SessionPayload;
+  rating: RatingDTO | null;
+}) => {
   const adequacyList = [
     { numeric: 5, descriptive: "Very adequate" },
     { numeric: 4, descriptive: "More than adequate" },
@@ -23,9 +34,16 @@ const Rating = () => {
     { numeric: 1, descriptive: "Functioning poorly" },
     { numeric: 0, descriptive: "Not functioning" },
   ];
-  const [adequacy, setAdequacy] = useState<string>("");
-  const [effectiveness, setEffectivesness] = useState<string>("");
-  const [NA, setNA] = useState<boolean>(false);
+  const { evidenceId } = useParams();
+  const [adequacy, setAdequacy] = useState<string>(
+    rating && rating.adequacy ? rating.adequacy?.toString() : ""
+  );
+  const [effectiveness, setEffectivesness] = useState<string>(
+    rating && rating.effectiveness ? rating.effectiveness?.toString() : ""
+  );
+  const [NA, setNA] = useState<boolean>(
+    rating && rating.NA ? rating.NA : false
+  );
   let rate;
   let message = "";
   if (adequacy && effectiveness) {
@@ -60,6 +78,73 @@ const Rating = () => {
       reset();
     }
     setNA(checked);
+  };
+  const [pending, startTransition] = useTransition();
+  const submit = async () => {
+    if (!adequacy && !effectiveness && !NA) {
+      toast.error("Please choose your rating");
+      return;
+    }
+    if (NA) {
+      startTransition(async () => {
+        const result = await giveRating({
+          evidenceFileId: String(evidenceId),
+          type: SurveyTeamType.INTERNAL,
+          accreditorId: user.id,
+          NA,
+        });
+        if (result?.failure) toast.error(result.failure.error);
+        if (result.success) toast.success(result.success.message);
+        return;
+      });
+    }
+    const code = message.split(" ")[0];
+    const parsedAdequacy = Number(adequacy);
+    const parsedEffectiveness = Number(effectiveness);
+    switch (code) {
+      case "AE": {
+        startTransition(async () => {
+          const finalRate = (parsedAdequacy + parsedEffectiveness) / 2;
+          const result = await giveRating({
+            evidenceFileId: String(evidenceId),
+            type: SurveyTeamType.INTERNAL,
+            accreditorId: user.id,
+            adequacy: parsedAdequacy,
+            effectiveness: parsedEffectiveness,
+            finalRate,
+          });
+          if (result?.failure) toast.error(result.failure.error);
+          if (result.success) toast.success(result.success.message);
+        });
+        break;
+      }
+      case "A": {
+        startTransition(async () => {
+          const result = await giveRating({
+            evidenceFileId: String(evidenceId),
+            type: SurveyTeamType.INTERNAL,
+            accreditorId: user.id,
+            adequacy: parsedAdequacy,
+          });
+          if (result?.failure) toast.error(result.failure.error);
+          if (result.success) toast.success(result.success.message);
+        });
+        break;
+      }
+      case "E": {
+        startTransition(async () => {
+          const result = await giveRating({
+            evidenceFileId: String(evidenceId),
+            type: SurveyTeamType.INTERNAL,
+            accreditorId: user.id,
+            effectiveness: parsedEffectiveness,
+          });
+          if (result?.failure) toast.error(result.failure.error);
+          if (result.success) toast.success(result.success.message);
+        });
+        break;
+      }
+    }
   };
   return (
     <ScrollArea className="h-full pr-3 pl-2">
@@ -148,7 +233,16 @@ const Rating = () => {
             )}
           </CardContent>
         </Card>
-        <Button>Submit Rating</Button>
+        <Button onClick={submit}>
+          {pending ? (
+            <>
+              <Loader className="animate-spin" />
+              Submitting Rating...
+            </>
+          ) : (
+            "Submit Rating"
+          )}
+        </Button>
       </div>
       <div ref={bottomRef} />
     </ScrollArea>

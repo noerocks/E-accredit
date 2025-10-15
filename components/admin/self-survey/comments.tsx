@@ -1,13 +1,19 @@
+"use client";
+
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { createNewComment } from "@/lib/action/comment";
 import { SessionPayload } from "@/lib/definitions";
 import { CommentDTO } from "@/lib/dto/comment";
+import { CommentType } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import { formatDistanceToNow } from "date-fns";
-import { MessageSquareX, Send } from "lucide-react";
-import { useRef } from "react";
+import { Loader, MessageSquareX, Send } from "lucide-react";
+import { useParams } from "next/navigation";
+import { useRef, useState, useTransition } from "react";
+import { toast } from "sonner";
 
 const Comments = ({
   comments,
@@ -16,7 +22,26 @@ const Comments = ({
   comments: CommentDTO[];
   user: SessionPayload;
 }) => {
+  const params = useParams();
+  const [message, setMessage] = useState<string>("");
   const bottomRef = useRef<HTMLDivElement | null>(null);
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setMessage(value);
+  };
+  const [pending, startTransition] = useTransition();
+  const send = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    startTransition(async () => {
+      const result = await createNewComment({
+        authorId: user.id,
+        content: message,
+        type: CommentType.SELF_SURVEY,
+        evidenceFileId: String(params.evidenceId),
+      });
+      if (result.failure) toast.error(result.failure.error);
+    });
+    setMessage("");
+  };
   return (
     <div className="h-full flex flex-col">
       <ScrollArea className="flex-1 min-h-0 pt-5">
@@ -74,9 +99,9 @@ const Comments = ({
         )}
       </ScrollArea>
       <div className="flex items-center gap-2 p-2">
-        <Input />
-        <Button size="icon">
-          <Send />
+        <Input value={message} onChange={onChange} />
+        <Button size="icon" onClick={send}>
+          {pending ? <Loader className="animate-spin" /> : <Send />}
         </Button>
       </div>
     </div>

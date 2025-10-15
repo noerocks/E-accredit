@@ -3,8 +3,10 @@ import {
   AreaChair,
   Level,
   Program,
+  Rating,
   SurveyTeam,
   SurveyVisit,
+  User,
 } from "../generated/prisma";
 
 export type SurveyVisitDTO = SurveyVisit & { surveyTeam: SurveyTeamDTO[] };
@@ -16,4 +18,12 @@ export type SurveyVisitDisplayDTO = SurveyVisit & {
     program: Program;
   };
   level: Level;
+};
+
+export type SafeRating = Omit<Rating, "finalRate"> & {
+  finalRate: number | null;
+};
+
+export type RatingDTO = SafeRating & {
+  accreditor: User;
 };

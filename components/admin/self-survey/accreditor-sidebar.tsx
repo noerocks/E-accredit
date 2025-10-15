@@ -15,13 +15,16 @@ import Rating from "./rating";
 import { CommentDTO } from "@/lib/dto/comment";
 import Comments from "./comments";
 import { SessionPayload } from "@/lib/definitions";
+import { RatingDTO } from "@/lib/dto/survey-visit";
 
 const AccreditorSidebar = ({
   comments,
   user,
+  rating,
 }: {
   comments: CommentDTO[];
   user: SessionPayload;
+  rating: RatingDTO | null;
 }) => {
   console.log(comments);
   const [tab, setTab] = useState<string>("rating");
@@ -58,7 +61,7 @@ const AccreditorSidebar = ({
               value="rating"
               className="flex-1 min-h-0 overflow-hidden"
             >
-              <Rating />
+              <Rating user={user} rating={rating} />
             </TabsContent>
             <TabsContent
               value="comments"

@@ -38,7 +38,7 @@ const Comments = ({
   const [message, setMessage] = useState<string>("");
   const [pending, startTransition] = useTransition();
   const bottomRef = useRef<HTMLDivElement | null>(null);
-  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const send = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (message.length === 0) return;
     setMessage("");
     startTransition(async () => {
@@ -141,7 +141,7 @@ const Comments = ({
               value={message}
               onChange={onChange}
             />
-            <Button onClick={onClick}>
+            <Button onClick={send}>
               {pending ? <Loader className="animate-spin" /> : <Send />}
             </Button>
           </div>

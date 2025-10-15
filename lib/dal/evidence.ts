@@ -33,7 +33,15 @@ export const getEvidenceFileById = unstable_cache(
         },
         fileVersions: {
           include: {
-            evidenceFile: true,
+            evidenceFile: {
+              include: {
+                ratings: {
+                  include: {
+                    accreditor: true,
+                  },
+                },
+              },
+            },
           },
           orderBy: {
             uploadedAt: "desc",

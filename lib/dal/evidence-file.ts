@@ -1,4 +1,4 @@
-import { EvidenceFile } from "../generated/prisma";
+import { EvidenceFile, SurveyTeamType } from "../generated/prisma";
 import { prisma } from "../prisma";
 import { verifySession } from "../action/session";
 

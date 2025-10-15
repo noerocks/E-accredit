@@ -104,6 +104,11 @@ export type IndicatorFolder = $Result.DefaultSelection<Prisma.$IndicatorFolderPa
  */
 export type EvidenceFile = $Result.DefaultSelection<Prisma.$EvidenceFilePayload>
 /**
+ * Model Rating
+ * 
+ */
+export type Rating = $Result.DefaultSelection<Prisma.$RatingPayload>
+/**
  * Model FileVersion
  * 
  */
@@ -603,6 +608,16 @@ export class PrismaClient<
     * ```
     */
   get evidenceFile(): Prisma.EvidenceFileDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.rating`: Exposes CRUD operations for the **Rating** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Ratings
+    * const ratings = await prisma.rating.findMany()
+    * ```
+    */
+  get rating(): Prisma.RatingDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.fileVersion`: Exposes CRUD operations for the **FileVersion** model.
@@ -1141,6 +1156,7 @@ export namespace Prisma {
     ParameterFolder: 'ParameterFolder',
     IndicatorFolder: 'IndicatorFolder',
     EvidenceFile: 'EvidenceFile',
+    Rating: 'Rating',
     FileVersion: 'FileVersion',
     PhaseTwoRequirements: 'PhaseTwoRequirements',
     PhaseTwoFolder: 'PhaseTwoFolder',
@@ -1167,7 +1183,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level" | "accreditation" | "surveyVisit" | "surveyTeam" | "areaChair" | "phaseOneRequirements" | "instrumentFolder" | "areaFolder" | "parameterFolder" | "indicatorFolder" | "evidenceFile" | "fileVersion" | "phaseTwoRequirements" | "phaseTwoFolder" | "phaseTwoAreaFolder" | "areaFile" | "taskForce" | "taskForceMember" | "comment"
+      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level" | "accreditation" | "surveyVisit" | "surveyTeam" | "areaChair" | "phaseOneRequirements" | "instrumentFolder" | "areaFolder" | "parameterFolder" | "indicatorFolder" | "evidenceFile" | "rating" | "fileVersion" | "phaseTwoRequirements" | "phaseTwoFolder" | "phaseTwoAreaFolder" | "areaFile" | "taskForce" | "taskForceMember" | "comment"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2503,6 +2519,80 @@ export namespace Prisma {
           }
         }
       }
+      Rating: {
+        payload: Prisma.$RatingPayload<ExtArgs>
+        fields: Prisma.RatingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RatingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RatingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RatingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RatingPayload>
+          }
+          findFirst: {
+            args: Prisma.RatingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RatingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RatingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RatingPayload>
+          }
+          findMany: {
+            args: Prisma.RatingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RatingPayload>[]
+          }
+          create: {
+            args: Prisma.RatingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RatingPayload>
+          }
+          createMany: {
+            args: Prisma.RatingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RatingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RatingPayload>[]
+          }
+          delete: {
+            args: Prisma.RatingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RatingPayload>
+          }
+          update: {
+            args: Prisma.RatingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RatingPayload>
+          }
+          deleteMany: {
+            args: Prisma.RatingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RatingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RatingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RatingPayload>[]
+          }
+          upsert: {
+            args: Prisma.RatingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RatingPayload>
+          }
+          aggregate: {
+            args: Prisma.RatingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRating>
+          }
+          groupBy: {
+            args: Prisma.RatingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RatingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RatingCountArgs<ExtArgs>
+            result: $Utils.Optional<RatingCountAggregateOutputType> | number
+          }
+        }
+      }
       FileVersion: {
         payload: Prisma.$FileVersionPayload<ExtArgs>
         fields: Prisma.FileVersionFieldRefs
@@ -3205,6 +3295,7 @@ export namespace Prisma {
     parameterFolder?: ParameterFolderOmit
     indicatorFolder?: IndicatorFolderOmit
     evidenceFile?: EvidenceFileOmit
+    rating?: RatingOmit
     fileVersion?: FileVersionOmit
     phaseTwoRequirements?: PhaseTwoRequirementsOmit
     phaseTwoFolder?: PhaseTwoFolderOmit
@@ -3299,6 +3390,7 @@ export namespace Prisma {
     comments: number
     teamLead: number
     areaChair: number
+    ratings: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3308,6 +3400,7 @@ export namespace Prisma {
     comments?: boolean | UserCountOutputTypeCountCommentsArgs
     teamLead?: boolean | UserCountOutputTypeCountTeamLeadArgs
     areaChair?: boolean | UserCountOutputTypeCountAreaChairArgs
+    ratings?: boolean | UserCountOutputTypeCountRatingsArgs
   }
 
   // Custom InputTypes
@@ -3361,6 +3454,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountAreaChairArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AreaChairWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountRatingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RatingWhereInput
   }
 
 
@@ -3886,11 +3986,13 @@ export namespace Prisma {
   export type EvidenceFileCountOutputType = {
     fileVersions: number
     comments: number
+    ratings: number
   }
 
   export type EvidenceFileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     fileVersions?: boolean | EvidenceFileCountOutputTypeCountFileVersionsArgs
     comments?: boolean | EvidenceFileCountOutputTypeCountCommentsArgs
+    ratings?: boolean | EvidenceFileCountOutputTypeCountRatingsArgs
   }
 
   // Custom InputTypes
@@ -3916,6 +4018,13 @@ export namespace Prisma {
    */
   export type EvidenceFileCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CommentWhereInput
+  }
+
+  /**
+   * EvidenceFileCountOutputType without action
+   */
+  export type EvidenceFileCountOutputTypeCountRatingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RatingWhereInput
   }
 
 
@@ -4274,6 +4383,7 @@ export namespace Prisma {
     comments?: boolean | User$commentsArgs<ExtArgs>
     teamLead?: boolean | User$teamLeadArgs<ExtArgs>
     areaChair?: boolean | User$areaChairArgs<ExtArgs>
+    ratings?: boolean | User$ratingsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -4327,6 +4437,7 @@ export namespace Prisma {
     comments?: boolean | User$commentsArgs<ExtArgs>
     teamLead?: boolean | User$teamLeadArgs<ExtArgs>
     areaChair?: boolean | User$areaChairArgs<ExtArgs>
+    ratings?: boolean | User$ratingsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -4341,6 +4452,7 @@ export namespace Prisma {
       comments: Prisma.$CommentPayload<ExtArgs>[]
       teamLead: Prisma.$SurveyTeamPayload<ExtArgs>[]
       areaChair: Prisma.$AreaChairPayload<ExtArgs>[]
+      ratings: Prisma.$RatingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4754,6 +4866,7 @@ export namespace Prisma {
     comments<T extends User$commentsArgs<ExtArgs> = {}>(args?: Subset<T, User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     teamLead<T extends User$teamLeadArgs<ExtArgs> = {}>(args?: Subset<T, User$teamLeadArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     areaChair<T extends User$areaChairArgs<ExtArgs> = {}>(args?: Subset<T, User$areaChairArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ratings<T extends User$ratingsArgs<ExtArgs> = {}>(args?: Subset<T, User$ratingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5323,6 +5436,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AreaChairScalarFieldEnum | AreaChairScalarFieldEnum[]
+  }
+
+  /**
+   * User.ratings
+   */
+  export type User$ratingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rating
+     */
+    select?: RatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rating
+     */
+    omit?: RatingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RatingInclude<ExtArgs> | null
+    where?: RatingWhereInput
+    orderBy?: RatingOrderByWithRelationInput | RatingOrderByWithRelationInput[]
+    cursor?: RatingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RatingScalarFieldEnum | RatingScalarFieldEnum[]
   }
 
   /**
@@ -23706,6 +23843,7 @@ export namespace Prisma {
     indicator?: boolean | IndicatorDefaultArgs<ExtArgs>
     fileVersions?: boolean | EvidenceFile$fileVersionsArgs<ExtArgs>
     comments?: boolean | EvidenceFile$commentsArgs<ExtArgs>
+    ratings?: boolean | EvidenceFile$ratingsArgs<ExtArgs>
     _count?: boolean | EvidenceFileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["evidenceFile"]>
 
@@ -23746,6 +23884,7 @@ export namespace Prisma {
     indicator?: boolean | IndicatorDefaultArgs<ExtArgs>
     fileVersions?: boolean | EvidenceFile$fileVersionsArgs<ExtArgs>
     comments?: boolean | EvidenceFile$commentsArgs<ExtArgs>
+    ratings?: boolean | EvidenceFile$ratingsArgs<ExtArgs>
     _count?: boolean | EvidenceFileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EvidenceFileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -23764,6 +23903,7 @@ export namespace Prisma {
       indicator: Prisma.$IndicatorPayload<ExtArgs>
       fileVersions: Prisma.$FileVersionPayload<ExtArgs>[]
       comments: Prisma.$CommentPayload<ExtArgs>[]
+      ratings: Prisma.$RatingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -24170,6 +24310,7 @@ export namespace Prisma {
     indicator<T extends IndicatorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, IndicatorDefaultArgs<ExtArgs>>): Prisma__IndicatorClient<$Result.GetResult<Prisma.$IndicatorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     fileVersions<T extends EvidenceFile$fileVersionsArgs<ExtArgs> = {}>(args?: Subset<T, EvidenceFile$fileVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends EvidenceFile$commentsArgs<ExtArgs> = {}>(args?: Subset<T, EvidenceFile$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ratings<T extends EvidenceFile$ratingsArgs<ExtArgs> = {}>(args?: Subset<T, EvidenceFile$ratingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -24649,6 +24790,30 @@ export namespace Prisma {
   }
 
   /**
+   * EvidenceFile.ratings
+   */
+  export type EvidenceFile$ratingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rating
+     */
+    select?: RatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rating
+     */
+    omit?: RatingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RatingInclude<ExtArgs> | null
+    where?: RatingWhereInput
+    orderBy?: RatingOrderByWithRelationInput | RatingOrderByWithRelationInput[]
+    cursor?: RatingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RatingScalarFieldEnum | RatingScalarFieldEnum[]
+  }
+
+  /**
    * EvidenceFile without action
    */
   export type EvidenceFileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -24664,6 +24829,1166 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: EvidenceFileInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Rating
+   */
+
+  export type AggregateRating = {
+    _count: RatingCountAggregateOutputType | null
+    _avg: RatingAvgAggregateOutputType | null
+    _sum: RatingSumAggregateOutputType | null
+    _min: RatingMinAggregateOutputType | null
+    _max: RatingMaxAggregateOutputType | null
+  }
+
+  export type RatingAvgAggregateOutputType = {
+    adequacy: number | null
+    effectiveness: number | null
+    finalRate: Decimal | null
+  }
+
+  export type RatingSumAggregateOutputType = {
+    adequacy: number | null
+    effectiveness: number | null
+    finalRate: Decimal | null
+  }
+
+  export type RatingMinAggregateOutputType = {
+    id: string | null
+    evidenceFileId: string | null
+    type: $Enums.SurveyTeamType | null
+    accreditorId: string | null
+    adequacy: number | null
+    effectiveness: number | null
+    finalRate: Decimal | null
+    NA: boolean | null
+    createdAt: Date | null
+  }
+
+  export type RatingMaxAggregateOutputType = {
+    id: string | null
+    evidenceFileId: string | null
+    type: $Enums.SurveyTeamType | null
+    accreditorId: string | null
+    adequacy: number | null
+    effectiveness: number | null
+    finalRate: Decimal | null
+    NA: boolean | null
+    createdAt: Date | null
+  }
+
+  export type RatingCountAggregateOutputType = {
+    id: number
+    evidenceFileId: number
+    type: number
+    accreditorId: number
+    adequacy: number
+    effectiveness: number
+    finalRate: number
+    NA: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type RatingAvgAggregateInputType = {
+    adequacy?: true
+    effectiveness?: true
+    finalRate?: true
+  }
+
+  export type RatingSumAggregateInputType = {
+    adequacy?: true
+    effectiveness?: true
+    finalRate?: true
+  }
+
+  export type RatingMinAggregateInputType = {
+    id?: true
+    evidenceFileId?: true
+    type?: true
+    accreditorId?: true
+    adequacy?: true
+    effectiveness?: true
+    finalRate?: true
+    NA?: true
+    createdAt?: true
+  }
+
+  export type RatingMaxAggregateInputType = {
+    id?: true
+    evidenceFileId?: true
+    type?: true
+    accreditorId?: true
+    adequacy?: true
+    effectiveness?: true
+    finalRate?: true
+    NA?: true
+    createdAt?: true
+  }
+
+  export type RatingCountAggregateInputType = {
+    id?: true
+    evidenceFileId?: true
+    type?: true
+    accreditorId?: true
+    adequacy?: true
+    effectiveness?: true
+    finalRate?: true
+    NA?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type RatingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Rating to aggregate.
+     */
+    where?: RatingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Ratings to fetch.
+     */
+    orderBy?: RatingOrderByWithRelationInput | RatingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RatingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Ratings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Ratings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Ratings
+    **/
+    _count?: true | RatingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RatingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RatingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RatingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RatingMaxAggregateInputType
+  }
+
+  export type GetRatingAggregateType<T extends RatingAggregateArgs> = {
+        [P in keyof T & keyof AggregateRating]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRating[P]>
+      : GetScalarType<T[P], AggregateRating[P]>
+  }
+
+
+
+
+  export type RatingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RatingWhereInput
+    orderBy?: RatingOrderByWithAggregationInput | RatingOrderByWithAggregationInput[]
+    by: RatingScalarFieldEnum[] | RatingScalarFieldEnum
+    having?: RatingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RatingCountAggregateInputType | true
+    _avg?: RatingAvgAggregateInputType
+    _sum?: RatingSumAggregateInputType
+    _min?: RatingMinAggregateInputType
+    _max?: RatingMaxAggregateInputType
+  }
+
+  export type RatingGroupByOutputType = {
+    id: string
+    evidenceFileId: string
+    type: $Enums.SurveyTeamType
+    accreditorId: string
+    adequacy: number | null
+    effectiveness: number | null
+    finalRate: Decimal | null
+    NA: boolean | null
+    createdAt: Date
+    _count: RatingCountAggregateOutputType | null
+    _avg: RatingAvgAggregateOutputType | null
+    _sum: RatingSumAggregateOutputType | null
+    _min: RatingMinAggregateOutputType | null
+    _max: RatingMaxAggregateOutputType | null
+  }
+
+  type GetRatingGroupByPayload<T extends RatingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RatingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RatingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RatingGroupByOutputType[P]>
+            : GetScalarType<T[P], RatingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RatingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    evidenceFileId?: boolean
+    type?: boolean
+    accreditorId?: boolean
+    adequacy?: boolean
+    effectiveness?: boolean
+    finalRate?: boolean
+    NA?: boolean
+    createdAt?: boolean
+    evidenceFile?: boolean | EvidenceFileDefaultArgs<ExtArgs>
+    accreditor?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["rating"]>
+
+  export type RatingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    evidenceFileId?: boolean
+    type?: boolean
+    accreditorId?: boolean
+    adequacy?: boolean
+    effectiveness?: boolean
+    finalRate?: boolean
+    NA?: boolean
+    createdAt?: boolean
+    evidenceFile?: boolean | EvidenceFileDefaultArgs<ExtArgs>
+    accreditor?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["rating"]>
+
+  export type RatingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    evidenceFileId?: boolean
+    type?: boolean
+    accreditorId?: boolean
+    adequacy?: boolean
+    effectiveness?: boolean
+    finalRate?: boolean
+    NA?: boolean
+    createdAt?: boolean
+    evidenceFile?: boolean | EvidenceFileDefaultArgs<ExtArgs>
+    accreditor?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["rating"]>
+
+  export type RatingSelectScalar = {
+    id?: boolean
+    evidenceFileId?: boolean
+    type?: boolean
+    accreditorId?: boolean
+    adequacy?: boolean
+    effectiveness?: boolean
+    finalRate?: boolean
+    NA?: boolean
+    createdAt?: boolean
+  }
+
+  export type RatingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "evidenceFileId" | "type" | "accreditorId" | "adequacy" | "effectiveness" | "finalRate" | "NA" | "createdAt", ExtArgs["result"]["rating"]>
+  export type RatingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    evidenceFile?: boolean | EvidenceFileDefaultArgs<ExtArgs>
+    accreditor?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RatingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    evidenceFile?: boolean | EvidenceFileDefaultArgs<ExtArgs>
+    accreditor?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RatingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    evidenceFile?: boolean | EvidenceFileDefaultArgs<ExtArgs>
+    accreditor?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $RatingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Rating"
+    objects: {
+      evidenceFile: Prisma.$EvidenceFilePayload<ExtArgs>
+      accreditor: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      evidenceFileId: string
+      type: $Enums.SurveyTeamType
+      accreditorId: string
+      adequacy: number | null
+      effectiveness: number | null
+      finalRate: Prisma.Decimal | null
+      NA: boolean | null
+      createdAt: Date
+    }, ExtArgs["result"]["rating"]>
+    composites: {}
+  }
+
+  type RatingGetPayload<S extends boolean | null | undefined | RatingDefaultArgs> = $Result.GetResult<Prisma.$RatingPayload, S>
+
+  type RatingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RatingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RatingCountAggregateInputType | true
+    }
+
+  export interface RatingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Rating'], meta: { name: 'Rating' } }
+    /**
+     * Find zero or one Rating that matches the filter.
+     * @param {RatingFindUniqueArgs} args - Arguments to find a Rating
+     * @example
+     * // Get one Rating
+     * const rating = await prisma.rating.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RatingFindUniqueArgs>(args: SelectSubset<T, RatingFindUniqueArgs<ExtArgs>>): Prisma__RatingClient<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Rating that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RatingFindUniqueOrThrowArgs} args - Arguments to find a Rating
+     * @example
+     * // Get one Rating
+     * const rating = await prisma.rating.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RatingFindUniqueOrThrowArgs>(args: SelectSubset<T, RatingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RatingClient<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Rating that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RatingFindFirstArgs} args - Arguments to find a Rating
+     * @example
+     * // Get one Rating
+     * const rating = await prisma.rating.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RatingFindFirstArgs>(args?: SelectSubset<T, RatingFindFirstArgs<ExtArgs>>): Prisma__RatingClient<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Rating that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RatingFindFirstOrThrowArgs} args - Arguments to find a Rating
+     * @example
+     * // Get one Rating
+     * const rating = await prisma.rating.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RatingFindFirstOrThrowArgs>(args?: SelectSubset<T, RatingFindFirstOrThrowArgs<ExtArgs>>): Prisma__RatingClient<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Ratings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RatingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Ratings
+     * const ratings = await prisma.rating.findMany()
+     * 
+     * // Get first 10 Ratings
+     * const ratings = await prisma.rating.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const ratingWithIdOnly = await prisma.rating.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RatingFindManyArgs>(args?: SelectSubset<T, RatingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Rating.
+     * @param {RatingCreateArgs} args - Arguments to create a Rating.
+     * @example
+     * // Create one Rating
+     * const Rating = await prisma.rating.create({
+     *   data: {
+     *     // ... data to create a Rating
+     *   }
+     * })
+     * 
+     */
+    create<T extends RatingCreateArgs>(args: SelectSubset<T, RatingCreateArgs<ExtArgs>>): Prisma__RatingClient<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Ratings.
+     * @param {RatingCreateManyArgs} args - Arguments to create many Ratings.
+     * @example
+     * // Create many Ratings
+     * const rating = await prisma.rating.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RatingCreateManyArgs>(args?: SelectSubset<T, RatingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Ratings and returns the data saved in the database.
+     * @param {RatingCreateManyAndReturnArgs} args - Arguments to create many Ratings.
+     * @example
+     * // Create many Ratings
+     * const rating = await prisma.rating.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Ratings and only return the `id`
+     * const ratingWithIdOnly = await prisma.rating.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RatingCreateManyAndReturnArgs>(args?: SelectSubset<T, RatingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Rating.
+     * @param {RatingDeleteArgs} args - Arguments to delete one Rating.
+     * @example
+     * // Delete one Rating
+     * const Rating = await prisma.rating.delete({
+     *   where: {
+     *     // ... filter to delete one Rating
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RatingDeleteArgs>(args: SelectSubset<T, RatingDeleteArgs<ExtArgs>>): Prisma__RatingClient<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Rating.
+     * @param {RatingUpdateArgs} args - Arguments to update one Rating.
+     * @example
+     * // Update one Rating
+     * const rating = await prisma.rating.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RatingUpdateArgs>(args: SelectSubset<T, RatingUpdateArgs<ExtArgs>>): Prisma__RatingClient<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Ratings.
+     * @param {RatingDeleteManyArgs} args - Arguments to filter Ratings to delete.
+     * @example
+     * // Delete a few Ratings
+     * const { count } = await prisma.rating.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RatingDeleteManyArgs>(args?: SelectSubset<T, RatingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Ratings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RatingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Ratings
+     * const rating = await prisma.rating.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RatingUpdateManyArgs>(args: SelectSubset<T, RatingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Ratings and returns the data updated in the database.
+     * @param {RatingUpdateManyAndReturnArgs} args - Arguments to update many Ratings.
+     * @example
+     * // Update many Ratings
+     * const rating = await prisma.rating.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Ratings and only return the `id`
+     * const ratingWithIdOnly = await prisma.rating.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RatingUpdateManyAndReturnArgs>(args: SelectSubset<T, RatingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Rating.
+     * @param {RatingUpsertArgs} args - Arguments to update or create a Rating.
+     * @example
+     * // Update or create a Rating
+     * const rating = await prisma.rating.upsert({
+     *   create: {
+     *     // ... data to create a Rating
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Rating we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RatingUpsertArgs>(args: SelectSubset<T, RatingUpsertArgs<ExtArgs>>): Prisma__RatingClient<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Ratings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RatingCountArgs} args - Arguments to filter Ratings to count.
+     * @example
+     * // Count the number of Ratings
+     * const count = await prisma.rating.count({
+     *   where: {
+     *     // ... the filter for the Ratings we want to count
+     *   }
+     * })
+    **/
+    count<T extends RatingCountArgs>(
+      args?: Subset<T, RatingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RatingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Rating.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RatingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RatingAggregateArgs>(args: Subset<T, RatingAggregateArgs>): Prisma.PrismaPromise<GetRatingAggregateType<T>>
+
+    /**
+     * Group by Rating.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RatingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RatingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RatingGroupByArgs['orderBy'] }
+        : { orderBy?: RatingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RatingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRatingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Rating model
+   */
+  readonly fields: RatingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Rating.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RatingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    evidenceFile<T extends EvidenceFileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EvidenceFileDefaultArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    accreditor<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Rating model
+   */
+  interface RatingFieldRefs {
+    readonly id: FieldRef<"Rating", 'String'>
+    readonly evidenceFileId: FieldRef<"Rating", 'String'>
+    readonly type: FieldRef<"Rating", 'SurveyTeamType'>
+    readonly accreditorId: FieldRef<"Rating", 'String'>
+    readonly adequacy: FieldRef<"Rating", 'Int'>
+    readonly effectiveness: FieldRef<"Rating", 'Int'>
+    readonly finalRate: FieldRef<"Rating", 'Decimal'>
+    readonly NA: FieldRef<"Rating", 'Boolean'>
+    readonly createdAt: FieldRef<"Rating", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Rating findUnique
+   */
+  export type RatingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rating
+     */
+    select?: RatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rating
+     */
+    omit?: RatingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RatingInclude<ExtArgs> | null
+    /**
+     * Filter, which Rating to fetch.
+     */
+    where: RatingWhereUniqueInput
+  }
+
+  /**
+   * Rating findUniqueOrThrow
+   */
+  export type RatingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rating
+     */
+    select?: RatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rating
+     */
+    omit?: RatingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RatingInclude<ExtArgs> | null
+    /**
+     * Filter, which Rating to fetch.
+     */
+    where: RatingWhereUniqueInput
+  }
+
+  /**
+   * Rating findFirst
+   */
+  export type RatingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rating
+     */
+    select?: RatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rating
+     */
+    omit?: RatingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RatingInclude<ExtArgs> | null
+    /**
+     * Filter, which Rating to fetch.
+     */
+    where?: RatingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Ratings to fetch.
+     */
+    orderBy?: RatingOrderByWithRelationInput | RatingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Ratings.
+     */
+    cursor?: RatingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Ratings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Ratings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Ratings.
+     */
+    distinct?: RatingScalarFieldEnum | RatingScalarFieldEnum[]
+  }
+
+  /**
+   * Rating findFirstOrThrow
+   */
+  export type RatingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rating
+     */
+    select?: RatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rating
+     */
+    omit?: RatingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RatingInclude<ExtArgs> | null
+    /**
+     * Filter, which Rating to fetch.
+     */
+    where?: RatingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Ratings to fetch.
+     */
+    orderBy?: RatingOrderByWithRelationInput | RatingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Ratings.
+     */
+    cursor?: RatingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Ratings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Ratings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Ratings.
+     */
+    distinct?: RatingScalarFieldEnum | RatingScalarFieldEnum[]
+  }
+
+  /**
+   * Rating findMany
+   */
+  export type RatingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rating
+     */
+    select?: RatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rating
+     */
+    omit?: RatingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RatingInclude<ExtArgs> | null
+    /**
+     * Filter, which Ratings to fetch.
+     */
+    where?: RatingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Ratings to fetch.
+     */
+    orderBy?: RatingOrderByWithRelationInput | RatingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Ratings.
+     */
+    cursor?: RatingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Ratings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Ratings.
+     */
+    skip?: number
+    distinct?: RatingScalarFieldEnum | RatingScalarFieldEnum[]
+  }
+
+  /**
+   * Rating create
+   */
+  export type RatingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rating
+     */
+    select?: RatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rating
+     */
+    omit?: RatingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RatingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Rating.
+     */
+    data: XOR<RatingCreateInput, RatingUncheckedCreateInput>
+  }
+
+  /**
+   * Rating createMany
+   */
+  export type RatingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Ratings.
+     */
+    data: RatingCreateManyInput | RatingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Rating createManyAndReturn
+   */
+  export type RatingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rating
+     */
+    select?: RatingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rating
+     */
+    omit?: RatingOmit<ExtArgs> | null
+    /**
+     * The data used to create many Ratings.
+     */
+    data: RatingCreateManyInput | RatingCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RatingIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Rating update
+   */
+  export type RatingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rating
+     */
+    select?: RatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rating
+     */
+    omit?: RatingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RatingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Rating.
+     */
+    data: XOR<RatingUpdateInput, RatingUncheckedUpdateInput>
+    /**
+     * Choose, which Rating to update.
+     */
+    where: RatingWhereUniqueInput
+  }
+
+  /**
+   * Rating updateMany
+   */
+  export type RatingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Ratings.
+     */
+    data: XOR<RatingUpdateManyMutationInput, RatingUncheckedUpdateManyInput>
+    /**
+     * Filter which Ratings to update
+     */
+    where?: RatingWhereInput
+    /**
+     * Limit how many Ratings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Rating updateManyAndReturn
+   */
+  export type RatingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rating
+     */
+    select?: RatingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rating
+     */
+    omit?: RatingOmit<ExtArgs> | null
+    /**
+     * The data used to update Ratings.
+     */
+    data: XOR<RatingUpdateManyMutationInput, RatingUncheckedUpdateManyInput>
+    /**
+     * Filter which Ratings to update
+     */
+    where?: RatingWhereInput
+    /**
+     * Limit how many Ratings to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RatingIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Rating upsert
+   */
+  export type RatingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rating
+     */
+    select?: RatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rating
+     */
+    omit?: RatingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RatingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Rating to update in case it exists.
+     */
+    where: RatingWhereUniqueInput
+    /**
+     * In case the Rating found by the `where` argument doesn't exist, create a new Rating with this data.
+     */
+    create: XOR<RatingCreateInput, RatingUncheckedCreateInput>
+    /**
+     * In case the Rating was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RatingUpdateInput, RatingUncheckedUpdateInput>
+  }
+
+  /**
+   * Rating delete
+   */
+  export type RatingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rating
+     */
+    select?: RatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rating
+     */
+    omit?: RatingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RatingInclude<ExtArgs> | null
+    /**
+     * Filter which Rating to delete.
+     */
+    where: RatingWhereUniqueInput
+  }
+
+  /**
+   * Rating deleteMany
+   */
+  export type RatingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Ratings to delete
+     */
+    where?: RatingWhereInput
+    /**
+     * Limit how many Ratings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Rating without action
+   */
+  export type RatingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rating
+     */
+    select?: RatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rating
+     */
+    omit?: RatingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RatingInclude<ExtArgs> | null
   }
 
 
@@ -33784,6 +35109,21 @@ export namespace Prisma {
   export type EvidenceFileScalarFieldEnum = (typeof EvidenceFileScalarFieldEnum)[keyof typeof EvidenceFileScalarFieldEnum]
 
 
+  export const RatingScalarFieldEnum: {
+    id: 'id',
+    evidenceFileId: 'evidenceFileId',
+    type: 'type',
+    accreditorId: 'accreditorId',
+    adequacy: 'adequacy',
+    effectiveness: 'effectiveness',
+    finalRate: 'finalRate',
+    NA: 'NA',
+    createdAt: 'createdAt'
+  };
+
+  export type RatingScalarFieldEnum = (typeof RatingScalarFieldEnum)[keyof typeof RatingScalarFieldEnum]
+
+
   export const FileVersionScalarFieldEnum: {
     id: 'id',
     evidenceFileId: 'evidenceFileId',
@@ -34167,6 +35507,7 @@ export namespace Prisma {
     comments?: CommentListRelationFilter
     teamLead?: SurveyTeamListRelationFilter
     areaChair?: AreaChairListRelationFilter
+    ratings?: RatingListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -34187,6 +35528,7 @@ export namespace Prisma {
     comments?: CommentOrderByRelationAggregateInput
     teamLead?: SurveyTeamOrderByRelationAggregateInput
     areaChair?: AreaChairOrderByRelationAggregateInput
+    ratings?: RatingOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -34210,6 +35552,7 @@ export namespace Prisma {
     comments?: CommentListRelationFilter
     teamLead?: SurveyTeamListRelationFilter
     areaChair?: AreaChairListRelationFilter
+    ratings?: RatingListRelationFilter
   }, "id" | "phoneNumber" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -35290,6 +36633,7 @@ export namespace Prisma {
     indicator?: XOR<IndicatorScalarRelationFilter, IndicatorWhereInput>
     fileVersions?: FileVersionListRelationFilter
     comments?: CommentListRelationFilter
+    ratings?: RatingListRelationFilter
   }
 
   export type EvidenceFileOrderByWithRelationInput = {
@@ -35303,6 +36647,7 @@ export namespace Prisma {
     indicator?: IndicatorOrderByWithRelationInput
     fileVersions?: FileVersionOrderByRelationAggregateInput
     comments?: CommentOrderByRelationAggregateInput
+    ratings?: RatingOrderByRelationAggregateInput
   }
 
   export type EvidenceFileWhereUniqueInput = Prisma.AtLeast<{
@@ -35319,6 +36664,7 @@ export namespace Prisma {
     indicator?: XOR<IndicatorScalarRelationFilter, IndicatorWhereInput>
     fileVersions?: FileVersionListRelationFilter
     comments?: CommentListRelationFilter
+    ratings?: RatingListRelationFilter
   }, "id">
 
   export type EvidenceFileOrderByWithAggregationInput = {
@@ -35345,6 +36691,86 @@ export namespace Prisma {
     indicatorId?: IntWithAggregatesFilter<"EvidenceFile"> | number
     createdAt?: DateTimeWithAggregatesFilter<"EvidenceFile"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"EvidenceFile"> | Date | string
+  }
+
+  export type RatingWhereInput = {
+    AND?: RatingWhereInput | RatingWhereInput[]
+    OR?: RatingWhereInput[]
+    NOT?: RatingWhereInput | RatingWhereInput[]
+    id?: StringFilter<"Rating"> | string
+    evidenceFileId?: StringFilter<"Rating"> | string
+    type?: EnumSurveyTeamTypeFilter<"Rating"> | $Enums.SurveyTeamType
+    accreditorId?: StringFilter<"Rating"> | string
+    adequacy?: IntNullableFilter<"Rating"> | number | null
+    effectiveness?: IntNullableFilter<"Rating"> | number | null
+    finalRate?: DecimalNullableFilter<"Rating"> | Decimal | DecimalJsLike | number | string | null
+    NA?: BoolNullableFilter<"Rating"> | boolean | null
+    createdAt?: DateTimeFilter<"Rating"> | Date | string
+    evidenceFile?: XOR<EvidenceFileScalarRelationFilter, EvidenceFileWhereInput>
+    accreditor?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type RatingOrderByWithRelationInput = {
+    id?: SortOrder
+    evidenceFileId?: SortOrder
+    type?: SortOrder
+    accreditorId?: SortOrder
+    adequacy?: SortOrderInput | SortOrder
+    effectiveness?: SortOrderInput | SortOrder
+    finalRate?: SortOrderInput | SortOrder
+    NA?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    evidenceFile?: EvidenceFileOrderByWithRelationInput
+    accreditor?: UserOrderByWithRelationInput
+  }
+
+  export type RatingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: RatingWhereInput | RatingWhereInput[]
+    OR?: RatingWhereInput[]
+    NOT?: RatingWhereInput | RatingWhereInput[]
+    evidenceFileId?: StringFilter<"Rating"> | string
+    type?: EnumSurveyTeamTypeFilter<"Rating"> | $Enums.SurveyTeamType
+    accreditorId?: StringFilter<"Rating"> | string
+    adequacy?: IntNullableFilter<"Rating"> | number | null
+    effectiveness?: IntNullableFilter<"Rating"> | number | null
+    finalRate?: DecimalNullableFilter<"Rating"> | Decimal | DecimalJsLike | number | string | null
+    NA?: BoolNullableFilter<"Rating"> | boolean | null
+    createdAt?: DateTimeFilter<"Rating"> | Date | string
+    evidenceFile?: XOR<EvidenceFileScalarRelationFilter, EvidenceFileWhereInput>
+    accreditor?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type RatingOrderByWithAggregationInput = {
+    id?: SortOrder
+    evidenceFileId?: SortOrder
+    type?: SortOrder
+    accreditorId?: SortOrder
+    adequacy?: SortOrderInput | SortOrder
+    effectiveness?: SortOrderInput | SortOrder
+    finalRate?: SortOrderInput | SortOrder
+    NA?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: RatingCountOrderByAggregateInput
+    _avg?: RatingAvgOrderByAggregateInput
+    _max?: RatingMaxOrderByAggregateInput
+    _min?: RatingMinOrderByAggregateInput
+    _sum?: RatingSumOrderByAggregateInput
+  }
+
+  export type RatingScalarWhereWithAggregatesInput = {
+    AND?: RatingScalarWhereWithAggregatesInput | RatingScalarWhereWithAggregatesInput[]
+    OR?: RatingScalarWhereWithAggregatesInput[]
+    NOT?: RatingScalarWhereWithAggregatesInput | RatingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Rating"> | string
+    evidenceFileId?: StringWithAggregatesFilter<"Rating"> | string
+    type?: EnumSurveyTeamTypeWithAggregatesFilter<"Rating"> | $Enums.SurveyTeamType
+    accreditorId?: StringWithAggregatesFilter<"Rating"> | string
+    adequacy?: IntNullableWithAggregatesFilter<"Rating"> | number | null
+    effectiveness?: IntNullableWithAggregatesFilter<"Rating"> | number | null
+    finalRate?: DecimalNullableWithAggregatesFilter<"Rating"> | Decimal | DecimalJsLike | number | string | null
+    NA?: BoolNullableWithAggregatesFilter<"Rating"> | boolean | null
+    createdAt?: DateTimeWithAggregatesFilter<"Rating"> | Date | string
   }
 
   export type FileVersionWhereInput = {
@@ -35837,6 +37263,7 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutAuthorInput
     teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairCreateNestedManyWithoutUserInput
+    ratings?: RatingCreateNestedManyWithoutAccreditorInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -35857,6 +37284,7 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
     teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
+    ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
   }
 
   export type UserUpdateInput = {
@@ -35877,6 +37305,7 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutAuthorNestedInput
     teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUpdateManyWithoutUserNestedInput
+    ratings?: RatingUpdateManyWithoutAccreditorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -35897,6 +37326,7 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
     teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
+    ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -36968,6 +38398,7 @@ export namespace Prisma {
     indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
     fileVersions?: FileVersionCreateNestedManyWithoutEvidenceFileInput
     comments?: CommentCreateNestedManyWithoutEvidenceFileInput
+    ratings?: RatingCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUncheckedCreateInput = {
@@ -36979,6 +38410,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     fileVersions?: FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput
     comments?: CommentUncheckedCreateNestedManyWithoutEvidenceFileInput
+    ratings?: RatingUncheckedCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUpdateInput = {
@@ -36990,6 +38422,7 @@ export namespace Prisma {
     indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
     fileVersions?: FileVersionUpdateManyWithoutEvidenceFileNestedInput
     comments?: CommentUpdateManyWithoutEvidenceFileNestedInput
+    ratings?: RatingUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateInput = {
@@ -37001,6 +38434,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fileVersions?: FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput
     comments?: CommentUncheckedUpdateManyWithoutEvidenceFileNestedInput
+    ratings?: RatingUncheckedUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileCreateManyInput = {
@@ -37026,6 +38460,88 @@ export namespace Prisma {
     indicatorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RatingCreateInput = {
+    id?: string
+    type: $Enums.SurveyTeamType
+    adequacy?: number | null
+    effectiveness?: number | null
+    finalRate?: Decimal | DecimalJsLike | number | string | null
+    NA?: boolean | null
+    createdAt?: Date | string
+    evidenceFile: EvidenceFileCreateNestedOneWithoutRatingsInput
+    accreditor: UserCreateNestedOneWithoutRatingsInput
+  }
+
+  export type RatingUncheckedCreateInput = {
+    id?: string
+    evidenceFileId: string
+    type: $Enums.SurveyTeamType
+    accreditorId: string
+    adequacy?: number | null
+    effectiveness?: number | null
+    finalRate?: Decimal | DecimalJsLike | number | string | null
+    NA?: boolean | null
+    createdAt?: Date | string
+  }
+
+  export type RatingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    adequacy?: NullableIntFieldUpdateOperationsInput | number | null
+    effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
+    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidenceFile?: EvidenceFileUpdateOneRequiredWithoutRatingsNestedInput
+    accreditor?: UserUpdateOneRequiredWithoutRatingsNestedInput
+  }
+
+  export type RatingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    accreditorId?: StringFieldUpdateOperationsInput | string
+    adequacy?: NullableIntFieldUpdateOperationsInput | number | null
+    effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
+    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RatingCreateManyInput = {
+    id?: string
+    evidenceFileId: string
+    type: $Enums.SurveyTeamType
+    accreditorId: string
+    adequacy?: number | null
+    effectiveness?: number | null
+    finalRate?: Decimal | DecimalJsLike | number | string | null
+    NA?: boolean | null
+    createdAt?: Date | string
+  }
+
+  export type RatingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    adequacy?: NullableIntFieldUpdateOperationsInput | number | null
+    effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
+    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RatingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    accreditorId?: StringFieldUpdateOperationsInput | string
+    adequacy?: NullableIntFieldUpdateOperationsInput | number | null
+    effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
+    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FileVersionCreateInput = {
@@ -37546,6 +39062,12 @@ export namespace Prisma {
     none?: AreaChairWhereInput
   }
 
+  export type RatingListRelationFilter = {
+    every?: RatingWhereInput
+    some?: RatingWhereInput
+    none?: RatingWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -37572,6 +39094,10 @@ export namespace Prisma {
   }
 
   export type AreaChairOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RatingOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -38677,6 +40203,126 @@ export namespace Prisma {
     _max?: NestedEnumFileStatusFilter<$PrismaModel>
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type DecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type EvidenceFileScalarRelationFilter = {
+    is?: EvidenceFileWhereInput
+    isNot?: EvidenceFileWhereInput
+  }
+
+  export type RatingCountOrderByAggregateInput = {
+    id?: SortOrder
+    evidenceFileId?: SortOrder
+    type?: SortOrder
+    accreditorId?: SortOrder
+    adequacy?: SortOrder
+    effectiveness?: SortOrder
+    finalRate?: SortOrder
+    NA?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RatingAvgOrderByAggregateInput = {
+    adequacy?: SortOrder
+    effectiveness?: SortOrder
+    finalRate?: SortOrder
+  }
+
+  export type RatingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    evidenceFileId?: SortOrder
+    type?: SortOrder
+    accreditorId?: SortOrder
+    adequacy?: SortOrder
+    effectiveness?: SortOrder
+    finalRate?: SortOrder
+    NA?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RatingMinOrderByAggregateInput = {
+    id?: SortOrder
+    evidenceFileId?: SortOrder
+    type?: SortOrder
+    accreditorId?: SortOrder
+    adequacy?: SortOrder
+    effectiveness?: SortOrder
+    finalRate?: SortOrder
+    NA?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RatingSumOrderByAggregateInput = {
+    adequacy?: SortOrder
+    effectiveness?: SortOrder
+    finalRate?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
   export type EnumFileVersionStatusNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.FileVersionStatus | EnumFileVersionStatusFieldRefInput<$PrismaModel> | null
     in?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel> | null
@@ -39006,6 +40652,13 @@ export namespace Prisma {
     connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
   }
 
+  export type RatingCreateNestedManyWithoutAccreditorInput = {
+    create?: XOR<RatingCreateWithoutAccreditorInput, RatingUncheckedCreateWithoutAccreditorInput> | RatingCreateWithoutAccreditorInput[] | RatingUncheckedCreateWithoutAccreditorInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutAccreditorInput | RatingCreateOrConnectWithoutAccreditorInput[]
+    createMany?: RatingCreateManyAccreditorInputEnvelope
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+  }
+
   export type ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
@@ -39046,6 +40699,13 @@ export namespace Prisma {
     connectOrCreate?: AreaChairCreateOrConnectWithoutUserInput | AreaChairCreateOrConnectWithoutUserInput[]
     createMany?: AreaChairCreateManyUserInputEnvelope
     connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
+  }
+
+  export type RatingUncheckedCreateNestedManyWithoutAccreditorInput = {
+    create?: XOR<RatingCreateWithoutAccreditorInput, RatingUncheckedCreateWithoutAccreditorInput> | RatingCreateWithoutAccreditorInput[] | RatingUncheckedCreateWithoutAccreditorInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutAccreditorInput | RatingCreateOrConnectWithoutAccreditorInput[]
+    createMany?: RatingCreateManyAccreditorInputEnvelope
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -39148,6 +40808,20 @@ export namespace Prisma {
     deleteMany?: AreaChairScalarWhereInput | AreaChairScalarWhereInput[]
   }
 
+  export type RatingUpdateManyWithoutAccreditorNestedInput = {
+    create?: XOR<RatingCreateWithoutAccreditorInput, RatingUncheckedCreateWithoutAccreditorInput> | RatingCreateWithoutAccreditorInput[] | RatingUncheckedCreateWithoutAccreditorInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutAccreditorInput | RatingCreateOrConnectWithoutAccreditorInput[]
+    upsert?: RatingUpsertWithWhereUniqueWithoutAccreditorInput | RatingUpsertWithWhereUniqueWithoutAccreditorInput[]
+    createMany?: RatingCreateManyAccreditorInputEnvelope
+    set?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    disconnect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    delete?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    update?: RatingUpdateWithWhereUniqueWithoutAccreditorInput | RatingUpdateWithWhereUniqueWithoutAccreditorInput[]
+    updateMany?: RatingUpdateManyWithWhereWithoutAccreditorInput | RatingUpdateManyWithWhereWithoutAccreditorInput[]
+    deleteMany?: RatingScalarWhereInput | RatingScalarWhereInput[]
+  }
+
   export type ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
@@ -39230,6 +40904,20 @@ export namespace Prisma {
     update?: AreaChairUpdateWithWhereUniqueWithoutUserInput | AreaChairUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: AreaChairUpdateManyWithWhereWithoutUserInput | AreaChairUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: AreaChairScalarWhereInput | AreaChairScalarWhereInput[]
+  }
+
+  export type RatingUncheckedUpdateManyWithoutAccreditorNestedInput = {
+    create?: XOR<RatingCreateWithoutAccreditorInput, RatingUncheckedCreateWithoutAccreditorInput> | RatingCreateWithoutAccreditorInput[] | RatingUncheckedCreateWithoutAccreditorInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutAccreditorInput | RatingCreateOrConnectWithoutAccreditorInput[]
+    upsert?: RatingUpsertWithWhereUniqueWithoutAccreditorInput | RatingUpsertWithWhereUniqueWithoutAccreditorInput[]
+    createMany?: RatingCreateManyAccreditorInputEnvelope
+    set?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    disconnect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    delete?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    update?: RatingUpdateWithWhereUniqueWithoutAccreditorInput | RatingUpdateWithWhereUniqueWithoutAccreditorInput[]
+    updateMany?: RatingUpdateManyWithWhereWithoutAccreditorInput | RatingUpdateManyWithWhereWithoutAccreditorInput[]
+    deleteMany?: RatingScalarWhereInput | RatingScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutProgramHeadInput = {
@@ -40768,6 +42456,13 @@ export namespace Prisma {
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
+  export type RatingCreateNestedManyWithoutEvidenceFileInput = {
+    create?: XOR<RatingCreateWithoutEvidenceFileInput, RatingUncheckedCreateWithoutEvidenceFileInput> | RatingCreateWithoutEvidenceFileInput[] | RatingUncheckedCreateWithoutEvidenceFileInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutEvidenceFileInput | RatingCreateOrConnectWithoutEvidenceFileInput[]
+    createMany?: RatingCreateManyEvidenceFileInputEnvelope
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+  }
+
   export type FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput = {
     create?: XOR<FileVersionCreateWithoutEvidenceFileInput, FileVersionUncheckedCreateWithoutEvidenceFileInput> | FileVersionCreateWithoutEvidenceFileInput[] | FileVersionUncheckedCreateWithoutEvidenceFileInput[]
     connectOrCreate?: FileVersionCreateOrConnectWithoutEvidenceFileInput | FileVersionCreateOrConnectWithoutEvidenceFileInput[]
@@ -40780,6 +42475,13 @@ export namespace Prisma {
     connectOrCreate?: CommentCreateOrConnectWithoutEvidenceFileInput | CommentCreateOrConnectWithoutEvidenceFileInput[]
     createMany?: CommentCreateManyEvidenceFileInputEnvelope
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
+  export type RatingUncheckedCreateNestedManyWithoutEvidenceFileInput = {
+    create?: XOR<RatingCreateWithoutEvidenceFileInput, RatingUncheckedCreateWithoutEvidenceFileInput> | RatingCreateWithoutEvidenceFileInput[] | RatingUncheckedCreateWithoutEvidenceFileInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutEvidenceFileInput | RatingCreateOrConnectWithoutEvidenceFileInput[]
+    createMany?: RatingCreateManyEvidenceFileInputEnvelope
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
   }
 
   export type EnumFileStatusFieldUpdateOperationsInput = {
@@ -40830,6 +42532,20 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
+  export type RatingUpdateManyWithoutEvidenceFileNestedInput = {
+    create?: XOR<RatingCreateWithoutEvidenceFileInput, RatingUncheckedCreateWithoutEvidenceFileInput> | RatingCreateWithoutEvidenceFileInput[] | RatingUncheckedCreateWithoutEvidenceFileInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutEvidenceFileInput | RatingCreateOrConnectWithoutEvidenceFileInput[]
+    upsert?: RatingUpsertWithWhereUniqueWithoutEvidenceFileInput | RatingUpsertWithWhereUniqueWithoutEvidenceFileInput[]
+    createMany?: RatingCreateManyEvidenceFileInputEnvelope
+    set?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    disconnect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    delete?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    update?: RatingUpdateWithWhereUniqueWithoutEvidenceFileInput | RatingUpdateWithWhereUniqueWithoutEvidenceFileInput[]
+    updateMany?: RatingUpdateManyWithWhereWithoutEvidenceFileInput | RatingUpdateManyWithWhereWithoutEvidenceFileInput[]
+    deleteMany?: RatingScalarWhereInput | RatingScalarWhereInput[]
+  }
+
   export type FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput = {
     create?: XOR<FileVersionCreateWithoutEvidenceFileInput, FileVersionUncheckedCreateWithoutEvidenceFileInput> | FileVersionCreateWithoutEvidenceFileInput[] | FileVersionUncheckedCreateWithoutEvidenceFileInput[]
     connectOrCreate?: FileVersionCreateOrConnectWithoutEvidenceFileInput | FileVersionCreateOrConnectWithoutEvidenceFileInput[]
@@ -40856,6 +42572,68 @@ export namespace Prisma {
     update?: CommentUpdateWithWhereUniqueWithoutEvidenceFileInput | CommentUpdateWithWhereUniqueWithoutEvidenceFileInput[]
     updateMany?: CommentUpdateManyWithWhereWithoutEvidenceFileInput | CommentUpdateManyWithWhereWithoutEvidenceFileInput[]
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
+  export type RatingUncheckedUpdateManyWithoutEvidenceFileNestedInput = {
+    create?: XOR<RatingCreateWithoutEvidenceFileInput, RatingUncheckedCreateWithoutEvidenceFileInput> | RatingCreateWithoutEvidenceFileInput[] | RatingUncheckedCreateWithoutEvidenceFileInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutEvidenceFileInput | RatingCreateOrConnectWithoutEvidenceFileInput[]
+    upsert?: RatingUpsertWithWhereUniqueWithoutEvidenceFileInput | RatingUpsertWithWhereUniqueWithoutEvidenceFileInput[]
+    createMany?: RatingCreateManyEvidenceFileInputEnvelope
+    set?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    disconnect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    delete?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    update?: RatingUpdateWithWhereUniqueWithoutEvidenceFileInput | RatingUpdateWithWhereUniqueWithoutEvidenceFileInput[]
+    updateMany?: RatingUpdateManyWithWhereWithoutEvidenceFileInput | RatingUpdateManyWithWhereWithoutEvidenceFileInput[]
+    deleteMany?: RatingScalarWhereInput | RatingScalarWhereInput[]
+  }
+
+  export type EvidenceFileCreateNestedOneWithoutRatingsInput = {
+    create?: XOR<EvidenceFileCreateWithoutRatingsInput, EvidenceFileUncheckedCreateWithoutRatingsInput>
+    connectOrCreate?: EvidenceFileCreateOrConnectWithoutRatingsInput
+    connect?: EvidenceFileWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutRatingsInput = {
+    create?: XOR<UserCreateWithoutRatingsInput, UserUncheckedCreateWithoutRatingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRatingsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string | null
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
+  }
+
+  export type EvidenceFileUpdateOneRequiredWithoutRatingsNestedInput = {
+    create?: XOR<EvidenceFileCreateWithoutRatingsInput, EvidenceFileUncheckedCreateWithoutRatingsInput>
+    connectOrCreate?: EvidenceFileCreateOrConnectWithoutRatingsInput
+    upsert?: EvidenceFileUpsertWithoutRatingsInput
+    connect?: EvidenceFileWhereUniqueInput
+    update?: XOR<XOR<EvidenceFileUpdateToOneWithWhereWithoutRatingsInput, EvidenceFileUpdateWithoutRatingsInput>, EvidenceFileUncheckedUpdateWithoutRatingsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutRatingsNestedInput = {
+    create?: XOR<UserCreateWithoutRatingsInput, UserUncheckedCreateWithoutRatingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRatingsInput
+    upsert?: UserUpsertWithoutRatingsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRatingsInput, UserUpdateWithoutRatingsInput>, UserUncheckedUpdateWithoutRatingsInput>
   }
 
   export type EvidenceFileCreateNestedOneWithoutFileVersionsInput = {
@@ -41724,6 +43502,73 @@ export namespace Prisma {
     _max?: NestedEnumFileStatusFilter<$PrismaModel>
   }
 
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
   export type NestedEnumFileVersionStatusNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.FileVersionStatus | EnumFileVersionStatusFieldRefInput<$PrismaModel> | null
     in?: $Enums.FileVersionStatus[] | ListEnumFileVersionStatusFieldRefInput<$PrismaModel> | null
@@ -41941,6 +43786,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type RatingCreateWithoutAccreditorInput = {
+    id?: string
+    type: $Enums.SurveyTeamType
+    adequacy?: number | null
+    effectiveness?: number | null
+    finalRate?: Decimal | DecimalJsLike | number | string | null
+    NA?: boolean | null
+    createdAt?: Date | string
+    evidenceFile: EvidenceFileCreateNestedOneWithoutRatingsInput
+  }
+
+  export type RatingUncheckedCreateWithoutAccreditorInput = {
+    id?: string
+    evidenceFileId: string
+    type: $Enums.SurveyTeamType
+    adequacy?: number | null
+    effectiveness?: number | null
+    finalRate?: Decimal | DecimalJsLike | number | string | null
+    NA?: boolean | null
+    createdAt?: Date | string
+  }
+
+  export type RatingCreateOrConnectWithoutAccreditorInput = {
+    where: RatingWhereUniqueInput
+    create: XOR<RatingCreateWithoutAccreditorInput, RatingUncheckedCreateWithoutAccreditorInput>
+  }
+
+  export type RatingCreateManyAccreditorInputEnvelope = {
+    data: RatingCreateManyAccreditorInput | RatingCreateManyAccreditorInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ProgramPersonnelUpsertWithWhereUniqueWithoutUserInput = {
     where: ProgramPersonnelWhereUniqueInput
     update: XOR<ProgramPersonnelUpdateWithoutUserInput, ProgramPersonnelUncheckedUpdateWithoutUserInput>
@@ -42109,6 +43986,37 @@ export namespace Prisma {
     areaFolderId?: StringFilter<"AreaChair"> | string
   }
 
+  export type RatingUpsertWithWhereUniqueWithoutAccreditorInput = {
+    where: RatingWhereUniqueInput
+    update: XOR<RatingUpdateWithoutAccreditorInput, RatingUncheckedUpdateWithoutAccreditorInput>
+    create: XOR<RatingCreateWithoutAccreditorInput, RatingUncheckedCreateWithoutAccreditorInput>
+  }
+
+  export type RatingUpdateWithWhereUniqueWithoutAccreditorInput = {
+    where: RatingWhereUniqueInput
+    data: XOR<RatingUpdateWithoutAccreditorInput, RatingUncheckedUpdateWithoutAccreditorInput>
+  }
+
+  export type RatingUpdateManyWithWhereWithoutAccreditorInput = {
+    where: RatingScalarWhereInput
+    data: XOR<RatingUpdateManyMutationInput, RatingUncheckedUpdateManyWithoutAccreditorInput>
+  }
+
+  export type RatingScalarWhereInput = {
+    AND?: RatingScalarWhereInput | RatingScalarWhereInput[]
+    OR?: RatingScalarWhereInput[]
+    NOT?: RatingScalarWhereInput | RatingScalarWhereInput[]
+    id?: StringFilter<"Rating"> | string
+    evidenceFileId?: StringFilter<"Rating"> | string
+    type?: EnumSurveyTeamTypeFilter<"Rating"> | $Enums.SurveyTeamType
+    accreditorId?: StringFilter<"Rating"> | string
+    adequacy?: IntNullableFilter<"Rating"> | number | null
+    effectiveness?: IntNullableFilter<"Rating"> | number | null
+    finalRate?: DecimalNullableFilter<"Rating"> | Decimal | DecimalJsLike | number | string | null
+    NA?: BoolNullableFilter<"Rating"> | boolean | null
+    createdAt?: DateTimeFilter<"Rating"> | Date | string
+  }
+
   export type UserCreateWithoutProgramHeadInput = {
     id?: string
     firstName: string
@@ -42126,6 +44034,7 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutAuthorInput
     teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairCreateNestedManyWithoutUserInput
+    ratings?: RatingCreateNestedManyWithoutAccreditorInput
   }
 
   export type UserUncheckedCreateWithoutProgramHeadInput = {
@@ -42145,6 +44054,7 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
     teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
+    ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
   }
 
   export type UserCreateOrConnectWithoutProgramHeadInput = {
@@ -42229,6 +44139,7 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutAuthorNestedInput
     teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUpdateManyWithoutUserNestedInput
+    ratings?: RatingUpdateManyWithoutAccreditorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgramHeadInput = {
@@ -42248,6 +44159,7 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
     teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
+    ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
   }
 
   export type ProgramPersonnelUpsertWithWhereUniqueWithoutProgramInput = {
@@ -42312,6 +44224,7 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutAuthorInput
     teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairCreateNestedManyWithoutUserInput
+    ratings?: RatingCreateNestedManyWithoutAccreditorInput
   }
 
   export type UserUncheckedCreateWithoutProgramPersonnelInput = {
@@ -42331,6 +44244,7 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
     teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
+    ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
   }
 
   export type UserCreateOrConnectWithoutProgramPersonnelInput = {
@@ -42437,6 +44351,7 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutAuthorNestedInput
     teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUpdateManyWithoutUserNestedInput
+    ratings?: RatingUpdateManyWithoutAccreditorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgramPersonnelInput = {
@@ -42456,6 +44371,7 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
     teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
+    ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
   }
 
   export type ProgramUpsertWithoutProgramPersonnelInput = {
@@ -43120,6 +45036,7 @@ export namespace Prisma {
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
     fileVersions?: FileVersionCreateNestedManyWithoutEvidenceFileInput
     comments?: CommentCreateNestedManyWithoutEvidenceFileInput
+    ratings?: RatingCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUncheckedCreateWithoutIndicatorInput = {
@@ -43130,6 +45047,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     fileVersions?: FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput
     comments?: CommentUncheckedCreateNestedManyWithoutEvidenceFileInput
+    ratings?: RatingUncheckedCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileCreateOrConnectWithoutIndicatorInput = {
@@ -43799,6 +45717,7 @@ export namespace Prisma {
     uploads?: FileVersionCreateNestedManyWithoutUploaderInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
     areaChair?: AreaChairCreateNestedManyWithoutUserInput
+    ratings?: RatingCreateNestedManyWithoutAccreditorInput
   }
 
   export type UserUncheckedCreateWithoutTeamLeadInput = {
@@ -43818,6 +45737,7 @@ export namespace Prisma {
     uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
+    ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
   }
 
   export type UserCreateOrConnectWithoutTeamLeadInput = {
@@ -43918,6 +45838,7 @@ export namespace Prisma {
     uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
     areaChair?: AreaChairUpdateManyWithoutUserNestedInput
+    ratings?: RatingUpdateManyWithoutAccreditorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeamLeadInput = {
@@ -43937,6 +45858,7 @@ export namespace Prisma {
     uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
+    ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
   }
 
   export type AreaChairUpsertWithWhereUniqueWithoutSurveyTeamInput = {
@@ -43972,6 +45894,7 @@ export namespace Prisma {
     uploads?: FileVersionCreateNestedManyWithoutUploaderInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
     teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
+    ratings?: RatingCreateNestedManyWithoutAccreditorInput
   }
 
   export type UserUncheckedCreateWithoutAreaChairInput = {
@@ -43991,6 +45914,7 @@ export namespace Prisma {
     uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
     teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
+    ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
   }
 
   export type UserCreateOrConnectWithoutAreaChairInput = {
@@ -44070,6 +45994,7 @@ export namespace Prisma {
     uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
     teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
+    ratings?: RatingUpdateManyWithoutAccreditorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAreaChairInput = {
@@ -44089,6 +46014,7 @@ export namespace Prisma {
     uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
     teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
+    ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
   }
 
   export type SurveyTeamUpsertWithoutAreaChairsInput = {
@@ -44866,6 +46792,7 @@ export namespace Prisma {
     indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
     fileVersions?: FileVersionCreateNestedManyWithoutEvidenceFileInput
     comments?: CommentCreateNestedManyWithoutEvidenceFileInput
+    ratings?: RatingCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUncheckedCreateWithoutIndicatorFolderInput = {
@@ -44876,6 +46803,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     fileVersions?: FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput
     comments?: CommentUncheckedCreateNestedManyWithoutEvidenceFileInput
+    ratings?: RatingUncheckedCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileCreateOrConnectWithoutIndicatorFolderInput = {
@@ -45032,6 +46960,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type RatingCreateWithoutEvidenceFileInput = {
+    id?: string
+    type: $Enums.SurveyTeamType
+    adequacy?: number | null
+    effectiveness?: number | null
+    finalRate?: Decimal | DecimalJsLike | number | string | null
+    NA?: boolean | null
+    createdAt?: Date | string
+    accreditor: UserCreateNestedOneWithoutRatingsInput
+  }
+
+  export type RatingUncheckedCreateWithoutEvidenceFileInput = {
+    id?: string
+    type: $Enums.SurveyTeamType
+    accreditorId: string
+    adequacy?: number | null
+    effectiveness?: number | null
+    finalRate?: Decimal | DecimalJsLike | number | string | null
+    NA?: boolean | null
+    createdAt?: Date | string
+  }
+
+  export type RatingCreateOrConnectWithoutEvidenceFileInput = {
+    where: RatingWhereUniqueInput
+    create: XOR<RatingCreateWithoutEvidenceFileInput, RatingUncheckedCreateWithoutEvidenceFileInput>
+  }
+
+  export type RatingCreateManyEvidenceFileInputEnvelope = {
+    data: RatingCreateManyEvidenceFileInput | RatingCreateManyEvidenceFileInput[]
+    skipDuplicates?: boolean
+  }
+
   export type IndicatorFolderUpsertWithoutEvidenceFilesInput = {
     update: XOR<IndicatorFolderUpdateWithoutEvidenceFilesInput, IndicatorFolderUncheckedUpdateWithoutEvidenceFilesInput>
     create: XOR<IndicatorFolderCreateWithoutEvidenceFilesInput, IndicatorFolderUncheckedCreateWithoutEvidenceFilesInput>
@@ -45119,6 +47079,178 @@ export namespace Prisma {
     data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutEvidenceFileInput>
   }
 
+  export type RatingUpsertWithWhereUniqueWithoutEvidenceFileInput = {
+    where: RatingWhereUniqueInput
+    update: XOR<RatingUpdateWithoutEvidenceFileInput, RatingUncheckedUpdateWithoutEvidenceFileInput>
+    create: XOR<RatingCreateWithoutEvidenceFileInput, RatingUncheckedCreateWithoutEvidenceFileInput>
+  }
+
+  export type RatingUpdateWithWhereUniqueWithoutEvidenceFileInput = {
+    where: RatingWhereUniqueInput
+    data: XOR<RatingUpdateWithoutEvidenceFileInput, RatingUncheckedUpdateWithoutEvidenceFileInput>
+  }
+
+  export type RatingUpdateManyWithWhereWithoutEvidenceFileInput = {
+    where: RatingScalarWhereInput
+    data: XOR<RatingUpdateManyMutationInput, RatingUncheckedUpdateManyWithoutEvidenceFileInput>
+  }
+
+  export type EvidenceFileCreateWithoutRatingsInput = {
+    id?: string
+    status: $Enums.FileStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
+    indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
+    fileVersions?: FileVersionCreateNestedManyWithoutEvidenceFileInput
+    comments?: CommentCreateNestedManyWithoutEvidenceFileInput
+  }
+
+  export type EvidenceFileUncheckedCreateWithoutRatingsInput = {
+    id?: string
+    indicatorFolderId: string
+    status: $Enums.FileStatus
+    indicatorId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    fileVersions?: FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput
+    comments?: CommentUncheckedCreateNestedManyWithoutEvidenceFileInput
+  }
+
+  export type EvidenceFileCreateOrConnectWithoutRatingsInput = {
+    where: EvidenceFileWhereUniqueInput
+    create: XOR<EvidenceFileCreateWithoutRatingsInput, EvidenceFileUncheckedCreateWithoutRatingsInput>
+  }
+
+  export type UserCreateWithoutRatingsInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
+    programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
+    uploads?: FileVersionCreateNestedManyWithoutUploaderInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
+    areaChair?: AreaChairCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutRatingsInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
+    programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
+    uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutRatingsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutRatingsInput, UserUncheckedCreateWithoutRatingsInput>
+  }
+
+  export type EvidenceFileUpsertWithoutRatingsInput = {
+    update: XOR<EvidenceFileUpdateWithoutRatingsInput, EvidenceFileUncheckedUpdateWithoutRatingsInput>
+    create: XOR<EvidenceFileCreateWithoutRatingsInput, EvidenceFileUncheckedCreateWithoutRatingsInput>
+    where?: EvidenceFileWhereInput
+  }
+
+  export type EvidenceFileUpdateToOneWithWhereWithoutRatingsInput = {
+    where?: EvidenceFileWhereInput
+    data: XOR<EvidenceFileUpdateWithoutRatingsInput, EvidenceFileUncheckedUpdateWithoutRatingsInput>
+  }
+
+  export type EvidenceFileUpdateWithoutRatingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
+    indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
+    fileVersions?: FileVersionUpdateManyWithoutEvidenceFileNestedInput
+    comments?: CommentUpdateManyWithoutEvidenceFileNestedInput
+  }
+
+  export type EvidenceFileUncheckedUpdateWithoutRatingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    indicatorFolderId?: StringFieldUpdateOperationsInput | string
+    status?: EnumFileStatusFieldUpdateOperationsInput | $Enums.FileStatus
+    indicatorId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileVersions?: FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutEvidenceFileNestedInput
+  }
+
+  export type UserUpsertWithoutRatingsInput = {
+    update: XOR<UserUpdateWithoutRatingsInput, UserUncheckedUpdateWithoutRatingsInput>
+    create: XOR<UserCreateWithoutRatingsInput, UserUncheckedCreateWithoutRatingsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutRatingsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutRatingsInput, UserUncheckedUpdateWithoutRatingsInput>
+  }
+
+  export type UserUpdateWithoutRatingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
+    programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
+    uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
+    areaChair?: AreaChairUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutRatingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
+    programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
+    uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type EvidenceFileCreateWithoutFileVersionsInput = {
     id?: string
     status: $Enums.FileStatus
@@ -45127,6 +47259,7 @@ export namespace Prisma {
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
     indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
     comments?: CommentCreateNestedManyWithoutEvidenceFileInput
+    ratings?: RatingCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUncheckedCreateWithoutFileVersionsInput = {
@@ -45137,6 +47270,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: CommentUncheckedCreateNestedManyWithoutEvidenceFileInput
+    ratings?: RatingUncheckedCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileCreateOrConnectWithoutFileVersionsInput = {
@@ -45188,6 +47322,7 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutAuthorInput
     teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairCreateNestedManyWithoutUserInput
+    ratings?: RatingCreateNestedManyWithoutAccreditorInput
   }
 
   export type UserUncheckedCreateWithoutUploadsInput = {
@@ -45207,6 +47342,7 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
     teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
+    ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
   }
 
   export type UserCreateOrConnectWithoutUploadsInput = {
@@ -45233,6 +47369,7 @@ export namespace Prisma {
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
     indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
     comments?: CommentUpdateManyWithoutEvidenceFileNestedInput
+    ratings?: RatingUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateWithoutFileVersionsInput = {
@@ -45243,6 +47380,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: CommentUncheckedUpdateManyWithoutEvidenceFileNestedInput
+    ratings?: RatingUncheckedUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type AreaFileUpsertWithoutFileVersionsInput = {
@@ -45306,6 +47444,7 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutAuthorNestedInput
     teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUpdateManyWithoutUserNestedInput
+    ratings?: RatingUpdateManyWithoutAccreditorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUploadsInput = {
@@ -45325,6 +47464,7 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
     teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
+    ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
   }
 
   export type SurveyVisitCreateWithoutPhaseTwoRequirementsInput = {
@@ -46156,6 +48296,7 @@ export namespace Prisma {
     uploads?: FileVersionCreateNestedManyWithoutUploaderInput
     teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairCreateNestedManyWithoutUserInput
+    ratings?: RatingCreateNestedManyWithoutAccreditorInput
   }
 
   export type UserUncheckedCreateWithoutCommentsInput = {
@@ -46175,6 +48316,7 @@ export namespace Prisma {
     uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
     teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
+    ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
   }
 
   export type UserCreateOrConnectWithoutCommentsInput = {
@@ -46190,6 +48332,7 @@ export namespace Prisma {
     indicatorFolder: IndicatorFolderCreateNestedOneWithoutEvidenceFilesInput
     indicator: IndicatorCreateNestedOneWithoutEvidenceFilesInput
     fileVersions?: FileVersionCreateNestedManyWithoutEvidenceFileInput
+    ratings?: RatingCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileUncheckedCreateWithoutCommentsInput = {
@@ -46200,6 +48343,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     fileVersions?: FileVersionUncheckedCreateNestedManyWithoutEvidenceFileInput
+    ratings?: RatingUncheckedCreateNestedManyWithoutEvidenceFileInput
   }
 
   export type EvidenceFileCreateOrConnectWithoutCommentsInput = {
@@ -46262,6 +48406,7 @@ export namespace Prisma {
     uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
     teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUpdateManyWithoutUserNestedInput
+    ratings?: RatingUpdateManyWithoutAccreditorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -46281,6 +48426,7 @@ export namespace Prisma {
     uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
     teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
+    ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
   }
 
   export type EvidenceFileUpsertWithoutCommentsInput = {
@@ -46302,6 +48448,7 @@ export namespace Prisma {
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
     indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
     fileVersions?: FileVersionUpdateManyWithoutEvidenceFileNestedInput
+    ratings?: RatingUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateWithoutCommentsInput = {
@@ -46312,6 +48459,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fileVersions?: FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput
+    ratings?: RatingUncheckedUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type AreaFileUpsertWithoutCommentsInput = {
@@ -46393,6 +48541,17 @@ export namespace Prisma {
     id?: string
     surveyTeamId: string
     areaFolderId: string
+  }
+
+  export type RatingCreateManyAccreditorInput = {
+    id?: string
+    evidenceFileId: string
+    type: $Enums.SurveyTeamType
+    adequacy?: number | null
+    effectiveness?: number | null
+    finalRate?: Decimal | DecimalJsLike | number | string | null
+    NA?: boolean | null
+    createdAt?: Date | string
   }
 
   export type ProgramPersonnelUpdateWithoutUserInput = {
@@ -46547,6 +48706,39 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     surveyTeamId?: StringFieldUpdateOperationsInput | string
     areaFolderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type RatingUpdateWithoutAccreditorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    adequacy?: NullableIntFieldUpdateOperationsInput | number | null
+    effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
+    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidenceFile?: EvidenceFileUpdateOneRequiredWithoutRatingsNestedInput
+  }
+
+  export type RatingUncheckedUpdateWithoutAccreditorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    adequacy?: NullableIntFieldUpdateOperationsInput | number | null
+    effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
+    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RatingUncheckedUpdateManyWithoutAccreditorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    adequacy?: NullableIntFieldUpdateOperationsInput | number | null
+    effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
+    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProgramPersonnelCreateManyProgramInput = {
@@ -46876,6 +49068,7 @@ export namespace Prisma {
     indicatorFolder?: IndicatorFolderUpdateOneRequiredWithoutEvidenceFilesNestedInput
     fileVersions?: FileVersionUpdateManyWithoutEvidenceFileNestedInput
     comments?: CommentUpdateManyWithoutEvidenceFileNestedInput
+    ratings?: RatingUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateWithoutIndicatorInput = {
@@ -46886,6 +49079,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fileVersions?: FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput
     comments?: CommentUncheckedUpdateManyWithoutEvidenceFileNestedInput
+    ratings?: RatingUncheckedUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateManyWithoutIndicatorInput = {
@@ -47256,6 +49450,7 @@ export namespace Prisma {
     indicator?: IndicatorUpdateOneRequiredWithoutEvidenceFilesNestedInput
     fileVersions?: FileVersionUpdateManyWithoutEvidenceFileNestedInput
     comments?: CommentUpdateManyWithoutEvidenceFileNestedInput
+    ratings?: RatingUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateWithoutIndicatorFolderInput = {
@@ -47266,6 +49461,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     fileVersions?: FileVersionUncheckedUpdateManyWithoutEvidenceFileNestedInput
     comments?: CommentUncheckedUpdateManyWithoutEvidenceFileNestedInput
+    ratings?: RatingUncheckedUpdateManyWithoutEvidenceFileNestedInput
   }
 
   export type EvidenceFileUncheckedUpdateManyWithoutIndicatorFolderInput = {
@@ -47293,6 +49489,17 @@ export namespace Prisma {
     areaFileId?: string | null
     content: string
     type: $Enums.CommentType
+    createdAt?: Date | string
+  }
+
+  export type RatingCreateManyEvidenceFileInput = {
+    id?: string
+    type: $Enums.SurveyTeamType
+    accreditorId: string
+    adequacy?: number | null
+    effectiveness?: number | null
+    finalRate?: Decimal | DecimalJsLike | number | string | null
+    NA?: boolean | null
     createdAt?: Date | string
   }
 
@@ -47353,6 +49560,39 @@ export namespace Prisma {
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RatingUpdateWithoutEvidenceFileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    adequacy?: NullableIntFieldUpdateOperationsInput | number | null
+    effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
+    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accreditor?: UserUpdateOneRequiredWithoutRatingsNestedInput
+  }
+
+  export type RatingUncheckedUpdateWithoutEvidenceFileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    accreditorId?: StringFieldUpdateOperationsInput | string
+    adequacy?: NullableIntFieldUpdateOperationsInput | number | null
+    effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
+    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RatingUncheckedUpdateManyWithoutEvidenceFileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
+    accreditorId?: StringFieldUpdateOperationsInput | string
+    adequacy?: NullableIntFieldUpdateOperationsInput | number | null
+    effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
+    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
