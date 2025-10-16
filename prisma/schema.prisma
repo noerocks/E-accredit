@@ -279,6 +279,7 @@ model AreaFolder {
   status             Progress
   taskForce          TaskForce?
   areaChair          AreaChair[]
+  recommendations    Comment[]
 }
 
 model ParameterFolder {
@@ -406,6 +407,8 @@ model Comment {
   evidenceFileId String?
   areaFile       AreaFile?     @relation(fields: [areaFileId], references: [id], onDelete: Cascade)
   areaFileId     String?
+  areaFolder     AreaFolder?   @relation(fields: [areaFolderId], references: [id], onDelete: Cascade)
+  areaFolderId   String?
   content        String
   type           CommentType
   createdAt      DateTime      @default(now())

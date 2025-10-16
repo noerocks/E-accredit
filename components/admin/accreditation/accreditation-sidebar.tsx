@@ -48,8 +48,7 @@ const AccreditationSidebar = ({
     const button = target.closest<HTMLButtonElement>("[data-id]");
     if (!button || target.tagName !== "BUTTON") return null;
     const { id, type } = button.dataset;
-    if (base[1] === "self-survey" && (type === "area" || type === "parameter"))
-      return;
+    if (base[1] === "self-survey" && type === "parameter") return;
     router.replace(
       `/${base.join("/")}/${type}/${id}?${searchParams.toString()}`
     );

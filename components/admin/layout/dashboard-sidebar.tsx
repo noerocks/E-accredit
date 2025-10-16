@@ -35,7 +35,7 @@ const DashboardSidebar = async () => {
               <Avatar>
                 <AvatarImage src={"/ctu-logo.png"} />
               </Avatar>
-              <div className="flex flex-col">
+              <div className="flex flex-col !w-auto !opacity-100 whitespace-nowrap">
                 <p className="text-lg">E-Accredit AMS</p>
                 <p className="text-xs text-muted-foreground leading-none">
                   CTU Naga Ext. Campus
@@ -53,7 +53,7 @@ const DashboardSidebar = async () => {
               <SidebarMenuButton asChild>
                 <Link href={"/admin"}>
                   <LayoutDashboard />
-                  <span>Dashboard</span>
+                  <span className="whitespace-nowrap">Dashboard</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -61,7 +61,7 @@ const DashboardSidebar = async () => {
               <SidebarMenuButton asChild>
                 <Link href={"/admin/users"}>
                   <Users />
-                  <span>Users</span>
+                  <span className="whitespace-nowrap">Users</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -74,7 +74,7 @@ const DashboardSidebar = async () => {
               <SidebarMenuButton asChild>
                 <Link href={"/admin/programs"}>
                   <Landmark />
-                  <span>Programs</span>
+                  <span className="whitespace-nowrap">Programs</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -87,7 +87,9 @@ const DashboardSidebar = async () => {
               <SidebarMenuButton asChild>
                 <Link href={"/admin/accreditation"}>
                   <BadgeCheck />
-                  <span>Program Accreditations</span>
+                  <span className="whitespace-nowrap">
+                    Program Accreditations
+                  </span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -95,7 +97,7 @@ const DashboardSidebar = async () => {
               <SidebarMenuButton asChild>
                 <Link href={"/admin/instruments"}>
                   <ClipboardCheck />
-                  <span>Instruments</span>
+                  <span className="whitespace-nowrap">Instruments</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -103,7 +105,7 @@ const DashboardSidebar = async () => {
               <SidebarMenuButton asChild>
                 <Link href={"/admin/self-survey"}>
                   <SearchCheck />
-                  <span>Self Survey</span>
+                  <span className="whitespace-nowrap">Self Survey</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

@@ -216,7 +216,7 @@ const Rating = ({
             </RadioGroup>
           </CardContent>
         </Card>
-        <Card className="bg-background">
+        <Card>
           <CardContent className="flex flex-col gap-5">
             <CardTitle className="text-sm">Final Rating</CardTitle>
             <div className="flex items-center gap-2">

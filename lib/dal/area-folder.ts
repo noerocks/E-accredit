@@ -36,6 +36,7 @@ export const getAreaFolderById = unstable_cache(
       },
       include: {
         area: true,
+        recommendations: true,
         areaFiles: {
           include: {
             fileVersions: true,
@@ -49,6 +50,7 @@ export const getAreaFolderById = unstable_cache(
                 evidenceFiles: {
                   include: {
                     fileVersions: true,
+                    ratings: true,
                   },
                 },
               },

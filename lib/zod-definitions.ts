@@ -105,3 +105,7 @@ export const CreateAccreditationFormSchema = z.object({
     error: "An actual survey date is required",
   }),
 });
+
+export const RecommendationsFormSchema = z.object({
+  content: z.string().min(1, "This field is required").trim(),
+});

@@ -101,7 +101,11 @@ const AccreditationSettings = ({
             <CircleQuestionMark size={15} />
             <p className="text-sm">Open for Self Survey</p>
           </div>
-          <Switch checked={openForSelfSurvey} onClick={toggleSelfSurvey} />
+          <Switch
+            checked={openForSelfSurvey}
+            onClick={toggleSelfSurvey}
+            disabled={openForSelfSurvey}
+          />
         </div>
         <div className="flex items-center justify-between">
           <div className="flex-1 flex items-center gap-2 text-muted-foreground">

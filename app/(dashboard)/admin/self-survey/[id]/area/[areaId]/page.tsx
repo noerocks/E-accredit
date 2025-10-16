@@ -1,0 +1,111 @@
+import AreaSurveyInformation from "@/components/admin/area/area-survey-information";
+import RecommendationsForm from "@/components/admin/area/recommendations-form";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { verifySession } from "@/lib/action/session";
+import { getAreaFolderById } from "@/lib/dal/area-folder";
+import clsx from "clsx";
+import { CircleDot, Layers, MessageCircleMore } from "lucide-react";
+
+const AreaPage = async ({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ areaId: string }>;
+  searchParams: Promise<{ ["self-survey"]: string }>;
+}) => {
+  const { areaId } = await params;
+  const session = await verifySession();
+  const user = session.user;
+  const areaFolder = await getAreaFolderById(areaId);
+  const area = areaFolder?.area;
+  const query = await searchParams;
+  const indicators = areaFolder?.parameterFolders.flatMap((parameter) =>
+    parameter.indicatorFolders.flatMap((folder) =>
+      folder.evidenceFiles.map((evidence) => evidence)
+    )
+  );
+  const recommendation = areaFolder?.recommendations.find(
+    (recommendation) => recommendation.type === "SELF_SURVEY"
+  );
+  const ratings = indicators
+    ?.filter((indicator) =>
+      indicator.ratings.find((rating) => rating.type === "INTERNAL")
+    )
+    .map((indicator) =>
+      indicator.ratings.find((rating) => rating.type === "INTERNAL")
+    );
+  const complete = ratings?.length === indicators?.length;
+  return (
+    <ScrollArea className="h-full">
+      <div className="max-w-2/3 flex flex-col gap-5 mx-auto my-10">
+        <p className="text-2xl flex items-center gap-2">
+          <Layers />
+          Area
+        </p>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-2xl">
+              {`${area?.label}: ${area?.description}`}
+            </CardTitle>
+            <CardDescription className="text-lg">
+              {query["self-survey"]}
+            </CardDescription>
+          </CardHeader>
+          <CardFooter className="flex items-cente justify-between">
+            <p
+              className={clsx(
+                "py-2 px-3 dark:border-2 border rounded-md flex items-center gap-2",
+                {
+                  "bg-green-400/5 text-green-600 border-green-400": complete,
+                  "bg-blue-500/5 text-blue-500 border-blue-500": !complete,
+                }
+              )}
+            >
+              <CircleDot size={15} />
+              {complete ? "Complete" : "On Going"}
+            </p>
+            <p className="text-muted-foreground">{`Weight: ${area?.weight}`}</p>
+          </CardFooter>
+        </Card>
+        <Tabs defaultValue="recommendations">
+          <TabsList className="bg-background border">
+            <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
+            <TabsTrigger value="information">Information</TabsTrigger>
+            <TabsTrigger value="Progress">Progress</TabsTrigger>
+          </TabsList>
+          <TabsContent value="recommendations">
+            <Card className="bg-background">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <MessageCircleMore size={20} />
+                  Area Recommendations
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <RecommendationsForm
+                  user={user}
+                  areaFolderId={areaFolder?.id}
+                  recommendation={recommendation?.content}
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="information">
+            <AreaSurveyInformation />
+          </TabsContent>
+        </Tabs>
+      </div>
+    </ScrollArea>
+  );
+};
+
+export default AreaPage;

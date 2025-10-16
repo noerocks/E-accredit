@@ -1,6 +1,6 @@
 import { connect } from "http2";
 import { verifySession } from "../action/session";
-import { CommentType } from "../generated/prisma";
+import { Comment, CommentType } from "../generated/prisma";
 import { prisma } from "../prisma";
 import { unstable_cache } from "next/cache";
 
@@ -8,14 +8,16 @@ export async function createNewComment({
   authorId,
   content,
   type,
-  evidenceFileId,
-  areaFileId,
+  evidenceFileId = null,
+  areaFileId = null,
+  areaFolderId = null,
 }: {
   authorId: string;
   content: string;
   type: CommentType;
-  evidenceFileId?: string;
-  areaFileId?: string;
+  evidenceFileId?: string | null;
+  areaFileId?: string | null;
+  areaFolderId?: string | null;
 }) {
   const session = await verifySession();
   if (!session) return null;
@@ -37,6 +39,13 @@ export async function createNewComment({
         areaFile: {
           connect: {
             id: areaFileId,
+          },
+        },
+      }),
+      ...(areaFolderId && {
+        areaFolder: {
+          connect: {
+            id: areaFolderId,
           },
         },
       }),
@@ -77,3 +86,29 @@ export const getFilteredComments = unstable_cache(
     tags: ["comments"],
   }
 );
+
+export async function getInternalRecommendationByAreaFolderId(id: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const recommendation = await prisma.comment.findFirst({
+    where: {
+      areaFolderId: id,
+      AND: {
+        type: CommentType.SELF_SURVEY,
+      },
+    },
+  });
+  return recommendation;
+}
+
+export async function updateCommentById(data: Partial<Comment>) {
+  const session = await verifySession();
+  if (!session) return null;
+  const comment = await prisma.comment.update({
+    where: {
+      id: data.id,
+    },
+    data,
+  });
+  return comment;
+}
