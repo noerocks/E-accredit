@@ -33,7 +33,7 @@ export type PhaseTwoAreaFolderDTO = PhaseTwoAreaFolder & {
   areaFiles: AreaFile[];
 };
 export type ParameterFolderDTO = ParameterFolder & {
-  parameter: Parameter & { area: Area };
+  parameter: Parameter;
   indicatorFolders: IndicatorFolderDTO[];
   areaFolder: AreaFolderDTO;
 };

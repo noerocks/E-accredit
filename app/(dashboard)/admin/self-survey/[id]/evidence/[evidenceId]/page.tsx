@@ -15,10 +15,10 @@ const EvidencePage = async ({
   const evidenceFile = await getEvidenceFileById(evidenceId);
   const indicator = evidenceFile?.indicator;
   const rating = await getInternalRatingByEvidenceFileId(evidenceId);
-  const activeFile = evidenceFile?.fileVersions.find(
+  const activeFile = evidenceFile?.fileVersions?.find(
     (file) => file.status === "ACTIVE"
   );
-  const comments = evidenceFile?.comments.filter(
+  const comments = evidenceFile?.comments?.filter(
     (comment) => comment.type === "SELF_SURVEY"
   );
   const session = await verifySession();

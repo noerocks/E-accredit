@@ -28,9 +28,9 @@ const EvidencePage = async ({
   const evidence = await getEvidenceFileById(evidenceId);
   const surveyVisit = await getSurveyVisitById(String(surveyVisitId!));
   const indicator = evidence?.indicator;
-  const parameter = evidence?.indicatorFolder.parameterFolder.parameter;
-  const parameterFolderId = evidence?.indicatorFolder.parameterFolderId;
-  const areaFolderId = evidence?.indicatorFolder.parameterFolder.areaFolderId;
+  const parameter = evidence?.indicatorFolder?.parameterFolder.parameter;
+  const parameterFolderId = evidence?.indicatorFolder?.parameterFolderId;
+  const areaFolderId = evidence?.indicatorFolder?.parameterFolder.areaFolderId;
   const formattedCategory = {
     [Category.SYSTEM]: "System",
     [Category.IMPLEMENTATION]: "Implementation",
@@ -53,11 +53,11 @@ const EvidencePage = async ({
   const user = session.user;
   const isAdmin = user.role === "ADMIN";
   const isMember =
-    evidence?.indicatorFolder.parameterFolder.areaFolder.taskForce?.taskForceMember.some(
+    evidence?.indicatorFolder?.parameterFolder.areaFolder.taskForce?.taskForceMember.some(
       (member) => member.programPersonnel.userId === user.id
     );
   const isChairperson =
-    evidence?.indicatorFolder.parameterFolder.areaFolder.taskForce?.chairPerson
+    evidence?.indicatorFolder?.parameterFolder.areaFolder.taskForce?.chairPerson
       ?.userId === user.id;
   return (
     <ScrollArea className="h-full">

@@ -125,6 +125,7 @@ const Rating = ({
             type: SurveyTeamType.INTERNAL,
             accreditorId: user.id,
             adequacy: parsedAdequacy,
+            finalRate: parsedAdequacy,
           });
           if (result?.failure) toast.error(result.failure.error);
           if (result.success) toast.success(result.success.message);
@@ -138,6 +139,7 @@ const Rating = ({
             type: SurveyTeamType.INTERNAL,
             accreditorId: user.id,
             effectiveness: parsedEffectiveness,
+            finalRate: parsedEffectiveness,
           });
           if (result?.failure) toast.error(result.failure.error);
           if (result.success) toast.success(result.success.message);

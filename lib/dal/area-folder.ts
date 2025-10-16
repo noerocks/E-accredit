@@ -44,6 +44,16 @@ export const getAreaFolderById = unstable_cache(
         },
         parameterFolders: {
           include: {
+            areaFolder: {
+              include: {
+                area: true,
+                taskForce: {
+                  include: {
+                    chairPerson: true,
+                  },
+                },
+              },
+            },
             parameter: true,
             indicatorFolders: {
               include: {

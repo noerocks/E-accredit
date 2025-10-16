@@ -49,4 +49,19 @@ export async function formatLevelName(level: LevelDTO) {
 export function calculateParameterGrandMean(
   parameterFolder: ParameterFolderDTO,
   surveyType: SurveyTeamType
-) {}
+) {
+  const ratings = parameterFolder.indicatorFolders
+    .flatMap((parameter) =>
+      parameter.evidenceFiles.flatMap((evidence) => evidence.ratings)
+    )
+    .filter((rating) => !rating?.NA && rating?.type === surveyType);
+  if (ratings.length > 0) {
+    const mean = ratings.reduce(
+      (sum, rating) => (sum += rating?.finalRate || 0),
+      0
+    );
+    console.log(mean, ratings.length);
+    return mean / ratings.length;
+  }
+  return undefined;
+}

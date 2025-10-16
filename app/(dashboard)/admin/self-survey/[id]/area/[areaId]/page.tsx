@@ -13,7 +13,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { verifySession } from "@/lib/action/session";
 import { getAreaFolderById } from "@/lib/dal/area-folder";
-import { calculateParameterGrandMean } from "@/lib/utils";
+import { ParameterFolderDTO } from "@/lib/dto/accreditation-instrument";
 import clsx from "clsx";
 import { CircleDot, Layers, MessageCircleMore } from "lucide-react";
 
@@ -104,7 +104,10 @@ const AreaPage = async ({
           <TabsContent value="ratings">
             <Card className="bg-background">
               <CardContent>
-                <DataTable columns={columns} data={parameters || []} />
+                <DataTable
+                  columns={columns}
+                  data={(parameters as unknown as ParameterFolderDTO[]) || []}
+                />
               </CardContent>
             </Card>
           </TabsContent>

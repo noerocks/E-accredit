@@ -31,18 +31,12 @@ export const getEvidenceFileById = unstable_cache(
             author: true,
           },
         },
-        fileVersions: {
+        ratings: {
           include: {
-            evidenceFile: {
-              include: {
-                ratings: {
-                  include: {
-                    accreditor: true,
-                  },
-                },
-              },
-            },
+            accreditor: true,
           },
+        },
+        fileVersions: {
           orderBy: {
             uploadedAt: "desc",
           },
@@ -72,7 +66,13 @@ export const getEvidenceFileById = unstable_cache(
         },
       },
     });
-    return evidence;
+    return {
+      ...evidence,
+      ratings: evidence?.ratings.map((rating) => ({
+        ...rating,
+        finalRate: Number(rating.finalRate),
+      })),
+    };
   },
   ["getEvidenceFileById"],
   {
