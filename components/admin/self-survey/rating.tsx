@@ -36,10 +36,12 @@ const Rating = ({
   ];
   const { evidenceId } = useParams();
   const [adequacy, setAdequacy] = useState<string>(
-    rating && rating.adequacy ? rating.adequacy?.toString() : ""
+    rating && rating.adequacy !== null ? rating.adequacy?.toString() : ""
   );
   const [effectiveness, setEffectivesness] = useState<string>(
-    rating && rating.effectiveness ? rating.effectiveness?.toString() : ""
+    rating && rating.effectiveness !== null
+      ? rating.effectiveness?.toString()
+      : ""
   );
   const [NA, setNA] = useState<boolean>(
     rating && rating.NA ? rating.NA : false
@@ -198,7 +200,7 @@ const Rating = ({
           </CardHeader>
           <CardContent>
             <RadioGroup
-              value={effectiveness.toString()}
+              value={effectiveness}
               onValueChange={effectivenessOnChange}
             >
               {effectivenessList.map((rating) => (

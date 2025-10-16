@@ -1,6 +1,6 @@
+import { DataTable } from "@/components/admin/area/data-table";
 import RecommendationsForm from "@/components/admin/area/recommendations-form";
 import { columns } from "@/components/admin/self-survey/area/columns";
-import { DataTable } from "@/components/admin/self-survey/area/data-table";
 import {
   Card,
   CardContent,
