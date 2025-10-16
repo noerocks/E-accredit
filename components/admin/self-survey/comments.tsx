@@ -38,7 +38,7 @@ const Comments = ({
         type: CommentType.SELF_SURVEY,
         evidenceFileId: String(params.evidenceId),
       });
-      if (result.failure) toast.error(result.failure.error);
+      if (result?.failure) toast.error(result?.failure.error);
     });
     setMessage("");
   };

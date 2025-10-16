@@ -26,7 +26,6 @@ const AccreditorSidebar = ({
   user: SessionPayload;
   rating: RatingDTO | null;
 }) => {
-  console.log(comments);
   const [tab, setTab] = useState<string>("rating");
   return (
     <Sidebar

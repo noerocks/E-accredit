@@ -1,5 +1,6 @@
-import AreaSurveyInformation from "@/components/admin/area/area-survey-information";
 import RecommendationsForm from "@/components/admin/area/recommendations-form";
+import { columns } from "@/components/admin/self-survey/area/columns";
+import { DataTable } from "@/components/admin/self-survey/area/data-table";
 import {
   Card,
   CardContent,
@@ -12,6 +13,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { verifySession } from "@/lib/action/session";
 import { getAreaFolderById } from "@/lib/dal/area-folder";
+import { calculateParameterGrandMean } from "@/lib/utils";
 import clsx from "clsx";
 import { CircleDot, Layers, MessageCircleMore } from "lucide-react";
 
@@ -44,6 +46,7 @@ const AreaPage = async ({
       indicator.ratings.find((rating) => rating.type === "INTERNAL")
     );
   const complete = ratings?.length === indicators?.length;
+  const parameters = areaFolder?.parameterFolders;
   return (
     <ScrollArea className="h-full">
       <div className="max-w-2/3 flex flex-col gap-5 mx-auto my-10">
@@ -53,10 +56,10 @@ const AreaPage = async ({
         </p>
         <Card>
           <CardHeader>
-            <CardTitle className="text-2xl">
+            <CardTitle className="text-xl">
               {`${area?.label}: ${area?.description}`}
             </CardTitle>
-            <CardDescription className="text-lg">
+            <CardDescription className="text-md">
               {query["self-survey"]}
             </CardDescription>
           </CardHeader>
@@ -79,8 +82,7 @@ const AreaPage = async ({
         <Tabs defaultValue="recommendations">
           <TabsList className="bg-background border">
             <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
-            <TabsTrigger value="information">Information</TabsTrigger>
-            <TabsTrigger value="Progress">Progress</TabsTrigger>
+            <TabsTrigger value="ratings">Parameter Ratings</TabsTrigger>
           </TabsList>
           <TabsContent value="recommendations">
             <Card className="bg-background">
@@ -99,8 +101,12 @@ const AreaPage = async ({
               </CardContent>
             </Card>
           </TabsContent>
-          <TabsContent value="information">
-            <AreaSurveyInformation />
+          <TabsContent value="ratings">
+            <Card className="bg-background">
+              <CardContent>
+                <DataTable columns={columns} data={parameters || []} />
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </div>

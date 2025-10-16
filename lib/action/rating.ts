@@ -8,7 +8,6 @@ import {
   updateRatingById,
 } from "../dal/rating";
 import { SurveyTeamType } from "../generated/prisma";
-import { success } from "zod";
 
 export async function giveRating({
   evidenceFileId,
@@ -54,6 +53,7 @@ export async function giveRating({
         NA,
       });
       revalidateTag("evidenceFiles");
+      revalidateTag("areaFolder");
       return { success: { message: "Rating Submitted" } };
     } else {
       await resetRatingById(ratedEvidence?.id!);
@@ -65,6 +65,7 @@ export async function giveRating({
         NA,
       });
       revalidateTag("evidenceFiles");
+      revalidateTag("areaFolder");
       return { success: { message: "Rating Updated" } };
     }
   } catch (error) {

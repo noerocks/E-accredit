@@ -70,11 +70,11 @@ const EvidencePage = async ({
         <Card>
           <CardHeader>
             <CardTitle>
-              <p className="text-3xl">
+              <p className="text-xl">
                 {`${indicator?.label}: ${indicator?.description}`}
               </p>
             </CardTitle>
-            <CardDescription className="text-lg">
+            <CardDescription className="text-md">
               {`${parameter?.label}: ${parameter?.description}`}
             </CardDescription>
           </CardHeader>

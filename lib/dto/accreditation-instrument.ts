@@ -12,6 +12,7 @@ import {
   PhaseTwoAreaFolder,
   PhaseTwoFolder,
 } from "../generated/prisma";
+import { RatingDTO } from "./survey-visit";
 import { TaskforceDTO } from "./taskforce";
 
 export type PhaseTwoInstrumentDTO = PhaseTwoFolder & {
@@ -32,8 +33,9 @@ export type PhaseTwoAreaFolderDTO = PhaseTwoAreaFolder & {
   areaFiles: AreaFile[];
 };
 export type ParameterFolderDTO = ParameterFolder & {
-  parameter: Parameter;
+  parameter: Parameter & { area: Area };
   indicatorFolders: IndicatorFolderDTO[];
+  areaFolder: AreaFolderDTO;
 };
 export type IndicatorFolderDTO = IndicatorFolder & {
   evidenceFiles: EvidenceFileDTO[];
@@ -41,6 +43,7 @@ export type IndicatorFolderDTO = IndicatorFolder & {
 export type EvidenceFileDTO = EvidenceFile & {
   indicator: Indicator;
   fileVersions: FileVersion[];
+  ratings: RatingDTO[] | null;
 };
 export type AreaFileDTO = AreaFile & {
   fileVersions: FileVersion[];

@@ -45,6 +45,11 @@ export const getParameterFolderById = unstable_cache(
               include: {
                 fileVersions: true,
                 indicator: true,
+                ratings: {
+                  include: {
+                    accreditor: true,
+                  },
+                },
               },
             },
           },
@@ -60,7 +65,25 @@ export const getParameterFolderById = unstable_cache(
         },
       },
     });
-    return parameterFolder;
+    if (parameterFolder) {
+      return {
+        ...parameterFolder,
+        indicatorFolders: parameterFolder.indicatorFolders.map((indicator) => ({
+          ...indicator,
+          evidenceFiles: indicator.evidenceFiles.map((evidence) => ({
+            ...evidence,
+            ratings: evidence.ratings.map((rating) => ({
+              ...rating,
+              finalRate:
+                rating.finalRate !== null
+                  ? Number(rating.finalRate)
+                  : rating.finalRate,
+            })),
+          })),
+        })),
+      };
+    }
+    return null;
   },
   ["getParameterFolderById"],
   {

@@ -2,6 +2,7 @@ import AccreditationSettings from "@/components/admin/accreditation/accreditatio
 import Banner from "@/components/admin/accreditation/banner";
 import { columns } from "@/components/admin/accreditation/columns";
 import { DataTable } from "@/components/admin/accreditation/data-table";
+import SurveyVisitStatus from "@/components/admin/accreditation/survey-visit-status";
 import TargetLevel from "@/components/admin/accreditation/target-level";
 import MarkAsCompleteButton from "@/components/admin/parameter/mark-as-complete";
 import { Calendar } from "@/components/ui/calendar";
@@ -103,7 +104,7 @@ const ProgramAccreditationPage = async ({
             status={surveyVisitStructure?.status}
           />
           <TargetLevel level={level!} />
-          <Card className="flex-1 bg-background"></Card>
+          <SurveyVisitStatus />
         </div>
         <Card className="bg-background">
           <CardContent>

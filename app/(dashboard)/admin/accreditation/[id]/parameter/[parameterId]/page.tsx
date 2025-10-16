@@ -83,8 +83,8 @@ const ParameterFolderPage = async ({
         </p>
         <Card>
           <CardHeader>
-            <CardTitle className="text-3xl">{`${parameterFolder?.parameter?.label}: ${parameterFolder?.parameter?.description}`}</CardTitle>
-            <CardDescription className="text-lg">
+            <CardTitle className="text-xl">{`${parameterFolder?.parameter?.label}: ${parameterFolder?.parameter?.description}`}</CardTitle>
+            <CardDescription className="text-md">
               {`${parameterFolder?.parameter.area?.label}: ${parameterFolder?.parameter.area?.description}`}
             </CardDescription>
           </CardHeader>

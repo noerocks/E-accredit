@@ -58,6 +58,10 @@ export async function createNewComment({
       evidenceFileId,
       areaFileId,
     });
+    revalidateTag("comments");
+    revalidateTag("evidenceFiles");
+    revalidateTag("areaFolder");
+    return { success: { message: "Comment created successfuly" } };
   } catch (error) {
     const e = error as Error;
     console.log(e.message);

@@ -47,7 +47,14 @@ export const columns: ColumnDef<EvidenceFileDTO>[] = [
     ),
     cell: ({ row }) => {
       const evidence = row.original;
-      return <div>{evidence.indicator.description}</div>;
+      return (
+        <div
+          className="w-[150px] truncate"
+          title={evidence.indicator.description}
+        >
+          {evidence.indicator.description}
+        </div>
+      );
     },
   },
   {

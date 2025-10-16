@@ -82,8 +82,8 @@ const AreaFolderPage = async ({
         </p>
         <Card>
           <CardHeader>
-            <CardTitle className="text-2xl">{`${area?.label}: ${area?.description}`}</CardTitle>
-            <CardDescription className="text-lg">
+            <CardTitle className="text-xl">{`${area?.label}: ${area?.description}`}</CardTitle>
+            <CardDescription className="text-md">
               {accreditation}
             </CardDescription>
           </CardHeader>

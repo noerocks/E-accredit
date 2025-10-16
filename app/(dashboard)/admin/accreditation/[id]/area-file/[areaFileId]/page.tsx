@@ -65,10 +65,10 @@ const AreaFilePage = async ({
         </p>
         <Card>
           <CardHeader>
-            <CardTitle className="text-3xl">
+            <CardTitle className="text-xl">
               {areaFileType[areaFile?.type!]}
             </CardTitle>
-            <CardDescription className="text-lg">{`${area?.label}: ${area?.description}`}</CardDescription>
+            <CardDescription className="text-md">{`${area?.label}: ${area?.description}`}</CardDescription>
           </CardHeader>
           <CardFooter className="flex items-center justify-between">
             <p

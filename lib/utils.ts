@@ -1,6 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { LevelDTO } from "./dto/level";
+import { ParameterFolderDTO } from "./dto/accreditation-instrument";
+import { SurveyTeamType } from "./generated/prisma";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -43,3 +45,8 @@ export async function formatLevelName(level: LevelDTO) {
     )
     .join(" ");
 }
+
+export function calculateParameterGrandMean(
+  parameterFolder: ParameterFolderDTO,
+  surveyType: SurveyTeamType
+) {}

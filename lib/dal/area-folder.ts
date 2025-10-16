@@ -49,8 +49,13 @@ export const getAreaFolderById = unstable_cache(
               include: {
                 evidenceFiles: {
                   include: {
+                    indicator: true,
                     fileVersions: true,
-                    ratings: true,
+                    ratings: {
+                      include: {
+                        accreditor: true,
+                      },
+                    },
                   },
                 },
               },
@@ -90,7 +95,27 @@ export const getAreaFolderById = unstable_cache(
         },
       },
     });
-    return areaFolder;
+    if (areaFolder) {
+      return {
+        ...areaFolder,
+        parameterFolders: areaFolder.parameterFolders.map((parameter) => ({
+          ...parameter,
+          indicatorFolders: parameter.indicatorFolders.map((indicator) => ({
+            ...indicator,
+            evidenceFiles: indicator.evidenceFiles.map((evidence) => ({
+              ...evidence,
+              ratings: evidence.ratings.map((rating) => ({
+                ...rating,
+                finalRate:
+                  rating.finalRate !== null
+                    ? Number(rating.finalRate)
+                    : rating.finalRate,
+              })),
+            })),
+          })),
+        })),
+      };
+    }
   },
   ["getAreaFolderById"],
   {

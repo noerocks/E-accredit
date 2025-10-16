@@ -4,6 +4,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { verifySession } from "@/lib/action/session";
 import { getEvidenceFileById } from "@/lib/dal/evidence";
 import { getInternalRatingByEvidenceFileId } from "@/lib/dal/rating";
+import { CheckCircle } from "lucide-react";
 
 const EvidencePage = async ({
   params,
@@ -12,8 +13,8 @@ const EvidencePage = async ({
 }) => {
   const { evidenceId } = await params;
   const evidenceFile = await getEvidenceFileById(evidenceId);
+  const indicator = evidenceFile?.indicator;
   const rating = await getInternalRatingByEvidenceFileId(evidenceId);
-  console.log(rating);
   const activeFile = evidenceFile?.fileVersions.find(
     (file) => file.status === "ACTIVE"
   );
@@ -24,6 +25,10 @@ const EvidencePage = async ({
   return (
     <div className="h-full flex">
       <ScrollArea className="h-full flex-1">
+        <p className="h-[48px] text-sm sticky top-0 z-10 bg-background shadow-md flex items-center pl-5 gap-2">
+          <CheckCircle size={15} />
+          {`${indicator?.label}: ${indicator?.description}`}
+        </p>
         <PDFViewer fileUrl={activeFile?.objectUrl!} />
       </ScrollArea>
       <AccreditorSidebar
