@@ -1,6 +1,7 @@
-import Banner from "@/components/admin/accreditation/banner";
 import { DataTable } from "@/components/admin/accreditation/data-table";
+import SelfSurveyReportPDF from "@/components/admin/self-survey/self-survey-report-pdf";
 import { columns } from "@/components/admin/self-survey/survey-visit/columns";
+import PDFViewer from "@/components/pdf-viewer";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,10 +18,14 @@ import {
   getInstrumentStructureById,
 } from "@/lib/dal/instrument";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
-import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
+import {
+  AreaFolderDTO,
+  PhaseOneInstrumentDTO,
+} from "@/lib/dto/accreditation-instrument";
 import { SurveyVisitDTO } from "@/lib/dto/survey-visit";
 import { SurveyTeamType } from "@/lib/generated/prisma";
 import { calculateGrandMean, formatAccreditationName } from "@/lib/utils";
+import { pdf } from "@react-pdf/renderer";
 import clsx from "clsx";
 import { Check, CircleDot, SearchCheck } from "lucide-react";
 
@@ -123,6 +128,9 @@ const SelfSurveyPage = async ({
                 />
               </CardContent>
             </Card>
+          </TabsContent>
+          <TabsContent value="results">
+            <PDFViewer pdfComponent={<SelfSurveyReportPDF />} />
           </TabsContent>
         </Tabs>
       </div>
