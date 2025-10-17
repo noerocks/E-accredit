@@ -1,5 +1,7 @@
+import Banner from "@/components/admin/accreditation/banner";
 import { DataTable } from "@/components/admin/accreditation/data-table";
 import { columns } from "@/components/admin/self-survey/survey-visit/columns";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,11 +12,16 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  getInstrumentById,
+  getInstrumentStructureById,
+} from "@/lib/dal/instrument";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
+import { SurveyTeamType } from "@/lib/generated/prisma";
 import { formatAccreditationName } from "@/lib/utils";
 import clsx from "clsx";
-import { CircleDot, SearchCheck } from "lucide-react";
+import { Check, CircleDot, SearchCheck } from "lucide-react";
 
 const SelfSurveyPage = async ({
   params,
@@ -28,12 +35,25 @@ const SelfSurveyPage = async ({
   const program = surveyVisitStructure?.accreditation.program;
   const level = surveyVisitStructure?.level;
   const areaFolders =
-    surveyVisitStructure?.phaseOneRequirements?.instrumentFolder?.areaFolders;
+    surveyVisitStructure?.phaseOneRequirements?.instrumentFolder?.areaFolders?.sort(
+      (a, b) => a.area.label.localeCompare(b.area.label)
+    );
   const indicators = areaFolders?.flatMap((area) =>
     area.parameterFolders.flatMap((parameter) =>
       parameter.indicatorFolders.flatMap((indicator) => indicator.evidenceFiles)
     )
   );
+  const instrument = await getInstrumentStructureById(
+    surveyVisitStructure?.phaseOneRequirements.instrumentId!
+  );
+  const weightedTotal = instrument?.area.reduce(
+    (sum, area) => (sum += area.weight),
+    0
+  );
+  areaFolders?.forEach((areaFolder) => {
+    const area = areaFolder.area;
+    areaFolder.area.weight = (area.weight / weightedTotal!) * 100;
+  });
   const ratings = indicators
     ?.map((indicator) =>
       indicator.ratings.find((rating) => rating.type === "INTERNAL")
@@ -67,6 +87,12 @@ const SelfSurveyPage = async ({
               <CircleDot size={15} />
               {complete ? "Complete" : "On Going"}
             </p>
+            {complete && (
+              <Button>
+                <Check />
+                End Survey
+              </Button>
+            )}
           </CardFooter>
         </Card>
         <Tabs defaultValue="area">

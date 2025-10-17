@@ -98,10 +98,10 @@ const CreateAccreditationDialog = ({
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-2xl text-center">
-            Program Accreditation
+            Create New Portfolio
           </DialogTitle>
           <DialogDescription>
-            Create new accreditation by providing its details
+            Initialize a survey visit portfolio by providing the details below
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>

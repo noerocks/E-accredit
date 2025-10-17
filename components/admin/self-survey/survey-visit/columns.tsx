@@ -2,7 +2,9 @@
 
 import { DataTableColumnHeader } from "@/components/data-table-column-header";
 import { Checkbox } from "@/components/ui/checkbox";
+import { getInstrumentById } from "@/lib/dal/instrument";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
+import { RatingDTO } from "@/lib/dto/survey-visit";
 import { SurveyTeamType } from "@/lib/generated/prisma";
 import { calculateAreaMean } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table";
@@ -64,7 +66,10 @@ export const columns: ColumnDef<AreaFolderDTO>[] = [
     header: "Weight",
     cell: ({ row }) => {
       const areaFolder = row.original;
-      return <div>{areaFolder.area.weight}</div>;
+      const weight = areaFolder.area.weight;
+      return (
+        <div>{`${weight ? `${areaFolder.area.weight.toFixed(2)}%` : "-"}`}</div>
+      );
     },
   },
   {
@@ -72,8 +77,26 @@ export const columns: ColumnDef<AreaFolderDTO>[] = [
     cell: ({ row }) => {
       const areaFolder = row.original;
       const mean = calculateAreaMean(areaFolder, SurveyTeamType.INTERNAL);
-      const weightedMean = mean && mean * areaFolder.area.weight;
-      return <div>{weightedMean ? weightedMean.toFixed(2) : "-"}</div>;
+      const weightedMean = mean && mean * (areaFolder.area.weight / 100);
+      return <div>{`${weightedMean ? weightedMean.toFixed(2) : "-"}`}</div>;
+    },
+  },
+  {
+    header: "Status",
+    cell: ({ row }) => {
+      const areaFolder = row.original;
+      const indicators = areaFolder?.parameterFolders.flatMap((parameter) =>
+        parameter.indicatorFolders.flatMap((folder) =>
+          folder.evidenceFiles.map((evidence) => evidence)
+        )
+      );
+      const ratings = indicators
+        ?.map((indicator) =>
+          indicator.ratings?.find((rating) => rating.type === "INTERNAL")
+        )
+        .filter((rating) => rating);
+      const complete = ratings.length === indicators?.length;
+      return <div>{complete ? "Complete" : "On Going"}</div>;
     },
   },
 ];

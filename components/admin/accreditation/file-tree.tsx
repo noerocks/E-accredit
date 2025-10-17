@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Collapsible,
   CollapsibleContent,
@@ -86,9 +88,13 @@ const FileTree = ({ item }: { item: TreeNode }) => {
                     data-type={"area-file"}
                   >{`📄 ${areaFileType[areaFile.type]}`}</SidebarMenuButton>
                 ))}
-              {item.parameterFolders.map((parameter) => (
-                <FileTree item={parameter} key={parameter.id} />
-              ))}
+              {item.parameterFolders
+                .sort((a, b) =>
+                  a.parameter.label.localeCompare(b.parameter.label)
+                )
+                .map((parameter) => (
+                  <FileTree item={parameter} key={parameter.id} />
+                ))}
             </SidebarMenuSub>
           </CollapsibleContent>
         </Collapsible>

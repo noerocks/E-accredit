@@ -32,15 +32,15 @@ const ParameterPage = async ({
     )
     .filter((rating) => rating);
   const complete = ratings?.length === indicators?.length;
-  const systemIndicators = indicators?.filter(
-    (indicator) => indicator.indicator.category === "SYSTEM"
-  );
-  const implementationIndicators = indicators?.filter(
-    (indicator) => indicator.indicator.category === "IMPLEMENTATION"
-  );
-  const outcomesIndicators = indicators?.filter(
-    (indicator) => indicator.indicator.category === "OUTCOME"
-  );
+  const systemIndicators = indicators
+    ?.filter((indicator) => indicator.indicator.category === "SYSTEM")
+    .sort((a, b) => a.indicator.label.localeCompare(b.indicator.label));
+  const implementationIndicators = indicators
+    ?.filter((indicator) => indicator.indicator.category === "IMPLEMENTATION")
+    .sort((a, b) => a.indicator.label.localeCompare(b.indicator.label));
+  const outcomesIndicators = indicators
+    ?.filter((indicator) => indicator.indicator.category === "OUTCOME")
+    .sort((a, b) => a.indicator.label.localeCompare(b.indicator.label));
   return (
     <ScrollArea className="h-full">
       <div className="max-w-5/6 flex flex-col gap-5 mx-auto my-10">

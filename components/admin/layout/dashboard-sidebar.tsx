@@ -1,6 +1,7 @@
 import {
   BadgeCheck,
   ClipboardCheck,
+  FileArchive,
   FolderCheck,
   Home,
   Landmark,
@@ -86,9 +87,9 @@ const DashboardSidebar = async () => {
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <Link href={"/admin/accreditation"}>
-                  <BadgeCheck />
+                  <FileArchive />
                   <span className="whitespace-nowrap">
-                    Program Accreditations
+                    Survey Visit Portfolio
                   </span>
                 </Link>
               </SidebarMenuButton>

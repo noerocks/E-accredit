@@ -31,6 +31,7 @@ import {
   CheckCircle2,
   CircleDot,
   CircleQuestionMark,
+  FileArchive,
   Info,
   Settings,
 } from "lucide-react";
@@ -60,8 +61,8 @@ const ProgramAccreditationPage = async ({
       <Banner surveyVisitId={String(id!)} />
       <div className="max-w-5/6 mx-auto my-10 flex flex-col gap-5">
         <p className="text-2xl flex items-center gap-2">
-          <BadgeCheck />
-          Accreditation
+          <FileArchive />
+          Survey Visit Portfolio
         </p>
         <Card>
           <CardHeader>

@@ -1,3 +1,4 @@
+import Banner from "@/components/admin/accreditation/banner";
 import { DataTable } from "@/components/admin/area/data-table";
 import RecommendationsForm from "@/components/admin/area/recommendations-form";
 import { columns } from "@/components/admin/self-survey/area/columns";
@@ -14,6 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { verifySession } from "@/lib/action/session";
 import { getAreaFolderById } from "@/lib/dal/area-folder";
 import { ParameterFolderDTO } from "@/lib/dto/accreditation-instrument";
+import { SurveyTeamType } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import { CircleDot, Layers, MessageCircleMore } from "lucide-react";
 
@@ -21,10 +23,10 @@ const AreaPage = async ({
   params,
   searchParams,
 }: {
-  params: Promise<{ areaId: string }>;
+  params: Promise<{ areaId: string; id: string }>;
   searchParams: Promise<{ ["self-survey"]: string }>;
 }) => {
-  const { areaId } = await params;
+  const { areaId, id } = await params;
   const session = await verifySession();
   const user = session.user;
   const areaFolder = await getAreaFolderById(areaId);
@@ -35,16 +37,18 @@ const AreaPage = async ({
       folder.evidenceFiles.map((evidence) => evidence)
     )
   );
-  const recommendation = areaFolder?.recommendations.find(
-    (recommendation) => recommendation.type === "SELF_SURVEY"
-  );
   const ratings = indicators
     ?.map((indicator) =>
       indicator.ratings.find((rating) => rating.type === "INTERNAL")
     )
     .filter((rating) => rating);
   const complete = ratings?.length === indicators?.length;
-  const parameters = areaFolder?.parameterFolders;
+  const recommendation = areaFolder?.recommendations.find(
+    (recommendation) => recommendation.type === "SELF_SURVEY"
+  );
+  const parameters = areaFolder?.parameterFolders.sort((a, b) =>
+    a.parameter.label.localeCompare(b.parameter.label)
+  );
   return (
     <ScrollArea className="h-full">
       <div className="max-w-5/6 flex flex-col gap-5 mx-auto my-10">
