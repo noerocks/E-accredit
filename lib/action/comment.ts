@@ -14,28 +14,32 @@ export async function createNewComment({
   type,
   evidenceFileId,
   areaFileId,
-  areaFolderId,
+  recommendedFolderId,
+  strongFolderId,
+  weakFolderId,
 }: {
   authorId: string;
   content: string;
   type: CommentType;
   evidenceFileId?: string;
   areaFileId?: string;
-  areaFolderId?: string;
+  recommendedFolderId?: string;
+  strongFolderId?: string;
+  weakFolderId?: string;
 }) {
   if (!authorId || !content || !type)
     return { failure: { error: "Invalid input" } };
   try {
-    if (areaFolderId) {
+    if (recommendedFolderId) {
       const recommendation = await getInternalRecommendationByAreaFolderId(
-        areaFolderId
+        recommendedFolderId
       );
       if (!recommendation) {
         const newRecommendation = await createNewCommentDAL({
           authorId,
           content,
           type,
-          areaFolderId,
+          recommendedFolderId,
         });
         revalidateTag("comments");
         revalidateTag("evidenceFiles");
@@ -44,6 +48,56 @@ export async function createNewComment({
       }
       const updatedComment = updateCommentById({
         id: recommendation?.id,
+        content,
+      });
+      revalidateTag("comments");
+      revalidateTag("evidenceFiles");
+      revalidateTag("areaFolder");
+      return { success: { message: "Comment updated successfuly" } };
+    }
+    if (strongFolderId) {
+      const strengths = await getInternalRecommendationByAreaFolderId(
+        strongFolderId
+      );
+      if (!strengths) {
+        const newStrength = await createNewCommentDAL({
+          authorId,
+          content,
+          type,
+          strongFolderId,
+        });
+        revalidateTag("comments");
+        revalidateTag("evidenceFiles");
+        revalidateTag("areaFolder");
+        return { success: { message: "Comment created successfuly" } };
+      }
+      const updatedComment = updateCommentById({
+        id: strengths?.id,
+        content,
+      });
+      revalidateTag("comments");
+      revalidateTag("evidenceFiles");
+      revalidateTag("areaFolder");
+      return { success: { message: "Comment updated successfuly" } };
+    }
+    if (weakFolderId) {
+      const weaknesses = await getInternalRecommendationByAreaFolderId(
+        weakFolderId
+      );
+      if (!weaknesses) {
+        const newWeaknesses = await createNewCommentDAL({
+          authorId,
+          content,
+          type,
+          weakFolderId,
+        });
+        revalidateTag("comments");
+        revalidateTag("evidenceFiles");
+        revalidateTag("areaFolder");
+        return { success: { message: "Comment created successfuly" } };
+      }
+      const updatedComment = updateCommentById({
+        id: weaknesses?.id,
         content,
       });
       revalidateTag("comments");

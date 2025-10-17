@@ -10,14 +10,18 @@ export async function createNewComment({
   type,
   evidenceFileId = null,
   areaFileId = null,
-  areaFolderId = null,
+  recommendedFolderId = null,
+  strongFolderId = null,
+  weakFolderId = null,
 }: {
   authorId: string;
   content: string;
   type: CommentType;
   evidenceFileId?: string | null;
   areaFileId?: string | null;
-  areaFolderId?: string | null;
+  recommendedFolderId?: string | null;
+  strongFolderId?: string | null;
+  weakFolderId?: string | null;
 }) {
   const session = await verifySession();
   if (!session) return null;
@@ -42,10 +46,24 @@ export async function createNewComment({
           },
         },
       }),
-      ...(areaFolderId && {
-        areaFolder: {
+      ...(recommendedFolderId && {
+        recommendedFolder: {
           connect: {
-            id: areaFolderId,
+            id: recommendedFolderId,
+          },
+        },
+      }),
+      ...(strongFolderId && {
+        strongFolder: {
+          connect: {
+            id: strongFolderId,
+          },
+        },
+      }),
+      ...(weakFolderId && {
+        weakFolder: {
+          connect: {
+            id: weakFolderId,
           },
         },
       }),
@@ -92,13 +110,41 @@ export async function getInternalRecommendationByAreaFolderId(id: string) {
   if (!session) return null;
   const recommendation = await prisma.comment.findFirst({
     where: {
-      areaFolderId: id,
+      recommendedFolderId: id,
       AND: {
         type: CommentType.SELF_SURVEY,
       },
     },
   });
   return recommendation;
+}
+
+export async function getInternalStrengthsByAreaFolderId(id: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const strengths = await prisma.comment.findFirst({
+    where: {
+      strongFolderId: id,
+      AND: {
+        type: CommentType.SELF_SURVEY,
+      },
+    },
+  });
+  return strengths;
+}
+
+export async function getInternalWeaknessesByAreaFolderId(id: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const weaknesses = await prisma.comment.findFirst({
+    where: {
+      weakFolderId: id,
+      AND: {
+        type: CommentType.SELF_SURVEY,
+      },
+    },
+  });
+  return weaknesses;
 }
 
 export async function updateCommentById(data: Partial<Comment>) {

@@ -17,7 +17,14 @@ import { getAreaFolderById } from "@/lib/dal/area-folder";
 import { ParameterFolderDTO } from "@/lib/dto/accreditation-instrument";
 import { SurveyTeamType } from "@/lib/generated/prisma";
 import clsx from "clsx";
-import { CircleDot, Layers, MessageCircleMore } from "lucide-react";
+import {
+  BicepsFlexed,
+  CircleDot,
+  Layers,
+  MessageCircleMore,
+  TrendingDown,
+  TrendingUp,
+} from "lucide-react";
 
 const AreaPage = async ({
   params,
@@ -45,6 +52,12 @@ const AreaPage = async ({
   const complete = ratings?.length === indicators?.length;
   const recommendation = areaFolder?.recommendations.find(
     (recommendation) => recommendation.type === "SELF_SURVEY"
+  );
+  const strenths = areaFolder?.strengths.find(
+    (strength) => strength.type === "SELF_SURVEY"
+  );
+  const weaknesses = areaFolder?.weaknesses.find(
+    (weaknesses) => weaknesses.type === "SELF_SURVEY"
   );
   const parameters = areaFolder?.parameterFolders.sort((a, b) =>
     a.parameter.label.localeCompare(b.parameter.label)
@@ -81,11 +94,57 @@ const AreaPage = async ({
             <p className="text-muted-foreground">{`Weight: ${area?.weight}`}</p>
           </CardFooter>
         </Card>
-        <Tabs defaultValue="recommendations">
+        <Tabs defaultValue="ratings">
           <TabsList className="bg-background border">
-            <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
             <TabsTrigger value="ratings">Parameter Ratings</TabsTrigger>
+            <TabsTrigger value="strengths">Strengths</TabsTrigger>
+            <TabsTrigger value="weaknesses">Weaknesses</TabsTrigger>
+            <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
           </TabsList>
+          <TabsContent value="ratings">
+            <Card className="bg-background">
+              <CardContent>
+                <DataTable
+                  columns={columns}
+                  data={(parameters as unknown as ParameterFolderDTO[]) || []}
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="strengths">
+            <Card className="bg-background">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <TrendingUp size={20} />
+                  Area Strengths
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <RecommendationsForm
+                  user={user}
+                  recommendedFolderId={areaFolder?.id}
+                  defaultContent={strenths?.content}
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="weaknesses">
+            <Card className="bg-background">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <TrendingDown size={20} />
+                  Area Weaknesses
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <RecommendationsForm
+                  user={user}
+                  recommendedFolderId={areaFolder?.id}
+                  defaultContent={weaknesses?.content}
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
           <TabsContent value="recommendations">
             <Card className="bg-background">
               <CardHeader>
@@ -97,18 +156,8 @@ const AreaPage = async ({
               <CardContent>
                 <RecommendationsForm
                   user={user}
-                  areaFolderId={areaFolder?.id}
-                  recommendation={recommendation?.content}
-                />
-              </CardContent>
-            </Card>
-          </TabsContent>
-          <TabsContent value="ratings">
-            <Card className="bg-background">
-              <CardContent>
-                <DataTable
-                  columns={columns}
-                  data={(parameters as unknown as ParameterFolderDTO[]) || []}
+                  recommendedFolderId={areaFolder?.id}
+                  defaultContent={recommendation?.content}
                 />
               </CardContent>
             </Card>

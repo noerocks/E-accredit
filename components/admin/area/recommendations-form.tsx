@@ -25,12 +25,14 @@ import z from "zod";
 
 const RecommendationsForm = ({
   user,
-  areaFolderId,
-  recommendation,
+  recommendedFolderId,
+  defaultContent,
 }: {
   user: SessionPayload;
-  areaFolderId: string | undefined;
-  recommendation: string | undefined;
+  recommendedFolderId?: string | undefined;
+  strongFolderId?: string | undefined;
+  weakFolderId?: string | undefined;
+  defaultContent: string | undefined;
 }) => {
   const { setOpen } = useSidebar();
   useEffect(() => {
@@ -39,7 +41,7 @@ const RecommendationsForm = ({
   const form = useForm<z.infer<typeof RecommendationsFormSchema>>({
     resolver: zodResolver(RecommendationsFormSchema),
     defaultValues: {
-      content: "",
+      content: defaultContent,
     },
   });
   useEffect(() => {
@@ -53,12 +55,11 @@ const RecommendationsForm = ({
         authorId: user.id,
         content: data.content,
         type: CommentType.SELF_SURVEY,
-        areaFolderId: areaFolderId,
+        recommendedFolderId,
       });
       if (result?.failure) toast.error(result.failure.error);
     });
   };
-  console.log(recommendation);
   return (
     <Form {...form}>
       <form
@@ -76,7 +77,6 @@ const RecommendationsForm = ({
                   {...field}
                   className="h-30 focus:ring-0 focus-visible:ring-0"
                   ref={textAreaRef}
-                  value={recommendation}
                 />
               </FormControl>
               <FormDescription>

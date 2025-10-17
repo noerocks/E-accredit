@@ -3877,6 +3877,8 @@ export namespace Prisma {
     areaFiles: number
     areaChair: number
     recommendations: number
+    strengths: number
+    weaknesses: number
   }
 
   export type AreaFolderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3884,6 +3886,8 @@ export namespace Prisma {
     areaFiles?: boolean | AreaFolderCountOutputTypeCountAreaFilesArgs
     areaChair?: boolean | AreaFolderCountOutputTypeCountAreaChairArgs
     recommendations?: boolean | AreaFolderCountOutputTypeCountRecommendationsArgs
+    strengths?: boolean | AreaFolderCountOutputTypeCountStrengthsArgs
+    weaknesses?: boolean | AreaFolderCountOutputTypeCountWeaknessesArgs
   }
 
   // Custom InputTypes
@@ -3922,6 +3926,20 @@ export namespace Prisma {
    * AreaFolderCountOutputType without action
    */
   export type AreaFolderCountOutputTypeCountRecommendationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentWhereInput
+  }
+
+  /**
+   * AreaFolderCountOutputType without action
+   */
+  export type AreaFolderCountOutputTypeCountStrengthsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentWhereInput
+  }
+
+  /**
+   * AreaFolderCountOutputType without action
+   */
+  export type AreaFolderCountOutputTypeCountWeaknessesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CommentWhereInput
   }
 
@@ -20464,6 +20482,8 @@ export namespace Prisma {
     taskForce?: boolean | AreaFolder$taskForceArgs<ExtArgs>
     areaChair?: boolean | AreaFolder$areaChairArgs<ExtArgs>
     recommendations?: boolean | AreaFolder$recommendationsArgs<ExtArgs>
+    strengths?: boolean | AreaFolder$strengthsArgs<ExtArgs>
+    weaknesses?: boolean | AreaFolder$weaknessesArgs<ExtArgs>
     _count?: boolean | AreaFolderCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["areaFolder"]>
 
@@ -20501,6 +20521,8 @@ export namespace Prisma {
     taskForce?: boolean | AreaFolder$taskForceArgs<ExtArgs>
     areaChair?: boolean | AreaFolder$areaChairArgs<ExtArgs>
     recommendations?: boolean | AreaFolder$recommendationsArgs<ExtArgs>
+    strengths?: boolean | AreaFolder$strengthsArgs<ExtArgs>
+    weaknesses?: boolean | AreaFolder$weaknessesArgs<ExtArgs>
     _count?: boolean | AreaFolderCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type AreaFolderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20522,6 +20544,8 @@ export namespace Prisma {
       taskForce: Prisma.$TaskForcePayload<ExtArgs> | null
       areaChair: Prisma.$AreaChairPayload<ExtArgs>[]
       recommendations: Prisma.$CommentPayload<ExtArgs>[]
+      strengths: Prisma.$CommentPayload<ExtArgs>[]
+      weaknesses: Prisma.$CommentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -20929,6 +20953,8 @@ export namespace Prisma {
     taskForce<T extends AreaFolder$taskForceArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolder$taskForceArgs<ExtArgs>>): Prisma__TaskForceClient<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     areaChair<T extends AreaFolder$areaChairArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolder$areaChairArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     recommendations<T extends AreaFolder$recommendationsArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolder$recommendationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    strengths<T extends AreaFolder$strengthsArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolder$strengthsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    weaknesses<T extends AreaFolder$weaknessesArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolder$weaknessesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -21452,6 +21478,54 @@ export namespace Prisma {
    * AreaFolder.recommendations
    */
   export type AreaFolder$recommendationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByWithRelationInput | CommentOrderByWithRelationInput[]
+    cursor?: CommentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * AreaFolder.strengths
+   */
+  export type AreaFolder$strengthsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByWithRelationInput | CommentOrderByWithRelationInput[]
+    cursor?: CommentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * AreaFolder.weaknesses
+   */
+  export type AreaFolder$weaknessesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Comment
      */
@@ -33798,7 +33872,9 @@ export namespace Prisma {
     authorId: string | null
     evidenceFileId: string | null
     areaFileId: string | null
-    areaFolderId: string | null
+    recommendedFolderId: string | null
+    strongFolderId: string | null
+    weakFolderId: string | null
     content: string | null
     type: $Enums.CommentType | null
     createdAt: Date | null
@@ -33809,7 +33885,9 @@ export namespace Prisma {
     authorId: string | null
     evidenceFileId: string | null
     areaFileId: string | null
-    areaFolderId: string | null
+    recommendedFolderId: string | null
+    strongFolderId: string | null
+    weakFolderId: string | null
     content: string | null
     type: $Enums.CommentType | null
     createdAt: Date | null
@@ -33820,7 +33898,9 @@ export namespace Prisma {
     authorId: number
     evidenceFileId: number
     areaFileId: number
-    areaFolderId: number
+    recommendedFolderId: number
+    strongFolderId: number
+    weakFolderId: number
     content: number
     type: number
     createdAt: number
@@ -33833,7 +33913,9 @@ export namespace Prisma {
     authorId?: true
     evidenceFileId?: true
     areaFileId?: true
-    areaFolderId?: true
+    recommendedFolderId?: true
+    strongFolderId?: true
+    weakFolderId?: true
     content?: true
     type?: true
     createdAt?: true
@@ -33844,7 +33926,9 @@ export namespace Prisma {
     authorId?: true
     evidenceFileId?: true
     areaFileId?: true
-    areaFolderId?: true
+    recommendedFolderId?: true
+    strongFolderId?: true
+    weakFolderId?: true
     content?: true
     type?: true
     createdAt?: true
@@ -33855,7 +33939,9 @@ export namespace Prisma {
     authorId?: true
     evidenceFileId?: true
     areaFileId?: true
-    areaFolderId?: true
+    recommendedFolderId?: true
+    strongFolderId?: true
+    weakFolderId?: true
     content?: true
     type?: true
     createdAt?: true
@@ -33939,7 +34025,9 @@ export namespace Prisma {
     authorId: string
     evidenceFileId: string | null
     areaFileId: string | null
-    areaFolderId: string | null
+    recommendedFolderId: string | null
+    strongFolderId: string | null
+    weakFolderId: string | null
     content: string
     type: $Enums.CommentType
     createdAt: Date
@@ -33967,14 +34055,18 @@ export namespace Prisma {
     authorId?: boolean
     evidenceFileId?: boolean
     areaFileId?: boolean
-    areaFolderId?: boolean
+    recommendedFolderId?: boolean
+    strongFolderId?: boolean
+    weakFolderId?: boolean
     content?: boolean
     type?: boolean
     createdAt?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
     evidenceFile?: boolean | Comment$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | Comment$areaFileArgs<ExtArgs>
-    areaFolder?: boolean | Comment$areaFolderArgs<ExtArgs>
+    recommendedFolder?: boolean | Comment$recommendedFolderArgs<ExtArgs>
+    strongFolder?: boolean | Comment$strongFolderArgs<ExtArgs>
+    weakFolder?: boolean | Comment$weakFolderArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -33982,14 +34074,18 @@ export namespace Prisma {
     authorId?: boolean
     evidenceFileId?: boolean
     areaFileId?: boolean
-    areaFolderId?: boolean
+    recommendedFolderId?: boolean
+    strongFolderId?: boolean
+    weakFolderId?: boolean
     content?: boolean
     type?: boolean
     createdAt?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
     evidenceFile?: boolean | Comment$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | Comment$areaFileArgs<ExtArgs>
-    areaFolder?: boolean | Comment$areaFolderArgs<ExtArgs>
+    recommendedFolder?: boolean | Comment$recommendedFolderArgs<ExtArgs>
+    strongFolder?: boolean | Comment$strongFolderArgs<ExtArgs>
+    weakFolder?: boolean | Comment$weakFolderArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -33997,14 +34093,18 @@ export namespace Prisma {
     authorId?: boolean
     evidenceFileId?: boolean
     areaFileId?: boolean
-    areaFolderId?: boolean
+    recommendedFolderId?: boolean
+    strongFolderId?: boolean
+    weakFolderId?: boolean
     content?: boolean
     type?: boolean
     createdAt?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
     evidenceFile?: boolean | Comment$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | Comment$areaFileArgs<ExtArgs>
-    areaFolder?: boolean | Comment$areaFolderArgs<ExtArgs>
+    recommendedFolder?: boolean | Comment$recommendedFolderArgs<ExtArgs>
+    strongFolder?: boolean | Comment$strongFolderArgs<ExtArgs>
+    weakFolder?: boolean | Comment$weakFolderArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectScalar = {
@@ -34012,30 +34112,38 @@ export namespace Prisma {
     authorId?: boolean
     evidenceFileId?: boolean
     areaFileId?: boolean
-    areaFolderId?: boolean
+    recommendedFolderId?: boolean
+    strongFolderId?: boolean
+    weakFolderId?: boolean
     content?: boolean
     type?: boolean
     createdAt?: boolean
   }
 
-  export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "evidenceFileId" | "areaFileId" | "areaFolderId" | "content" | "type" | "createdAt", ExtArgs["result"]["comment"]>
+  export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "evidenceFileId" | "areaFileId" | "recommendedFolderId" | "strongFolderId" | "weakFolderId" | "content" | "type" | "createdAt", ExtArgs["result"]["comment"]>
   export type CommentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
     evidenceFile?: boolean | Comment$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | Comment$areaFileArgs<ExtArgs>
-    areaFolder?: boolean | Comment$areaFolderArgs<ExtArgs>
+    recommendedFolder?: boolean | Comment$recommendedFolderArgs<ExtArgs>
+    strongFolder?: boolean | Comment$strongFolderArgs<ExtArgs>
+    weakFolder?: boolean | Comment$weakFolderArgs<ExtArgs>
   }
   export type CommentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
     evidenceFile?: boolean | Comment$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | Comment$areaFileArgs<ExtArgs>
-    areaFolder?: boolean | Comment$areaFolderArgs<ExtArgs>
+    recommendedFolder?: boolean | Comment$recommendedFolderArgs<ExtArgs>
+    strongFolder?: boolean | Comment$strongFolderArgs<ExtArgs>
+    weakFolder?: boolean | Comment$weakFolderArgs<ExtArgs>
   }
   export type CommentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
     evidenceFile?: boolean | Comment$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | Comment$areaFileArgs<ExtArgs>
-    areaFolder?: boolean | Comment$areaFolderArgs<ExtArgs>
+    recommendedFolder?: boolean | Comment$recommendedFolderArgs<ExtArgs>
+    strongFolder?: boolean | Comment$strongFolderArgs<ExtArgs>
+    weakFolder?: boolean | Comment$weakFolderArgs<ExtArgs>
   }
 
   export type $CommentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -34044,14 +34152,18 @@ export namespace Prisma {
       author: Prisma.$UserPayload<ExtArgs>
       evidenceFile: Prisma.$EvidenceFilePayload<ExtArgs> | null
       areaFile: Prisma.$AreaFilePayload<ExtArgs> | null
-      areaFolder: Prisma.$AreaFolderPayload<ExtArgs> | null
+      recommendedFolder: Prisma.$AreaFolderPayload<ExtArgs> | null
+      strongFolder: Prisma.$AreaFolderPayload<ExtArgs> | null
+      weakFolder: Prisma.$AreaFolderPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       authorId: string
       evidenceFileId: string | null
       areaFileId: string | null
-      areaFolderId: string | null
+      recommendedFolderId: string | null
+      strongFolderId: string | null
+      weakFolderId: string | null
       content: string
       type: $Enums.CommentType
       createdAt: Date
@@ -34452,7 +34564,9 @@ export namespace Prisma {
     author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     evidenceFile<T extends Comment$evidenceFileArgs<ExtArgs> = {}>(args?: Subset<T, Comment$evidenceFileArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     areaFile<T extends Comment$areaFileArgs<ExtArgs> = {}>(args?: Subset<T, Comment$areaFileArgs<ExtArgs>>): Prisma__AreaFileClient<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    areaFolder<T extends Comment$areaFolderArgs<ExtArgs> = {}>(args?: Subset<T, Comment$areaFolderArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    recommendedFolder<T extends Comment$recommendedFolderArgs<ExtArgs> = {}>(args?: Subset<T, Comment$recommendedFolderArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    strongFolder<T extends Comment$strongFolderArgs<ExtArgs> = {}>(args?: Subset<T, Comment$strongFolderArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    weakFolder<T extends Comment$weakFolderArgs<ExtArgs> = {}>(args?: Subset<T, Comment$weakFolderArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -34486,7 +34600,9 @@ export namespace Prisma {
     readonly authorId: FieldRef<"Comment", 'String'>
     readonly evidenceFileId: FieldRef<"Comment", 'String'>
     readonly areaFileId: FieldRef<"Comment", 'String'>
-    readonly areaFolderId: FieldRef<"Comment", 'String'>
+    readonly recommendedFolderId: FieldRef<"Comment", 'String'>
+    readonly strongFolderId: FieldRef<"Comment", 'String'>
+    readonly weakFolderId: FieldRef<"Comment", 'String'>
     readonly content: FieldRef<"Comment", 'String'>
     readonly type: FieldRef<"Comment", 'CommentType'>
     readonly createdAt: FieldRef<"Comment", 'DateTime'>
@@ -34924,9 +35040,47 @@ export namespace Prisma {
   }
 
   /**
-   * Comment.areaFolder
+   * Comment.recommendedFolder
    */
-  export type Comment$areaFolderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Comment$recommendedFolderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    where?: AreaFolderWhereInput
+  }
+
+  /**
+   * Comment.strongFolder
+   */
+  export type Comment$strongFolderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    where?: AreaFolderWhereInput
+  }
+
+  /**
+   * Comment.weakFolder
+   */
+  export type Comment$weakFolderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the AreaFolder
      */
@@ -35278,7 +35432,9 @@ export namespace Prisma {
     authorId: 'authorId',
     evidenceFileId: 'evidenceFileId',
     areaFileId: 'areaFileId',
-    areaFolderId: 'areaFolderId',
+    recommendedFolderId: 'recommendedFolderId',
+    strongFolderId: 'strongFolderId',
+    weakFolderId: 'weakFolderId',
     content: 'content',
     type: 'type',
     createdAt: 'createdAt'
@@ -36539,6 +36695,8 @@ export namespace Prisma {
     taskForce?: XOR<TaskForceNullableScalarRelationFilter, TaskForceWhereInput> | null
     areaChair?: AreaChairListRelationFilter
     recommendations?: CommentListRelationFilter
+    strengths?: CommentListRelationFilter
+    weaknesses?: CommentListRelationFilter
   }
 
   export type AreaFolderOrderByWithRelationInput = {
@@ -36553,6 +36711,8 @@ export namespace Prisma {
     taskForce?: TaskForceOrderByWithRelationInput
     areaChair?: AreaChairOrderByRelationAggregateInput
     recommendations?: CommentOrderByRelationAggregateInput
+    strengths?: CommentOrderByRelationAggregateInput
+    weaknesses?: CommentOrderByRelationAggregateInput
   }
 
   export type AreaFolderWhereUniqueInput = Prisma.AtLeast<{
@@ -36570,6 +36730,8 @@ export namespace Prisma {
     taskForce?: XOR<TaskForceNullableScalarRelationFilter, TaskForceWhereInput> | null
     areaChair?: AreaChairListRelationFilter
     recommendations?: CommentListRelationFilter
+    strengths?: CommentListRelationFilter
+    weaknesses?: CommentListRelationFilter
   }, "id">
 
   export type AreaFolderOrderByWithAggregationInput = {
@@ -37263,14 +37425,18 @@ export namespace Prisma {
     authorId?: StringFilter<"Comment"> | string
     evidenceFileId?: StringNullableFilter<"Comment"> | string | null
     areaFileId?: StringNullableFilter<"Comment"> | string | null
-    areaFolderId?: StringNullableFilter<"Comment"> | string | null
+    recommendedFolderId?: StringNullableFilter<"Comment"> | string | null
+    strongFolderId?: StringNullableFilter<"Comment"> | string | null
+    weakFolderId?: StringNullableFilter<"Comment"> | string | null
     content?: StringFilter<"Comment"> | string
     type?: EnumCommentTypeFilter<"Comment"> | $Enums.CommentType
     createdAt?: DateTimeFilter<"Comment"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
     evidenceFile?: XOR<EvidenceFileNullableScalarRelationFilter, EvidenceFileWhereInput> | null
     areaFile?: XOR<AreaFileNullableScalarRelationFilter, AreaFileWhereInput> | null
-    areaFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
+    recommendedFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
+    strongFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
+    weakFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
   }
 
   export type CommentOrderByWithRelationInput = {
@@ -37278,14 +37444,18 @@ export namespace Prisma {
     authorId?: SortOrder
     evidenceFileId?: SortOrderInput | SortOrder
     areaFileId?: SortOrderInput | SortOrder
-    areaFolderId?: SortOrderInput | SortOrder
+    recommendedFolderId?: SortOrderInput | SortOrder
+    strongFolderId?: SortOrderInput | SortOrder
+    weakFolderId?: SortOrderInput | SortOrder
     content?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
     author?: UserOrderByWithRelationInput
     evidenceFile?: EvidenceFileOrderByWithRelationInput
     areaFile?: AreaFileOrderByWithRelationInput
-    areaFolder?: AreaFolderOrderByWithRelationInput
+    recommendedFolder?: AreaFolderOrderByWithRelationInput
+    strongFolder?: AreaFolderOrderByWithRelationInput
+    weakFolder?: AreaFolderOrderByWithRelationInput
   }
 
   export type CommentWhereUniqueInput = Prisma.AtLeast<{
@@ -37296,14 +37466,18 @@ export namespace Prisma {
     authorId?: StringFilter<"Comment"> | string
     evidenceFileId?: StringNullableFilter<"Comment"> | string | null
     areaFileId?: StringNullableFilter<"Comment"> | string | null
-    areaFolderId?: StringNullableFilter<"Comment"> | string | null
+    recommendedFolderId?: StringNullableFilter<"Comment"> | string | null
+    strongFolderId?: StringNullableFilter<"Comment"> | string | null
+    weakFolderId?: StringNullableFilter<"Comment"> | string | null
     content?: StringFilter<"Comment"> | string
     type?: EnumCommentTypeFilter<"Comment"> | $Enums.CommentType
     createdAt?: DateTimeFilter<"Comment"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
     evidenceFile?: XOR<EvidenceFileNullableScalarRelationFilter, EvidenceFileWhereInput> | null
     areaFile?: XOR<AreaFileNullableScalarRelationFilter, AreaFileWhereInput> | null
-    areaFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
+    recommendedFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
+    strongFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
+    weakFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
   }, "id">
 
   export type CommentOrderByWithAggregationInput = {
@@ -37311,7 +37485,9 @@ export namespace Prisma {
     authorId?: SortOrder
     evidenceFileId?: SortOrderInput | SortOrder
     areaFileId?: SortOrderInput | SortOrder
-    areaFolderId?: SortOrderInput | SortOrder
+    recommendedFolderId?: SortOrderInput | SortOrder
+    strongFolderId?: SortOrderInput | SortOrder
+    weakFolderId?: SortOrderInput | SortOrder
     content?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
@@ -37328,7 +37504,9 @@ export namespace Prisma {
     authorId?: StringWithAggregatesFilter<"Comment"> | string
     evidenceFileId?: StringNullableWithAggregatesFilter<"Comment"> | string | null
     areaFileId?: StringNullableWithAggregatesFilter<"Comment"> | string | null
-    areaFolderId?: StringNullableWithAggregatesFilter<"Comment"> | string | null
+    recommendedFolderId?: StringNullableWithAggregatesFilter<"Comment"> | string | null
+    strongFolderId?: StringNullableWithAggregatesFilter<"Comment"> | string | null
+    weakFolderId?: StringNullableWithAggregatesFilter<"Comment"> | string | null
     content?: StringWithAggregatesFilter<"Comment"> | string
     type?: EnumCommentTypeWithAggregatesFilter<"Comment"> | $Enums.CommentType
     createdAt?: DateTimeWithAggregatesFilter<"Comment"> | Date | string
@@ -38328,7 +38506,9 @@ export namespace Prisma {
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
     areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
-    recommendations?: CommentCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderUncheckedCreateInput = {
@@ -38340,7 +38520,9 @@ export namespace Prisma {
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
-    recommendations?: CommentUncheckedCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentUncheckedCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentUncheckedCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentUncheckedCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderUpdateInput = {
@@ -38352,7 +38534,9 @@ export namespace Prisma {
     areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
     areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
-    recommendations?: CommentUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateInput = {
@@ -38364,7 +38548,9 @@ export namespace Prisma {
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
-    recommendations?: CommentUncheckedUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUncheckedUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUncheckedUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUncheckedUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type AreaFolderCreateManyInput = {
@@ -39012,7 +39198,9 @@ export namespace Prisma {
     author: UserCreateNestedOneWithoutCommentsInput
     evidenceFile?: EvidenceFileCreateNestedOneWithoutCommentsInput
     areaFile?: AreaFileCreateNestedOneWithoutCommentsInput
-    areaFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
+    recommendedFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
+    strongFolder?: AreaFolderCreateNestedOneWithoutStrengthsInput
+    weakFolder?: AreaFolderCreateNestedOneWithoutWeaknessesInput
   }
 
   export type CommentUncheckedCreateInput = {
@@ -39020,7 +39208,9 @@ export namespace Prisma {
     authorId: string
     evidenceFileId?: string | null
     areaFileId?: string | null
-    areaFolderId?: string | null
+    recommendedFolderId?: string | null
+    strongFolderId?: string | null
+    weakFolderId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -39034,7 +39224,9 @@ export namespace Prisma {
     author?: UserUpdateOneRequiredWithoutCommentsNestedInput
     evidenceFile?: EvidenceFileUpdateOneWithoutCommentsNestedInput
     areaFile?: AreaFileUpdateOneWithoutCommentsNestedInput
-    areaFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
+    recommendedFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
+    strongFolder?: AreaFolderUpdateOneWithoutStrengthsNestedInput
+    weakFolder?: AreaFolderUpdateOneWithoutWeaknessesNestedInput
   }
 
   export type CommentUncheckedUpdateInput = {
@@ -39042,7 +39234,9 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
-    areaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39053,7 +39247,9 @@ export namespace Prisma {
     authorId: string
     evidenceFileId?: string | null
     areaFileId?: string | null
-    areaFolderId?: string | null
+    recommendedFolderId?: string | null
+    strongFolderId?: string | null
+    weakFolderId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -39071,7 +39267,9 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
-    areaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -40674,7 +40872,9 @@ export namespace Prisma {
     authorId?: SortOrder
     evidenceFileId?: SortOrder
     areaFileId?: SortOrder
-    areaFolderId?: SortOrder
+    recommendedFolderId?: SortOrder
+    strongFolderId?: SortOrder
+    weakFolderId?: SortOrder
     content?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
@@ -40685,7 +40885,9 @@ export namespace Prisma {
     authorId?: SortOrder
     evidenceFileId?: SortOrder
     areaFileId?: SortOrder
-    areaFolderId?: SortOrder
+    recommendedFolderId?: SortOrder
+    strongFolderId?: SortOrder
+    weakFolderId?: SortOrder
     content?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
@@ -40696,7 +40898,9 @@ export namespace Prisma {
     authorId?: SortOrder
     evidenceFileId?: SortOrder
     areaFileId?: SortOrder
-    areaFolderId?: SortOrder
+    recommendedFolderId?: SortOrder
+    strongFolderId?: SortOrder
+    weakFolderId?: SortOrder
     content?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
@@ -42259,10 +42463,24 @@ export namespace Prisma {
     connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
   }
 
-  export type CommentCreateNestedManyWithoutAreaFolderInput = {
-    create?: XOR<CommentCreateWithoutAreaFolderInput, CommentUncheckedCreateWithoutAreaFolderInput> | CommentCreateWithoutAreaFolderInput[] | CommentUncheckedCreateWithoutAreaFolderInput[]
-    connectOrCreate?: CommentCreateOrConnectWithoutAreaFolderInput | CommentCreateOrConnectWithoutAreaFolderInput[]
-    createMany?: CommentCreateManyAreaFolderInputEnvelope
+  export type CommentCreateNestedManyWithoutRecommendedFolderInput = {
+    create?: XOR<CommentCreateWithoutRecommendedFolderInput, CommentUncheckedCreateWithoutRecommendedFolderInput> | CommentCreateWithoutRecommendedFolderInput[] | CommentUncheckedCreateWithoutRecommendedFolderInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutRecommendedFolderInput | CommentCreateOrConnectWithoutRecommendedFolderInput[]
+    createMany?: CommentCreateManyRecommendedFolderInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
+  export type CommentCreateNestedManyWithoutStrongFolderInput = {
+    create?: XOR<CommentCreateWithoutStrongFolderInput, CommentUncheckedCreateWithoutStrongFolderInput> | CommentCreateWithoutStrongFolderInput[] | CommentUncheckedCreateWithoutStrongFolderInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutStrongFolderInput | CommentCreateOrConnectWithoutStrongFolderInput[]
+    createMany?: CommentCreateManyStrongFolderInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
+  export type CommentCreateNestedManyWithoutWeakFolderInput = {
+    create?: XOR<CommentCreateWithoutWeakFolderInput, CommentUncheckedCreateWithoutWeakFolderInput> | CommentCreateWithoutWeakFolderInput[] | CommentUncheckedCreateWithoutWeakFolderInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutWeakFolderInput | CommentCreateOrConnectWithoutWeakFolderInput[]
+    createMany?: CommentCreateManyWeakFolderInputEnvelope
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
@@ -42293,10 +42511,24 @@ export namespace Prisma {
     connect?: AreaChairWhereUniqueInput | AreaChairWhereUniqueInput[]
   }
 
-  export type CommentUncheckedCreateNestedManyWithoutAreaFolderInput = {
-    create?: XOR<CommentCreateWithoutAreaFolderInput, CommentUncheckedCreateWithoutAreaFolderInput> | CommentCreateWithoutAreaFolderInput[] | CommentUncheckedCreateWithoutAreaFolderInput[]
-    connectOrCreate?: CommentCreateOrConnectWithoutAreaFolderInput | CommentCreateOrConnectWithoutAreaFolderInput[]
-    createMany?: CommentCreateManyAreaFolderInputEnvelope
+  export type CommentUncheckedCreateNestedManyWithoutRecommendedFolderInput = {
+    create?: XOR<CommentCreateWithoutRecommendedFolderInput, CommentUncheckedCreateWithoutRecommendedFolderInput> | CommentCreateWithoutRecommendedFolderInput[] | CommentUncheckedCreateWithoutRecommendedFolderInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutRecommendedFolderInput | CommentCreateOrConnectWithoutRecommendedFolderInput[]
+    createMany?: CommentCreateManyRecommendedFolderInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
+  export type CommentUncheckedCreateNestedManyWithoutStrongFolderInput = {
+    create?: XOR<CommentCreateWithoutStrongFolderInput, CommentUncheckedCreateWithoutStrongFolderInput> | CommentCreateWithoutStrongFolderInput[] | CommentUncheckedCreateWithoutStrongFolderInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutStrongFolderInput | CommentCreateOrConnectWithoutStrongFolderInput[]
+    createMany?: CommentCreateManyStrongFolderInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
+  export type CommentUncheckedCreateNestedManyWithoutWeakFolderInput = {
+    create?: XOR<CommentCreateWithoutWeakFolderInput, CommentUncheckedCreateWithoutWeakFolderInput> | CommentCreateWithoutWeakFolderInput[] | CommentUncheckedCreateWithoutWeakFolderInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutWeakFolderInput | CommentCreateOrConnectWithoutWeakFolderInput[]
+    createMany?: CommentCreateManyWeakFolderInputEnvelope
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
@@ -42368,17 +42600,45 @@ export namespace Prisma {
     deleteMany?: AreaChairScalarWhereInput | AreaChairScalarWhereInput[]
   }
 
-  export type CommentUpdateManyWithoutAreaFolderNestedInput = {
-    create?: XOR<CommentCreateWithoutAreaFolderInput, CommentUncheckedCreateWithoutAreaFolderInput> | CommentCreateWithoutAreaFolderInput[] | CommentUncheckedCreateWithoutAreaFolderInput[]
-    connectOrCreate?: CommentCreateOrConnectWithoutAreaFolderInput | CommentCreateOrConnectWithoutAreaFolderInput[]
-    upsert?: CommentUpsertWithWhereUniqueWithoutAreaFolderInput | CommentUpsertWithWhereUniqueWithoutAreaFolderInput[]
-    createMany?: CommentCreateManyAreaFolderInputEnvelope
+  export type CommentUpdateManyWithoutRecommendedFolderNestedInput = {
+    create?: XOR<CommentCreateWithoutRecommendedFolderInput, CommentUncheckedCreateWithoutRecommendedFolderInput> | CommentCreateWithoutRecommendedFolderInput[] | CommentUncheckedCreateWithoutRecommendedFolderInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutRecommendedFolderInput | CommentCreateOrConnectWithoutRecommendedFolderInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutRecommendedFolderInput | CommentUpsertWithWhereUniqueWithoutRecommendedFolderInput[]
+    createMany?: CommentCreateManyRecommendedFolderInputEnvelope
     set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
     disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
     delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
-    update?: CommentUpdateWithWhereUniqueWithoutAreaFolderInput | CommentUpdateWithWhereUniqueWithoutAreaFolderInput[]
-    updateMany?: CommentUpdateManyWithWhereWithoutAreaFolderInput | CommentUpdateManyWithWhereWithoutAreaFolderInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutRecommendedFolderInput | CommentUpdateWithWhereUniqueWithoutRecommendedFolderInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutRecommendedFolderInput | CommentUpdateManyWithWhereWithoutRecommendedFolderInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
+  export type CommentUpdateManyWithoutStrongFolderNestedInput = {
+    create?: XOR<CommentCreateWithoutStrongFolderInput, CommentUncheckedCreateWithoutStrongFolderInput> | CommentCreateWithoutStrongFolderInput[] | CommentUncheckedCreateWithoutStrongFolderInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutStrongFolderInput | CommentCreateOrConnectWithoutStrongFolderInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutStrongFolderInput | CommentUpsertWithWhereUniqueWithoutStrongFolderInput[]
+    createMany?: CommentCreateManyStrongFolderInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutStrongFolderInput | CommentUpdateWithWhereUniqueWithoutStrongFolderInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutStrongFolderInput | CommentUpdateManyWithWhereWithoutStrongFolderInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
+  export type CommentUpdateManyWithoutWeakFolderNestedInput = {
+    create?: XOR<CommentCreateWithoutWeakFolderInput, CommentUncheckedCreateWithoutWeakFolderInput> | CommentCreateWithoutWeakFolderInput[] | CommentUncheckedCreateWithoutWeakFolderInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutWeakFolderInput | CommentCreateOrConnectWithoutWeakFolderInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutWeakFolderInput | CommentUpsertWithWhereUniqueWithoutWeakFolderInput[]
+    createMany?: CommentCreateManyWeakFolderInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutWeakFolderInput | CommentUpdateWithWhereUniqueWithoutWeakFolderInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutWeakFolderInput | CommentUpdateManyWithWhereWithoutWeakFolderInput[]
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
@@ -42434,17 +42694,45 @@ export namespace Prisma {
     deleteMany?: AreaChairScalarWhereInput | AreaChairScalarWhereInput[]
   }
 
-  export type CommentUncheckedUpdateManyWithoutAreaFolderNestedInput = {
-    create?: XOR<CommentCreateWithoutAreaFolderInput, CommentUncheckedCreateWithoutAreaFolderInput> | CommentCreateWithoutAreaFolderInput[] | CommentUncheckedCreateWithoutAreaFolderInput[]
-    connectOrCreate?: CommentCreateOrConnectWithoutAreaFolderInput | CommentCreateOrConnectWithoutAreaFolderInput[]
-    upsert?: CommentUpsertWithWhereUniqueWithoutAreaFolderInput | CommentUpsertWithWhereUniqueWithoutAreaFolderInput[]
-    createMany?: CommentCreateManyAreaFolderInputEnvelope
+  export type CommentUncheckedUpdateManyWithoutRecommendedFolderNestedInput = {
+    create?: XOR<CommentCreateWithoutRecommendedFolderInput, CommentUncheckedCreateWithoutRecommendedFolderInput> | CommentCreateWithoutRecommendedFolderInput[] | CommentUncheckedCreateWithoutRecommendedFolderInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutRecommendedFolderInput | CommentCreateOrConnectWithoutRecommendedFolderInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutRecommendedFolderInput | CommentUpsertWithWhereUniqueWithoutRecommendedFolderInput[]
+    createMany?: CommentCreateManyRecommendedFolderInputEnvelope
     set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
     disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
     delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
-    update?: CommentUpdateWithWhereUniqueWithoutAreaFolderInput | CommentUpdateWithWhereUniqueWithoutAreaFolderInput[]
-    updateMany?: CommentUpdateManyWithWhereWithoutAreaFolderInput | CommentUpdateManyWithWhereWithoutAreaFolderInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutRecommendedFolderInput | CommentUpdateWithWhereUniqueWithoutRecommendedFolderInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutRecommendedFolderInput | CommentUpdateManyWithWhereWithoutRecommendedFolderInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
+  export type CommentUncheckedUpdateManyWithoutStrongFolderNestedInput = {
+    create?: XOR<CommentCreateWithoutStrongFolderInput, CommentUncheckedCreateWithoutStrongFolderInput> | CommentCreateWithoutStrongFolderInput[] | CommentUncheckedCreateWithoutStrongFolderInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutStrongFolderInput | CommentCreateOrConnectWithoutStrongFolderInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutStrongFolderInput | CommentUpsertWithWhereUniqueWithoutStrongFolderInput[]
+    createMany?: CommentCreateManyStrongFolderInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutStrongFolderInput | CommentUpdateWithWhereUniqueWithoutStrongFolderInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutStrongFolderInput | CommentUpdateManyWithWhereWithoutStrongFolderInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
+  export type CommentUncheckedUpdateManyWithoutWeakFolderNestedInput = {
+    create?: XOR<CommentCreateWithoutWeakFolderInput, CommentUncheckedCreateWithoutWeakFolderInput> | CommentCreateWithoutWeakFolderInput[] | CommentUncheckedCreateWithoutWeakFolderInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutWeakFolderInput | CommentCreateOrConnectWithoutWeakFolderInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutWeakFolderInput | CommentUpsertWithWhereUniqueWithoutWeakFolderInput[]
+    createMany?: CommentCreateManyWeakFolderInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutWeakFolderInput | CommentUpdateWithWhereUniqueWithoutWeakFolderInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutWeakFolderInput | CommentUpdateManyWithWhereWithoutWeakFolderInput[]
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
@@ -43266,6 +43554,18 @@ export namespace Prisma {
     connect?: AreaFolderWhereUniqueInput
   }
 
+  export type AreaFolderCreateNestedOneWithoutStrengthsInput = {
+    create?: XOR<AreaFolderCreateWithoutStrengthsInput, AreaFolderUncheckedCreateWithoutStrengthsInput>
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutStrengthsInput
+    connect?: AreaFolderWhereUniqueInput
+  }
+
+  export type AreaFolderCreateNestedOneWithoutWeaknessesInput = {
+    create?: XOR<AreaFolderCreateWithoutWeaknessesInput, AreaFolderUncheckedCreateWithoutWeaknessesInput>
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutWeaknessesInput
+    connect?: AreaFolderWhereUniqueInput
+  }
+
   export type EnumCommentTypeFieldUpdateOperationsInput = {
     set?: $Enums.CommentType
   }
@@ -43306,6 +43606,26 @@ export namespace Prisma {
     delete?: AreaFolderWhereInput | boolean
     connect?: AreaFolderWhereUniqueInput
     update?: XOR<XOR<AreaFolderUpdateToOneWithWhereWithoutRecommendationsInput, AreaFolderUpdateWithoutRecommendationsInput>, AreaFolderUncheckedUpdateWithoutRecommendationsInput>
+  }
+
+  export type AreaFolderUpdateOneWithoutStrengthsNestedInput = {
+    create?: XOR<AreaFolderCreateWithoutStrengthsInput, AreaFolderUncheckedCreateWithoutStrengthsInput>
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutStrengthsInput
+    upsert?: AreaFolderUpsertWithoutStrengthsInput
+    disconnect?: AreaFolderWhereInput | boolean
+    delete?: AreaFolderWhereInput | boolean
+    connect?: AreaFolderWhereUniqueInput
+    update?: XOR<XOR<AreaFolderUpdateToOneWithWhereWithoutStrengthsInput, AreaFolderUpdateWithoutStrengthsInput>, AreaFolderUncheckedUpdateWithoutStrengthsInput>
+  }
+
+  export type AreaFolderUpdateOneWithoutWeaknessesNestedInput = {
+    create?: XOR<AreaFolderCreateWithoutWeaknessesInput, AreaFolderUncheckedCreateWithoutWeaknessesInput>
+    connectOrCreate?: AreaFolderCreateOrConnectWithoutWeaknessesInput
+    upsert?: AreaFolderUpsertWithoutWeaknessesInput
+    disconnect?: AreaFolderWhereInput | boolean
+    delete?: AreaFolderWhereInput | boolean
+    connect?: AreaFolderWhereUniqueInput
+    update?: XOR<XOR<AreaFolderUpdateToOneWithWhereWithoutWeaknessesInput, AreaFolderUpdateWithoutWeaknessesInput>, AreaFolderUncheckedUpdateWithoutWeaknessesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -43879,14 +44199,18 @@ export namespace Prisma {
     createdAt?: Date | string
     evidenceFile?: EvidenceFileCreateNestedOneWithoutCommentsInput
     areaFile?: AreaFileCreateNestedOneWithoutCommentsInput
-    areaFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
+    recommendedFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
+    strongFolder?: AreaFolderCreateNestedOneWithoutStrengthsInput
+    weakFolder?: AreaFolderCreateNestedOneWithoutWeaknessesInput
   }
 
   export type CommentUncheckedCreateWithoutAuthorInput = {
     id?: string
     evidenceFileId?: string | null
     areaFileId?: string | null
-    areaFolderId?: string | null
+    recommendedFolderId?: string | null
+    strongFolderId?: string | null
+    weakFolderId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -44091,7 +44415,9 @@ export namespace Prisma {
     authorId?: StringFilter<"Comment"> | string
     evidenceFileId?: StringNullableFilter<"Comment"> | string | null
     areaFileId?: StringNullableFilter<"Comment"> | string | null
-    areaFolderId?: StringNullableFilter<"Comment"> | string | null
+    recommendedFolderId?: StringNullableFilter<"Comment"> | string | null
+    strongFolderId?: StringNullableFilter<"Comment"> | string | null
+    weakFolderId?: StringNullableFilter<"Comment"> | string | null
     content?: StringFilter<"Comment"> | string
     type?: EnumCommentTypeFilter<"Comment"> | $Enums.CommentType
     createdAt?: DateTimeFilter<"Comment"> | Date | string
@@ -44840,7 +45166,9 @@ export namespace Prisma {
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
     areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
-    recommendations?: CommentCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutAreaInput = {
@@ -44851,7 +45179,9 @@ export namespace Prisma {
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
-    recommendations?: CommentUncheckedCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentUncheckedCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentUncheckedCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentUncheckedCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutAreaInput = {
@@ -46114,7 +46444,9 @@ export namespace Prisma {
     area: AreaCreateNestedOneWithoutAreaFoldersInput
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
-    recommendations?: CommentCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutAreaChairInput = {
@@ -46125,7 +46457,9 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
-    recommendations?: CommentUncheckedCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentUncheckedCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentUncheckedCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentUncheckedCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutAreaChairInput = {
@@ -46228,7 +46562,9 @@ export namespace Prisma {
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
     areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
-    recommendations?: CommentUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutAreaChairInput = {
@@ -46239,7 +46575,9 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
-    recommendations?: CommentUncheckedUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUncheckedUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUncheckedUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUncheckedUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type SurveyVisitCreateWithoutPhaseOneRequirementsInput = {
@@ -46439,7 +46777,9 @@ export namespace Prisma {
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
     areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
-    recommendations?: CommentCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutInstrumentFolderInput = {
@@ -46450,7 +46790,9 @@ export namespace Prisma {
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
-    recommendations?: CommentUncheckedCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentUncheckedCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentUncheckedCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentUncheckedCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutInstrumentFolderInput = {
@@ -46640,7 +46982,7 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type CommentCreateWithoutAreaFolderInput = {
+  export type CommentCreateWithoutRecommendedFolderInput = {
     id?: string
     content: string
     type: $Enums.CommentType
@@ -46648,25 +46990,97 @@ export namespace Prisma {
     author: UserCreateNestedOneWithoutCommentsInput
     evidenceFile?: EvidenceFileCreateNestedOneWithoutCommentsInput
     areaFile?: AreaFileCreateNestedOneWithoutCommentsInput
+    strongFolder?: AreaFolderCreateNestedOneWithoutStrengthsInput
+    weakFolder?: AreaFolderCreateNestedOneWithoutWeaknessesInput
   }
 
-  export type CommentUncheckedCreateWithoutAreaFolderInput = {
+  export type CommentUncheckedCreateWithoutRecommendedFolderInput = {
     id?: string
     authorId: string
     evidenceFileId?: string | null
     areaFileId?: string | null
+    strongFolderId?: string | null
+    weakFolderId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
   }
 
-  export type CommentCreateOrConnectWithoutAreaFolderInput = {
+  export type CommentCreateOrConnectWithoutRecommendedFolderInput = {
     where: CommentWhereUniqueInput
-    create: XOR<CommentCreateWithoutAreaFolderInput, CommentUncheckedCreateWithoutAreaFolderInput>
+    create: XOR<CommentCreateWithoutRecommendedFolderInput, CommentUncheckedCreateWithoutRecommendedFolderInput>
   }
 
-  export type CommentCreateManyAreaFolderInputEnvelope = {
-    data: CommentCreateManyAreaFolderInput | CommentCreateManyAreaFolderInput[]
+  export type CommentCreateManyRecommendedFolderInputEnvelope = {
+    data: CommentCreateManyRecommendedFolderInput | CommentCreateManyRecommendedFolderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CommentCreateWithoutStrongFolderInput = {
+    id?: string
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+    author: UserCreateNestedOneWithoutCommentsInput
+    evidenceFile?: EvidenceFileCreateNestedOneWithoutCommentsInput
+    areaFile?: AreaFileCreateNestedOneWithoutCommentsInput
+    recommendedFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
+    weakFolder?: AreaFolderCreateNestedOneWithoutWeaknessesInput
+  }
+
+  export type CommentUncheckedCreateWithoutStrongFolderInput = {
+    id?: string
+    authorId: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
+    recommendedFolderId?: string | null
+    weakFolderId?: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+  }
+
+  export type CommentCreateOrConnectWithoutStrongFolderInput = {
+    where: CommentWhereUniqueInput
+    create: XOR<CommentCreateWithoutStrongFolderInput, CommentUncheckedCreateWithoutStrongFolderInput>
+  }
+
+  export type CommentCreateManyStrongFolderInputEnvelope = {
+    data: CommentCreateManyStrongFolderInput | CommentCreateManyStrongFolderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CommentCreateWithoutWeakFolderInput = {
+    id?: string
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+    author: UserCreateNestedOneWithoutCommentsInput
+    evidenceFile?: EvidenceFileCreateNestedOneWithoutCommentsInput
+    areaFile?: AreaFileCreateNestedOneWithoutCommentsInput
+    recommendedFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
+    strongFolder?: AreaFolderCreateNestedOneWithoutStrengthsInput
+  }
+
+  export type CommentUncheckedCreateWithoutWeakFolderInput = {
+    id?: string
+    authorId: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
+    recommendedFolderId?: string | null
+    strongFolderId?: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+  }
+
+  export type CommentCreateOrConnectWithoutWeakFolderInput = {
+    where: CommentWhereUniqueInput
+    create: XOR<CommentCreateWithoutWeakFolderInput, CommentUncheckedCreateWithoutWeakFolderInput>
+  }
+
+  export type CommentCreateManyWeakFolderInputEnvelope = {
+    data: CommentCreateManyWeakFolderInput | CommentCreateManyWeakFolderInput[]
     skipDuplicates?: boolean
   }
 
@@ -46809,20 +47223,52 @@ export namespace Prisma {
     data: XOR<AreaChairUpdateManyMutationInput, AreaChairUncheckedUpdateManyWithoutAreaFolderInput>
   }
 
-  export type CommentUpsertWithWhereUniqueWithoutAreaFolderInput = {
+  export type CommentUpsertWithWhereUniqueWithoutRecommendedFolderInput = {
     where: CommentWhereUniqueInput
-    update: XOR<CommentUpdateWithoutAreaFolderInput, CommentUncheckedUpdateWithoutAreaFolderInput>
-    create: XOR<CommentCreateWithoutAreaFolderInput, CommentUncheckedCreateWithoutAreaFolderInput>
+    update: XOR<CommentUpdateWithoutRecommendedFolderInput, CommentUncheckedUpdateWithoutRecommendedFolderInput>
+    create: XOR<CommentCreateWithoutRecommendedFolderInput, CommentUncheckedCreateWithoutRecommendedFolderInput>
   }
 
-  export type CommentUpdateWithWhereUniqueWithoutAreaFolderInput = {
+  export type CommentUpdateWithWhereUniqueWithoutRecommendedFolderInput = {
     where: CommentWhereUniqueInput
-    data: XOR<CommentUpdateWithoutAreaFolderInput, CommentUncheckedUpdateWithoutAreaFolderInput>
+    data: XOR<CommentUpdateWithoutRecommendedFolderInput, CommentUncheckedUpdateWithoutRecommendedFolderInput>
   }
 
-  export type CommentUpdateManyWithWhereWithoutAreaFolderInput = {
+  export type CommentUpdateManyWithWhereWithoutRecommendedFolderInput = {
     where: CommentScalarWhereInput
-    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutAreaFolderInput>
+    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutRecommendedFolderInput>
+  }
+
+  export type CommentUpsertWithWhereUniqueWithoutStrongFolderInput = {
+    where: CommentWhereUniqueInput
+    update: XOR<CommentUpdateWithoutStrongFolderInput, CommentUncheckedUpdateWithoutStrongFolderInput>
+    create: XOR<CommentCreateWithoutStrongFolderInput, CommentUncheckedCreateWithoutStrongFolderInput>
+  }
+
+  export type CommentUpdateWithWhereUniqueWithoutStrongFolderInput = {
+    where: CommentWhereUniqueInput
+    data: XOR<CommentUpdateWithoutStrongFolderInput, CommentUncheckedUpdateWithoutStrongFolderInput>
+  }
+
+  export type CommentUpdateManyWithWhereWithoutStrongFolderInput = {
+    where: CommentScalarWhereInput
+    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutStrongFolderInput>
+  }
+
+  export type CommentUpsertWithWhereUniqueWithoutWeakFolderInput = {
+    where: CommentWhereUniqueInput
+    update: XOR<CommentUpdateWithoutWeakFolderInput, CommentUncheckedUpdateWithoutWeakFolderInput>
+    create: XOR<CommentCreateWithoutWeakFolderInput, CommentUncheckedCreateWithoutWeakFolderInput>
+  }
+
+  export type CommentUpdateWithWhereUniqueWithoutWeakFolderInput = {
+    where: CommentWhereUniqueInput
+    data: XOR<CommentUpdateWithoutWeakFolderInput, CommentUncheckedUpdateWithoutWeakFolderInput>
+  }
+
+  export type CommentUpdateManyWithWhereWithoutWeakFolderInput = {
+    where: CommentScalarWhereInput
+    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutWeakFolderInput>
   }
 
   export type AreaFolderCreateWithoutParameterFoldersInput = {
@@ -46833,7 +47279,9 @@ export namespace Prisma {
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
     areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
-    recommendations?: CommentCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutParameterFoldersInput = {
@@ -46844,7 +47292,9 @@ export namespace Prisma {
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
-    recommendations?: CommentUncheckedCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentUncheckedCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentUncheckedCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentUncheckedCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutParameterFoldersInput = {
@@ -46917,7 +47367,9 @@ export namespace Prisma {
     areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
     areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
-    recommendations?: CommentUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutParameterFoldersInput = {
@@ -46928,7 +47380,9 @@ export namespace Prisma {
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
-    recommendations?: CommentUncheckedUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUncheckedUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUncheckedUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUncheckedUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type IndicatorFolderUpsertWithWhereUniqueWithoutParameterFolderInput = {
@@ -47160,14 +47614,18 @@ export namespace Prisma {
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutCommentsInput
     areaFile?: AreaFileCreateNestedOneWithoutCommentsInput
-    areaFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
+    recommendedFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
+    strongFolder?: AreaFolderCreateNestedOneWithoutStrengthsInput
+    weakFolder?: AreaFolderCreateNestedOneWithoutWeaknessesInput
   }
 
   export type CommentUncheckedCreateWithoutEvidenceFileInput = {
     id?: string
     authorId: string
     areaFileId?: string | null
-    areaFolderId?: string | null
+    recommendedFolderId?: string | null
+    strongFolderId?: string | null
+    weakFolderId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -48094,7 +48552,9 @@ export namespace Prisma {
     area: AreaCreateNestedOneWithoutAreaFoldersInput
     taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
     areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
-    recommendations?: CommentCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutAreaFilesInput = {
@@ -48105,7 +48565,9 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
-    recommendations?: CommentUncheckedCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentUncheckedCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentUncheckedCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentUncheckedCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutAreaFilesInput = {
@@ -48169,14 +48631,18 @@ export namespace Prisma {
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutCommentsInput
     evidenceFile?: EvidenceFileCreateNestedOneWithoutCommentsInput
-    areaFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
+    recommendedFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
+    strongFolder?: AreaFolderCreateNestedOneWithoutStrengthsInput
+    weakFolder?: AreaFolderCreateNestedOneWithoutWeaknessesInput
   }
 
   export type CommentUncheckedCreateWithoutAreaFileInput = {
     id?: string
     authorId: string
     evidenceFileId?: string | null
-    areaFolderId?: string | null
+    recommendedFolderId?: string | null
+    strongFolderId?: string | null
+    weakFolderId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -48211,7 +48677,9 @@ export namespace Prisma {
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
     taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
     areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
-    recommendations?: CommentUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutAreaFilesInput = {
@@ -48222,7 +48690,9 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
-    recommendations?: CommentUncheckedUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUncheckedUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUncheckedUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUncheckedUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type PhaseTwoAreaFolderUpsertWithoutAreaFilesInput = {
@@ -48288,7 +48758,9 @@ export namespace Prisma {
     area: AreaCreateNestedOneWithoutAreaFoldersInput
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
     areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
-    recommendations?: CommentCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutTaskForceInput = {
@@ -48299,7 +48771,9 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
-    recommendations?: CommentUncheckedCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentUncheckedCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentUncheckedCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentUncheckedCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutTaskForceInput = {
@@ -48367,7 +48841,9 @@ export namespace Prisma {
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
     areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
     areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
-    recommendations?: CommentUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutTaskForceInput = {
@@ -48378,7 +48854,9 @@ export namespace Prisma {
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
-    recommendations?: CommentUncheckedUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUncheckedUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUncheckedUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUncheckedUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type ProgramPersonnelUpsertWithoutChairPersonInput = {
@@ -48620,6 +49098,8 @@ export namespace Prisma {
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
     areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
+    strengths?: CommentCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderUncheckedCreateWithoutRecommendationsInput = {
@@ -48631,11 +49111,75 @@ export namespace Prisma {
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
+    strengths?: CommentUncheckedCreateNestedManyWithoutStrongFolderInput
+    weaknesses?: CommentUncheckedCreateNestedManyWithoutWeakFolderInput
   }
 
   export type AreaFolderCreateOrConnectWithoutRecommendationsInput = {
     where: AreaFolderWhereUniqueInput
     create: XOR<AreaFolderCreateWithoutRecommendationsInput, AreaFolderUncheckedCreateWithoutRecommendationsInput>
+  }
+
+  export type AreaFolderCreateWithoutStrengthsInput = {
+    id?: string
+    status: $Enums.Progress
+    instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
+    parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
+    area: AreaCreateNestedOneWithoutAreaFoldersInput
+    areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
+    taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
+    areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentCreateNestedManyWithoutRecommendedFolderInput
+    weaknesses?: CommentCreateNestedManyWithoutWeakFolderInput
+  }
+
+  export type AreaFolderUncheckedCreateWithoutStrengthsInput = {
+    id?: string
+    instrumentFolderId: string
+    areaId: number
+    status: $Enums.Progress
+    parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
+    areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
+    taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentUncheckedCreateNestedManyWithoutRecommendedFolderInput
+    weaknesses?: CommentUncheckedCreateNestedManyWithoutWeakFolderInput
+  }
+
+  export type AreaFolderCreateOrConnectWithoutStrengthsInput = {
+    where: AreaFolderWhereUniqueInput
+    create: XOR<AreaFolderCreateWithoutStrengthsInput, AreaFolderUncheckedCreateWithoutStrengthsInput>
+  }
+
+  export type AreaFolderCreateWithoutWeaknessesInput = {
+    id?: string
+    status: $Enums.Progress
+    instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
+    parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
+    area: AreaCreateNestedOneWithoutAreaFoldersInput
+    areaFiles?: AreaFileCreateNestedManyWithoutPhaseOneAreaFolderInput
+    taskForce?: TaskForceCreateNestedOneWithoutAreaFolderInput
+    areaChair?: AreaChairCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentCreateNestedManyWithoutStrongFolderInput
+  }
+
+  export type AreaFolderUncheckedCreateWithoutWeaknessesInput = {
+    id?: string
+    instrumentFolderId: string
+    areaId: number
+    status: $Enums.Progress
+    parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
+    areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
+    taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutAreaFolderInput
+    recommendations?: CommentUncheckedCreateNestedManyWithoutRecommendedFolderInput
+    strengths?: CommentUncheckedCreateNestedManyWithoutStrongFolderInput
+  }
+
+  export type AreaFolderCreateOrConnectWithoutWeaknessesInput = {
+    where: AreaFolderWhereUniqueInput
+    create: XOR<AreaFolderCreateWithoutWeaknessesInput, AreaFolderUncheckedCreateWithoutWeaknessesInput>
   }
 
   export type UserUpsertWithoutCommentsInput = {
@@ -48775,6 +49319,8 @@ export namespace Prisma {
     areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
     areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
+    strengths?: CommentUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutRecommendationsInput = {
@@ -48786,6 +49332,82 @@ export namespace Prisma {
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
+    strengths?: CommentUncheckedUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUncheckedUpdateManyWithoutWeakFolderNestedInput
+  }
+
+  export type AreaFolderUpsertWithoutStrengthsInput = {
+    update: XOR<AreaFolderUpdateWithoutStrengthsInput, AreaFolderUncheckedUpdateWithoutStrengthsInput>
+    create: XOR<AreaFolderCreateWithoutStrengthsInput, AreaFolderUncheckedCreateWithoutStrengthsInput>
+    where?: AreaFolderWhereInput
+  }
+
+  export type AreaFolderUpdateToOneWithWhereWithoutStrengthsInput = {
+    where?: AreaFolderWhereInput
+    data: XOR<AreaFolderUpdateWithoutStrengthsInput, AreaFolderUncheckedUpdateWithoutStrengthsInput>
+  }
+
+  export type AreaFolderUpdateWithoutStrengthsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
+    parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
+    area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
+    areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
+    areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUpdateManyWithoutRecommendedFolderNestedInput
+    weaknesses?: CommentUpdateManyWithoutWeakFolderNestedInput
+  }
+
+  export type AreaFolderUncheckedUpdateWithoutStrengthsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instrumentFolderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
+    areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUncheckedUpdateManyWithoutRecommendedFolderNestedInput
+    weaknesses?: CommentUncheckedUpdateManyWithoutWeakFolderNestedInput
+  }
+
+  export type AreaFolderUpsertWithoutWeaknessesInput = {
+    update: XOR<AreaFolderUpdateWithoutWeaknessesInput, AreaFolderUncheckedUpdateWithoutWeaknessesInput>
+    create: XOR<AreaFolderCreateWithoutWeaknessesInput, AreaFolderUncheckedCreateWithoutWeaknessesInput>
+    where?: AreaFolderWhereInput
+  }
+
+  export type AreaFolderUpdateToOneWithWhereWithoutWeaknessesInput = {
+    where?: AreaFolderWhereInput
+    data: XOR<AreaFolderUpdateWithoutWeaknessesInput, AreaFolderUncheckedUpdateWithoutWeaknessesInput>
+  }
+
+  export type AreaFolderUpdateWithoutWeaknessesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
+    parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
+    area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
+    areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
+    areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUpdateManyWithoutStrongFolderNestedInput
+  }
+
+  export type AreaFolderUncheckedUpdateWithoutWeaknessesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instrumentFolderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
+    areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
+    taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUncheckedUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUncheckedUpdateManyWithoutStrongFolderNestedInput
   }
 
   export type ProgramPersonnelCreateManyUserInput = {
@@ -48819,7 +49441,9 @@ export namespace Prisma {
     id?: string
     evidenceFileId?: string | null
     areaFileId?: string | null
-    areaFolderId?: string | null
+    recommendedFolderId?: string | null
+    strongFolderId?: string | null
+    weakFolderId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -48944,14 +49568,18 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     evidenceFile?: EvidenceFileUpdateOneWithoutCommentsNestedInput
     areaFile?: AreaFileUpdateOneWithoutCommentsNestedInput
-    areaFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
+    recommendedFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
+    strongFolder?: AreaFolderUpdateOneWithoutStrengthsNestedInput
+    weakFolder?: AreaFolderUpdateOneWithoutWeaknessesNestedInput
   }
 
   export type CommentUncheckedUpdateWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
-    areaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -48961,7 +49589,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
-    areaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49247,7 +49877,9 @@ export namespace Prisma {
     areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
     areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
-    recommendations?: CommentUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutAreaInput = {
@@ -49258,7 +49890,9 @@ export namespace Prisma {
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
-    recommendations?: CommentUncheckedUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUncheckedUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUncheckedUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUncheckedUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateManyWithoutAreaInput = {
@@ -49603,7 +50237,9 @@ export namespace Prisma {
     areaFiles?: AreaFileUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUpdateOneWithoutAreaFolderNestedInput
     areaChair?: AreaChairUpdateManyWithoutAreaFolderNestedInput
-    recommendations?: CommentUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateWithoutInstrumentFolderInput = {
@@ -49614,7 +50250,9 @@ export namespace Prisma {
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutAreaFolderNestedInput
-    recommendations?: CommentUncheckedUpdateManyWithoutAreaFolderNestedInput
+    recommendations?: CommentUncheckedUpdateManyWithoutRecommendedFolderNestedInput
+    strengths?: CommentUncheckedUpdateManyWithoutStrongFolderNestedInput
+    weaknesses?: CommentUncheckedUpdateManyWithoutWeakFolderNestedInput
   }
 
   export type AreaFolderUncheckedUpdateManyWithoutInstrumentFolderInput = {
@@ -49644,11 +50282,37 @@ export namespace Prisma {
     surveyTeamId: string
   }
 
-  export type CommentCreateManyAreaFolderInput = {
+  export type CommentCreateManyRecommendedFolderInput = {
     id?: string
     authorId: string
     evidenceFileId?: string | null
     areaFileId?: string | null
+    strongFolderId?: string | null
+    weakFolderId?: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+  }
+
+  export type CommentCreateManyStrongFolderInput = {
+    id?: string
+    authorId: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
+    recommendedFolderId?: string | null
+    weakFolderId?: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+  }
+
+  export type CommentCreateManyWeakFolderInput = {
+    id?: string
+    authorId: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
+    recommendedFolderId?: string | null
+    strongFolderId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -49723,7 +50387,7 @@ export namespace Prisma {
     surveyTeamId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type CommentUpdateWithoutAreaFolderInput = {
+  export type CommentUpdateWithoutRecommendedFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
@@ -49731,23 +50395,101 @@ export namespace Prisma {
     author?: UserUpdateOneRequiredWithoutCommentsNestedInput
     evidenceFile?: EvidenceFileUpdateOneWithoutCommentsNestedInput
     areaFile?: AreaFileUpdateOneWithoutCommentsNestedInput
+    strongFolder?: AreaFolderUpdateOneWithoutStrengthsNestedInput
+    weakFolder?: AreaFolderUpdateOneWithoutWeaknessesNestedInput
   }
 
-  export type CommentUncheckedUpdateWithoutAreaFolderInput = {
+  export type CommentUncheckedUpdateWithoutRecommendedFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type CommentUncheckedUpdateManyWithoutAreaFolderInput = {
+  export type CommentUncheckedUpdateManyWithoutRecommendedFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentUpdateWithoutStrongFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    evidenceFile?: EvidenceFileUpdateOneWithoutCommentsNestedInput
+    areaFile?: AreaFileUpdateOneWithoutCommentsNestedInput
+    recommendedFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
+    weakFolder?: AreaFolderUpdateOneWithoutWeaknessesNestedInput
+  }
+
+  export type CommentUncheckedUpdateWithoutStrongFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentUncheckedUpdateManyWithoutStrongFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentUpdateWithoutWeakFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    evidenceFile?: EvidenceFileUpdateOneWithoutCommentsNestedInput
+    areaFile?: AreaFileUpdateOneWithoutCommentsNestedInput
+    recommendedFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
+    strongFolder?: AreaFolderUpdateOneWithoutStrengthsNestedInput
+  }
+
+  export type CommentUncheckedUpdateWithoutWeakFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentUncheckedUpdateManyWithoutWeakFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49828,7 +50570,9 @@ export namespace Prisma {
     id?: string
     authorId: string
     areaFileId?: string | null
-    areaFolderId?: string | null
+    recommendedFolderId?: string | null
+    strongFolderId?: string | null
+    weakFolderId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -49885,14 +50629,18 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutCommentsNestedInput
     areaFile?: AreaFileUpdateOneWithoutCommentsNestedInput
-    areaFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
+    recommendedFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
+    strongFolder?: AreaFolderUpdateOneWithoutStrengthsNestedInput
+    weakFolder?: AreaFolderUpdateOneWithoutWeaknessesNestedInput
   }
 
   export type CommentUncheckedUpdateWithoutEvidenceFileInput = {
     id?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
-    areaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49902,7 +50650,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
-    areaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50018,7 +50768,9 @@ export namespace Prisma {
     id?: string
     authorId: string
     evidenceFileId?: string | null
-    areaFolderId?: string | null
+    recommendedFolderId?: string | null
+    strongFolderId?: string | null
+    weakFolderId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -50064,14 +50816,18 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutCommentsNestedInput
     evidenceFile?: EvidenceFileUpdateOneWithoutCommentsNestedInput
-    areaFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
+    recommendedFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
+    strongFolder?: AreaFolderUpdateOneWithoutStrengthsNestedInput
+    weakFolder?: AreaFolderUpdateOneWithoutWeaknessesNestedInput
   }
 
   export type CommentUncheckedUpdateWithoutAreaFileInput = {
     id?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
-    areaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50081,7 +50837,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
-    areaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

@@ -279,7 +279,9 @@ model AreaFolder {
   status             Progress
   taskForce          TaskForce?
   areaChair          AreaChair[]
-  recommendations    Comment[]
+  recommendations    Comment[]         @relation("recommendations")
+  strengths          Comment[]         @relation("strengths")
+  weaknesses         Comment[]         @relation("weaknesses")
 }
 
 model ParameterFolder {
@@ -400,16 +402,20 @@ model TaskForceMember {
 }
 
 model Comment {
-  id             String        @id @default(uuid())
-  author         User          @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId       String
-  evidenceFile   EvidenceFile? @relation(fields: [evidenceFileId], references: [id], onDelete: Cascade)
-  evidenceFileId String?
-  areaFile       AreaFile?     @relation(fields: [areaFileId], references: [id], onDelete: Cascade)
-  areaFileId     String?
-  areaFolder     AreaFolder?   @relation(fields: [areaFolderId], references: [id], onDelete: Cascade)
-  areaFolderId   String?
-  content        String
-  type           CommentType
-  createdAt      DateTime      @default(now())
+  id                  String        @id @default(uuid())
+  author              User          @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId            String
+  evidenceFile        EvidenceFile? @relation(fields: [evidenceFileId], references: [id], onDelete: Cascade)
+  evidenceFileId      String?
+  areaFile            AreaFile?     @relation(fields: [areaFileId], references: [id], onDelete: Cascade)
+  areaFileId          String?
+  recommendedFolder   AreaFolder?   @relation(name: "recommendations", fields: [recommendedFolderId], references: [id], onDelete: Cascade)
+  recommendedFolderId String?
+  strongFolder        AreaFolder?   @relation(name: "strengths", fields: [strongFolderId], references: [id], onDelete: Cascade)
+  strongFolderId      String?
+  weakFolder          AreaFolder?   @relation(name: "weaknesses", fields: [weakFolderId], references: [id], onDelete: Cascade)
+  weakFolderId        String?
+  content             String
+  type                CommentType
+  createdAt           DateTime      @default(now())
 }
