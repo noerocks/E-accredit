@@ -47,6 +47,8 @@ export async function createNewComment({
         revalidateTag("comments");
         revalidateTag("evidenceFiles");
         revalidateTag("areaFolder");
+        revalidateTag("parameterFolder");
+        revalidateTag("surveyVisitStructure");
         return { success: { message: "Comment created successfuly" } };
       }
       const updatedComment = updateCommentById({
@@ -56,6 +58,8 @@ export async function createNewComment({
       revalidateTag("comments");
       revalidateTag("evidenceFiles");
       revalidateTag("areaFolder");
+      revalidateTag("parameterFolder");
+      revalidateTag("surveyVisitStructure");
       return { success: { message: "Comment updated successfuly" } };
     }
     if (strongFolderId) {
@@ -72,6 +76,8 @@ export async function createNewComment({
         revalidateTag("comments");
         revalidateTag("evidenceFiles");
         revalidateTag("areaFolder");
+        revalidateTag("parameterFolder");
+        revalidateTag("surveyVisitStructure");
         return { success: { message: "Comment created successfuly" } };
       }
       const updatedComment = updateCommentById({
@@ -81,6 +87,8 @@ export async function createNewComment({
       revalidateTag("comments");
       revalidateTag("evidenceFiles");
       revalidateTag("areaFolder");
+      revalidateTag("parameterFolder");
+      revalidateTag("surveyVisitStructure");
       return { success: { message: "Comment updated successfuly" } };
     }
     if (weakFolderId) {
@@ -97,6 +105,8 @@ export async function createNewComment({
         revalidateTag("comments");
         revalidateTag("evidenceFiles");
         revalidateTag("areaFolder");
+        revalidateTag("parameterFolder");
+        revalidateTag("surveyVisitStructure");
         return { success: { message: "Comment created successfuly" } };
       }
       const updatedComment = updateCommentById({
@@ -106,6 +116,8 @@ export async function createNewComment({
       revalidateTag("comments");
       revalidateTag("evidenceFiles");
       revalidateTag("areaFolder");
+      revalidateTag("parameterFolder");
+      revalidateTag("surveyVisitStructure");
       return { success: { message: "Comment updated successfuly" } };
     }
     const comment = await createNewCommentDAL({
@@ -121,6 +133,8 @@ export async function createNewComment({
     revalidateTag("comments");
     revalidateTag("evidenceFiles");
     revalidateTag("areaFolder");
+    revalidateTag("parameterFolder");
+    revalidateTag("surveyVisitStructure");
     return { success: { message: "Comment created successfuly" } };
   } catch (error) {
     const e = error as Error;

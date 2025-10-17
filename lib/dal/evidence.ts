@@ -48,6 +48,12 @@ export const getEvidenceFileById = unstable_cache(
                 parameter: true,
                 areaFolder: {
                   include: {
+                    areaChair: {
+                      include: {
+                        user: true,
+                        surveyTeam: true,
+                      },
+                    },
                     taskForce: {
                       include: {
                         chairPerson: true,

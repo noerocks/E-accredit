@@ -18,8 +18,9 @@ import {
 } from "@/lib/dal/instrument";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
+import { SurveyVisitDTO } from "@/lib/dto/survey-visit";
 import { SurveyTeamType } from "@/lib/generated/prisma";
-import { formatAccreditationName } from "@/lib/utils";
+import { calculateGrandMean, formatAccreditationName } from "@/lib/utils";
 import clsx from "clsx";
 import { Check, CircleDot, SearchCheck } from "lucide-react";
 
@@ -54,12 +55,25 @@ const SelfSurveyPage = async ({
     const area = areaFolder.area;
     areaFolder.area.weight = (area.weight / weightedTotal!) * 100;
   });
+  console.log(areaFolders);
   const ratings = indicators
     ?.map((indicator) =>
       indicator.ratings.find((rating) => rating.type === "INTERNAL")
     )
     .filter((rating) => rating);
-  const complete = ratings?.length === indicators?.length;
+  const complete =
+    ratings?.length === indicators?.length &&
+    areaFolders?.every(
+      (area) =>
+        area.strengths.find((strength) => strength.type === "SELF_SURVEY") &&
+        area.weaknesses.find((weakness) => weakness.type === "SELF_SURVEY")
+    );
+  console.log(
+    calculateGrandMean(
+      areaFolders as unknown as AreaFolderDTO[],
+      SurveyTeamType.INTERNAL
+    )
+  );
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">

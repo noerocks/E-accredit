@@ -15,15 +15,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { verifySession } from "@/lib/action/session";
 import { getAreaFolderById } from "@/lib/dal/area-folder";
 import { ParameterFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { SurveyTeamType } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import {
-  BicepsFlexed,
+  Check,
   CircleDot,
   Layers,
   MessageCircleMore,
   TrendingDown,
   TrendingUp,
+  X,
 } from "lucide-react";
 
 const AreaPage = async ({
@@ -49,16 +49,17 @@ const AreaPage = async ({
       indicator.ratings.find((rating) => rating.type === "INTERNAL")
     )
     .filter((rating) => rating);
-  const complete = ratings?.length === indicators?.length;
   const recommendation = areaFolder?.recommendations.find(
     (recommendation) => recommendation.type === "SELF_SURVEY"
   );
-  const strenths = areaFolder?.strengths.find(
+  const strengths = areaFolder?.strengths.find(
     (strength) => strength.type === "SELF_SURVEY"
   );
   const weaknesses = areaFolder?.weaknesses.find(
     (weaknesses) => weaknesses.type === "SELF_SURVEY"
   );
+  const complete =
+    ratings?.length === indicators?.length && strengths && weaknesses;
   const parameters = areaFolder?.parameterFolders.sort((a, b) =>
     a.parameter.label.localeCompare(b.parameter.label)
   );
@@ -97,8 +98,22 @@ const AreaPage = async ({
         <Tabs defaultValue="ratings">
           <TabsList className="bg-background border">
             <TabsTrigger value="ratings">Parameter Ratings</TabsTrigger>
-            <TabsTrigger value="strengths">Strengths</TabsTrigger>
-            <TabsTrigger value="weaknesses">Weaknesses</TabsTrigger>
+            <TabsTrigger value="strengths">
+              {!strengths ? (
+                <X className="text-red-500" />
+              ) : (
+                <Check className="text-green-500" />
+              )}
+              Strengths
+            </TabsTrigger>
+            <TabsTrigger value="weaknesses">
+              {!weaknesses ? (
+                <X className="text-red-500" />
+              ) : (
+                <Check className="text-green-500" />
+              )}
+              Weaknesses
+            </TabsTrigger>
             <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
           </TabsList>
           <TabsContent value="ratings">
@@ -123,7 +138,7 @@ const AreaPage = async ({
                 <RecommendationsForm
                   user={user}
                   strongFolderId={areaFolder?.id}
-                  defaultContent={strenths?.content}
+                  defaultContent={strengths?.content}
                 />
               </CardContent>
             </Card>

@@ -76,6 +76,9 @@ export const getSurveyVisitStructureById = unstable_cache(
               include: {
                 areaFolders: {
                   include: {
+                    strengths: true,
+                    weaknesses: true,
+                    recommendations: true,
                     taskForce: {
                       include: {
                         chairPerson: {

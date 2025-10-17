@@ -6,7 +6,7 @@ import {
   ParameterFolderDTO,
 } from "./dto/accreditation-instrument";
 import { SurveyTeamType } from "./generated/prisma";
-import { RatingDTO } from "./dto/survey-visit";
+import { RatingDTO, SurveyVisitDTO } from "./dto/survey-visit";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -87,4 +87,35 @@ export function calculateAreaMean(
     return sum / parameterRatings.length;
   }
   return undefined;
+}
+
+export function calculateWeightedAreaMean(
+  areaFolder: AreaFolderDTO,
+  surveyType: SurveyTeamType
+) {
+  const mean = calculateAreaMean(areaFolder, surveyType);
+  const weightedMean = mean && mean * (areaFolder.area.weight / 100);
+  return weightedMean;
+}
+
+export function calculateGrandMean(
+  areaFolders: AreaFolderDTO[],
+  surveyType: SurveyTeamType
+) {
+  const validAreas = areaFolders
+    .map((areaFolder) => ({
+      weight: areaFolder.area.weight / 100,
+      weightedMean: calculateWeightedAreaMean(areaFolder, surveyType),
+    }))
+    .filter((area) => area.weightedMean !== undefined);
+  if (validAreas.length === 0) return undefined;
+  const totalWeights = validAreas.reduce(
+    (sum, area) => (sum += area.weight),
+    0
+  );
+  const totalWeightedAreas = validAreas.reduce(
+    (sum, area) => (sum += area.weightedMean ?? 0),
+    0
+  );
+  return totalWeightedAreas / totalWeights;
 }

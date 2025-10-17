@@ -8,6 +8,7 @@ import { RatingDTO } from "@/lib/dto/survey-visit";
 import { SurveyTeamType } from "@/lib/generated/prisma";
 import { calculateAreaMean } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table";
+import { read } from "fs";
 
 export const columns: ColumnDef<AreaFolderDTO>[] = [
   {
@@ -95,7 +96,15 @@ export const columns: ColumnDef<AreaFolderDTO>[] = [
           indicator.ratings?.find((rating) => rating.type === "INTERNAL")
         )
         .filter((rating) => rating);
-      const complete = ratings.length === indicators?.length;
+      const complete =
+        ratings.length === indicators?.length &&
+        areaFolder.weaknesses.find(
+          (weaknesses) =>
+            weaknesses.type === "SELF_SURVEY" &&
+            areaFolder.strengths.find(
+              (strengths) => strengths.type === "SELF_SURVEY"
+            )
+        );
       return <div>{complete ? "Complete" : "On Going"}</div>;
     },
   },

@@ -21,10 +21,12 @@ const AccreditorSidebar = ({
   comments,
   user,
   rating,
+  authorized,
 }: {
   comments: CommentDTO[];
   user: SessionPayload;
   rating: RatingDTO | null;
+  authorized: boolean;
 }) => {
   const [tab, setTab] = useState<string>("rating");
   return (
@@ -60,7 +62,7 @@ const AccreditorSidebar = ({
               value="rating"
               className="flex-1 min-h-0 overflow-hidden"
             >
-              <Rating user={user} rating={rating} />
+              <Rating user={user} rating={rating} authorized={authorized} />
             </TabsContent>
             <TabsContent
               value="comments"

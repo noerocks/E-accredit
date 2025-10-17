@@ -14,9 +14,11 @@ import { toast } from "sonner";
 const Rating = ({
   user,
   rating,
+  authorized,
 }: {
   user: SessionPayload;
   rating: RatingDTO | null;
+  authorized: boolean;
 }) => {
   const adequacyList = [
     { numeric: 5, descriptive: "Very adequate" },
@@ -180,7 +182,10 @@ const Rating = ({
                   className="flex items-center justify-between gap-5"
                   key={rating.numeric}
                 >
-                  <RadioGroupItem value={rating.numeric.toString()} />
+                  <RadioGroupItem
+                    value={rating.numeric.toString()}
+                    disabled={!authorized}
+                  />
                   <div className="flex flex-1 justify-between items-center gap-5">
                     <p>{rating.numeric}</p>
                     <p className="text-[12px] text-muted-foreground flex-1">
@@ -208,7 +213,10 @@ const Rating = ({
                   className="flex items-center justify-between gap-5"
                   key={rating.numeric}
                 >
-                  <RadioGroupItem value={rating.numeric.toString()} />
+                  <RadioGroupItem
+                    value={rating.numeric.toString()}
+                    disabled={!authorized}
+                  />
                   <div className="flex flex-1 justify-between gap-5 items-center">
                     <p>{rating.numeric}</p>
                     <p className="text-[12px] text-muted-foreground flex-1">
@@ -224,7 +232,11 @@ const Rating = ({
           <CardContent className="flex flex-col gap-5">
             <CardTitle className="text-blue-500">Final Rating</CardTitle>
             <div className="flex items-center gap-2">
-              <Checkbox checked={NA} onCheckedChange={toggleNA} />
+              <Checkbox
+                checked={NA}
+                onCheckedChange={toggleNA}
+                disabled={!authorized}
+              />
               <p className="flex items-center gap-2 text-xs">
                 Not Applicable (N/A)
               </p>
@@ -237,16 +249,18 @@ const Rating = ({
             )}
           </CardContent>
         </Card>
-        <Button onClick={submit}>
-          {pending ? (
-            <>
-              <Loader className="animate-spin" />
-              Submitting Rating...
-            </>
-          ) : (
-            "Submit Rating"
-          )}
-        </Button>
+        {authorized && (
+          <Button onClick={submit}>
+            {pending ? (
+              <>
+                <Loader className="animate-spin" />
+                Submitting Rating...
+              </>
+            ) : (
+              "Submit Rating"
+            )}
+          </Button>
+        )}
       </div>
       <div ref={bottomRef} />
     </ScrollArea>

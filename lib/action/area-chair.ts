@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
 import { createNewAreaChair, deleteAreaChairById } from "../dal/area-chair";
 
 export async function assignAreaChair(
@@ -19,6 +20,10 @@ export async function assignAreaChair(
       surveyTeamId,
       areaFolderId
     );
+    revalidateTag("evidenceFiles");
+    revalidateTag("areaFolder");
+    revalidateTag("parameterFolder");
+    revalidateTag("surveyVisitStructure");
     return { success: { message: "Area chair assigned successfully" } };
   } catch (error) {
     const e = error as Error;

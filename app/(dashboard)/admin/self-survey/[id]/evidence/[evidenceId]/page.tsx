@@ -21,7 +21,12 @@ const EvidencePage = async ({
   const comments = evidenceFile?.comments?.filter(
     (comment) => comment.type === "SELF_SURVEY"
   );
-  const session = await verifySession();
+  const areaChair =
+    evidenceFile.indicatorFolder?.parameterFolder.areaFolder.areaChair.find(
+      (area) => area.surveyTeam.type === "INTERNAL"
+    );
+  const { user } = await verifySession();
+  const authorized = user.id === areaChair?.user.id || user.role === "ADMIN";
   return (
     <div className="h-full flex">
       <ScrollArea className="h-full flex-1">
@@ -33,8 +38,9 @@ const EvidencePage = async ({
       </ScrollArea>
       <AccreditorSidebar
         comments={comments || []}
-        user={session.user}
+        user={user}
         rating={rating}
+        authorized={authorized}
       />
     </div>
   );

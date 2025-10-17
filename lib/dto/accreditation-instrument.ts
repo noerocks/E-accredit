@@ -2,6 +2,7 @@ import {
   Area,
   AreaFile,
   AreaFolder,
+  Comment,
   EvidenceFile,
   FileVersion,
   Indicator,
@@ -24,6 +25,9 @@ export type PhaseOneInstrumentDTO = InstrumentFolder & {
 };
 export type AreaFolderDTO = AreaFolder & {
   area: Area;
+  strengths: Comment[];
+  weaknesses: Comment[];
+  recommendations: Comment[];
   parameterFolders: ParameterFolderDTO[];
   areaFiles: AreaFile[];
   taskForce: TaskforceDTO;
