@@ -122,7 +122,7 @@ const AreaPage = async ({
               <CardContent>
                 <RecommendationsForm
                   user={user}
-                  recommendedFolderId={areaFolder?.id}
+                  strongFolderId={areaFolder?.id}
                   defaultContent={strenths?.content}
                 />
               </CardContent>
@@ -139,7 +139,7 @@ const AreaPage = async ({
               <CardContent>
                 <RecommendationsForm
                   user={user}
-                  recommendedFolderId={areaFolder?.id}
+                  weakFolderId={areaFolder?.id}
                   defaultContent={weaknesses?.content}
                 />
               </CardContent>

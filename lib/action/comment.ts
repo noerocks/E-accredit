@@ -4,6 +4,8 @@ import { CommentType } from "../generated/prisma";
 import {
   createNewComment as createNewCommentDAL,
   getInternalRecommendationByAreaFolderId,
+  getInternalStrengthsByAreaFolderId,
+  getInternalWeaknessesByAreaFolderId,
   updateCommentById,
 } from "../dal/comment";
 import { revalidateTag } from "next/cache";
@@ -27,6 +29,7 @@ export async function createNewComment({
   strongFolderId?: string;
   weakFolderId?: string;
 }) {
+  console.log(strongFolderId);
   if (!authorId || !content || !type)
     return { failure: { error: "Invalid input" } };
   try {
@@ -56,7 +59,7 @@ export async function createNewComment({
       return { success: { message: "Comment updated successfuly" } };
     }
     if (strongFolderId) {
-      const strengths = await getInternalRecommendationByAreaFolderId(
+      const strengths = await getInternalStrengthsByAreaFolderId(
         strongFolderId
       );
       if (!strengths) {
@@ -81,7 +84,7 @@ export async function createNewComment({
       return { success: { message: "Comment updated successfuly" } };
     }
     if (weakFolderId) {
-      const weaknesses = await getInternalRecommendationByAreaFolderId(
+      const weaknesses = await getInternalWeaknessesByAreaFolderId(
         weakFolderId
       );
       if (!weaknesses) {
@@ -111,6 +114,9 @@ export async function createNewComment({
       type,
       evidenceFileId,
       areaFileId,
+      recommendedFolderId,
+      strongFolderId,
+      weakFolderId,
     });
     revalidateTag("comments");
     revalidateTag("evidenceFiles");

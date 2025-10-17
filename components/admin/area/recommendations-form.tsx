@@ -26,6 +26,8 @@ import z from "zod";
 const RecommendationsForm = ({
   user,
   recommendedFolderId,
+  strongFolderId,
+  weakFolderId,
   defaultContent,
 }: {
   user: SessionPayload;
@@ -56,6 +58,8 @@ const RecommendationsForm = ({
         content: data.content,
         type: CommentType.SELF_SURVEY,
         recommendedFolderId,
+        strongFolderId,
+        weakFolderId,
       });
       if (result?.failure) toast.error(result.failure.error);
     });
