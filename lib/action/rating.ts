@@ -55,6 +55,7 @@ export async function giveRating({
       revalidateTag("evidenceFiles");
       revalidateTag("areaFolder");
       revalidateTag("parameterFolder");
+      revalidateTag("surveyVisitStructure");
       return { success: { message: "Rating Submitted" } };
     } else {
       await resetRatingById(ratedEvidence?.id!);
@@ -68,6 +69,7 @@ export async function giveRating({
       revalidateTag("evidenceFiles");
       revalidateTag("areaFolder");
       revalidateTag("parameterFolder");
+      revalidateTag("surveyVisitStructure");
       return { success: { message: "Rating Updated" } };
     }
   } catch (error) {

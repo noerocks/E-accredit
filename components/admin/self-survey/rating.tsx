@@ -64,9 +64,9 @@ const Rating = ({
     setEffectivesness("");
   };
   useEffect(() => {
-    if (!adequacy && !effectiveness) return;
+    if (!adequacy && !effectiveness && !NA) return;
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [adequacy, effectiveness]);
+  }, [adequacy, effectiveness, NA]);
   const adequacyOnChange = (value: string) => {
     setNA(false);
     setAdequacy(value);
@@ -220,9 +220,9 @@ const Rating = ({
             </RadioGroup>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-blue-500/5">
           <CardContent className="flex flex-col gap-5">
-            <CardTitle className="text-sm">Final Rating</CardTitle>
+            <CardTitle className="text-blue-500">Final Rating</CardTitle>
             <div className="flex items-center gap-2">
               <Checkbox checked={NA} onCheckedChange={toggleNA} />
               <p className="flex items-center gap-2 text-xs">

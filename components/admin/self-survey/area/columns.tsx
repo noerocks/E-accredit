@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DataTableColumnHeader } from "@/components/data-table-column-header";
 import { ParameterFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { calculateParameterGrandMean } from "@/lib/utils";
+import { calculateParameterMean } from "@/lib/utils";
 import { SurveyTeamType } from "@/lib/generated/prisma";
 
 export const columns: ColumnDef<ParameterFolderDTO>[] = [
@@ -49,7 +49,7 @@ export const columns: ColumnDef<ParameterFolderDTO>[] = [
     ),
     cell: ({ row }) => {
       const parameterFolder = row.original;
-      calculateParameterGrandMean(parameterFolder, SurveyTeamType.INTERNAL);
+      calculateParameterMean(parameterFolder, SurveyTeamType.INTERNAL);
       return (
         <div
           className="w-[200px] truncate"
@@ -64,7 +64,7 @@ export const columns: ColumnDef<ParameterFolderDTO>[] = [
     header: "Mean",
     cell: ({ row }) => {
       const parameterFolder = row.original;
-      const mean = calculateParameterGrandMean(
+      const mean = calculateParameterMean(
         parameterFolder,
         SurveyTeamType.INTERNAL
       );

@@ -26,9 +26,11 @@ const ParameterPage = async ({
   const indicators = parameterFolder?.indicatorFolders.flatMap(
     (indicator) => indicator.evidenceFiles
   );
-  const ratings = parameterFolder?.indicatorFolders.flatMap((indicator) =>
-    indicator.evidenceFiles.flatMap((evidence) => evidence.ratings)
-  );
+  const ratings = indicators
+    ?.map((indicator) =>
+      indicator.ratings.find((rating) => rating.type === "INTERNAL")
+    )
+    .filter((rating) => rating);
   const complete = ratings?.length === indicators?.length;
   const systemIndicators = indicators?.filter(
     (indicator) => indicator.indicator.category === "SYSTEM"
@@ -41,7 +43,7 @@ const ParameterPage = async ({
   );
   return (
     <ScrollArea className="h-full">
-      <div className="max-w-2/3 flex flex-col gap-5 mx-auto my-10">
+      <div className="max-w-5/6 flex flex-col gap-5 mx-auto my-10">
         <p className="text-2xl flex items-center gap-2">
           <ClipboardList />
           Parameter

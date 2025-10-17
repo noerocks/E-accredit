@@ -1,8 +1,12 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { LevelDTO } from "./dto/level";
-import { ParameterFolderDTO } from "./dto/accreditation-instrument";
+import {
+  AreaFolderDTO,
+  ParameterFolderDTO,
+} from "./dto/accreditation-instrument";
 import { SurveyTeamType } from "./generated/prisma";
+import { RatingDTO } from "./dto/survey-visit";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -46,22 +50,41 @@ export async function formatLevelName(level: LevelDTO) {
     .join(" ");
 }
 
-export function calculateParameterGrandMean(
+export function calculateParameterMean(
   parameterFolder: ParameterFolderDTO,
   surveyType: SurveyTeamType
 ) {
   const ratings = parameterFolder.indicatorFolders
-    .flatMap((parameter) =>
-      parameter.evidenceFiles.flatMap((evidence) => evidence.ratings)
+    .flatMap((indicator) =>
+      indicator.evidenceFiles.flatMap((evidence) => evidence.ratings)
     )
-    .filter((rating) => !rating?.NA && rating?.type === surveyType);
+    .filter(
+      (rating): rating is RatingDTO =>
+        !rating?.NA && rating?.type === surveyType
+    );
   if (ratings.length > 0) {
-    const mean = ratings.reduce(
-      (sum, rating) => (sum += rating?.finalRate || 0),
+    const sum = ratings.reduce(
+      (sum, rating) => (sum += rating.finalRate ?? 0),
       0
     );
-    console.log(mean, ratings.length);
-    return mean / ratings.length;
+    return sum / ratings.length;
+  }
+  return undefined;
+}
+
+export function calculateAreaMean(
+  areaFolder: AreaFolderDTO,
+  surveyType: SurveyTeamType
+) {
+  const parameterRatings = areaFolder.parameterFolders
+    .map((parameter) => calculateParameterMean(parameter, surveyType))
+    .filter((rating): rating is number => rating !== undefined);
+  if (parameterRatings.length > 0) {
+    const sum = parameterRatings.reduce(
+      (sum, rating) => (sum += rating ?? 0),
+      0
+    );
+    return sum / parameterRatings.length;
   }
   return undefined;
 }

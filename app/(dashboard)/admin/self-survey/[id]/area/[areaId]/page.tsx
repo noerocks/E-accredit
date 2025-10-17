@@ -39,17 +39,15 @@ const AreaPage = async ({
     (recommendation) => recommendation.type === "SELF_SURVEY"
   );
   const ratings = indicators
-    ?.filter((indicator) =>
+    ?.map((indicator) =>
       indicator.ratings.find((rating) => rating.type === "INTERNAL")
     )
-    .map((indicator) =>
-      indicator.ratings.find((rating) => rating.type === "INTERNAL")
-    );
+    .filter((rating) => rating);
   const complete = ratings?.length === indicators?.length;
   const parameters = areaFolder?.parameterFolders;
   return (
     <ScrollArea className="h-full">
-      <div className="max-w-2/3 flex flex-col gap-5 mx-auto my-10">
+      <div className="max-w-5/6 flex flex-col gap-5 mx-auto my-10">
         <p className="text-2xl flex items-center gap-2">
           <Layers />
           Area

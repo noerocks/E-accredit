@@ -31,6 +31,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { File } from "lucide-react";
+import { useSidebar } from "@/components/ui/sidebar";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -66,6 +67,10 @@ export function DataTable<TData, TValue>({
       rowSelection,
     },
   });
+  const { setOpen } = useSidebar();
+  React.useEffect(() => {
+    setOpen(true);
+  }, []);
   return (
     <div>
       <div className="flex items-center gap-2">

@@ -46,7 +46,7 @@ const ProgramAccreditationPage = async ({
   const level = surveyVisitStructure?.level;
   const program = surveyVisitStructure?.accreditation.program;
   const areaFolders =
-    surveyVisitStructure?.phaseOneRequirements?.instrumentFolder?.areaFolders.sort(
+    surveyVisitStructure?.phaseOneRequirements?.instrumentFolder?.areaFolders?.sort(
       (a, b) => a.area.label.localeCompare(b.area.label)
     );
   const isAdmin = user.role === "ADMIN";

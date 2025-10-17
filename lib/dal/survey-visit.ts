@@ -100,6 +100,11 @@ export const getSurveyVisitStructureById = unstable_cache(
                             evidenceFiles: {
                               include: {
                                 indicator: true,
+                                ratings: {
+                                  include: {
+                                    accreditor: true,
+                                  },
+                                },
                               },
                             },
                           },
@@ -128,6 +133,40 @@ export const getSurveyVisitStructureById = unstable_cache(
         },
       },
     });
+    if (surveyVisitStructure) {
+      return {
+        ...surveyVisitStructure,
+        phaseOneRequirements: {
+          ...surveyVisitStructure.phaseOneRequirements,
+          instrumentFolder: {
+            ...surveyVisitStructure.phaseOneRequirements?.instrumentFolder,
+            areaFolders:
+              surveyVisitStructure.phaseOneRequirements?.instrumentFolder?.areaFolders.map(
+                (area) => ({
+                  ...area,
+                  parameterFolders: area.parameterFolders.map((parameter) => ({
+                    ...parameter,
+                    indicatorFolders: parameter.indicatorFolders.map(
+                      (indicator) => ({
+                        ...indicator,
+                        evidenceFiles: indicator.evidenceFiles.map(
+                          (evidence) => ({
+                            ...evidence,
+                            ratings: evidence.ratings.map((rating) => ({
+                              ...rating,
+                              finalRate: Number(rating.finalRate),
+                            })),
+                          })
+                        ),
+                      })
+                    ),
+                  })),
+                })
+              ),
+          },
+        },
+      };
+    }
     return surveyVisitStructure;
   },
   ["getSurveyVisitStructureById"],
