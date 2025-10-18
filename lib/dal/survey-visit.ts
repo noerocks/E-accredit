@@ -1,6 +1,11 @@
 import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
-import { Progress, SurveyVisit, SurveyVisitType } from "../generated/prisma";
+import {
+  Progress,
+  SurveyStatus,
+  SurveyVisit,
+  SurveyVisitType,
+} from "../generated/prisma";
 import { prisma } from "../prisma";
 import { SurveyVisitDisplayDTO } from "../dto/survey-visit";
 
@@ -192,7 +197,14 @@ export const getAllSurveyVisitOpenForSelfSurvey = unstable_cache(
   async (): Promise<SurveyVisitDisplayDTO[] | null> => {
     const surveyVisit = await prisma.surveyVisit.findMany({
       where: {
-        openForSelfSurvey: true,
+        OR: [
+          {
+            selfSurveyStatus: SurveyStatus.COMPLETE,
+          },
+          {
+            openForSelfSurvey: true,
+          },
+        ],
       },
       include: {
         accreditation: {

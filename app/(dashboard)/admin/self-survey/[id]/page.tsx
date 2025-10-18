@@ -1,4 +1,5 @@
 import { DataTable } from "@/components/admin/accreditation/data-table";
+import EndSurveyButton from "@/components/admin/self-survey/end-survey-button";
 import SelfSurveyReportPDF from "@/components/admin/self-survey/self-survey-report-pdf";
 import { columns } from "@/components/admin/self-survey/survey-visit/columns";
 import PDFViewer from "@/components/pdf-viewer";
@@ -92,15 +93,10 @@ const SelfSurveyPage = async ({
               <CircleDot size={15} />
               {complete ? "Complete" : "On Going"}
             </p>
-            {complete && (
-              <Button>
-                <Check />
-                End Survey
-              </Button>
-            )}
+            {complete && <EndSurveyButton surveyVisitId={id} />}
           </CardFooter>
         </Card>
-        <Tabs defaultValue="results">
+        <Tabs defaultValue="area">
           <TabsList className="bg-background border">
             <TabsTrigger value="area">Area Ratings</TabsTrigger>
             <TabsTrigger value="results">Overall Survey Results</TabsTrigger>
@@ -115,16 +111,7 @@ const SelfSurveyPage = async ({
               </CardContent>
             </Card>
           </TabsContent>
-          <TabsContent value="results">
-            <PDFViewer
-              pdfComponent={
-                <SelfSurveyReportPDF
-                  surveyName={accreditationName}
-                  areaFolders={areaFolders as unknown as AreaFolderDTO[]}
-                />
-              }
-            />
-          </TabsContent>
+          <TabsContent value="results"></TabsContent>
         </Tabs>
       </div>
     </ScrollArea>

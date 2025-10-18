@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
-import { Progress } from "../generated/prisma";
+import { Progress, SurveyStatus } from "../generated/prisma";
 import { updateSurveyVisitById } from "../dal/survey-visit";
 
 export async function markAsComplete(surveyVisitId: string) {
@@ -63,6 +63,24 @@ export async function toggleSelfSurvey(
       openForSelfSurvey: !openForSelfSurvey,
       allowFileUploads: false,
       allowEdits: false,
+      selfSurveyStatus: SurveyStatus.ON_GOING,
+    });
+    revalidateTag("parameterFolder");
+    revalidateTag("areaFolder");
+    revalidateTag("surveyVisitStructure");
+    revalidateTag("surveyVisitSelfSurvey");
+  } catch (error) {
+    const e = error as Error;
+    return { failure: { error: e.message } };
+  }
+}
+
+export async function endSelfSurvey(surveyVisitId: string) {
+  try {
+    const surveyVisit = await updateSurveyVisitById({
+      id: surveyVisitId,
+      selfSurveyStatus: SurveyStatus.COMPLETE,
+      openForSelfSurvey: false,
     });
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");

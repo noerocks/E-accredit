@@ -27,13 +27,18 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { FolderCheckIcon, Home } from "lucide-react";
 import Link from "next/link";
+import { SurveyStatus } from "@/lib/generated/prisma";
 
 const AccreditationSidebar = ({
   instrumentFolder,
   phaseTwoFolder,
+  selfSurveyStatus,
+  surveyVisitId,
 }: {
   instrumentFolder: PhaseOneInstrumentDTO | null | undefined;
   phaseTwoFolder: PhaseTwoInstrumentDTO | null | undefined;
+  selfSurveyStatus: SurveyStatus | undefined;
+  surveyVisitId: string;
 }) => {
   const pathName = usePathname();
   const base = pathName
@@ -43,7 +48,9 @@ const AccreditationSidebar = ({
   const params = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const onDoubleClick = (e: React.MouseEvent<HTMLUListElement>) => {
+  const onDoubleClick = (
+    e: React.MouseEvent<HTMLUListElement | HTMLButtonElement>
+  ) => {
     const target = e.target as HTMLElement;
     const button = target.closest<HTMLButtonElement>("[data-id]");
     if (!button || target.tagName !== "BUTTON") return null;
@@ -74,6 +81,22 @@ const AccreditationSidebar = ({
       </SidebarHeader>
       <SidebarContent>
         <ScrollArea className="h-full">
+          {selfSurveyStatus === "COMPLETE" && (
+            <SidebarGroup>
+              <SidebarGroupLabel>Survey Report Report</SidebarGroupLabel>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    onDoubleClick={onDoubleClick}
+                    data-id={surveyVisitId}
+                    data-type={"report"}
+                  >
+                    {`📄 Self Survey Report`}
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroup>
+          )}
           <SidebarGroup>
             <SidebarGroupLabel>Areas</SidebarGroupLabel>
             <SidebarMenu onDoubleClick={onDoubleClick}>

@@ -261,6 +261,15 @@ export const LevelEnum: {
 
 export type LevelEnum = (typeof LevelEnum)[keyof typeof LevelEnum]
 
+
+export const SurveyStatus: {
+  PENDING: 'PENDING',
+  ON_GOING: 'ON_GOING',
+  COMPLETE: 'COMPLETE'
+};
+
+export type SurveyStatus = (typeof SurveyStatus)[keyof typeof SurveyStatus]
+
 }
 
 export type Role = $Enums.Role
@@ -310,6 +319,10 @@ export const SurveyTeamType: typeof $Enums.SurveyTeamType
 export type LevelEnum = $Enums.LevelEnum
 
 export const LevelEnum: typeof $Enums.LevelEnum
+
+export type SurveyStatus = $Enums.SurveyStatus
+
+export const SurveyStatus: typeof $Enums.SurveyStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -14773,6 +14786,7 @@ export namespace Prisma {
     allowFileUploads: boolean | null
     allowEdits: boolean | null
     openForSelfSurvey: boolean | null
+    selfSurveyStatus: $Enums.SurveyStatus | null
     openForActualSurvey: boolean | null
   }
 
@@ -14787,6 +14801,7 @@ export namespace Prisma {
     allowFileUploads: boolean | null
     allowEdits: boolean | null
     openForSelfSurvey: boolean | null
+    selfSurveyStatus: $Enums.SurveyStatus | null
     openForActualSurvey: boolean | null
   }
 
@@ -14801,6 +14816,7 @@ export namespace Prisma {
     allowFileUploads: number
     allowEdits: number
     openForSelfSurvey: number
+    selfSurveyStatus: number
     openForActualSurvey: number
     _all: number
   }
@@ -14817,6 +14833,7 @@ export namespace Prisma {
     allowFileUploads?: true
     allowEdits?: true
     openForSelfSurvey?: true
+    selfSurveyStatus?: true
     openForActualSurvey?: true
   }
 
@@ -14831,6 +14848,7 @@ export namespace Prisma {
     allowFileUploads?: true
     allowEdits?: true
     openForSelfSurvey?: true
+    selfSurveyStatus?: true
     openForActualSurvey?: true
   }
 
@@ -14845,6 +14863,7 @@ export namespace Prisma {
     allowFileUploads?: true
     allowEdits?: true
     openForSelfSurvey?: true
+    selfSurveyStatus?: true
     openForActualSurvey?: true
     _all?: true
   }
@@ -14932,6 +14951,7 @@ export namespace Prisma {
     allowFileUploads: boolean
     allowEdits: boolean
     openForSelfSurvey: boolean
+    selfSurveyStatus: $Enums.SurveyStatus
     openForActualSurvey: boolean
     _count: SurveyVisitCountAggregateOutputType | null
     _min: SurveyVisitMinAggregateOutputType | null
@@ -14963,6 +14983,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: boolean
     openForActualSurvey?: boolean
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
     level?: boolean | LevelDefaultArgs<ExtArgs>
@@ -14983,6 +15004,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: boolean
     openForActualSurvey?: boolean
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
     level?: boolean | LevelDefaultArgs<ExtArgs>
@@ -14999,6 +15021,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: boolean
     openForActualSurvey?: boolean
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
     level?: boolean | LevelDefaultArgs<ExtArgs>
@@ -15015,10 +15038,11 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: boolean
     openForActualSurvey?: boolean
   }
 
-  export type SurveyVisitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accreditationId" | "actualSurveyDate" | "type" | "targetLevel" | "status" | "createdAt" | "allowFileUploads" | "allowEdits" | "openForSelfSurvey" | "openForActualSurvey", ExtArgs["result"]["surveyVisit"]>
+  export type SurveyVisitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accreditationId" | "actualSurveyDate" | "type" | "targetLevel" | "status" | "createdAt" | "allowFileUploads" | "allowEdits" | "openForSelfSurvey" | "selfSurveyStatus" | "openForActualSurvey", ExtArgs["result"]["surveyVisit"]>
   export type SurveyVisitInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
     level?: boolean | LevelDefaultArgs<ExtArgs>
@@ -15056,6 +15080,7 @@ export namespace Prisma {
       allowFileUploads: boolean
       allowEdits: boolean
       openForSelfSurvey: boolean
+      selfSurveyStatus: $Enums.SurveyStatus
       openForActualSurvey: boolean
     }, ExtArgs["result"]["surveyVisit"]>
     composites: {}
@@ -15495,6 +15520,7 @@ export namespace Prisma {
     readonly allowFileUploads: FieldRef<"SurveyVisit", 'Boolean'>
     readonly allowEdits: FieldRef<"SurveyVisit", 'Boolean'>
     readonly openForSelfSurvey: FieldRef<"SurveyVisit", 'Boolean'>
+    readonly selfSurveyStatus: FieldRef<"SurveyVisit", 'SurveyStatus'>
     readonly openForActualSurvey: FieldRef<"SurveyVisit", 'Boolean'>
   }
     
@@ -35256,6 +35282,7 @@ export namespace Prisma {
     allowFileUploads: 'allowFileUploads',
     allowEdits: 'allowEdits',
     openForSelfSurvey: 'openForSelfSurvey',
+    selfSurveyStatus: 'selfSurveyStatus',
     openForActualSurvey: 'openForActualSurvey'
   };
 
@@ -35630,6 +35657,20 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'SurveyStatus'
+   */
+  export type EnumSurveyStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurveyStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'SurveyStatus[]'
+   */
+  export type ListEnumSurveyStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurveyStatus[]'>
     
 
 
@@ -36391,6 +36432,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFilter<"SurveyVisit"> | boolean
     allowEdits?: BoolFilter<"SurveyVisit"> | boolean
     openForSelfSurvey?: BoolFilter<"SurveyVisit"> | boolean
+    selfSurveyStatus?: EnumSurveyStatusFilter<"SurveyVisit"> | $Enums.SurveyStatus
     openForActualSurvey?: BoolFilter<"SurveyVisit"> | boolean
     accreditation?: XOR<AccreditationScalarRelationFilter, AccreditationWhereInput>
     level?: XOR<LevelScalarRelationFilter, LevelWhereInput>
@@ -36410,6 +36452,7 @@ export namespace Prisma {
     allowFileUploads?: SortOrder
     allowEdits?: SortOrder
     openForSelfSurvey?: SortOrder
+    selfSurveyStatus?: SortOrder
     openForActualSurvey?: SortOrder
     accreditation?: AccreditationOrderByWithRelationInput
     level?: LevelOrderByWithRelationInput
@@ -36432,6 +36475,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFilter<"SurveyVisit"> | boolean
     allowEdits?: BoolFilter<"SurveyVisit"> | boolean
     openForSelfSurvey?: BoolFilter<"SurveyVisit"> | boolean
+    selfSurveyStatus?: EnumSurveyStatusFilter<"SurveyVisit"> | $Enums.SurveyStatus
     openForActualSurvey?: BoolFilter<"SurveyVisit"> | boolean
     accreditation?: XOR<AccreditationScalarRelationFilter, AccreditationWhereInput>
     level?: XOR<LevelScalarRelationFilter, LevelWhereInput>
@@ -36451,6 +36495,7 @@ export namespace Prisma {
     allowFileUploads?: SortOrder
     allowEdits?: SortOrder
     openForSelfSurvey?: SortOrder
+    selfSurveyStatus?: SortOrder
     openForActualSurvey?: SortOrder
     _count?: SurveyVisitCountOrderByAggregateInput
     _max?: SurveyVisitMaxOrderByAggregateInput
@@ -36471,6 +36516,7 @@ export namespace Prisma {
     allowFileUploads?: BoolWithAggregatesFilter<"SurveyVisit"> | boolean
     allowEdits?: BoolWithAggregatesFilter<"SurveyVisit"> | boolean
     openForSelfSurvey?: BoolWithAggregatesFilter<"SurveyVisit"> | boolean
+    selfSurveyStatus?: EnumSurveyStatusWithAggregatesFilter<"SurveyVisit"> | $Enums.SurveyStatus
     openForActualSurvey?: BoolWithAggregatesFilter<"SurveyVisit"> | boolean
   }
 
@@ -38219,6 +38265,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
@@ -38238,6 +38285,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
@@ -38253,6 +38301,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
@@ -38272,6 +38321,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
@@ -38289,6 +38339,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
   }
 
@@ -38301,6 +38352,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -38315,6 +38367,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -40120,6 +40173,13 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type EnumSurveyStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyStatus | EnumSurveyStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyStatusFilter<$PrismaModel> | $Enums.SurveyStatus
+  }
+
   export type AccreditationScalarRelationFilter = {
     is?: AccreditationWhereInput
     isNot?: AccreditationWhereInput
@@ -40151,6 +40211,7 @@ export namespace Prisma {
     allowFileUploads?: SortOrder
     allowEdits?: SortOrder
     openForSelfSurvey?: SortOrder
+    selfSurveyStatus?: SortOrder
     openForActualSurvey?: SortOrder
   }
 
@@ -40165,6 +40226,7 @@ export namespace Prisma {
     allowFileUploads?: SortOrder
     allowEdits?: SortOrder
     openForSelfSurvey?: SortOrder
+    selfSurveyStatus?: SortOrder
     openForActualSurvey?: SortOrder
   }
 
@@ -40179,6 +40241,7 @@ export namespace Prisma {
     allowFileUploads?: SortOrder
     allowEdits?: SortOrder
     openForSelfSurvey?: SortOrder
+    selfSurveyStatus?: SortOrder
     openForActualSurvey?: SortOrder
   }
 
@@ -40208,6 +40271,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type EnumSurveyStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyStatus | EnumSurveyStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyStatusWithAggregatesFilter<$PrismaModel> | $Enums.SurveyStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSurveyStatusFilter<$PrismaModel>
+    _max?: NestedEnumSurveyStatusFilter<$PrismaModel>
   }
 
   export type EnumSurveyTeamTypeFilter<$PrismaModel = never> = {
@@ -42102,6 +42175,10 @@ export namespace Prisma {
     set?: boolean
   }
 
+  export type EnumSurveyStatusFieldUpdateOperationsInput = {
+    set?: $Enums.SurveyStatus
+  }
+
   export type AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput = {
     create?: XOR<AccreditationCreateWithoutSurveyVisitsInput, AccreditationUncheckedCreateWithoutSurveyVisitsInput>
     connectOrCreate?: AccreditationCreateOrConnectWithoutSurveyVisitsInput
@@ -43920,6 +43997,13 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type NestedEnumSurveyStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyStatus | EnumSurveyStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyStatusFilter<$PrismaModel> | $Enums.SurveyStatus
+  }
+
   export type NestedEnumSurveyVisitTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.SurveyVisitType | EnumSurveyVisitTypeFieldRefInput<$PrismaModel>
     in?: $Enums.SurveyVisitType[] | ListEnumSurveyVisitTypeFieldRefInput<$PrismaModel>
@@ -43946,6 +44030,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedEnumSurveyStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyStatus | EnumSurveyStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyStatus[] | ListEnumSurveyStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyStatusWithAggregatesFilter<$PrismaModel> | $Enums.SurveyStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSurveyStatusFilter<$PrismaModel>
+    _max?: NestedEnumSurveyStatusFilter<$PrismaModel>
   }
 
   export type NestedEnumSurveyTeamTypeFilter<$PrismaModel = never> = {
@@ -45650,6 +45744,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
@@ -45667,6 +45762,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
@@ -45741,6 +45837,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFilter<"SurveyVisit"> | boolean
     allowEdits?: BoolFilter<"SurveyVisit"> | boolean
     openForSelfSurvey?: BoolFilter<"SurveyVisit"> | boolean
+    selfSurveyStatus?: EnumSurveyStatusFilter<"SurveyVisit"> | $Enums.SurveyStatus
     openForActualSurvey?: BoolFilter<"SurveyVisit"> | boolean
   }
 
@@ -45809,6 +45906,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
@@ -45826,6 +45924,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
@@ -46167,6 +46266,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
@@ -46185,6 +46285,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
@@ -46282,6 +46383,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
@@ -46300,6 +46402,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
@@ -46589,6 +46692,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
@@ -46607,6 +46711,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
@@ -46677,6 +46782,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
@@ -46695,6 +46801,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
@@ -48157,6 +48264,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
@@ -48175,6 +48283,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
@@ -48245,6 +48354,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
@@ -48263,6 +48373,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
@@ -50041,6 +50152,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
   }
 
@@ -50079,6 +50191,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
@@ -50096,6 +50209,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
@@ -50112,6 +50226,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -50125,6 +50240,7 @@ export namespace Prisma {
     allowFileUploads?: boolean
     allowEdits?: boolean
     openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
     openForActualSurvey?: boolean
   }
 
@@ -50137,6 +50253,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
@@ -50154,6 +50271,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
@@ -50170,6 +50288,7 @@ export namespace Prisma {
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
     openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
   }
 
