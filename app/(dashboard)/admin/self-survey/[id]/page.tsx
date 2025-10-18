@@ -13,19 +13,10 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  getInstrumentById,
-  getInstrumentStructureById,
-} from "@/lib/dal/instrument";
+import { getInstrumentStructureById } from "@/lib/dal/instrument";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
-import {
-  AreaFolderDTO,
-  PhaseOneInstrumentDTO,
-} from "@/lib/dto/accreditation-instrument";
-import { SurveyVisitDTO } from "@/lib/dto/survey-visit";
-import { SurveyTeamType } from "@/lib/generated/prisma";
-import { calculateGrandMean, formatAccreditationName } from "@/lib/utils";
-import { pdf } from "@react-pdf/renderer";
+import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
+import { formatAccreditationName } from "@/lib/utils";
 import clsx from "clsx";
 import { Check, CircleDot, SearchCheck } from "lucide-react";
 
@@ -73,12 +64,7 @@ const SelfSurveyPage = async ({
         area.strengths.find((strength) => strength.type === "SELF_SURVEY") &&
         area.weaknesses.find((weakness) => weakness.type === "SELF_SURVEY")
     );
-  console.log(
-    calculateGrandMean(
-      areaFolders as unknown as AreaFolderDTO[],
-      SurveyTeamType.INTERNAL
-    )
-  );
+  const accreditationName = formatAccreditationName(program?.code!, level!);
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
@@ -114,7 +100,7 @@ const SelfSurveyPage = async ({
             )}
           </CardFooter>
         </Card>
-        <Tabs defaultValue="area">
+        <Tabs defaultValue="results">
           <TabsList className="bg-background border">
             <TabsTrigger value="area">Area Ratings</TabsTrigger>
             <TabsTrigger value="results">Overall Survey Results</TabsTrigger>
@@ -130,7 +116,14 @@ const SelfSurveyPage = async ({
             </Card>
           </TabsContent>
           <TabsContent value="results">
-            <PDFViewer pdfComponent={<SelfSurveyReportPDF />} />
+            <PDFViewer
+              pdfComponent={
+                <SelfSurveyReportPDF
+                  surveyName={accreditationName}
+                  areaFolders={areaFolders as unknown as AreaFolderDTO[]}
+                />
+              }
+            />
           </TabsContent>
         </Tabs>
       </div>
