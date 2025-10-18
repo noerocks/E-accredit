@@ -1,9 +1,18 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { SurveyStatus } from "@/lib/generated/prisma";
+import { screamingSnakeToTitle } from "@/lib/utils";
 import { CircleQuestionMark, SearchCheck } from "lucide-react";
 
-const SurveyVisitStatus = () => {
+const SurveyVisitStatus = ({
+  surveyStatus,
+}: {
+  surveyStatus: {
+    selfSurveyStatus: SurveyStatus | undefined;
+    selfSurveyGrandMean: number | undefined;
+  };
+}) => {
   return (
     <Card className="flex-1 bg-background">
       <CardHeader>
@@ -18,28 +27,32 @@ const SurveyVisitStatus = () => {
             <CircleQuestionMark size={15} />
             <p className="text-sm">Self Survey</p>
           </div>
-          <p></p>
+          <p>{screamingSnakeToTitle(surveyStatus.selfSurveyStatus!)}</p>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex-1 flex items-center gap-2 text-muted-foreground">
             <CircleQuestionMark size={15} />
             <p className="text-sm">Acquired Grand Mean</p>
           </div>
-          <p></p>
+          <p>
+            {surveyStatus.selfSurveyGrandMean
+              ? surveyStatus.selfSurveyGrandMean.toFixed(2)
+              : "-"}
+          </p>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex-1 flex items-center gap-2 text-muted-foreground">
             <CircleQuestionMark size={15} />
             <p className="text-sm">Actual Survey</p>
           </div>
-          <p></p>
+          <p>Pending</p>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex-1 flex items-center gap-2 text-muted-foreground">
             <CircleQuestionMark size={15} />
             <p className="text-sm">Acquired Grand Mean</p>
           </div>
-          <p></p>
+          <p>-</p>
         </div>
       </CardContent>
     </Card>

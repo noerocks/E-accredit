@@ -83,7 +83,7 @@ const AccreditationSidebar = ({
         <ScrollArea className="h-full">
           {selfSurveyStatus === "COMPLETE" && (
             <SidebarGroup>
-              <SidebarGroupLabel>Survey Report Report</SidebarGroupLabel>
+              <SidebarGroupLabel>Survey Report</SidebarGroupLabel>
               <SidebarMenu>
                 <SidebarMenuItem>
                   <SidebarMenuButton
@@ -91,7 +91,7 @@ const AccreditationSidebar = ({
                     data-id={surveyVisitId}
                     data-type={"report"}
                   >
-                    {`📄 Self Survey Report`}
+                    {`📄 Self Survey PDF`}
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               </SidebarMenu>

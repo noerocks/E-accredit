@@ -1,5 +1,6 @@
 import AccreditationSidebar from "@/components/admin/accreditation/accreditation-sidebar";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
+import { PhaseOneInstrumentDTO } from "@/lib/dto/accreditation-instrument";
 import React from "react";
 
 const AccreditationLayout = async ({
@@ -15,11 +16,14 @@ const AccreditationLayout = async ({
     <div className="flex h-full">
       <AccreditationSidebar
         instrumentFolder={
-          surveyVisitStructure?.phaseOneRequirements?.instrumentFolder
+          surveyVisitStructure?.phaseOneRequirements
+            ?.instrumentFolder as PhaseOneInstrumentDTO
         }
         phaseTwoFolder={
           surveyVisitStructure?.phaseTwoRequirements?.phaseTwoFolder
         }
+        selfSurveyStatus={surveyVisitStructure?.selfSurveyStatus}
+        surveyVisitId={id}
       />
       <div className="flex-1 h-full overflow-auto">{children}</div>
     </div>

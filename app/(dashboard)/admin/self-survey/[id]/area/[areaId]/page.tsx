@@ -1,3 +1,4 @@
+import Accreditors from "@/components/admin/accreditation/accreditors";
 import Banner from "@/components/admin/accreditation/banner";
 import { DataTable } from "@/components/admin/area/data-table";
 import RecommendationsForm from "@/components/admin/area/recommendations-form";
@@ -14,7 +15,10 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { verifySession } from "@/lib/action/session";
 import { getAreaFolderById } from "@/lib/dal/area-folder";
+import { getSurveyVisitById } from "@/lib/dal/survey-visit";
+import { getUsersByRole } from "@/lib/dal/user";
 import { ParameterFolderDTO } from "@/lib/dto/accreditation-instrument";
+import { Role } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import {
   Check,
@@ -63,6 +67,8 @@ const AreaPage = async ({
   const parameters = areaFolder?.parameterFolders.sort((a, b) =>
     a.parameter.label.localeCompare(b.parameter.label)
   );
+  const accreditors = await getUsersByRole(Role.ACCREDITOR);
+  const surveyVisit = await getSurveyVisitById(id);
   return (
     <ScrollArea className="h-full">
       <div className="max-w-5/6 flex flex-col gap-5 mx-auto my-10">
@@ -92,7 +98,11 @@ const AreaPage = async ({
               <CircleDot size={15} />
               {complete ? "Complete" : "On Going"}
             </p>
-            <p className="text-muted-foreground">{`Weight: ${area?.weight}`}</p>
+            <Accreditors
+              accreditors={accreditors}
+              surveyVisit={surveyVisit}
+              areaFolderId={areaFolder?.id}
+            />
           </CardFooter>
         </Card>
         <Tabs defaultValue="ratings">

@@ -35,11 +35,15 @@ const Accreditors = ({
   const internalSurveyTeam = surveyVisit?.surveyTeam.find(
     (team) => team.type === "INTERNAL"
   );
-  const internalAreaChair = internalSurveyTeam?.areaChairs[0];
+  const internalAreaChair = internalSurveyTeam?.areaChairs.find(
+    (areaChair) => areaChair.areaFolderId === areaFolderId
+  );
   const externalSurveyTeam = surveyVisit?.surveyTeam.find(
     (team) => team.type === "EXTERNAL"
   );
-  const externalAreaChair = externalSurveyTeam?.areaChairs[0];
+  const externalAreaChair = externalSurveyTeam?.areaChairs.find(
+    (areaChair) => areaChair.areaFolderId === areaFolderId
+  );
   const assignAreaChair = async (type: SurveyTeamType, value: string) => {
     const accreditor = accreditors?.find(
       (accreditor) => accreditor.id === value
@@ -55,12 +59,11 @@ const Accreditors = ({
         break;
       }
     }
-    const areaChair = internalAreaChair || externalAreaChair;
     const result = await assignAreaChairAction(
       accreditor?.id,
+      type,
       surveyTeamId,
-      areaFolderId,
-      areaChair?.id
+      areaFolderId
     );
     if (result.failure) toast.error(result.failure.error);
   };

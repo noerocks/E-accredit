@@ -18,8 +18,9 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { verifySession } from "@/lib/action/session";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { Progress } from "@/lib/generated/prisma";
+import { Progress, SurveyTeamType } from "@/lib/generated/prisma";
 import {
+  calculateGrandMean,
   formatAccreditationName,
   formatLevelName,
   screamingSnakeToTitle,
@@ -56,6 +57,13 @@ const ProgramAccreditationPage = async ({
     areaFolders?.every((area) => area.status === "COMPLETE") &&
     surveyVisitStructure?.status !== "COMPLETE" &&
     (isProgramHead || isAdmin);
+  const surveyStatus = {
+    selfSurveyStatus: surveyVisitStructure?.selfSurveyStatus,
+    selfSurveyGrandMean: calculateGrandMean(
+      areaFolders as unknown as AreaFolderDTO[],
+      SurveyTeamType.INTERNAL
+    ),
+  };
   return (
     <ScrollArea className="h-full">
       <Banner surveyVisitId={String(id!)} />
@@ -105,7 +113,7 @@ const ProgramAccreditationPage = async ({
             status={surveyVisitStructure?.status}
           />
           <TargetLevel level={level!} />
-          <SurveyVisitStatus />
+          <SurveyVisitStatus surveyStatus={surveyStatus} />
         </div>
         <Card className="bg-background">
           <CardContent>

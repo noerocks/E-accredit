@@ -108,11 +108,6 @@ const AreaFolderPage = async ({
               )}
             </div>
             <div className="flex items-center gap-2">
-              <Accreditors
-                accreditors={accreditors}
-                surveyVisit={surveyVisit}
-                areaFolderId={areaFolder?.id}
-              />
               <TaskForce
                 programPersonnel={programPersonnel}
                 taskForce={areaFolder?.taskForce}

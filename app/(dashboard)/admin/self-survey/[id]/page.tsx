@@ -66,6 +66,8 @@ const SelfSurveyPage = async ({
         area.weaknesses.find((weakness) => weakness.type === "SELF_SURVEY")
     );
   const accreditationName = formatAccreditationName(program?.code!, level!);
+  const surveyVisitEnded =
+    surveyVisitStructure?.selfSurveyStatus === "COMPLETE";
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
@@ -93,7 +95,9 @@ const SelfSurveyPage = async ({
               <CircleDot size={15} />
               {complete ? "Complete" : "On Going"}
             </p>
-            {complete && <EndSurveyButton surveyVisitId={id} />}
+            {complete && !surveyVisitEnded && (
+              <EndSurveyButton surveyVisitId={id} />
+            )}
           </CardFooter>
         </Card>
         <Tabs defaultValue="area">

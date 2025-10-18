@@ -4,7 +4,6 @@ import {
   calculateAreaMean,
   calculateGrandMean,
   calculateWeightedAreaMean,
-  screamingSnakeToTitle,
 } from "@/lib/utils";
 import {
   Document,
@@ -192,7 +191,7 @@ const SelfSurveyReportPDF = ({
                       </Text>
                       <View style={styles.tableRow}>
                         <Text style={styles.tableHeaderCell}>Indicator</Text>
-                        <Text style={styles.tableHeaderCell}>Category</Text>
+                        <Text style={styles.tableHeaderCell}>Description</Text>
                         <Text style={styles.tableHeaderCell}>A</Text>
                         <Text style={styles.tableHeaderCell}>E</Text>
                         <Text style={styles.tableHeaderCell}>AE</Text>
@@ -236,7 +235,7 @@ const SelfSurveyReportPDF = ({
                                 {indicator.label}
                               </Text>
                               <Text style={styles.tableCell}>
-                                {screamingSnakeToTitle(indicator.category)}
+                                {indicator.description}
                               </Text>
                               <Text style={styles.tableCell}>
                                 {adequacy ? adequacy.toFixed(2) : "-"}
