@@ -109,6 +109,7 @@ const ProgramAccreditationPage = async ({
             allowFileUploads={surveyVisitStructure?.allowFileUploads}
             allowEdits={surveyVisitStructure?.allowEdits}
             openForSelfSurvey={surveyVisitStructure?.openForSelfSurvey}
+            selfSurveyStatus={surveyVisitStructure?.selfSurveyStatus}
             openForActualSurvey={surveyVisitStructure?.openForActualSurvey}
             status={surveyVisitStructure?.status}
           />

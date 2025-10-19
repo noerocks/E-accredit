@@ -35,6 +35,7 @@ import { Dialog } from "@/components/ui/dialog";
 import DeleteUserDialog from "./delete-user-dialog";
 import AcceptUserDialog from "./accept-user-dialog";
 import RejectUserDialog from "./reject-user-dialog";
+import CreateUserSheet from "./create-user";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -71,6 +72,7 @@ export function DataTable<TData, TValue>({
     },
   });
   const [open, setOpen] = React.useState<boolean>(false);
+  const [sheetOpen, setSheetOpen] = React.useState<boolean>(false);
   const [openPending, setOpenPending] = React.useState<boolean>(false);
   const [pendingAction, setPendingAction] = React.useState<string>("");
   const [selectedUser, setSelectedUser] = React.useState<UsersDTO>();
@@ -94,6 +96,10 @@ export function DataTable<TData, TValue>({
       case "reject": {
         setPendingAction("reject");
         setOpenPending(true);
+        break;
+      }
+      case "edit": {
+        setSheetOpen(true);
         break;
       }
     }
@@ -220,6 +226,12 @@ export function DataTable<TData, TValue>({
           <RejectUserDialog selectedUser={selectedUser} />
         )}
       </Dialog>
+      <CreateUserSheet
+        hideTrigger={true}
+        open={sheetOpen}
+        setOpen={setSheetOpen}
+        user={selectedUser}
+      />
     </>
   );
 }

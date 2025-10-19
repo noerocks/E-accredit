@@ -17,9 +17,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { deleteUser } from "@/lib/action/user";
 import { UsersDTO } from "@/lib/dto/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TriangleAlert } from "lucide-react";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -47,8 +49,11 @@ const DeleteUserDialog = ({
       userFullname: "",
     },
   });
-  const onSubmit = (data: z.infer<typeof deleteUserSchema>) => {
-    console.log(data.userFullname);
+  const [pending, startTransition] = useTransition();
+  const onSubmit = async (data: z.infer<typeof deleteUserSchema>) => {
+    startTransition(async () => {
+      const result = await deleteUser(selectedUser?.id!);
+    });
   };
   return (
     <DialogContent>

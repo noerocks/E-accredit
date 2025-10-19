@@ -1,9 +1,19 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
-import { rejectUser as rejectUserDAL, updateRole } from "../dal/user";
+import {
+  directCreateUser,
+  rejectUser as rejectUserDAL,
+  updateRole,
+  updateUser,
+} from "../dal/user";
 import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/library";
 import { Role } from "../generated/prisma";
+import z from "zod";
+import { CreateNewUserFormSchema } from "../zod-definitions";
+import crypto from "crypto";
+import bcrypt from "bcrypt";
+import { deleteUser as deleteUserDAL } from "../dal/user";
 
 export async function rejectUser(
   userID: string | undefined,
@@ -57,5 +67,78 @@ export async function acceptUser(id: string | undefined, role: Role) {
       status: "error",
       message: "Something went wrong",
     };
+  }
+}
+
+export async function createAndUpdateUser(
+  data: z.infer<typeof CreateNewUserFormSchema>,
+  isUpdate?: boolean
+) {
+  const result = CreateNewUserFormSchema.safeParse(data);
+  if (!result.success) return { failure: { error: "Invalid form data" } };
+  try {
+    if (isUpdate) {
+      const user = await updateUser(data);
+    } else {
+      const hashedPassword = await bcrypt.hash(
+        crypto.randomBytes(4).toString("hex"),
+        10
+      );
+      await directCreateUser({
+        data,
+        hashedPassword,
+      });
+    }
+    revalidateTag("users");
+    return {
+      success: {
+        message: "User updated successfully",
+      },
+    };
+  } catch (error) {
+    const e = error as PrismaClientKnownRequestError;
+    if (e.code === "P2002") {
+      const duplicateField = (e?.meta?.target as string[])[0];
+      switch (duplicateField) {
+        case "phoneNumber":
+          return {
+            failure: {
+              error: "Phone number is already taken",
+            },
+          };
+        case "email": {
+          return {
+            failure: {
+              error: "Email is already taken",
+            },
+          };
+        }
+        case "id": {
+          return {
+            failure: {
+              error: "ID must be unique",
+            },
+          };
+        }
+      }
+    } else {
+      return {
+        failure: {
+          error: "Something went wrong",
+        },
+      };
+    }
+  }
+}
+
+export async function deleteUser(id: string) {
+  if (!id) return null;
+  try {
+    const user = await deleteUserDAL(id);
+    revalidateTag("users");
+    return { success: { message: "User deleted successfully" } };
+  } catch (error) {
+    const e = error as Error;
+    return { failure: { error: e.message } };
   }
 }

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Category } from "./generated/prisma";
+import { Category, Role } from "./generated/prisma";
 
 export const RegisterFormSchema = z
   .object({
@@ -108,4 +108,15 @@ export const CreateAccreditationFormSchema = z.object({
 
 export const RecommendationsFormSchema = z.object({
   content: z.string().min(1, "This field is required").trim(),
+});
+
+export const CreateNewUserFormSchema = z.object({
+  firstName: z.string().min(1, "This field is required").trim(),
+  lastName: z.string().min(1, "This field is required").trim(),
+  email: z.email(),
+  phoneNumber: z
+    .string()
+    .length(11, "Must be 11 digits")
+    .regex(/09\d{9}/, "Invalid phone number"),
+  role: z.enum(Role, "Please select a role"),
 });

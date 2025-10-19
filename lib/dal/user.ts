@@ -4,9 +4,12 @@ import { verifySession } from "../action/session";
 import { prisma } from "../prisma";
 import { UserProfileDTO, UsersDTO } from "../dto/user";
 import z from "zod";
-import { RegisterFormSchema } from "../zod-definitions";
+import {
+  CreateNewUserFormSchema,
+  RegisterFormSchema,
+} from "../zod-definitions";
 import { unstable_cache } from "next/cache";
-import { Role } from "../generated/prisma";
+import { Role, User } from "../generated/prisma";
 
 export async function findByEmail(email: string) {
   const user = await prisma.user.findUnique({
@@ -23,6 +26,37 @@ export async function createUser({
     data: { hashedPassword: password, ...rest },
   });
   return newUser;
+}
+
+export async function updateUser(data: Partial<User>) {
+  const session = await verifySession();
+  if (!session) return null;
+  const user = await prisma.user.update({
+    where: {
+      id: data.id,
+      email: data.email,
+    },
+    data,
+  });
+  return user;
+}
+
+export async function directCreateUser({
+  data,
+  hashedPassword,
+}: {
+  data: z.infer<typeof CreateNewUserFormSchema>;
+  hashedPassword: string;
+}) {
+  const session = await verifySession();
+  if (!session) return null;
+  const user = await prisma.user.create({
+    data: {
+      ...data,
+      hashedPassword,
+    },
+  });
+  return user;
 }
 
 export const getUserProfile = cache(
@@ -159,3 +193,14 @@ export const getUsersByRole = unstable_cache(
   ["getUsersByRole"],
   { tags: ["users"] }
 );
+
+export async function deleteUser(id: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const user = await prisma.user.delete({
+    where: {
+      id,
+    },
+  });
+  return user;
+}

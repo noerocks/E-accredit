@@ -11,18 +11,20 @@ import {
   toggleSelfSurvey as toggleSelfSurveyAction,
 } from "@/lib/action/surveyVisit";
 import { toast } from "sonner";
-import { Progress } from "@/lib/generated/prisma";
+import { Progress, SurveyStatus } from "@/lib/generated/prisma";
 
 const AccreditationSettings = ({
   allowFileUploads,
   allowEdits,
   openForSelfSurvey,
+  selfSurveyStatus,
   openForActualSurvey,
   status,
 }: {
   allowFileUploads: boolean | undefined;
   allowEdits: boolean | undefined;
   openForSelfSurvey: boolean | undefined;
+  selfSurveyStatus: SurveyStatus | undefined;
   openForActualSurvey: boolean | undefined;
   status: Progress | undefined;
 }) => {
@@ -104,7 +106,9 @@ const AccreditationSettings = ({
           <Switch
             checked={openForSelfSurvey}
             onClick={toggleSelfSurvey}
-            disabled={openForSelfSurvey}
+            disabled={
+              selfSurveyStatus === "ON_GOING" || selfSurveyStatus === "COMPLETE"
+            }
           />
         </div>
         <div className="flex items-center justify-between">

@@ -25,10 +25,12 @@ const PDFViewer = ({
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
   const onDocumentLoad = () => {
-    if (segments[1] === "self-survey" && segments[3] === "evidence")
-      setOpen(false);
-    else setOpen(true);
-    setPdfTheme(theme);
+    requestAnimationFrame(() => {
+      if (segments[1] === "self-survey" && segments[3] === "evidence")
+        setOpen(false);
+      else setOpen(true);
+      setPdfTheme(theme);
+    });
   };
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const PDFViewer = ({
   useEffect(() => {
     if (pdfComponent) {
       const generatePdf = async () => {
-        const blob = await pdf(pdfComponent).toBlob();
+        const blob = await pdf(pdfComponent)?.toBlob();
         setPdfUrl(URL.createObjectURL(blob));
       };
       generatePdf();

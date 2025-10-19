@@ -1,10 +1,11 @@
 import { columns } from "@/components/admin/user/columns";
+import CreateUserSheet from "@/components/admin/user/create-user";
 import { DataTable } from "@/components/admin/user/data-table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getPendingUserCount, getUsers } from "@/lib/dal/user";
-import { Plus } from "lucide-react";
+import { Users } from "lucide-react";
 import Link from "next/link";
 
 const UsersPage = async (props: {
@@ -17,14 +18,12 @@ const UsersPage = async (props: {
     <div className="max-w-3/4 mx-auto mt-10">
       <div className="flex flex-col mb-10">
         <div className="flex items-center justify-between mb-5">
-          <p className="text-3xl">Users</p>
+          <p className="text-3xl flex items-center gap-2">
+            <Users />
+            Users
+          </p>
           <div className="flex items-center gap-2">
-            <Button>
-              <span className="flex items-center gap-2">
-                <Plus />
-                New
-              </span>
-            </Button>
+            <CreateUserSheet />
             <div className="relative">
               <Link href={"/admin/users/pending"}>
                 <Button variant="outline">
