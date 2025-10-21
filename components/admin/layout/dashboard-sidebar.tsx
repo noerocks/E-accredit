@@ -110,6 +110,14 @@ const DashboardSidebar = async () => {
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href={"/admin/actual-survey"}>
+                  <SearchCheck />
+                  <span className="whitespace-nowrap">Actual Survey</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

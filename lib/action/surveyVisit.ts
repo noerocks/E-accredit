@@ -64,6 +64,7 @@ export async function toggleSelfSurvey(
       allowFileUploads: false,
       allowEdits: false,
       selfSurveyStatus: SurveyStatus.ON_GOING,
+      selfSurveyStartedAt: new Date(),
     });
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
@@ -81,6 +82,7 @@ export async function endSelfSurvey(surveyVisitId: string) {
       id: surveyVisitId,
       selfSurveyStatus: SurveyStatus.COMPLETE,
       openForSelfSurvey: false,
+      selfSurveyEndedAt: new Date(),
     });
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");

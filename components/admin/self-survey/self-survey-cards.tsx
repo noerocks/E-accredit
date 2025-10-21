@@ -7,15 +7,20 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SurveyVisitDisplayDTO } from "@/lib/dto/survey-visit";
+import { SurveyTeamType } from "@/lib/generated/prisma";
 import { formatAccreditationName } from "@/lib/utils";
 import { FolderOpen } from "lucide-react";
 import Link from "next/link";
 
 const SelfSurveyCards = ({
   surveyVisits,
+  surveyType,
 }: {
   surveyVisits: SurveyVisitDisplayDTO[] | null;
+  surveyType: SurveyTeamType;
 }) => {
+  const surveyTypeName =
+    surveyType === "INTERNAL" ? "self-survey" : "actual-survey";
   return (
     <div className="flex flex-wrap gap-5">
       {surveyVisits?.map((surveyVisit) => {
@@ -30,9 +35,9 @@ const SelfSurveyCards = ({
             </CardHeader>
             <CardContent className="flex justify-end">
               <Link
-                href={`/admin/self-survey/${
+                href={`/admin/${surveyTypeName}/${
                   surveyVisit.id
-                }?self-survey=${formatAccreditationName(
+                }?${surveyTypeName}=${formatAccreditationName(
                   program.code,
                   surveyVisit.level
                 )

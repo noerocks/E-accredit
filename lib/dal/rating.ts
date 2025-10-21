@@ -116,12 +116,16 @@ export async function resetRatingById(id: string) {
   });
 }
 
-export async function getInternalRatingByEvidenceFileId(id: string) {
+export async function getRatingByEvidenceFileId(
+  id: string,
+  type: SurveyTeamType
+) {
   const session = await verifySession();
   if (!session) return null;
   const rating = await prisma.rating.findFirst({
     where: {
       evidenceFileId: id,
+      type,
     },
     include: {
       accreditor: true,

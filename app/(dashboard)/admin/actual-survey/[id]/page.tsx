@@ -1,6 +1,6 @@
 import { DataTable } from "@/components/admin/accreditation/data-table";
+import { columns } from "@/components/admin/actual-survey/survey-visit/columns";
 import EndSurveyButton from "@/components/admin/self-survey/end-survey-button";
-import { columns } from "@/components/admin/self-survey/survey-visit/columns";
 import {
   Card,
   CardContent,
@@ -14,11 +14,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getInstrumentStructureById } from "@/lib/dal/instrument";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
+import { CommentType, SurveyTeamType } from "@/lib/generated/prisma";
 import { formatAccreditationName } from "@/lib/utils";
 import clsx from "clsx";
 import { CircleDot, SearchCheck } from "lucide-react";
 
-const SelfSurveyPage = async ({
+const ActualSurveyPage = async ({
   params,
 }: {
   params: Promise<{ id: string }>;
@@ -50,24 +51,24 @@ const SelfSurveyPage = async ({
   });
   const ratings = indicators
     ?.map((indicator) =>
-      indicator.ratings.find((rating) => rating.type === "INTERNAL")
+      indicator.ratings.find((rating) => rating.type === "EXTERNAL")
     )
     .filter((rating) => rating);
   const complete =
     ratings?.length === indicators?.length &&
     areaFolders?.every(
       (area) =>
-        area.strengths.find((strength) => strength.type === "SELF_SURVEY") &&
-        area.weaknesses.find((weakness) => weakness.type === "SELF_SURVEY")
+        area.strengths.find((strength) => strength.type === "ACTUAL_SURVEY") &&
+        area.weaknesses.find((weakness) => weakness.type === "ACTUAL_SURVEY")
     );
   const surveyVisitEnded =
-    surveyVisitStructure?.selfSurveyStatus === "COMPLETE";
+    surveyVisitStructure?.actualSurveyStatus === "COMPLETE";
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
         <p className="flex items-center gap-2 text-2xl">
           <SearchCheck />
-          Self Survey
+          Actual Survey
         </p>
         <Card>
           <CardHeader>
@@ -76,7 +77,7 @@ const SelfSurveyPage = async ({
             </CardTitle>
             <CardDescription>{program?.name}</CardDescription>
           </CardHeader>
-          <CardFooter className="flex items-cente justify-between">
+          <CardFooter className="flex items-center justify-between">
             <p
               className={clsx(
                 "py-2 px-3 dark:border-2 border rounded-md flex items-center gap-2",
@@ -116,4 +117,4 @@ const SelfSurveyPage = async ({
   );
 };
 
-export default SelfSurveyPage;
+export default ActualSurveyPage;

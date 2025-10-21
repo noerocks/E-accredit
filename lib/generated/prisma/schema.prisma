@@ -220,23 +220,28 @@ model Accreditation {
 }
 
 model SurveyVisit {
-  id                   String                @id @default(uuid())
-  accreditation        Accreditation         @relation(fields: [accreditationId], references: [id], onDelete: Cascade)
-  accreditationId      String
-  actualSurveyDate     DateTime
-  type                 SurveyVisitType
-  level                Level                 @relation(fields: [targetLevel], references: [id], onDelete: Cascade)
-  targetLevel          String
-  phaseOneRequirements PhaseOneRequirements?
-  phaseTwoRequirements PhaseTwoRequirements?
-  status               Progress
-  createdAt            DateTime              @default(now())
-  surveyTeam           SurveyTeam[]
-  allowFileUploads     Boolean               @default(true)
-  allowEdits           Boolean               @default(true)
-  openForSelfSurvey    Boolean               @default(false)
-  selfSurveyStatus     SurveyStatus          @default(PENDING)
-  openForActualSurvey  Boolean               @default(false)
+  id                    String                @id @default(uuid())
+  accreditation         Accreditation         @relation(fields: [accreditationId], references: [id], onDelete: Cascade)
+  accreditationId       String
+  actualSurveyDate      DateTime
+  type                  SurveyVisitType
+  level                 Level                 @relation(fields: [targetLevel], references: [id], onDelete: Cascade)
+  targetLevel           String
+  phaseOneRequirements  PhaseOneRequirements?
+  phaseTwoRequirements  PhaseTwoRequirements?
+  status                Progress
+  createdAt             DateTime              @default(now())
+  surveyTeam            SurveyTeam[]
+  allowFileUploads      Boolean               @default(true)
+  allowEdits            Boolean               @default(true)
+  openForSelfSurvey     Boolean               @default(false)
+  selfSurveyStatus      SurveyStatus          @default(PENDING)
+  selfSurveyStartedAt   DateTime?
+  selfSurveyEndedAt     DateTime?
+  actualSurveyStartedAt DateTime?
+  actualSurveyEndedAt   DateTime?
+  openForActualSurvey   Boolean               @default(false)
+  actualSurveyStatus    SurveyStatus          @default(PENDING)
 }
 
 model SurveyTeam {

@@ -18,8 +18,8 @@ import {
   PhaseTwoAreaFolderDTO,
 } from "@/lib/dto/accreditation-instrument";
 import { AreaFileType, Category } from "@/lib/generated/prisma";
-import { ChevronRight, File, Folder } from "lucide-react";
-import { useParams } from "next/navigation";
+import { Check, ChevronRight, File, Folder, X } from "lucide-react";
+import { useParams, usePathname } from "next/navigation";
 
 type TreeNode =
   | AreaFolderDTO
@@ -64,6 +64,11 @@ const areaFileType = {
 
 const FileTree = ({ item }: { item: TreeNode }) => {
   const params = useParams();
+  const pathName = usePathname();
+  const root = pathName
+    .split("/")
+    .filter((segment) => segment)
+    .at(1);
   if (isAreaFolder(item)) {
     return (
       <SidebarMenuItem>
@@ -190,6 +195,23 @@ const FileTree = ({ item }: { item: TreeNode }) => {
     );
   }
   if (isEvidenceFile(item)) {
+    const internalRating = item.ratings?.find(
+      (rating) => rating.type === "INTERNAL"
+    );
+    const externalRating = item.ratings?.find(
+      (rating) => rating.type === "EXTERNAL"
+    );
+    let rating = null;
+    switch (root) {
+      case "self-survey": {
+        rating = internalRating;
+        break;
+      }
+      case "actual-survey": {
+        rating = externalRating;
+        break;
+      }
+    }
     return (
       <SidebarMenuItem>
         <SidebarMenuButton
@@ -197,7 +219,15 @@ const FileTree = ({ item }: { item: TreeNode }) => {
           data-type={"evidence"}
           isActive={item.id === String(params.evidenceId)}
         >
-          {`📄 ${item.indicator.label}`}
+          <p>{`📄 ${item.indicator.label}`}</p>
+          <p className="absolute -right-5">
+            {(root === "accreditation" && item.status === "ACCEPTED") ||
+            rating ? (
+              <Check size={15} className="text-green-500" />
+            ) : item.status === "REJECTED" ? (
+              <X size={15} className="text-red-500" />
+            ) : null}
+          </p>
         </SidebarMenuButton>
       </SidebarMenuItem>
     );

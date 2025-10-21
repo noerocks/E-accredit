@@ -17,17 +17,17 @@ const EvidencePage = async ({
   const indicator = evidenceFile?.indicator;
   const rating = await getRatingByEvidenceFileId(
     evidenceId,
-    SurveyTeamType.INTERNAL
+    SurveyTeamType.EXTERNAL
   );
   const activeFile = evidenceFile?.fileVersions?.find(
     (file) => file.status === "ACTIVE"
   );
   const comments = evidenceFile?.comments?.filter(
-    (comment) => comment.type === "SELF_SURVEY"
+    (comment) => comment.type === "ACTUAL_SURVEY"
   );
   const areaChair =
     evidenceFile.indicatorFolder?.parameterFolder.areaFolder.areaChair.find(
-      (area) => area.surveyTeam.type === "INTERNAL"
+      (area) => area.surveyTeam.type === "EXTERNAL"
     );
   const { user } = await verifySession();
   const authorized = user.id === areaChair?.user.id || user.role === "ADMIN";

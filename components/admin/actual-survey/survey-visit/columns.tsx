@@ -2,13 +2,10 @@
 
 import { DataTableColumnHeader } from "@/components/data-table-column-header";
 import { Checkbox } from "@/components/ui/checkbox";
-import { getInstrumentById } from "@/lib/dal/instrument";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { RatingDTO } from "@/lib/dto/survey-visit";
 import { SurveyTeamType } from "@/lib/generated/prisma";
 import { calculateAreaMean } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table";
-import { read } from "fs";
 
 export const columns: ColumnDef<AreaFolderDTO>[] = [
   {
@@ -59,7 +56,7 @@ export const columns: ColumnDef<AreaFolderDTO>[] = [
     header: "Mean",
     cell: ({ row }) => {
       const areaFolder = row.original;
-      const mean = calculateAreaMean(areaFolder, SurveyTeamType.INTERNAL);
+      const mean = calculateAreaMean(areaFolder, SurveyTeamType.EXTERNAL);
       return <div>{mean ? mean.toFixed(2) : "-"}</div>;
     },
   },
@@ -77,7 +74,7 @@ export const columns: ColumnDef<AreaFolderDTO>[] = [
     header: "Weighted Mean",
     cell: ({ row }) => {
       const areaFolder = row.original;
-      const mean = calculateAreaMean(areaFolder, SurveyTeamType.INTERNAL);
+      const mean = calculateAreaMean(areaFolder, SurveyTeamType.EXTERNAL);
       const weightedMean = mean && mean * (areaFolder.area.weight / 100);
       return <div>{`${weightedMean ? weightedMean.toFixed(2) : "-"}`}</div>;
     },
@@ -98,9 +95,9 @@ export const columns: ColumnDef<AreaFolderDTO>[] = [
         ratings.length === indicators?.length &&
         areaFolder.weaknesses.find(
           (weaknesses) =>
-            weaknesses.type === "SELF_SURVEY" &&
+            weaknesses.type === "ACTUAL_SURVEY" &&
             areaFolder.strengths.find(
-              (strengths) => strengths.type === "SELF_SURVEY"
+              (strengths) => strengths.type === "ACTUAL_SURVEY"
             )
         );
       return <div>{complete ? "Complete" : "On Going"}</div>;

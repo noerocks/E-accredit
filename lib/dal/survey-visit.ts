@@ -222,3 +222,33 @@ export const getAllSurveyVisitOpenForSelfSurvey = unstable_cache(
     tags: ["surveyVisitSelfSurvey"],
   }
 );
+
+export const getAllSurveyVisitOpenForActualSurvey = unstable_cache(
+  async (): Promise<SurveyVisitDisplayDTO[] | null> => {
+    const surveyVisit = await prisma.surveyVisit.findMany({
+      where: {
+        OR: [
+          {
+            actualSurveyStatus: SurveyStatus.COMPLETE,
+          },
+          {
+            openForActualSurvey: true,
+          },
+        ],
+      },
+      include: {
+        accreditation: {
+          include: {
+            program: true,
+          },
+        },
+        level: true,
+      },
+    });
+    return surveyVisit;
+  },
+  ["getAllSurveyVisitOpenForActualSurvey"],
+  {
+    tags: ["surveyVisitActualSurvey"],
+  }
+);
