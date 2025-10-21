@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -8,7 +10,7 @@ import { SessionPayload } from "@/lib/definitions";
 import { RatingDTO } from "@/lib/dto/survey-visit";
 import { SurveyTeamType } from "@/lib/generated/prisma";
 import { CircleSlash, Loader, Puzzle, RotateCcw, Zap } from "lucide-react";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { toast } from "sonner";
 const Rating = ({
@@ -37,6 +39,22 @@ const Rating = ({
     { numeric: 0, descriptive: "Not functioning" },
   ];
   const { evidenceId } = useParams();
+  const pathName = usePathname();
+  const root = pathName
+    .split("/")
+    .filter((segment) => segment)
+    .at(1);
+  let surveyType: SurveyTeamType;
+  switch (root) {
+    case "self-survey": {
+      surveyType = SurveyTeamType.INTERNAL;
+      break;
+    }
+    case "actual-survey": {
+      surveyType = SurveyTeamType.EXTERNAL;
+      break;
+    }
+  }
   const [adequacy, setAdequacy] = useState<string>(
     rating && rating.adequacy !== null ? rating.adequacy?.toString() : ""
   );
@@ -93,7 +111,7 @@ const Rating = ({
       startTransition(async () => {
         const result = await giveRating({
           evidenceFileId: String(evidenceId),
-          type: SurveyTeamType.INTERNAL,
+          type: surveyType,
           accreditorId: user.id,
           NA,
         });
@@ -111,7 +129,7 @@ const Rating = ({
           const finalRate = (parsedAdequacy + parsedEffectiveness) / 2;
           const result = await giveRating({
             evidenceFileId: String(evidenceId),
-            type: SurveyTeamType.INTERNAL,
+            type: surveyType,
             accreditorId: user.id,
             adequacy: parsedAdequacy,
             effectiveness: parsedEffectiveness,
@@ -126,7 +144,7 @@ const Rating = ({
         startTransition(async () => {
           const result = await giveRating({
             evidenceFileId: String(evidenceId),
-            type: SurveyTeamType.INTERNAL,
+            type: surveyType,
             accreditorId: user.id,
             adequacy: parsedAdequacy,
             finalRate: parsedAdequacy,
@@ -140,7 +158,7 @@ const Rating = ({
         startTransition(async () => {
           const result = await giveRating({
             evidenceFileId: String(evidenceId),
-            type: SurveyTeamType.INTERNAL,
+            type: surveyType,
             accreditorId: user.id,
             effectiveness: parsedEffectiveness,
             finalRate: parsedEffectiveness,

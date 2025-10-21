@@ -26,7 +26,10 @@ const PDFViewer = ({
 
   const onDocumentLoad = () => {
     requestAnimationFrame(() => {
-      if (segments[1] === "self-survey" && segments[3] === "evidence")
+      if (
+        (segments[1] === "self-survey" || segments[1] === "actual-survey") &&
+        segments[3] === "evidence"
+      )
         setOpen(false);
       else setOpen(true);
       setPdfTheme(theme);

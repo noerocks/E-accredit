@@ -11,7 +11,7 @@ import { CommentType } from "@/lib/generated/prisma";
 import clsx from "clsx";
 import { formatDistanceToNow } from "date-fns";
 import { Loader, MessageSquareX, Send } from "lucide-react";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useRef, useState, useTransition } from "react";
 import { toast } from "sonner";
 
@@ -23,6 +23,22 @@ const Comments = ({
   user: SessionPayload;
 }) => {
   const params = useParams();
+  const pathName = usePathname();
+  const root = pathName
+    .split("/")
+    .filter((segment) => segment)
+    .at(1);
+  let commentType: CommentType;
+  switch (root) {
+    case "self-survey": {
+      commentType = CommentType.SELF_SURVEY;
+      break;
+    }
+    case "actual-survey": {
+      commentType = CommentType.ACTUAL_SURVEY;
+      break;
+    }
+  }
   const [message, setMessage] = useState<string>("");
   const bottomRef = useRef<HTMLDivElement | null>(null);
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +51,7 @@ const Comments = ({
       const result = await createNewComment({
         authorId: user.id,
         content: message,
-        type: CommentType.SELF_SURVEY,
+        type: commentType,
         evidenceFileId: String(params.evidenceId),
       });
       if (result?.failure) toast.error(result?.failure.error);
