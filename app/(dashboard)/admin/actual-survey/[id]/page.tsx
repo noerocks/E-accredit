@@ -15,7 +15,7 @@ import { getInstrumentStructureById } from "@/lib/dal/instrument";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
 import { CommentType, SurveyTeamType } from "@/lib/generated/prisma";
-import { formatAccreditationName } from "@/lib/utils";
+import { calculateGrandMean, formatAccreditationName } from "@/lib/utils";
 import clsx from "clsx";
 import { CircleDot, SearchCheck } from "lucide-react";
 

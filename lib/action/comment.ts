@@ -3,9 +3,9 @@
 import { CommentType } from "../generated/prisma";
 import {
   createNewComment as createNewCommentDAL,
-  getInternalRecommendationByAreaFolderId,
-  getInternalStrengthsByAreaFolderId,
-  getInternalWeaknessesByAreaFolderId,
+  getRecommendationByAreaFolderId,
+  getStrengthsByAreaFolderId,
+  getWeaknessesByAreaFolderId,
   updateCommentById,
 } from "../dal/comment";
 import { revalidateTag } from "next/cache";
@@ -29,13 +29,13 @@ export async function createNewComment({
   strongFolderId?: string;
   weakFolderId?: string;
 }) {
-  console.log(strongFolderId);
   if (!authorId || !content || !type)
     return { failure: { error: "Invalid input" } };
   try {
     if (recommendedFolderId) {
-      const recommendation = await getInternalRecommendationByAreaFolderId(
-        recommendedFolderId
+      const recommendation = await getRecommendationByAreaFolderId(
+        recommendedFolderId,
+        type
       );
       if (!recommendation) {
         const newRecommendation = await createNewCommentDAL({
@@ -63,9 +63,7 @@ export async function createNewComment({
       return { success: { message: "Comment updated successfuly" } };
     }
     if (strongFolderId) {
-      const strengths = await getInternalStrengthsByAreaFolderId(
-        strongFolderId
-      );
+      const strengths = await getStrengthsByAreaFolderId(strongFolderId, type);
       if (!strengths) {
         const newStrength = await createNewCommentDAL({
           authorId,
@@ -92,9 +90,7 @@ export async function createNewComment({
       return { success: { message: "Comment updated successfuly" } };
     }
     if (weakFolderId) {
-      const weaknesses = await getInternalWeaknessesByAreaFolderId(
-        weakFolderId
-      );
+      const weaknesses = await getWeaknessesByAreaFolderId(weakFolderId, type);
       if (!weaknesses) {
         const newWeaknesses = await createNewCommentDAL({
           authorId,

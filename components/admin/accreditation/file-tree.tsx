@@ -218,9 +218,14 @@ const FileTree = ({ item }: { item: TreeNode }) => {
           data-id={item.id}
           data-type={"evidence"}
           isActive={item.id === String(params.evidenceId)}
+          className="flex"
+          title={item.indicator.description}
         >
-          <p>{`📄 ${item.indicator.label}`}</p>
-          <p className="absolute -right-5">
+          <p className="pointer-events-none">{`📄 ${item.indicator.label}`}</p>
+          <p className="flex-1 truncate w-[80px] pointer-events-none">
+            {item.indicator.description}
+          </p>
+          <p className="absolute -right-5 pointer-events-none">
             {(root === "accreditation" && item.status === "ACCEPTED") ||
             rating ? (
               <Check size={15} className="text-green-500" />

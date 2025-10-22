@@ -36,6 +36,7 @@ const ReportPage = async ({
             <SelfSurveyReportPDF
               surveyName={query["self-survey"]}
               areaFolders={areaFolders as unknown as AreaFolderDTO[]}
+              dateEnded={surveyVisit?.selfSurveyEndedAt}
             />
           }
         />

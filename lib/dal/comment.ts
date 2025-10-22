@@ -1,6 +1,5 @@
-import { connect } from "http2";
 import { verifySession } from "../action/session";
-import { Comment, CommentType } from "../generated/prisma";
+import { Comment, CommentType, SurveyTeam } from "../generated/prisma";
 import { prisma } from "../prisma";
 import { unstable_cache } from "next/cache";
 
@@ -105,42 +104,51 @@ export const getFilteredComments = unstable_cache(
   }
 );
 
-export async function getInternalRecommendationByAreaFolderId(id: string) {
+export async function getRecommendationByAreaFolderId(
+  id: string,
+  type: CommentType
+) {
   const session = await verifySession();
   if (!session) return null;
   const recommendation = await prisma.comment.findFirst({
     where: {
       recommendedFolderId: id,
       AND: {
-        type: CommentType.SELF_SURVEY,
+        type,
       },
     },
   });
   return recommendation;
 }
 
-export async function getInternalStrengthsByAreaFolderId(id: string) {
+export async function getStrengthsByAreaFolderId(
+  id: string,
+  type: CommentType
+) {
   const session = await verifySession();
   if (!session) return null;
   const strengths = await prisma.comment.findFirst({
     where: {
       strongFolderId: id,
       AND: {
-        type: CommentType.SELF_SURVEY,
+        type,
       },
     },
   });
   return strengths;
 }
 
-export async function getInternalWeaknessesByAreaFolderId(id: string) {
+export async function getWeaknessesByAreaFolderId(
+  id: string,
+  type: CommentType
+) {
   const session = await verifySession();
   if (!session) return null;
   const weaknesses = await prisma.comment.findFirst({
     where: {
       weakFolderId: id,
       AND: {
-        type: CommentType.SELF_SURVEY,
+        type,
       },
     },
   });

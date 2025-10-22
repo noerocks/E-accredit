@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { verifySession } from "@/lib/action/session";
+import { getInstrumentStructureById } from "@/lib/dal/instrument";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
 import { Progress, SurveyTeamType } from "@/lib/generated/prisma";
@@ -57,13 +58,31 @@ const ProgramAccreditationPage = async ({
     areaFolders?.every((area) => area.status === "COMPLETE") &&
     surveyVisitStructure?.status !== "COMPLETE" &&
     (isProgramHead || isAdmin);
+  const instrument = await getInstrumentStructureById(
+    surveyVisitStructure?.phaseOneRequirements.instrumentId!
+  );
+  const weightedTotal = instrument?.area.reduce(
+    (sum, area) => (sum += area.weight),
+    0
+  );
+  areaFolders?.forEach((areaFolder) => {
+    const area = areaFolder.area;
+    areaFolder.area.weight = (area.weight / weightedTotal!) * 100;
+  });
   const surveyStatus = {
     selfSurveyStatus: surveyVisitStructure?.selfSurveyStatus,
     selfSurveyGrandMean: calculateGrandMean(
       areaFolders as unknown as AreaFolderDTO[],
       SurveyTeamType.INTERNAL
     ),
+    actualSurveyStatus: surveyVisitStructure?.actualSurveyStatus,
+    actualSurveyGrandMean: calculateGrandMean(
+      areaFolders as unknown as AreaFolderDTO[],
+      SurveyTeamType.EXTERNAL
+    ),
   };
+  console.log(surveyVisitStructure);
+  console.log(surveyStatus);
   return (
     <ScrollArea className="h-full">
       <Banner surveyVisitId={String(id!)} />

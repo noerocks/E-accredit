@@ -140,8 +140,11 @@ const FileTree = ({ item }: { item: TreeNode }) => {
           data-id={item.id}
           data-type={"indicator"}
           isActive={item.id === Number(params.indicatorId)}
+          className="flex"
+          title={item.description}
         >
-          {`📄 ${item.label}`}
+          <p>{`📄 ${item.label}`}</p>
+          <p className="flex-1 truncate w-[80px]">{item.description}</p>
         </SidebarMenuButton>
       </SidebarMenuItem>
     );

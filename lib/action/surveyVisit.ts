@@ -93,3 +93,21 @@ export async function endSelfSurvey(surveyVisitId: string) {
     return { failure: { error: e.message } };
   }
 }
+
+export async function endActualSurvey(surveyVisitId: string) {
+  try {
+    const surveyVisit = await updateSurveyVisitById({
+      id: surveyVisitId,
+      actualSurveyStatus: SurveyStatus.COMPLETE,
+      openForActualSurvey: false,
+      actualSurveyEndedAt: new Date(),
+    });
+    revalidateTag("parameterFolder");
+    revalidateTag("areaFolder");
+    revalidateTag("surveyVisitStructure");
+    revalidateTag("surveyVisitSelfSurvey");
+  } catch (error) {
+    const e = error as Error;
+    return { failure: { error: e.message } };
+  }
+}

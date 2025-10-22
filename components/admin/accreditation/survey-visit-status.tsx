@@ -11,6 +11,8 @@ const SurveyVisitStatus = ({
   surveyStatus: {
     selfSurveyStatus: SurveyStatus | undefined;
     selfSurveyGrandMean: number | undefined;
+    actualSurveyStatus: SurveyStatus | undefined;
+    actualSurveyGrandMean: number | undefined;
   };
 }) => {
   return (
@@ -45,14 +47,18 @@ const SurveyVisitStatus = ({
             <CircleQuestionMark size={15} />
             <p className="text-sm">Actual Survey</p>
           </div>
-          <p>Pending</p>
+          <p>{screamingSnakeToTitle(surveyStatus.actualSurveyStatus!)}</p>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex-1 flex items-center gap-2 text-muted-foreground">
             <CircleQuestionMark size={15} />
             <p className="text-sm">Acquired Grand Mean</p>
           </div>
-          <p>-</p>
+          <p>
+            {surveyStatus.actualSurveyGrandMean
+              ? surveyStatus.actualSurveyGrandMean?.toFixed(2)
+              : "-"}
+          </p>
         </div>
       </CardContent>
     </Card>

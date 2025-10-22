@@ -17,9 +17,11 @@ import {
 const SelfSurveyReportPDF = ({
   areaFolders,
   surveyName,
+  dateEnded,
 }: {
   areaFolders: AreaFolderDTO[];
   surveyName: string;
+  dateEnded: Date | null | undefined;
 }) => {
   const grandWeightedMean = calculateGrandMean(
     areaFolders,
@@ -138,7 +140,7 @@ const SelfSurveyReportPDF = ({
           <Text style={styles.reportSubtitle}>{surveyName}</Text>
         </View>
         <Text style={styles.paragraph}>
-          {new Date(Date.now()).toLocaleDateString("en-US", {
+          {new Date(dateEnded!).toLocaleDateString("en-US", {
             month: "long",
             day: "numeric",
             year: "numeric",

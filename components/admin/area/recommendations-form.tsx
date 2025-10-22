@@ -18,6 +18,7 @@ import { CommentType } from "@/lib/generated/prisma";
 import { RecommendationsFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader } from "lucide-react";
+import { useParams, usePathname } from "next/navigation";
 import { useEffect, useRef, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -49,6 +50,23 @@ const RecommendationsForm = ({
   useEffect(() => {
     textAreaRef.current?.focus();
   }, []);
+  const params = useParams();
+  const pathName = usePathname();
+  const root = pathName
+    .split("/")
+    .filter((segment) => segment)
+    .at(1);
+  let commentType: CommentType;
+  switch (root) {
+    case "self-survey": {
+      commentType = CommentType.SELF_SURVEY;
+      break;
+    }
+    case "actual-survey": {
+      commentType = CommentType.ACTUAL_SURVEY;
+      break;
+    }
+  }
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
   const [pending, startTransition] = useTransition();
   const onSubmit = (data: z.infer<typeof RecommendationsFormSchema>) => {
@@ -56,7 +74,7 @@ const RecommendationsForm = ({
       const result = await createNewComment({
         authorId: user.id,
         content: data.content,
-        type: CommentType.SELF_SURVEY,
+        type: commentType,
         recommendedFolderId,
         strongFolderId,
         weakFolderId,
