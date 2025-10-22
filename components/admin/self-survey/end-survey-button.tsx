@@ -20,10 +20,12 @@ const EndSurveyButton = ({ surveyVisitId }: { surveyVisitId: string }) => {
         case "self-survey": {
           const result = await endSelfSurvey(surveyVisitId);
           if (result?.failure) toast.error(result.failure.error);
+          break;
         }
         case "actual-survey": {
           const result = await endActualSurvey(surveyVisitId);
           if (result?.failure) toast.error(result.failure.error);
+          break;
         }
       }
     });

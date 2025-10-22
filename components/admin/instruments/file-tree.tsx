@@ -143,8 +143,10 @@ const FileTree = ({ item }: { item: TreeNode }) => {
           className="flex"
           title={item.description}
         >
-          <p>{`📄 ${item.label}`}</p>
-          <p className="flex-1 truncate w-[80px]">{item.description}</p>
+          <p className="pointer-events-none">{`📄 ${item.label}`}</p>
+          <p className="flex-1 truncate w-[80px] pointer-events-none">
+            {item.description}
+          </p>
         </SidebarMenuButton>
       </SidebarMenuItem>
     );

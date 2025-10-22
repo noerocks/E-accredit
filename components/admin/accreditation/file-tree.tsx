@@ -91,7 +91,18 @@ const FileTree = ({ item }: { item: TreeNode }) => {
                     key={areaFile.id}
                     data-id={areaFile.id}
                     data-type={"area-file"}
-                  >{`📄 ${areaFileType[areaFile.type]}`}</SidebarMenuButton>
+                  >
+                    <p className="pointer-events-none">{`📄 ${
+                      areaFileType[areaFile.type]
+                    }`}</p>
+                    <p className="absolute -right-2 pointer-events-none">
+                      {areaFile.status === "SUBMITTED" ? (
+                        <Check size={15} className="text-green-500" />
+                      ) : (
+                        <X size={15} className="text-red-500" />
+                      )}
+                    </p>
+                  </SidebarMenuButton>
                 ))}
               {item.parameterFolders
                 .sort((a, b) =>
@@ -128,7 +139,9 @@ const FileTree = ({ item }: { item: TreeNode }) => {
                     key={areaFile.id}
                     data-id={areaFile.id}
                     data-type={"area-file"}
-                  >{`📄 ${areaFileType[areaFile.type]}`}</SidebarMenuButton>
+                  >
+                    {`📄 ${areaFileType[areaFile.type]}`}
+                  </SidebarMenuButton>
                 ))}
             </SidebarMenuSub>
           </CollapsibleContent>
