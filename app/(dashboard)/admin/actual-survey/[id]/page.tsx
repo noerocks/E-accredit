@@ -1,6 +1,7 @@
 import { DataTable } from "@/components/admin/accreditation/data-table";
 import { columns } from "@/components/admin/actual-survey/survey-visit/columns";
 import EndSurveyButton from "@/components/admin/self-survey/end-survey-button";
+import SurveyTeam from "@/components/admin/self-survey/survey-team";
 import {
   Card,
   CardContent,
@@ -12,10 +13,20 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getInstrumentStructureById } from "@/lib/dal/instrument";
-import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
+import {
+  getSurveyVisitById,
+  getSurveyVisitStructureById,
+} from "@/lib/dal/survey-visit";
+import { getUsersByRole } from "@/lib/dal/user";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { CommentType, SurveyTeamType } from "@/lib/generated/prisma";
+import {
+  CommentType,
+  Role,
+  SurveyTeam as SurveyTeamSchema,
+  SurveyTeamType,
+} from "@/lib/generated/prisma";
 import { calculateGrandMean, formatAccreditationName } from "@/lib/utils";
+import { User } from "@prisma/client";
 import clsx from "clsx";
 import { CircleDot, SearchCheck } from "lucide-react";
 
@@ -63,6 +74,12 @@ const ActualSurveyPage = async ({
     );
   const surveyVisitEnded =
     surveyVisitStructure?.actualSurveyStatus === "COMPLETE";
+  const programHead = program?.programHead;
+  const accreditors = await getUsersByRole(Role.ACCREDITOR);
+  const surveyVisit = await getSurveyVisitById(id);
+  const externalSurveyTeam = surveyVisit?.surveyTeam.find(
+    (team) => team.type === "EXTERNAL"
+  );
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
@@ -90,9 +107,16 @@ const ActualSurveyPage = async ({
               <CircleDot size={15} />
               {complete ? "Complete" : "On Going"}
             </p>
-            {complete && !surveyVisitEnded && (
-              <EndSurveyButton surveyVisitId={id} />
-            )}
+            <div className="flex items-center gap-2">
+              {complete && !surveyVisitEnded && (
+                <EndSurveyButton surveyVisitId={id} />
+              )}
+              <SurveyTeam
+                programHead={programHead as User}
+                accreditors={accreditors}
+                surveyTeam={externalSurveyTeam as SurveyTeamSchema}
+              />
+            </div>
           </CardFooter>
         </Card>
         <Tabs defaultValue="area">

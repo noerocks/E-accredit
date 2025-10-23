@@ -93,7 +93,13 @@ const RecommendationsForm = ({
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Recommendations</FormLabel>
+              <FormLabel>
+                {recommendedFolderId
+                  ? "Recommendations"
+                  : strongFolderId
+                  ? "Strengths"
+                  : "Weaknesses"}
+              </FormLabel>
               <FormControl>
                 <Textarea
                   {...field}

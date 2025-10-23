@@ -1,5 +1,5 @@
 import { verifySession } from "../action/session";
-import { SurveyTeamType } from "../generated/prisma";
+import { SurveyTeam, SurveyTeamType } from "../generated/prisma";
 import { prisma } from "../prisma";
 
 export async function createNewAreaChair(
@@ -65,4 +65,16 @@ export async function deleteCurrentAreaChair(
       id: surveyTeam.areaChairs[0].id,
     },
   });
+}
+
+export async function updateSurveyTeamById(data: Partial<SurveyTeam>) {
+  const session = await verifySession();
+  if (!session) return null;
+  const surveyTeam = await prisma.surveyTeam.update({
+    where: {
+      id: data.id,
+    },
+    data,
+  });
+  return surveyTeam;
 }

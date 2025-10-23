@@ -1,12 +1,10 @@
-import { Role } from "./generated/prisma";
-
-export const accessControl: Record<Role, string[]> = {
-  [Role.ADMIN]: ["/admin"],
-  [Role.PENDING]: ["/pending"],
-  [Role.ACCREDITATION_OFFICER]: ["/admin"],
-  [Role.ACCREDITOR]: ["/admin"],
+export const accessControl: Record<string, string[]> = {
+  ADMIN: ["/admin"],
+  PENDING: ["/pending"],
+  ACCREDITATION_OFFICER: ["/admin"],
+  ACCREDITOR: ["/admin"],
 };
 
-export function hasPermission(role: Role, pathname: string) {
+export function hasPermission(role: string, pathname: string) {
   return accessControl[role].some((path) => pathname.startsWith(path));
 }

@@ -116,7 +116,10 @@ const AccreditationSettings = ({
             <CircleQuestionMark size={15} />
             <p className="text-sm">Open for Actual Survey</p>
           </div>
-          <Switch checked={openForActualSurvey} />
+          <Switch
+            checked={openForActualSurvey}
+            disabled={selfSurveyStatus === "ON_GOING"}
+          />
         </div>
       </CardContent>
     </Card>

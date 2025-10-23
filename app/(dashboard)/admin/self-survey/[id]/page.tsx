@@ -1,5 +1,6 @@
 import { DataTable } from "@/components/admin/accreditation/data-table";
 import EndSurveyButton from "@/components/admin/self-survey/end-survey-button";
+import SurveyTeam from "@/components/admin/self-survey/survey-team";
 import { columns } from "@/components/admin/self-survey/survey-visit/columns";
 import {
   Card,
@@ -11,10 +12,14 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { verifySession } from "@/lib/action/session";
 import { getInstrumentStructureById } from "@/lib/dal/instrument";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
+import { getUsersByRole } from "@/lib/dal/user";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
+import { Role } from "@/lib/generated/prisma";
 import { formatAccreditationName } from "@/lib/utils";
+import { User } from "@prisma/client";
 import clsx from "clsx";
 import { CircleDot, SearchCheck } from "lucide-react";
 
@@ -24,6 +29,8 @@ const SelfSurveyPage = async ({
   params: Promise<{ id: string }>;
   searchParams: Promise<{}>;
 }) => {
+  const session = await verifySession();
+  const user = session.user;
   const { id } = await params;
   const surveyVisitStructure = await getSurveyVisitStructureById(id);
   const program = surveyVisitStructure?.accreditation.program;
@@ -62,6 +69,12 @@ const SelfSurveyPage = async ({
     );
   const surveyVisitEnded =
     surveyVisitStructure?.selfSurveyStatus === "COMPLETE";
+  const isProgramHead = program?.programHead?.id === user.id;
+  const programHead = program?.programHead;
+  const isAdmin = user.role === "ADMIN";
+  const endSurveyVisitIsVisible =
+    complete && !surveyVisitEnded && (isAdmin || isProgramHead);
+  const accreditors = await getUsersByRole(Role.ACCREDITOR);
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
@@ -89,9 +102,15 @@ const SelfSurveyPage = async ({
               <CircleDot size={15} />
               {complete ? "Complete" : "On Going"}
             </p>
-            {complete && !surveyVisitEnded && (
-              <EndSurveyButton surveyVisitId={id} />
-            )}
+            <div className="flex items-center gap-2">
+              {endSurveyVisitIsVisible && (
+                <EndSurveyButton surveyVisitId={id} />
+              )}
+              <SurveyTeam
+                programHead={programHead as User}
+                accreditors={accreditors}
+              />
+            </div>
           </CardFooter>
         </Card>
         <Tabs defaultValue="area">

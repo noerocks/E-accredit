@@ -5,6 +5,7 @@ import {
   createNewAreaChair,
   deleteAreaChairById,
   deleteCurrentAreaChair,
+  updateSurveyTeamById,
 } from "../dal/area-chair";
 import { SurveyTeamType } from "../generated/prisma";
 
@@ -15,7 +16,6 @@ export async function assignAreaChair(
   areaFolderId: string | undefined,
   areaChairId?: string | undefined
 ) {
-  console.log(userId, surveyTeamId, areaFolderId);
   if (!userId || !surveyTeamId || !areaFolderId)
     return { failure: { error: "Invalid input" } };
   try {
@@ -25,6 +25,29 @@ export async function assignAreaChair(
       surveyTeamId,
       areaFolderId
     );
+    revalidateTag("evidenceFiles");
+    revalidateTag("areaFolder");
+    revalidateTag("parameterFolder");
+    revalidateTag("surveyVisitStructure");
+    return { success: { message: "Area chair assigned successfully" } };
+  } catch (error) {
+    const e = error as Error;
+    return { failure: { error: e.message } };
+  }
+}
+
+export async function assignCoordinator(
+  userId: string,
+  type: SurveyTeamType,
+  surveyTeamId: string
+) {
+  if (!userId || !type || !surveyTeamId)
+    return { failure: { error: "Invalid input" } };
+  try {
+    await updateSurveyTeamById({
+      id: surveyTeamId,
+      teamLeadId: userId,
+    });
     revalidateTag("evidenceFiles");
     revalidateTag("areaFolder");
     revalidateTag("parameterFolder");

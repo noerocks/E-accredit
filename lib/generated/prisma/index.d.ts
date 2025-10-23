@@ -270,6 +270,16 @@ export const SurveyStatus: {
 
 export type SurveyStatus = (typeof SurveyStatus)[keyof typeof SurveyStatus]
 
+
+export const SurveyResultStatus: {
+  PENDING: 'PENDING',
+  GRANTED: 'GRANTED',
+  DEFERRED: 'DEFERRED',
+  NOT_GRANTED: 'NOT_GRANTED'
+};
+
+export type SurveyResultStatus = (typeof SurveyResultStatus)[keyof typeof SurveyResultStatus]
+
 }
 
 export type Role = $Enums.Role
@@ -323,6 +333,10 @@ export const LevelEnum: typeof $Enums.LevelEnum
 export type SurveyStatus = $Enums.SurveyStatus
 
 export const SurveyStatus: typeof $Enums.SurveyStatus
+
+export type SurveyResultStatus = $Enums.SurveyResultStatus
+
+export const SurveyResultStatus: typeof $Enums.SurveyResultStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -769,8 +783,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.14.0
-   * Query Engine version: 717184b7b35ea05dfa71a3236b7af656013e1e49
+   * Prisma Client JS version: 6.17.1
+   * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
    */
   export type PrismaVersion = {
     client: string
@@ -3273,6 +3287,10 @@ export namespace Prisma {
       timeout?: number
       isolationLevel?: Prisma.TransactionIsolationLevel
     }
+    /**
+     * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`
+     */
+    adapter?: runtime.SqlDriverAdapterFactory | null
     /**
      * Global configuration for omitting model fields by default.
      * 
@@ -14782,6 +14800,7 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType | null
     targetLevel: string | null
     status: $Enums.Progress | null
+    surveyResultStatus: $Enums.SurveyResultStatus | null
     createdAt: Date | null
     allowFileUploads: boolean | null
     allowEdits: boolean | null
@@ -14802,6 +14821,7 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType | null
     targetLevel: string | null
     status: $Enums.Progress | null
+    surveyResultStatus: $Enums.SurveyResultStatus | null
     createdAt: Date | null
     allowFileUploads: boolean | null
     allowEdits: boolean | null
@@ -14822,6 +14842,7 @@ export namespace Prisma {
     type: number
     targetLevel: number
     status: number
+    surveyResultStatus: number
     createdAt: number
     allowFileUploads: number
     allowEdits: number
@@ -14844,6 +14865,7 @@ export namespace Prisma {
     type?: true
     targetLevel?: true
     status?: true
+    surveyResultStatus?: true
     createdAt?: true
     allowFileUploads?: true
     allowEdits?: true
@@ -14864,6 +14886,7 @@ export namespace Prisma {
     type?: true
     targetLevel?: true
     status?: true
+    surveyResultStatus?: true
     createdAt?: true
     allowFileUploads?: true
     allowEdits?: true
@@ -14884,6 +14907,7 @@ export namespace Prisma {
     type?: true
     targetLevel?: true
     status?: true
+    surveyResultStatus?: true
     createdAt?: true
     allowFileUploads?: true
     allowEdits?: true
@@ -14977,6 +15001,7 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     targetLevel: string
     status: $Enums.Progress
+    surveyResultStatus: $Enums.SurveyResultStatus
     createdAt: Date
     allowFileUploads: boolean
     allowEdits: boolean
@@ -15014,6 +15039,7 @@ export namespace Prisma {
     type?: boolean
     targetLevel?: boolean
     status?: boolean
+    surveyResultStatus?: boolean
     createdAt?: boolean
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -15040,6 +15066,7 @@ export namespace Prisma {
     type?: boolean
     targetLevel?: boolean
     status?: boolean
+    surveyResultStatus?: boolean
     createdAt?: boolean
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -15062,6 +15089,7 @@ export namespace Prisma {
     type?: boolean
     targetLevel?: boolean
     status?: boolean
+    surveyResultStatus?: boolean
     createdAt?: boolean
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -15084,6 +15112,7 @@ export namespace Prisma {
     type?: boolean
     targetLevel?: boolean
     status?: boolean
+    surveyResultStatus?: boolean
     createdAt?: boolean
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -15097,7 +15126,7 @@ export namespace Prisma {
     actualSurveyStatus?: boolean
   }
 
-  export type SurveyVisitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accreditationId" | "actualSurveyDate" | "type" | "targetLevel" | "status" | "createdAt" | "allowFileUploads" | "allowEdits" | "openForSelfSurvey" | "selfSurveyStatus" | "selfSurveyStartedAt" | "selfSurveyEndedAt" | "actualSurveyStartedAt" | "actualSurveyEndedAt" | "openForActualSurvey" | "actualSurveyStatus", ExtArgs["result"]["surveyVisit"]>
+  export type SurveyVisitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accreditationId" | "actualSurveyDate" | "type" | "targetLevel" | "status" | "surveyResultStatus" | "createdAt" | "allowFileUploads" | "allowEdits" | "openForSelfSurvey" | "selfSurveyStatus" | "selfSurveyStartedAt" | "selfSurveyEndedAt" | "actualSurveyStartedAt" | "actualSurveyEndedAt" | "openForActualSurvey" | "actualSurveyStatus", ExtArgs["result"]["surveyVisit"]>
   export type SurveyVisitInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accreditation?: boolean | AccreditationDefaultArgs<ExtArgs>
     level?: boolean | LevelDefaultArgs<ExtArgs>
@@ -15131,6 +15160,7 @@ export namespace Prisma {
       type: $Enums.SurveyVisitType
       targetLevel: string
       status: $Enums.Progress
+      surveyResultStatus: $Enums.SurveyResultStatus
       createdAt: Date
       allowFileUploads: boolean
       allowEdits: boolean
@@ -15576,6 +15606,7 @@ export namespace Prisma {
     readonly type: FieldRef<"SurveyVisit", 'SurveyVisitType'>
     readonly targetLevel: FieldRef<"SurveyVisit", 'String'>
     readonly status: FieldRef<"SurveyVisit", 'Progress'>
+    readonly surveyResultStatus: FieldRef<"SurveyVisit", 'SurveyResultStatus'>
     readonly createdAt: FieldRef<"SurveyVisit", 'DateTime'>
     readonly allowFileUploads: FieldRef<"SurveyVisit", 'Boolean'>
     readonly allowEdits: FieldRef<"SurveyVisit", 'Boolean'>
@@ -20400,6 +20431,7 @@ export namespace Prisma {
     id: string | null
     instrumentFolderId: string | null
     areaId: number | null
+    revisit: boolean | null
     status: $Enums.Progress | null
   }
 
@@ -20407,6 +20439,7 @@ export namespace Prisma {
     id: string | null
     instrumentFolderId: string | null
     areaId: number | null
+    revisit: boolean | null
     status: $Enums.Progress | null
   }
 
@@ -20414,6 +20447,7 @@ export namespace Prisma {
     id: number
     instrumentFolderId: number
     areaId: number
+    revisit: number
     status: number
     _all: number
   }
@@ -20431,6 +20465,7 @@ export namespace Prisma {
     id?: true
     instrumentFolderId?: true
     areaId?: true
+    revisit?: true
     status?: true
   }
 
@@ -20438,6 +20473,7 @@ export namespace Prisma {
     id?: true
     instrumentFolderId?: true
     areaId?: true
+    revisit?: true
     status?: true
   }
 
@@ -20445,6 +20481,7 @@ export namespace Prisma {
     id?: true
     instrumentFolderId?: true
     areaId?: true
+    revisit?: true
     status?: true
     _all?: true
   }
@@ -20539,6 +20576,7 @@ export namespace Prisma {
     id: string
     instrumentFolderId: string
     areaId: number
+    revisit: boolean
     status: $Enums.Progress
     _count: AreaFolderCountAggregateOutputType | null
     _avg: AreaFolderAvgAggregateOutputType | null
@@ -20565,6 +20603,7 @@ export namespace Prisma {
     id?: boolean
     instrumentFolderId?: boolean
     areaId?: boolean
+    revisit?: boolean
     status?: boolean
     instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
     parameterFolders?: boolean | AreaFolder$parameterFoldersArgs<ExtArgs>
@@ -20582,6 +20621,7 @@ export namespace Prisma {
     id?: boolean
     instrumentFolderId?: boolean
     areaId?: boolean
+    revisit?: boolean
     status?: boolean
     instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
     area?: boolean | AreaDefaultArgs<ExtArgs>
@@ -20591,6 +20631,7 @@ export namespace Prisma {
     id?: boolean
     instrumentFolderId?: boolean
     areaId?: boolean
+    revisit?: boolean
     status?: boolean
     instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
     area?: boolean | AreaDefaultArgs<ExtArgs>
@@ -20600,10 +20641,11 @@ export namespace Prisma {
     id?: boolean
     instrumentFolderId?: boolean
     areaId?: boolean
+    revisit?: boolean
     status?: boolean
   }
 
-  export type AreaFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "instrumentFolderId" | "areaId" | "status", ExtArgs["result"]["areaFolder"]>
+  export type AreaFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "instrumentFolderId" | "areaId" | "revisit" | "status", ExtArgs["result"]["areaFolder"]>
   export type AreaFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     instrumentFolder?: boolean | InstrumentFolderDefaultArgs<ExtArgs>
     parameterFolders?: boolean | AreaFolder$parameterFoldersArgs<ExtArgs>
@@ -20642,6 +20684,7 @@ export namespace Prisma {
       id: string
       instrumentFolderId: string
       areaId: number
+      revisit: boolean
       status: $Enums.Progress
     }, ExtArgs["result"]["areaFolder"]>
     composites: {}
@@ -21078,6 +21121,7 @@ export namespace Prisma {
     readonly id: FieldRef<"AreaFolder", 'String'>
     readonly instrumentFolderId: FieldRef<"AreaFolder", 'String'>
     readonly areaId: FieldRef<"AreaFolder", 'Int'>
+    readonly revisit: FieldRef<"AreaFolder", 'Boolean'>
     readonly status: FieldRef<"AreaFolder", 'Progress'>
   }
     
@@ -35343,6 +35387,7 @@ export namespace Prisma {
     type: 'type',
     targetLevel: 'targetLevel',
     status: 'status',
+    surveyResultStatus: 'surveyResultStatus',
     createdAt: 'createdAt',
     allowFileUploads: 'allowFileUploads',
     allowEdits: 'allowEdits',
@@ -35400,6 +35445,7 @@ export namespace Prisma {
     id: 'id',
     instrumentFolderId: 'instrumentFolderId',
     areaId: 'areaId',
+    revisit: 'revisit',
     status: 'status'
   };
 
@@ -35720,6 +35766,20 @@ export namespace Prisma {
    * Reference to a field of type 'Progress[]'
    */
   export type ListEnumProgressFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Progress[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'SurveyResultStatus'
+   */
+  export type EnumSurveyResultStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurveyResultStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'SurveyResultStatus[]'
+   */
+  export type ListEnumSurveyResultStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurveyResultStatus[]'>
     
 
 
@@ -36498,6 +36558,7 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFilter<"SurveyVisit"> | $Enums.SurveyVisitType
     targetLevel?: StringFilter<"SurveyVisit"> | string
     status?: EnumProgressFilter<"SurveyVisit"> | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFilter<"SurveyVisit"> | $Enums.SurveyResultStatus
     createdAt?: DateTimeFilter<"SurveyVisit"> | Date | string
     allowFileUploads?: BoolFilter<"SurveyVisit"> | boolean
     allowEdits?: BoolFilter<"SurveyVisit"> | boolean
@@ -36523,6 +36584,7 @@ export namespace Prisma {
     type?: SortOrder
     targetLevel?: SortOrder
     status?: SortOrder
+    surveyResultStatus?: SortOrder
     createdAt?: SortOrder
     allowFileUploads?: SortOrder
     allowEdits?: SortOrder
@@ -36551,6 +36613,7 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFilter<"SurveyVisit"> | $Enums.SurveyVisitType
     targetLevel?: StringFilter<"SurveyVisit"> | string
     status?: EnumProgressFilter<"SurveyVisit"> | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFilter<"SurveyVisit"> | $Enums.SurveyResultStatus
     createdAt?: DateTimeFilter<"SurveyVisit"> | Date | string
     allowFileUploads?: BoolFilter<"SurveyVisit"> | boolean
     allowEdits?: BoolFilter<"SurveyVisit"> | boolean
@@ -36576,6 +36639,7 @@ export namespace Prisma {
     type?: SortOrder
     targetLevel?: SortOrder
     status?: SortOrder
+    surveyResultStatus?: SortOrder
     createdAt?: SortOrder
     allowFileUploads?: SortOrder
     allowEdits?: SortOrder
@@ -36602,6 +36666,7 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeWithAggregatesFilter<"SurveyVisit"> | $Enums.SurveyVisitType
     targetLevel?: StringWithAggregatesFilter<"SurveyVisit"> | string
     status?: EnumProgressWithAggregatesFilter<"SurveyVisit"> | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusWithAggregatesFilter<"SurveyVisit"> | $Enums.SurveyResultStatus
     createdAt?: DateTimeWithAggregatesFilter<"SurveyVisit"> | Date | string
     allowFileUploads?: BoolWithAggregatesFilter<"SurveyVisit"> | boolean
     allowEdits?: BoolWithAggregatesFilter<"SurveyVisit"> | boolean
@@ -36828,6 +36893,7 @@ export namespace Prisma {
     id?: StringFilter<"AreaFolder"> | string
     instrumentFolderId?: StringFilter<"AreaFolder"> | string
     areaId?: IntFilter<"AreaFolder"> | number
+    revisit?: BoolFilter<"AreaFolder"> | boolean
     status?: EnumProgressFilter<"AreaFolder"> | $Enums.Progress
     instrumentFolder?: XOR<InstrumentFolderScalarRelationFilter, InstrumentFolderWhereInput>
     parameterFolders?: ParameterFolderListRelationFilter
@@ -36844,6 +36910,7 @@ export namespace Prisma {
     id?: SortOrder
     instrumentFolderId?: SortOrder
     areaId?: SortOrder
+    revisit?: SortOrder
     status?: SortOrder
     instrumentFolder?: InstrumentFolderOrderByWithRelationInput
     parameterFolders?: ParameterFolderOrderByRelationAggregateInput
@@ -36863,6 +36930,7 @@ export namespace Prisma {
     NOT?: AreaFolderWhereInput | AreaFolderWhereInput[]
     instrumentFolderId?: StringFilter<"AreaFolder"> | string
     areaId?: IntFilter<"AreaFolder"> | number
+    revisit?: BoolFilter<"AreaFolder"> | boolean
     status?: EnumProgressFilter<"AreaFolder"> | $Enums.Progress
     instrumentFolder?: XOR<InstrumentFolderScalarRelationFilter, InstrumentFolderWhereInput>
     parameterFolders?: ParameterFolderListRelationFilter
@@ -36879,6 +36947,7 @@ export namespace Prisma {
     id?: SortOrder
     instrumentFolderId?: SortOrder
     areaId?: SortOrder
+    revisit?: SortOrder
     status?: SortOrder
     _count?: AreaFolderCountOrderByAggregateInput
     _avg?: AreaFolderAvgOrderByAggregateInput
@@ -36894,6 +36963,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"AreaFolder"> | string
     instrumentFolderId?: StringWithAggregatesFilter<"AreaFolder"> | string
     areaId?: IntWithAggregatesFilter<"AreaFolder"> | number
+    revisit?: BoolWithAggregatesFilter<"AreaFolder"> | boolean
     status?: EnumProgressWithAggregatesFilter<"AreaFolder"> | $Enums.Progress
   }
 
@@ -38356,6 +38426,7 @@ export namespace Prisma {
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -38381,6 +38452,7 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     targetLevel: string
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -38402,6 +38474,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -38427,6 +38500,7 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -38450,6 +38524,7 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     targetLevel: string
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -38468,6 +38543,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -38488,6 +38564,7 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -38682,6 +38759,7 @@ export namespace Prisma {
 
   export type AreaFolderCreateInput = {
     id?: string
+    revisit?: boolean
     status: $Enums.Progress
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
@@ -38698,6 +38776,7 @@ export namespace Prisma {
     id?: string
     instrumentFolderId: string
     areaId: number
+    revisit?: boolean
     status: $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
@@ -38710,6 +38789,7 @@ export namespace Prisma {
 
   export type AreaFolderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
@@ -38726,6 +38806,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
@@ -38740,11 +38821,13 @@ export namespace Prisma {
     id?: string
     instrumentFolderId: string
     areaId: number
+    revisit?: boolean
     status: $Enums.Progress
   }
 
   export type AreaFolderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
   }
 
@@ -38752,6 +38835,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
   }
 
@@ -40298,6 +40382,13 @@ export namespace Prisma {
     not?: NestedEnumProgressFilter<$PrismaModel> | $Enums.Progress
   }
 
+  export type EnumSurveyResultStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyResultStatus | EnumSurveyResultStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyResultStatus[] | ListEnumSurveyResultStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyResultStatus[] | ListEnumSurveyResultStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyResultStatusFilter<$PrismaModel> | $Enums.SurveyResultStatus
+  }
+
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -40337,6 +40428,7 @@ export namespace Prisma {
     type?: SortOrder
     targetLevel?: SortOrder
     status?: SortOrder
+    surveyResultStatus?: SortOrder
     createdAt?: SortOrder
     allowFileUploads?: SortOrder
     allowEdits?: SortOrder
@@ -40357,6 +40449,7 @@ export namespace Prisma {
     type?: SortOrder
     targetLevel?: SortOrder
     status?: SortOrder
+    surveyResultStatus?: SortOrder
     createdAt?: SortOrder
     allowFileUploads?: SortOrder
     allowEdits?: SortOrder
@@ -40377,6 +40470,7 @@ export namespace Prisma {
     type?: SortOrder
     targetLevel?: SortOrder
     status?: SortOrder
+    surveyResultStatus?: SortOrder
     createdAt?: SortOrder
     allowFileUploads?: SortOrder
     allowEdits?: SortOrder
@@ -40408,6 +40502,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumProgressFilter<$PrismaModel>
     _max?: NestedEnumProgressFilter<$PrismaModel>
+  }
+
+  export type EnumSurveyResultStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyResultStatus | EnumSurveyResultStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyResultStatus[] | ListEnumSurveyResultStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyResultStatus[] | ListEnumSurveyResultStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyResultStatusWithAggregatesFilter<$PrismaModel> | $Enums.SurveyResultStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSurveyResultStatusFilter<$PrismaModel>
+    _max?: NestedEnumSurveyResultStatusFilter<$PrismaModel>
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -40569,6 +40673,7 @@ export namespace Prisma {
     id?: SortOrder
     instrumentFolderId?: SortOrder
     areaId?: SortOrder
+    revisit?: SortOrder
     status?: SortOrder
   }
 
@@ -40580,6 +40685,7 @@ export namespace Prisma {
     id?: SortOrder
     instrumentFolderId?: SortOrder
     areaId?: SortOrder
+    revisit?: SortOrder
     status?: SortOrder
   }
 
@@ -40587,6 +40693,7 @@ export namespace Prisma {
     id?: SortOrder
     instrumentFolderId?: SortOrder
     areaId?: SortOrder
+    revisit?: SortOrder
     status?: SortOrder
   }
 
@@ -42314,6 +42421,10 @@ export namespace Prisma {
 
   export type EnumProgressFieldUpdateOperationsInput = {
     set?: $Enums.Progress
+  }
+
+  export type EnumSurveyResultStatusFieldUpdateOperationsInput = {
+    set?: $Enums.SurveyResultStatus
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -44137,6 +44248,13 @@ export namespace Prisma {
     not?: NestedEnumProgressFilter<$PrismaModel> | $Enums.Progress
   }
 
+  export type NestedEnumSurveyResultStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyResultStatus | EnumSurveyResultStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyResultStatus[] | ListEnumSurveyResultStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyResultStatus[] | ListEnumSurveyResultStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyResultStatusFilter<$PrismaModel> | $Enums.SurveyResultStatus
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -44167,6 +44285,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumProgressFilter<$PrismaModel>
     _max?: NestedEnumProgressFilter<$PrismaModel>
+  }
+
+  export type NestedEnumSurveyResultStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurveyResultStatus | EnumSurveyResultStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SurveyResultStatus[] | ListEnumSurveyResultStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurveyResultStatus[] | ListEnumSurveyResultStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurveyResultStatusWithAggregatesFilter<$PrismaModel> | $Enums.SurveyResultStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSurveyResultStatusFilter<$PrismaModel>
+    _max?: NestedEnumSurveyResultStatusFilter<$PrismaModel>
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -45399,6 +45527,7 @@ export namespace Prisma {
 
   export type AreaFolderCreateWithoutAreaInput = {
     id?: string
+    revisit?: boolean
     status: $Enums.Progress
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
@@ -45413,6 +45542,7 @@ export namespace Prisma {
   export type AreaFolderUncheckedCreateWithoutAreaInput = {
     id?: string
     instrumentFolderId: string
+    revisit?: boolean
     status: $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
@@ -45537,6 +45667,7 @@ export namespace Prisma {
     id?: StringFilter<"AreaFolder"> | string
     instrumentFolderId?: StringFilter<"AreaFolder"> | string
     areaId?: IntFilter<"AreaFolder"> | number
+    revisit?: BoolFilter<"AreaFolder"> | boolean
     status?: EnumProgressFilter<"AreaFolder"> | $Enums.Progress
   }
 
@@ -45885,6 +46016,7 @@ export namespace Prisma {
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -45908,6 +46040,7 @@ export namespace Prisma {
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -45988,6 +46121,7 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFilter<"SurveyVisit"> | $Enums.SurveyVisitType
     targetLevel?: StringFilter<"SurveyVisit"> | string
     status?: EnumProgressFilter<"SurveyVisit"> | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFilter<"SurveyVisit"> | $Enums.SurveyResultStatus
     createdAt?: DateTimeFilter<"SurveyVisit"> | Date | string
     allowFileUploads?: BoolFilter<"SurveyVisit"> | boolean
     allowEdits?: BoolFilter<"SurveyVisit"> | boolean
@@ -46062,6 +46196,7 @@ export namespace Prisma {
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -46085,6 +46220,7 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     targetLevel: string
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -46432,6 +46568,7 @@ export namespace Prisma {
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -46456,6 +46593,7 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     targetLevel: string
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -46559,6 +46697,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -46583,6 +46722,7 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -46731,6 +46871,7 @@ export namespace Prisma {
 
   export type AreaFolderCreateWithoutAreaChairInput = {
     id?: string
+    revisit?: boolean
     status: $Enums.Progress
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
@@ -46746,6 +46887,7 @@ export namespace Prisma {
     id?: string
     instrumentFolderId: string
     areaId: number
+    revisit?: boolean
     status: $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
@@ -46849,6 +46991,7 @@ export namespace Prisma {
 
   export type AreaFolderUpdateWithoutAreaChairInput = {
     id?: StringFieldUpdateOperationsInput | string
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
@@ -46864,6 +47007,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
@@ -46878,6 +47022,7 @@ export namespace Prisma {
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -46902,6 +47047,7 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     targetLevel: string
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -46978,6 +47124,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -47002,6 +47149,7 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -47088,6 +47236,7 @@ export namespace Prisma {
 
   export type AreaFolderCreateWithoutInstrumentFolderInput = {
     id?: string
+    revisit?: boolean
     status: $Enums.Progress
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
     area: AreaCreateNestedOneWithoutAreaFoldersInput
@@ -47102,6 +47251,7 @@ export namespace Prisma {
   export type AreaFolderUncheckedCreateWithoutInstrumentFolderInput = {
     id?: string
     areaId: number
+    revisit?: boolean
     status: $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
@@ -47590,6 +47740,7 @@ export namespace Prisma {
 
   export type AreaFolderCreateWithoutParameterFoldersInput = {
     id?: string
+    revisit?: boolean
     status: $Enums.Progress
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     area: AreaCreateNestedOneWithoutAreaFoldersInput
@@ -47605,6 +47756,7 @@ export namespace Prisma {
     id?: string
     instrumentFolderId: string
     areaId: number
+    revisit?: boolean
     status: $Enums.Progress
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
     taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
@@ -47678,6 +47830,7 @@ export namespace Prisma {
 
   export type AreaFolderUpdateWithoutParameterFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
@@ -47693,6 +47846,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
     taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
@@ -48470,6 +48624,7 @@ export namespace Prisma {
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -48494,6 +48649,7 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     targetLevel: string
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -48570,6 +48726,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -48594,6 +48751,7 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -48887,6 +49045,7 @@ export namespace Prisma {
 
   export type AreaFolderCreateWithoutAreaFilesInput = {
     id?: string
+    revisit?: boolean
     status: $Enums.Progress
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
@@ -48902,6 +49061,7 @@ export namespace Prisma {
     id?: string
     instrumentFolderId: string
     areaId: number
+    revisit?: boolean
     status: $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     taskForce?: TaskForceUncheckedCreateNestedOneWithoutAreaFolderInput
@@ -49012,6 +49172,7 @@ export namespace Prisma {
 
   export type AreaFolderUpdateWithoutAreaFilesInput = {
     id?: StringFieldUpdateOperationsInput | string
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
@@ -49027,6 +49188,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     taskForce?: TaskForceUncheckedUpdateOneWithoutAreaFolderNestedInput
@@ -49093,6 +49255,7 @@ export namespace Prisma {
 
   export type AreaFolderCreateWithoutTaskForceInput = {
     id?: string
+    revisit?: boolean
     status: $Enums.Progress
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
@@ -49108,6 +49271,7 @@ export namespace Prisma {
     id?: string
     instrumentFolderId: string
     areaId: number
+    revisit?: boolean
     status: $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
@@ -49176,6 +49340,7 @@ export namespace Prisma {
 
   export type AreaFolderUpdateWithoutTaskForceInput = {
     id?: StringFieldUpdateOperationsInput | string
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
@@ -49191,6 +49356,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
@@ -49432,6 +49598,7 @@ export namespace Prisma {
 
   export type AreaFolderCreateWithoutRecommendationsInput = {
     id?: string
+    revisit?: boolean
     status: $Enums.Progress
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
@@ -49447,6 +49614,7 @@ export namespace Prisma {
     id?: string
     instrumentFolderId: string
     areaId: number
+    revisit?: boolean
     status: $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
@@ -49463,6 +49631,7 @@ export namespace Prisma {
 
   export type AreaFolderCreateWithoutStrengthsInput = {
     id?: string
+    revisit?: boolean
     status: $Enums.Progress
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
@@ -49478,6 +49647,7 @@ export namespace Prisma {
     id?: string
     instrumentFolderId: string
     areaId: number
+    revisit?: boolean
     status: $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
@@ -49494,6 +49664,7 @@ export namespace Prisma {
 
   export type AreaFolderCreateWithoutWeaknessesInput = {
     id?: string
+    revisit?: boolean
     status: $Enums.Progress
     instrumentFolder: InstrumentFolderCreateNestedOneWithoutAreaFoldersInput
     parameterFolders?: ParameterFolderCreateNestedManyWithoutAreaFolderInput
@@ -49509,6 +49680,7 @@ export namespace Prisma {
     id?: string
     instrumentFolderId: string
     areaId: number
+    revisit?: boolean
     status: $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedCreateNestedManyWithoutAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseOneAreaFolderInput
@@ -49653,6 +49825,7 @@ export namespace Prisma {
 
   export type AreaFolderUpdateWithoutRecommendationsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
@@ -49668,6 +49841,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
@@ -49690,6 +49864,7 @@ export namespace Prisma {
 
   export type AreaFolderUpdateWithoutStrengthsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
@@ -49705,6 +49880,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
@@ -49727,6 +49903,7 @@ export namespace Prisma {
 
   export type AreaFolderUpdateWithoutWeaknessesInput = {
     id?: StringFieldUpdateOperationsInput | string
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
@@ -49742,6 +49919,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
@@ -50175,6 +50353,7 @@ export namespace Prisma {
   export type AreaFolderCreateManyAreaInput = {
     id?: string
     instrumentFolderId: string
+    revisit?: boolean
     status: $Enums.Progress
   }
 
@@ -50212,6 +50391,7 @@ export namespace Prisma {
 
   export type AreaFolderUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     instrumentFolder?: InstrumentFolderUpdateOneRequiredWithoutAreaFoldersNestedInput
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
@@ -50226,6 +50406,7 @@ export namespace Prisma {
   export type AreaFolderUncheckedUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
@@ -50239,6 +50420,7 @@ export namespace Prisma {
   export type AreaFolderUncheckedUpdateManyWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     instrumentFolderId?: StringFieldUpdateOperationsInput | string
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
   }
 
@@ -50378,6 +50560,7 @@ export namespace Prisma {
     actualSurveyDate: Date | string
     type: $Enums.SurveyVisitType
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -50422,6 +50605,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -50445,6 +50629,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -50467,6 +50652,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -50486,6 +50672,7 @@ export namespace Prisma {
     type: $Enums.SurveyVisitType
     targetLevel: string
     status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
     createdAt?: Date | string
     allowFileUploads?: boolean
     allowEdits?: boolean
@@ -50504,6 +50691,7 @@ export namespace Prisma {
     actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -50527,6 +50715,7 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -50549,6 +50738,7 @@ export namespace Prisma {
     type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
     targetLevel?: StringFieldUpdateOperationsInput | string
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
     allowEdits?: BoolFieldUpdateOperationsInput | boolean
@@ -50615,11 +50805,13 @@ export namespace Prisma {
   export type AreaFolderCreateManyInstrumentFolderInput = {
     id?: string
     areaId: number
+    revisit?: boolean
     status: $Enums.Progress
   }
 
   export type AreaFolderUpdateWithoutInstrumentFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     parameterFolders?: ParameterFolderUpdateManyWithoutAreaFolderNestedInput
     area?: AreaUpdateOneRequiredWithoutAreaFoldersNestedInput
@@ -50634,6 +50826,7 @@ export namespace Prisma {
   export type AreaFolderUncheckedUpdateWithoutInstrumentFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
     parameterFolders?: ParameterFolderUncheckedUpdateManyWithoutAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseOneAreaFolderNestedInput
@@ -50647,6 +50840,7 @@ export namespace Prisma {
   export type AreaFolderUncheckedUpdateManyWithoutInstrumentFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    revisit?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
   }
 

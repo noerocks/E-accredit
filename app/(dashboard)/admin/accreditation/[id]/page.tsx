@@ -21,6 +21,7 @@ import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
 import { Progress, SurveyTeamType } from "@/lib/generated/prisma";
 import {
+  calculateAreaMean,
   calculateGrandMean,
   formatAccreditationName,
   formatLevelName,
@@ -81,8 +82,28 @@ const ProgramAccreditationPage = async ({
       SurveyTeamType.EXTERNAL
     ),
   };
-  console.log(surveyVisitStructure);
-  console.log(surveyStatus);
+  console.log(
+    areaFolders
+      ?.filter(
+        (area) =>
+          (calculateAreaMean(area as AreaFolderDTO, SurveyTeamType.EXTERNAL) ||
+            0) >= Number(level?.requiredAreaMean)
+      )
+      .map((area) =>
+        calculateAreaMean(area as AreaFolderDTO, SurveyTeamType.EXTERNAL)
+      )
+  );
+  console.log(
+    areaFolders
+      ?.filter(
+        (area) =>
+          (calculateAreaMean(area as AreaFolderDTO, SurveyTeamType.EXTERNAL) ||
+            0) < Number(level?.requiredAreaMean)
+      )
+      .map((area) =>
+        calculateAreaMean(area as AreaFolderDTO, SurveyTeamType.EXTERNAL)
+      )
+  );
   return (
     <ScrollArea className="h-full">
       <Banner surveyVisitId={String(id!)} />

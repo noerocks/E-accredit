@@ -93,6 +93,13 @@ enum SurveyStatus {
   COMPLETE
 }
 
+enum SurveyResultStatus {
+  PENDING
+  GRANTED
+  DEFERRED
+  NOT_GRANTED
+}
+
 model User {
   id               String             @id @default(uuid())
   firstName        String
@@ -230,6 +237,7 @@ model SurveyVisit {
   phaseOneRequirements  PhaseOneRequirements?
   phaseTwoRequirements  PhaseTwoRequirements?
   status                Progress
+  surveyResultStatus    SurveyResultStatus    @default(PENDING)
   createdAt             DateTime              @default(now())
   surveyTeam            SurveyTeam[]
   allowFileUploads      Boolean               @default(true)
@@ -287,6 +295,7 @@ model AreaFolder {
   parameterFolders   ParameterFolder[]
   area               Area              @relation(fields: [areaId], references: [id], onDelete: Cascade)
   areaId             Int
+  revisit            Boolean           @default(false)
   areaFiles          AreaFile[]
   status             Progress
   taskForce          TaskForce?
