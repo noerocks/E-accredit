@@ -7,8 +7,8 @@ import {
   YAxis,
   CartesianGrid,
   LabelList,
+  Cell,
 } from "recharts";
-
 import {
   Card,
   CardContent,
@@ -39,32 +39,34 @@ export function CriticalAreaChart({
   const chartConfig: ChartConfig = {
     priority: {
       label: "Priority",
-      color: "var(--chart-2)",
     },
   };
   const chartData = areaFolders
     .filter((area) => area.area.weight > 0)
-    .map((area) => {
+    .map((area, i) => {
       const score = calculateAttentionScore(area, surveyType);
       chartConfig[area.area.label] = {
         label: area.area.label,
-        color: "var(--chart-1)",
+        color: `var(--chart-${i + 1})`,
       };
       return {
         area: area.area.label,
         priority: Number(score.toFixed(2)),
+        fill: `var(--chart-${i + 1})`,
       };
     })
     .sort((a, b) => b.priority - a.priority);
 
   return (
-    <Card className="flex-1 bg-background flex flex-col">
+    <Card className="bg-background flex-1">
       <CardHeader>
         <CardTitle>Critical Areas</CardTitle>
-        <CardDescription>Weighted attention scores by area</CardDescription>
+        <CardDescription>
+          Scores indicating which areas need the most attention, based on weight
+          and rating
+        </CardDescription>
       </CardHeader>
-
-      <CardContent className="flex-1">
+      <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart
             accessibilityLayer
@@ -74,34 +76,22 @@ export function CriticalAreaChart({
               left: 0,
             }}
           >
-            <CartesianGrid horizontal={false} />
             <YAxis
               dataKey="area"
               type="category"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value: string | number): string => {
-                const key = String(value);
-                const label =
-                  chartConfig[key as keyof typeof chartConfig]?.label ?? key;
-                return String(label);
-              }}
             />
             <XAxis dataKey="priority" type="number" hide />
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <Bar dataKey="priority" fill="var(--chart-2)" radius={5}>
-              <LabelList
-                dataKey="priority"
-                position="right"
-                className="fill-foreground"
-                fontSize={12}
-              />
-            </Bar>
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Bar dataKey="priority" layout="vertical" radius={5} />
           </BarChart>
         </ChartContainer>
       </CardContent>
-
       <CardFooter className="flex-col gap-2 pt-4 text-sm">
         <div className="flex items-center gap-2 leading-none">
           Based on weighted priority scores of areas

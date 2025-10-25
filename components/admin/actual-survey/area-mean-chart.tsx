@@ -73,16 +73,16 @@ export function AreaMeanChart({
             <Radar
               name="Self-survey"
               dataKey="selfSurvey"
-              stroke="var(--chart-1)"
-              fill="var(--chart-1)"
+              stroke="var(--chart-10)"
+              fill="var(--chart-10)"
               fillOpacity={0.4}
             />
 
             <Radar
               name="Actual-survey"
               dataKey="actualSurvey"
-              stroke="var(--chart-2)"
-              fill="var(--chart-2)"
+              stroke="var(--chart-1)"
+              fill="var(--chart-1)"
               fillOpacity={0.3}
             />
 

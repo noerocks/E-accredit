@@ -137,7 +137,7 @@ const SurveyResults = async ({
           <p>{sdDescriptiveRating}</p>
         </AlertDescription>
       </Alert>
-      <div className="flex gap-5">
+      <div className="flex gap-5 items-start">
         <AreaMeanChart
           areaFolders={areaFolders as unknown as AreaFolderDTO[]}
         />
