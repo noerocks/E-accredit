@@ -228,3 +228,14 @@ export function getGrandMeanDescriptiveRating(grandMean: number) {
     }
   }
 }
+
+export function calculateAttentionScore(
+  area: AreaFolderDTO,
+  surveyType: SurveyTeamType
+) {
+  const MAX_RATING = 5;
+  return (
+    (area.area.weight / 100) *
+    (MAX_RATING - (calculateWeightedAreaMean(area, surveyType) || 0))
+  );
+}

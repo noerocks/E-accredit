@@ -37,7 +37,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function ChartRadarLegend({
+export function AreaMeanChart({
   areaFolders,
 }: {
   areaFolders: AreaFolderDTO[];

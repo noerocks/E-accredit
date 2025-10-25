@@ -15,6 +15,7 @@ import {
   SurveyVisit,
 } from "@/lib/generated/prisma";
 import {
+  calculateAttentionScore,
   calculateGrandMean,
   calculateRange,
   calculateWeightedVariance,
@@ -23,7 +24,8 @@ import {
 } from "@/lib/utils";
 import { Level } from "@prisma/client";
 import { Calendar, Info, User } from "lucide-react";
-import { ChartRadarLegend } from "./result-radar";
+import { AreaMeanChart } from "./area-mean-chart";
+import { CriticalAreaChart } from "./critical-area-chart";
 
 const SurveyResults = async ({
   areaFolders,
@@ -136,8 +138,12 @@ const SurveyResults = async ({
         </AlertDescription>
       </Alert>
       <div className="flex gap-5">
-        <ChartRadarLegend
+        <AreaMeanChart
           areaFolders={areaFolders as unknown as AreaFolderDTO[]}
+        />
+        <CriticalAreaChart
+          areaFolders={areaFolders as unknown as AreaFolderDTO[]}
+          surveyType={surveyType}
         />
       </div>
     </div>
