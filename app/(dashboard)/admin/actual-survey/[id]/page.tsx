@@ -1,4 +1,5 @@
 import { DataTable } from "@/components/admin/accreditation/data-table";
+import SurveyResults from "@/components/admin/actual-survey/results";
 import { columns } from "@/components/admin/actual-survey/survey-visit/columns";
 import EndSurveyButton from "@/components/admin/self-survey/end-survey-button";
 import SurveyTeam from "@/components/admin/self-survey/survey-team";
@@ -12,6 +13,7 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { verifySession } from "@/lib/action/session";
 import { getInstrumentStructureById } from "@/lib/dal/instrument";
 import {
   getSurveyVisitById,
@@ -19,14 +21,14 @@ import {
 } from "@/lib/dal/survey-visit";
 import { getUsersByRole } from "@/lib/dal/user";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
+import { SurveyVisitDTO } from "@/lib/dto/survey-visit";
 import {
-  CommentType,
   Role,
   SurveyTeam as SurveyTeamSchema,
   SurveyTeamType,
 } from "@/lib/generated/prisma";
-import { calculateGrandMean, formatAccreditationName } from "@/lib/utils";
-import { User } from "@prisma/client";
+import { calculateAreaMean, formatAccreditationName } from "@/lib/utils";
+import { Level, User } from "@prisma/client";
 import clsx from "clsx";
 import { CircleDot, SearchCheck } from "lucide-react";
 
@@ -37,6 +39,8 @@ const ActualSurveyPage = async ({
   searchParams: Promise<{}>;
 }) => {
   const { id } = await params;
+  const session = await verifySession();
+  const user = session.user;
   const surveyVisitStructure = await getSurveyVisitStructureById(id);
   const program = surveyVisitStructure?.accreditation.program;
   const level = surveyVisitStructure?.level;
@@ -80,6 +84,10 @@ const ActualSurveyPage = async ({
   const externalSurveyTeam = surveyVisit?.surveyTeam.find(
     (team) => team.type === "EXTERNAL"
   );
+  const isCoordinator = user.id === externalSurveyTeam?.teamLeadId;
+  const isAdmin = user.role === "ADMIN";
+  const endSurveyIsVisible =
+    complete && !surveyVisitEnded && (isCoordinator || isAdmin);
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
@@ -108,9 +116,7 @@ const ActualSurveyPage = async ({
               {complete ? "Complete" : "On Going"}
             </p>
             <div className="flex items-center gap-2">
-              {complete && !surveyVisitEnded && (
-                <EndSurveyButton surveyVisitId={id} />
-              )}
+              {endSurveyIsVisible && <EndSurveyButton surveyVisitId={id} />}
               <SurveyTeam
                 programHead={programHead as User}
                 accreditors={accreditors}
@@ -134,7 +140,14 @@ const ActualSurveyPage = async ({
               </CardContent>
             </Card>
           </TabsContent>
-          <TabsContent value="results"></TabsContent>
+          <TabsContent value="results">
+            <SurveyResults
+              areaFolders={areaFolders as unknown as AreaFolderDTO[]}
+              level={level as unknown as Level}
+              surveyVisit={surveyVisit}
+              surveyTeam={externalSurveyTeam as SurveyTeamSchema}
+            />
+          </TabsContent>
         </Tabs>
       </div>
     </ScrollArea>

@@ -18,6 +18,13 @@ export async function findByEmail(email: string) {
   return user;
 }
 
+export async function findById(id: string) {
+  const user = await prisma.user.findUnique({
+    where: { id },
+  });
+  return user;
+}
+
 export async function createUser({
   password,
   ...rest

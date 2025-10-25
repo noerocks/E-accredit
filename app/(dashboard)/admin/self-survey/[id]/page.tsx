@@ -14,10 +14,13 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { verifySession } from "@/lib/action/session";
 import { getInstrumentStructureById } from "@/lib/dal/instrument";
-import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
+import {
+  getSurveyVisitById,
+  getSurveyVisitStructureById,
+} from "@/lib/dal/survey-visit";
 import { getUsersByRole } from "@/lib/dal/user";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { Role } from "@/lib/generated/prisma";
+import { Role, SurveyTeam as SurveyTeamSchema } from "@/lib/generated/prisma";
 import { formatAccreditationName } from "@/lib/utils";
 import { User } from "@prisma/client";
 import clsx from "clsx";
@@ -75,6 +78,10 @@ const SelfSurveyPage = async ({
   const endSurveyVisitIsVisible =
     complete && !surveyVisitEnded && (isAdmin || isProgramHead);
   const accreditors = await getUsersByRole(Role.ACCREDITOR);
+  const surveyVisit = await getSurveyVisitById(id);
+  const externalSurveyTeam = surveyVisit?.surveyTeam.find(
+    (team) => team.type === "EXTERNAL"
+  );
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
@@ -109,6 +116,7 @@ const SelfSurveyPage = async ({
               <SurveyTeam
                 programHead={programHead as User}
                 accreditors={accreditors}
+                surveyTeam={externalSurveyTeam as SurveyTeamSchema}
               />
             </div>
           </CardFooter>

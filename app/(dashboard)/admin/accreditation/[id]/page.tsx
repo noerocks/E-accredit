@@ -151,6 +151,7 @@ const ProgramAccreditationPage = async ({
             openForSelfSurvey={surveyVisitStructure?.openForSelfSurvey}
             selfSurveyStatus={surveyVisitStructure?.selfSurveyStatus}
             openForActualSurvey={surveyVisitStructure?.openForActualSurvey}
+            actualSurveyStatus={surveyVisitStructure?.actualSurveyStatus}
             status={surveyVisitStructure?.status}
           />
           <TargetLevel level={level!} />

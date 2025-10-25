@@ -1,7 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
 import { AccreditationDisplayDTO, SafeLevel } from "../dto/accreditation";
-import { AccreditationStatus } from "../generated/prisma";
+import { Accreditation, AccreditationStatus } from "../generated/prisma";
 import { prisma } from "../prisma";
 
 export async function createAccreditation(
@@ -15,6 +15,18 @@ export async function createAccreditation(
       programId,
       status,
     },
+  });
+  return accreditation;
+}
+
+export async function updateAccreditationById(data: Partial<Accreditation>) {
+  const session = await verifySession();
+  if (!session) return null;
+  const accreditation = await prisma.accreditation.update({
+    where: {
+      id: data.id,
+    },
+    data,
   });
   return accreditation;
 }

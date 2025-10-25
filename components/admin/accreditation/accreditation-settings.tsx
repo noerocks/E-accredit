@@ -9,6 +9,7 @@ import {
   toggleFileUpload as toggleFileUploadAction,
   toggleEdit as toggleEditAction,
   toggleSelfSurvey as toggleSelfSurveyAction,
+  toggleActualSurvey as toggleActualSurveyAction,
 } from "@/lib/action/surveyVisit";
 import { toast } from "sonner";
 import { Progress, SurveyStatus } from "@/lib/generated/prisma";
@@ -26,6 +27,7 @@ const AccreditationSettings = ({
   openForSelfSurvey: boolean | undefined;
   selfSurveyStatus: SurveyStatus | undefined;
   openForActualSurvey: boolean | undefined;
+  actualSurveyStatus: SurveyStatus | undefined;
   status: Progress | undefined;
 }) => {
   const params = useParams();
@@ -66,6 +68,23 @@ const AccreditationSettings = ({
       const result = await toggleSelfSurveyAction(
         String(params.id),
         openForSelfSurvey!
+      );
+      if (result?.failure) {
+        toast.error(result.failure.error);
+      }
+    });
+  };
+  const toggleActualSurvey = async () => {
+    if (selfSurveyStatus !== "COMPLETE" || status !== "COMPLETE") {
+      toast.error(
+        "Self survey must be completed first to open for actual survey"
+      );
+      return;
+    }
+    startTransition(async () => {
+      const result = await toggleActualSurveyAction(
+        String(params.id),
+        openForActualSurvey!
       );
       if (result?.failure) {
         toast.error(result.failure.error);
@@ -118,6 +137,7 @@ const AccreditationSettings = ({
           </div>
           <Switch
             checked={openForActualSurvey}
+            onClick={toggleActualSurvey}
             disabled={selfSurveyStatus === "ON_GOING"}
           />
         </div>

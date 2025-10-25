@@ -7,6 +7,7 @@ import {
   AreaFileType,
   Category,
   FileStatus,
+  Level,
   LevelEnum,
   Phase,
   Progress,
@@ -29,7 +30,7 @@ import {
 } from "../dal/requirements";
 import { createPhaseTwoAreaFolder } from "../dal/phase-two-area-folder";
 import { createManySurveyTeam } from "../dal/survey-team";
-import { getLevelById } from "../dal/levels";
+import { updateAccreditationById } from "../dal/accreditation";
 
 export async function createSurveyVisit(
   program: ProgramDTO,
@@ -158,5 +159,28 @@ export async function createSurveyVisit(
         },
       ]);
     });
+  }
+}
+
+export async function grantAccreditedStatus(
+  accreditationId: string | undefined,
+  level: Level | undefined
+) {
+  if (!accreditationId || !level)
+    return { failure: { error: "Invalid input" } };
+  try {
+    const currentDate = new Date();
+    const endsAt = new Date(
+      currentDate.setFullYear(currentDate.getFullYear() + level.yearsEffective)
+    );
+    const accreditation = await updateAccreditationById({
+      id: accreditationId,
+      currentLevel: level.id,
+      startsAt: new Date(),
+      endsAt,
+    });
+  } catch (error) {
+    const e = error as Error;
+    return { failure: { error: e.message } };
   }
 }
