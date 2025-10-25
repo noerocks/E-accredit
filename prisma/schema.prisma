@@ -207,8 +207,8 @@ model Level {
   rank              Int
   label             LevelEnum
   phase             Phase
-  requiredGrandMean Decimal
-  requiredAreaMean  Decimal
+  requiredGrandMean Float
+  requiredAreaMean  Float
   yearsEffective    Int
   accreditations    Accreditation[]
   surveyVisits      SurveyVisit[]
@@ -238,6 +238,7 @@ model SurveyVisit {
   phaseTwoRequirements  PhaseTwoRequirements?
   status                Progress
   surveyResultStatus    SurveyResultStatus    @default(PENDING)
+  certificate           FileVersion?
   createdAt             DateTime              @default(now())
   surveyTeam            SurveyTeam[]
   allowFileUploads      Boolean               @default(true)
@@ -346,7 +347,7 @@ model Rating {
   accreditorId   String
   adequacy       Int?
   effectiveness  Int?
-  finalRate      Decimal?       @db.Decimal(10, 2)
+  finalRate      Float?
   NA             Boolean?
   createdAt      DateTime       @default(now())
 }
@@ -357,6 +358,8 @@ model FileVersion {
   evidenceFileId String?
   areaFile       AreaFile?          @relation(fields: [areaFileId], references: [id], onDelete: Cascade)
   areaFileId     String?
+  surveyVisit    SurveyVisit?       @relation(fields: [surveyVisitId], references: [id], onDelete: Cascade)
+  surveyVisitId  String?            @unique
   uploader       User?              @relation(fields: [uploaderEmail], references: [email], onDelete: SetNull)
   uploaderEmail  String?
   name           String

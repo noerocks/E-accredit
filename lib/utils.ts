@@ -211,24 +211,6 @@ export function getSDDescriptiveRating(
   }
 }
 
-export function getGrandMeanDescriptiveRating(grandMean: number) {
-  if (grandMean) {
-    if (grandMean >= 4.5 && grandMean <= 5.0) {
-      return "Excellent";
-    } else if (grandMean >= 3.5 && grandMean <= 4.49) {
-      return "Very Good (or Very Satisfactory)";
-    } else if (grandMean >= 2.5 && grandMean <= 3.49) {
-      return "Good";
-    } else if (grandMean >= 1.5 && grandMean <= 2.49) {
-      return "Fair";
-    } else if (grandMean >= 1.0 && grandMean <= 1.49) {
-      return "Poor";
-    } else if (grandMean === 0) {
-      return "Not Functioning";
-    }
-  }
-}
-
 export function calculateAttentionScore(
   area: AreaFolderDTO,
   surveyType: SurveyTeamType

@@ -1,12 +1,19 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
-import { FileStatus, FileVersionStatus, Progress } from "../generated/prisma";
+import {
+  FileStatus,
+  FileVersionStatus,
+  Level,
+  Progress,
+  SurveyResultStatus,
+} from "../generated/prisma";
 import { updateEvidenceFileById } from "../dal/evidence-file";
 import { verifySession } from "./session";
 import {
   createNewAreaFileVersion,
   createNewEvidenceFileVersion,
+  createSurveyCertificate,
   deleteVersionById as deleteVersionByIdDAL,
   resetAllAreaFileVersionStatus,
   resetAllEvidenceVersionStatus,
@@ -16,17 +23,21 @@ import { updateAreaFileById } from "../dal/area-file";
 import { updateParameterFolderById } from "../dal/parameter-folder";
 import { updateAreaFolderById } from "../dal/area-folder";
 import { getSurveyVisitById, updateSurveyVisitById } from "../dal/survey-visit";
+import { updateAccreditationById } from "../dal/accreditation";
+import { grantAccreditedStatus } from "./accreditation";
 
 type FileVersionType = {
   name: string;
   uploaderEmail: string;
   objectUrl: string;
   fileType: string;
-  evidenceFileId?: string;
-  areaFileId?: string;
-  parameterFolderId: string | undefined;
-  areaFolderId: string | undefined;
+  evidenceFileId?: string | undefined;
+  areaFileId?: string | undefined;
+  parameterFolderId?: string | undefined;
+  areaFolderId?: string | undefined;
   surveyVisitId: string | undefined;
+  accreditationId?: string | undefined;
+  level?: Level | undefined;
 };
 
 export async function createNewVersion({
@@ -39,6 +50,8 @@ export async function createNewVersion({
   parameterFolderId,
   areaFolderId,
   surveyVisitId,
+  accreditationId,
+  level,
 }: FileVersionType) {
   const session = await verifySession();
   if (!session)
@@ -72,8 +85,7 @@ export async function createNewVersion({
       id: surveyVisitId,
       status: Progress.IN_PROGRESS,
     });
-  }
-  if (areaFileId) {
+  } else if (areaFileId) {
     await resetAllAreaFileVersionStatus(areaFileId);
     const areaFileVersion = await createNewAreaFileVersion(
       name,
@@ -90,6 +102,19 @@ export async function createNewVersion({
       id: surveyVisitId,
       status: Progress.IN_PROGRESS,
     });
+  } else {
+    const certificate = await createSurveyCertificate(
+      name,
+      uploaderEmail,
+      surveyVisitId!,
+      objectUrl,
+      fileType
+    );
+    const surveyVisit = await updateSurveyVisitById({
+      id: surveyVisitId,
+      surveyResultStatus: SurveyResultStatus.GRANTED,
+    });
+    const accreditation = await grantAccreditedStatus(accreditationId, level);
   }
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");

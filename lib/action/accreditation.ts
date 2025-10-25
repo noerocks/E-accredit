@@ -4,6 +4,7 @@ import { InstrumentDisplayDTO } from "../dto/instrument";
 import { LevelDTO } from "../dto/level";
 import { ProgramDTO } from "../dto/programs";
 import {
+  AccreditationStatus,
   AreaFileType,
   Category,
   FileStatus,
@@ -178,6 +179,7 @@ export async function grantAccreditedStatus(
       currentLevel: level.id,
       startsAt: new Date(),
       endsAt,
+      status: AccreditationStatus.ACTIVE,
     });
   } catch (error) {
     const e = error as Error;

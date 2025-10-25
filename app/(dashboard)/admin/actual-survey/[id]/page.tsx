@@ -1,4 +1,5 @@
 import { DataTable } from "@/components/admin/accreditation/data-table";
+import NextSteps from "@/components/admin/actual-survey/next-steps";
 import SurveyResults from "@/components/admin/actual-survey/results";
 import { columns } from "@/components/admin/actual-survey/survey-visit/columns";
 import EndSurveyButton from "@/components/admin/self-survey/end-survey-button";
@@ -21,13 +22,12 @@ import {
 } from "@/lib/dal/survey-visit";
 import { getUsersByRole } from "@/lib/dal/user";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { SurveyVisitDTO } from "@/lib/dto/survey-visit";
 import {
   Role,
   SurveyTeam as SurveyTeamSchema,
   SurveyTeamType,
 } from "@/lib/generated/prisma";
-import { calculateAreaMean, formatAccreditationName } from "@/lib/utils";
+import { formatAccreditationName } from "@/lib/utils";
 import { Level, User } from "@prisma/client";
 import clsx from "clsx";
 import { CircleDot, SearchCheck } from "lucide-react";
@@ -88,6 +88,7 @@ const ActualSurveyPage = async ({
   const isAdmin = user.role === "ADMIN";
   const endSurveyIsVisible =
     complete && !surveyVisitEnded && (isCoordinator || isAdmin);
+  const accreditationId = surveyVisitStructure?.accreditationId;
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
@@ -113,7 +114,7 @@ const ActualSurveyPage = async ({
               )}
             >
               <CircleDot size={15} />
-              {complete ? "Complete" : "On Going"}
+              {complete ? "Survey Complete" : "On Going"}
             </p>
             <div className="flex items-center gap-2">
               {endSurveyIsVisible && <EndSurveyButton surveyVisitId={id} />}
@@ -129,6 +130,7 @@ const ActualSurveyPage = async ({
           <TabsList className="bg-background border">
             <TabsTrigger value="area">Area Ratings</TabsTrigger>
             <TabsTrigger value="results">Overall Survey Results</TabsTrigger>
+            <TabsTrigger value="next">Next Steps</TabsTrigger>
           </TabsList>
           <TabsContent value="area">
             <Card className="bg-background">
@@ -145,6 +147,14 @@ const ActualSurveyPage = async ({
               areaFolders={areaFolders as unknown as AreaFolderDTO[]}
               level={level as unknown as Level}
               surveyType={SurveyTeamType.EXTERNAL}
+            />
+          </TabsContent>
+          <TabsContent value="next">
+            <NextSteps
+              level={level}
+              areaFolders={areaFolders as unknown as AreaFolderDTO[]}
+              program={program!}
+              accreditationId={accreditationId}
             />
           </TabsContent>
         </Tabs>

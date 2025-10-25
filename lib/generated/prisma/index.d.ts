@@ -12499,15 +12499,15 @@ export namespace Prisma {
 
   export type LevelAvgAggregateOutputType = {
     rank: number | null
-    requiredGrandMean: Decimal | null
-    requiredAreaMean: Decimal | null
+    requiredGrandMean: number | null
+    requiredAreaMean: number | null
     yearsEffective: number | null
   }
 
   export type LevelSumAggregateOutputType = {
     rank: number | null
-    requiredGrandMean: Decimal | null
-    requiredAreaMean: Decimal | null
+    requiredGrandMean: number | null
+    requiredAreaMean: number | null
     yearsEffective: number | null
   }
 
@@ -12516,8 +12516,8 @@ export namespace Prisma {
     rank: number | null
     label: $Enums.LevelEnum | null
     phase: $Enums.Phase | null
-    requiredGrandMean: Decimal | null
-    requiredAreaMean: Decimal | null
+    requiredGrandMean: number | null
+    requiredAreaMean: number | null
     yearsEffective: number | null
   }
 
@@ -12526,8 +12526,8 @@ export namespace Prisma {
     rank: number | null
     label: $Enums.LevelEnum | null
     phase: $Enums.Phase | null
-    requiredGrandMean: Decimal | null
-    requiredAreaMean: Decimal | null
+    requiredGrandMean: number | null
+    requiredAreaMean: number | null
     yearsEffective: number | null
   }
 
@@ -12679,8 +12679,8 @@ export namespace Prisma {
     rank: number
     label: $Enums.LevelEnum
     phase: $Enums.Phase
-    requiredGrandMean: Decimal
-    requiredAreaMean: Decimal
+    requiredGrandMean: number
+    requiredAreaMean: number
     yearsEffective: number
     _count: LevelCountAggregateOutputType | null
     _avg: LevelAvgAggregateOutputType | null
@@ -12766,8 +12766,8 @@ export namespace Prisma {
       rank: number
       label: $Enums.LevelEnum
       phase: $Enums.Phase
-      requiredGrandMean: Prisma.Decimal
-      requiredAreaMean: Prisma.Decimal
+      requiredGrandMean: number
+      requiredAreaMean: number
       yearsEffective: number
     }, ExtArgs["result"]["level"]>
     composites: {}
@@ -13198,8 +13198,8 @@ export namespace Prisma {
     readonly rank: FieldRef<"Level", 'Int'>
     readonly label: FieldRef<"Level", 'LevelEnum'>
     readonly phase: FieldRef<"Level", 'Phase'>
-    readonly requiredGrandMean: FieldRef<"Level", 'Decimal'>
-    readonly requiredAreaMean: FieldRef<"Level", 'Decimal'>
+    readonly requiredGrandMean: FieldRef<"Level", 'Float'>
+    readonly requiredAreaMean: FieldRef<"Level", 'Float'>
     readonly yearsEffective: FieldRef<"Level", 'Int'>
   }
     
@@ -15055,6 +15055,7 @@ export namespace Prisma {
     level?: boolean | LevelDefaultArgs<ExtArgs>
     phaseOneRequirements?: boolean | SurveyVisit$phaseOneRequirementsArgs<ExtArgs>
     phaseTwoRequirements?: boolean | SurveyVisit$phaseTwoRequirementsArgs<ExtArgs>
+    certificate?: boolean | SurveyVisit$certificateArgs<ExtArgs>
     surveyTeam?: boolean | SurveyVisit$surveyTeamArgs<ExtArgs>
     _count?: boolean | SurveyVisitCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["surveyVisit"]>
@@ -15132,6 +15133,7 @@ export namespace Prisma {
     level?: boolean | LevelDefaultArgs<ExtArgs>
     phaseOneRequirements?: boolean | SurveyVisit$phaseOneRequirementsArgs<ExtArgs>
     phaseTwoRequirements?: boolean | SurveyVisit$phaseTwoRequirementsArgs<ExtArgs>
+    certificate?: boolean | SurveyVisit$certificateArgs<ExtArgs>
     surveyTeam?: boolean | SurveyVisit$surveyTeamArgs<ExtArgs>
     _count?: boolean | SurveyVisitCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -15151,6 +15153,7 @@ export namespace Prisma {
       level: Prisma.$LevelPayload<ExtArgs>
       phaseOneRequirements: Prisma.$PhaseOneRequirementsPayload<ExtArgs> | null
       phaseTwoRequirements: Prisma.$PhaseTwoRequirementsPayload<ExtArgs> | null
+      certificate: Prisma.$FileVersionPayload<ExtArgs> | null
       surveyTeam: Prisma.$SurveyTeamPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -15570,6 +15573,7 @@ export namespace Prisma {
     level<T extends LevelDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LevelDefaultArgs<ExtArgs>>): Prisma__LevelClient<$Result.GetResult<Prisma.$LevelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     phaseOneRequirements<T extends SurveyVisit$phaseOneRequirementsArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$phaseOneRequirementsArgs<ExtArgs>>): Prisma__PhaseOneRequirementsClient<$Result.GetResult<Prisma.$PhaseOneRequirementsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     phaseTwoRequirements<T extends SurveyVisit$phaseTwoRequirementsArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$phaseTwoRequirementsArgs<ExtArgs>>): Prisma__PhaseTwoRequirementsClient<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    certificate<T extends SurveyVisit$certificateArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$certificateArgs<ExtArgs>>): Prisma__FileVersionClient<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     surveyTeam<T extends SurveyVisit$surveyTeamArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$surveyTeamArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -16049,6 +16053,25 @@ export namespace Prisma {
      */
     include?: PhaseTwoRequirementsInclude<ExtArgs> | null
     where?: PhaseTwoRequirementsWhereInput
+  }
+
+  /**
+   * SurveyVisit.certificate
+   */
+  export type SurveyVisit$certificateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileVersion
+     */
+    select?: FileVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FileVersion
+     */
+    omit?: FileVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileVersionInclude<ExtArgs> | null
+    where?: FileVersionWhereInput
   }
 
   /**
@@ -25093,13 +25116,13 @@ export namespace Prisma {
   export type RatingAvgAggregateOutputType = {
     adequacy: number | null
     effectiveness: number | null
-    finalRate: Decimal | null
+    finalRate: number | null
   }
 
   export type RatingSumAggregateOutputType = {
     adequacy: number | null
     effectiveness: number | null
-    finalRate: Decimal | null
+    finalRate: number | null
   }
 
   export type RatingMinAggregateOutputType = {
@@ -25109,7 +25132,7 @@ export namespace Prisma {
     accreditorId: string | null
     adequacy: number | null
     effectiveness: number | null
-    finalRate: Decimal | null
+    finalRate: number | null
     NA: boolean | null
     createdAt: Date | null
   }
@@ -25121,7 +25144,7 @@ export namespace Prisma {
     accreditorId: string | null
     adequacy: number | null
     effectiveness: number | null
-    finalRate: Decimal | null
+    finalRate: number | null
     NA: boolean | null
     createdAt: Date | null
   }
@@ -25282,7 +25305,7 @@ export namespace Prisma {
     accreditorId: string
     adequacy: number | null
     effectiveness: number | null
-    finalRate: Decimal | null
+    finalRate: number | null
     NA: boolean | null
     createdAt: Date
     _count: RatingCountAggregateOutputType | null
@@ -25387,7 +25410,7 @@ export namespace Prisma {
       accreditorId: string
       adequacy: number | null
       effectiveness: number | null
-      finalRate: Prisma.Decimal | null
+      finalRate: number | null
       NA: boolean | null
       createdAt: Date
     }, ExtArgs["result"]["rating"]>
@@ -25821,7 +25844,7 @@ export namespace Prisma {
     readonly accreditorId: FieldRef<"Rating", 'String'>
     readonly adequacy: FieldRef<"Rating", 'Int'>
     readonly effectiveness: FieldRef<"Rating", 'Int'>
-    readonly finalRate: FieldRef<"Rating", 'Decimal'>
+    readonly finalRate: FieldRef<"Rating", 'Float'>
     readonly NA: FieldRef<"Rating", 'Boolean'>
     readonly createdAt: FieldRef<"Rating", 'DateTime'>
   }
@@ -26252,6 +26275,7 @@ export namespace Prisma {
     id: string | null
     evidenceFileId: string | null
     areaFileId: string | null
+    surveyVisitId: string | null
     uploaderEmail: string | null
     name: string | null
     status: $Enums.FileVersionStatus | null
@@ -26264,6 +26288,7 @@ export namespace Prisma {
     id: string | null
     evidenceFileId: string | null
     areaFileId: string | null
+    surveyVisitId: string | null
     uploaderEmail: string | null
     name: string | null
     status: $Enums.FileVersionStatus | null
@@ -26276,6 +26301,7 @@ export namespace Prisma {
     id: number
     evidenceFileId: number
     areaFileId: number
+    surveyVisitId: number
     uploaderEmail: number
     name: number
     status: number
@@ -26290,6 +26316,7 @@ export namespace Prisma {
     id?: true
     evidenceFileId?: true
     areaFileId?: true
+    surveyVisitId?: true
     uploaderEmail?: true
     name?: true
     status?: true
@@ -26302,6 +26329,7 @@ export namespace Prisma {
     id?: true
     evidenceFileId?: true
     areaFileId?: true
+    surveyVisitId?: true
     uploaderEmail?: true
     name?: true
     status?: true
@@ -26314,6 +26342,7 @@ export namespace Prisma {
     id?: true
     evidenceFileId?: true
     areaFileId?: true
+    surveyVisitId?: true
     uploaderEmail?: true
     name?: true
     status?: true
@@ -26399,6 +26428,7 @@ export namespace Prisma {
     id: string
     evidenceFileId: string | null
     areaFileId: string | null
+    surveyVisitId: string | null
     uploaderEmail: string | null
     name: string
     status: $Enums.FileVersionStatus | null
@@ -26428,6 +26458,7 @@ export namespace Prisma {
     id?: boolean
     evidenceFileId?: boolean
     areaFileId?: boolean
+    surveyVisitId?: boolean
     uploaderEmail?: boolean
     name?: boolean
     status?: boolean
@@ -26436,6 +26467,7 @@ export namespace Prisma {
     uploadedAt?: boolean
     evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+    surveyVisit?: boolean | FileVersion$surveyVisitArgs<ExtArgs>
     uploader?: boolean | FileVersion$uploaderArgs<ExtArgs>
   }, ExtArgs["result"]["fileVersion"]>
 
@@ -26443,6 +26475,7 @@ export namespace Prisma {
     id?: boolean
     evidenceFileId?: boolean
     areaFileId?: boolean
+    surveyVisitId?: boolean
     uploaderEmail?: boolean
     name?: boolean
     status?: boolean
@@ -26451,6 +26484,7 @@ export namespace Prisma {
     uploadedAt?: boolean
     evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+    surveyVisit?: boolean | FileVersion$surveyVisitArgs<ExtArgs>
     uploader?: boolean | FileVersion$uploaderArgs<ExtArgs>
   }, ExtArgs["result"]["fileVersion"]>
 
@@ -26458,6 +26492,7 @@ export namespace Prisma {
     id?: boolean
     evidenceFileId?: boolean
     areaFileId?: boolean
+    surveyVisitId?: boolean
     uploaderEmail?: boolean
     name?: boolean
     status?: boolean
@@ -26466,6 +26501,7 @@ export namespace Prisma {
     uploadedAt?: boolean
     evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+    surveyVisit?: boolean | FileVersion$surveyVisitArgs<ExtArgs>
     uploader?: boolean | FileVersion$uploaderArgs<ExtArgs>
   }, ExtArgs["result"]["fileVersion"]>
 
@@ -26473,6 +26509,7 @@ export namespace Prisma {
     id?: boolean
     evidenceFileId?: boolean
     areaFileId?: boolean
+    surveyVisitId?: boolean
     uploaderEmail?: boolean
     name?: boolean
     status?: boolean
@@ -26481,20 +26518,23 @@ export namespace Prisma {
     uploadedAt?: boolean
   }
 
-  export type FileVersionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "evidenceFileId" | "areaFileId" | "uploaderEmail" | "name" | "status" | "objectUrl" | "type" | "uploadedAt", ExtArgs["result"]["fileVersion"]>
+  export type FileVersionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "evidenceFileId" | "areaFileId" | "surveyVisitId" | "uploaderEmail" | "name" | "status" | "objectUrl" | "type" | "uploadedAt", ExtArgs["result"]["fileVersion"]>
   export type FileVersionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+    surveyVisit?: boolean | FileVersion$surveyVisitArgs<ExtArgs>
     uploader?: boolean | FileVersion$uploaderArgs<ExtArgs>
   }
   export type FileVersionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+    surveyVisit?: boolean | FileVersion$surveyVisitArgs<ExtArgs>
     uploader?: boolean | FileVersion$uploaderArgs<ExtArgs>
   }
   export type FileVersionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     evidenceFile?: boolean | FileVersion$evidenceFileArgs<ExtArgs>
     areaFile?: boolean | FileVersion$areaFileArgs<ExtArgs>
+    surveyVisit?: boolean | FileVersion$surveyVisitArgs<ExtArgs>
     uploader?: boolean | FileVersion$uploaderArgs<ExtArgs>
   }
 
@@ -26503,12 +26543,14 @@ export namespace Prisma {
     objects: {
       evidenceFile: Prisma.$EvidenceFilePayload<ExtArgs> | null
       areaFile: Prisma.$AreaFilePayload<ExtArgs> | null
+      surveyVisit: Prisma.$SurveyVisitPayload<ExtArgs> | null
       uploader: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       evidenceFileId: string | null
       areaFileId: string | null
+      surveyVisitId: string | null
       uploaderEmail: string | null
       name: string
       status: $Enums.FileVersionStatus | null
@@ -26911,6 +26953,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     evidenceFile<T extends FileVersion$evidenceFileArgs<ExtArgs> = {}>(args?: Subset<T, FileVersion$evidenceFileArgs<ExtArgs>>): Prisma__EvidenceFileClient<$Result.GetResult<Prisma.$EvidenceFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     areaFile<T extends FileVersion$areaFileArgs<ExtArgs> = {}>(args?: Subset<T, FileVersion$areaFileArgs<ExtArgs>>): Prisma__AreaFileClient<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    surveyVisit<T extends FileVersion$surveyVisitArgs<ExtArgs> = {}>(args?: Subset<T, FileVersion$surveyVisitArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     uploader<T extends FileVersion$uploaderArgs<ExtArgs> = {}>(args?: Subset<T, FileVersion$uploaderArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -26944,6 +26987,7 @@ export namespace Prisma {
     readonly id: FieldRef<"FileVersion", 'String'>
     readonly evidenceFileId: FieldRef<"FileVersion", 'String'>
     readonly areaFileId: FieldRef<"FileVersion", 'String'>
+    readonly surveyVisitId: FieldRef<"FileVersion", 'String'>
     readonly uploaderEmail: FieldRef<"FileVersion", 'String'>
     readonly name: FieldRef<"FileVersion", 'String'>
     readonly status: FieldRef<"FileVersion", 'FileVersionStatus'>
@@ -27381,6 +27425,25 @@ export namespace Prisma {
      */
     include?: AreaFileInclude<ExtArgs> | null
     where?: AreaFileWhereInput
+  }
+
+  /**
+   * FileVersion.surveyVisit
+   */
+  export type FileVersion$surveyVisitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    where?: SurveyVisitWhereInput
   }
 
   /**
@@ -35502,6 +35565,7 @@ export namespace Prisma {
     id: 'id',
     evidenceFileId: 'evidenceFileId',
     areaFileId: 'areaFileId',
+    surveyVisitId: 'surveyVisitId',
     uploaderEmail: 'uploaderEmail',
     name: 'name',
     status: 'status',
@@ -35714,16 +35778,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Decimal'
+   * Reference to a field of type 'Float'
    */
-  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 
   /**
-   * Reference to a field of type 'Decimal[]'
+   * Reference to a field of type 'Float[]'
    */
-  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -35871,20 +35935,6 @@ export namespace Prisma {
    * Reference to a field of type 'CommentType[]'
    */
   export type ListEnumCommentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CommentType[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -36420,8 +36470,8 @@ export namespace Prisma {
     rank?: IntFilter<"Level"> | number
     label?: EnumLevelEnumFilter<"Level"> | $Enums.LevelEnum
     phase?: EnumPhaseFilter<"Level"> | $Enums.Phase
-    requiredGrandMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
-    requiredAreaMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
+    requiredGrandMean?: FloatFilter<"Level"> | number
+    requiredAreaMean?: FloatFilter<"Level"> | number
     yearsEffective?: IntFilter<"Level"> | number
     accreditations?: AccreditationListRelationFilter
     surveyVisits?: SurveyVisitListRelationFilter
@@ -36447,8 +36497,8 @@ export namespace Prisma {
     rank?: IntFilter<"Level"> | number
     label?: EnumLevelEnumFilter<"Level"> | $Enums.LevelEnum
     phase?: EnumPhaseFilter<"Level"> | $Enums.Phase
-    requiredGrandMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
-    requiredAreaMean?: DecimalFilter<"Level"> | Decimal | DecimalJsLike | number | string
+    requiredGrandMean?: FloatFilter<"Level"> | number
+    requiredAreaMean?: FloatFilter<"Level"> | number
     yearsEffective?: IntFilter<"Level"> | number
     accreditations?: AccreditationListRelationFilter
     surveyVisits?: SurveyVisitListRelationFilter
@@ -36477,8 +36527,8 @@ export namespace Prisma {
     rank?: IntWithAggregatesFilter<"Level"> | number
     label?: EnumLevelEnumWithAggregatesFilter<"Level"> | $Enums.LevelEnum
     phase?: EnumPhaseWithAggregatesFilter<"Level"> | $Enums.Phase
-    requiredGrandMean?: DecimalWithAggregatesFilter<"Level"> | Decimal | DecimalJsLike | number | string
-    requiredAreaMean?: DecimalWithAggregatesFilter<"Level"> | Decimal | DecimalJsLike | number | string
+    requiredGrandMean?: FloatWithAggregatesFilter<"Level"> | number
+    requiredAreaMean?: FloatWithAggregatesFilter<"Level"> | number
     yearsEffective?: IntWithAggregatesFilter<"Level"> | number
   }
 
@@ -36574,6 +36624,7 @@ export namespace Prisma {
     level?: XOR<LevelScalarRelationFilter, LevelWhereInput>
     phaseOneRequirements?: XOR<PhaseOneRequirementsNullableScalarRelationFilter, PhaseOneRequirementsWhereInput> | null
     phaseTwoRequirements?: XOR<PhaseTwoRequirementsNullableScalarRelationFilter, PhaseTwoRequirementsWhereInput> | null
+    certificate?: XOR<FileVersionNullableScalarRelationFilter, FileVersionWhereInput> | null
     surveyTeam?: SurveyTeamListRelationFilter
   }
 
@@ -36600,6 +36651,7 @@ export namespace Prisma {
     level?: LevelOrderByWithRelationInput
     phaseOneRequirements?: PhaseOneRequirementsOrderByWithRelationInput
     phaseTwoRequirements?: PhaseTwoRequirementsOrderByWithRelationInput
+    certificate?: FileVersionOrderByWithRelationInput
     surveyTeam?: SurveyTeamOrderByRelationAggregateInput
   }
 
@@ -36629,6 +36681,7 @@ export namespace Prisma {
     level?: XOR<LevelScalarRelationFilter, LevelWhereInput>
     phaseOneRequirements?: XOR<PhaseOneRequirementsNullableScalarRelationFilter, PhaseOneRequirementsWhereInput> | null
     phaseTwoRequirements?: XOR<PhaseTwoRequirementsNullableScalarRelationFilter, PhaseTwoRequirementsWhereInput> | null
+    certificate?: XOR<FileVersionNullableScalarRelationFilter, FileVersionWhereInput> | null
     surveyTeam?: SurveyTeamListRelationFilter
   }, "id">
 
@@ -37157,7 +37210,7 @@ export namespace Prisma {
     accreditorId?: StringFilter<"Rating"> | string
     adequacy?: IntNullableFilter<"Rating"> | number | null
     effectiveness?: IntNullableFilter<"Rating"> | number | null
-    finalRate?: DecimalNullableFilter<"Rating"> | Decimal | DecimalJsLike | number | string | null
+    finalRate?: FloatNullableFilter<"Rating"> | number | null
     NA?: BoolNullableFilter<"Rating"> | boolean | null
     createdAt?: DateTimeFilter<"Rating"> | Date | string
     evidenceFile?: XOR<EvidenceFileScalarRelationFilter, EvidenceFileWhereInput>
@@ -37188,7 +37241,7 @@ export namespace Prisma {
     accreditorId?: StringFilter<"Rating"> | string
     adequacy?: IntNullableFilter<"Rating"> | number | null
     effectiveness?: IntNullableFilter<"Rating"> | number | null
-    finalRate?: DecimalNullableFilter<"Rating"> | Decimal | DecimalJsLike | number | string | null
+    finalRate?: FloatNullableFilter<"Rating"> | number | null
     NA?: BoolNullableFilter<"Rating"> | boolean | null
     createdAt?: DateTimeFilter<"Rating"> | Date | string
     evidenceFile?: XOR<EvidenceFileScalarRelationFilter, EvidenceFileWhereInput>
@@ -37222,7 +37275,7 @@ export namespace Prisma {
     accreditorId?: StringWithAggregatesFilter<"Rating"> | string
     adequacy?: IntNullableWithAggregatesFilter<"Rating"> | number | null
     effectiveness?: IntNullableWithAggregatesFilter<"Rating"> | number | null
-    finalRate?: DecimalNullableWithAggregatesFilter<"Rating"> | Decimal | DecimalJsLike | number | string | null
+    finalRate?: FloatNullableWithAggregatesFilter<"Rating"> | number | null
     NA?: BoolNullableWithAggregatesFilter<"Rating"> | boolean | null
     createdAt?: DateTimeWithAggregatesFilter<"Rating"> | Date | string
   }
@@ -37234,6 +37287,7 @@ export namespace Prisma {
     id?: StringFilter<"FileVersion"> | string
     evidenceFileId?: StringNullableFilter<"FileVersion"> | string | null
     areaFileId?: StringNullableFilter<"FileVersion"> | string | null
+    surveyVisitId?: StringNullableFilter<"FileVersion"> | string | null
     uploaderEmail?: StringNullableFilter<"FileVersion"> | string | null
     name?: StringFilter<"FileVersion"> | string
     status?: EnumFileVersionStatusNullableFilter<"FileVersion"> | $Enums.FileVersionStatus | null
@@ -37242,6 +37296,7 @@ export namespace Prisma {
     uploadedAt?: DateTimeFilter<"FileVersion"> | Date | string
     evidenceFile?: XOR<EvidenceFileNullableScalarRelationFilter, EvidenceFileWhereInput> | null
     areaFile?: XOR<AreaFileNullableScalarRelationFilter, AreaFileWhereInput> | null
+    surveyVisit?: XOR<SurveyVisitNullableScalarRelationFilter, SurveyVisitWhereInput> | null
     uploader?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
@@ -37249,6 +37304,7 @@ export namespace Prisma {
     id?: SortOrder
     evidenceFileId?: SortOrderInput | SortOrder
     areaFileId?: SortOrderInput | SortOrder
+    surveyVisitId?: SortOrderInput | SortOrder
     uploaderEmail?: SortOrderInput | SortOrder
     name?: SortOrder
     status?: SortOrderInput | SortOrder
@@ -37257,11 +37313,13 @@ export namespace Prisma {
     uploadedAt?: SortOrder
     evidenceFile?: EvidenceFileOrderByWithRelationInput
     areaFile?: AreaFileOrderByWithRelationInput
+    surveyVisit?: SurveyVisitOrderByWithRelationInput
     uploader?: UserOrderByWithRelationInput
   }
 
   export type FileVersionWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    surveyVisitId?: string
     AND?: FileVersionWhereInput | FileVersionWhereInput[]
     OR?: FileVersionWhereInput[]
     NOT?: FileVersionWhereInput | FileVersionWhereInput[]
@@ -37275,13 +37333,15 @@ export namespace Prisma {
     uploadedAt?: DateTimeFilter<"FileVersion"> | Date | string
     evidenceFile?: XOR<EvidenceFileNullableScalarRelationFilter, EvidenceFileWhereInput> | null
     areaFile?: XOR<AreaFileNullableScalarRelationFilter, AreaFileWhereInput> | null
+    surveyVisit?: XOR<SurveyVisitNullableScalarRelationFilter, SurveyVisitWhereInput> | null
     uploader?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-  }, "id">
+  }, "id" | "surveyVisitId">
 
   export type FileVersionOrderByWithAggregationInput = {
     id?: SortOrder
     evidenceFileId?: SortOrderInput | SortOrder
     areaFileId?: SortOrderInput | SortOrder
+    surveyVisitId?: SortOrderInput | SortOrder
     uploaderEmail?: SortOrderInput | SortOrder
     name?: SortOrder
     status?: SortOrderInput | SortOrder
@@ -37300,6 +37360,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"FileVersion"> | string
     evidenceFileId?: StringNullableWithAggregatesFilter<"FileVersion"> | string | null
     areaFileId?: StringNullableWithAggregatesFilter<"FileVersion"> | string | null
+    surveyVisitId?: StringNullableWithAggregatesFilter<"FileVersion"> | string | null
     uploaderEmail?: StringNullableWithAggregatesFilter<"FileVersion"> | string | null
     name?: StringWithAggregatesFilter<"FileVersion"> | string
     status?: EnumFileVersionStatusNullableWithAggregatesFilter<"FileVersion"> | $Enums.FileVersionStatus | null
@@ -38283,8 +38344,8 @@ export namespace Prisma {
     rank: number
     label: $Enums.LevelEnum
     phase: $Enums.Phase
-    requiredGrandMean: Decimal | DecimalJsLike | number | string
-    requiredAreaMean: Decimal | DecimalJsLike | number | string
+    requiredGrandMean: number
+    requiredAreaMean: number
     yearsEffective: number
     accreditations?: AccreditationCreateNestedManyWithoutLevelInput
     surveyVisits?: SurveyVisitCreateNestedManyWithoutLevelInput
@@ -38295,8 +38356,8 @@ export namespace Prisma {
     rank: number
     label: $Enums.LevelEnum
     phase: $Enums.Phase
-    requiredGrandMean: Decimal | DecimalJsLike | number | string
-    requiredAreaMean: Decimal | DecimalJsLike | number | string
+    requiredGrandMean: number
+    requiredAreaMean: number
     yearsEffective: number
     accreditations?: AccreditationUncheckedCreateNestedManyWithoutLevelInput
     surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutLevelInput
@@ -38307,8 +38368,8 @@ export namespace Prisma {
     rank?: IntFieldUpdateOperationsInput | number
     label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
-    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredGrandMean?: FloatFieldUpdateOperationsInput | number
+    requiredAreaMean?: FloatFieldUpdateOperationsInput | number
     yearsEffective?: IntFieldUpdateOperationsInput | number
     accreditations?: AccreditationUpdateManyWithoutLevelNestedInput
     surveyVisits?: SurveyVisitUpdateManyWithoutLevelNestedInput
@@ -38319,8 +38380,8 @@ export namespace Prisma {
     rank?: IntFieldUpdateOperationsInput | number
     label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
-    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredGrandMean?: FloatFieldUpdateOperationsInput | number
+    requiredAreaMean?: FloatFieldUpdateOperationsInput | number
     yearsEffective?: IntFieldUpdateOperationsInput | number
     accreditations?: AccreditationUncheckedUpdateManyWithoutLevelNestedInput
     surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutLevelNestedInput
@@ -38331,8 +38392,8 @@ export namespace Prisma {
     rank: number
     label: $Enums.LevelEnum
     phase: $Enums.Phase
-    requiredGrandMean: Decimal | DecimalJsLike | number | string
-    requiredAreaMean: Decimal | DecimalJsLike | number | string
+    requiredGrandMean: number
+    requiredAreaMean: number
     yearsEffective: number
   }
 
@@ -38341,8 +38402,8 @@ export namespace Prisma {
     rank?: IntFieldUpdateOperationsInput | number
     label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
-    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredGrandMean?: FloatFieldUpdateOperationsInput | number
+    requiredAreaMean?: FloatFieldUpdateOperationsInput | number
     yearsEffective?: IntFieldUpdateOperationsInput | number
   }
 
@@ -38351,8 +38412,8 @@ export namespace Prisma {
     rank?: IntFieldUpdateOperationsInput | number
     label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
-    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredGrandMean?: FloatFieldUpdateOperationsInput | number
+    requiredAreaMean?: FloatFieldUpdateOperationsInput | number
     yearsEffective?: IntFieldUpdateOperationsInput | number
   }
 
@@ -38442,6 +38503,7 @@ export namespace Prisma {
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
   }
 
@@ -38466,6 +38528,7 @@ export namespace Prisma {
     actualSurveyStatus?: $Enums.SurveyStatus
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
@@ -38490,6 +38553,7 @@ export namespace Prisma {
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
   }
 
@@ -38514,6 +38578,7 @@ export namespace Prisma {
     actualSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
@@ -39013,7 +39078,7 @@ export namespace Prisma {
     type: $Enums.SurveyTeamType
     adequacy?: number | null
     effectiveness?: number | null
-    finalRate?: Decimal | DecimalJsLike | number | string | null
+    finalRate?: number | null
     NA?: boolean | null
     createdAt?: Date | string
     evidenceFile: EvidenceFileCreateNestedOneWithoutRatingsInput
@@ -39027,7 +39092,7 @@ export namespace Prisma {
     accreditorId: string
     adequacy?: number | null
     effectiveness?: number | null
-    finalRate?: Decimal | DecimalJsLike | number | string | null
+    finalRate?: number | null
     NA?: boolean | null
     createdAt?: Date | string
   }
@@ -39037,7 +39102,7 @@ export namespace Prisma {
     type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
     adequacy?: NullableIntFieldUpdateOperationsInput | number | null
     effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
-    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    finalRate?: NullableFloatFieldUpdateOperationsInput | number | null
     NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     evidenceFile?: EvidenceFileUpdateOneRequiredWithoutRatingsNestedInput
@@ -39051,7 +39116,7 @@ export namespace Prisma {
     accreditorId?: StringFieldUpdateOperationsInput | string
     adequacy?: NullableIntFieldUpdateOperationsInput | number | null
     effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
-    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    finalRate?: NullableFloatFieldUpdateOperationsInput | number | null
     NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -39063,7 +39128,7 @@ export namespace Prisma {
     accreditorId: string
     adequacy?: number | null
     effectiveness?: number | null
-    finalRate?: Decimal | DecimalJsLike | number | string | null
+    finalRate?: number | null
     NA?: boolean | null
     createdAt?: Date | string
   }
@@ -39073,7 +39138,7 @@ export namespace Prisma {
     type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
     adequacy?: NullableIntFieldUpdateOperationsInput | number | null
     effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
-    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    finalRate?: NullableFloatFieldUpdateOperationsInput | number | null
     NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -39085,7 +39150,7 @@ export namespace Prisma {
     accreditorId?: StringFieldUpdateOperationsInput | string
     adequacy?: NullableIntFieldUpdateOperationsInput | number | null
     effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
-    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    finalRate?: NullableFloatFieldUpdateOperationsInput | number | null
     NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -39099,6 +39164,7 @@ export namespace Prisma {
     uploadedAt?: Date | string
     evidenceFile?: EvidenceFileCreateNestedOneWithoutFileVersionsInput
     areaFile?: AreaFileCreateNestedOneWithoutFileVersionsInput
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutCertificateInput
     uploader?: UserCreateNestedOneWithoutUploadsInput
   }
 
@@ -39106,6 +39172,7 @@ export namespace Prisma {
     id?: string
     evidenceFileId?: string | null
     areaFileId?: string | null
+    surveyVisitId?: string | null
     uploaderEmail?: string | null
     name: string
     status?: $Enums.FileVersionStatus | null
@@ -39123,6 +39190,7 @@ export namespace Prisma {
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     evidenceFile?: EvidenceFileUpdateOneWithoutFileVersionsNestedInput
     areaFile?: AreaFileUpdateOneWithoutFileVersionsNestedInput
+    surveyVisit?: SurveyVisitUpdateOneWithoutCertificateNestedInput
     uploader?: UserUpdateOneWithoutUploadsNestedInput
   }
 
@@ -39130,6 +39198,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     uploaderEmail?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
@@ -39142,6 +39211,7 @@ export namespace Prisma {
     id?: string
     evidenceFileId?: string | null
     areaFileId?: string | null
+    surveyVisitId?: string | null
     uploaderEmail?: string | null
     name: string
     status?: $Enums.FileVersionStatus | null
@@ -39163,6 +39233,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     uploaderEmail?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
@@ -40183,15 +40254,15 @@ export namespace Prisma {
     not?: NestedEnumPhaseFilter<$PrismaModel> | $Enums.Phase
   }
 
-  export type DecimalFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type AccreditationListRelationFilter = {
@@ -40278,20 +40349,20 @@ export namespace Prisma {
     _max?: NestedEnumPhaseFilter<$PrismaModel>
   }
 
-  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedDecimalFilter<$PrismaModel>
-    _sum?: NestedDecimalFilter<$PrismaModel>
-    _min?: NestedDecimalFilter<$PrismaModel>
-    _max?: NestedDecimalFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -40419,6 +40490,11 @@ export namespace Prisma {
   export type PhaseTwoRequirementsNullableScalarRelationFilter = {
     is?: PhaseTwoRequirementsWhereInput | null
     isNot?: PhaseTwoRequirementsWhereInput | null
+  }
+
+  export type FileVersionNullableScalarRelationFilter = {
+    is?: FileVersionWhereInput | null
+    isNot?: FileVersionWhereInput | null
   }
 
   export type SurveyVisitCountOrderByAggregateInput = {
@@ -40836,15 +40912,15 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type DecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type BoolNullableFilter<$PrismaModel = never> = {
@@ -40921,20 +40997,20 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
     _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -40966,6 +41042,7 @@ export namespace Prisma {
     id?: SortOrder
     evidenceFileId?: SortOrder
     areaFileId?: SortOrder
+    surveyVisitId?: SortOrder
     uploaderEmail?: SortOrder
     name?: SortOrder
     status?: SortOrder
@@ -40978,6 +41055,7 @@ export namespace Prisma {
     id?: SortOrder
     evidenceFileId?: SortOrder
     areaFileId?: SortOrder
+    surveyVisitId?: SortOrder
     uploaderEmail?: SortOrder
     name?: SortOrder
     status?: SortOrder
@@ -40990,6 +41068,7 @@ export namespace Prisma {
     id?: SortOrder
     evidenceFileId?: SortOrder
     areaFileId?: SortOrder
+    surveyVisitId?: SortOrder
     uploaderEmail?: SortOrder
     name?: SortOrder
     status?: SortOrder
@@ -42221,12 +42300,12 @@ export namespace Prisma {
     set?: $Enums.Phase
   }
 
-  export type DecimalFieldUpdateOperationsInput = {
-    set?: Decimal | DecimalJsLike | number | string
-    increment?: Decimal | DecimalJsLike | number | string
-    decrement?: Decimal | DecimalJsLike | number | string
-    multiply?: Decimal | DecimalJsLike | number | string
-    divide?: Decimal | DecimalJsLike | number | string
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type AccreditationUpdateManyWithoutLevelNestedInput = {
@@ -42389,6 +42468,12 @@ export namespace Prisma {
     connect?: PhaseTwoRequirementsWhereUniqueInput
   }
 
+  export type FileVersionCreateNestedOneWithoutSurveyVisitInput = {
+    create?: XOR<FileVersionCreateWithoutSurveyVisitInput, FileVersionUncheckedCreateWithoutSurveyVisitInput>
+    connectOrCreate?: FileVersionCreateOrConnectWithoutSurveyVisitInput
+    connect?: FileVersionWhereUniqueInput
+  }
+
   export type SurveyTeamCreateNestedManyWithoutSurveyVisitInput = {
     create?: XOR<SurveyTeamCreateWithoutSurveyVisitInput, SurveyTeamUncheckedCreateWithoutSurveyVisitInput> | SurveyTeamCreateWithoutSurveyVisitInput[] | SurveyTeamUncheckedCreateWithoutSurveyVisitInput[]
     connectOrCreate?: SurveyTeamCreateOrConnectWithoutSurveyVisitInput | SurveyTeamCreateOrConnectWithoutSurveyVisitInput[]
@@ -42406,6 +42491,12 @@ export namespace Prisma {
     create?: XOR<PhaseTwoRequirementsCreateWithoutSurveyVisitInput, PhaseTwoRequirementsUncheckedCreateWithoutSurveyVisitInput>
     connectOrCreate?: PhaseTwoRequirementsCreateOrConnectWithoutSurveyVisitInput
     connect?: PhaseTwoRequirementsWhereUniqueInput
+  }
+
+  export type FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput = {
+    create?: XOR<FileVersionCreateWithoutSurveyVisitInput, FileVersionUncheckedCreateWithoutSurveyVisitInput>
+    connectOrCreate?: FileVersionCreateOrConnectWithoutSurveyVisitInput
+    connect?: FileVersionWhereUniqueInput
   }
 
   export type SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput = {
@@ -42471,6 +42562,16 @@ export namespace Prisma {
     update?: XOR<XOR<PhaseTwoRequirementsUpdateToOneWithWhereWithoutSurveyVisitInput, PhaseTwoRequirementsUpdateWithoutSurveyVisitInput>, PhaseTwoRequirementsUncheckedUpdateWithoutSurveyVisitInput>
   }
 
+  export type FileVersionUpdateOneWithoutSurveyVisitNestedInput = {
+    create?: XOR<FileVersionCreateWithoutSurveyVisitInput, FileVersionUncheckedCreateWithoutSurveyVisitInput>
+    connectOrCreate?: FileVersionCreateOrConnectWithoutSurveyVisitInput
+    upsert?: FileVersionUpsertWithoutSurveyVisitInput
+    disconnect?: FileVersionWhereInput | boolean
+    delete?: FileVersionWhereInput | boolean
+    connect?: FileVersionWhereUniqueInput
+    update?: XOR<XOR<FileVersionUpdateToOneWithWhereWithoutSurveyVisitInput, FileVersionUpdateWithoutSurveyVisitInput>, FileVersionUncheckedUpdateWithoutSurveyVisitInput>
+  }
+
   export type SurveyTeamUpdateManyWithoutSurveyVisitNestedInput = {
     create?: XOR<SurveyTeamCreateWithoutSurveyVisitInput, SurveyTeamUncheckedCreateWithoutSurveyVisitInput> | SurveyTeamCreateWithoutSurveyVisitInput[] | SurveyTeamUncheckedCreateWithoutSurveyVisitInput[]
     connectOrCreate?: SurveyTeamCreateOrConnectWithoutSurveyVisitInput | SurveyTeamCreateOrConnectWithoutSurveyVisitInput[]
@@ -42503,6 +42604,16 @@ export namespace Prisma {
     delete?: PhaseTwoRequirementsWhereInput | boolean
     connect?: PhaseTwoRequirementsWhereUniqueInput
     update?: XOR<XOR<PhaseTwoRequirementsUpdateToOneWithWhereWithoutSurveyVisitInput, PhaseTwoRequirementsUpdateWithoutSurveyVisitInput>, PhaseTwoRequirementsUncheckedUpdateWithoutSurveyVisitInput>
+  }
+
+  export type FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput = {
+    create?: XOR<FileVersionCreateWithoutSurveyVisitInput, FileVersionUncheckedCreateWithoutSurveyVisitInput>
+    connectOrCreate?: FileVersionCreateOrConnectWithoutSurveyVisitInput
+    upsert?: FileVersionUpsertWithoutSurveyVisitInput
+    disconnect?: FileVersionWhereInput | boolean
+    delete?: FileVersionWhereInput | boolean
+    connect?: FileVersionWhereUniqueInput
+    update?: XOR<XOR<FileVersionUpdateToOneWithWhereWithoutSurveyVisitInput, FileVersionUpdateWithoutSurveyVisitInput>, FileVersionUncheckedUpdateWithoutSurveyVisitInput>
   }
 
   export type SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput = {
@@ -43373,12 +43484,12 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type NullableDecimalFieldUpdateOperationsInput = {
-    set?: Decimal | DecimalJsLike | number | string | null
-    increment?: Decimal | DecimalJsLike | number | string
-    decrement?: Decimal | DecimalJsLike | number | string
-    multiply?: Decimal | DecimalJsLike | number | string
-    divide?: Decimal | DecimalJsLike | number | string
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NullableBoolFieldUpdateOperationsInput = {
@@ -43413,6 +43524,12 @@ export namespace Prisma {
     connect?: AreaFileWhereUniqueInput
   }
 
+  export type SurveyVisitCreateNestedOneWithoutCertificateInput = {
+    create?: XOR<SurveyVisitCreateWithoutCertificateInput, SurveyVisitUncheckedCreateWithoutCertificateInput>
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutCertificateInput
+    connect?: SurveyVisitWhereUniqueInput
+  }
+
   export type UserCreateNestedOneWithoutUploadsInput = {
     create?: XOR<UserCreateWithoutUploadsInput, UserUncheckedCreateWithoutUploadsInput>
     connectOrCreate?: UserCreateOrConnectWithoutUploadsInput
@@ -43441,6 +43558,16 @@ export namespace Prisma {
     delete?: AreaFileWhereInput | boolean
     connect?: AreaFileWhereUniqueInput
     update?: XOR<XOR<AreaFileUpdateToOneWithWhereWithoutFileVersionsInput, AreaFileUpdateWithoutFileVersionsInput>, AreaFileUncheckedUpdateWithoutFileVersionsInput>
+  }
+
+  export type SurveyVisitUpdateOneWithoutCertificateNestedInput = {
+    create?: XOR<SurveyVisitCreateWithoutCertificateInput, SurveyVisitUncheckedCreateWithoutCertificateInput>
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutCertificateInput
+    upsert?: SurveyVisitUpsertWithoutCertificateInput
+    disconnect?: SurveyVisitWhereInput | boolean
+    delete?: SurveyVisitWhereInput | boolean
+    connect?: SurveyVisitWhereUniqueInput
+    update?: XOR<XOR<SurveyVisitUpdateToOneWithWhereWithoutCertificateInput, SurveyVisitUpdateWithoutCertificateInput>, SurveyVisitUncheckedUpdateWithoutCertificateInput>
   }
 
   export type UserUpdateOneWithoutUploadsNestedInput = {
@@ -44145,17 +44272,6 @@ export namespace Prisma {
     not?: NestedEnumPhaseFilter<$PrismaModel> | $Enums.Phase
   }
 
-  export type NestedDecimalFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-  }
-
   export type NestedEnumLevelEnumWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.LevelEnum | EnumLevelEnumFieldRefInput<$PrismaModel>
     in?: $Enums.LevelEnum[] | ListEnumLevelEnumFieldRefInput<$PrismaModel>
@@ -44176,20 +44292,20 @@ export namespace Prisma {
     _max?: NestedEnumPhaseFilter<$PrismaModel>
   }
 
-  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedDecimalFilter<$PrismaModel>
-    _sum?: NestedDecimalFilter<$PrismaModel>
-    _min?: NestedDecimalFilter<$PrismaModel>
-    _max?: NestedDecimalFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
@@ -44349,15 +44465,15 @@ export namespace Prisma {
     _max?: NestedEnumFileStatusFilter<$PrismaModel>
   }
 
-  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedBoolNullableFilter<$PrismaModel = never> = {
@@ -44381,7 +44497,7 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -44389,23 +44505,12 @@ export namespace Prisma {
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
     _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -44536,12 +44641,14 @@ export namespace Prisma {
     uploadedAt?: Date | string
     evidenceFile?: EvidenceFileCreateNestedOneWithoutFileVersionsInput
     areaFile?: AreaFileCreateNestedOneWithoutFileVersionsInput
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutCertificateInput
   }
 
   export type FileVersionUncheckedCreateWithoutUploaderInput = {
     id?: string
     evidenceFileId?: string | null
     areaFileId?: string | null
+    surveyVisitId?: string | null
     name: string
     status?: $Enums.FileVersionStatus | null
     objectUrl: string
@@ -44644,7 +44751,7 @@ export namespace Prisma {
     type: $Enums.SurveyTeamType
     adequacy?: number | null
     effectiveness?: number | null
-    finalRate?: Decimal | DecimalJsLike | number | string | null
+    finalRate?: number | null
     NA?: boolean | null
     createdAt?: Date | string
     evidenceFile: EvidenceFileCreateNestedOneWithoutRatingsInput
@@ -44656,7 +44763,7 @@ export namespace Prisma {
     type: $Enums.SurveyTeamType
     adequacy?: number | null
     effectiveness?: number | null
-    finalRate?: Decimal | DecimalJsLike | number | string | null
+    finalRate?: number | null
     NA?: boolean | null
     createdAt?: Date | string
   }
@@ -44750,6 +44857,7 @@ export namespace Prisma {
     id?: StringFilter<"FileVersion"> | string
     evidenceFileId?: StringNullableFilter<"FileVersion"> | string | null
     areaFileId?: StringNullableFilter<"FileVersion"> | string | null
+    surveyVisitId?: StringNullableFilter<"FileVersion"> | string | null
     uploaderEmail?: StringNullableFilter<"FileVersion"> | string | null
     name?: StringFilter<"FileVersion"> | string
     status?: EnumFileVersionStatusNullableFilter<"FileVersion"> | $Enums.FileVersionStatus | null
@@ -44868,7 +44976,7 @@ export namespace Prisma {
     accreditorId?: StringFilter<"Rating"> | string
     adequacy?: IntNullableFilter<"Rating"> | number | null
     effectiveness?: IntNullableFilter<"Rating"> | number | null
-    finalRate?: DecimalNullableFilter<"Rating"> | Decimal | DecimalJsLike | number | string | null
+    finalRate?: FloatNullableFilter<"Rating"> | number | null
     NA?: BoolNullableFilter<"Rating"> | boolean | null
     createdAt?: DateTimeFilter<"Rating"> | Date | string
   }
@@ -46031,6 +46139,7 @@ export namespace Prisma {
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
   }
 
@@ -46054,6 +46163,7 @@ export namespace Prisma {
     actualSurveyStatus?: $Enums.SurveyStatus
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
@@ -46169,8 +46279,8 @@ export namespace Prisma {
     rank: number
     label: $Enums.LevelEnum
     phase: $Enums.Phase
-    requiredGrandMean: Decimal | DecimalJsLike | number | string
-    requiredAreaMean: Decimal | DecimalJsLike | number | string
+    requiredGrandMean: number
+    requiredAreaMean: number
     yearsEffective: number
     surveyVisits?: SurveyVisitCreateNestedManyWithoutLevelInput
   }
@@ -46180,8 +46290,8 @@ export namespace Prisma {
     rank: number
     label: $Enums.LevelEnum
     phase: $Enums.Phase
-    requiredGrandMean: Decimal | DecimalJsLike | number | string
-    requiredAreaMean: Decimal | DecimalJsLike | number | string
+    requiredGrandMean: number
+    requiredAreaMean: number
     yearsEffective: number
     surveyVisits?: SurveyVisitUncheckedCreateNestedManyWithoutLevelInput
   }
@@ -46211,6 +46321,7 @@ export namespace Prisma {
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
   }
 
@@ -46234,6 +46345,7 @@ export namespace Prisma {
     actualSurveyStatus?: $Enums.SurveyStatus
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
@@ -46298,8 +46410,8 @@ export namespace Prisma {
     rank?: IntFieldUpdateOperationsInput | number
     label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
-    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredGrandMean?: FloatFieldUpdateOperationsInput | number
+    requiredAreaMean?: FloatFieldUpdateOperationsInput | number
     yearsEffective?: IntFieldUpdateOperationsInput | number
     surveyVisits?: SurveyVisitUpdateManyWithoutLevelNestedInput
   }
@@ -46309,8 +46421,8 @@ export namespace Prisma {
     rank?: IntFieldUpdateOperationsInput | number
     label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
-    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredGrandMean?: FloatFieldUpdateOperationsInput | number
+    requiredAreaMean?: FloatFieldUpdateOperationsInput | number
     yearsEffective?: IntFieldUpdateOperationsInput | number
     surveyVisits?: SurveyVisitUncheckedUpdateManyWithoutLevelNestedInput
   }
@@ -46359,8 +46471,8 @@ export namespace Prisma {
     rank: number
     label: $Enums.LevelEnum
     phase: $Enums.Phase
-    requiredGrandMean: Decimal | DecimalJsLike | number | string
-    requiredAreaMean: Decimal | DecimalJsLike | number | string
+    requiredGrandMean: number
+    requiredAreaMean: number
     yearsEffective: number
     accreditations?: AccreditationCreateNestedManyWithoutLevelInput
   }
@@ -46370,8 +46482,8 @@ export namespace Prisma {
     rank: number
     label: $Enums.LevelEnum
     phase: $Enums.Phase
-    requiredGrandMean: Decimal | DecimalJsLike | number | string
-    requiredAreaMean: Decimal | DecimalJsLike | number | string
+    requiredGrandMean: number
+    requiredAreaMean: number
     yearsEffective: number
     accreditations?: AccreditationUncheckedCreateNestedManyWithoutLevelInput
   }
@@ -46413,6 +46525,35 @@ export namespace Prisma {
   export type PhaseTwoRequirementsCreateOrConnectWithoutSurveyVisitInput = {
     where: PhaseTwoRequirementsWhereUniqueInput
     create: XOR<PhaseTwoRequirementsCreateWithoutSurveyVisitInput, PhaseTwoRequirementsUncheckedCreateWithoutSurveyVisitInput>
+  }
+
+  export type FileVersionCreateWithoutSurveyVisitInput = {
+    id?: string
+    name: string
+    status?: $Enums.FileVersionStatus | null
+    objectUrl: string
+    type: string
+    uploadedAt?: Date | string
+    evidenceFile?: EvidenceFileCreateNestedOneWithoutFileVersionsInput
+    areaFile?: AreaFileCreateNestedOneWithoutFileVersionsInput
+    uploader?: UserCreateNestedOneWithoutUploadsInput
+  }
+
+  export type FileVersionUncheckedCreateWithoutSurveyVisitInput = {
+    id?: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
+    uploaderEmail?: string | null
+    name: string
+    status?: $Enums.FileVersionStatus | null
+    objectUrl: string
+    type: string
+    uploadedAt?: Date | string
+  }
+
+  export type FileVersionCreateOrConnectWithoutSurveyVisitInput = {
+    where: FileVersionWhereUniqueInput
+    create: XOR<FileVersionCreateWithoutSurveyVisitInput, FileVersionUncheckedCreateWithoutSurveyVisitInput>
   }
 
   export type SurveyTeamCreateWithoutSurveyVisitInput = {
@@ -46484,8 +46625,8 @@ export namespace Prisma {
     rank?: IntFieldUpdateOperationsInput | number
     label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
-    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredGrandMean?: FloatFieldUpdateOperationsInput | number
+    requiredAreaMean?: FloatFieldUpdateOperationsInput | number
     yearsEffective?: IntFieldUpdateOperationsInput | number
     accreditations?: AccreditationUpdateManyWithoutLevelNestedInput
   }
@@ -46495,8 +46636,8 @@ export namespace Prisma {
     rank?: IntFieldUpdateOperationsInput | number
     label?: EnumLevelEnumFieldUpdateOperationsInput | $Enums.LevelEnum
     phase?: EnumPhaseFieldUpdateOperationsInput | $Enums.Phase
-    requiredGrandMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    requiredAreaMean?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    requiredGrandMean?: FloatFieldUpdateOperationsInput | number
+    requiredAreaMean?: FloatFieldUpdateOperationsInput | number
     yearsEffective?: IntFieldUpdateOperationsInput | number
     accreditations?: AccreditationUncheckedUpdateManyWithoutLevelNestedInput
   }
@@ -46547,6 +46688,41 @@ export namespace Prisma {
     phaseTwoFolder?: PhaseTwoFolderUncheckedUpdateOneWithoutPhaseTwoRequirementsNestedInput
   }
 
+  export type FileVersionUpsertWithoutSurveyVisitInput = {
+    update: XOR<FileVersionUpdateWithoutSurveyVisitInput, FileVersionUncheckedUpdateWithoutSurveyVisitInput>
+    create: XOR<FileVersionCreateWithoutSurveyVisitInput, FileVersionUncheckedCreateWithoutSurveyVisitInput>
+    where?: FileVersionWhereInput
+  }
+
+  export type FileVersionUpdateToOneWithWhereWithoutSurveyVisitInput = {
+    where?: FileVersionWhereInput
+    data: XOR<FileVersionUpdateWithoutSurveyVisitInput, FileVersionUncheckedUpdateWithoutSurveyVisitInput>
+  }
+
+  export type FileVersionUpdateWithoutSurveyVisitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
+    objectUrl?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidenceFile?: EvidenceFileUpdateOneWithoutFileVersionsNestedInput
+    areaFile?: AreaFileUpdateOneWithoutFileVersionsNestedInput
+    uploader?: UserUpdateOneWithoutUploadsNestedInput
+  }
+
+  export type FileVersionUncheckedUpdateWithoutSurveyVisitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaderEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
+    objectUrl?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type SurveyTeamUpsertWithWhereUniqueWithoutSurveyVisitInput = {
     where: SurveyTeamWhereUniqueInput
     update: XOR<SurveyTeamUpdateWithoutSurveyVisitInput, SurveyTeamUncheckedUpdateWithoutSurveyVisitInput>
@@ -46584,6 +46760,7 @@ export namespace Prisma {
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutSurveyTeamInput = {
@@ -46607,6 +46784,7 @@ export namespace Prisma {
     actualSurveyStatus?: $Enums.SurveyStatus
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutSurveyTeamInput = {
@@ -46713,6 +46891,7 @@ export namespace Prisma {
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutSurveyTeamInput = {
@@ -46736,6 +46915,7 @@ export namespace Prisma {
     actualSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
   }
 
   export type UserUpsertWithoutTeamLeadInput = {
@@ -47037,6 +47217,7 @@ export namespace Prisma {
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
   }
 
@@ -47060,6 +47241,7 @@ export namespace Prisma {
     openForActualSurvey?: boolean
     actualSurveyStatus?: $Enums.SurveyStatus
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
@@ -47139,6 +47321,7 @@ export namespace Prisma {
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
   }
 
@@ -47162,6 +47345,7 @@ export namespace Prisma {
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     actualSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
@@ -48054,12 +48238,14 @@ export namespace Prisma {
     type: string
     uploadedAt?: Date | string
     areaFile?: AreaFileCreateNestedOneWithoutFileVersionsInput
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutCertificateInput
     uploader?: UserCreateNestedOneWithoutUploadsInput
   }
 
   export type FileVersionUncheckedCreateWithoutEvidenceFileInput = {
     id?: string
     areaFileId?: string | null
+    surveyVisitId?: string | null
     uploaderEmail?: string | null
     name: string
     status?: $Enums.FileVersionStatus | null
@@ -48117,7 +48303,7 @@ export namespace Prisma {
     type: $Enums.SurveyTeamType
     adequacy?: number | null
     effectiveness?: number | null
-    finalRate?: Decimal | DecimalJsLike | number | string | null
+    finalRate?: number | null
     NA?: boolean | null
     createdAt?: Date | string
     accreditor: UserCreateNestedOneWithoutRatingsInput
@@ -48129,7 +48315,7 @@ export namespace Prisma {
     accreditorId: string
     adequacy?: number | null
     effectiveness?: number | null
-    finalRate?: Decimal | DecimalJsLike | number | string | null
+    finalRate?: number | null
     NA?: boolean | null
     createdAt?: Date | string
   }
@@ -48457,6 +48643,59 @@ export namespace Prisma {
     create: XOR<AreaFileCreateWithoutFileVersionsInput, AreaFileUncheckedCreateWithoutFileVersionsInput>
   }
 
+  export type SurveyVisitCreateWithoutCertificateInput = {
+    id?: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
+    createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
+    selfSurveyStartedAt?: Date | string | null
+    selfSurveyEndedAt?: Date | string | null
+    actualSurveyStartedAt?: Date | string | null
+    actualSurveyEndedAt?: Date | string | null
+    openForActualSurvey?: boolean
+    actualSurveyStatus?: $Enums.SurveyStatus
+    accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
+    level: LevelCreateNestedOneWithoutSurveyVisitsInput
+    phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
+    phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitUncheckedCreateWithoutCertificateInput = {
+    id?: string
+    accreditationId: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    targetLevel: string
+    status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
+    createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
+    selfSurveyStartedAt?: Date | string | null
+    selfSurveyEndedAt?: Date | string | null
+    actualSurveyStartedAt?: Date | string | null
+    actualSurveyEndedAt?: Date | string | null
+    openForActualSurvey?: boolean
+    actualSurveyStatus?: $Enums.SurveyStatus
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitCreateOrConnectWithoutCertificateInput = {
+    where: SurveyVisitWhereUniqueInput
+    create: XOR<SurveyVisitCreateWithoutCertificateInput, SurveyVisitUncheckedCreateWithoutCertificateInput>
+  }
+
   export type UserCreateWithoutUploadsInput = {
     id?: string
     firstName: string
@@ -48568,6 +48807,65 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutAreaFileNestedInput
   }
 
+  export type SurveyVisitUpsertWithoutCertificateInput = {
+    update: XOR<SurveyVisitUpdateWithoutCertificateInput, SurveyVisitUncheckedUpdateWithoutCertificateInput>
+    create: XOR<SurveyVisitCreateWithoutCertificateInput, SurveyVisitUncheckedCreateWithoutCertificateInput>
+    where?: SurveyVisitWhereInput
+  }
+
+  export type SurveyVisitUpdateToOneWithWhereWithoutCertificateInput = {
+    where?: SurveyVisitWhereInput
+    data: XOR<SurveyVisitUpdateWithoutCertificateInput, SurveyVisitUncheckedUpdateWithoutCertificateInput>
+  }
+
+  export type SurveyVisitUpdateWithoutCertificateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
+    selfSurveyStartedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    selfSurveyEndedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualSurveyStartedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualSurveyEndedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
+    actualSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
+    accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
+  }
+
+  export type SurveyVisitUncheckedUpdateWithoutCertificateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accreditationId?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    targetLevel?: StringFieldUpdateOperationsInput | string
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
+    selfSurveyStartedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    selfSurveyEndedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualSurveyStartedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualSurveyEndedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
+    actualSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
+  }
+
   export type UserUpsertWithoutUploadsInput = {
     update: XOR<UserUpdateWithoutUploadsInput, UserUncheckedUpdateWithoutUploadsInput>
     create: XOR<UserCreateWithoutUploadsInput, UserUncheckedCreateWithoutUploadsInput>
@@ -48639,6 +48937,7 @@ export namespace Prisma {
     accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
     level: LevelCreateNestedOneWithoutSurveyVisitsInput
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
   }
 
@@ -48662,6 +48961,7 @@ export namespace Prisma {
     openForActualSurvey?: boolean
     actualSurveyStatus?: $Enums.SurveyStatus
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
@@ -48741,6 +49041,7 @@ export namespace Prisma {
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
   }
 
@@ -48764,6 +49065,7 @@ export namespace Prisma {
     openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
     actualSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
@@ -49101,12 +49403,14 @@ export namespace Prisma {
     type: string
     uploadedAt?: Date | string
     evidenceFile?: EvidenceFileCreateNestedOneWithoutFileVersionsInput
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutCertificateInput
     uploader?: UserCreateNestedOneWithoutUploadsInput
   }
 
   export type FileVersionUncheckedCreateWithoutAreaFileInput = {
     id?: string
     evidenceFileId?: string | null
+    surveyVisitId?: string | null
     uploaderEmail?: string | null
     name: string
     status?: $Enums.FileVersionStatus | null
@@ -49949,6 +50253,7 @@ export namespace Prisma {
     id?: string
     evidenceFileId?: string | null
     areaFileId?: string | null
+    surveyVisitId?: string | null
     name: string
     status?: $Enums.FileVersionStatus | null
     objectUrl: string
@@ -49986,7 +50291,7 @@ export namespace Prisma {
     type: $Enums.SurveyTeamType
     adequacy?: number | null
     effectiveness?: number | null
-    finalRate?: Decimal | DecimalJsLike | number | string | null
+    finalRate?: number | null
     NA?: boolean | null
     createdAt?: Date | string
   }
@@ -50056,12 +50361,14 @@ export namespace Prisma {
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     evidenceFile?: EvidenceFileUpdateOneWithoutFileVersionsNestedInput
     areaFile?: AreaFileUpdateOneWithoutFileVersionsNestedInput
+    surveyVisit?: SurveyVisitUpdateOneWithoutCertificateNestedInput
   }
 
   export type FileVersionUncheckedUpdateWithoutUploaderInput = {
     id?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
     objectUrl?: StringFieldUpdateOperationsInput | string
@@ -50073,6 +50380,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
     objectUrl?: StringFieldUpdateOperationsInput | string
@@ -50159,7 +50467,7 @@ export namespace Prisma {
     type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
     adequacy?: NullableIntFieldUpdateOperationsInput | number | null
     effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
-    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    finalRate?: NullableFloatFieldUpdateOperationsInput | number | null
     NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     evidenceFile?: EvidenceFileUpdateOneRequiredWithoutRatingsNestedInput
@@ -50171,7 +50479,7 @@ export namespace Prisma {
     type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
     adequacy?: NullableIntFieldUpdateOperationsInput | number | null
     effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
-    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    finalRate?: NullableFloatFieldUpdateOperationsInput | number | null
     NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -50182,7 +50490,7 @@ export namespace Prisma {
     type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
     adequacy?: NullableIntFieldUpdateOperationsInput | number | null
     effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
-    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    finalRate?: NullableFloatFieldUpdateOperationsInput | number | null
     NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -50620,6 +50928,7 @@ export namespace Prisma {
     accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
   }
 
@@ -50643,6 +50952,7 @@ export namespace Prisma {
     actualSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
@@ -50706,6 +51016,7 @@ export namespace Prisma {
     level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
   }
 
@@ -50729,6 +51040,7 @@ export namespace Prisma {
     actualSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
@@ -51141,6 +51453,7 @@ export namespace Prisma {
   export type FileVersionCreateManyEvidenceFileInput = {
     id?: string
     areaFileId?: string | null
+    surveyVisitId?: string | null
     uploaderEmail?: string | null
     name: string
     status?: $Enums.FileVersionStatus | null
@@ -51167,7 +51480,7 @@ export namespace Prisma {
     accreditorId: string
     adequacy?: number | null
     effectiveness?: number | null
-    finalRate?: Decimal | DecimalJsLike | number | string | null
+    finalRate?: number | null
     NA?: boolean | null
     createdAt?: Date | string
   }
@@ -51180,12 +51493,14 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     areaFile?: AreaFileUpdateOneWithoutFileVersionsNestedInput
+    surveyVisit?: SurveyVisitUpdateOneWithoutCertificateNestedInput
     uploader?: UserUpdateOneWithoutUploadsNestedInput
   }
 
   export type FileVersionUncheckedUpdateWithoutEvidenceFileInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     uploaderEmail?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
@@ -51197,6 +51512,7 @@ export namespace Prisma {
   export type FileVersionUncheckedUpdateManyWithoutEvidenceFileInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     uploaderEmail?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
@@ -51246,7 +51562,7 @@ export namespace Prisma {
     type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
     adequacy?: NullableIntFieldUpdateOperationsInput | number | null
     effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
-    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    finalRate?: NullableFloatFieldUpdateOperationsInput | number | null
     NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accreditor?: UserUpdateOneRequiredWithoutRatingsNestedInput
@@ -51258,7 +51574,7 @@ export namespace Prisma {
     accreditorId?: StringFieldUpdateOperationsInput | string
     adequacy?: NullableIntFieldUpdateOperationsInput | number | null
     effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
-    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    finalRate?: NullableFloatFieldUpdateOperationsInput | number | null
     NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -51269,7 +51585,7 @@ export namespace Prisma {
     accreditorId?: StringFieldUpdateOperationsInput | string
     adequacy?: NullableIntFieldUpdateOperationsInput | number | null
     effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
-    finalRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    finalRate?: NullableFloatFieldUpdateOperationsInput | number | null
     NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -51339,6 +51655,7 @@ export namespace Prisma {
   export type FileVersionCreateManyAreaFileInput = {
     id?: string
     evidenceFileId?: string | null
+    surveyVisitId?: string | null
     uploaderEmail?: string | null
     name: string
     status?: $Enums.FileVersionStatus | null
@@ -51367,12 +51684,14 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     evidenceFile?: EvidenceFileUpdateOneWithoutFileVersionsNestedInput
+    surveyVisit?: SurveyVisitUpdateOneWithoutCertificateNestedInput
     uploader?: UserUpdateOneWithoutUploadsNestedInput
   }
 
   export type FileVersionUncheckedUpdateWithoutAreaFileInput = {
     id?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     uploaderEmail?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null
@@ -51384,6 +51703,7 @@ export namespace Prisma {
   export type FileVersionUncheckedUpdateManyWithoutAreaFileInput = {
     id?: StringFieldUpdateOperationsInput | string
     evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     uploaderEmail?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     status?: NullableEnumFileVersionStatusFieldUpdateOperationsInput | $Enums.FileVersionStatus | null

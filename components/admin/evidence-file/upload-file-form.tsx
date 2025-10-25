@@ -23,7 +23,7 @@ import { useCallback, useState, useTransition } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
 import { toast } from "sonner";
 import { Progress } from "@/components/ui/progress";
-import { Area } from "@/lib/generated/prisma";
+import { Area, Level } from "@/lib/generated/prisma";
 import { SessionPayload } from "@/lib/definitions";
 import { useParams } from "next/navigation";
 
@@ -36,6 +36,8 @@ const UploadFileForm = ({
   parameterFolderId,
   areaFolderId,
   allowFileUploads,
+  accreditationId,
+  level,
 }: {
   indicator?: IndicatorDTO | undefined;
   evidenceFileId?: string;
@@ -45,6 +47,8 @@ const UploadFileForm = ({
   parameterFolderId?: string | undefined;
   areaFolderId?: string | undefined;
   allowFileUploads: boolean | undefined;
+  accreditationId: string | undefined;
+  level: Level | undefined;
 }) => {
   const { id: surveyVisitId } = useParams();
   const [file, setFile] = useState<File | null>();
@@ -91,8 +95,7 @@ const UploadFileForm = ({
           areaFolderId,
           surveyVisitId: String(surveyVisitId),
         });
-      }
-      if (areaFileId) {
+      } else if (areaFileId) {
         const fileVersionResult = await createNewVersion({
           name,
           uploaderEmail: user.email,
@@ -102,6 +105,16 @@ const UploadFileForm = ({
           parameterFolderId,
           areaFolderId,
           surveyVisitId: String(surveyVisitId),
+        });
+      } else {
+        const fileVersionResult = await createNewVersion({
+          name,
+          uploaderEmail: user.email,
+          objectUrl,
+          fileType: file.type,
+          surveyVisitId: String(surveyVisitId),
+          accreditationId: accreditationId,
+          level: level,
         });
       }
     });
@@ -159,11 +172,13 @@ const UploadFileForm = ({
           <DialogTitle className="text-2xl text-center">
             Upload a File
           </DialogTitle>
-          <DialogDescription>{`Attach a file to ${
-            indicator
-              ? `${indicator?.label}: ${indicator?.description} - ${indicator.evidence}`
-              : `${area?.label}: ${area?.description}`
-          }`}</DialogDescription>
+          {(indicator || area) && (
+            <DialogDescription>{`${
+              indicator
+                ? `Evidence to attach: ${indicator?.evidence}`
+                : `Attach a file to ${area?.label}: ${area?.description}`
+            }`}</DialogDescription>
+          )}
           <Alert className="bg-blue-400/5 border-blue-400 text-blue-400">
             <Info />
             <AlertTitle>Info</AlertTitle>

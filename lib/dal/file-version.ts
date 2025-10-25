@@ -6,6 +6,36 @@ import {
 } from "../generated/prisma";
 import { prisma } from "../prisma";
 
+export async function createSurveyCertificate(
+  name: string,
+  uploaderEmail: string,
+  surveyVisitId: string,
+  objectUrl: string,
+  type: string
+) {
+  const session = await verifySession();
+  if (!session) return null;
+  const certificate = await prisma.fileVersion.create({
+    data: {
+      name,
+      uploader: {
+        connect: {
+          email: uploaderEmail,
+        },
+      },
+      status: FileVersionStatus.ACTIVE,
+      surveyVisit: {
+        connect: {
+          id: surveyVisitId,
+        },
+      },
+      objectUrl,
+      type,
+    },
+  });
+  return certificate;
+}
+
 export async function createNewEvidenceFileVersion(
   name: string,
   uploaderEmail: string,

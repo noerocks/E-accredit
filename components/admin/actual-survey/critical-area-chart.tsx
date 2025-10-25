@@ -96,6 +96,9 @@ export function CriticalAreaChart({
         <div className="flex items-center gap-2 leading-none">
           Based on weighted priority scores of areas
         </div>
+        <p className="text-sm text-muted-foreground">
+          Priority = Area Weight × (Maximum Possible Score − Area Score)
+        </p>
       </CardFooter>
     </Card>
   );
