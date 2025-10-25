@@ -177,3 +177,54 @@ export function calculateWeightedVariance(
     squaredDeviationsXweight.reduce((sum, x) => (sum += x), 0) / totalWeight
   );
 }
+
+export function getSDDescriptiveRating(
+  sd: number,
+  grandMean: number,
+  requiredMean = 4.0
+): string {
+  if (sd < 0) {
+    return "Invalid value";
+  }
+
+  let consistency = "";
+  if (sd <= 0.1) {
+    consistency = "Very Consistent";
+  } else if (sd <= 0.3) {
+    consistency = "Highly Consistent";
+  } else if (sd <= 0.6) {
+    consistency = "Moderately Consistent";
+  } else if (sd <= 1.0) {
+    consistency = "Variable";
+  } else {
+    consistency = "Highly Variable";
+  }
+
+  if (grandMean < requiredMean) {
+    return `${consistency} – However, the overall grand mean (${grandMean.toFixed(
+      2
+    )}) did not meet the required standard (${requiredMean.toFixed(
+      2
+    )}), indicating uniform but below-standard performance.`;
+  } else {
+    return `${consistency} – The performance across areas reflects acceptable consistency and meets the required standard.`;
+  }
+}
+
+export function getGrandMeanDescriptiveRating(grandMean: number) {
+  if (grandMean) {
+    if (grandMean >= 4.5 && grandMean <= 5.0) {
+      return "Excellent";
+    } else if (grandMean >= 3.5 && grandMean <= 4.49) {
+      return "Very Good (or Very Satisfactory)";
+    } else if (grandMean >= 2.5 && grandMean <= 3.49) {
+      return "Good";
+    } else if (grandMean >= 1.5 && grandMean <= 2.49) {
+      return "Fair";
+    } else if (grandMean >= 1.0 && grandMean <= 1.49) {
+      return "Poor";
+    } else if (grandMean === 0) {
+      return "Not Functioning";
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   Card,
   CardContent,
@@ -17,55 +18,46 @@ import {
   calculateGrandMean,
   calculateRange,
   calculateWeightedVariance,
+  getGrandMeanDescriptiveRating,
+  getSDDescriptiveRating,
 } from "@/lib/utils";
 import { Level } from "@prisma/client";
 import { Calendar, Info, User } from "lucide-react";
+import { ChartRadarLegend } from "./result-radar";
 
 const SurveyResults = async ({
   areaFolders,
   level,
-  surveyVisit,
-  surveyTeam,
+  surveyType,
 }: {
   areaFolders: AreaFolderDTO[];
   level: Level;
-  surveyVisit: SurveyVisit | null;
-  surveyTeam: SurveyTeam | null;
+  surveyType: SurveyTeamType;
 }) => {
-  const grandMean = calculateGrandMean(areaFolders, SurveyTeamType.EXTERNAL);
-  let descriptiveRating;
-  if (grandMean) {
-    if (grandMean >= 4.5 && grandMean <= 5.0) {
-      descriptiveRating = "Excellent";
-    } else if (grandMean >= 3.5 && grandMean <= 4.49) {
-      descriptiveRating = "Very Good (or Very Satisfactory)";
-    } else if (grandMean >= 2.5 && grandMean <= 3.49) {
-      descriptiveRating = "Good";
-    } else if (grandMean >= 1.5 && grandMean <= 2.49) {
-      descriptiveRating = "Fair";
-    } else if (grandMean >= 1.0 && grandMean <= 1.49) {
-      descriptiveRating = "Poor";
-    } else if (grandMean === 0) {
-      descriptiveRating = "Not Functioning";
-    }
-  }
+  const grandMean = calculateGrandMean(areaFolders, surveyType);
+  let descriptiveRating = getGrandMeanDescriptiveRating(grandMean!);
   const { min, max, range } = calculateRange(
     areaFolders as unknown as AreaFolderDTO[],
-    SurveyTeamType.EXTERNAL
+    surveyType
   ) || { min: null, max: null, range: 0 };
   const weightedVariance = calculateWeightedVariance(
     areaFolders as unknown as AreaFolderDTO[],
-    SurveyTeamType.EXTERNAL
+    surveyType
   );
   const weightedSD = Math.sqrt(
     calculateWeightedVariance(
       areaFolders as unknown as AreaFolderDTO[],
-      SurveyTeamType.EXTERNAL
+      surveyType
     )
   );
+  const sdDescriptiveRating = getSDDescriptiveRating(
+    weightedSD,
+    grandMean!,
+    Number(level.requiredGrandMean)
+  );
   return (
-    <div>
-      <div className="flex gap-2">
+    <div className="flex flex-col gap-5">
+      <div className="flex gap-5">
         <Card className="flex-1 bg-background flex flex-col">
           <CardHeader>
             <CardTitle className="text-sm text-muted-foreground">
@@ -124,17 +116,29 @@ const SurveyResults = async ({
                 <Info size={15} />
                 Weighted Variance
               </p>
-              <p>{weightedVariance.toFixed()}</p>
+              <p>{weightedVariance.toFixed(2)}</p>
             </div>
             <div className="flex items-center justify-between">
               <p className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Info size={15} />
                 Weighted Standard Deviation
               </p>
-              <p>{weightedSD.toFixed(3)}</p>
+              <p>{weightedSD.toFixed(2)}</p>
             </div>
           </CardContent>
         </Card>
+      </div>
+      <Alert className="bg-background">
+        <Info />
+        <AlertTitle>Descriptive Rating</AlertTitle>
+        <AlertDescription>
+          <p>{sdDescriptiveRating}</p>
+        </AlertDescription>
+      </Alert>
+      <div className="flex gap-5">
+        <ChartRadarLegend
+          areaFolders={areaFolders as unknown as AreaFolderDTO[]}
+        />
       </div>
     </div>
   );

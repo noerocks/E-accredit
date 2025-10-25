@@ -1,4 +1,5 @@
 import { DataTable } from "@/components/admin/accreditation/data-table";
+import SurveyResults from "@/components/admin/actual-survey/results";
 import EndSurveyButton from "@/components/admin/self-survey/end-survey-button";
 import SurveyTeam from "@/components/admin/self-survey/survey-team";
 import { columns } from "@/components/admin/self-survey/survey-visit/columns";
@@ -20,9 +21,13 @@ import {
 } from "@/lib/dal/survey-visit";
 import { getUsersByRole } from "@/lib/dal/user";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { Role, SurveyTeam as SurveyTeamSchema } from "@/lib/generated/prisma";
+import {
+  Role,
+  SurveyTeam as SurveyTeamSchema,
+  SurveyTeamType,
+} from "@/lib/generated/prisma";
 import { formatAccreditationName } from "@/lib/utils";
-import { User } from "@prisma/client";
+import { Level, User } from "@prisma/client";
 import clsx from "clsx";
 import { CircleDot, SearchCheck } from "lucide-react";
 
@@ -136,7 +141,13 @@ const SelfSurveyPage = async ({
               </CardContent>
             </Card>
           </TabsContent>
-          <TabsContent value="results"></TabsContent>
+          <TabsContent value="results">
+            <SurveyResults
+              areaFolders={areaFolders as unknown as AreaFolderDTO[]}
+              level={level as unknown as Level}
+              surveyType={SurveyTeamType.INTERNAL}
+            />
+          </TabsContent>
         </Tabs>
       </div>
     </ScrollArea>

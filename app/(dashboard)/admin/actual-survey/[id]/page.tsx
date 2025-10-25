@@ -144,8 +144,7 @@ const ActualSurveyPage = async ({
             <SurveyResults
               areaFolders={areaFolders as unknown as AreaFolderDTO[]}
               level={level as unknown as Level}
-              surveyVisit={surveyVisit}
-              surveyTeam={externalSurveyTeam as SurveyTeamSchema}
+              surveyType={SurveyTeamType.EXTERNAL}
             />
           </TabsContent>
         </Tabs>
