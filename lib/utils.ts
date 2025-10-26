@@ -8,6 +8,7 @@ import {
 import { SurveyTeamType } from "./generated/prisma";
 import { RatingDTO, SurveyVisitDTO } from "./dto/survey-visit";
 import { Area } from "@prisma/client";
+import { SafeLevel, SurveyVisitWithSafeLevel } from "./dto/accreditation";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -219,5 +220,16 @@ export function calculateAttentionScore(
   return (
     (area.area.weight / 100) *
     (MAX_RATING - (calculateWeightedAreaMean(area, surveyType) || 0))
+  );
+}
+
+export function getHighestLevel(surveyVisits: SurveyVisitWithSafeLevel[]) {
+  return surveyVisits.reduce(
+    (highest, sv) => {
+      return highest.level.rank < sv.level.rank ? highest : sv;
+    },
+    {
+      level: { rank: Number.MAX_SAFE_INTEGER } as SafeLevel,
+    } as SurveyVisitWithSafeLevel
   );
 }

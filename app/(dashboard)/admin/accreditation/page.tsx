@@ -1,5 +1,6 @@
-import AccreditationCards from "@/components/admin/accreditation/accreditation-cards";
 import CreateAccreditationDialog from "@/components/admin/accreditation/createAccreditationDialog";
+import PortfolioCards from "@/components/admin/accreditation/portfolio-cards";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getAccreditations } from "@/lib/dal/accreditation";
 import { getInstruments } from "@/lib/dal/instrument";
 import { getLevels } from "@/lib/dal/levels";
@@ -24,7 +25,31 @@ const Accreditation = async () => {
           levels={levels}
         />
       </div>
-      <AccreditationCards accreditations={accreditations} />
+      {accreditations && (
+        <Tabs defaultValue={accreditations[0].program.code}>
+          <TabsList className="bg-background border">
+            {accreditations?.map((accreditation) => (
+              <TabsTrigger
+                value={accreditation.program.code}
+                key={accreditation.id}
+              >
+                {accreditation.program.code}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          {accreditations.map((accreditation) => (
+            <TabsContent
+              value={accreditation.program.code}
+              key={accreditation.id}
+            >
+              <PortfolioCards
+                program={accreditation.program}
+                surveyVisits={accreditation.surveyVisits}
+              />
+            </TabsContent>
+          ))}
+        </Tabs>
+      )}
     </div>
   );
 };
