@@ -26,8 +26,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { denyAccreditationStatus } from "@/lib/action/accreditation";
 import { scheduleActualSurveyRevisit } from "@/lib/action/surveyVisit";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
+import { SurveyResultStatus } from "@/lib/generated/prisma";
 import { cn } from "@/lib/utils";
 import { RevisitScheduleFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -37,7 +39,13 @@ import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 
-const ScheduleRevisit = ({ failedAreas }: { failedAreas: AreaFolderDTO[] }) => {
+const ScheduleRevisit = ({
+  failedAreas,
+  surveyResultStatus,
+}: {
+  failedAreas: AreaFolderDTO[];
+  surveyResultStatus: SurveyResultStatus;
+}) => {
   const params = useParams();
   const form = useForm<z.infer<typeof RevisitScheduleFormSchema>>({
     resolver: zodResolver(RevisitScheduleFormSchema),
@@ -49,11 +57,21 @@ const ScheduleRevisit = ({ failedAreas }: { failedAreas: AreaFolderDTO[] }) => {
   const [pending, startTransition] = useTransition();
   const onSubmit = async (data: z.infer<typeof RevisitScheduleFormSchema>) => {
     startTransition(async () => {
-      const result = await scheduleActualSurveyRevisit(
-        String(params.id),
-        failedAreas,
-        data.actualSurveyDate
-      );
+      switch (surveyResultStatus) {
+        case "DEFERRED": {
+          const result = await scheduleActualSurveyRevisit(
+            String(params.id),
+            failedAreas,
+            data.actualSurveyDate
+          );
+        }
+        case "NOT_GRANTED": {
+          const result = await denyAccreditationStatus(
+            String(params.id),
+            data.actualSurveyDate
+          );
+        }
+      }
     });
   };
   return (

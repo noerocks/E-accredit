@@ -5,7 +5,6 @@ import { prisma } from "../prisma";
 import { verifySession } from "../action/session";
 import { unstable_cache } from "next/cache";
 import { ProgramDTO } from "../dto/programs";
-import { Program } from "../generated/prisma";
 
 export async function createProgram(
   data: z.infer<typeof CreateProgramFormSchema>

@@ -159,6 +159,7 @@ export async function scheduleActualSurveyRevisit(
       actualSurveyDate: revisitDate,
       type: SurveyVisitType.REVISIT,
       surveyResultStatus: SurveyResultStatus.DEFERRED,
+      actualSurveyStatus: SurveyStatus.ON_GOING,
     });
     failedAreas.forEach(async (areaFolder) => {
       const area = await updateAreaFolderById({

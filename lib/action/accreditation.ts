@@ -12,10 +12,15 @@ import {
   LevelEnum,
   Phase,
   Progress,
+  SurveyResultStatus,
+  SurveyStatus,
   SurveyTeamType,
   SurveyVisitType,
 } from "../generated/prisma";
-import { createSurveyVisit as createSurveyVisitDAL } from "../dal/survey-visit";
+import {
+  createSurveyVisit as createSurveyVisitDAL,
+  updateSurveyVisitById,
+} from "../dal/survey-visit";
 import { getInstrumentStructureById } from "../dal/instrument";
 import { createAreaFolder } from "../dal/area-folder";
 import { createInstrumentFolder } from "../dal/instrument-folder";
@@ -34,7 +39,7 @@ import { createManySurveyTeam } from "../dal/survey-team";
 import { updateAccreditationById } from "../dal/accreditation";
 
 export async function createSurveyVisit(
-  program: ProgramDTO,
+  program: ProgramDTO | undefined,
   level: LevelDTO | undefined,
   instrument: InstrumentDisplayDTO | undefined,
   actualSurveyDate: Date
@@ -181,6 +186,33 @@ export async function grantAccreditedStatus(
       endsAt,
       status: AccreditationStatus.ACTIVE,
     });
+  } catch (error) {
+    const e = error as Error;
+    return { failure: { error: e.message } };
+  }
+}
+
+export async function denyAccreditationStatus(
+  surveyVisitId: string,
+  actualSurveyDate: Date
+) {
+  if (!surveyVisitId || !actualSurveyDate)
+    return {
+      failure: { error: "Invalid Input" },
+    };
+  try {
+    const prevSurveyVisit = await updateSurveyVisitById({
+      id: surveyVisitId,
+      surveyResultStatus: SurveyResultStatus.NOT_GRANTED,
+      actualSurveyStatus: SurveyStatus.COMPLETE,
+      actualSurveyEndedAt: new Date(),
+    });
+    const newSurveyVisit = await createSurveyVisit(
+      prevSurveyVisit?.accreditation.program as unknown as ProgramDTO,
+      prevSurveyVisit?.level,
+      prevSurveyVisit?.phaseOneRequirements?.instrument,
+      actualSurveyDate
+    );
   } catch (error) {
     const e = error as Error;
     return { failure: { error: e.message } };

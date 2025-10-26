@@ -189,6 +189,23 @@ export async function updateSurveyVisitById(data: Partial<SurveyVisit>) {
       id: data.id,
     },
     data,
+    include: {
+      level: true,
+      phaseOneRequirements: {
+        include: {
+          instrument: true,
+        },
+      },
+      accreditation: {
+        include: {
+          program: {
+            include: {
+              accreditation: true,
+            },
+          },
+        },
+      },
+    },
   });
   return surveyVisit;
 }

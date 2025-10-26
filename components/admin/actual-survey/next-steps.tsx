@@ -9,6 +9,7 @@ import {
 import { Award, Check, X } from "lucide-react";
 import Grandted from "./granted";
 import Deferred from "./deferred";
+import NotGranted from "./not-granted";
 
 const NextSteps = ({
   level,
@@ -83,6 +84,9 @@ const NextSteps = ({
       )}
       {grandMeanPassed && failedAreas.length > 0 && (
         <Deferred failedAreas={failedAreas} />
+      )}
+      {!grandMeanPassed && failedAreas.length > 0 && (
+        <NotGranted failedAreas={areaFolders} />
       )}
     </div>
   );

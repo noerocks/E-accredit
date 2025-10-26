@@ -89,7 +89,7 @@ const ActualSurveyPage = async ({
   const endSurveyIsVisible =
     complete && !surveyVisitEnded && (isCoordinator || isAdmin);
   const accreditationId = surveyVisitStructure?.accreditationId;
-  const surveyResultStatus = surveyVisit?.surveyResultStatus;
+  const surveyType = surveyVisit?.type;
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
@@ -103,7 +103,7 @@ const ActualSurveyPage = async ({
               <p className="text-2xl">
                 {formatAccreditationName(program?.code!, level!)}
               </p>
-              {surveyResultStatus === "DEFERRED" && (
+              {surveyType === "REVISIT" && (
                 <p className="text-2xl text-muted-foreground">(Revisit)</p>
               )}
             </CardTitle>
