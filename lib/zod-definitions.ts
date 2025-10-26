@@ -120,3 +120,9 @@ export const CreateNewUserFormSchema = z.object({
     .regex(/09\d{9}/, "Invalid phone number"),
   role: z.enum(Role, "Please select a role"),
 });
+
+export const RevisitScheduleFormSchema = z.object({
+  actualSurveyDate: z.date({
+    error: "An actual survey date is required",
+  }),
+});

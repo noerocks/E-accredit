@@ -27,18 +27,20 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { FolderCheckIcon, Home } from "lucide-react";
 import Link from "next/link";
-import { SurveyStatus } from "@/lib/generated/prisma";
+import { SurveyResultStatus, SurveyStatus } from "@/lib/generated/prisma";
 
 const AccreditationSidebar = ({
   instrumentFolder,
   phaseTwoFolder,
   selfSurveyStatus,
   surveyVisitId,
+  surveyResultStatus,
 }: {
   instrumentFolder: PhaseOneInstrumentDTO | null | undefined;
   phaseTwoFolder: PhaseTwoInstrumentDTO | null | undefined;
   selfSurveyStatus: SurveyStatus | undefined;
   surveyVisitId: string;
+  surveyResultStatus?: SurveyResultStatus | undefined;
 }) => {
   const pathName = usePathname();
   const base = pathName
@@ -59,6 +61,16 @@ const AccreditationSidebar = ({
       `/${base.join("/")}/${type}/${id}?${searchParams.toString()}`
     );
   };
+  const phaseOneAreaFolders =
+    instrumentFolder &&
+    instrumentFolder.areaFolders
+      .filter((area) => {
+        if (surveyResultStatus === "DEFERRED") {
+          return area.revisit;
+        }
+        return true;
+      })
+      .sort((a, b) => a.area.label.localeCompare(b.area.label));
   return (
     <Sidebar
       collapsible="none"
@@ -83,7 +95,7 @@ const AccreditationSidebar = ({
         <ScrollArea className="h-full">
           {selfSurveyStatus === "COMPLETE" && (
             <SidebarGroup>
-              <SidebarGroupLabel>Survey Report</SidebarGroupLabel>
+              <SidebarGroupLabel>Survey Reports</SidebarGroupLabel>
               <SidebarMenu>
                 <SidebarMenuItem>
                   <SidebarMenuButton
@@ -100,10 +112,10 @@ const AccreditationSidebar = ({
           <SidebarGroup>
             <SidebarGroupLabel>Areas</SidebarGroupLabel>
             <SidebarMenu onDoubleClick={onDoubleClick}>
-              {instrumentFolder &&
-                instrumentFolder.areaFolders
-                  .sort((a, b) => a.area.label.localeCompare(b.area.label))
-                  .map((area) => <FileTree key={area.id} item={area} />)}
+              {phaseOneAreaFolders &&
+                phaseOneAreaFolders.map((area) => (
+                  <FileTree key={area.id} item={area} />
+                ))}
               {phaseTwoFolder &&
                 phaseTwoFolder.phaseTwoAreaFolders.map((area) => (
                   <FileTree key={area.id} item={area} />

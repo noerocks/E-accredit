@@ -82,28 +82,6 @@ const ProgramAccreditationPage = async ({
       SurveyTeamType.EXTERNAL
     ),
   };
-  console.log(
-    areaFolders
-      ?.filter(
-        (area) =>
-          (calculateAreaMean(area as AreaFolderDTO, SurveyTeamType.EXTERNAL) ||
-            0) >= Number(level?.requiredAreaMean)
-      )
-      .map((area) =>
-        calculateAreaMean(area as AreaFolderDTO, SurveyTeamType.EXTERNAL)
-      )
-  );
-  console.log(
-    areaFolders
-      ?.filter(
-        (area) =>
-          (calculateAreaMean(area as AreaFolderDTO, SurveyTeamType.EXTERNAL) ||
-            0) < Number(level?.requiredAreaMean)
-      )
-      .map((area) =>
-        calculateAreaMean(area as AreaFolderDTO, SurveyTeamType.EXTERNAL)
-      )
-  );
   return (
     <ScrollArea className="h-full">
       <Banner surveyVisitId={String(id!)} />

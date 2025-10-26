@@ -89,6 +89,7 @@ const ActualSurveyPage = async ({
   const endSurveyIsVisible =
     complete && !surveyVisitEnded && (isCoordinator || isAdmin);
   const accreditationId = surveyVisitStructure?.accreditationId;
+  const surveyResultStatus = surveyVisit?.surveyResultStatus;
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
@@ -98,8 +99,13 @@ const ActualSurveyPage = async ({
         </p>
         <Card>
           <CardHeader>
-            <CardTitle className="text-2xl">
-              {formatAccreditationName(program?.code!, level!)}
+            <CardTitle className="flex items-center gap-2">
+              <p className="text-2xl">
+                {formatAccreditationName(program?.code!, level!)}
+              </p>
+              {surveyResultStatus === "DEFERRED" && (
+                <p className="text-2xl text-muted-foreground">(Revisit)</p>
+              )}
             </CardTitle>
             <CardDescription>{program?.name}</CardDescription>
           </CardHeader>
@@ -129,8 +135,14 @@ const ActualSurveyPage = async ({
         <Tabs defaultValue="area">
           <TabsList className="bg-background border">
             <TabsTrigger value="area">Area Ratings</TabsTrigger>
-            <TabsTrigger value="results">Overall Survey Results</TabsTrigger>
-            <TabsTrigger value="next">Next Steps</TabsTrigger>
+            {surveyVisitEnded && (
+              <>
+                <TabsTrigger value="results">
+                  Overall Survey Results
+                </TabsTrigger>
+                <TabsTrigger value="next">Next Steps</TabsTrigger>
+              </>
+            )}
           </TabsList>
           <TabsContent value="area">
             <Card className="bg-background">
@@ -142,21 +154,25 @@ const ActualSurveyPage = async ({
               </CardContent>
             </Card>
           </TabsContent>
-          <TabsContent value="results">
-            <SurveyResults
-              areaFolders={areaFolders as unknown as AreaFolderDTO[]}
-              level={level as unknown as Level}
-              surveyType={SurveyTeamType.EXTERNAL}
-            />
-          </TabsContent>
-          <TabsContent value="next">
-            <NextSteps
-              level={level}
-              areaFolders={areaFolders as unknown as AreaFolderDTO[]}
-              program={program!}
-              accreditationId={accreditationId}
-            />
-          </TabsContent>
+          {surveyVisitEnded && (
+            <>
+              <TabsContent value="results">
+                <SurveyResults
+                  areaFolders={areaFolders as unknown as AreaFolderDTO[]}
+                  level={level as unknown as Level}
+                  surveyType={SurveyTeamType.EXTERNAL}
+                />
+              </TabsContent>
+              <TabsContent value="next">
+                <NextSteps
+                  level={level}
+                  areaFolders={areaFolders as unknown as AreaFolderDTO[]}
+                  program={program!}
+                  accreditationId={accreditationId}
+                />
+              </TabsContent>
+            </>
+          )}
         </Tabs>
       </div>
     </ScrollArea>

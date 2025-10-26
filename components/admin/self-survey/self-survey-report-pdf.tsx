@@ -18,15 +18,14 @@ const SelfSurveyReportPDF = ({
   areaFolders,
   surveyName,
   dateEnded,
+  surveyType,
 }: {
   areaFolders: AreaFolderDTO[];
   surveyName: string;
   dateEnded: Date | null | undefined;
+  surveyType: SurveyTeamType;
 }) => {
-  const grandWeightedMean = calculateGrandMean(
-    areaFolders,
-    SurveyTeamType.INTERNAL
-  );
+  const grandWeightedMean = calculateGrandMean(areaFolders, surveyType);
   const styles = StyleSheet.create({
     cover: {
       flexDirection: "column",
@@ -152,14 +151,11 @@ const SelfSurveyReportPDF = ({
         .sort((a, b) => a.area.label.localeCompare(b.area.label))
         .map((areaFolder) => {
           const area = areaFolder.area;
-          const areaMean = calculateAreaMean(
-            areaFolder,
-            SurveyTeamType.INTERNAL
-          );
+          const areaMean = calculateAreaMean(areaFolder, surveyType);
           const weight = area.weight;
           const weightedAreaMean = calculateWeightedAreaMean(
             areaFolder,
-            SurveyTeamType.INTERNAL
+            surveyType
           );
           const strengths = areaFolder.strengths.find(
             (s) => s.type === "SELF_SURVEY"
@@ -306,13 +302,10 @@ const SelfSurveyReportPDF = ({
             .sort((a, b) => a.area.label.localeCompare(b.area.label))
             .map((areaFolder) => {
               const area = areaFolder.area;
-              const areaMean = calculateAreaMean(
-                areaFolder,
-                SurveyTeamType.INTERNAL
-              );
+              const areaMean = calculateAreaMean(areaFolder, surveyType);
               const weightedAreaMean = calculateWeightedAreaMean(
                 areaFolder,
-                SurveyTeamType.INTERNAL
+                surveyType
               );
               const weight = area.weight;
 

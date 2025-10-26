@@ -8,6 +8,7 @@ import {
 } from "@/lib/utils";
 import { Award, Check, X } from "lucide-react";
 import Grandted from "./granted";
+import Deferred from "./deferred";
 
 const NextSteps = ({
   level,
@@ -79,6 +80,9 @@ const NextSteps = ({
           accreditationId={accreditationId}
           level={level}
         />
+      )}
+      {grandMeanPassed && failedAreas.length > 0 && (
+        <Deferred failedAreas={failedAreas} />
       )}
     </div>
   );

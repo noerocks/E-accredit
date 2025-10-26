@@ -1,6 +1,7 @@
 import { verifySession } from "../action/session";
 import { Rating, SurveyTeamType } from "../generated/prisma";
 import { prisma } from "../prisma";
+import { getAreaFolderById } from "./area-folder";
 
 export async function createNewRating({
   evidenceFileId,
@@ -135,4 +136,25 @@ export async function getRatingByEvidenceFileId(
     return { ...rating, finalRate: Number(rating?.finalRate) };
   }
   return null;
+}
+
+export async function resetAreaRatings(areaId: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const areaFolders = await getAreaFolderById(areaId);
+  const ratings = areaFolders?.parameterFolders.flatMap((parameterFolder) =>
+    parameterFolder.indicatorFolders.flatMap((indicator) =>
+      indicator.evidenceFiles.flatMap((evidence) =>
+        evidence.ratings.find((rating) => rating.type === "EXTERNAL")
+      )
+    )
+  );
+  ratings?.forEach(
+    async (rating) =>
+      await prisma.rating.delete({
+        where: {
+          id: rating?.id,
+        },
+      })
+  );
 }

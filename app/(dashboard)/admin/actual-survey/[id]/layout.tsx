@@ -11,6 +11,7 @@ const ActualSurveyLayout = async ({
 }) => {
   const { id } = await params;
   const surveyVisitStructure = await getSurveyVisitStructureById(id);
+  const surveyResultStatus = surveyVisitStructure?.surveyResultStatus;
   return (
     <div className="flex h-full">
       <AccreditationSidebar
@@ -21,6 +22,7 @@ const ActualSurveyLayout = async ({
         phaseTwoFolder={
           surveyVisitStructure?.phaseTwoRequirements?.phaseTwoFolder
         }
+        surveyResultStatus={surveyResultStatus}
         selfSurveyStatus={surveyVisitStructure?.selfSurveyStatus}
         surveyVisitId={id}
       />
