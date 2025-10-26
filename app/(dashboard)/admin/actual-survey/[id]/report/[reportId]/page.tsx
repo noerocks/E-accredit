@@ -4,6 +4,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { getInstrumentStructureById } from "@/lib/dal/instrument";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
+import { SurveyTeamType } from "@/lib/generated/prisma";
 
 const ReportPage = async ({
   params,
@@ -37,6 +38,7 @@ const ReportPage = async ({
               surveyName={query["self-survey"]}
               areaFolders={areaFolders as unknown as AreaFolderDTO[]}
               dateEnded={surveyVisit?.selfSurveyEndedAt}
+              surveyType={SurveyTeamType.INTERNAL}
             />
           }
         />

@@ -68,7 +68,7 @@ const ParameterPage = async ({
               )}
             >
               <CircleDot size={15} />
-              {complete ? "Complete" : "On Going"}
+              {complete ? "Rating Complete" : "On Going"}
             </p>
           </CardFooter>
         </Card>

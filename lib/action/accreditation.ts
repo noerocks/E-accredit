@@ -204,8 +204,6 @@ export async function denyAccreditationStatus(
     const prevSurveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       surveyResultStatus: SurveyResultStatus.NOT_GRANTED,
-      actualSurveyStatus: SurveyStatus.COMPLETE,
-      actualSurveyEndedAt: new Date(),
     });
     const newSurveyVisit = await createSurveyVisit(
       prevSurveyVisit?.accreditation.program as unknown as ProgramDTO,

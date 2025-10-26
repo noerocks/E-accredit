@@ -1,6 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { Level, Program, SurveyTeamType } from "@/lib/generated/prisma";
+import {
+  Level,
+  Program,
+  SurveyResultStatus,
+  SurveyTeamType,
+} from "@/lib/generated/prisma";
 import {
   calculateAreaMean,
   calculateGrandMean,
@@ -16,11 +21,13 @@ const NextSteps = ({
   areaFolders,
   program,
   accreditationId,
+  surveyResultStatus,
 }: {
   level: Level | undefined;
   areaFolders: AreaFolderDTO[];
   program: Program;
   accreditationId: string | undefined;
+  surveyResultStatus: SurveyResultStatus;
 }) => {
   const grandMean = calculateGrandMean(areaFolders, SurveyTeamType.EXTERNAL);
   const grandMeanPassed = grandMean! >= Number(level?.requiredGrandMean);
@@ -80,6 +87,7 @@ const NextSteps = ({
           program={program!}
           accreditationId={accreditationId}
           level={level}
+          surveyResultStatus={surveyResultStatus}
         />
       )}
       {grandMeanPassed && failedAreas.length > 0 && (

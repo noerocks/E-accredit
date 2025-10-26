@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Level, Program } from "@/lib/generated/prisma";
+import { Level, Program, SurveyResultStatus } from "@/lib/generated/prisma";
 import { screamingSnakeToTitle } from "@/lib/utils";
 import UploadFileForm from "../evidence-file/upload-file-form";
 import { verifySession } from "@/lib/action/session";
@@ -15,11 +15,13 @@ const Granted = async ({
   program,
   accreditationId,
   level,
+  surveyResultStatus,
 }: {
   status: string;
   program: Program;
   accreditationId: string | undefined;
   level: Level | undefined;
+  surveyResultStatus: SurveyResultStatus;
 }) => {
   const formattedStatus = screamingSnakeToTitle(status);
   const session = await verifySession();
@@ -44,14 +46,16 @@ const Granted = async ({
           status.
         </p>
       </CardContent>
-      <CardFooter className="flex justify-end">
-        <UploadFileForm
-          allowFileUploads={true}
-          user={user}
-          accreditationId={accreditationId}
-          level={level}
-        />
-      </CardFooter>
+      {surveyResultStatus !== "GRANTED" && (
+        <CardFooter className="flex justify-end">
+          <UploadFileForm
+            allowFileUploads={true}
+            user={user}
+            accreditationId={accreditationId}
+            level={level}
+          />
+        </CardFooter>
+      )}
     </Card>
   );
 };

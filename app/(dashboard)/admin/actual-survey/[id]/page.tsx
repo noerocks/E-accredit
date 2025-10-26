@@ -27,10 +27,16 @@ import {
   SurveyTeam as SurveyTeamSchema,
   SurveyTeamType,
 } from "@/lib/generated/prisma";
-import { formatAccreditationName } from "@/lib/utils";
+import { formatAccreditationName, screamingSnakeToTitle } from "@/lib/utils";
 import { Level, User } from "@prisma/client";
 import clsx from "clsx";
-import { CircleDot, SearchCheck } from "lucide-react";
+import {
+  Award,
+  CircleDot,
+  CircleSlash,
+  SearchCheck,
+  TrafficCone,
+} from "lucide-react";
 
 const ActualSurveyPage = async ({
   params,
@@ -90,6 +96,7 @@ const ActualSurveyPage = async ({
     complete && !surveyVisitEnded && (isCoordinator || isAdmin);
   const accreditationId = surveyVisitStructure?.accreditationId;
   const surveyType = surveyVisit?.type;
+  const surveyResultStatus = surveyVisit?.surveyResultStatus;
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
@@ -99,13 +106,31 @@ const ActualSurveyPage = async ({
         </p>
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <p className="text-2xl">
-                {formatAccreditationName(program?.code!, level!)}
-              </p>
-              {surveyType === "REVISIT" && (
-                <p className="text-2xl text-muted-foreground">(Revisit)</p>
-              )}
+            <CardTitle className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <p className="text-2xl">
+                  {formatAccreditationName(program?.code!, level!)}
+                </p>
+                {surveyType === "REVISIT" && (
+                  <p className="text-2xl text-muted-foreground">(Revisit)</p>
+                )}
+              </div>
+              {surveyResultStatus === "GRANTED" ? (
+                <div className="text-yellow-500 flex items-center gap-2 text-lg">
+                  <Award />
+                  <p>Grandted</p>
+                </div>
+              ) : surveyResultStatus === "DEFERRED" ? (
+                <div className="text-muted-foreground flex items-center gap-2">
+                  <TrafficCone />
+                  <p>Deferred</p>
+                </div>
+              ) : surveyResultStatus === "NOT_GRANTED" ? (
+                <div className="text-red-500 flex items-center gap-2 text-lg">
+                  <CircleSlash />
+                  <p>Not Granted</p>
+                </div>
+              ) : null}
             </CardTitle>
             <CardDescription>{program?.name}</CardDescription>
           </CardHeader>
@@ -120,7 +145,7 @@ const ActualSurveyPage = async ({
               )}
             >
               <CircleDot size={15} />
-              {complete ? "Survey Complete" : "On Going"}
+              {complete ? "Rating Complete" : "On Going"}
             </p>
             <div className="flex items-center gap-2">
               {endSurveyIsVisible && <EndSurveyButton surveyVisitId={id} />}
@@ -169,6 +194,7 @@ const ActualSurveyPage = async ({
                   areaFolders={areaFolders as unknown as AreaFolderDTO[]}
                   program={program!}
                   accreditationId={accreditationId}
+                  surveyResultStatus={surveyResultStatus!}
                 />
               </TabsContent>
             </>

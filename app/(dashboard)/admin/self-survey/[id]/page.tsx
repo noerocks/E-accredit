@@ -29,7 +29,7 @@ import {
 import { formatAccreditationName } from "@/lib/utils";
 import { Level, User } from "@prisma/client";
 import clsx from "clsx";
-import { CircleDot, SearchCheck } from "lucide-react";
+import { Check, CircleDot, SearchCheck } from "lucide-react";
 
 const SelfSurveyPage = async ({
   params,
@@ -87,6 +87,7 @@ const SelfSurveyPage = async ({
   const externalSurveyTeam = surveyVisit?.surveyTeam.find(
     (team) => team.type === "EXTERNAL"
   );
+  const surveyStatus = surveyVisit?.selfSurveyStatus;
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
@@ -101,19 +102,27 @@ const SelfSurveyPage = async ({
             </CardTitle>
             <CardDescription>{program?.name}</CardDescription>
           </CardHeader>
-          <CardFooter className="flex items-cente justify-between">
-            <p
-              className={clsx(
-                "py-2 px-3 dark:border-2 border rounded-md flex items-center gap-2",
-                {
-                  "bg-green-400/5 text-green-600 border-green-400": complete,
-                  "bg-blue-500/5 text-blue-500 border-blue-500": !complete,
-                }
+          <CardFooter className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <p
+                className={clsx(
+                  "py-2 px-3 dark:border-2 border rounded-md flex items-center gap-2",
+                  {
+                    "bg-green-400/5 text-green-600 border-green-400": complete,
+                    "bg-blue-500/5 text-blue-500 border-blue-500": !complete,
+                  }
+                )}
+              >
+                <CircleDot size={15} />
+                {complete ? "Rating Complete" : "On Going"}
+              </p>
+              {surveyVisitEnded && (
+                <p className="py-2 px-3 dark:border-2 border rounded-md flex items-center gap-2 text-muted-foreground">
+                  <Check size={15} />
+                  Survey Ended
+                </p>
               )}
-            >
-              <CircleDot size={15} />
-              {complete ? "Complete" : "On Going"}
-            </p>
+            </div>
             <div className="flex items-center gap-2">
               {endSurveyVisitIsVisible && (
                 <EndSurveyButton surveyVisitId={id} />
@@ -129,7 +138,9 @@ const SelfSurveyPage = async ({
         <Tabs defaultValue="area">
           <TabsList className="bg-background border">
             <TabsTrigger value="area">Area Ratings</TabsTrigger>
-            <TabsTrigger value="results">Overall Survey Results</TabsTrigger>
+            {surveyStatus === "COMPLETE" && (
+              <TabsTrigger value="results">Overall Survey Results</TabsTrigger>
+            )}
           </TabsList>
           <TabsContent value="area">
             <Card className="bg-background">

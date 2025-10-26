@@ -33,8 +33,8 @@ const AccreditationSettings = ({
   const params = useParams();
   const [pending, startTransition] = useTransition();
   const toggleFileUpload = async () => {
-    if (openForSelfSurvey) {
-      toast.error("Can't allow uploads if self survey is open.");
+    if (openForSelfSurvey || openForActualSurvey) {
+      toast.error("Can't allow uploads if a survey is open.");
       return;
     }
     startTransition(async () => {
@@ -48,8 +48,8 @@ const AccreditationSettings = ({
     });
   };
   const toggleEdit = async () => {
-    if (openForSelfSurvey) {
-      toast.error("Can't allow edits if self survey is open.");
+    if (openForSelfSurvey || openForActualSurvey) {
+      toast.error("Can't allow edits if a survey is open.");
       return;
     }
     startTransition(async () => {

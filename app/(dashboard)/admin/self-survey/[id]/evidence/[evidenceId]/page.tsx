@@ -4,15 +4,16 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { verifySession } from "@/lib/action/session";
 import { getEvidenceFileById } from "@/lib/dal/evidence";
 import { getRatingByEvidenceFileId } from "@/lib/dal/rating";
+import { getSurveyVisitById } from "@/lib/dal/survey-visit";
 import { SurveyTeamType } from "@/lib/generated/prisma";
 import { CheckCircle } from "lucide-react";
 
 const EvidencePage = async ({
   params,
 }: {
-  params: Promise<{ evidenceId: string }>;
+  params: Promise<{ id: string; evidenceId: string }>;
 }) => {
-  const { evidenceId } = await params;
+  const { id, evidenceId } = await params;
   const evidenceFile = await getEvidenceFileById(evidenceId);
   const indicator = evidenceFile?.indicator;
   const rating = await getRatingByEvidenceFileId(
@@ -31,6 +32,8 @@ const EvidencePage = async ({
     );
   const { user } = await verifySession();
   const authorized = user.id === areaChair?.user.id || user.role === "ADMIN";
+  const surveyVisit = await getSurveyVisitById(id);
+  const surveyStatus = surveyVisit?.selfSurveyStatus;
   return (
     <div className="h-full flex">
       <ScrollArea className="h-full flex-1">
@@ -45,6 +48,7 @@ const EvidencePage = async ({
         user={user}
         rating={rating}
         authorized={authorized}
+        surveyStatus={surveyStatus!}
       />
     </div>
   );

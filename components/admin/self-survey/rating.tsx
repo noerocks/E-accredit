@@ -8,7 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { giveRating } from "@/lib/action/rating";
 import { SessionPayload } from "@/lib/definitions";
 import { RatingDTO } from "@/lib/dto/survey-visit";
-import { SurveyTeamType } from "@/lib/generated/prisma";
+import { SurveyStatus, SurveyTeamType } from "@/lib/generated/prisma";
 import { CircleSlash, Loader, Puzzle, RotateCcw, Zap } from "lucide-react";
 import { useParams, usePathname } from "next/navigation";
 import { useEffect, useRef, useState, useTransition } from "react";
@@ -17,10 +17,12 @@ const Rating = ({
   user,
   rating,
   authorized,
+  surveyStatus,
 }: {
   user: SessionPayload;
   rating: RatingDTO | null;
   authorized: boolean;
+  surveyStatus: SurveyStatus;
 }) => {
   const adequacyList = [
     { numeric: 5, descriptive: "Very adequate" },
@@ -170,6 +172,7 @@ const Rating = ({
       }
     }
   };
+  const enableRating = authorized && surveyStatus !== "COMPLETE";
   return (
     <ScrollArea className="h-full pr-3 pl-2">
       <div className="flex flex-col gap-2">
@@ -202,7 +205,7 @@ const Rating = ({
                 >
                   <RadioGroupItem
                     value={rating.numeric.toString()}
-                    disabled={!authorized}
+                    disabled={!enableRating}
                   />
                   <div className="flex flex-1 justify-between items-center gap-5">
                     <p>{rating.numeric}</p>
@@ -233,7 +236,7 @@ const Rating = ({
                 >
                   <RadioGroupItem
                     value={rating.numeric.toString()}
-                    disabled={!authorized}
+                    disabled={!enableRating}
                   />
                   <div className="flex flex-1 justify-between gap-5 items-center">
                     <p>{rating.numeric}</p>
@@ -253,7 +256,7 @@ const Rating = ({
               <Checkbox
                 checked={NA}
                 onCheckedChange={toggleNA}
-                disabled={!authorized}
+                disabled={!enableRating}
               />
               <p className="flex items-center gap-2 text-xs">
                 Not Applicable (N/A)
@@ -267,7 +270,7 @@ const Rating = ({
             )}
           </CardContent>
         </Card>
-        {authorized && (
+        {enableRating && (
           <Button onClick={submit}>
             {pending ? (
               <>

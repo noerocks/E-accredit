@@ -54,6 +54,7 @@ const UploadFileForm = ({
   const [file, setFile] = useState<File | null>();
   const [progress, setProgress] = useState<number>(0);
   const [pending, startTransition] = useTransition();
+  const [open, setOpen] = useState<boolean>(false);
   const unattachFile = () => {
     setFile(null);
   };
@@ -117,6 +118,8 @@ const UploadFileForm = ({
           level: level,
         });
       }
+      setFile(null);
+      setOpen(false);
     });
   };
   const formatSize = (size: number) => {
@@ -160,7 +163,7 @@ const UploadFileForm = ({
     },
   });
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="flex items-center" disabled={!allowFileUploads}>
           <Upload />

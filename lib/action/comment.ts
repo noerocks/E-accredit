@@ -49,7 +49,7 @@ export async function createNewComment({
         revalidateTag("areaFolder");
         revalidateTag("parameterFolder");
         revalidateTag("surveyVisitStructure");
-        return { success: { message: "Comment created successfuly" } };
+        return { success: { message: "Comment created successfully" } };
       }
       const updatedComment = updateCommentById({
         id: recommendation?.id,
@@ -60,7 +60,7 @@ export async function createNewComment({
       revalidateTag("areaFolder");
       revalidateTag("parameterFolder");
       revalidateTag("surveyVisitStructure");
-      return { success: { message: "Comment updated successfuly" } };
+      return { success: { message: "Comment updated successfully" } };
     }
     if (strongFolderId) {
       const strengths = await getStrengthsByAreaFolderId(strongFolderId, type);
@@ -76,7 +76,7 @@ export async function createNewComment({
         revalidateTag("areaFolder");
         revalidateTag("parameterFolder");
         revalidateTag("surveyVisitStructure");
-        return { success: { message: "Comment created successfuly" } };
+        return { success: { message: "Comment created successfully" } };
       }
       const updatedComment = updateCommentById({
         id: strengths?.id,
@@ -87,7 +87,7 @@ export async function createNewComment({
       revalidateTag("areaFolder");
       revalidateTag("parameterFolder");
       revalidateTag("surveyVisitStructure");
-      return { success: { message: "Comment updated successfuly" } };
+      return { success: { message: "Comment updated successfully" } };
     }
     if (weakFolderId) {
       const weaknesses = await getWeaknessesByAreaFolderId(weakFolderId, type);
@@ -103,7 +103,7 @@ export async function createNewComment({
         revalidateTag("areaFolder");
         revalidateTag("parameterFolder");
         revalidateTag("surveyVisitStructure");
-        return { success: { message: "Comment created successfuly" } };
+        return { success: { message: "Comment created successfully" } };
       }
       const updatedComment = updateCommentById({
         id: weaknesses?.id,
@@ -114,7 +114,7 @@ export async function createNewComment({
       revalidateTag("areaFolder");
       revalidateTag("parameterFolder");
       revalidateTag("surveyVisitStructure");
-      return { success: { message: "Comment updated successfuly" } };
+      return { success: { message: "Comment updated successfully" } };
     }
     const comment = await createNewCommentDAL({
       authorId,
@@ -131,7 +131,7 @@ export async function createNewComment({
     revalidateTag("areaFolder");
     revalidateTag("parameterFolder");
     revalidateTag("surveyVisitStructure");
-    return { success: { message: "Comment created successfuly" } };
+    return { success: { message: "Comment created successfully" } };
   } catch (error) {
     const e = error as Error;
     console.log(e.message);

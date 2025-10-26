@@ -8,7 +8,6 @@ import {
   updateRatingById,
 } from "../dal/rating";
 import { SurveyTeamType } from "../generated/prisma";
-import { verifySession } from "./session";
 
 export async function giveRating({
   evidenceFileId,

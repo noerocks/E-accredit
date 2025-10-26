@@ -112,7 +112,9 @@ const ProgramAccreditationPage = async ({
                 )}
               >
                 <CircleDot size={15} />
-                {screamingSnakeToTitle(String(surveyVisitStructure?.status!))}
+                {surveyVisitStructure?.status === "IN_PROGRESS"
+                  ? screamingSnakeToTitle(String(surveyVisitStructure?.status!))
+                  : "Ready For Survey"}
               </p>
               {marksAsCompleteVisible && (
                 <MarkAsCompleteButton

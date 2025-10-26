@@ -16,17 +16,20 @@ import { CommentDTO } from "@/lib/dto/comment";
 import Comments from "./comments";
 import { SessionPayload } from "@/lib/definitions";
 import { RatingDTO } from "@/lib/dto/survey-visit";
+import { SurveyStatus } from "@/lib/generated/prisma";
 
 const AccreditorSidebar = ({
   comments,
   user,
   rating,
   authorized,
+  surveyStatus,
 }: {
   comments: CommentDTO[];
   user: SessionPayload;
   rating: RatingDTO | null;
   authorized: boolean;
+  surveyStatus: SurveyStatus;
 }) => {
   const [tab, setTab] = useState<string>("rating");
   return (
@@ -62,7 +65,12 @@ const AccreditorSidebar = ({
               value="rating"
               className="flex-1 min-h-0 overflow-hidden"
             >
-              <Rating user={user} rating={rating} authorized={authorized} />
+              <Rating
+                user={user}
+                rating={rating}
+                authorized={authorized}
+                surveyStatus={surveyStatus}
+              />
             </TabsContent>
             <TabsContent
               value="comments"

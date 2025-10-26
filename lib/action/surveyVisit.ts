@@ -120,6 +120,7 @@ export async function endSelfSurvey(surveyVisitId: string) {
     revalidateTag("surveyVisitStructure");
     revalidateTag("surveyVisitSelfSurvey");
     revalidateTag("surveyVisitActualSurvey");
+    return { success: { message: "Actual survey has now ended" } };
   } catch (error) {
     const e = error as Error;
     return { failure: { error: e.message } };
@@ -139,6 +140,7 @@ export async function endActualSurvey(surveyVisitId: string) {
     revalidateTag("surveyVisitStructure");
     revalidateTag("surveyVisitSelfSurvey");
     revalidateTag("surveyVisitActualSurvey");
+    return { success: { message: "Self survey has now ended" } };
   } catch (error) {
     const e = error as Error;
     return { failure: { error: e.message } };

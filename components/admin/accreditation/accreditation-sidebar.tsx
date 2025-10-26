@@ -54,11 +54,13 @@ const AccreditationSidebar = ({
     e: React.MouseEvent<HTMLUListElement | HTMLButtonElement>
   ) => {
     const target = e.target as HTMLElement;
-    const button = target.closest<HTMLButtonElement>("[data-id]");
+    const button = target.closest<HTMLButtonElement>("[data-type]");
     if (!button || target.tagName !== "BUTTON") return null;
     const { id, type } = button.dataset;
     router.replace(
-      `/${base.join("/")}/${type}/${id}?${searchParams.toString()}`
+      `/${base.join("/")}/${type}${
+        id ? `/${id}` : ""
+      }?${searchParams.toString()}`
     );
   };
   const phaseOneAreaFolders =
@@ -93,10 +95,20 @@ const AccreditationSidebar = ({
       </SidebarHeader>
       <SidebarContent>
         <ScrollArea className="h-full">
-          {selfSurveyStatus === "COMPLETE" && (
-            <SidebarGroup>
-              <SidebarGroupLabel>Survey Reports</SidebarGroupLabel>
-              <SidebarMenu>
+          <SidebarGroup>
+            <SidebarGroupLabel>Survey Reports</SidebarGroupLabel>
+            <SidebarMenu>
+              {surveyResultStatus === "GRANTED" && (
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    onDoubleClick={onDoubleClick}
+                    data-type={"certificate"}
+                  >
+                    {`📄 Accreditation Certificate`}
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              )}
+              {selfSurveyStatus === "COMPLETE" && (
                 <SidebarMenuItem>
                   <SidebarMenuButton
                     onDoubleClick={onDoubleClick}
@@ -106,9 +118,9 @@ const AccreditationSidebar = ({
                     {`📄 Self Survey PDF`}
                   </SidebarMenuButton>
                 </SidebarMenuItem>
-              </SidebarMenu>
-            </SidebarGroup>
-          )}
+              )}
+            </SidebarMenu>
+          </SidebarGroup>
           <SidebarGroup>
             <SidebarGroupLabel>Areas</SidebarGroupLabel>
             <SidebarMenu onDoubleClick={onDoubleClick}>

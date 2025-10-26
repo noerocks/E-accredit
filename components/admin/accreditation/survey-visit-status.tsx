@@ -37,8 +37,8 @@ const SurveyVisitStatus = ({
             <p className="text-sm">Acquired Grand Mean</p>
           </div>
           <p>
-            {surveyStatus.selfSurveyGrandMean
-              ? surveyStatus.selfSurveyGrandMean.toFixed(2)
+            {surveyStatus.selfSurveyStatus === "COMPLETE"
+              ? surveyStatus.selfSurveyGrandMean?.toFixed(2)
               : "-"}
           </p>
         </div>
@@ -55,7 +55,7 @@ const SurveyVisitStatus = ({
             <p className="text-sm">Acquired Grand Mean</p>
           </div>
           <p>
-            {surveyStatus.actualSurveyGrandMean
+            {surveyStatus.actualSurveyStatus === "COMPLETE"
               ? surveyStatus.actualSurveyGrandMean?.toFixed(2)
               : "-"}
           </p>

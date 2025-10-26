@@ -175,3 +175,17 @@ export async function getFileVersionById(id: string) {
   });
   return fileVersion;
 }
+
+export async function getCertificateFileBySurveyVisitId(surveyVisitId: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const surveyVisit = await prisma.surveyVisit.findUnique({
+    where: {
+      id: surveyVisitId,
+    },
+    include: {
+      certificate: true,
+    },
+  });
+  return surveyVisit?.certificate;
+}

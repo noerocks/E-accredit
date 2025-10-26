@@ -80,6 +80,7 @@ const RecommendationsForm = ({
         weakFolderId,
       });
       if (result?.failure) toast.error(result.failure.error);
+      if (result.success) toast.success(result.success.message);
     });
   };
   return (
