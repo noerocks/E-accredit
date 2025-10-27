@@ -19,6 +19,7 @@ import {
 } from "../generated/prisma";
 import {
   createSurveyVisit as createSurveyVisitDAL,
+  getSurveyVisitStructureById,
   updateSurveyVisitById,
 } from "../dal/survey-visit";
 import { getInstrumentStructureById } from "../dal/instrument";

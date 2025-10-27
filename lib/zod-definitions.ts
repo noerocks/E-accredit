@@ -126,3 +126,7 @@ export const RevisitScheduleFormSchema = z.object({
     error: "An actual survey date is required",
   }),
 });
+
+export const MigratePortfolioFormSchema = z.object({
+  surveyVisitId: z.string().min(1, "This field is required"),
+});

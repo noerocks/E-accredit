@@ -20,9 +20,16 @@ import {
   updateVersionById,
 } from "../dal/file-version";
 import { updateAreaFileById } from "../dal/area-file";
-import { updateParameterFolderById } from "../dal/parameter-folder";
+import {
+  updateManyParameterFolderByAreaFolderId,
+  updateParameterFolderById,
+} from "../dal/parameter-folder";
 import { updateAreaFolderById } from "../dal/area-folder";
-import { getSurveyVisitById, updateSurveyVisitById } from "../dal/survey-visit";
+import {
+  getSurveyVisitById,
+  getSurveyVisitStructureById,
+  updateSurveyVisitById,
+} from "../dal/survey-visit";
 import { updateAccreditationById } from "../dal/accreditation";
 import { grantAccreditedStatus } from "./accreditation";
 
@@ -121,6 +128,131 @@ export async function createNewVersion({
   revalidateTag("parameterFolder");
   revalidateTag("areaFolder");
   revalidateTag("surveyVisitStructure");
+}
+
+export async function migrateFiles(
+  sourcePortfolio: string,
+  destinationPortfolio: string
+) {
+  if (!sourcePortfolio || !destinationPortfolio)
+    return { failure: { error: "Invalid input" } };
+  try {
+    const session = await verifySession();
+    const user = session.user;
+    const source = await getSurveyVisitStructureById(sourcePortfolio);
+    const destination = await getSurveyVisitStructureById(destinationPortfolio);
+    if (!source || !destination)
+      return { failure: { error: "Error in fetching source and destination" } };
+    await updateSurveyVisitById({
+      id: destinationPortfolio,
+      status: "IN_PROGRESS",
+    });
+    const sourceAreaFolders =
+      source.phaseOneRequirements.instrumentFolder.areaFolders;
+    const destinationAreaFolders =
+      destination.phaseOneRequirements.instrumentFolder.areaFolders;
+    const destinationEvidenceFiles = destinationAreaFolders?.flatMap(
+      (areaFolder) =>
+        areaFolder.parameterFolders.flatMap((parameter) =>
+          parameter.indicatorFolders.flatMap((indicatorFolder) =>
+            indicatorFolder.evidenceFiles.map((evidence) => evidence)
+          )
+        )
+    );
+    if (
+      !sourceAreaFolders ||
+      !destinationAreaFolders ||
+      !destinationEvidenceFiles
+    )
+      return { failure: { error: "Error in fetching area folders" } };
+    for (let i = 0; i < sourceAreaFolders.length; i++) {
+      const areaFolder = sourceAreaFolders[i];
+      const area = areaFolder.area;
+      const areaFiles = areaFolder.areaFiles;
+      const sourceEvidenceFiles = areaFolder.parameterFolders.flatMap(
+        (parameter) =>
+          parameter.indicatorFolders.flatMap((indicatorFolder) =>
+            indicatorFolder.evidenceFiles.map((evidence) => evidence)
+          )
+      );
+      if (!areaFiles || !sourceEvidenceFiles)
+        return {
+          failure: { error: "Error in fetching area files and evidence files" },
+        };
+      await updateAreaFolderById({
+        id: areaFolder.id,
+        status: "IN_PROGRESS",
+      });
+      await updateManyParameterFolderByAreaFolderId(areaFolder.id, {
+        status: "IN_PROGRESS",
+      });
+      for (let j = 0; j < areaFiles.length; j++) {
+        const areaFile = areaFiles[j];
+        const activeVersion = areaFile.fileVersions.find(
+          (file) => file.status === "ACTIVE"
+        );
+        if (!activeVersion)
+          return {
+            failure: { error: "Error in fetching active file version" },
+          };
+        const { name, objectUrl, type } = activeVersion;
+        const destinationAreaFile = destinationAreaFolders
+          .find((folder) => folder.area.id === area.id)
+          ?.areaFiles.find((file) => file.type === areaFile.type);
+        if (!destinationAreaFile)
+          return {
+            failure: { error: "Error in fetching destination area file" },
+          };
+        await resetAllAreaFileVersionStatus(destinationAreaFile.id);
+        await createNewAreaFileVersion(
+          name,
+          user.email,
+          destinationAreaFile.id,
+          objectUrl,
+          type
+        );
+      }
+      for (let k = 0; k < sourceEvidenceFiles.length; k++) {
+        const evidenceFile = sourceEvidenceFiles[k];
+        const indicator = evidenceFile.indicator;
+        const activeVersion = evidenceFile.fileVersions.find(
+          (file) => file.status === "ACTIVE"
+        );
+        if (!activeVersion)
+          return {
+            failure: { error: "Error in fetching active file version" },
+          };
+        const { name, objectUrl, type } = activeVersion;
+        const destinationEvidenceFile = destinationEvidenceFiles.find(
+          (evidence) => evidence.indicator.id === indicator.id
+        );
+        if (!destinationEvidenceFile)
+          return {
+            failure: { error: "Error in fetching destination evidence file" },
+          };
+        await resetAllEvidenceVersionStatus(destinationEvidenceFile.id);
+        await createNewEvidenceFileVersion(
+          name,
+          user.email,
+          destinationEvidenceFile.id,
+          objectUrl,
+          type
+        );
+        await updateEvidenceFileById({
+          id: destinationEvidenceFile.id,
+          status: "FOR_REVIEW",
+        });
+      }
+    }
+    revalidateTag("evidenceFiles");
+    revalidateTag("parameterFolder");
+    revalidateTag("areaFolder");
+    revalidateTag("surveyVisitStructure");
+    return { success: { message: "Migration successfull" } };
+  } catch (error) {
+    const e = error as Error;
+    return { failure: { error: e.message } };
+  }
 }
 
 export async function changeActiveVersion(

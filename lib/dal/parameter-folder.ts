@@ -104,3 +104,18 @@ export async function updateParameterFolderById(
   });
   return parameterFolder;
 }
+
+export async function updateManyParameterFolderByAreaFolderId(
+  areaFolderId: string,
+  data: Partial<ParameterFolder>
+) {
+  const session = await verifySession();
+  if (!session) return null;
+  const parameterFolder = await prisma.parameterFolder.updateMany({
+    where: {
+      areaFolderId: areaFolderId,
+    },
+    data,
+  });
+  return parameterFolder;
+}

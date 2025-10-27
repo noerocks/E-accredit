@@ -99,7 +99,11 @@ export const getSurveyVisitStructureById = unstable_cache(
                       },
                     },
                     area: true,
-                    areaFiles: true,
+                    areaFiles: {
+                      include: {
+                        fileVersions: true,
+                      },
+                    },
                     parameterFolders: {
                       include: {
                         parameter: true,
@@ -113,6 +117,7 @@ export const getSurveyVisitStructureById = unstable_cache(
                                     accreditor: true,
                                   },
                                 },
+                                fileVersions: true,
                               },
                             },
                           },
@@ -267,5 +272,31 @@ export const getAllSurveyVisitOpenForActualSurvey = unstable_cache(
   ["getAllSurveyVisitOpenForActualSurvey"],
   {
     tags: ["surveyVisitActualSurvey"],
+  }
+);
+
+export const getAllPendingSurveyVisitsByInstrumentId = unstable_cache(
+  async (instrumentId: string) => {
+    const surveyVisits = await prisma.surveyVisit.findMany({
+      where: {
+        surveyResultStatus: "PENDING",
+        phaseOneRequirements: {
+          instrumentId: instrumentId,
+        },
+      },
+      include: {
+        accreditation: {
+          include: {
+            program: true,
+          },
+        },
+        level: true,
+      },
+    });
+    return surveyVisits;
+  },
+  ["getAllPendingSurveyVisitsByIntrumentId"],
+  {
+    tags: ["accreditations"],
   }
 );

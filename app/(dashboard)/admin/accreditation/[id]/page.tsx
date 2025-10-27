@@ -2,10 +2,10 @@ import AccreditationSettings from "@/components/admin/accreditation/accreditatio
 import Banner from "@/components/admin/accreditation/banner";
 import { columns } from "@/components/admin/accreditation/columns";
 import { DataTable } from "@/components/admin/accreditation/data-table";
+import MigrateFiles from "@/components/admin/accreditation/migrate-files";
 import SurveyVisitStatus from "@/components/admin/accreditation/survey-visit-status";
 import TargetLevel from "@/components/admin/accreditation/target-level";
 import MarkAsCompleteButton from "@/components/admin/parameter/mark-as-complete";
-import { Calendar } from "@/components/ui/calendar";
 import {
   Card,
   CardContent,
@@ -17,27 +17,23 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { verifySession } from "@/lib/action/session";
 import { getInstrumentStructureById } from "@/lib/dal/instrument";
-import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
-import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { Progress, SurveyTeamType } from "@/lib/generated/prisma";
 import {
-  calculateAreaMean,
+  getAllPendingSurveyVisitsByInstrumentId,
+  getSurveyVisitStructureById,
+} from "@/lib/dal/survey-visit";
+import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
+import {
+  Progress,
+  SurveyResultStatus,
+  SurveyTeamType,
+} from "@/lib/generated/prisma";
+import {
   calculateGrandMean,
   formatAccreditationName,
-  formatLevelName,
   screamingSnakeToTitle,
 } from "@/lib/utils";
 import clsx from "clsx";
-import {
-  BadgeCheck,
-  Check,
-  CheckCircle2,
-  CircleDot,
-  CircleQuestionMark,
-  FileArchive,
-  Info,
-  Settings,
-} from "lucide-react";
+import { CircleDot, FileArchive } from "lucide-react";
 
 const ProgramAccreditationPage = async ({
   params,
@@ -81,7 +77,11 @@ const ProgramAccreditationPage = async ({
       areaFolders as unknown as AreaFolderDTO[],
       SurveyTeamType.EXTERNAL
     ),
+    surveyResultStatus: surveyVisitStructure?.surveyResultStatus,
   };
+  const surveyVisits = await getAllPendingSurveyVisitsByInstrumentId(
+    surveyVisitStructure?.phaseOneRequirements.instrumentId!
+  );
   return (
     <ScrollArea className="h-full">
       <Banner surveyVisitId={String(id!)} />
@@ -122,6 +122,9 @@ const ProgramAccreditationPage = async ({
                 />
               )}
             </div>
+            {surveyVisitStructure?.status === "COMPLETE" && (
+              <MigrateFiles surveyVisitPortfolios={surveyVisits!} />
+            )}
           </CardFooter>
         </Card>
         <div className="flex gap-5">

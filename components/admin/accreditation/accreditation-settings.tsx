@@ -2,7 +2,12 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
-import { CircleQuestionMark, Loader, Settings } from "lucide-react";
+import {
+  CircleQuestionMark,
+  Loader,
+  Settings,
+  UploadCloud,
+} from "lucide-react";
 import { useParams } from "next/navigation";
 import { useTransition } from "react";
 import {
@@ -13,6 +18,7 @@ import {
 } from "@/lib/action/surveyVisit";
 import { toast } from "sonner";
 import { Progress, SurveyStatus } from "@/lib/generated/prisma";
+import { Button } from "@/components/ui/button";
 
 const AccreditationSettings = ({
   allowFileUploads,
