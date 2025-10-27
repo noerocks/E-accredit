@@ -5,7 +5,6 @@ import { SearchCheck } from "lucide-react";
 
 const SelfSurveysPage = async () => {
   const surveyVisits = await getAllSurveyVisitOpenForSelfSurvey();
-  console.log(surveyVisits);
   return (
     <div className="max-w-3/4 mx-auto mt-10">
       <div className="mb-10">

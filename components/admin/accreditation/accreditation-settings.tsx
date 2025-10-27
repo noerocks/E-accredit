@@ -20,6 +20,7 @@ const AccreditationSettings = ({
   openForSelfSurvey,
   selfSurveyStatus,
   openForActualSurvey,
+  actualSurveyStatus,
   status,
 }: {
   allowFileUploads: boolean | undefined;
@@ -138,7 +139,10 @@ const AccreditationSettings = ({
           <Switch
             checked={openForActualSurvey}
             onClick={toggleActualSurvey}
-            disabled={selfSurveyStatus === "ON_GOING"}
+            disabled={
+              actualSurveyStatus === "ON_GOING" ||
+              actualSurveyStatus === "COMPLETE"
+            }
           />
         </div>
       </CardContent>

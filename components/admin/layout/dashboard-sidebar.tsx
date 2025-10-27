@@ -82,7 +82,7 @@ const DashboardSidebar = async () => {
           </SidebarMenu>
         </SidebarGroup>
         <SidebarGroup>
-          <SidebarGroupLabel>Accreditation</SidebarGroupLabel>
+          <SidebarGroupLabel>Documents & Archive</SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
@@ -96,12 +96,25 @@ const DashboardSidebar = async () => {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
+                <Link href={"/admin/accreditation"}>
+                  <FileArchive />
+                  <span className="whitespace-nowrap">Survey Records</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
                 <Link href={"/admin/instruments"}>
                   <ClipboardCheck />
                   <span className="whitespace-nowrap">Instruments</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Open Surveys</SidebarGroupLabel>
+          <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <Link href={"/admin/self-survey"}>

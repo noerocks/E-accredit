@@ -117,6 +117,7 @@ export async function endSelfSurvey(surveyVisitId: string) {
     });
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
+    revalidateTag("evidenceFiles");
     revalidateTag("surveyVisitStructure");
     revalidateTag("surveyVisitSelfSurvey");
     revalidateTag("surveyVisitActualSurvey");
@@ -132,11 +133,11 @@ export async function endActualSurvey(surveyVisitId: string) {
     const surveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       actualSurveyStatus: SurveyStatus.COMPLETE,
-      openForActualSurvey: false,
       actualSurveyEndedAt: new Date(),
     });
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
+    revalidateTag("evidenceFiles");
     revalidateTag("surveyVisitStructure");
     revalidateTag("surveyVisitSelfSurvey");
     revalidateTag("surveyVisitActualSurvey");
@@ -163,13 +164,12 @@ export async function scheduleActualSurveyRevisit(
       surveyResultStatus: SurveyResultStatus.DEFERRED,
       actualSurveyStatus: SurveyStatus.ON_GOING,
     });
-    failedAreas.forEach(async (areaFolder) => {
-      const area = await updateAreaFolderById({
-        id: areaFolder.id,
-        revisit: true,
-      });
-      await resetAreaRatings(areaFolder.id);
-    });
+    await Promise.all(
+      failedAreas.map(async (areaFolder) => {
+        await updateAreaFolderById({ id: areaFolder.id, revisit: true });
+        await resetAreaRatings(areaFolder.id);
+      })
+    );
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("evidenceFiles");

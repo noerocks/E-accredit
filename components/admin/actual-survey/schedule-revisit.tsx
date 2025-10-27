@@ -33,10 +33,11 @@ import { SurveyResultStatus } from "@/lib/generated/prisma";
 import { cn } from "@/lib/utils";
 import { RevisitScheduleFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Loader } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import z from "zod";
 
 const ScheduleRevisit = ({
@@ -64,12 +65,16 @@ const ScheduleRevisit = ({
             failedAreas,
             data.actualSurveyDate
           );
+          if (result.failure) toast.error(result.failure.error);
+          if (result.success) toast.success(result.success.message);
+          break;
         }
         case "NOT_GRANTED": {
           const result = await denyAccreditationStatus(
             String(params.id),
             data.actualSurveyDate
           );
+          break;
         }
       }
     });
@@ -141,7 +146,14 @@ const ScheduleRevisit = ({
               )}
             />
             <DialogFooter>
-              <Button>Submit</Button>
+              {pending ? (
+                <Button>
+                  <Loader className="animate-spin" />
+                  Submitting...
+                </Button>
+              ) : (
+                <Button>Submit</Button>
+              )}
               <DialogClose asChild>
                 <Button variant="outline">Cancel</Button>
               </DialogClose>
