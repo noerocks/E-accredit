@@ -9,7 +9,13 @@ import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
 import ScheduleRevisit from "./schedule-revisit";
 import { SurveyResultStatus } from "@/lib/generated/prisma";
 
-const NotGranted = ({ failedAreas }: { failedAreas: AreaFolderDTO[] }) => {
+const NotGranted = ({
+  failedAreas,
+  surveyResultStatus,
+}: {
+  failedAreas: AreaFolderDTO[];
+  surveyResultStatus: SurveyResultStatus;
+}) => {
   return (
     <Card className="bg-background">
       <CardHeader>
@@ -31,12 +37,14 @@ const NotGranted = ({ failedAreas }: { failedAreas: AreaFolderDTO[] }) => {
           </p>
         )}
       </CardContent>
-      <CardFooter className="flex justify-end">
-        <ScheduleRevisit
-          failedAreas={failedAreas}
-          surveyResultStatus={SurveyResultStatus.NOT_GRANTED}
-        />
-      </CardFooter>
+      {surveyResultStatus !== "NOT_GRANTED" && (
+        <CardFooter className="flex justify-end">
+          <ScheduleRevisit
+            failedAreas={failedAreas}
+            surveyResultStatus={SurveyResultStatus.NOT_GRANTED}
+          />
+        </CardFooter>
+      )}
     </Card>
   );
 };

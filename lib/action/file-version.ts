@@ -113,6 +113,7 @@ export async function createNewVersion({
     const surveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       surveyResultStatus: SurveyResultStatus.GRANTED,
+      openForActualSurvey: false,
     });
     const accreditation = await grantAccreditedStatus(accreditationId, level);
   }

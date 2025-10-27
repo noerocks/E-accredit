@@ -36,24 +36,47 @@ const NextSteps = ({
       (calculateAreaMean(area, SurveyTeamType.EXTERNAL) || 0) <
       Number(level?.requiredAreaMean)
   );
-  const status =
+  let status =
     level?.label === "PRELIMINARY_SURVEY_VISIT" ? "CANDIDATE" : level?.label;
+  let first;
+  switch (status) {
+    case "CANDIDATE":
+      first =
+        "1. A preliminary survey visit was conducted by AACCUP team of accreditors";
+      break;
+    case "LEVEL_I":
+      first =
+        "1. A first survey visit was conducted by AACCUP team of accreditors;";
+      break;
+    case "LEVEL_II":
+      first =
+        "1. A second survey visit was conducted by AACCUP team of accreditors;";
+      break;
+    case "LEVEL_III":
+      first =
+        "1. A third survey visit was conducted by AACCUP team of accreditors;";
+      break;
+    case "LEVEL_IV":
+      first =
+        "1. A fourth survey visit was conducted by AACCUP team of accreditors;";
+      break;
+  }
+  status = screamingSnakeToTitle(status!)
+    ?.split(" ")
+    .map((word, i) => (i === 1 ? word.toUpperCase() : word))
+    .join(" ");
   return (
     <div className="flex flex-col gap-2">
       <Card className="bg-background">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            {`${screamingSnakeToTitle(status!)} Status Qualifications`}
+            {`${status} Status Qualifications`}
             <Award className="text-yellow-500" />
           </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-2">
           <div className="flex items-center justify-between">
-            <p className="text-sm text-muted-foreground">
-              1. The program will undergo a preliminary survey visit conducted
-              by external accreditors in collaboration with the SUC's internal
-              accreditors.
-            </p>
+            <p className="text-sm text-muted-foreground">{first}</p>
             <Check size={15} className="text-green-500" />
           </div>
           <div className="flex items-center justify-between">
@@ -91,10 +114,16 @@ const NextSteps = ({
         />
       )}
       {grandMeanPassed && failedAreas.length > 0 && (
-        <Deferred failedAreas={failedAreas} />
+        <Deferred
+          failedAreas={failedAreas}
+          surveyResultStatus={surveyResultStatus}
+        />
       )}
       {!grandMeanPassed && failedAreas.length > 0 && (
-        <NotGranted failedAreas={areaFolders} />
+        <NotGranted
+          failedAreas={areaFolders}
+          surveyResultStatus={surveyResultStatus}
+        />
       )}
     </div>
   );

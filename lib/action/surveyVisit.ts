@@ -21,7 +21,9 @@ export async function markAsComplete(surveyVisitId: string) {
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("surveyVisitStructure");
-    return { success: { message: "Parameter folder is marked as complete" } };
+    return {
+      success: { message: "Survey Visit Portfolio is marked as complete" },
+    };
   } catch (error) {
     const e = error as Error;
     return { failure: { error: e.message } };
@@ -40,6 +42,13 @@ export async function toggleFileUpload(
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("surveyVisitStructure");
+    return {
+      success: {
+        message: !allowFileUploads
+          ? "File uploads are enabled"
+          : "File uploads are disabled",
+      },
+    };
   } catch (error) {
     const e = error as Error;
     return { failure: { error: e.message } };
@@ -55,6 +64,13 @@ export async function toggleEdit(surveyVisitId: string, allowEdits: boolean) {
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("surveyVisitStructure");
+    return {
+      success: {
+        message: !allowEdits
+          ? "File edits are enabled"
+          : "File edits are disabled",
+      },
+    };
   } catch (error) {
     const e = error as Error;
     return { failure: { error: e.message } };
@@ -78,6 +94,7 @@ export async function toggleSelfSurvey(
     revalidateTag("areaFolder");
     revalidateTag("surveyVisitStructure");
     revalidateTag("surveyVisitSelfSurvey");
+    return { success: { message: "Program is now open for self survey" } };
   } catch (error) {
     const e = error as Error;
     return { failure: { error: e.message } };
@@ -101,6 +118,7 @@ export async function toggleActualSurvey(
     revalidateTag("areaFolder");
     revalidateTag("surveyVisitStructure");
     revalidateTag("surveyVisitActualSurvey");
+    return { success: { message: "Program is now open for actual survey" } };
   } catch (error) {
     const e = error as Error;
     return { failure: { error: e.message } };

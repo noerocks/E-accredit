@@ -43,9 +43,8 @@ const AccreditationSettings = ({
         String(params.id),
         allowFileUploads!
       );
-      if (result?.failure) {
-        toast.error(result.failure.error);
-      }
+      if (result?.failure) toast.error(result.failure.error);
+      if (result.success) toast.success(result.success.message);
     });
   };
   const toggleEdit = async () => {
@@ -55,9 +54,8 @@ const AccreditationSettings = ({
     }
     startTransition(async () => {
       const result = await toggleEditAction(String(params.id), allowEdits!);
-      if (result?.failure) {
-        toast.error(result.failure.error);
-      }
+      if (result?.failure) toast.error(result.failure.error);
+      if (result.success) toast.success(result.success.message);
     });
   };
   const toggleSelfSurvey = async () => {
@@ -70,9 +68,8 @@ const AccreditationSettings = ({
         String(params.id),
         openForSelfSurvey!
       );
-      if (result?.failure) {
-        toast.error(result.failure.error);
-      }
+      if (result?.failure) toast.error(result.failure.error);
+      if (result.success) toast.success(result.success.message);
     });
   };
   const toggleActualSurvey = async () => {
@@ -87,9 +84,8 @@ const AccreditationSettings = ({
         String(params.id),
         openForActualSurvey!
       );
-      if (result?.failure) {
-        toast.error(result.failure.error);
-      }
+      if (result?.failure) toast.error(result.failure.error);
+      if (result.success) toast.success(result.success.message);
     });
   };
   return (

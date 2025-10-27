@@ -271,7 +271,7 @@ const Rating = ({
           </CardContent>
         </Card>
         {enableRating && (
-          <Button onClick={submit}>
+          <Button onClick={submit} disabled={pending}>
             {pending ? (
               <>
                 <Loader className="animate-spin" />

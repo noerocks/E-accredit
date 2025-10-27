@@ -27,16 +27,10 @@ import {
   SurveyTeam as SurveyTeamSchema,
   SurveyTeamType,
 } from "@/lib/generated/prisma";
-import { formatAccreditationName, screamingSnakeToTitle } from "@/lib/utils";
+import { formatAccreditationName } from "@/lib/utils";
 import { Level, User } from "@prisma/client";
 import clsx from "clsx";
-import {
-  Award,
-  CircleDot,
-  CircleSlash,
-  SearchCheck,
-  TrafficCone,
-} from "lucide-react";
+import { Award, CircleDot, CircleSlash, SearchCheck } from "lucide-react";
 
 const ActualSurveyPage = async ({
   params,
@@ -122,12 +116,12 @@ const ActualSurveyPage = async ({
                 </div>
               ) : surveyResultStatus === "DEFERRED" ? (
                 <div className="text-muted-foreground flex items-center gap-2">
-                  <TrafficCone />
+                  <CircleSlash size={15} />
                   <p>Deferred</p>
                 </div>
               ) : surveyResultStatus === "NOT_GRANTED" ? (
                 <div className="text-red-500 flex items-center gap-2 text-lg">
-                  <CircleSlash />
+                  <CircleSlash size={15} />
                   <p>Not Granted</p>
                 </div>
               ) : null}

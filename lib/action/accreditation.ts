@@ -37,6 +37,7 @@ import {
 import { createPhaseTwoAreaFolder } from "../dal/phase-two-area-folder";
 import { createManySurveyTeam } from "../dal/survey-team";
 import { updateAccreditationById } from "../dal/accreditation";
+import { screamingSnakeToTitle } from "../utils";
 
 export async function createSurveyVisit(
   program: ProgramDTO | undefined,
@@ -186,6 +187,21 @@ export async function grantAccreditedStatus(
       endsAt,
       status: AccreditationStatus.ACTIVE,
     });
+    revalidateTag("parameterFolder");
+    revalidateTag("areaFolder");
+    revalidateTag("evidenceFiles");
+    revalidateTag("surveyVisitStructure");
+    revalidateTag("surveyVisitSelfSurvey");
+    revalidateTag("surveyVisitActualSurvey");
+    let status =
+      level?.label === "PRELIMINARY_SURVEY_VISIT" ? "CANDIDATE" : level?.label;
+    status = screamingSnakeToTitle(status!)
+      ?.split(" ")
+      .map((word, i) => (i === 1 ? word.toUpperCase() : word))
+      .join(" ");
+    return {
+      succecss: { message: `Program is now granted with ${status} status` },
+    };
   } catch (error) {
     const e = error as Error;
     return { failure: { error: e.message } };
@@ -211,6 +227,13 @@ export async function denyAccreditationStatus(
       prevSurveyVisit?.phaseOneRequirements?.instrument,
       actualSurveyDate
     );
+    revalidateTag("parameterFolder");
+    revalidateTag("areaFolder");
+    revalidateTag("evidenceFiles");
+    revalidateTag("surveyVisitStructure");
+    revalidateTag("surveyVisitSelfSurvey");
+    revalidateTag("surveyVisitActualSurvey");
+    return { success: { message: "Full resurvey has been scheduled" } };
   } catch (error) {
     const e = error as Error;
     return { failure: { error: e.message } };

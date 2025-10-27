@@ -11,7 +11,13 @@ import { Calendar } from "lucide-react";
 import ScheduleRevisit from "./schedule-revisit";
 import { SurveyResultStatus } from "@/lib/generated/prisma";
 
-const Deferred = ({ failedAreas }: { failedAreas: AreaFolderDTO[] }) => {
+const Deferred = ({
+  failedAreas,
+  surveyResultStatus,
+}: {
+  failedAreas: AreaFolderDTO[];
+  surveyResultStatus: SurveyResultStatus;
+}) => {
   return (
     <Card className="bg-background">
       <CardHeader>

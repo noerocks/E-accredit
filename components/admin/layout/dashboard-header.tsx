@@ -23,7 +23,6 @@ const DashboardHeader = () => {
   const breadcrumbs = pathName
     .split("/")
     .filter((segment) => segment)
-    .map((segment) => (segment === "admin" ? "dashboard" : segment)) //katangahan moments
     .reduce((withPaths, segment, index) => {
       if (name && withPaths.at(-1)?.name === name) return withPaths;
       const isResourceId =

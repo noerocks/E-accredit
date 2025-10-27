@@ -115,7 +115,7 @@ const RecommendationsForm = ({
             </FormItem>
           )}
         />
-        <Button className="self-end px-5">
+        <Button className="self-end px-5" disabled={pending}>
           {pending ? (
             <>
               <Loader className="animate-spin" />

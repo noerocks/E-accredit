@@ -245,7 +245,7 @@ const UploadFileForm = ({
           <DialogClose asChild>
             <Button variant="outline">Cancel</Button>
           </DialogClose>
-          <Button onClick={uploadFile}>
+          <Button onClick={uploadFile} disabled={pending}>
             {pending ? (
               <>
                 <Loader className="animate-spin" />

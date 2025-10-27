@@ -74,6 +74,8 @@ const ScheduleRevisit = ({
             String(params.id),
             data.actualSurveyDate
           );
+          if (result.failure) toast.error(result.failure.error);
+          if (result.success) toast.success(result.success.message);
           break;
         }
       }

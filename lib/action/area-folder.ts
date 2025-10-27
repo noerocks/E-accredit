@@ -13,7 +13,7 @@ export async function markAsComplete(areaFolderId: string) {
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("surveyVisitStructure");
-    return { success: { message: "Parameter folder is marked as complete" } };
+    return { success: { message: "Area folder is marked as complete" } };
   } catch (error) {
     const e = error as Error;
     return { failure: { error: e.message } };
