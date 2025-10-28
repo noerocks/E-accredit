@@ -178,6 +178,7 @@ export async function createSurveyVisit(
 
 export async function grantAccreditedStatus(
   accreditationId: string | undefined,
+  surveyVisitId: string | undefined,
   level: Level | undefined
 ) {
   if (!accreditationId || !level)
@@ -187,6 +188,11 @@ export async function grantAccreditedStatus(
     const endsAt = new Date(
       currentDate.setFullYear(currentDate.getFullYear() + level.yearsEffective)
     );
+    const surveyVisit = await updateSurveyVisitById({
+      id: surveyVisitId,
+      surveyResultStatus: SurveyResultStatus.GRANTED,
+      openForActualSurvey: false,
+    });
     const accreditation = await updateAccreditationById({
       id: accreditationId,
       currentLevel: level.id,

@@ -117,12 +117,11 @@ export async function createNewVersion({
       objectUrl,
       fileType
     );
-    const surveyVisit = await updateSurveyVisitById({
-      id: surveyVisitId,
-      surveyResultStatus: SurveyResultStatus.GRANTED,
-      openForActualSurvey: false,
-    });
-    const accreditation = await grantAccreditedStatus(accreditationId, level);
+    const accreditation = await grantAccreditedStatus(
+      accreditationId,
+      surveyVisitId,
+      level
+    );
   }
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");

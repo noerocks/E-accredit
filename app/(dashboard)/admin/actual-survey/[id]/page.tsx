@@ -33,6 +33,7 @@ import clsx from "clsx";
 import {
   Award,
   Check,
+  CheckCircle2,
   CircleDot,
   CircleSlash,
   SearchCheck,
@@ -116,10 +117,17 @@ const ActualSurveyPage = async ({
                 )}
               </div>
               {surveyResultStatus === "GRANTED" ? (
-                <div className="text-yellow-500 flex items-center gap-2 text-lg">
-                  <Award />
-                  <p>Grandted</p>
-                </div>
+                level?.rank === 4 ? (
+                  <div className="text-green-500 flex items-center gap-2 text-lg">
+                    <CheckCircle2 size={20} />
+                    <p>Qualified for Level III Phase 2</p>
+                  </div>
+                ) : (
+                  <div className="text-yellow-500 flex items-center gap-2 text-lg">
+                    <Award />
+                    <p>Grandted</p>
+                  </div>
+                )
               ) : surveyResultStatus === "DEFERRED" ? (
                 <div className="text-muted-foreground flex items-center gap-2">
                   <CircleSlash size={15} />

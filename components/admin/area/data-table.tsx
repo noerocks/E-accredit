@@ -38,8 +38,8 @@ import { markAsComplete as markAsCompleteParameter } from "@/lib/action/paramete
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  isAdmin: boolean;
-  isChairperson: boolean;
+  isAdmin?: boolean;
+  isChairperson?: boolean;
 }
 
 export function DataTable<TData, TValue>({

@@ -38,8 +38,8 @@ import { markAsComplete as markAsCompleteArea } from "@/lib/action/area-folder";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  isAdmin: boolean;
-  isProgramHead: boolean;
+  isAdmin?: boolean;
+  isProgramHead?: boolean;
 }
 
 export function DataTable<TData, TValue>({

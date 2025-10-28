@@ -2,6 +2,7 @@
 
 import { revalidateTag } from "next/cache";
 import {
+  Level,
   Progress,
   SurveyResultStatus,
   SurveyStatus,
@@ -11,6 +12,7 @@ import { updateSurveyVisitById } from "../dal/survey-visit";
 import { AreaFolderDTO } from "../dto/accreditation-instrument";
 import { resetAreaRatings } from "../dal/rating";
 import { updateAreaFolderById } from "../dal/area-folder";
+import { grantAccreditedStatus } from "./accreditation";
 
 export async function markAsComplete(surveyVisitId: string) {
   try {
@@ -199,6 +201,36 @@ export async function scheduleActualSurveyRevisit(
         message: "Revisit scheduled successfully",
       },
     };
+  } catch (error) {
+    const e = error as Error;
+    return { failure: { error: e.message } };
+  }
+}
+
+export async function grantPhaseOne(
+  surveyVisitId: string,
+  accreditationId: string | undefined,
+  level: Level | undefined
+) {
+  if (!surveyVisitId) return { failure: { error: "Invalid input" } };
+  try {
+    const surveyVisit = await updateSurveyVisitById({
+      id: surveyVisitId,
+      surveyResultStatus: SurveyResultStatus.GRANTED,
+      actualSurveyEndedAt: new Date(),
+      openForActualSurvey: false,
+    });
+    const accreditation = await grantAccreditedStatus(
+      accreditationId,
+      surveyVisitId,
+      level
+    );
+    revalidateTag("parameterFolder");
+    revalidateTag("areaFolder");
+    revalidateTag("evidenceFiles");
+    revalidateTag("surveyVisitStructure");
+    revalidateTag("surveyVisitSurvey");
+    return { success: { message: "Phase one results has been confirmed" } };
   } catch (error) {
     const e = error as Error;
     return { failure: { error: e.message } };

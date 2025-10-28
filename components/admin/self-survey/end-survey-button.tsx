@@ -33,7 +33,7 @@ const EndSurveyButton = ({ surveyVisitId }: { surveyVisitId: string }) => {
     });
   };
   return (
-    <Button onClick={endSurvey}>
+    <Button onClick={endSurvey} disabled={pending}>
       {pending ? (
         <>
           <Loader className="animate-spin" />
