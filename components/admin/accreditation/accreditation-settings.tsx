@@ -17,7 +17,11 @@ import {
   toggleActualSurvey as toggleActualSurveyAction,
 } from "@/lib/action/surveyVisit";
 import { toast } from "sonner";
-import { Progress, SurveyStatus } from "@/lib/generated/prisma";
+import {
+  Progress,
+  SurveyResultStatus,
+  SurveyStatus,
+} from "@/lib/generated/prisma";
 import { Button } from "@/components/ui/button";
 
 const AccreditationSettings = ({
@@ -28,6 +32,7 @@ const AccreditationSettings = ({
   openForActualSurvey,
   actualSurveyStatus,
   status,
+  surveyResultStatus,
 }: {
   allowFileUploads: boolean | undefined;
   allowEdits: boolean | undefined;
@@ -36,6 +41,7 @@ const AccreditationSettings = ({
   openForActualSurvey: boolean | undefined;
   actualSurveyStatus: SurveyStatus | undefined;
   status: Progress | undefined;
+  surveyResultStatus: SurveyResultStatus | undefined;
 }) => {
   const params = useParams();
   const [pending, startTransition] = useTransition();
@@ -111,14 +117,28 @@ const AccreditationSettings = ({
             <CircleQuestionMark size={15} />
             <p className="text-sm">Allow File Uploads</p>
           </div>
-          <Switch checked={allowFileUploads} onClick={toggleFileUpload} />
+          <Switch
+            checked={allowFileUploads}
+            onClick={toggleFileUpload}
+            disabled={
+              surveyResultStatus === "GRANTED" ||
+              surveyResultStatus === "NOT_GRANTED"
+            }
+          />
         </div>
         <div className="flex items-center justify-between">
           <div className="flex-1 flex items-center gap-2 text-muted-foreground">
             <CircleQuestionMark size={15} />
             <p className="text-sm">Allow Edits</p>
           </div>
-          <Switch checked={allowEdits} onClick={toggleEdit} />
+          <Switch
+            checked={allowEdits}
+            onClick={toggleEdit}
+            disabled={
+              surveyResultStatus === "GRANTED" ||
+              surveyResultStatus === "NOT_GRANTED"
+            }
+          />
         </div>
         <div className="flex items-center justify-between">
           <div className="flex-1 flex items-center gap-2 text-muted-foreground">

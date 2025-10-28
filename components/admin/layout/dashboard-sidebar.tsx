@@ -1,6 +1,8 @@
 import {
+  Award,
   BadgeCheck,
   ClipboardCheck,
+  ClipboardList,
   FileArchive,
   FolderCheck,
   Home,
@@ -75,7 +77,19 @@ const DashboardSidebar = async () => {
               <SidebarMenuButton asChild>
                 <Link href={"/admin/programs"}>
                   <Landmark />
-                  <span className="whitespace-nowrap">Programs</span>
+                  <span className="whitespace-nowrap">
+                    Programs & Personnel
+                  </span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href={"/admin/programs"}>
+                  <Award />
+                  <span className="whitespace-nowrap">
+                    Program Accreditations
+                  </span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -96,14 +110,6 @@ const DashboardSidebar = async () => {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href={"/admin/accreditation"}>
-                  <FileArchive />
-                  <span className="whitespace-nowrap">Survey Records</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
                 <Link href={"/admin/instruments"}>
                   <ClipboardCheck />
                   <span className="whitespace-nowrap">Instruments</span>
@@ -113,7 +119,7 @@ const DashboardSidebar = async () => {
           </SidebarMenu>
         </SidebarGroup>
         <SidebarGroup>
-          <SidebarGroupLabel>Open Surveys</SidebarGroupLabel>
+          <SidebarGroupLabel>Surveys</SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>

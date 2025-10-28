@@ -30,17 +30,23 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Folder } from "lucide-react";
+import { Check, Folder } from "lucide-react";
 import { useSidebar } from "@/components/ui/sidebar";
+import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
+import { markAsComplete as markAsCompleteArea } from "@/lib/action/area-folder";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  isAdmin: boolean;
+  isProgramHead: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  isAdmin,
+  isProgramHead,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -71,6 +77,26 @@ export function DataTable<TData, TValue>({
   React.useEffect(() => {
     setOpen(true);
   }, []);
+  const [pending, startTransition] = React.useTransition();
+  const markAsComplete = async () => {
+    startTransition(async () => {
+      const rows = table
+        .getSelectedRowModel()
+        .rows.map((row) => row.original as AreaFolderDTO);
+      for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const completeEvidence =
+          row.areaFiles.every((file) => file.status === "SUBMITTED") &&
+          row.parameterFolders.every(
+            (parameter) => parameter.status === "COMPLETE"
+          );
+        if (completeEvidence) {
+          await markAsCompleteArea(row.id);
+        }
+      }
+      setRowSelection([]);
+    });
+  };
   return (
     <div>
       <div className="flex items-center gap-2">
@@ -78,16 +104,29 @@ export function DataTable<TData, TValue>({
         Area Folders
       </div>
       <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter areas..."
-          value={
-            (table.getColumn("areaLabel")?.getFilterValue() as string) ?? ""
-          }
-          onChange={(event) =>
-            table.getColumn("areaLabel")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
+        <div className="flex items-center gap-2">
+          <Input
+            placeholder="Filter areas..."
+            value={
+              (table.getColumn("areaLabel")?.getFilterValue() as string) ?? ""
+            }
+            onChange={(event) =>
+              table.getColumn("areaLabel")?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+          />
+          {table.getSelectedRowModel().rows.length > 0 &&
+            (isProgramHead || isAdmin) && (
+              <Button
+                variant="ghost"
+                onClick={markAsComplete}
+                disabled={pending}
+              >
+                <Check className="text-green-500" />
+                Mark as Complete
+              </Button>
+            )}
+        </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">

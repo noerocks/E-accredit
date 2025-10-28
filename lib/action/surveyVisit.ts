@@ -92,8 +92,9 @@ export async function toggleSelfSurvey(
     });
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
+    revalidateTag("evidenceFiles");
     revalidateTag("surveyVisitStructure");
-    revalidateTag("surveyVisitSelfSurvey");
+    revalidateTag("surveyVisitSurvey");
     return { success: { message: "Program is now open for self survey" } };
   } catch (error) {
     const e = error as Error;
@@ -116,8 +117,9 @@ export async function toggleActualSurvey(
     });
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
+    revalidateTag("evidenceFiles");
     revalidateTag("surveyVisitStructure");
-    revalidateTag("surveyVisitActualSurvey");
+    revalidateTag("surveyVisitSurvey");
     return { success: { message: "Program is now open for actual survey" } };
   } catch (error) {
     const e = error as Error;
@@ -137,8 +139,7 @@ export async function endSelfSurvey(surveyVisitId: string) {
     revalidateTag("areaFolder");
     revalidateTag("evidenceFiles");
     revalidateTag("surveyVisitStructure");
-    revalidateTag("surveyVisitSelfSurvey");
-    revalidateTag("surveyVisitActualSurvey");
+    revalidateTag("surveyVisitSurvey");
     return { success: { message: "Actual survey has now ended" } };
   } catch (error) {
     const e = error as Error;
@@ -154,11 +155,11 @@ export async function endActualSurvey(surveyVisitId: string) {
       actualSurveyEndedAt: new Date(),
     });
     revalidateTag("parameterFolder");
+    revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("evidenceFiles");
     revalidateTag("surveyVisitStructure");
-    revalidateTag("surveyVisitSelfSurvey");
-    revalidateTag("surveyVisitActualSurvey");
+    revalidateTag("surveyVisitSurvey");
     return { success: { message: "Self survey has now ended" } };
   } catch (error) {
     const e = error as Error;
@@ -192,8 +193,7 @@ export async function scheduleActualSurveyRevisit(
     revalidateTag("areaFolder");
     revalidateTag("evidenceFiles");
     revalidateTag("surveyVisitStructure");
-    revalidateTag("surveyVisitSelfSurvey");
-    revalidateTag("surveyVisitActualSurvey");
+    revalidateTag("surveyVisitSurvey");
     return {
       success: {
         message: "Revisit scheduled successfully",

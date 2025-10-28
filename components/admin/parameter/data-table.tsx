@@ -30,8 +30,10 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { File } from "lucide-react";
+import { Check, File, X } from "lucide-react";
 import { useSidebar } from "@/components/ui/sidebar";
+import { EvidenceFileDTO } from "@/lib/dto/accreditation-instrument";
+import { acceptOrReject as acceptOrRejectAction } from "@/lib/action/evidence";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -71,13 +73,28 @@ export function DataTable<TData, TValue>({
   React.useEffect(() => {
     setOpen(true);
   }, []);
+  const [pending, startTransition] = React.useTransition();
+  const acceptOrReject = async (action: string) => {
+    startTransition(async () => {
+      const rows = table
+        .getSelectedRowModel()
+        .rows.map((row) => row.original as EvidenceFileDTO);
+      for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        if (row.status === "FOR_REVIEW") {
+          await acceptOrRejectAction(row.id, action);
+        }
+      }
+      setRowSelection([]);
+    });
+  };
   return (
     <div>
       <div className="flex items-center gap-2">
         <File size={15} />
         Indicator Evidence Files
       </div>
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 gap-2">
         <Input
           placeholder="Filter indicators..."
           value={
@@ -88,6 +105,26 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
+        {table.getSelectedRowModel().rows.length > 0 && (
+          <div className="flex gap-2">
+            <Button
+              variant="ghost"
+              onClick={acceptOrReject.bind(null, "accept")}
+              disabled={pending}
+            >
+              <Check className="text-green-500" />
+              Accept
+            </Button>
+            <Button
+              variant="ghost"
+              onClick={acceptOrReject.bind(null, "reject")}
+              disabled={pending}
+            >
+              <X className="text-red-500" />
+              Reject
+            </Button>
+          </div>
+        )}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">

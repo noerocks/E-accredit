@@ -30,7 +30,13 @@ import {
 import { formatAccreditationName } from "@/lib/utils";
 import { Level, User } from "@prisma/client";
 import clsx from "clsx";
-import { Award, CircleDot, CircleSlash, SearchCheck } from "lucide-react";
+import {
+  Award,
+  Check,
+  CircleDot,
+  CircleSlash,
+  SearchCheck,
+} from "lucide-react";
 
 const ActualSurveyPage = async ({
   params,
@@ -129,18 +135,26 @@ const ActualSurveyPage = async ({
             <CardDescription>{program?.name}</CardDescription>
           </CardHeader>
           <CardFooter className="flex items-center justify-between">
-            <p
-              className={clsx(
-                "py-2 px-3 dark:border-2 border rounded-md flex items-center gap-2",
-                {
-                  "bg-green-400/5 text-green-600 border-green-400": complete,
-                  "bg-blue-500/5 text-blue-500 border-blue-500": !complete,
-                }
+            <div className="flex items-center gap-2">
+              <p
+                className={clsx(
+                  "py-2 px-3 dark:border-2 border rounded-md flex items-center gap-2",
+                  {
+                    "bg-green-400/5 text-green-600 border-green-400": complete,
+                    "bg-blue-500/5 text-blue-500 border-blue-500": !complete,
+                  }
+                )}
+              >
+                <CircleDot size={15} />
+                {complete ? "Rating Complete" : "On Going"}
+              </p>
+              {surveyVisitEnded && (
+                <p className="py-2 px-3 dark:border-2 border rounded-md flex items-center gap-2 text-muted-foreground">
+                  <Check size={15} />
+                  Survey Ended
+                </p>
               )}
-            >
-              <CircleDot size={15} />
-              {complete ? "Rating Complete" : "On Going"}
-            </p>
+            </div>
             <div className="flex items-center gap-2">
               {endSurveyIsVisible && <EndSurveyButton surveyVisitId={id} />}
               <SurveyTeam

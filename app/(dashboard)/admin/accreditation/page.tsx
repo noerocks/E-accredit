@@ -44,7 +44,11 @@ const Accreditation = async () => {
             >
               <PortfolioCards
                 program={accreditation.program}
-                surveyVisits={accreditation.surveyVisits}
+                surveyVisits={accreditation.surveyVisits.sort(
+                  (a, b) =>
+                    new Date(b.createdAt).getTime() -
+                    new Date(a.createdAt).getTime()
+                )}
               />
             </TabsContent>
           ))}

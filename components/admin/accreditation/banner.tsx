@@ -8,19 +8,23 @@ const Banner = async ({ surveyVisitId }: { surveyVisitId: string }) => {
     allowEdits,
     openForSelfSurvey,
     openForActualSurvey,
+    surveyResultStatus,
   } = (await getSurveyVisitById(surveyVisitId!)) as SurveyVisit;
   let message = undefined;
-  if (!allowFileUploads && allowEdits) {
+  if (
+    surveyResultStatus === "GRANTED" ||
+    surveyResultStatus === "NOT_GRANTED"
+  ) {
+    message =
+      "This portfolio is archived. File uploads and edits are disabled.";
+  } else if (!allowFileUploads && allowEdits) {
     message = "File uploads are currently disabled by the QA.";
-  }
-  if (!allowFileUploads && !allowEdits) {
+  } else if (!allowFileUploads && !allowEdits) {
     message = "File uploads and edits are currently disabled by the QA.";
-  }
-  if (!allowEdits && allowFileUploads) {
+  } else if (!allowEdits && allowFileUploads) {
     message =
       "Edits (changing file versions and file deletions) are currently disabled by the QA.";
-  }
-  if (openForSelfSurvey) {
+  } else if (openForSelfSurvey) {
     message =
       "This program is undergoing a self survey. File uploads and edits are temporarily disabled by the QA.";
   }

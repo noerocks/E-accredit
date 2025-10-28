@@ -63,6 +63,7 @@ const AreaFolderPage = async ({
     areaFolder.areaFiles.every((file) => file.status === "SUBMITTED") &&
     areaFolder.status !== "COMPLETE" &&
     (isAdmin || isProgramHead);
+  const isChairperson = user.id === areaFolder?.taskForce?.chairPerson?.userId;
   const formatStatus = (status: Progress) => {
     return status
       .split("_")
@@ -130,6 +131,8 @@ const AreaFolderPage = async ({
                   data={
                     (parameterFolders as unknown as ParameterFolderDTO[]) || []
                   }
+                  isAdmin={isAdmin}
+                  isChairperson={isChairperson}
                 />
               </CardContent>
             </Card>

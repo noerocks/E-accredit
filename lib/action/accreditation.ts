@@ -64,109 +64,115 @@ export async function createSurveyVisit(
   revalidateTag("accreditations");
   if (!surveyVisit) throw new Error("Error in creating survey visit");
   const instrumentStructure = await getInstrumentStructureById(instrument.id);
-  if (level.phase === Phase.PHASE_1) {
-    const category: { name: Category; label: string }[] = [
-      { name: Category.SYSTEM, label: "System - Inputs and Processes" },
-      { name: Category.IMPLEMENTATION, label: "Implementation" },
-      { name: Category.OUTCOME, label: "Outcome/s" },
-    ];
-    const surveyTeam = await createManySurveyTeam([
-      {
-        surveyVisitId: surveyVisit.id,
-        type: SurveyTeamType.INTERNAL,
-      },
-      {
-        surveyVisitId: surveyVisit.id,
-        type: SurveyTeamType.EXTERNAL,
-      },
-    ]);
-    const phaseOneRequirements = await createPhaseOneRequirements(
-      surveyVisit.id,
-      instrument.id
-    );
-    if (!phaseOneRequirements)
-      throw new Error("Error in creating phase one requirements");
-    const instrumentFolder = await createInstrumentFolder(
-      phaseOneRequirements.id
-    );
-    if (!instrumentFolder)
-      throw new Error("Error in creating instrument folder");
-    instrumentStructure?.area.forEach(async (area) => {
-      const areaFolder = await createAreaFolder(
-        instrumentFolder?.id,
-        area.id,
-        Progress.IN_PROGRESS
-      );
-      if (!areaFolder) throw new Error("Error in creating area folder");
-      const areaFiles = await createManyAreaFiles([
+  try {
+    if (level.phase === Phase.PHASE_1) {
+      const category: { name: Category; label: string }[] = [
+        { name: Category.SYSTEM, label: "System - Inputs and Processes" },
+        { name: Category.IMPLEMENTATION, label: "Implementation" },
+        { name: Category.OUTCOME, label: "Outcome/s" },
+      ];
+      const surveyTeam = await createManySurveyTeam([
         {
-          phaseOneAreaFolderId: areaFolder.id,
-          type: AreaFileType.PPP,
-          status: FileStatus.EMPTY,
+          surveyVisitId: surveyVisit.id,
+          type: SurveyTeamType.INTERNAL,
         },
-        ...(level.label !== LevelEnum.PRELIMINARY_SURVEY_VISIT
-          ? [
-              {
-                phaseOneAreaFolderId: areaFolder.id,
-                type: AreaFileType.COMPLIANCE_REPORT,
-                status: FileStatus.EMPTY,
-              },
-            ]
-          : []),
+        {
+          surveyVisitId: surveyVisit.id,
+          type: SurveyTeamType.EXTERNAL,
+        },
       ]);
-      const taskforce = await createTaskforce(areaFolder.id);
-      area.parameter.forEach(async (parameter) => {
-        const parameterFolder = await createParameterFolder(
-          areaFolder.id,
-          parameter.id
+      const phaseOneRequirements = await createPhaseOneRequirements(
+        surveyVisit.id,
+        instrument.id
+      );
+      if (!phaseOneRequirements)
+        throw new Error("Error in creating phase one requirements");
+      const instrumentFolder = await createInstrumentFolder(
+        phaseOneRequirements.id
+      );
+      if (!instrumentFolder)
+        throw new Error("Error in creating instrument folder");
+      instrumentStructure?.area.forEach(async (area) => {
+        const areaFolder = await createAreaFolder(
+          instrumentFolder?.id,
+          area.id,
+          Progress.IN_PROGRESS
         );
-        if (!parameterFolder)
-          throw new Error("Error in creating parameter folder");
-        category.forEach(async (category) => {
-          const indicatorFolder = await createIndicatorFolder(
-            parameterFolder.id,
-            category.name
+        if (!areaFolder) throw new Error("Error in creating area folder");
+        const areaFiles = await createManyAreaFiles([
+          {
+            phaseOneAreaFolderId: areaFolder.id,
+            type: AreaFileType.PPP,
+            status: FileStatus.EMPTY,
+          },
+          ...(level.label !== LevelEnum.PRELIMINARY_SURVEY_VISIT
+            ? [
+                {
+                  phaseOneAreaFolderId: areaFolder.id,
+                  type: AreaFileType.COMPLIANCE_REPORT,
+                  status: FileStatus.EMPTY,
+                },
+              ]
+            : []),
+        ]);
+        const taskforce = await createTaskforce(areaFolder.id);
+        area.parameter.forEach(async (parameter) => {
+          const parameterFolder = await createParameterFolder(
+            areaFolder.id,
+            parameter.id
           );
-          if (!indicatorFolder)
-            throw new Error("Error in creating indicator folder");
-          const evidenceFiles = parameter.indicator
-            .filter((indicator) => indicator.category === category.name)
-            .map((indicator) => ({
-              indicatorFolderId: indicatorFolder.id,
-              indicatorId: indicator.id,
-              status: FileStatus.EMPTY,
-            }));
-          await createManyEvidenceFiles(evidenceFiles);
+          if (!parameterFolder)
+            throw new Error("Error in creating parameter folder");
+          category.forEach(async (category) => {
+            const indicatorFolder = await createIndicatorFolder(
+              parameterFolder.id,
+              category.name
+            );
+            if (!indicatorFolder)
+              throw new Error("Error in creating indicator folder");
+            const evidenceFiles = parameter.indicator
+              .filter((indicator) => indicator.category === category.name)
+              .map((indicator) => ({
+                indicatorFolderId: indicatorFolder.id,
+                indicatorId: indicator.id,
+                status: FileStatus.EMPTY,
+              }));
+            await createManyEvidenceFiles(evidenceFiles);
+          });
         });
       });
-    });
-  } else if (level.phase === Phase.PHASE_2) {
-    const phaseTwoRequirements = await createPhaseTwoRequirements(
-      surveyVisit.id,
-      instrument.id
-    );
-    if (!phaseTwoRequirements)
-      throw new Error("Error in creating phase two requirements");
-    instrumentStructure?.area.forEach(async (area) => {
-      const areaFolder = await createPhaseTwoAreaFolder(
-        phaseTwoRequirements.phaseTwoFolder?.id!,
-        area.id
+    } else if (level.phase === Phase.PHASE_2) {
+      const phaseTwoRequirements = await createPhaseTwoRequirements(
+        surveyVisit.id,
+        instrument.id
       );
-      if (!areaFolder)
-        throw new Error("Error in creating phase two area folder");
-      const areaFiles = await createManyAreaFiles([
-        {
-          phaseTwoAreaFolderId: areaFolder.id,
-          type: AreaFileType.NARRATIVE_PROFILE,
-          status: FileStatus.EMPTY,
-        },
-        {
-          phaseTwoAreaFolderId: areaFolder.id,
-          type: AreaFileType.COMPLIANCE_REPORT,
-          status: FileStatus.EMPTY,
-        },
-      ]);
-    });
+      if (!phaseTwoRequirements)
+        throw new Error("Error in creating phase two requirements");
+      instrumentStructure?.area.forEach(async (area) => {
+        const areaFolder = await createPhaseTwoAreaFolder(
+          phaseTwoRequirements.phaseTwoFolder?.id!,
+          area.id
+        );
+        if (!areaFolder)
+          throw new Error("Error in creating phase two area folder");
+        const areaFiles = await createManyAreaFiles([
+          {
+            phaseTwoAreaFolderId: areaFolder.id,
+            type: AreaFileType.NARRATIVE_PROFILE,
+            status: FileStatus.EMPTY,
+          },
+          {
+            phaseTwoAreaFolderId: areaFolder.id,
+            type: AreaFileType.COMPLIANCE_REPORT,
+            status: FileStatus.EMPTY,
+          },
+        ]);
+      });
+    }
+    return { success: { message: "Portfolio is initialized successfully" } };
+  } catch (error) {
+    const e = error as Error;
+    return { failure: { error: e.message } };
   }
 }
 
@@ -221,6 +227,7 @@ export async function denyAccreditationStatus(
     const prevSurveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       surveyResultStatus: SurveyResultStatus.NOT_GRANTED,
+      openForActualSurvey: false,
     });
     const newSurveyVisit = await createSurveyVisit(
       prevSurveyVisit?.accreditation.program as unknown as ProgramDTO,

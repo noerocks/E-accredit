@@ -113,7 +113,7 @@ export async function updateManyParameterFolderByAreaFolderId(
   if (!session) return null;
   const parameterFolder = await prisma.parameterFolder.updateMany({
     where: {
-      areaFolderId: areaFolderId,
+      areaFolderId,
     },
     data,
   });

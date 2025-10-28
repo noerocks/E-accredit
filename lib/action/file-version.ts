@@ -167,23 +167,31 @@ export async function migrateFiles(
       return { failure: { error: "Error in fetching area folders" } };
     for (let i = 0; i < sourceAreaFolders.length; i++) {
       const areaFolder = sourceAreaFolders[i];
+      const destinationAreaFolder = destinationAreaFolders.find(
+        (area) => area.area.id === areaFolder.area.id
+      );
       const area = areaFolder.area;
-      const areaFiles = areaFolder.areaFiles;
+      const areaFiles = areaFolder.areaFiles.filter((file) => {
+        if (destination.level.label === "PRELIMINARY_SURVEY_VISIT") {
+          return file.type !== "COMPLIANCE_REPORT";
+        }
+        return true;
+      });
       const sourceEvidenceFiles = areaFolder.parameterFolders.flatMap(
         (parameter) =>
           parameter.indicatorFolders.flatMap((indicatorFolder) =>
             indicatorFolder.evidenceFiles.map((evidence) => evidence)
           )
       );
-      if (!areaFiles || !sourceEvidenceFiles)
+      if (!areaFiles || !sourceEvidenceFiles || !destinationAreaFolder)
         return {
           failure: { error: "Error in fetching area files and evidence files" },
         };
       await updateAreaFolderById({
-        id: areaFolder.id,
+        id: destinationAreaFolder.id,
         status: "IN_PROGRESS",
       });
-      await updateManyParameterFolderByAreaFolderId(areaFolder.id, {
+      await updateManyParameterFolderByAreaFolderId(destinationAreaFolder.id, {
         status: "IN_PROGRESS",
       });
       for (let j = 0; j < areaFiles.length; j++) {
@@ -211,6 +219,10 @@ export async function migrateFiles(
           objectUrl,
           type
         );
+        await updateAreaFileById({
+          id: destinationAreaFile.id,
+          status: "SUBMITTED",
+        });
       }
       for (let k = 0; k < sourceEvidenceFiles.length; k++) {
         const evidenceFile = sourceEvidenceFiles[k];

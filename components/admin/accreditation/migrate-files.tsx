@@ -34,7 +34,7 @@ import { MigratePortfolioFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader, UploadCloud } from "lucide-react";
 import { useParams } from "next/navigation";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
@@ -49,6 +49,7 @@ const MigrateFiles = ({
   const filterdSurveyVisitPortfolios = surveyVisitPortfolios.filter(
     (portfolio) => portfolio.id !== currentPortfolioId
   );
+  const [open, setOpen] = useState<boolean>(false);
   const form = useForm<z.infer<typeof MigratePortfolioFormSchema>>({
     resolver: zodResolver(MigratePortfolioFormSchema),
     defaultValues: {
@@ -61,10 +62,11 @@ const MigrateFiles = ({
       const result = await migrateFiles(currentPortfolioId, data.surveyVisitId);
       if (result.failure) toast.error(result.failure.error);
       if (result.success) toast.success(result.success.message);
+      setOpen(false);
     });
   };
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">
           <UploadCloud />

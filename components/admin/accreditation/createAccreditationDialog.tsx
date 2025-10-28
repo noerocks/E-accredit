@@ -41,9 +41,10 @@ import { ProgramDTO } from "@/lib/dto/programs";
 import { cn, formatLevelNameAndPhase } from "@/lib/utils";
 import { CreateAccreditationFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CalendarIcon, Plus } from "lucide-react";
+import { CalendarIcon, Loader, Plus } from "lucide-react";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import z from "zod";
 
 const CreateAccreditationDialog = ({
@@ -65,6 +66,7 @@ const CreateAccreditationDialog = ({
   });
   const [selectedProgramRank, setSelectedProgramRank] = useState<number>(8);
   const [pending, startTransition] = useTransition();
+  const [open, setOpen] = useState<boolean>(false);
   const [datePickerOpen, setDatePickerOpen] = useState(false);
   const onSubmit = async (
     data: z.infer<typeof CreateAccreditationFormSchema>
@@ -83,10 +85,13 @@ const CreateAccreditationDialog = ({
         instrument,
         data.actualSurveyDate
       );
+      if (result.failure) toast.error(result.failure.error);
+      if (result.success) toast.success(result.success.message);
+      setOpen(false);
     });
   };
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button>
           <span className="flex items-center gap-2">
@@ -257,7 +262,16 @@ const CreateAccreditationDialog = ({
               <DialogClose asChild>
                 <Button variant="outline">Cancel</Button>
               </DialogClose>
-              <Button>Add</Button>
+              {pending ? (
+                <>
+                  <Button disabled={pending}>
+                    <Loader className="animate-spin" />
+                    Initializing...
+                  </Button>
+                </>
+              ) : (
+                <Button disabled={pending}>Initialize Portfolio</Button>
+              )}
             </DialogFooter>
           </form>
         </Form>

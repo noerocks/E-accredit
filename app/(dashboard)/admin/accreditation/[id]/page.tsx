@@ -82,6 +82,7 @@ const ProgramAccreditationPage = async ({
   const surveyVisits = await getAllPendingSurveyVisitsByInstrumentId(
     surveyVisitStructure?.phaseOneRequirements.instrumentId!
   );
+  const surveyResultStatus = surveyVisitStructure?.surveyResultStatus;
   return (
     <ScrollArea className="h-full">
       <Banner surveyVisitId={String(id!)} />
@@ -136,6 +137,7 @@ const ProgramAccreditationPage = async ({
             openForActualSurvey={surveyVisitStructure?.openForActualSurvey}
             actualSurveyStatus={surveyVisitStructure?.actualSurveyStatus}
             status={surveyVisitStructure?.status}
+            surveyResultStatus={surveyResultStatus}
           />
           <TargetLevel level={level!} />
           <SurveyVisitStatus surveyStatus={surveyStatus} />
@@ -145,6 +147,8 @@ const ProgramAccreditationPage = async ({
             <DataTable
               columns={columns}
               data={(areaFolders as unknown as AreaFolderDTO[]) || []}
+              isAdmin={isAdmin}
+              isProgramHead={isProgramHead}
             />
           </CardContent>
         </Card>

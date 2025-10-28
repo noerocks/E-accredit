@@ -14,7 +14,7 @@ import { useSidebar } from "@/components/ui/sidebar";
 import { Textarea } from "@/components/ui/textarea";
 import { createNewComment } from "@/lib/action/comment";
 import { SessionPayload } from "@/lib/definitions";
-import { CommentType } from "@/lib/generated/prisma";
+import { CommentType, SurveyStatus } from "@/lib/generated/prisma";
 import { RecommendationsFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader } from "lucide-react";
@@ -30,12 +30,14 @@ const RecommendationsForm = ({
   strongFolderId,
   weakFolderId,
   defaultContent,
+  surveyStatus,
 }: {
   user: SessionPayload;
   recommendedFolderId?: string | undefined;
   strongFolderId?: string | undefined;
   weakFolderId?: string | undefined;
   defaultContent: string | undefined;
+  surveyStatus: SurveyStatus;
 }) => {
   const { setOpen } = useSidebar();
   useEffect(() => {
@@ -106,6 +108,7 @@ const RecommendationsForm = ({
                   {...field}
                   className="h-30 focus:ring-0 focus-visible:ring-0"
                   ref={textAreaRef}
+                  disabled={surveyStatus === "COMPLETE"}
                 />
               </FormControl>
               <FormDescription>
@@ -115,16 +118,18 @@ const RecommendationsForm = ({
             </FormItem>
           )}
         />
-        <Button className="self-end px-5" disabled={pending}>
-          {pending ? (
-            <>
-              <Loader className="animate-spin" />
-              Submitting...
-            </>
-          ) : (
-            "Submit"
-          )}
-        </Button>
+        {surveyStatus !== "COMPLETE" && (
+          <Button className="self-end px-5" disabled={pending}>
+            {pending ? (
+              <>
+                <Loader className="animate-spin" />
+                Submitting...
+              </>
+            ) : (
+              "Submit"
+            )}
+          </Button>
+        )}
       </form>
     </Form>
   );

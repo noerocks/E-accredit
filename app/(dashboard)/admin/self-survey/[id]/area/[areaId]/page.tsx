@@ -69,6 +69,7 @@ const AreaPage = async ({
   );
   const accreditors = await getUsersByRole(Role.ACCREDITOR);
   const surveyVisit = await getSurveyVisitById(id);
+  const surveyStatus = surveyVisit?.selfSurveyStatus;
   return (
     <ScrollArea className="h-full">
       <div className="max-w-5/6 flex flex-col gap-5 mx-auto my-10">
@@ -149,6 +150,7 @@ const AreaPage = async ({
                   user={user}
                   strongFolderId={areaFolder?.id}
                   defaultContent={strengths?.content}
+                  surveyStatus={surveyStatus!}
                 />
               </CardContent>
             </Card>
@@ -166,6 +168,7 @@ const AreaPage = async ({
                   user={user}
                   weakFolderId={areaFolder?.id}
                   defaultContent={weaknesses?.content}
+                  surveyStatus={surveyStatus!}
                 />
               </CardContent>
             </Card>
@@ -183,6 +186,7 @@ const AreaPage = async ({
                   user={user}
                   recommendedFolderId={areaFolder?.id}
                   defaultContent={recommendation?.content}
+                  surveyStatus={surveyStatus!}
                 />
               </CardContent>
             </Card>

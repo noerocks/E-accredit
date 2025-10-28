@@ -215,19 +215,9 @@ export async function updateSurveyVisitById(data: Partial<SurveyVisit>) {
   return surveyVisit;
 }
 
-export const getAllSurveyVisitOpenForSelfSurvey = unstable_cache(
+export const getAllSurveyVisit = unstable_cache(
   async (): Promise<SurveyVisitDisplayDTO[] | null> => {
     const surveyVisit = await prisma.surveyVisit.findMany({
-      where: {
-        OR: [
-          {
-            selfSurveyStatus: SurveyStatus.COMPLETE,
-          },
-          {
-            openForSelfSurvey: true,
-          },
-        ],
-      },
       include: {
         accreditation: {
           include: {
@@ -241,37 +231,7 @@ export const getAllSurveyVisitOpenForSelfSurvey = unstable_cache(
   },
   ["getAllSurveyVisitOpenForSelfSurvey"],
   {
-    tags: ["surveyVisitSelfSurvey"],
-  }
-);
-
-export const getAllSurveyVisitOpenForActualSurvey = unstable_cache(
-  async (): Promise<SurveyVisitDisplayDTO[] | null> => {
-    const surveyVisit = await prisma.surveyVisit.findMany({
-      where: {
-        OR: [
-          {
-            actualSurveyStatus: SurveyStatus.COMPLETE,
-          },
-          {
-            openForActualSurvey: true,
-          },
-        ],
-      },
-      include: {
-        accreditation: {
-          include: {
-            program: true,
-          },
-        },
-        level: true,
-      },
-    });
-    return surveyVisit;
-  },
-  ["getAllSurveyVisitOpenForActualSurvey"],
-  {
-    tags: ["surveyVisitActualSurvey"],
+    tags: ["surveyVisitSurvey"],
   }
 );
 
