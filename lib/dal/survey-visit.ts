@@ -67,6 +67,11 @@ export const getSurveyVisitStructureById = unstable_cache(
       include: {
         accreditation: {
           include: {
+            surveyVisits: {
+              include: {
+                level: true,
+              },
+            },
             program: {
               include: {
                 programHead: true,

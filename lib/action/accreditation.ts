@@ -144,6 +144,13 @@ export async function createSurveyVisit(
         });
       });
     } else if (level.phase === Phase.PHASE_2) {
+      await updateSurveyVisitById({
+        id: surveyVisit.id,
+        openForSelfSurvey: false,
+        selfSurveyStatus: "COMPLETE",
+        selfSurveyEndedAt: new Date(),
+        selfSurveyStartedAt: new Date(),
+      });
       const phaseTwoRequirements = await createPhaseTwoRequirements(
         surveyVisit.id,
         instrument.id

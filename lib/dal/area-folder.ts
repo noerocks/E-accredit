@@ -28,6 +28,33 @@ export async function createAreaFolder(
   return areaFolder;
 }
 
+export const getPhaseTwoAreaFolderById = unstable_cache(
+  async (id: string) => {
+    const areaFolder = await prisma.phaseTwoAreaFolder.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        area: true,
+        areaFiles: {
+          include: {
+            fileVersions: {
+              include: {
+                uploader: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    return areaFolder;
+  },
+  ["getPhaseTwoAreaFolderById"],
+  {
+    tags: ["areaFolder"],
+  }
+);
+
 export const getAreaFolderById = unstable_cache(
   async (id: string) => {
     const areaFolder = await prisma.areaFolder.findUnique({

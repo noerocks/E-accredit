@@ -15,6 +15,7 @@ import { getAreaFileById } from "@/lib/dal/area-file";
 import { getFilteredComments } from "@/lib/dal/comment";
 import { getSurveyVisitById } from "@/lib/dal/survey-visit";
 import { AreaFileType, CommentType, FileStatus } from "@/lib/generated/prisma";
+import { screamingSnakeToTitle } from "@/lib/utils";
 import clsx from "clsx";
 import { CircleDot, Layers } from "lucide-react";
 
@@ -46,15 +47,6 @@ const AreaFilePage = async ({
     areaFileId: areaFile?.id,
     type: CommentType.TASKFORCE,
   });
-  const formatStatus = (status: FileStatus) => {
-    return status
-      ?.split("_")
-      .map(
-        (word) =>
-          word[0].toLocaleUpperCase() + word.slice(1).toLocaleLowerCase()
-      )
-      .join(" ");
-  };
   return (
     <ScrollArea className="h-full">
       <Banner surveyVisitId={surveyVisitId} />
@@ -81,7 +73,7 @@ const AreaFilePage = async ({
               )}
             >
               <CircleDot size={15} />
-              {formatStatus(areaFile?.status!)}
+              {screamingSnakeToTitle(areaFile?.status!)}
             </p>
             <div className="flex items-center gap-2">
               <Comments

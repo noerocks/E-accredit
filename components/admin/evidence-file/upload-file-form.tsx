@@ -46,9 +46,9 @@ const UploadFileForm = ({
   user: SessionPayload;
   parameterFolderId?: string | undefined;
   areaFolderId?: string | undefined;
-  allowFileUploads: boolean | undefined;
-  accreditationId: string | undefined;
-  level: Level | undefined;
+  allowFileUploads?: boolean | undefined;
+  accreditationId?: string | undefined;
+  level?: Level | undefined;
 }) => {
   const { id: surveyVisitId } = useParams();
   const [file, setFile] = useState<File | null>();
