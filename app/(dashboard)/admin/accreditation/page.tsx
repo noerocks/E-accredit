@@ -2,7 +2,7 @@ import CreateAccreditationDialog from "@/components/admin/accreditation/createAc
 import PortfolioCards from "@/components/admin/accreditation/portfolio-cards";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getAccreditations } from "@/lib/dal/accreditation";
-import { getInstruments } from "@/lib/dal/instrument";
+import { getInstrumentByName, getInstruments } from "@/lib/dal/instrument";
 import { getLevels } from "@/lib/dal/levels";
 import { getPrograms } from "@/lib/dal/program";
 import { FileArchive } from "lucide-react";
@@ -12,6 +12,10 @@ const Accreditation = async () => {
   const instruments = await getInstruments();
   const levels = await getLevels();
   const accreditations = await getAccreditations();
+  const levelThreePhaseTwoInstrument = await getInstrumentByName(
+    "Level III Phase 2",
+    "Criterias"
+  );
   return (
     <div className="max-w-3/4 mx-auto mt-10">
       <div className="flex justify-between items-center mb-10">
@@ -21,8 +25,9 @@ const Accreditation = async () => {
         </p>
         <CreateAccreditationDialog
           programs={programs}
-          instruments={instruments}
+          instruments={instruments || []}
           levels={levels}
+          levelThreePhaseTwoInstrument={levelThreePhaseTwoInstrument}
         />
       </div>
       {accreditations && (

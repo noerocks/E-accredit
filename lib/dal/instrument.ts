@@ -77,3 +77,20 @@ export async function deleteInstrumentById(id: string) {
   });
   return deletedInstrument;
 }
+
+export async function getInstrumentByName(
+  name: string,
+  accreditingBody: string
+) {
+  const session = await verifySession();
+  if (!session) return null;
+  const instrument = await prisma.instrument.findFirst({
+    where: {
+      AND: [{ name }, { accreditingBody }],
+    },
+    include: {
+      area: true,
+    },
+  });
+  return instrument;
+}

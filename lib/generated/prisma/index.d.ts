@@ -36208,7 +36208,6 @@ export namespace Prisma {
 
   export type InstrumentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    name_accreditingBody?: InstrumentNameAccreditingBodyCompoundUniqueInput
     AND?: InstrumentWhereInput | InstrumentWhereInput[]
     OR?: InstrumentWhereInput[]
     NOT?: InstrumentWhereInput | InstrumentWhereInput[]
@@ -36219,7 +36218,7 @@ export namespace Prisma {
     area?: AreaListRelationFilter
     phaseOneRequirements?: PhaseOneRequirementsListRelationFilter
     phaseTwoRequirements?: PhaseTwoRequirementsListRelationFilter
-  }, "id" | "name_accreditingBody">
+  }, "id">
 
   export type InstrumentOrderByWithAggregationInput = {
     id?: SortOrder
@@ -39970,11 +39969,6 @@ export namespace Prisma {
 
   export type PhaseTwoRequirementsOrderByRelationAggregateInput = {
     _count?: SortOrder
-  }
-
-  export type InstrumentNameAccreditingBodyCompoundUniqueInput = {
-    name: string
-    accreditingBody: string
   }
 
   export type InstrumentCountOrderByAggregateInput = {

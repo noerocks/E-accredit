@@ -21,32 +21,37 @@ const PortfolioCards = ({
 }) => {
   return (
     <div className="flex flex-wrap gap-5">
-      {surveyVisits.map((visit) => (
-        <Card key={visit.id} className="basis-[calc(33.33%-1rem)]">
-          <CardHeader>
-            <CardTitle className="text-xl">
-              {formatAccreditationName(program.code, visit.level)}
-            </CardTitle>
-            <CardDescription>{program.name}</CardDescription>
-          </CardHeader>
-          <CardContent className="flex justify-end gap-2">
-            <Link
-              href={`/admin/accreditation/${
-                visit.id
-              }?accreditation=${formatAccreditationName(
-                program.code,
-                visit.level
-              )
-                .split(" ")
-                .join("+")}`}
-            >
-              <Button size="icon" variant="outline">
-                <FolderOpen />
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-      ))}
+      {surveyVisits.map((visit) => {
+        const phase =
+          visit.level.phase === "PHASE_1"
+            ? "accreditation"
+            : visit.level.phase === "PHASE_2"
+            ? "phase-two"
+            : "";
+        return (
+          <Card key={visit.id} className="basis-[calc(33.33%-1rem)]">
+            <CardHeader>
+              <CardTitle className="text-xl">
+                {formatAccreditationName(program.code, visit.level)}
+              </CardTitle>
+              <CardDescription>{program.name}</CardDescription>
+            </CardHeader>
+            <CardContent className="flex justify-end gap-2">
+              <Link
+                href={`/admin/${phase}/${
+                  visit.id
+                }?${phase}=${formatAccreditationName(program.code, visit.level)
+                  .split(" ")
+                  .join("+")}`}
+              >
+                <Button size="icon" variant="outline">
+                  <FolderOpen />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        );
+      })}
     </div>
   );
 };

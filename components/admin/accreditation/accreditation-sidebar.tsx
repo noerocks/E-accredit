@@ -66,7 +66,7 @@ const AccreditationSidebar = ({
   const phaseOneAreaFolders =
     instrumentFolder &&
     instrumentFolder.areaFolders
-      .filter((area) => {
+      ?.filter((area) => {
         if (surveyResultStatus === "DEFERRED") {
           return area.revisit;
         }
@@ -95,32 +95,35 @@ const AccreditationSidebar = ({
       </SidebarHeader>
       <SidebarContent>
         <ScrollArea className="h-full">
-          <SidebarGroup>
-            <SidebarGroupLabel>Survey Reports</SidebarGroupLabel>
-            <SidebarMenu>
-              {surveyResultStatus === "GRANTED" && (
-                <SidebarMenuItem>
-                  <SidebarMenuButton
-                    onDoubleClick={onDoubleClick}
-                    data-type={"certificate"}
-                  >
-                    {`📄 Accreditation Certificate`}
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              )}
-              {selfSurveyStatus === "COMPLETE" && (
-                <SidebarMenuItem>
-                  <SidebarMenuButton
-                    onDoubleClick={onDoubleClick}
-                    data-id={surveyVisitId}
-                    data-type={"report"}
-                  >
-                    {`📄 Self Survey PDF`}
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              )}
-            </SidebarMenu>
-          </SidebarGroup>
+          {(surveyResultStatus === "GRANTED" ||
+            selfSurveyStatus == "COMPLETE") && (
+            <SidebarGroup>
+              <SidebarGroupLabel>Survey Reports</SidebarGroupLabel>
+              <SidebarMenu>
+                {surveyResultStatus === "GRANTED" && (
+                  <SidebarMenuItem>
+                    <SidebarMenuButton
+                      onDoubleClick={onDoubleClick}
+                      data-type={"certificate"}
+                    >
+                      {`📄 Accreditation Certificate`}
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                )}
+                {selfSurveyStatus === "COMPLETE" && (
+                  <SidebarMenuItem>
+                    <SidebarMenuButton
+                      onDoubleClick={onDoubleClick}
+                      data-id={surveyVisitId}
+                      data-type={"report"}
+                    >
+                      {`📄 Self Survey PDF`}
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                )}
+              </SidebarMenu>
+            </SidebarGroup>
+          )}
           <SidebarGroup>
             <SidebarGroupLabel>Areas</SidebarGroupLabel>
             <SidebarMenu onDoubleClick={onDoubleClick}>

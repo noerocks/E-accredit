@@ -3,7 +3,7 @@ import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
 import { PhaseOneInstrumentDTO } from "@/lib/dto/accreditation-instrument";
 import React from "react";
 
-const AccreditationLayout = async ({
+const PhaseTwoLayout = async ({
   children,
   params,
 }: {
@@ -30,4 +30,4 @@ const AccreditationLayout = async ({
   );
 };
 
-export default AccreditationLayout;
+export default PhaseTwoLayout;

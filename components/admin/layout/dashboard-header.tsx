@@ -29,7 +29,9 @@ const DashboardHeader = () => {
         withPaths.some((p) => p.name === resource) &&
         withPaths.length === index;
       withPaths.push({
-        path: `${withPaths[index - 1]?.path || ""}/${segment}`,
+        path: `${withPaths[index - 1]?.path || ""}/${
+          segment === "phase-two" ? "accreditation" : segment
+        }`,
         name:
           isResourceId && name
             ? name

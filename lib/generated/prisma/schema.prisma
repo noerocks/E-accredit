@@ -159,8 +159,6 @@ model Instrument {
   updatedAt            DateTime               @updatedAt
   phaseOneRequirements PhaseOneRequirements[]
   phaseTwoRequirements PhaseTwoRequirements[]
-
-  @@unique([name, accreditingBody])
 }
 
 model Area {

@@ -5,6 +5,7 @@ import { LevelDTO } from "../dto/level";
 import { ProgramDTO } from "../dto/programs";
 import {
   AccreditationStatus,
+  Area,
   AreaFileType,
   Category,
   FileStatus,
@@ -44,7 +45,8 @@ export async function createSurveyVisit(
   program: ProgramDTO | undefined,
   level: LevelDTO | undefined,
   instrument: InstrumentDisplayDTO | undefined,
-  actualSurveyDate: Date
+  actualSurveyDate: Date,
+  criterias?: Area[]
 ) {
   if (
     !program ||
@@ -148,26 +150,33 @@ export async function createSurveyVisit(
       );
       if (!phaseTwoRequirements)
         throw new Error("Error in creating phase two requirements");
-      instrumentStructure?.area.forEach(async (area) => {
-        const areaFolder = await createPhaseTwoAreaFolder(
-          phaseTwoRequirements.phaseTwoFolder?.id!,
-          area.id
-        );
-        if (!areaFolder)
-          throw new Error("Error in creating phase two area folder");
-        const areaFiles = await createManyAreaFiles([
-          {
-            phaseTwoAreaFolderId: areaFolder.id,
-            type: AreaFileType.NARRATIVE_PROFILE,
-            status: FileStatus.EMPTY,
-          },
-          {
-            phaseTwoAreaFolderId: areaFolder.id,
-            type: AreaFileType.COMPLIANCE_REPORT,
-            status: FileStatus.EMPTY,
-          },
-        ]);
-      });
+      instrumentStructure?.area
+        .filter((area) => {
+          if (criterias && criterias.length > 0) {
+            return criterias.find((criteria) => criteria.id === area.id);
+          }
+          return true;
+        })
+        .forEach(async (area) => {
+          const areaFolder = await createPhaseTwoAreaFolder(
+            phaseTwoRequirements.phaseTwoFolder?.id!,
+            area.id
+          );
+          if (!areaFolder)
+            throw new Error("Error in creating phase two area folder");
+          const areaFiles = await createManyAreaFiles([
+            {
+              phaseTwoAreaFolderId: areaFolder.id,
+              type: AreaFileType.NARRATIVE_PROFILE,
+              status: FileStatus.EMPTY,
+            },
+            {
+              phaseTwoAreaFolderId: areaFolder.id,
+              type: AreaFileType.COMPLIANCE_REPORT,
+              status: FileStatus.EMPTY,
+            },
+          ]);
+        });
     }
     return { success: { message: "Portfolio is initialized successfully" } };
   } catch (error) {
