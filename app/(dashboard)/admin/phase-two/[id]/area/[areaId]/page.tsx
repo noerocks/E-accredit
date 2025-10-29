@@ -45,7 +45,7 @@ const PhaseTwoAreaPage = async ({
         </p>
         <Card>
           <CardHeader>
-            <CardTitle className="text-xl">{`${area?.label}: ${area?.description}`}</CardTitle>
+            <CardTitle className="text-xl">{`Criteria: ${area?.description}`}</CardTitle>
             <CardDescription className="text-md">
               {query["phase-two"]}
             </CardDescription>

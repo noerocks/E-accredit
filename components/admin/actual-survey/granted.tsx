@@ -64,6 +64,7 @@ const Granted = async ({
               user={user}
               accreditationId={accreditationId}
               level={level}
+              message="Upload Accreditation Certificate"
             />
           ) : (
             <ConfirmPhaseOne accreditationId={accreditationId} level={level} />

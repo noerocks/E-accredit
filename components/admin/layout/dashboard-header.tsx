@@ -30,7 +30,11 @@ const DashboardHeader = () => {
         withPaths.length === index;
       withPaths.push({
         path: `${withPaths[index - 1]?.path || ""}/${
-          segment === "phase-two" ? "accreditation" : segment
+          segment === "phase-two"
+            ? "accreditation"
+            : segment === "phase-two-survey"
+            ? "actual-survey"
+            : segment
         }`,
         name:
           isResourceId && name

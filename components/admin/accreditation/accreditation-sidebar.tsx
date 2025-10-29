@@ -132,8 +132,17 @@ const AccreditationSidebar = ({
                   <FileTree key={area.id} item={area} />
                 ))}
               {phaseTwoFolder &&
-                phaseTwoFolder.phaseTwoAreaFolders.map((area) => (
-                  <FileTree key={area.id} item={area} />
+                phaseTwoFolder.phaseTwoAreaFolders.map((areaFolder) => (
+                  <FileTree
+                    key={areaFolder.id}
+                    item={{
+                      ...areaFolder,
+                      area: {
+                        ...areaFolder.area,
+                        label: areaFolder.area.description,
+                      },
+                    }}
+                  />
                 ))}
             </SidebarMenu>
           </SidebarGroup>

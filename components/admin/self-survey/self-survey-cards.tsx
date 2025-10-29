@@ -25,6 +25,7 @@ const SelfSurveyCards = ({
     <div className="flex flex-wrap gap-5">
       {surveyVisits?.map((surveyVisit) => {
         const program = surveyVisit.accreditation.program;
+        const level = surveyVisit.level;
         return (
           <Card key={surveyVisit.id} className="basis-[calc(33.33%-1rem)]">
             <CardHeader>
@@ -35,12 +36,15 @@ const SelfSurveyCards = ({
             </CardHeader>
             <CardContent className="flex justify-end">
               <Link
-                href={`/admin/${surveyTypeName}/${
-                  surveyVisit.id
-                }?${surveyTypeName}=${formatAccreditationName(
-                  program.code,
-                  surveyVisit.level
-                )
+                href={`/admin/${
+                  level.phase === "PHASE_2"
+                    ? "phase-two-survey"
+                    : surveyTypeName
+                }/${surveyVisit.id}?${
+                  level.phase === "PHASE_2"
+                    ? "phase-two-survey"
+                    : surveyTypeName
+                }=${formatAccreditationName(program.code, surveyVisit.level)
                   .split(" ")
                   .join("+")}`}
               >

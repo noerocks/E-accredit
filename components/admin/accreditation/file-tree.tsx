@@ -119,7 +119,9 @@ const FileTree = ({ item }: { item: TreeNode }) => {
             <CollapsibleTrigger asChild>
               <ChevronRight className="transition-transform" />
             </CollapsibleTrigger>
-            {`📁 ${item.area.label}`}
+            <p className="flex-1 truncate w-[10px] pointer-events-none">
+              {`📁 ${item.area.label}`}
+            </p>
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>

@@ -55,7 +55,7 @@ const DashboardSidebar = async () => {
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <Link href={"/admin"}>
-                  <LayoutDashboard />
+                  <LayoutDashboard className="text-muted-foreground" />
                   <span className="whitespace-nowrap">Dashboard</span>
                 </Link>
               </SidebarMenuButton>
@@ -63,7 +63,7 @@ const DashboardSidebar = async () => {
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <Link href={"/admin/users"}>
-                  <Users />
+                  <Users className="text-muted-foreground" />
                   <span className="whitespace-nowrap">Users</span>
                 </Link>
               </SidebarMenuButton>
@@ -76,7 +76,7 @@ const DashboardSidebar = async () => {
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <Link href={"/admin/programs"}>
-                  <Landmark />
+                  <Landmark className="text-muted-foreground" />
                   <span className="whitespace-nowrap">
                     Programs & Personnel
                   </span>
@@ -86,7 +86,7 @@ const DashboardSidebar = async () => {
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <Link href={"/admin/programs"}>
-                  <Award />
+                  <Award className="text-muted-foreground" />
                   <span className="whitespace-nowrap">
                     Program Accreditations
                   </span>
@@ -101,7 +101,7 @@ const DashboardSidebar = async () => {
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <Link href={"/admin/accreditation"}>
-                  <FileArchive />
+                  <FileArchive className="text-muted-foreground" />
                   <span className="whitespace-nowrap">
                     Survey Visit Portfolio
                   </span>
@@ -111,7 +111,7 @@ const DashboardSidebar = async () => {
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <Link href={"/admin/instruments"}>
-                  <ClipboardCheck />
+                  <ClipboardCheck className="text-muted-foreground" />
                   <span className="whitespace-nowrap">Instruments</span>
                 </Link>
               </SidebarMenuButton>
@@ -124,7 +124,7 @@ const DashboardSidebar = async () => {
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <Link href={"/admin/self-survey"}>
-                  <SearchCheck />
+                  <SearchCheck className="text-muted-foreground" />
                   <span className="whitespace-nowrap">Self Survey</span>
                 </Link>
               </SidebarMenuButton>
@@ -132,7 +132,7 @@ const DashboardSidebar = async () => {
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <Link href={"/admin/actual-survey"}>
-                  <SearchCheck />
+                  <SearchCheck className="text-muted-foreground" />
                   <span className="whitespace-nowrap">Actual Survey</span>
                 </Link>
               </SidebarMenuButton>

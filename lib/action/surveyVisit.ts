@@ -236,3 +236,29 @@ export async function grantPhaseOne(
     return { failure: { error: e.message } };
   }
 }
+
+export async function denyPhaseTwo(
+  surveyVisitId: string,
+  accreditationId: string | undefined,
+  level: Level | undefined
+) {
+  if (!surveyVisitId || !accreditationId || !level)
+    return { failure: { error: "Invalid input" } };
+  try {
+    const surveyVisit = await updateSurveyVisitById({
+      id: surveyVisitId,
+      surveyResultStatus: SurveyResultStatus.NOT_GRANTED,
+      actualSurveyEndedAt: new Date(),
+      openForActualSurvey: false,
+    });
+    revalidateTag("parameterFolder");
+    revalidateTag("areaFolder");
+    revalidateTag("evidenceFiles");
+    revalidateTag("surveyVisitStructure");
+    revalidateTag("surveyVisitSurvey");
+    return { success: { message: "Status has been denied" } };
+  } catch (error) {
+    const e = error as Error;
+    return { failure: { error: e.message } };
+  }
+}

@@ -208,6 +208,7 @@ export async function grantAccreditedStatus(
       id: surveyVisitId,
       surveyResultStatus: SurveyResultStatus.GRANTED,
       openForActualSurvey: false,
+      actualSurveyStatus: SurveyStatus.COMPLETE,
     });
     const accreditation = await updateAccreditationById({
       id: accreditationId,
