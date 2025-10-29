@@ -37,13 +37,21 @@ const ActualSurveysPage = async () => {
           </TabsList>
           <TabsContent value="open">
             <SelfSurveyCards
-              surveyVisits={openSurveyVisits}
+              surveyVisits={openSurveyVisits.sort(
+                (a, b) =>
+                  new Date(b.createdAt).getTime() -
+                  new Date(a.createdAt).getTime()
+              )}
               surveyType={SurveyTeamType.EXTERNAL}
             />
           </TabsContent>
           <TabsContent value="history">
             <SelfSurveyCards
-              surveyVisits={doneSurveyVisits}
+              surveyVisits={doneSurveyVisits.sort(
+                (a, b) =>
+                  new Date(b.createdAt).getTime() -
+                  new Date(a.createdAt).getTime()
+              )}
               surveyType={SurveyTeamType.EXTERNAL}
             />
           </TabsContent>

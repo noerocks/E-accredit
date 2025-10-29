@@ -9,17 +9,19 @@ const CertificatePage = async ({
   params: Promise<{ id: string }>;
 }) => {
   const { id } = await params;
+  console.log(id);
   const surveyVisitStructure = await getSurveyVisitStructureById(id);
+  console.log(surveyVisitStructure);
   const level = surveyVisitStructure?.level;
   let surveyVisitId = surveyVisitStructure?.id;
   if (level?.rank === 4 || level?.rank === 2) {
-    surveyVisitId = surveyVisitStructure?.accreditation.surveyVisits.find(
-      (survey) =>
-        survey.level.label === level.label &&
-        survey.level.phase === "PHASE_2" &&
-        survey.surveyResultStatus === "GRANTED"
-    )?.id;
-    console.log(surveyVisitId);
+    surveyVisitId =
+      surveyVisitStructure?.accreditation.surveyVisits.find(
+        (survey) =>
+          survey.level.label === level.label &&
+          survey.level.phase === "PHASE_2" &&
+          survey.surveyResultStatus === "GRANTED"
+      )?.id || surveyVisitStructure?.id;
   }
   const certificate = await getCertificateFileBySurveyVisitId(surveyVisitId!);
   return (

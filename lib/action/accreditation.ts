@@ -159,7 +159,7 @@ export async function createSurveyVisit(
         throw new Error("Error in creating phase two requirements");
       instrumentStructure?.area
         .filter((area) => {
-          if (level.rank === 4 && criterias) {
+          if (level.rank === 3 && criterias) {
             return criterias.find((criteria) => criteria.id === area.id);
           }
           return true;
@@ -210,6 +210,7 @@ export async function grantAccreditedStatus(
       surveyResultStatus: SurveyResultStatus.GRANTED,
       openForActualSurvey: false,
       actualSurveyStatus: SurveyStatus.COMPLETE,
+      actualSurveyEndedAt: new Date(),
     });
     const accreditation = await updateAccreditationById({
       id: accreditationId,
@@ -253,6 +254,7 @@ export async function denyAccreditationStatus(
       surveyResultStatus: SurveyResultStatus.NOT_GRANTED,
       openForActualSurvey: false,
       actualSurveyStatus: SurveyStatus.COMPLETE,
+      actualSurveyEndedAt: new Date(),
     });
     const newSurveyVisit = await createSurveyVisit(
       prevSurveyVisit?.accreditation.program as unknown as ProgramDTO,

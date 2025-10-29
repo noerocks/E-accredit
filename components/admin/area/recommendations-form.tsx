@@ -98,6 +98,7 @@ const RecommendationsForm = ({
       if (result.success) toast.success(result.success.message);
     });
   };
+  console.log(surveyStatus);
   return (
     <Form {...form}>
       <form

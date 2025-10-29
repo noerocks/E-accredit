@@ -79,6 +79,7 @@ const CreateAccreditationDialog = ({
   useEffect(() => {
     form.setValue("instrumentId", instruments[0].id);
     if (levelInput === levelThreePhaseTwo?.id) {
+      setSelectedLevel(levelThreePhaseTwo);
       setOpenElectives(true);
       return;
     }
@@ -100,7 +101,7 @@ const CreateAccreditationDialog = ({
     data: z.infer<typeof CreateAccreditationFormSchema>
   ) => {
     startTransition(async () => {
-      if (criterias.length !== 4 && selectedLevel?.rank === 4) {
+      if (criterias.length !== 4 && selectedLevel?.rank === 3) {
         toast.error("You must proceed with four criterias");
         return;
       }
@@ -109,7 +110,7 @@ const CreateAccreditationDialog = ({
       )[0];
       const level = levels?.filter((level) => level.id === data.levelId)[0];
       let instrument;
-      if (selectedLevel?.rank === 4) {
+      if (selectedLevel?.rank === 3) {
         instrument = levelThreePhaseTwoInstrument;
       } else {
         instrument = instruments?.filter(

@@ -248,8 +248,9 @@ export async function denyPhaseTwo(
     const surveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       surveyResultStatus: SurveyResultStatus.NOT_GRANTED,
-      actualSurveyEndedAt: new Date(),
       openForActualSurvey: false,
+      actualSurveyStatus: SurveyStatus.COMPLETE,
+      actualSurveyEndedAt: new Date(),
     });
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
