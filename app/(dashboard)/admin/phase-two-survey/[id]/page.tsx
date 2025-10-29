@@ -28,6 +28,7 @@ import {
   FileArchive,
   Info,
   MessageCircleMore,
+  SearchCheck,
   X,
 } from "lucide-react";
 
@@ -83,8 +84,8 @@ const PhaseTwoSurvey = async ({
     <ScrollArea className="h-full">
       <div className="max-w-4/5 mx-auto my-10 flex flex-col gap-5">
         <p className="text-2xl flex items-center gap-2">
-          <FileArchive />
-          Survey Visit Portfolio
+          <SearchCheck />
+          Actual Survey
         </p>
         <Card>
           <CardHeader>
@@ -111,7 +112,7 @@ const PhaseTwoSurvey = async ({
                   <p>Deferred</p>
                 </div>
               ) : surveyResultStatus === "NOT_GRANTED" ? (
-                <div className="text-red-500 flex items-center gap-2 text-lg">
+                <div className="text-red-600 flex items-center gap-2 text-lg">
                   <CircleSlash size={15} />
                   <p>Not Granted</p>
                 </div>

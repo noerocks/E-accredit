@@ -3,10 +3,87 @@ import { PrismaClient, Category } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  // await prisma.instrument.deleteMany({
-  //   where: { accreditingBody: "ACCUP" },
-  // });
+  const LevelThreePhaseTwo = await prisma.instrument.create({
+    data: {
+      name: "Level III Phase 2",
+      accreditingBody: "Criterias",
+      area: {
+        create: [
+          {
+            label: "Area I",
+            description: "Instruction",
+            weight: 0,
+          },
+          {
+            label: "Area II",
+            description: "Extension",
+            weight: 0,
+          },
+          {
+            label: "Area III",
+            description: "Research",
+            weight: 0,
+          },
+          {
+            label: "Area IV",
+            description: "Performance in Licensure Examinations",
+            weight: 0,
+          },
 
+          {
+            label: "Area V",
+            description: "Faculty Development",
+            weight: 0,
+          },
+          {
+            label: "Area VI",
+            description: "Institutional Linkages",
+            weight: 0,
+          },
+          {
+            label: "Area VII",
+            description: "Library and other Learning Facilities",
+            weight: 0,
+          },
+        ],
+      },
+    },
+  });
+  const LevelFourPhaseTwo = await prisma.instrument.create({
+    data: {
+      name: "Level IV Phase 2",
+      accreditingBody: "Criterias",
+      area: {
+        create: [
+          {
+            label: "Area I",
+            description: "Research",
+            weight: 0,
+          },
+          {
+            label: "Area II",
+            description: "Graduate Performance",
+            weight: 0,
+          },
+          {
+            label: "Area III",
+            description: "Community Service",
+            weight: 0,
+          },
+          {
+            label: "Area IV",
+            description: "International Linkages",
+            weight: 0,
+          },
+          {
+            label: "Area V",
+            description: "Planning Processes",
+            weight: 0,
+          },
+        ],
+      },
+    },
+  });
   const instrument = await prisma.instrument.create({
     data: {
       name: "ACCUP Survey Instrument",

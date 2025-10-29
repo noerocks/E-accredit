@@ -18,7 +18,15 @@ import {
   PhaseTwoAreaFolderDTO,
 } from "@/lib/dto/accreditation-instrument";
 import { AreaFileType, Category } from "@/lib/generated/prisma";
-import { Check, ChevronRight, File, Folder, X } from "lucide-react";
+import {
+  Check,
+  ChevronRight,
+  File,
+  FileCheck,
+  FileQuestion,
+  Folder,
+  X,
+} from "lucide-react";
 import { useParams, usePathname } from "next/navigation";
 
 type TreeNode =
@@ -140,7 +148,7 @@ const FileTree = ({ item }: { item: TreeNode }) => {
                         areaFile.status === "SUBMITTED") ? (
                         <Check size={15} className="text-green-500" />
                       ) : areaFile.status === "EMPTY" ? (
-                        <X size={15} className="text-red-500" />
+                        <X size={15} className="text-muted-foreground" />
                       ) : null}
                     </p>
                   </SidebarMenuButton>

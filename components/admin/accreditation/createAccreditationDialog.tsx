@@ -45,7 +45,7 @@ import { Area, Instrument } from "@/lib/generated/prisma";
 import { cn, formatLevelNameAndPhase } from "@/lib/utils";
 import { CreateAccreditationFormSchema } from "@/lib/zod-definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CalendarIcon, CheckLine, Loader, Plus } from "lucide-react";
+import { CalendarIcon, Loader, Plus } from "lucide-react";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -75,12 +75,15 @@ const CreateAccreditationDialog = ({
   const programInput = form.watch("programId");
   const levelThreePhaseTwo = levels?.find((level) => level.rank === 3);
   const levelThreePhaseTwoAreas = levelThreePhaseTwoInstrument?.area;
+  const [selectedLevel, setSelectedLevel] = useState<LevelDTO | null>(null);
   useEffect(() => {
     form.setValue("instrumentId", instruments[0].id);
     if (levelInput === levelThreePhaseTwo?.id) {
       setOpenElectives(true);
       return;
     }
+    const level = levels?.find((level) => level.id === levelInput) || null;
+    setSelectedLevel(level);
     setOpenElectives(false);
   }, [levelInput]);
   useEffect(() => {
@@ -97,7 +100,7 @@ const CreateAccreditationDialog = ({
     data: z.infer<typeof CreateAccreditationFormSchema>
   ) => {
     startTransition(async () => {
-      if (criterias.length !== 4) {
+      if (criterias.length !== 4 && selectedLevel?.rank === 4) {
         toast.error("You must proceed with four criterias");
         return;
       }
@@ -105,15 +108,18 @@ const CreateAccreditationDialog = ({
         (program) => program.id === data.programId
       )[0];
       const level = levels?.filter((level) => level.id === data.levelId)[0];
-      const instrument =
-        levelThreePhaseTwoInstrument ||
-        instruments?.filter(
+      let instrument;
+      if (selectedLevel?.rank === 4) {
+        instrument = levelThreePhaseTwoInstrument;
+      } else {
+        instrument = instruments?.filter(
           (instrument) => instrument.id === data.instrumentId
         )[0];
+      }
       const result = await createSurveyVisit(
         program,
         level,
-        instrument,
+        instrument!,
         data.actualSurveyDate,
         criterias
       );

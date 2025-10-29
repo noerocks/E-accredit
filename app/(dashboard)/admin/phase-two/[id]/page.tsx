@@ -83,7 +83,7 @@ const PhaseTwoPortfolio = async ({
   return (
     <ScrollArea className="h-full">
       <Banner surveyVisitId={id} />
-      <div className="max-w-4/5 mx-auto my-10 flex flex-col gap-5">
+      <div className="max-w-5/6 mx-auto my-10 flex flex-col gap-5">
         <p className="text-2xl flex items-center gap-2">
           <FileArchive />
           Survey Visit Portfolio

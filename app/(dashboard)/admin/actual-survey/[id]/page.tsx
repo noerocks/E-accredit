@@ -117,24 +117,30 @@ const ActualSurveyPage = async ({
                 )}
               </div>
               {surveyResultStatus === "GRANTED" ? (
-                level?.rank === 4 ? (
-                  <div className="text-green-500 flex items-center gap-2 text-lg">
-                    <CheckCircle2 size={20} />
-                    <p>Qualified for Level III Phase 2</p>
+                level?.rank === 4 || level?.rank === 2 ? (
+                  <div className="text-green-500 flex items-center gap-2 text-md">
+                    <CheckCircle2 size={15} />
+                    <p>
+                      Qualified for{" "}
+                      {formatAccreditationName(program?.code!, level!).replace(
+                        "1",
+                        "2"
+                      )}
+                    </p>
                   </div>
                 ) : (
-                  <div className="text-yellow-500 flex items-center gap-2 text-lg">
+                  <div className="text-yellow-500 flex items-center gap-2 text-md">
                     <Award />
                     <p>Grandted</p>
                   </div>
                 )
               ) : surveyResultStatus === "DEFERRED" ? (
-                <div className="text-muted-foreground flex items-center gap-2">
+                <div className="text-muted-foreground flex items-center gap-2 text-md">
                   <CircleSlash size={15} />
                   <p>Deferred</p>
                 </div>
               ) : surveyResultStatus === "NOT_GRANTED" ? (
-                <div className="text-red-500 flex items-center gap-2 text-lg">
+                <div className="text-red-600 flex items-center gap-2 text-md">
                   <CircleSlash size={15} />
                   <p>Not Granted</p>
                 </div>

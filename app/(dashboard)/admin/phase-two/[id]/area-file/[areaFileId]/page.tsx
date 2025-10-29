@@ -71,7 +71,7 @@ const PhaseTwoAreaFile = async ({
             <CardTitle className="text-xl">
               {areaFileType[areaFile?.type!]}
             </CardTitle>
-            <CardDescription className="text-md">{`${area?.label}: ${area?.description}`}</CardDescription>
+            <CardDescription className="text-md">{`Criteria: ${area?.description}`}</CardDescription>
           </CardHeader>
           <CardFooter className="flex items-center justify-between">
             <p
