@@ -4,6 +4,7 @@ import { CommentType } from "../generated/prisma";
 import {
   createNewComment as createNewCommentDAL,
   getRecommendationByAreaFolderId,
+  getRemarksBySurveyVisitId,
   getStrengthsByAreaFolderId,
   getWeaknessesByAreaFolderId,
   updateCommentById,
@@ -19,6 +20,7 @@ export async function createNewComment({
   recommendedFolderId,
   strongFolderId,
   weakFolderId,
+  surveyVisitId,
 }: {
   authorId: string;
   content: string;
@@ -28,6 +30,7 @@ export async function createNewComment({
   recommendedFolderId?: string;
   strongFolderId?: string;
   weakFolderId?: string;
+  surveyVisitId?: string;
 }) {
   if (!authorId || !content || !type)
     return { failure: { error: "Invalid input" } };
@@ -107,6 +110,33 @@ export async function createNewComment({
       }
       const updatedComment = updateCommentById({
         id: weaknesses?.id,
+        content,
+      });
+      revalidateTag("comments");
+      revalidateTag("evidenceFiles");
+      revalidateTag("areaFolder");
+      revalidateTag("parameterFolder");
+      revalidateTag("surveyVisitStructure");
+      return { success: { message: "Comment updated successfully" } };
+    }
+    if (surveyVisitId) {
+      const remarks = await getRemarksBySurveyVisitId(surveyVisitId);
+      if (!remarks) {
+        const newRemarks = await createNewCommentDAL({
+          authorId,
+          content,
+          type,
+          surveyVisitId,
+        });
+        revalidateTag("comments");
+        revalidateTag("evidenceFiles");
+        revalidateTag("areaFolder");
+        revalidateTag("parameterFolder");
+        revalidateTag("surveyVisitStructure");
+        return { success: { message: "Comment created successfully" } };
+      }
+      const updatedComment = updateCommentById({
+        id: remarks?.id,
         content,
       });
       revalidateTag("comments");

@@ -134,6 +134,15 @@ const FileTree = ({ item }: { item: TreeNode }) => {
                     data-type={"area-file"}
                   >
                     {`📄 ${areaFileType[areaFile.type]}`}
+                    <p className="absolute right-5 pointer-events-none">
+                      {root === "phase-two-survey" ||
+                      (root === "phase-two" &&
+                        areaFile.status === "SUBMITTED") ? (
+                        <Check size={15} className="text-green-500" />
+                      ) : areaFile.status === "EMPTY" ? (
+                        <X size={15} className="text-red-500" />
+                      ) : null}
+                    </p>
                   </SidebarMenuButton>
                 ))}
             </SidebarMenuSub>

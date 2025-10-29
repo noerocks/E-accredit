@@ -12,6 +12,7 @@ export async function createNewComment({
   recommendedFolderId = null,
   strongFolderId = null,
   weakFolderId = null,
+  surveyVisitId = null,
 }: {
   authorId: string;
   content: string;
@@ -21,6 +22,7 @@ export async function createNewComment({
   recommendedFolderId?: string | null;
   strongFolderId?: string | null;
   weakFolderId?: string | null;
+  surveyVisitId?: string | null;
 }) {
   const session = await verifySession();
   if (!session) return null;
@@ -63,6 +65,13 @@ export async function createNewComment({
         weakFolder: {
           connect: {
             id: weakFolderId,
+          },
+        },
+      }),
+      ...(surveyVisitId && {
+        surveyVisit: {
+          connect: {
+            id: surveyVisitId,
           },
         },
       }),
@@ -153,6 +162,20 @@ export async function getWeaknessesByAreaFolderId(
     },
   });
   return weaknesses;
+}
+
+export async function getRemarksBySurveyVisitId(id: string) {
+  const session = await verifySession();
+  if (!session) return null;
+  const remarks = await prisma.comment.findFirst({
+    where: {
+      surveyVisitId: id,
+      AND: {
+        type: CommentType.ACTUAL_SURVEY,
+      },
+    },
+  });
+  return remarks;
 }
 
 export async function updateCommentById(data: Partial<Comment>) {

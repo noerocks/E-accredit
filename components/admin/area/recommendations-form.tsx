@@ -31,13 +31,15 @@ const RecommendationsForm = ({
   weakFolderId,
   defaultContent,
   surveyStatus,
+  surveyVisitId,
 }: {
   user: SessionPayload;
   recommendedFolderId?: string | undefined;
   strongFolderId?: string | undefined;
   weakFolderId?: string | undefined;
   defaultContent: string | undefined;
-  surveyStatus: SurveyStatus;
+  surveyStatus?: SurveyStatus;
+  surveyVisitId?: string | undefined;
 }) => {
   const { setOpen } = useSidebar();
   useEffect(() => {
@@ -68,9 +70,19 @@ const RecommendationsForm = ({
       commentType = CommentType.ACTUAL_SURVEY;
       break;
     }
+    case "phase-two-survey": {
+      commentType = CommentType.ACTUAL_SURVEY;
+    }
   }
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
   const [pending, startTransition] = useTransition();
+  const messageType = recommendedFolderId
+    ? "Recommendations"
+    : strongFolderId
+    ? "Strengths"
+    : weakFolderId
+    ? "Weaknesses"
+    : "Remarks";
   const onSubmit = (data: z.infer<typeof RecommendationsFormSchema>) => {
     startTransition(async () => {
       const result = await createNewComment({
@@ -80,6 +92,7 @@ const RecommendationsForm = ({
         recommendedFolderId,
         strongFolderId,
         weakFolderId,
+        surveyVisitId,
       });
       if (result?.failure) toast.error(result.failure.error);
       if (result.success) toast.success(result.success.message);
@@ -96,13 +109,7 @@ const RecommendationsForm = ({
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                {recommendedFolderId
-                  ? "Recommendations"
-                  : strongFolderId
-                  ? "Strengths"
-                  : "Weaknesses"}
-              </FormLabel>
+              <FormLabel>{messageType}</FormLabel>
               <FormControl>
                 <Textarea
                   {...field}
@@ -112,7 +119,7 @@ const RecommendationsForm = ({
                 />
               </FormControl>
               <FormDescription>
-                Please enter your recommendations for this area if you have any
+                {`Please enter your ${messageType.toLowerCase()} for this area if you have any`}
               </FormDescription>
               <FormMessage />
             </FormItem>

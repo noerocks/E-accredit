@@ -3812,10 +3812,12 @@ export namespace Prisma {
 
   export type SurveyVisitCountOutputType = {
     surveyTeam: number
+    remarks: number
   }
 
   export type SurveyVisitCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     surveyTeam?: boolean | SurveyVisitCountOutputTypeCountSurveyTeamArgs
+    remarks?: boolean | SurveyVisitCountOutputTypeCountRemarksArgs
   }
 
   // Custom InputTypes
@@ -3834,6 +3836,13 @@ export namespace Prisma {
    */
   export type SurveyVisitCountOutputTypeCountSurveyTeamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SurveyTeamWhereInput
+  }
+
+  /**
+   * SurveyVisitCountOutputType without action
+   */
+  export type SurveyVisitCountOutputTypeCountRemarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentWhereInput
   }
 
 
@@ -15057,6 +15066,7 @@ export namespace Prisma {
     phaseTwoRequirements?: boolean | SurveyVisit$phaseTwoRequirementsArgs<ExtArgs>
     certificate?: boolean | SurveyVisit$certificateArgs<ExtArgs>
     surveyTeam?: boolean | SurveyVisit$surveyTeamArgs<ExtArgs>
+    remarks?: boolean | SurveyVisit$remarksArgs<ExtArgs>
     _count?: boolean | SurveyVisitCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["surveyVisit"]>
 
@@ -15135,6 +15145,7 @@ export namespace Prisma {
     phaseTwoRequirements?: boolean | SurveyVisit$phaseTwoRequirementsArgs<ExtArgs>
     certificate?: boolean | SurveyVisit$certificateArgs<ExtArgs>
     surveyTeam?: boolean | SurveyVisit$surveyTeamArgs<ExtArgs>
+    remarks?: boolean | SurveyVisit$remarksArgs<ExtArgs>
     _count?: boolean | SurveyVisitCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SurveyVisitIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15155,6 +15166,7 @@ export namespace Prisma {
       phaseTwoRequirements: Prisma.$PhaseTwoRequirementsPayload<ExtArgs> | null
       certificate: Prisma.$FileVersionPayload<ExtArgs> | null
       surveyTeam: Prisma.$SurveyTeamPayload<ExtArgs>[]
+      remarks: Prisma.$CommentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -15575,6 +15587,7 @@ export namespace Prisma {
     phaseTwoRequirements<T extends SurveyVisit$phaseTwoRequirementsArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$phaseTwoRequirementsArgs<ExtArgs>>): Prisma__PhaseTwoRequirementsClient<$Result.GetResult<Prisma.$PhaseTwoRequirementsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     certificate<T extends SurveyVisit$certificateArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$certificateArgs<ExtArgs>>): Prisma__FileVersionClient<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     surveyTeam<T extends SurveyVisit$surveyTeamArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$surveyTeamArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    remarks<T extends SurveyVisit$remarksArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$remarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16096,6 +16109,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SurveyTeamScalarFieldEnum | SurveyTeamScalarFieldEnum[]
+  }
+
+  /**
+   * SurveyVisit.remarks
+   */
+  export type SurveyVisit$remarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByWithRelationInput | CommentOrderByWithRelationInput[]
+    cursor?: CommentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
   }
 
   /**
@@ -34073,6 +34110,7 @@ export namespace Prisma {
     recommendedFolderId: string | null
     strongFolderId: string | null
     weakFolderId: string | null
+    surveyVisitId: string | null
     content: string | null
     type: $Enums.CommentType | null
     createdAt: Date | null
@@ -34086,6 +34124,7 @@ export namespace Prisma {
     recommendedFolderId: string | null
     strongFolderId: string | null
     weakFolderId: string | null
+    surveyVisitId: string | null
     content: string | null
     type: $Enums.CommentType | null
     createdAt: Date | null
@@ -34099,6 +34138,7 @@ export namespace Prisma {
     recommendedFolderId: number
     strongFolderId: number
     weakFolderId: number
+    surveyVisitId: number
     content: number
     type: number
     createdAt: number
@@ -34114,6 +34154,7 @@ export namespace Prisma {
     recommendedFolderId?: true
     strongFolderId?: true
     weakFolderId?: true
+    surveyVisitId?: true
     content?: true
     type?: true
     createdAt?: true
@@ -34127,6 +34168,7 @@ export namespace Prisma {
     recommendedFolderId?: true
     strongFolderId?: true
     weakFolderId?: true
+    surveyVisitId?: true
     content?: true
     type?: true
     createdAt?: true
@@ -34140,6 +34182,7 @@ export namespace Prisma {
     recommendedFolderId?: true
     strongFolderId?: true
     weakFolderId?: true
+    surveyVisitId?: true
     content?: true
     type?: true
     createdAt?: true
@@ -34226,6 +34269,7 @@ export namespace Prisma {
     recommendedFolderId: string | null
     strongFolderId: string | null
     weakFolderId: string | null
+    surveyVisitId: string | null
     content: string
     type: $Enums.CommentType
     createdAt: Date
@@ -34256,6 +34300,7 @@ export namespace Prisma {
     recommendedFolderId?: boolean
     strongFolderId?: boolean
     weakFolderId?: boolean
+    surveyVisitId?: boolean
     content?: boolean
     type?: boolean
     createdAt?: boolean
@@ -34265,6 +34310,7 @@ export namespace Prisma {
     recommendedFolder?: boolean | Comment$recommendedFolderArgs<ExtArgs>
     strongFolder?: boolean | Comment$strongFolderArgs<ExtArgs>
     weakFolder?: boolean | Comment$weakFolderArgs<ExtArgs>
+    surveyVisit?: boolean | Comment$surveyVisitArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -34275,6 +34321,7 @@ export namespace Prisma {
     recommendedFolderId?: boolean
     strongFolderId?: boolean
     weakFolderId?: boolean
+    surveyVisitId?: boolean
     content?: boolean
     type?: boolean
     createdAt?: boolean
@@ -34284,6 +34331,7 @@ export namespace Prisma {
     recommendedFolder?: boolean | Comment$recommendedFolderArgs<ExtArgs>
     strongFolder?: boolean | Comment$strongFolderArgs<ExtArgs>
     weakFolder?: boolean | Comment$weakFolderArgs<ExtArgs>
+    surveyVisit?: boolean | Comment$surveyVisitArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -34294,6 +34342,7 @@ export namespace Prisma {
     recommendedFolderId?: boolean
     strongFolderId?: boolean
     weakFolderId?: boolean
+    surveyVisitId?: boolean
     content?: boolean
     type?: boolean
     createdAt?: boolean
@@ -34303,6 +34352,7 @@ export namespace Prisma {
     recommendedFolder?: boolean | Comment$recommendedFolderArgs<ExtArgs>
     strongFolder?: boolean | Comment$strongFolderArgs<ExtArgs>
     weakFolder?: boolean | Comment$weakFolderArgs<ExtArgs>
+    surveyVisit?: boolean | Comment$surveyVisitArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectScalar = {
@@ -34313,12 +34363,13 @@ export namespace Prisma {
     recommendedFolderId?: boolean
     strongFolderId?: boolean
     weakFolderId?: boolean
+    surveyVisitId?: boolean
     content?: boolean
     type?: boolean
     createdAt?: boolean
   }
 
-  export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "evidenceFileId" | "areaFileId" | "recommendedFolderId" | "strongFolderId" | "weakFolderId" | "content" | "type" | "createdAt", ExtArgs["result"]["comment"]>
+  export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "evidenceFileId" | "areaFileId" | "recommendedFolderId" | "strongFolderId" | "weakFolderId" | "surveyVisitId" | "content" | "type" | "createdAt", ExtArgs["result"]["comment"]>
   export type CommentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
     evidenceFile?: boolean | Comment$evidenceFileArgs<ExtArgs>
@@ -34326,6 +34377,7 @@ export namespace Prisma {
     recommendedFolder?: boolean | Comment$recommendedFolderArgs<ExtArgs>
     strongFolder?: boolean | Comment$strongFolderArgs<ExtArgs>
     weakFolder?: boolean | Comment$weakFolderArgs<ExtArgs>
+    surveyVisit?: boolean | Comment$surveyVisitArgs<ExtArgs>
   }
   export type CommentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
@@ -34334,6 +34386,7 @@ export namespace Prisma {
     recommendedFolder?: boolean | Comment$recommendedFolderArgs<ExtArgs>
     strongFolder?: boolean | Comment$strongFolderArgs<ExtArgs>
     weakFolder?: boolean | Comment$weakFolderArgs<ExtArgs>
+    surveyVisit?: boolean | Comment$surveyVisitArgs<ExtArgs>
   }
   export type CommentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
@@ -34342,6 +34395,7 @@ export namespace Prisma {
     recommendedFolder?: boolean | Comment$recommendedFolderArgs<ExtArgs>
     strongFolder?: boolean | Comment$strongFolderArgs<ExtArgs>
     weakFolder?: boolean | Comment$weakFolderArgs<ExtArgs>
+    surveyVisit?: boolean | Comment$surveyVisitArgs<ExtArgs>
   }
 
   export type $CommentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -34353,6 +34407,7 @@ export namespace Prisma {
       recommendedFolder: Prisma.$AreaFolderPayload<ExtArgs> | null
       strongFolder: Prisma.$AreaFolderPayload<ExtArgs> | null
       weakFolder: Prisma.$AreaFolderPayload<ExtArgs> | null
+      surveyVisit: Prisma.$SurveyVisitPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -34362,6 +34417,7 @@ export namespace Prisma {
       recommendedFolderId: string | null
       strongFolderId: string | null
       weakFolderId: string | null
+      surveyVisitId: string | null
       content: string
       type: $Enums.CommentType
       createdAt: Date
@@ -34765,6 +34821,7 @@ export namespace Prisma {
     recommendedFolder<T extends Comment$recommendedFolderArgs<ExtArgs> = {}>(args?: Subset<T, Comment$recommendedFolderArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     strongFolder<T extends Comment$strongFolderArgs<ExtArgs> = {}>(args?: Subset<T, Comment$strongFolderArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     weakFolder<T extends Comment$weakFolderArgs<ExtArgs> = {}>(args?: Subset<T, Comment$weakFolderArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    surveyVisit<T extends Comment$surveyVisitArgs<ExtArgs> = {}>(args?: Subset<T, Comment$surveyVisitArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -34801,6 +34858,7 @@ export namespace Prisma {
     readonly recommendedFolderId: FieldRef<"Comment", 'String'>
     readonly strongFolderId: FieldRef<"Comment", 'String'>
     readonly weakFolderId: FieldRef<"Comment", 'String'>
+    readonly surveyVisitId: FieldRef<"Comment", 'String'>
     readonly content: FieldRef<"Comment", 'String'>
     readonly type: FieldRef<"Comment", 'CommentType'>
     readonly createdAt: FieldRef<"Comment", 'DateTime'>
@@ -35295,6 +35353,25 @@ export namespace Prisma {
   }
 
   /**
+   * Comment.surveyVisit
+   */
+  export type Comment$surveyVisitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    where?: SurveyVisitWhereInput
+  }
+
+  /**
    * Comment without action
    */
   export type CommentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -35642,6 +35719,7 @@ export namespace Prisma {
     recommendedFolderId: 'recommendedFolderId',
     strongFolderId: 'strongFolderId',
     weakFolderId: 'weakFolderId',
+    surveyVisitId: 'surveyVisitId',
     content: 'content',
     type: 'type',
     createdAt: 'createdAt'
@@ -36208,6 +36286,7 @@ export namespace Prisma {
 
   export type InstrumentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    name_accreditingBody?: InstrumentNameAccreditingBodyCompoundUniqueInput
     AND?: InstrumentWhereInput | InstrumentWhereInput[]
     OR?: InstrumentWhereInput[]
     NOT?: InstrumentWhereInput | InstrumentWhereInput[]
@@ -36218,7 +36297,7 @@ export namespace Prisma {
     area?: AreaListRelationFilter
     phaseOneRequirements?: PhaseOneRequirementsListRelationFilter
     phaseTwoRequirements?: PhaseTwoRequirementsListRelationFilter
-  }, "id">
+  }, "id" | "name_accreditingBody">
 
   export type InstrumentOrderByWithAggregationInput = {
     id?: SortOrder
@@ -36625,6 +36704,7 @@ export namespace Prisma {
     phaseTwoRequirements?: XOR<PhaseTwoRequirementsNullableScalarRelationFilter, PhaseTwoRequirementsWhereInput> | null
     certificate?: XOR<FileVersionNullableScalarRelationFilter, FileVersionWhereInput> | null
     surveyTeam?: SurveyTeamListRelationFilter
+    remarks?: CommentListRelationFilter
   }
 
   export type SurveyVisitOrderByWithRelationInput = {
@@ -36652,6 +36732,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsOrderByWithRelationInput
     certificate?: FileVersionOrderByWithRelationInput
     surveyTeam?: SurveyTeamOrderByRelationAggregateInput
+    remarks?: CommentOrderByRelationAggregateInput
   }
 
   export type SurveyVisitWhereUniqueInput = Prisma.AtLeast<{
@@ -36682,6 +36763,7 @@ export namespace Prisma {
     phaseTwoRequirements?: XOR<PhaseTwoRequirementsNullableScalarRelationFilter, PhaseTwoRequirementsWhereInput> | null
     certificate?: XOR<FileVersionNullableScalarRelationFilter, FileVersionWhereInput> | null
     surveyTeam?: SurveyTeamListRelationFilter
+    remarks?: CommentListRelationFilter
   }, "id">
 
   export type SurveyVisitOrderByWithAggregationInput = {
@@ -37699,6 +37781,7 @@ export namespace Prisma {
     recommendedFolderId?: StringNullableFilter<"Comment"> | string | null
     strongFolderId?: StringNullableFilter<"Comment"> | string | null
     weakFolderId?: StringNullableFilter<"Comment"> | string | null
+    surveyVisitId?: StringNullableFilter<"Comment"> | string | null
     content?: StringFilter<"Comment"> | string
     type?: EnumCommentTypeFilter<"Comment"> | $Enums.CommentType
     createdAt?: DateTimeFilter<"Comment"> | Date | string
@@ -37708,6 +37791,7 @@ export namespace Prisma {
     recommendedFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
     strongFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
     weakFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
+    surveyVisit?: XOR<SurveyVisitNullableScalarRelationFilter, SurveyVisitWhereInput> | null
   }
 
   export type CommentOrderByWithRelationInput = {
@@ -37718,6 +37802,7 @@ export namespace Prisma {
     recommendedFolderId?: SortOrderInput | SortOrder
     strongFolderId?: SortOrderInput | SortOrder
     weakFolderId?: SortOrderInput | SortOrder
+    surveyVisitId?: SortOrderInput | SortOrder
     content?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
@@ -37727,6 +37812,7 @@ export namespace Prisma {
     recommendedFolder?: AreaFolderOrderByWithRelationInput
     strongFolder?: AreaFolderOrderByWithRelationInput
     weakFolder?: AreaFolderOrderByWithRelationInput
+    surveyVisit?: SurveyVisitOrderByWithRelationInput
   }
 
   export type CommentWhereUniqueInput = Prisma.AtLeast<{
@@ -37740,6 +37826,7 @@ export namespace Prisma {
     recommendedFolderId?: StringNullableFilter<"Comment"> | string | null
     strongFolderId?: StringNullableFilter<"Comment"> | string | null
     weakFolderId?: StringNullableFilter<"Comment"> | string | null
+    surveyVisitId?: StringNullableFilter<"Comment"> | string | null
     content?: StringFilter<"Comment"> | string
     type?: EnumCommentTypeFilter<"Comment"> | $Enums.CommentType
     createdAt?: DateTimeFilter<"Comment"> | Date | string
@@ -37749,6 +37836,7 @@ export namespace Prisma {
     recommendedFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
     strongFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
     weakFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
+    surveyVisit?: XOR<SurveyVisitNullableScalarRelationFilter, SurveyVisitWhereInput> | null
   }, "id">
 
   export type CommentOrderByWithAggregationInput = {
@@ -37759,6 +37847,7 @@ export namespace Prisma {
     recommendedFolderId?: SortOrderInput | SortOrder
     strongFolderId?: SortOrderInput | SortOrder
     weakFolderId?: SortOrderInput | SortOrder
+    surveyVisitId?: SortOrderInput | SortOrder
     content?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
@@ -37778,6 +37867,7 @@ export namespace Prisma {
     recommendedFolderId?: StringNullableWithAggregatesFilter<"Comment"> | string | null
     strongFolderId?: StringNullableWithAggregatesFilter<"Comment"> | string | null
     weakFolderId?: StringNullableWithAggregatesFilter<"Comment"> | string | null
+    surveyVisitId?: StringNullableWithAggregatesFilter<"Comment"> | string | null
     content?: StringWithAggregatesFilter<"Comment"> | string
     type?: EnumCommentTypeWithAggregatesFilter<"Comment"> | $Enums.CommentType
     createdAt?: DateTimeWithAggregatesFilter<"Comment"> | Date | string
@@ -38504,6 +38594,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
+    remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateInput = {
@@ -38529,6 +38620,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
+    remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUpdateInput = {
@@ -38554,6 +38646,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
+    remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateInput = {
@@ -38579,6 +38672,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitCreateManyInput = {
@@ -39538,6 +39632,7 @@ export namespace Prisma {
     recommendedFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
     strongFolder?: AreaFolderCreateNestedOneWithoutStrengthsInput
     weakFolder?: AreaFolderCreateNestedOneWithoutWeaknessesInput
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutRemarksInput
   }
 
   export type CommentUncheckedCreateInput = {
@@ -39548,6 +39643,7 @@ export namespace Prisma {
     recommendedFolderId?: string | null
     strongFolderId?: string | null
     weakFolderId?: string | null
+    surveyVisitId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -39564,6 +39660,7 @@ export namespace Prisma {
     recommendedFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
     strongFolder?: AreaFolderUpdateOneWithoutStrengthsNestedInput
     weakFolder?: AreaFolderUpdateOneWithoutWeaknessesNestedInput
+    surveyVisit?: SurveyVisitUpdateOneWithoutRemarksNestedInput
   }
 
   export type CommentUncheckedUpdateInput = {
@@ -39574,6 +39671,7 @@ export namespace Prisma {
     recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39587,6 +39685,7 @@ export namespace Prisma {
     recommendedFolderId?: string | null
     strongFolderId?: string | null
     weakFolderId?: string | null
+    surveyVisitId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -39607,6 +39706,7 @@ export namespace Prisma {
     recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39969,6 +40069,11 @@ export namespace Prisma {
 
   export type PhaseTwoRequirementsOrderByRelationAggregateInput = {
     _count?: SortOrder
+  }
+
+  export type InstrumentNameAccreditingBodyCompoundUniqueInput = {
+    name: string
+    accreditingBody: string
   }
 
   export type InstrumentCountOrderByAggregateInput = {
@@ -41273,6 +41378,7 @@ export namespace Prisma {
     recommendedFolderId?: SortOrder
     strongFolderId?: SortOrder
     weakFolderId?: SortOrder
+    surveyVisitId?: SortOrder
     content?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
@@ -41286,6 +41392,7 @@ export namespace Prisma {
     recommendedFolderId?: SortOrder
     strongFolderId?: SortOrder
     weakFolderId?: SortOrder
+    surveyVisitId?: SortOrder
     content?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
@@ -41299,6 +41406,7 @@ export namespace Prisma {
     recommendedFolderId?: SortOrder
     strongFolderId?: SortOrder
     weakFolderId?: SortOrder
+    surveyVisitId?: SortOrder
     content?: SortOrder
     type?: SortOrder
     createdAt?: SortOrder
@@ -42475,6 +42583,13 @@ export namespace Prisma {
     connect?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
   }
 
+  export type CommentCreateNestedManyWithoutSurveyVisitInput = {
+    create?: XOR<CommentCreateWithoutSurveyVisitInput, CommentUncheckedCreateWithoutSurveyVisitInput> | CommentCreateWithoutSurveyVisitInput[] | CommentUncheckedCreateWithoutSurveyVisitInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutSurveyVisitInput | CommentCreateOrConnectWithoutSurveyVisitInput[]
+    createMany?: CommentCreateManySurveyVisitInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
   export type PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput = {
     create?: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
     connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutSurveyVisitInput
@@ -42498,6 +42613,13 @@ export namespace Prisma {
     connectOrCreate?: SurveyTeamCreateOrConnectWithoutSurveyVisitInput | SurveyTeamCreateOrConnectWithoutSurveyVisitInput[]
     createMany?: SurveyTeamCreateManySurveyVisitInputEnvelope
     connect?: SurveyTeamWhereUniqueInput | SurveyTeamWhereUniqueInput[]
+  }
+
+  export type CommentUncheckedCreateNestedManyWithoutSurveyVisitInput = {
+    create?: XOR<CommentCreateWithoutSurveyVisitInput, CommentUncheckedCreateWithoutSurveyVisitInput> | CommentCreateWithoutSurveyVisitInput[] | CommentUncheckedCreateWithoutSurveyVisitInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutSurveyVisitInput | CommentCreateOrConnectWithoutSurveyVisitInput[]
+    createMany?: CommentCreateManySurveyVisitInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
   export type EnumSurveyVisitTypeFieldUpdateOperationsInput = {
@@ -42580,6 +42702,20 @@ export namespace Prisma {
     deleteMany?: SurveyTeamScalarWhereInput | SurveyTeamScalarWhereInput[]
   }
 
+  export type CommentUpdateManyWithoutSurveyVisitNestedInput = {
+    create?: XOR<CommentCreateWithoutSurveyVisitInput, CommentUncheckedCreateWithoutSurveyVisitInput> | CommentCreateWithoutSurveyVisitInput[] | CommentUncheckedCreateWithoutSurveyVisitInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutSurveyVisitInput | CommentCreateOrConnectWithoutSurveyVisitInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutSurveyVisitInput | CommentUpsertWithWhereUniqueWithoutSurveyVisitInput[]
+    createMany?: CommentCreateManySurveyVisitInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutSurveyVisitInput | CommentUpdateWithWhereUniqueWithoutSurveyVisitInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutSurveyVisitInput | CommentUpdateManyWithWhereWithoutSurveyVisitInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
   export type PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput = {
     create?: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
     connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutSurveyVisitInput
@@ -42622,6 +42758,20 @@ export namespace Prisma {
     update?: SurveyTeamUpdateWithWhereUniqueWithoutSurveyVisitInput | SurveyTeamUpdateWithWhereUniqueWithoutSurveyVisitInput[]
     updateMany?: SurveyTeamUpdateManyWithWhereWithoutSurveyVisitInput | SurveyTeamUpdateManyWithWhereWithoutSurveyVisitInput[]
     deleteMany?: SurveyTeamScalarWhereInput | SurveyTeamScalarWhereInput[]
+  }
+
+  export type CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput = {
+    create?: XOR<CommentCreateWithoutSurveyVisitInput, CommentUncheckedCreateWithoutSurveyVisitInput> | CommentCreateWithoutSurveyVisitInput[] | CommentUncheckedCreateWithoutSurveyVisitInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutSurveyVisitInput | CommentCreateOrConnectWithoutSurveyVisitInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutSurveyVisitInput | CommentUpsertWithWhereUniqueWithoutSurveyVisitInput[]
+    createMany?: CommentCreateManySurveyVisitInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutSurveyVisitInput | CommentUpdateWithWhereUniqueWithoutSurveyVisitInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutSurveyVisitInput | CommentUpdateManyWithWhereWithoutSurveyVisitInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
   export type SurveyVisitCreateNestedOneWithoutSurveyTeamInput = {
@@ -44020,6 +44170,12 @@ export namespace Prisma {
     connect?: AreaFolderWhereUniqueInput
   }
 
+  export type SurveyVisitCreateNestedOneWithoutRemarksInput = {
+    create?: XOR<SurveyVisitCreateWithoutRemarksInput, SurveyVisitUncheckedCreateWithoutRemarksInput>
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutRemarksInput
+    connect?: SurveyVisitWhereUniqueInput
+  }
+
   export type EnumCommentTypeFieldUpdateOperationsInput = {
     set?: $Enums.CommentType
   }
@@ -44080,6 +44236,16 @@ export namespace Prisma {
     delete?: AreaFolderWhereInput | boolean
     connect?: AreaFolderWhereUniqueInput
     update?: XOR<XOR<AreaFolderUpdateToOneWithWhereWithoutWeaknessesInput, AreaFolderUpdateWithoutWeaknessesInput>, AreaFolderUncheckedUpdateWithoutWeaknessesInput>
+  }
+
+  export type SurveyVisitUpdateOneWithoutRemarksNestedInput = {
+    create?: XOR<SurveyVisitCreateWithoutRemarksInput, SurveyVisitUncheckedCreateWithoutRemarksInput>
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutRemarksInput
+    upsert?: SurveyVisitUpsertWithoutRemarksInput
+    disconnect?: SurveyVisitWhereInput | boolean
+    delete?: SurveyVisitWhereInput | boolean
+    connect?: SurveyVisitWhereUniqueInput
+    update?: XOR<XOR<SurveyVisitUpdateToOneWithWhereWithoutRemarksInput, SurveyVisitUpdateWithoutRemarksInput>, SurveyVisitUncheckedUpdateWithoutRemarksInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -44670,6 +44836,7 @@ export namespace Prisma {
     recommendedFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
     strongFolder?: AreaFolderCreateNestedOneWithoutStrengthsInput
     weakFolder?: AreaFolderCreateNestedOneWithoutWeaknessesInput
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutRemarksInput
   }
 
   export type CommentUncheckedCreateWithoutAuthorInput = {
@@ -44679,6 +44846,7 @@ export namespace Prisma {
     recommendedFolderId?: string | null
     strongFolderId?: string | null
     weakFolderId?: string | null
+    surveyVisitId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -44887,6 +45055,7 @@ export namespace Prisma {
     recommendedFolderId?: StringNullableFilter<"Comment"> | string | null
     strongFolderId?: StringNullableFilter<"Comment"> | string | null
     weakFolderId?: StringNullableFilter<"Comment"> | string | null
+    surveyVisitId?: StringNullableFilter<"Comment"> | string | null
     content?: StringFilter<"Comment"> | string
     type?: EnumCommentTypeFilter<"Comment"> | $Enums.CommentType
     createdAt?: DateTimeFilter<"Comment"> | Date | string
@@ -46135,6 +46304,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
+    remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutLevelInput = {
@@ -46159,6 +46329,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
+    remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutLevelInput = {
@@ -46317,6 +46488,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
+    remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutAccreditationInput = {
@@ -46341,6 +46513,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
+    remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutAccreditationInput = {
@@ -46574,6 +46747,42 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CommentCreateWithoutSurveyVisitInput = {
+    id?: string
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+    author: UserCreateNestedOneWithoutCommentsInput
+    evidenceFile?: EvidenceFileCreateNestedOneWithoutCommentsInput
+    areaFile?: AreaFileCreateNestedOneWithoutCommentsInput
+    recommendedFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
+    strongFolder?: AreaFolderCreateNestedOneWithoutStrengthsInput
+    weakFolder?: AreaFolderCreateNestedOneWithoutWeaknessesInput
+  }
+
+  export type CommentUncheckedCreateWithoutSurveyVisitInput = {
+    id?: string
+    authorId: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
+    recommendedFolderId?: string | null
+    strongFolderId?: string | null
+    weakFolderId?: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+  }
+
+  export type CommentCreateOrConnectWithoutSurveyVisitInput = {
+    where: CommentWhereUniqueInput
+    create: XOR<CommentCreateWithoutSurveyVisitInput, CommentUncheckedCreateWithoutSurveyVisitInput>
+  }
+
+  export type CommentCreateManySurveyVisitInputEnvelope = {
+    data: CommentCreateManySurveyVisitInput | CommentCreateManySurveyVisitInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccreditationUpsertWithoutSurveyVisitsInput = {
     update: XOR<AccreditationUpdateWithoutSurveyVisitsInput, AccreditationUncheckedUpdateWithoutSurveyVisitsInput>
     create: XOR<AccreditationCreateWithoutSurveyVisitsInput, AccreditationUncheckedCreateWithoutSurveyVisitsInput>
@@ -46733,6 +46942,22 @@ export namespace Prisma {
     data: XOR<SurveyTeamUpdateManyMutationInput, SurveyTeamUncheckedUpdateManyWithoutSurveyVisitInput>
   }
 
+  export type CommentUpsertWithWhereUniqueWithoutSurveyVisitInput = {
+    where: CommentWhereUniqueInput
+    update: XOR<CommentUpdateWithoutSurveyVisitInput, CommentUncheckedUpdateWithoutSurveyVisitInput>
+    create: XOR<CommentCreateWithoutSurveyVisitInput, CommentUncheckedCreateWithoutSurveyVisitInput>
+  }
+
+  export type CommentUpdateWithWhereUniqueWithoutSurveyVisitInput = {
+    where: CommentWhereUniqueInput
+    data: XOR<CommentUpdateWithoutSurveyVisitInput, CommentUncheckedUpdateWithoutSurveyVisitInput>
+  }
+
+  export type CommentUpdateManyWithWhereWithoutSurveyVisitInput = {
+    where: CommentScalarWhereInput
+    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutSurveyVisitInput>
+  }
+
   export type SurveyVisitCreateWithoutSurveyTeamInput = {
     id?: string
     actualSurveyDate: Date | string
@@ -46755,6 +46980,7 @@ export namespace Prisma {
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
+    remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutSurveyTeamInput = {
@@ -46779,6 +47005,7 @@ export namespace Prisma {
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
+    remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutSurveyTeamInput = {
@@ -46886,6 +47113,7 @@ export namespace Prisma {
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
+    remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutSurveyTeamInput = {
@@ -46910,6 +47138,7 @@ export namespace Prisma {
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type UserUpsertWithoutTeamLeadInput = {
@@ -47213,6 +47442,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
+    remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutPhaseOneRequirementsInput = {
@@ -47237,6 +47467,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
+    remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutPhaseOneRequirementsInput = {
@@ -47317,6 +47548,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
+    remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutPhaseOneRequirementsInput = {
@@ -47341,6 +47573,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type InstrumentUpsertWithoutPhaseOneRequirementsInput = {
@@ -47637,6 +47870,7 @@ export namespace Prisma {
     areaFile?: AreaFileCreateNestedOneWithoutCommentsInput
     strongFolder?: AreaFolderCreateNestedOneWithoutStrengthsInput
     weakFolder?: AreaFolderCreateNestedOneWithoutWeaknessesInput
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutRemarksInput
   }
 
   export type CommentUncheckedCreateWithoutRecommendedFolderInput = {
@@ -47646,6 +47880,7 @@ export namespace Prisma {
     areaFileId?: string | null
     strongFolderId?: string | null
     weakFolderId?: string | null
+    surveyVisitId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -47671,6 +47906,7 @@ export namespace Prisma {
     areaFile?: AreaFileCreateNestedOneWithoutCommentsInput
     recommendedFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
     weakFolder?: AreaFolderCreateNestedOneWithoutWeaknessesInput
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutRemarksInput
   }
 
   export type CommentUncheckedCreateWithoutStrongFolderInput = {
@@ -47680,6 +47916,7 @@ export namespace Prisma {
     areaFileId?: string | null
     recommendedFolderId?: string | null
     weakFolderId?: string | null
+    surveyVisitId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -47705,6 +47942,7 @@ export namespace Prisma {
     areaFile?: AreaFileCreateNestedOneWithoutCommentsInput
     recommendedFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
     strongFolder?: AreaFolderCreateNestedOneWithoutStrengthsInput
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutRemarksInput
   }
 
   export type CommentUncheckedCreateWithoutWeakFolderInput = {
@@ -47714,6 +47952,7 @@ export namespace Prisma {
     areaFileId?: string | null
     recommendedFolderId?: string | null
     strongFolderId?: string | null
+    surveyVisitId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -48268,6 +48507,7 @@ export namespace Prisma {
     recommendedFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
     strongFolder?: AreaFolderCreateNestedOneWithoutStrengthsInput
     weakFolder?: AreaFolderCreateNestedOneWithoutWeaknessesInput
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutRemarksInput
   }
 
   export type CommentUncheckedCreateWithoutEvidenceFileInput = {
@@ -48277,6 +48517,7 @@ export namespace Prisma {
     recommendedFolderId?: string | null
     strongFolderId?: string | null
     weakFolderId?: string | null
+    surveyVisitId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -48659,6 +48900,7 @@ export namespace Prisma {
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
+    remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutCertificateInput = {
@@ -48683,6 +48925,7 @@ export namespace Prisma {
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
+    remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutCertificateInput = {
@@ -48834,6 +49077,7 @@ export namespace Prisma {
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
+    remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutCertificateInput = {
@@ -48858,6 +49102,7 @@ export namespace Prisma {
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type UserUpsertWithoutUploadsInput = {
@@ -48933,6 +49178,7 @@ export namespace Prisma {
     phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
+    remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutPhaseTwoRequirementsInput = {
@@ -48957,6 +49203,7 @@ export namespace Prisma {
     phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
+    remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutPhaseTwoRequirementsInput = {
@@ -49037,6 +49284,7 @@ export namespace Prisma {
     phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
+    remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutPhaseTwoRequirementsInput = {
@@ -49061,6 +49309,7 @@ export namespace Prisma {
     phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type InstrumentUpsertWithoutPhaseTwoRequirementsInput = {
@@ -49433,6 +49682,7 @@ export namespace Prisma {
     recommendedFolder?: AreaFolderCreateNestedOneWithoutRecommendationsInput
     strongFolder?: AreaFolderCreateNestedOneWithoutStrengthsInput
     weakFolder?: AreaFolderCreateNestedOneWithoutWeaknessesInput
+    surveyVisit?: SurveyVisitCreateNestedOneWithoutRemarksInput
   }
 
   export type CommentUncheckedCreateWithoutAreaFileInput = {
@@ -49442,6 +49692,7 @@ export namespace Prisma {
     recommendedFolderId?: string | null
     strongFolderId?: string | null
     weakFolderId?: string | null
+    surveyVisitId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -49993,6 +50244,61 @@ export namespace Prisma {
     create: XOR<AreaFolderCreateWithoutWeaknessesInput, AreaFolderUncheckedCreateWithoutWeaknessesInput>
   }
 
+  export type SurveyVisitCreateWithoutRemarksInput = {
+    id?: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
+    createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
+    selfSurveyStartedAt?: Date | string | null
+    selfSurveyEndedAt?: Date | string | null
+    actualSurveyStartedAt?: Date | string | null
+    actualSurveyEndedAt?: Date | string | null
+    openForActualSurvey?: boolean
+    actualSurveyStatus?: $Enums.SurveyStatus
+    accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
+    level: LevelCreateNestedOneWithoutSurveyVisitsInput
+    phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
+    phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitUncheckedCreateWithoutRemarksInput = {
+    id?: string
+    accreditationId: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    targetLevel: string
+    status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
+    createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
+    selfSurveyStartedAt?: Date | string | null
+    selfSurveyEndedAt?: Date | string | null
+    actualSurveyStartedAt?: Date | string | null
+    actualSurveyEndedAt?: Date | string | null
+    openForActualSurvey?: boolean
+    actualSurveyStatus?: $Enums.SurveyStatus
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitCreateOrConnectWithoutRemarksInput = {
+    where: SurveyVisitWhereUniqueInput
+    create: XOR<SurveyVisitCreateWithoutRemarksInput, SurveyVisitUncheckedCreateWithoutRemarksInput>
+  }
+
   export type UserUpsertWithoutCommentsInput = {
     update: XOR<UserUpdateWithoutCommentsInput, UserUncheckedUpdateWithoutCommentsInput>
     create: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
@@ -50227,6 +50533,67 @@ export namespace Prisma {
     strengths?: CommentUncheckedUpdateManyWithoutStrongFolderNestedInput
   }
 
+  export type SurveyVisitUpsertWithoutRemarksInput = {
+    update: XOR<SurveyVisitUpdateWithoutRemarksInput, SurveyVisitUncheckedUpdateWithoutRemarksInput>
+    create: XOR<SurveyVisitCreateWithoutRemarksInput, SurveyVisitUncheckedCreateWithoutRemarksInput>
+    where?: SurveyVisitWhereInput
+  }
+
+  export type SurveyVisitUpdateToOneWithWhereWithoutRemarksInput = {
+    where?: SurveyVisitWhereInput
+    data: XOR<SurveyVisitUpdateWithoutRemarksInput, SurveyVisitUncheckedUpdateWithoutRemarksInput>
+  }
+
+  export type SurveyVisitUpdateWithoutRemarksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
+    selfSurveyStartedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    selfSurveyEndedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualSurveyStartedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualSurveyEndedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
+    actualSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
+    accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
+  }
+
+  export type SurveyVisitUncheckedUpdateWithoutRemarksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accreditationId?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    targetLevel?: StringFieldUpdateOperationsInput | string
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
+    selfSurveyStartedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    selfSurveyEndedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualSurveyStartedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualSurveyEndedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
+    actualSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
+  }
+
   export type ProgramPersonnelCreateManyUserInput = {
     id?: string
     programId: string
@@ -50262,6 +50629,7 @@ export namespace Prisma {
     recommendedFolderId?: string | null
     strongFolderId?: string | null
     weakFolderId?: string | null
+    surveyVisitId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -50392,6 +50760,7 @@ export namespace Prisma {
     recommendedFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
     strongFolder?: AreaFolderUpdateOneWithoutStrengthsNestedInput
     weakFolder?: AreaFolderUpdateOneWithoutWeaknessesNestedInput
+    surveyVisit?: SurveyVisitUpdateOneWithoutRemarksNestedInput
   }
 
   export type CommentUncheckedUpdateWithoutAuthorInput = {
@@ -50401,6 +50770,7 @@ export namespace Prisma {
     recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50413,6 +50783,7 @@ export namespace Prisma {
     recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50924,6 +51295,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
+    remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutLevelInput = {
@@ -50948,6 +51320,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateManyWithoutLevelInput = {
@@ -51012,6 +51385,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
+    remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutAccreditationInput = {
@@ -51036,6 +51410,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateManyWithoutAccreditationInput = {
@@ -51064,6 +51439,19 @@ export namespace Prisma {
     teamLeadId?: string | null
   }
 
+  export type CommentCreateManySurveyVisitInput = {
+    id?: string
+    authorId: string
+    evidenceFileId?: string | null
+    areaFileId?: string | null
+    recommendedFolderId?: string | null
+    strongFolderId?: string | null
+    weakFolderId?: string | null
+    content: string
+    type: $Enums.CommentType
+    createdAt?: Date | string
+  }
+
   export type SurveyTeamUpdateWithoutSurveyVisitInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
@@ -51082,6 +51470,45 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumSurveyTeamTypeFieldUpdateOperationsInput | $Enums.SurveyTeamType
     teamLeadId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CommentUpdateWithoutSurveyVisitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    evidenceFile?: EvidenceFileUpdateOneWithoutCommentsNestedInput
+    areaFile?: AreaFileUpdateOneWithoutCommentsNestedInput
+    recommendedFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
+    strongFolder?: AreaFolderUpdateOneWithoutStrengthsNestedInput
+    weakFolder?: AreaFolderUpdateOneWithoutWeaknessesNestedInput
+  }
+
+  export type CommentUncheckedUpdateWithoutSurveyVisitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentUncheckedUpdateManyWithoutSurveyVisitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    evidenceFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
+    recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AreaChairCreateManySurveyTeamInput = {
@@ -51178,6 +51605,7 @@ export namespace Prisma {
     areaFileId?: string | null
     strongFolderId?: string | null
     weakFolderId?: string | null
+    surveyVisitId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -51190,6 +51618,7 @@ export namespace Prisma {
     areaFileId?: string | null
     recommendedFolderId?: string | null
     weakFolderId?: string | null
+    surveyVisitId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -51202,6 +51631,7 @@ export namespace Prisma {
     areaFileId?: string | null
     recommendedFolderId?: string | null
     strongFolderId?: string | null
+    surveyVisitId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -51286,6 +51716,7 @@ export namespace Prisma {
     areaFile?: AreaFileUpdateOneWithoutCommentsNestedInput
     strongFolder?: AreaFolderUpdateOneWithoutStrengthsNestedInput
     weakFolder?: AreaFolderUpdateOneWithoutWeaknessesNestedInput
+    surveyVisit?: SurveyVisitUpdateOneWithoutRemarksNestedInput
   }
 
   export type CommentUncheckedUpdateWithoutRecommendedFolderInput = {
@@ -51295,6 +51726,7 @@ export namespace Prisma {
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
     strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51307,6 +51739,7 @@ export namespace Prisma {
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
     strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51322,6 +51755,7 @@ export namespace Prisma {
     areaFile?: AreaFileUpdateOneWithoutCommentsNestedInput
     recommendedFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
     weakFolder?: AreaFolderUpdateOneWithoutWeaknessesNestedInput
+    surveyVisit?: SurveyVisitUpdateOneWithoutRemarksNestedInput
   }
 
   export type CommentUncheckedUpdateWithoutStrongFolderInput = {
@@ -51331,6 +51765,7 @@ export namespace Prisma {
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
     recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51343,6 +51778,7 @@ export namespace Prisma {
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
     recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51358,6 +51794,7 @@ export namespace Prisma {
     areaFile?: AreaFileUpdateOneWithoutCommentsNestedInput
     recommendedFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
     strongFolder?: AreaFolderUpdateOneWithoutStrengthsNestedInput
+    surveyVisit?: SurveyVisitUpdateOneWithoutRemarksNestedInput
   }
 
   export type CommentUncheckedUpdateWithoutWeakFolderInput = {
@@ -51367,6 +51804,7 @@ export namespace Prisma {
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
     recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51379,6 +51817,7 @@ export namespace Prisma {
     areaFileId?: NullableStringFieldUpdateOperationsInput | string | null
     recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51463,6 +51902,7 @@ export namespace Prisma {
     recommendedFolderId?: string | null
     strongFolderId?: string | null
     weakFolderId?: string | null
+    surveyVisitId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -51525,6 +51965,7 @@ export namespace Prisma {
     recommendedFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
     strongFolder?: AreaFolderUpdateOneWithoutStrengthsNestedInput
     weakFolder?: AreaFolderUpdateOneWithoutWeaknessesNestedInput
+    surveyVisit?: SurveyVisitUpdateOneWithoutRemarksNestedInput
   }
 
   export type CommentUncheckedUpdateWithoutEvidenceFileInput = {
@@ -51534,6 +51975,7 @@ export namespace Prisma {
     recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51546,6 +51988,7 @@ export namespace Prisma {
     recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51665,6 +52108,7 @@ export namespace Prisma {
     recommendedFolderId?: string | null
     strongFolderId?: string | null
     weakFolderId?: string | null
+    surveyVisitId?: string | null
     content: string
     type: $Enums.CommentType
     createdAt?: Date | string
@@ -51716,6 +52160,7 @@ export namespace Prisma {
     recommendedFolder?: AreaFolderUpdateOneWithoutRecommendationsNestedInput
     strongFolder?: AreaFolderUpdateOneWithoutStrengthsNestedInput
     weakFolder?: AreaFolderUpdateOneWithoutWeaknessesNestedInput
+    surveyVisit?: SurveyVisitUpdateOneWithoutRemarksNestedInput
   }
 
   export type CommentUncheckedUpdateWithoutAreaFileInput = {
@@ -51725,6 +52170,7 @@ export namespace Prisma {
     recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51737,6 +52183,7 @@ export namespace Prisma {
     recommendedFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     strongFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    surveyVisitId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

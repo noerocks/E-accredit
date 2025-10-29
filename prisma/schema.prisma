@@ -251,6 +251,7 @@ model SurveyVisit {
   actualSurveyEndedAt   DateTime?
   openForActualSurvey   Boolean               @default(false)
   actualSurveyStatus    SurveyStatus          @default(PENDING)
+  remarks               Comment[]
 }
 
 model SurveyTeam {
@@ -439,6 +440,8 @@ model Comment {
   strongFolderId      String?
   weakFolder          AreaFolder?   @relation(name: "weaknesses", fields: [weakFolderId], references: [id], onDelete: Cascade)
   weakFolderId        String?
+  surveyVisit         SurveyVisit?  @relation(fields: [surveyVisitId], references: [id], onDelete: Cascade)
+  surveyVisitId       String?
   content             String
   type                CommentType
   createdAt           DateTime      @default(now())
