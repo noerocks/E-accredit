@@ -12,6 +12,7 @@ const AccreditationLayout = async ({
 }) => {
   const { id } = await params;
   const surveyVisitStructure = await getSurveyVisitStructureById(id);
+  console.log(surveyVisitStructure?.surveyResultStatus);
   return (
     <div className="flex h-full">
       <AccreditationSidebar
@@ -24,6 +25,7 @@ const AccreditationLayout = async ({
         }
         selfSurveyStatus={surveyVisitStructure?.selfSurveyStatus}
         surveyVisitId={id}
+        surveyResultStatus={surveyVisitStructure?.surveyResultStatus}
       />
       <div className="flex-1 h-full overflow-auto">{children}</div>
     </div>

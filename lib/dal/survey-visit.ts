@@ -65,6 +65,7 @@ export const getSurveyVisitStructureById = unstable_cache(
         id,
       },
       include: {
+        certificate: true,
         remarks: true,
         accreditation: {
           include: {

@@ -42,7 +42,6 @@ const AccreditationSidebar = ({
   surveyVisitId: string;
   surveyResultStatus?: SurveyResultStatus | undefined;
 }) => {
-  console.log(surveyResultStatus);
   const pathName = usePathname();
   const base = pathName
     .split("/")

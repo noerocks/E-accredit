@@ -23,6 +23,7 @@ const PhaseTwoLayout = async ({
           surveyVisitStructure?.phaseTwoRequirements?.phaseTwoFolder
         }
         selfSurveyStatus={surveyVisitStructure?.selfSurveyStatus}
+        surveyResultStatus={surveyVisitStructure?.surveyResultStatus}
         surveyVisitId={id}
       />
       <div className="flex-1 h-full overflow-auto">{children}</div>

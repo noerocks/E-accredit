@@ -23,6 +23,7 @@ const SelfSurveyLayout = async ({
         }
         selfSurveyStatus={surveyVisitStructure?.selfSurveyStatus}
         surveyVisitId={id}
+        surveyResultStatus={surveyVisitStructure?.surveyResultStatus}
       />
       <div className="flex-1 h-full overflow-auto">{children}</div>
     </div>
