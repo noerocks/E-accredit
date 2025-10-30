@@ -4,6 +4,7 @@ import { getAllSurveyVisit } from "@/lib/dal/survey-visit";
 import { SurveyTeamType } from "@/lib/generated/prisma";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SearchCheck } from "lucide-react";
+import { SurveyVisitDisplayDTO } from "@/lib/dto/survey-visit";
 
 const ActualSurveysPage = async () => {
   const surveyVisits = await getAllSurveyVisit();
@@ -14,16 +15,23 @@ const ActualSurveysPage = async () => {
         survey.surveyResultStatus !== "GRANTED" &&
         survey.surveyResultStatus !== "NOT_GRANTED"
     ) ?? [];
-  const doneSurveyVisits =
+  const doneSurveyVisits = (
     surveyVisits?.filter(
       (survey) =>
         !survey.openForSelfSurvey &&
         (survey.surveyResultStatus === "GRANTED" ||
           survey.surveyResultStatus === "NOT_GRANTED")
-    ) ?? [];
+    ) ?? []
+  ).reduce((group, survey) => {
+    const program = survey.accreditation.program;
+    (group[program.code] = group[program.code] ?? []).push(survey);
+    return group;
+  }, {} as Record<string, SurveyVisitDisplayDTO[]>);
+  const programCodes = Object.keys(doneSurveyVisits);
+
   return (
     <ScrollArea className="h-full">
-      <div className="max-w-3/4 mx-auto mt-10">
+      <div className="max-w-3/4 mx-auto my-10">
         <div className="mb-10">
           <p className="text-3xl flex items-center gap-2">
             <SearchCheck />
@@ -46,14 +54,29 @@ const ActualSurveysPage = async () => {
             />
           </TabsContent>
           <TabsContent value="history">
-            <SelfSurveyCards
-              surveyVisits={doneSurveyVisits.sort(
-                (a, b) =>
-                  new Date(b.createdAt).getTime() -
-                  new Date(a.createdAt).getTime()
-              )}
-              surveyType={SurveyTeamType.EXTERNAL}
-            />
+            {programCodes && (
+              <Tabs defaultValue={programCodes[0]}>
+                <TabsList className="bg-background border">
+                  {programCodes.map((code) => (
+                    <TabsTrigger value={code} key={code}>
+                      {code}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+                {programCodes.map((code) => (
+                  <TabsContent value={code} key={code}>
+                    <SelfSurveyCards
+                      surveyVisits={doneSurveyVisits[code].sort(
+                        (a, b) =>
+                          new Date(b.createdAt).getTime() -
+                          new Date(a.createdAt).getTime()
+                      )}
+                      surveyType={SurveyTeamType.EXTERNAL}
+                    />
+                  </TabsContent>
+                ))}
+              </Tabs>
+            )}
           </TabsContent>
         </Tabs>
       </div>
