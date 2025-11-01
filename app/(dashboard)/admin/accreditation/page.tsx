@@ -12,6 +12,9 @@ const Accreditation = async () => {
   const instruments = await getInstruments();
   const levels = await getLevels();
   const accreditations = await getAccreditations();
+  const filteredAccreditations = accreditations?.filter(
+    (accreditation) => accreditation.surveyVisits.length > 0
+  );
   const levelThreePhaseTwoInstrument = await getInstrumentByName(
     "Level III Phase 2",
     "Criterias"
@@ -30,10 +33,10 @@ const Accreditation = async () => {
           levelThreePhaseTwoInstrument={levelThreePhaseTwoInstrument}
         />
       </div>
-      {accreditations && (
-        <Tabs defaultValue={accreditations[0].program.code}>
+      {filteredAccreditations && (
+        <Tabs defaultValue={filteredAccreditations[0].program.code}>
           <TabsList className="bg-background border">
-            {accreditations?.map((accreditation) => (
+            {filteredAccreditations?.map((accreditation) => (
               <TabsTrigger
                 value={accreditation.program.code}
                 key={accreditation.id}
@@ -42,7 +45,7 @@ const Accreditation = async () => {
               </TabsTrigger>
             ))}
           </TabsList>
-          {accreditations.map((accreditation) => (
+          {filteredAccreditations.map((accreditation) => (
             <TabsContent
               value={accreditation.program.code}
               key={accreditation.id}

@@ -4,11 +4,14 @@ import { z } from "zod";
 import { LoginFormSchema, RegisterFormSchema } from "../zod-definitions";
 import bcrypt from "bcrypt";
 import { PrismaClientKnownRequestError } from "../generated/prisma/runtime/library";
-import { createSession, deleteSession } from "./session";
+import { createSession, deleteSession, verifySession } from "./session";
 import { redirect } from "next/navigation";
 import { accessControl } from "../access-control";
 import { createUser, findByEmail } from "../dal/user";
 import { revalidateTag } from "next/cache";
+import { createActivity } from "../dal/audit";
+import { AuditAction, AuditEntity } from "../generated/prisma";
+import { screamingSnakeToTitle } from "../utils";
 
 export async function login({
   email,
@@ -37,6 +40,14 @@ export async function login({
     email: user.email,
     role: user.role,
     name: `${user.firstName} ${user.lastName}`,
+  });
+  await createActivity({
+    actorId: user.id,
+    action: AuditAction.LOGIN,
+    entity: AuditEntity.SYSTEM,
+    description: `${screamingSnakeToTitle(user.role)} ${
+      user.email
+    } logged in to the Accreditation System`,
   });
   redirect(accessControl[user.role][0]);
 }
@@ -108,6 +119,15 @@ export async function register({
 }
 
 export async function logout() {
+  const { user } = await verifySession();
+  await createActivity({
+    actorId: user.id,
+    action: AuditAction.LOGOUT,
+    entity: AuditEntity.SYSTEM,
+    description: `${screamingSnakeToTitle(user.role)} ${
+      user.email
+    } logged out from the Accreditation System`,
+  });
   await deleteSession();
   redirect("/login");
 }

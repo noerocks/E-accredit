@@ -48,6 +48,7 @@ export const getEvidenceFileById = unstable_cache(
                 parameter: true,
                 areaFolder: {
                   include: {
+                    area: true,
                     areaChair: {
                       include: {
                         user: true,

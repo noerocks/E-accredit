@@ -2,11 +2,13 @@
 
 import { revalidateTag } from "next/cache";
 import {
+  AreaFileType,
+  AuditAction,
+  AuditEntity,
   FileStatus,
   FileVersionStatus,
   Level,
   Progress,
-  SurveyResultStatus,
 } from "../generated/prisma";
 import { updateEvidenceFileById } from "../dal/evidence-file";
 import { verifySession } from "./session";
@@ -19,7 +21,7 @@ import {
   resetAllEvidenceVersionStatus,
   updateVersionById,
 } from "../dal/file-version";
-import { updateAreaFileById } from "../dal/area-file";
+import { getAreaFileById, updateAreaFileById } from "../dal/area-file";
 import {
   updateManyParameterFolderByAreaFolderId,
   updateParameterFolderById,
@@ -30,8 +32,10 @@ import {
   getSurveyVisitStructureById,
   updateSurveyVisitById,
 } from "../dal/survey-visit";
-import { updateAccreditationById } from "../dal/accreditation";
 import { grantAccreditedStatus } from "./accreditation";
+import { createActivity } from "../dal/audit";
+import { formatAccreditationName, screamingSnakeToTitle } from "../utils";
+import { getEvidenceFileById } from "../dal/evidence";
 
 type FileVersionType = {
   name: string;
@@ -45,6 +49,12 @@ type FileVersionType = {
   surveyVisitId: string | undefined;
   accreditationId?: string | undefined;
   level?: Level | undefined;
+};
+
+const areaFileType = {
+  [AreaFileType.PPP]: "Program Performance Profile",
+  [AreaFileType.COMPLIANCE_REPORT]: "Compliance Report",
+  [AreaFileType.NARRATIVE_PROFILE]: "Narrative Profile",
 };
 
 export async function createNewVersion({
@@ -61,6 +71,7 @@ export async function createNewVersion({
   level,
 }: FileVersionType) {
   const session = await verifySession();
+  const user = session.user;
   if (!session)
     return {
       failure: {
@@ -68,6 +79,7 @@ export async function createNewVersion({
       },
     };
   if (evidenceFileId) {
+    const evidence = await getEvidenceFileById(evidenceFileId);
     await resetAllEvidenceVersionStatus(evidenceFileId);
     const evidenceFileVersion = await createNewEvidenceFileVersion(
       name,
@@ -76,6 +88,13 @@ export async function createNewVersion({
       objectUrl,
       fileType
     );
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.FILE_UPLOAD,
+      entity: AuditEntity.PORTFOLIO,
+      portfolioId: surveyVisitId,
+      description: `Uploaded an evidence file to ${evidence.indicatorFolder?.parameterFolder.areaFolder.area.label} > ${evidence.indicatorFolder?.parameterFolder.parameter.label} > ${evidence.indicator?.label}`,
+    });
     const evidenceFile = await updateEvidenceFileById({
       id: evidenceFileId,
       status: FileStatus.FOR_REVIEW,
@@ -93,6 +112,7 @@ export async function createNewVersion({
       status: Progress.IN_PROGRESS,
     });
   } else if (areaFileId) {
+    const file = await getAreaFileById(areaFileId);
     await resetAllAreaFileVersionStatus(areaFileId);
     const areaFileVersion = await createNewAreaFileVersion(
       name,
@@ -101,6 +121,27 @@ export async function createNewVersion({
       objectUrl,
       fileType
     );
+    if (file?.phaseOneAreaFolder) {
+      await createActivity({
+        actorId: user.id,
+        action: AuditAction.FILE_UPLOAD,
+        entity: AuditEntity.PORTFOLIO,
+        portfolioId: surveyVisitId,
+        description: `Uploaded a ${areaFileType[file.type]} to ${
+          file?.phaseOneAreaFolder?.area.label
+        }`,
+      });
+    } else if (file?.phaseTwoAreaFolder) {
+      await createActivity({
+        actorId: user.id,
+        action: AuditAction.FILE_UPLOAD,
+        entity: AuditEntity.PORTFOLIO,
+        portfolioId: surveyVisitId,
+        description: `Uploaded a ${areaFileType[file.type]} to criteria: ${
+          file?.phaseTwoAreaFolder?.area.description
+        }`,
+      });
+    }
     const areaFile = await updateAreaFileById({
       id: areaFileId,
       status: FileStatus.SUBMITTED,
@@ -110,6 +151,7 @@ export async function createNewVersion({
       status: Progress.IN_PROGRESS,
     });
   } else {
+    const surveyVisit = await getSurveyVisitStructureById(surveyVisitId!);
     const certificate = await createSurveyCertificate(
       name,
       uploaderEmail,
@@ -122,7 +164,15 @@ export async function createNewVersion({
       surveyVisitId,
       level
     );
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.FILE_UPLOAD,
+      entity: AuditEntity.SURVEY,
+      portfolioId: surveyVisitId,
+      description: `Uploaded an accreditation certificate to ${surveyVisit?.accreditation.program.code}`,
+    });
   }
+  revalidateTag("activities");
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");
   revalidateTag("areaFolder");
@@ -140,6 +190,32 @@ export async function migrateFiles(
     const user = session.user;
     const source = await getSurveyVisitStructureById(sourcePortfolio);
     const destination = await getSurveyVisitStructureById(destinationPortfolio);
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.FILE_UPLOAD,
+      entity: AuditEntity.PORTFOLIO,
+      portfolioId: sourcePortfolio,
+      description: `Migrated all files from ${formatAccreditationName(
+        source?.accreditation.program.code!,
+        source?.level!
+      )} to ${formatAccreditationName(
+        destination?.accreditation.program.code!,
+        destination?.level!
+      )}`,
+    });
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.FILE_UPLOAD,
+      entity: AuditEntity.PORTFOLIO,
+      portfolioId: sourcePortfolio,
+      description: `Migrated all files from ${formatAccreditationName(
+        source?.accreditation.program.code!,
+        source?.level!
+      )} to ${formatAccreditationName(
+        destination?.accreditation.program.code!,
+        destination?.level!
+      )}`,
+    });
     if (!source || !destination)
       return { failure: { error: "Error in fetching source and destination" } };
     await updateSurveyVisitById({
@@ -255,6 +331,7 @@ export async function migrateFiles(
         });
       }
     }
+    revalidateTag("activities");
     revalidateTag("evidenceFiles");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
@@ -274,6 +351,7 @@ export async function changeActiveVersion(
   areaFolderId: string | undefined,
   surveyVisitId: string | undefined
 ) {
+  const { user } = await verifySession();
   if (!id || !fileId || !fileType)
     return { failure: { error: "Invalid input" } };
   const surveyVisit = await getSurveyVisitById(surveyVisitId!);
@@ -281,9 +359,17 @@ export async function changeActiveVersion(
     return { failure: { error: "This action is currently disabled" } };
   switch (fileType) {
     case "Evidence": {
+      const file = await getEvidenceFileById(fileId);
       await resetAllEvidenceVersionStatus(fileId);
       const evidenceVersion = await updateVersionById(id, {
         status: FileVersionStatus.ACTIVE,
+      });
+      await createActivity({
+        actorId: user.id,
+        action: AuditAction.FILE_EDIT,
+        entity: AuditEntity.PORTFOLIO,
+        portfolioId: surveyVisitId,
+        description: `Changed an active version in ${file.indicatorFolder?.parameterFolder.areaFolder.area.label} > ${file.indicatorFolder?.parameterFolder.parameter.label} > ${file.indicator?.label}`,
       });
       const evidenceFile = await updateEvidenceFileById({
         id: fileId,
@@ -304,6 +390,28 @@ export async function changeActiveVersion(
       break;
     }
     case "AreaFile": {
+      const areaFile = await getAreaFileById(fileId);
+      if (areaFile?.phaseOneAreaFolder) {
+        await createActivity({
+          actorId: user.id,
+          action: AuditAction.FILE_EDIT,
+          entity: AuditEntity.PORTFOLIO,
+          portfolioId: surveyVisitId,
+          description: `Changed an active version of ${
+            areaFileType[areaFile?.type]
+          } in criteria: ${areaFile.phaseOneAreaFolder.area.description}`,
+        });
+      } else if (areaFile?.phaseTwoAreaFolder) {
+        await createActivity({
+          actorId: user.id,
+          action: AuditAction.FILE_EDIT,
+          entity: AuditEntity.PORTFOLIO,
+          portfolioId: surveyVisitId,
+          description: `Changed an active version of ${
+            areaFileType[areaFile?.type]
+          } in criteria: ${areaFile.phaseTwoAreaFolder.area.description}`,
+        });
+      }
       await resetAllAreaFileVersionStatus(fileId);
       const areaFileVersion = await updateVersionById(id, {
         status: FileVersionStatus.ACTIVE,
@@ -311,6 +419,7 @@ export async function changeActiveVersion(
       break;
     }
   }
+  revalidateTag("activities");
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");
   revalidateTag("areaFolder");
@@ -329,6 +438,7 @@ export async function deleteVersionById(
   if (!surveyVisit?.allowEdits)
     return { failure: { error: "This action is currently disabled" } };
   const evidenceVersion = await deleteVersionByIdDAL(id);
+  revalidateTag("activities");
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");
   revalidateTag("areaFolder");

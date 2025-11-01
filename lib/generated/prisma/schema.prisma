@@ -100,6 +100,28 @@ enum SurveyResultStatus {
   NOT_GRANTED
 }
 
+enum AuditEntity {
+  PORTFOLIO
+  SURVEY
+  SYSTEM
+}
+
+enum AuditAction {
+  FILE_UPLOAD
+  FILE_EDIT
+  FILE_DELETE
+  FILE_REVIEW
+  PARAMETER_REVIEW
+  AREA_REVIEW
+  PORTFOLIO_REVIEW
+  LOGIN
+  LOGOUT
+  RATE
+  SURVEY_START
+  SURVEY_END
+  COMMENT
+}
+
 model User {
   id               String             @id @default(uuid())
   firstName        String
@@ -119,6 +141,7 @@ model User {
   teamLead         SurveyTeam[]
   areaChair        AreaChair[]
   ratings          Rating[]
+  auditTrail       AuditTrail[]
 }
 
 model Program {
@@ -252,6 +275,7 @@ model SurveyVisit {
   openForActualSurvey   Boolean               @default(false)
   actualSurveyStatus    SurveyStatus          @default(PENDING)
   remarks               Comment[]
+  auditTrail            AuditTrail[]
 }
 
 model SurveyTeam {
@@ -445,4 +469,16 @@ model Comment {
   content             String
   type                CommentType
   createdAt           DateTime      @default(now())
+}
+
+model AuditTrail {
+  id          String       @id @default(uuid())
+  actor       User         @relation(fields: [actorId], references: [id])
+  actorId     String
+  action      AuditAction
+  entity      AuditEntity
+  portfolio   SurveyVisit? @relation(fields: [portfolioId], references: [id])
+  portfolioId String?
+  description String
+  createdAt   DateTime     @default(now())
 }

@@ -1,7 +1,9 @@
 import AccreditationSettings from "@/components/admin/accreditation/accreditation-settings";
 import Banner from "@/components/admin/accreditation/banner";
-import { columns } from "@/components/admin/accreditation/columns";
-import { DataTable } from "@/components/admin/accreditation/data-table";
+import { columns as areaFolderColumns } from "@/components/admin/accreditation/columns";
+import { columns as activityColumns } from "@/components/admin/accreditation/activity-columns";
+import { DataTable as AreaFolderDataTable } from "@/components/admin/accreditation/data-table";
+import { DataTable as ActivityDataTable } from "@/components/admin/accreditation/activity-data-table";
 import MigrateFiles from "@/components/admin/accreditation/migrate-files";
 import SurveyVisitStatus from "@/components/admin/accreditation/survey-visit-status";
 import TargetLevel from "@/components/admin/accreditation/target-level";
@@ -15,18 +17,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { verifySession } from "@/lib/action/session";
+import { getActivitiesBySurveyVisitId } from "@/lib/dal/audit";
 import { getInstrumentStructureById } from "@/lib/dal/instrument";
 import {
   getAllPendingSurveyVisitsByInstrumentId,
   getSurveyVisitStructureById,
 } from "@/lib/dal/survey-visit";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
-import {
-  Progress,
-  SurveyResultStatus,
-  SurveyTeamType,
-} from "@/lib/generated/prisma";
+import { Progress, SurveyTeamType } from "@/lib/generated/prisma";
 import {
   calculateGrandMean,
   formatAccreditationName,
@@ -34,6 +34,7 @@ import {
 } from "@/lib/utils";
 import clsx from "clsx";
 import { CircleDot, FileArchive } from "lucide-react";
+import { ActivityDTO } from "@/lib/dto/audit";
 
 const ProgramAccreditationPage = async ({
   params,
@@ -42,6 +43,7 @@ const ProgramAccreditationPage = async ({
 }) => {
   const { id } = await params;
   const { user } = await verifySession();
+  const activities = await getActivitiesBySurveyVisitId(id);
   const surveyVisitStructure = await getSurveyVisitStructureById(id);
   const level = surveyVisitStructure?.level;
   const program = surveyVisitStructure?.accreditation.program;
@@ -142,16 +144,34 @@ const ProgramAccreditationPage = async ({
           <TargetLevel level={level!} />
           <SurveyVisitStatus surveyStatus={surveyStatus} />
         </div>
-        <Card className="bg-background">
-          <CardContent>
-            <DataTable
-              columns={columns}
-              data={(areaFolders as unknown as AreaFolderDTO[]) || []}
-              isAdmin={isAdmin}
-              isProgramHead={isProgramHead}
-            />
-          </CardContent>
-        </Card>
+        <Tabs defaultValue="areas">
+          <TabsList className="bg-background border">
+            <TabsTrigger value="areas">Areas</TabsTrigger>
+            <TabsTrigger value="activity">Activity Log</TabsTrigger>
+          </TabsList>
+          <TabsContent value="areas">
+            <Card className="bg-background">
+              <CardContent>
+                <AreaFolderDataTable
+                  columns={areaFolderColumns}
+                  data={(areaFolders as unknown as AreaFolderDTO[]) || []}
+                  isAdmin={isAdmin}
+                  isProgramHead={isProgramHead}
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="activity">
+            <Card className="bg-background">
+              <CardContent>
+                <ActivityDataTable
+                  columns={activityColumns}
+                  data={(activities as unknown as ActivityDTO[]) || []}
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
       </div>
     </ScrollArea>
   );

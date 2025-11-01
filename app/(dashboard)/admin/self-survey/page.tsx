@@ -16,7 +16,9 @@ const SelfSurveysPage = async () => {
   const doneSurveyVisits = (
     surveyVisits?.filter(
       (survey) =>
-        !survey.openForSelfSurvey && survey.selfSurveyStatus === "COMPLETE"
+        !survey.openForSelfSurvey &&
+        survey.selfSurveyStatus === "COMPLETE" &&
+        survey.level.phase !== "PHASE_2"
     ) ?? []
   ).reduce((groups, survey) => {
     const program = survey.accreditation.program;

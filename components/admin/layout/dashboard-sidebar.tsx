@@ -85,7 +85,7 @@ const DashboardSidebar = async () => {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href={"/admin/programs"}>
+                <Link href={"/admin/program-accreditations"}>
                   <Award className="text-muted-foreground" />
                   <span className="whitespace-nowrap">
                     Program Accreditations

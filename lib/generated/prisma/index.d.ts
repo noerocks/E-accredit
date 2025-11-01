@@ -148,6 +148,11 @@ export type TaskForceMember = $Result.DefaultSelection<Prisma.$TaskForceMemberPa
  * 
  */
 export type Comment = $Result.DefaultSelection<Prisma.$CommentPayload>
+/**
+ * Model AuditTrail
+ * 
+ */
+export type AuditTrail = $Result.DefaultSelection<Prisma.$AuditTrailPayload>
 
 /**
  * Enums
@@ -280,6 +285,34 @@ export const SurveyResultStatus: {
 
 export type SurveyResultStatus = (typeof SurveyResultStatus)[keyof typeof SurveyResultStatus]
 
+
+export const AuditEntity: {
+  PORTFOLIO: 'PORTFOLIO',
+  SURVEY: 'SURVEY',
+  SYSTEM: 'SYSTEM'
+};
+
+export type AuditEntity = (typeof AuditEntity)[keyof typeof AuditEntity]
+
+
+export const AuditAction: {
+  FILE_UPLOAD: 'FILE_UPLOAD',
+  FILE_EDIT: 'FILE_EDIT',
+  FILE_DELETE: 'FILE_DELETE',
+  FILE_REVIEW: 'FILE_REVIEW',
+  PARAMETER_REVIEW: 'PARAMETER_REVIEW',
+  AREA_REVIEW: 'AREA_REVIEW',
+  PORTFOLIO_REVIEW: 'PORTFOLIO_REVIEW',
+  LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT',
+  RATE: 'RATE',
+  SURVEY_START: 'SURVEY_START',
+  SURVEY_END: 'SURVEY_END',
+  COMMENT: 'COMMENT'
+};
+
+export type AuditAction = (typeof AuditAction)[keyof typeof AuditAction]
+
 }
 
 export type Role = $Enums.Role
@@ -337,6 +370,14 @@ export const SurveyStatus: typeof $Enums.SurveyStatus
 export type SurveyResultStatus = $Enums.SurveyResultStatus
 
 export const SurveyResultStatus: typeof $Enums.SurveyResultStatus
+
+export type AuditEntity = $Enums.AuditEntity
+
+export const AuditEntity: typeof $Enums.AuditEntity
+
+export type AuditAction = $Enums.AuditAction
+
+export const AuditAction: typeof $Enums.AuditAction
 
 /**
  * ##  Prisma Client ʲˢ
@@ -725,6 +766,16 @@ export class PrismaClient<
     * ```
     */
   get comment(): Prisma.CommentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.auditTrail`: Exposes CRUD operations for the **AuditTrail** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AuditTrails
+    * const auditTrails = await prisma.auditTrail.findMany()
+    * ```
+    */
+  get auditTrail(): Prisma.AuditTrailDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1191,7 +1242,8 @@ export namespace Prisma {
     AreaFile: 'AreaFile',
     TaskForce: 'TaskForce',
     TaskForceMember: 'TaskForceMember',
-    Comment: 'Comment'
+    Comment: 'Comment',
+    AuditTrail: 'AuditTrail'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1210,7 +1262,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level" | "accreditation" | "surveyVisit" | "surveyTeam" | "areaChair" | "phaseOneRequirements" | "instrumentFolder" | "areaFolder" | "parameterFolder" | "indicatorFolder" | "evidenceFile" | "rating" | "fileVersion" | "phaseTwoRequirements" | "phaseTwoFolder" | "phaseTwoAreaFolder" | "areaFile" | "taskForce" | "taskForceMember" | "comment"
+      modelProps: "user" | "program" | "programPersonnel" | "instrument" | "area" | "parameter" | "indicator" | "level" | "accreditation" | "surveyVisit" | "surveyTeam" | "areaChair" | "phaseOneRequirements" | "instrumentFolder" | "areaFolder" | "parameterFolder" | "indicatorFolder" | "evidenceFile" | "rating" | "fileVersion" | "phaseTwoRequirements" | "phaseTwoFolder" | "phaseTwoAreaFolder" | "areaFile" | "taskForce" | "taskForceMember" | "comment" | "auditTrail"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3212,6 +3264,80 @@ export namespace Prisma {
           }
         }
       }
+      AuditTrail: {
+        payload: Prisma.$AuditTrailPayload<ExtArgs>
+        fields: Prisma.AuditTrailFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AuditTrailFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditTrailPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AuditTrailFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditTrailPayload>
+          }
+          findFirst: {
+            args: Prisma.AuditTrailFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditTrailPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AuditTrailFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditTrailPayload>
+          }
+          findMany: {
+            args: Prisma.AuditTrailFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditTrailPayload>[]
+          }
+          create: {
+            args: Prisma.AuditTrailCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditTrailPayload>
+          }
+          createMany: {
+            args: Prisma.AuditTrailCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AuditTrailCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditTrailPayload>[]
+          }
+          delete: {
+            args: Prisma.AuditTrailDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditTrailPayload>
+          }
+          update: {
+            args: Prisma.AuditTrailUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditTrailPayload>
+          }
+          deleteMany: {
+            args: Prisma.AuditTrailDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AuditTrailUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AuditTrailUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditTrailPayload>[]
+          }
+          upsert: {
+            args: Prisma.AuditTrailUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditTrailPayload>
+          }
+          aggregate: {
+            args: Prisma.AuditTrailAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAuditTrail>
+          }
+          groupBy: {
+            args: Prisma.AuditTrailGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AuditTrailGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AuditTrailCountArgs<ExtArgs>
+            result: $Utils.Optional<AuditTrailCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3335,6 +3461,7 @@ export namespace Prisma {
     taskForce?: TaskForceOmit
     taskForceMember?: TaskForceMemberOmit
     comment?: CommentOmit
+    auditTrail?: AuditTrailOmit
   }
 
   /* Types for Logging */
@@ -3422,6 +3549,7 @@ export namespace Prisma {
     teamLead: number
     areaChair: number
     ratings: number
+    auditTrail: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3432,6 +3560,7 @@ export namespace Prisma {
     teamLead?: boolean | UserCountOutputTypeCountTeamLeadArgs
     areaChair?: boolean | UserCountOutputTypeCountAreaChairArgs
     ratings?: boolean | UserCountOutputTypeCountRatingsArgs
+    auditTrail?: boolean | UserCountOutputTypeCountAuditTrailArgs
   }
 
   // Custom InputTypes
@@ -3492,6 +3621,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountRatingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RatingWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAuditTrailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AuditTrailWhereInput
   }
 
 
@@ -3813,11 +3949,13 @@ export namespace Prisma {
   export type SurveyVisitCountOutputType = {
     surveyTeam: number
     remarks: number
+    auditTrail: number
   }
 
   export type SurveyVisitCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     surveyTeam?: boolean | SurveyVisitCountOutputTypeCountSurveyTeamArgs
     remarks?: boolean | SurveyVisitCountOutputTypeCountRemarksArgs
+    auditTrail?: boolean | SurveyVisitCountOutputTypeCountAuditTrailArgs
   }
 
   // Custom InputTypes
@@ -3843,6 +3981,13 @@ export namespace Prisma {
    */
   export type SurveyVisitCountOutputTypeCountRemarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CommentWhereInput
+  }
+
+  /**
+   * SurveyVisitCountOutputType without action
+   */
+  export type SurveyVisitCountOutputTypeCountAuditTrailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AuditTrailWhereInput
   }
 
 
@@ -4451,6 +4596,7 @@ export namespace Prisma {
     teamLead?: boolean | User$teamLeadArgs<ExtArgs>
     areaChair?: boolean | User$areaChairArgs<ExtArgs>
     ratings?: boolean | User$ratingsArgs<ExtArgs>
+    auditTrail?: boolean | User$auditTrailArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -4505,6 +4651,7 @@ export namespace Prisma {
     teamLead?: boolean | User$teamLeadArgs<ExtArgs>
     areaChair?: boolean | User$areaChairArgs<ExtArgs>
     ratings?: boolean | User$ratingsArgs<ExtArgs>
+    auditTrail?: boolean | User$auditTrailArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -4520,6 +4667,7 @@ export namespace Prisma {
       teamLead: Prisma.$SurveyTeamPayload<ExtArgs>[]
       areaChair: Prisma.$AreaChairPayload<ExtArgs>[]
       ratings: Prisma.$RatingPayload<ExtArgs>[]
+      auditTrail: Prisma.$AuditTrailPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4934,6 +5082,7 @@ export namespace Prisma {
     teamLead<T extends User$teamLeadArgs<ExtArgs> = {}>(args?: Subset<T, User$teamLeadArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     areaChair<T extends User$areaChairArgs<ExtArgs> = {}>(args?: Subset<T, User$areaChairArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaChairPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ratings<T extends User$ratingsArgs<ExtArgs> = {}>(args?: Subset<T, User$ratingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    auditTrail<T extends User$auditTrailArgs<ExtArgs> = {}>(args?: Subset<T, User$auditTrailArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuditTrailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5527,6 +5676,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: RatingScalarFieldEnum | RatingScalarFieldEnum[]
+  }
+
+  /**
+   * User.auditTrail
+   */
+  export type User$auditTrailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditTrail
+     */
+    select?: AuditTrailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditTrail
+     */
+    omit?: AuditTrailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditTrailInclude<ExtArgs> | null
+    where?: AuditTrailWhereInput
+    orderBy?: AuditTrailOrderByWithRelationInput | AuditTrailOrderByWithRelationInput[]
+    cursor?: AuditTrailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AuditTrailScalarFieldEnum | AuditTrailScalarFieldEnum[]
   }
 
   /**
@@ -15067,6 +15240,7 @@ export namespace Prisma {
     certificate?: boolean | SurveyVisit$certificateArgs<ExtArgs>
     surveyTeam?: boolean | SurveyVisit$surveyTeamArgs<ExtArgs>
     remarks?: boolean | SurveyVisit$remarksArgs<ExtArgs>
+    auditTrail?: boolean | SurveyVisit$auditTrailArgs<ExtArgs>
     _count?: boolean | SurveyVisitCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["surveyVisit"]>
 
@@ -15146,6 +15320,7 @@ export namespace Prisma {
     certificate?: boolean | SurveyVisit$certificateArgs<ExtArgs>
     surveyTeam?: boolean | SurveyVisit$surveyTeamArgs<ExtArgs>
     remarks?: boolean | SurveyVisit$remarksArgs<ExtArgs>
+    auditTrail?: boolean | SurveyVisit$auditTrailArgs<ExtArgs>
     _count?: boolean | SurveyVisitCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SurveyVisitIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15167,6 +15342,7 @@ export namespace Prisma {
       certificate: Prisma.$FileVersionPayload<ExtArgs> | null
       surveyTeam: Prisma.$SurveyTeamPayload<ExtArgs>[]
       remarks: Prisma.$CommentPayload<ExtArgs>[]
+      auditTrail: Prisma.$AuditTrailPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -15588,6 +15764,7 @@ export namespace Prisma {
     certificate<T extends SurveyVisit$certificateArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$certificateArgs<ExtArgs>>): Prisma__FileVersionClient<$Result.GetResult<Prisma.$FileVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     surveyTeam<T extends SurveyVisit$surveyTeamArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$surveyTeamArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurveyTeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     remarks<T extends SurveyVisit$remarksArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$remarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    auditTrail<T extends SurveyVisit$auditTrailArgs<ExtArgs> = {}>(args?: Subset<T, SurveyVisit$auditTrailArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuditTrailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16133,6 +16310,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * SurveyVisit.auditTrail
+   */
+  export type SurveyVisit$auditTrailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditTrail
+     */
+    select?: AuditTrailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditTrail
+     */
+    omit?: AuditTrailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditTrailInclude<ExtArgs> | null
+    where?: AuditTrailWhereInput
+    orderBy?: AuditTrailOrderByWithRelationInput | AuditTrailOrderByWithRelationInput[]
+    cursor?: AuditTrailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AuditTrailScalarFieldEnum | AuditTrailScalarFieldEnum[]
   }
 
   /**
@@ -35391,6 +35592,1117 @@ export namespace Prisma {
 
 
   /**
+   * Model AuditTrail
+   */
+
+  export type AggregateAuditTrail = {
+    _count: AuditTrailCountAggregateOutputType | null
+    _min: AuditTrailMinAggregateOutputType | null
+    _max: AuditTrailMaxAggregateOutputType | null
+  }
+
+  export type AuditTrailMinAggregateOutputType = {
+    id: string | null
+    actorId: string | null
+    action: $Enums.AuditAction | null
+    entity: $Enums.AuditEntity | null
+    portfolioId: string | null
+    description: string | null
+    createdAt: Date | null
+  }
+
+  export type AuditTrailMaxAggregateOutputType = {
+    id: string | null
+    actorId: string | null
+    action: $Enums.AuditAction | null
+    entity: $Enums.AuditEntity | null
+    portfolioId: string | null
+    description: string | null
+    createdAt: Date | null
+  }
+
+  export type AuditTrailCountAggregateOutputType = {
+    id: number
+    actorId: number
+    action: number
+    entity: number
+    portfolioId: number
+    description: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type AuditTrailMinAggregateInputType = {
+    id?: true
+    actorId?: true
+    action?: true
+    entity?: true
+    portfolioId?: true
+    description?: true
+    createdAt?: true
+  }
+
+  export type AuditTrailMaxAggregateInputType = {
+    id?: true
+    actorId?: true
+    action?: true
+    entity?: true
+    portfolioId?: true
+    description?: true
+    createdAt?: true
+  }
+
+  export type AuditTrailCountAggregateInputType = {
+    id?: true
+    actorId?: true
+    action?: true
+    entity?: true
+    portfolioId?: true
+    description?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type AuditTrailAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AuditTrail to aggregate.
+     */
+    where?: AuditTrailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AuditTrails to fetch.
+     */
+    orderBy?: AuditTrailOrderByWithRelationInput | AuditTrailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AuditTrailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AuditTrails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AuditTrails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AuditTrails
+    **/
+    _count?: true | AuditTrailCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AuditTrailMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AuditTrailMaxAggregateInputType
+  }
+
+  export type GetAuditTrailAggregateType<T extends AuditTrailAggregateArgs> = {
+        [P in keyof T & keyof AggregateAuditTrail]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAuditTrail[P]>
+      : GetScalarType<T[P], AggregateAuditTrail[P]>
+  }
+
+
+
+
+  export type AuditTrailGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AuditTrailWhereInput
+    orderBy?: AuditTrailOrderByWithAggregationInput | AuditTrailOrderByWithAggregationInput[]
+    by: AuditTrailScalarFieldEnum[] | AuditTrailScalarFieldEnum
+    having?: AuditTrailScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AuditTrailCountAggregateInputType | true
+    _min?: AuditTrailMinAggregateInputType
+    _max?: AuditTrailMaxAggregateInputType
+  }
+
+  export type AuditTrailGroupByOutputType = {
+    id: string
+    actorId: string
+    action: $Enums.AuditAction
+    entity: $Enums.AuditEntity
+    portfolioId: string | null
+    description: string
+    createdAt: Date
+    _count: AuditTrailCountAggregateOutputType | null
+    _min: AuditTrailMinAggregateOutputType | null
+    _max: AuditTrailMaxAggregateOutputType | null
+  }
+
+  type GetAuditTrailGroupByPayload<T extends AuditTrailGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AuditTrailGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AuditTrailGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AuditTrailGroupByOutputType[P]>
+            : GetScalarType<T[P], AuditTrailGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AuditTrailSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    actorId?: boolean
+    action?: boolean
+    entity?: boolean
+    portfolioId?: boolean
+    description?: boolean
+    createdAt?: boolean
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+    portfolio?: boolean | AuditTrail$portfolioArgs<ExtArgs>
+  }, ExtArgs["result"]["auditTrail"]>
+
+  export type AuditTrailSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    actorId?: boolean
+    action?: boolean
+    entity?: boolean
+    portfolioId?: boolean
+    description?: boolean
+    createdAt?: boolean
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+    portfolio?: boolean | AuditTrail$portfolioArgs<ExtArgs>
+  }, ExtArgs["result"]["auditTrail"]>
+
+  export type AuditTrailSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    actorId?: boolean
+    action?: boolean
+    entity?: boolean
+    portfolioId?: boolean
+    description?: boolean
+    createdAt?: boolean
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+    portfolio?: boolean | AuditTrail$portfolioArgs<ExtArgs>
+  }, ExtArgs["result"]["auditTrail"]>
+
+  export type AuditTrailSelectScalar = {
+    id?: boolean
+    actorId?: boolean
+    action?: boolean
+    entity?: boolean
+    portfolioId?: boolean
+    description?: boolean
+    createdAt?: boolean
+  }
+
+  export type AuditTrailOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "actorId" | "action" | "entity" | "portfolioId" | "description" | "createdAt", ExtArgs["result"]["auditTrail"]>
+  export type AuditTrailInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+    portfolio?: boolean | AuditTrail$portfolioArgs<ExtArgs>
+  }
+  export type AuditTrailIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+    portfolio?: boolean | AuditTrail$portfolioArgs<ExtArgs>
+  }
+  export type AuditTrailIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+    portfolio?: boolean | AuditTrail$portfolioArgs<ExtArgs>
+  }
+
+  export type $AuditTrailPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AuditTrail"
+    objects: {
+      actor: Prisma.$UserPayload<ExtArgs>
+      portfolio: Prisma.$SurveyVisitPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      actorId: string
+      action: $Enums.AuditAction
+      entity: $Enums.AuditEntity
+      portfolioId: string | null
+      description: string
+      createdAt: Date
+    }, ExtArgs["result"]["auditTrail"]>
+    composites: {}
+  }
+
+  type AuditTrailGetPayload<S extends boolean | null | undefined | AuditTrailDefaultArgs> = $Result.GetResult<Prisma.$AuditTrailPayload, S>
+
+  type AuditTrailCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AuditTrailFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AuditTrailCountAggregateInputType | true
+    }
+
+  export interface AuditTrailDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AuditTrail'], meta: { name: 'AuditTrail' } }
+    /**
+     * Find zero or one AuditTrail that matches the filter.
+     * @param {AuditTrailFindUniqueArgs} args - Arguments to find a AuditTrail
+     * @example
+     * // Get one AuditTrail
+     * const auditTrail = await prisma.auditTrail.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AuditTrailFindUniqueArgs>(args: SelectSubset<T, AuditTrailFindUniqueArgs<ExtArgs>>): Prisma__AuditTrailClient<$Result.GetResult<Prisma.$AuditTrailPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AuditTrail that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AuditTrailFindUniqueOrThrowArgs} args - Arguments to find a AuditTrail
+     * @example
+     * // Get one AuditTrail
+     * const auditTrail = await prisma.auditTrail.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AuditTrailFindUniqueOrThrowArgs>(args: SelectSubset<T, AuditTrailFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AuditTrailClient<$Result.GetResult<Prisma.$AuditTrailPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AuditTrail that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuditTrailFindFirstArgs} args - Arguments to find a AuditTrail
+     * @example
+     * // Get one AuditTrail
+     * const auditTrail = await prisma.auditTrail.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AuditTrailFindFirstArgs>(args?: SelectSubset<T, AuditTrailFindFirstArgs<ExtArgs>>): Prisma__AuditTrailClient<$Result.GetResult<Prisma.$AuditTrailPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AuditTrail that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuditTrailFindFirstOrThrowArgs} args - Arguments to find a AuditTrail
+     * @example
+     * // Get one AuditTrail
+     * const auditTrail = await prisma.auditTrail.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AuditTrailFindFirstOrThrowArgs>(args?: SelectSubset<T, AuditTrailFindFirstOrThrowArgs<ExtArgs>>): Prisma__AuditTrailClient<$Result.GetResult<Prisma.$AuditTrailPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AuditTrails that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuditTrailFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AuditTrails
+     * const auditTrails = await prisma.auditTrail.findMany()
+     * 
+     * // Get first 10 AuditTrails
+     * const auditTrails = await prisma.auditTrail.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const auditTrailWithIdOnly = await prisma.auditTrail.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AuditTrailFindManyArgs>(args?: SelectSubset<T, AuditTrailFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuditTrailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AuditTrail.
+     * @param {AuditTrailCreateArgs} args - Arguments to create a AuditTrail.
+     * @example
+     * // Create one AuditTrail
+     * const AuditTrail = await prisma.auditTrail.create({
+     *   data: {
+     *     // ... data to create a AuditTrail
+     *   }
+     * })
+     * 
+     */
+    create<T extends AuditTrailCreateArgs>(args: SelectSubset<T, AuditTrailCreateArgs<ExtArgs>>): Prisma__AuditTrailClient<$Result.GetResult<Prisma.$AuditTrailPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AuditTrails.
+     * @param {AuditTrailCreateManyArgs} args - Arguments to create many AuditTrails.
+     * @example
+     * // Create many AuditTrails
+     * const auditTrail = await prisma.auditTrail.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AuditTrailCreateManyArgs>(args?: SelectSubset<T, AuditTrailCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AuditTrails and returns the data saved in the database.
+     * @param {AuditTrailCreateManyAndReturnArgs} args - Arguments to create many AuditTrails.
+     * @example
+     * // Create many AuditTrails
+     * const auditTrail = await prisma.auditTrail.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AuditTrails and only return the `id`
+     * const auditTrailWithIdOnly = await prisma.auditTrail.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AuditTrailCreateManyAndReturnArgs>(args?: SelectSubset<T, AuditTrailCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuditTrailPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AuditTrail.
+     * @param {AuditTrailDeleteArgs} args - Arguments to delete one AuditTrail.
+     * @example
+     * // Delete one AuditTrail
+     * const AuditTrail = await prisma.auditTrail.delete({
+     *   where: {
+     *     // ... filter to delete one AuditTrail
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AuditTrailDeleteArgs>(args: SelectSubset<T, AuditTrailDeleteArgs<ExtArgs>>): Prisma__AuditTrailClient<$Result.GetResult<Prisma.$AuditTrailPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AuditTrail.
+     * @param {AuditTrailUpdateArgs} args - Arguments to update one AuditTrail.
+     * @example
+     * // Update one AuditTrail
+     * const auditTrail = await prisma.auditTrail.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AuditTrailUpdateArgs>(args: SelectSubset<T, AuditTrailUpdateArgs<ExtArgs>>): Prisma__AuditTrailClient<$Result.GetResult<Prisma.$AuditTrailPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AuditTrails.
+     * @param {AuditTrailDeleteManyArgs} args - Arguments to filter AuditTrails to delete.
+     * @example
+     * // Delete a few AuditTrails
+     * const { count } = await prisma.auditTrail.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AuditTrailDeleteManyArgs>(args?: SelectSubset<T, AuditTrailDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AuditTrails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuditTrailUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AuditTrails
+     * const auditTrail = await prisma.auditTrail.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AuditTrailUpdateManyArgs>(args: SelectSubset<T, AuditTrailUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AuditTrails and returns the data updated in the database.
+     * @param {AuditTrailUpdateManyAndReturnArgs} args - Arguments to update many AuditTrails.
+     * @example
+     * // Update many AuditTrails
+     * const auditTrail = await prisma.auditTrail.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AuditTrails and only return the `id`
+     * const auditTrailWithIdOnly = await prisma.auditTrail.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AuditTrailUpdateManyAndReturnArgs>(args: SelectSubset<T, AuditTrailUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuditTrailPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AuditTrail.
+     * @param {AuditTrailUpsertArgs} args - Arguments to update or create a AuditTrail.
+     * @example
+     * // Update or create a AuditTrail
+     * const auditTrail = await prisma.auditTrail.upsert({
+     *   create: {
+     *     // ... data to create a AuditTrail
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AuditTrail we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AuditTrailUpsertArgs>(args: SelectSubset<T, AuditTrailUpsertArgs<ExtArgs>>): Prisma__AuditTrailClient<$Result.GetResult<Prisma.$AuditTrailPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AuditTrails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuditTrailCountArgs} args - Arguments to filter AuditTrails to count.
+     * @example
+     * // Count the number of AuditTrails
+     * const count = await prisma.auditTrail.count({
+     *   where: {
+     *     // ... the filter for the AuditTrails we want to count
+     *   }
+     * })
+    **/
+    count<T extends AuditTrailCountArgs>(
+      args?: Subset<T, AuditTrailCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AuditTrailCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AuditTrail.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuditTrailAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AuditTrailAggregateArgs>(args: Subset<T, AuditTrailAggregateArgs>): Prisma.PrismaPromise<GetAuditTrailAggregateType<T>>
+
+    /**
+     * Group by AuditTrail.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuditTrailGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AuditTrailGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AuditTrailGroupByArgs['orderBy'] }
+        : { orderBy?: AuditTrailGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AuditTrailGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAuditTrailGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AuditTrail model
+   */
+  readonly fields: AuditTrailFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AuditTrail.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AuditTrailClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    actor<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    portfolio<T extends AuditTrail$portfolioArgs<ExtArgs> = {}>(args?: Subset<T, AuditTrail$portfolioArgs<ExtArgs>>): Prisma__SurveyVisitClient<$Result.GetResult<Prisma.$SurveyVisitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AuditTrail model
+   */
+  interface AuditTrailFieldRefs {
+    readonly id: FieldRef<"AuditTrail", 'String'>
+    readonly actorId: FieldRef<"AuditTrail", 'String'>
+    readonly action: FieldRef<"AuditTrail", 'AuditAction'>
+    readonly entity: FieldRef<"AuditTrail", 'AuditEntity'>
+    readonly portfolioId: FieldRef<"AuditTrail", 'String'>
+    readonly description: FieldRef<"AuditTrail", 'String'>
+    readonly createdAt: FieldRef<"AuditTrail", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AuditTrail findUnique
+   */
+  export type AuditTrailFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditTrail
+     */
+    select?: AuditTrailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditTrail
+     */
+    omit?: AuditTrailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditTrailInclude<ExtArgs> | null
+    /**
+     * Filter, which AuditTrail to fetch.
+     */
+    where: AuditTrailWhereUniqueInput
+  }
+
+  /**
+   * AuditTrail findUniqueOrThrow
+   */
+  export type AuditTrailFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditTrail
+     */
+    select?: AuditTrailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditTrail
+     */
+    omit?: AuditTrailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditTrailInclude<ExtArgs> | null
+    /**
+     * Filter, which AuditTrail to fetch.
+     */
+    where: AuditTrailWhereUniqueInput
+  }
+
+  /**
+   * AuditTrail findFirst
+   */
+  export type AuditTrailFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditTrail
+     */
+    select?: AuditTrailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditTrail
+     */
+    omit?: AuditTrailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditTrailInclude<ExtArgs> | null
+    /**
+     * Filter, which AuditTrail to fetch.
+     */
+    where?: AuditTrailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AuditTrails to fetch.
+     */
+    orderBy?: AuditTrailOrderByWithRelationInput | AuditTrailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AuditTrails.
+     */
+    cursor?: AuditTrailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AuditTrails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AuditTrails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AuditTrails.
+     */
+    distinct?: AuditTrailScalarFieldEnum | AuditTrailScalarFieldEnum[]
+  }
+
+  /**
+   * AuditTrail findFirstOrThrow
+   */
+  export type AuditTrailFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditTrail
+     */
+    select?: AuditTrailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditTrail
+     */
+    omit?: AuditTrailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditTrailInclude<ExtArgs> | null
+    /**
+     * Filter, which AuditTrail to fetch.
+     */
+    where?: AuditTrailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AuditTrails to fetch.
+     */
+    orderBy?: AuditTrailOrderByWithRelationInput | AuditTrailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AuditTrails.
+     */
+    cursor?: AuditTrailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AuditTrails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AuditTrails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AuditTrails.
+     */
+    distinct?: AuditTrailScalarFieldEnum | AuditTrailScalarFieldEnum[]
+  }
+
+  /**
+   * AuditTrail findMany
+   */
+  export type AuditTrailFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditTrail
+     */
+    select?: AuditTrailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditTrail
+     */
+    omit?: AuditTrailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditTrailInclude<ExtArgs> | null
+    /**
+     * Filter, which AuditTrails to fetch.
+     */
+    where?: AuditTrailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AuditTrails to fetch.
+     */
+    orderBy?: AuditTrailOrderByWithRelationInput | AuditTrailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AuditTrails.
+     */
+    cursor?: AuditTrailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AuditTrails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AuditTrails.
+     */
+    skip?: number
+    distinct?: AuditTrailScalarFieldEnum | AuditTrailScalarFieldEnum[]
+  }
+
+  /**
+   * AuditTrail create
+   */
+  export type AuditTrailCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditTrail
+     */
+    select?: AuditTrailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditTrail
+     */
+    omit?: AuditTrailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditTrailInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AuditTrail.
+     */
+    data: XOR<AuditTrailCreateInput, AuditTrailUncheckedCreateInput>
+  }
+
+  /**
+   * AuditTrail createMany
+   */
+  export type AuditTrailCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AuditTrails.
+     */
+    data: AuditTrailCreateManyInput | AuditTrailCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AuditTrail createManyAndReturn
+   */
+  export type AuditTrailCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditTrail
+     */
+    select?: AuditTrailSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditTrail
+     */
+    omit?: AuditTrailOmit<ExtArgs> | null
+    /**
+     * The data used to create many AuditTrails.
+     */
+    data: AuditTrailCreateManyInput | AuditTrailCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditTrailIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AuditTrail update
+   */
+  export type AuditTrailUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditTrail
+     */
+    select?: AuditTrailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditTrail
+     */
+    omit?: AuditTrailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditTrailInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AuditTrail.
+     */
+    data: XOR<AuditTrailUpdateInput, AuditTrailUncheckedUpdateInput>
+    /**
+     * Choose, which AuditTrail to update.
+     */
+    where: AuditTrailWhereUniqueInput
+  }
+
+  /**
+   * AuditTrail updateMany
+   */
+  export type AuditTrailUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AuditTrails.
+     */
+    data: XOR<AuditTrailUpdateManyMutationInput, AuditTrailUncheckedUpdateManyInput>
+    /**
+     * Filter which AuditTrails to update
+     */
+    where?: AuditTrailWhereInput
+    /**
+     * Limit how many AuditTrails to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AuditTrail updateManyAndReturn
+   */
+  export type AuditTrailUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditTrail
+     */
+    select?: AuditTrailSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditTrail
+     */
+    omit?: AuditTrailOmit<ExtArgs> | null
+    /**
+     * The data used to update AuditTrails.
+     */
+    data: XOR<AuditTrailUpdateManyMutationInput, AuditTrailUncheckedUpdateManyInput>
+    /**
+     * Filter which AuditTrails to update
+     */
+    where?: AuditTrailWhereInput
+    /**
+     * Limit how many AuditTrails to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditTrailIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AuditTrail upsert
+   */
+  export type AuditTrailUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditTrail
+     */
+    select?: AuditTrailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditTrail
+     */
+    omit?: AuditTrailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditTrailInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AuditTrail to update in case it exists.
+     */
+    where: AuditTrailWhereUniqueInput
+    /**
+     * In case the AuditTrail found by the `where` argument doesn't exist, create a new AuditTrail with this data.
+     */
+    create: XOR<AuditTrailCreateInput, AuditTrailUncheckedCreateInput>
+    /**
+     * In case the AuditTrail was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AuditTrailUpdateInput, AuditTrailUncheckedUpdateInput>
+  }
+
+  /**
+   * AuditTrail delete
+   */
+  export type AuditTrailDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditTrail
+     */
+    select?: AuditTrailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditTrail
+     */
+    omit?: AuditTrailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditTrailInclude<ExtArgs> | null
+    /**
+     * Filter which AuditTrail to delete.
+     */
+    where: AuditTrailWhereUniqueInput
+  }
+
+  /**
+   * AuditTrail deleteMany
+   */
+  export type AuditTrailDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AuditTrails to delete
+     */
+    where?: AuditTrailWhereInput
+    /**
+     * Limit how many AuditTrails to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AuditTrail.portfolio
+   */
+  export type AuditTrail$portfolioArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurveyVisit
+     */
+    select?: SurveyVisitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SurveyVisit
+     */
+    omit?: SurveyVisitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurveyVisitInclude<ExtArgs> | null
+    where?: SurveyVisitWhereInput
+  }
+
+  /**
+   * AuditTrail without action
+   */
+  export type AuditTrailDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditTrail
+     */
+    select?: AuditTrailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditTrail
+     */
+    omit?: AuditTrailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditTrailInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -35728,6 +37040,19 @@ export namespace Prisma {
   export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
 
 
+  export const AuditTrailScalarFieldEnum: {
+    id: 'id',
+    actorId: 'actorId',
+    action: 'action',
+    entity: 'entity',
+    portfolioId: 'portfolioId',
+    description: 'description',
+    createdAt: 'createdAt'
+  };
+
+  export type AuditTrailScalarFieldEnum = (typeof AuditTrailScalarFieldEnum)[keyof typeof AuditTrailScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -36014,6 +37339,34 @@ export namespace Prisma {
    */
   export type ListEnumCommentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CommentType[]'>
     
+
+
+  /**
+   * Reference to a field of type 'AuditAction'
+   */
+  export type EnumAuditActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuditAction'>
+    
+
+
+  /**
+   * Reference to a field of type 'AuditAction[]'
+   */
+  export type ListEnumAuditActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuditAction[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'AuditEntity'
+   */
+  export type EnumAuditEntityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuditEntity'>
+    
+
+
+  /**
+   * Reference to a field of type 'AuditEntity[]'
+   */
+  export type ListEnumAuditEntityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuditEntity[]'>
+    
   /**
    * Deep Input Types
    */
@@ -36041,6 +37394,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamListRelationFilter
     areaChair?: AreaChairListRelationFilter
     ratings?: RatingListRelationFilter
+    auditTrail?: AuditTrailListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -36062,6 +37416,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamOrderByRelationAggregateInput
     areaChair?: AreaChairOrderByRelationAggregateInput
     ratings?: RatingOrderByRelationAggregateInput
+    auditTrail?: AuditTrailOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -36086,6 +37441,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamListRelationFilter
     areaChair?: AreaChairListRelationFilter
     ratings?: RatingListRelationFilter
+    auditTrail?: AuditTrailListRelationFilter
   }, "id" | "phoneNumber" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -36705,6 +38061,7 @@ export namespace Prisma {
     certificate?: XOR<FileVersionNullableScalarRelationFilter, FileVersionWhereInput> | null
     surveyTeam?: SurveyTeamListRelationFilter
     remarks?: CommentListRelationFilter
+    auditTrail?: AuditTrailListRelationFilter
   }
 
   export type SurveyVisitOrderByWithRelationInput = {
@@ -36733,6 +38090,7 @@ export namespace Prisma {
     certificate?: FileVersionOrderByWithRelationInput
     surveyTeam?: SurveyTeamOrderByRelationAggregateInput
     remarks?: CommentOrderByRelationAggregateInput
+    auditTrail?: AuditTrailOrderByRelationAggregateInput
   }
 
   export type SurveyVisitWhereUniqueInput = Prisma.AtLeast<{
@@ -36764,6 +38122,7 @@ export namespace Prisma {
     certificate?: XOR<FileVersionNullableScalarRelationFilter, FileVersionWhereInput> | null
     surveyTeam?: SurveyTeamListRelationFilter
     remarks?: CommentListRelationFilter
+    auditTrail?: AuditTrailListRelationFilter
   }, "id">
 
   export type SurveyVisitOrderByWithAggregationInput = {
@@ -37873,6 +39232,74 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Comment"> | Date | string
   }
 
+  export type AuditTrailWhereInput = {
+    AND?: AuditTrailWhereInput | AuditTrailWhereInput[]
+    OR?: AuditTrailWhereInput[]
+    NOT?: AuditTrailWhereInput | AuditTrailWhereInput[]
+    id?: StringFilter<"AuditTrail"> | string
+    actorId?: StringFilter<"AuditTrail"> | string
+    action?: EnumAuditActionFilter<"AuditTrail"> | $Enums.AuditAction
+    entity?: EnumAuditEntityFilter<"AuditTrail"> | $Enums.AuditEntity
+    portfolioId?: StringNullableFilter<"AuditTrail"> | string | null
+    description?: StringFilter<"AuditTrail"> | string
+    createdAt?: DateTimeFilter<"AuditTrail"> | Date | string
+    actor?: XOR<UserScalarRelationFilter, UserWhereInput>
+    portfolio?: XOR<SurveyVisitNullableScalarRelationFilter, SurveyVisitWhereInput> | null
+  }
+
+  export type AuditTrailOrderByWithRelationInput = {
+    id?: SortOrder
+    actorId?: SortOrder
+    action?: SortOrder
+    entity?: SortOrder
+    portfolioId?: SortOrderInput | SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    actor?: UserOrderByWithRelationInput
+    portfolio?: SurveyVisitOrderByWithRelationInput
+  }
+
+  export type AuditTrailWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AuditTrailWhereInput | AuditTrailWhereInput[]
+    OR?: AuditTrailWhereInput[]
+    NOT?: AuditTrailWhereInput | AuditTrailWhereInput[]
+    actorId?: StringFilter<"AuditTrail"> | string
+    action?: EnumAuditActionFilter<"AuditTrail"> | $Enums.AuditAction
+    entity?: EnumAuditEntityFilter<"AuditTrail"> | $Enums.AuditEntity
+    portfolioId?: StringNullableFilter<"AuditTrail"> | string | null
+    description?: StringFilter<"AuditTrail"> | string
+    createdAt?: DateTimeFilter<"AuditTrail"> | Date | string
+    actor?: XOR<UserScalarRelationFilter, UserWhereInput>
+    portfolio?: XOR<SurveyVisitNullableScalarRelationFilter, SurveyVisitWhereInput> | null
+  }, "id">
+
+  export type AuditTrailOrderByWithAggregationInput = {
+    id?: SortOrder
+    actorId?: SortOrder
+    action?: SortOrder
+    entity?: SortOrder
+    portfolioId?: SortOrderInput | SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    _count?: AuditTrailCountOrderByAggregateInput
+    _max?: AuditTrailMaxOrderByAggregateInput
+    _min?: AuditTrailMinOrderByAggregateInput
+  }
+
+  export type AuditTrailScalarWhereWithAggregatesInput = {
+    AND?: AuditTrailScalarWhereWithAggregatesInput | AuditTrailScalarWhereWithAggregatesInput[]
+    OR?: AuditTrailScalarWhereWithAggregatesInput[]
+    NOT?: AuditTrailScalarWhereWithAggregatesInput | AuditTrailScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AuditTrail"> | string
+    actorId?: StringWithAggregatesFilter<"AuditTrail"> | string
+    action?: EnumAuditActionWithAggregatesFilter<"AuditTrail"> | $Enums.AuditAction
+    entity?: EnumAuditEntityWithAggregatesFilter<"AuditTrail"> | $Enums.AuditEntity
+    portfolioId?: StringNullableWithAggregatesFilter<"AuditTrail"> | string | null
+    description?: StringWithAggregatesFilter<"AuditTrail"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"AuditTrail"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     firstName: string
@@ -37892,6 +39319,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairCreateNestedManyWithoutUserInput
     ratings?: RatingCreateNestedManyWithoutAccreditorInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -37913,6 +39341,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
     ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserUpdateInput = {
@@ -37934,6 +39363,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUpdateManyWithoutUserNestedInput
     ratings?: RatingUpdateManyWithoutAccreditorNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -37955,6 +39385,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
     ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -38595,6 +40026,7 @@ export namespace Prisma {
     certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
     remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitUncheckedCreateInput = {
@@ -38621,6 +40053,7 @@ export namespace Prisma {
     certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
     remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitUpdateInput = {
@@ -38647,6 +40080,7 @@ export namespace Prisma {
     certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
     remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutPortfolioNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateInput = {
@@ -38673,6 +40107,7 @@ export namespace Prisma {
     certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
     remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutPortfolioNestedInput
   }
 
   export type SurveyVisitCreateManyInput = {
@@ -39712,6 +41147,74 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AuditTrailCreateInput = {
+    id?: string
+    action: $Enums.AuditAction
+    entity: $Enums.AuditEntity
+    description: string
+    createdAt?: Date | string
+    actor: UserCreateNestedOneWithoutAuditTrailInput
+    portfolio?: SurveyVisitCreateNestedOneWithoutAuditTrailInput
+  }
+
+  export type AuditTrailUncheckedCreateInput = {
+    id?: string
+    actorId: string
+    action: $Enums.AuditAction
+    entity: $Enums.AuditEntity
+    portfolioId?: string | null
+    description: string
+    createdAt?: Date | string
+  }
+
+  export type AuditTrailUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    entity?: EnumAuditEntityFieldUpdateOperationsInput | $Enums.AuditEntity
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    actor?: UserUpdateOneRequiredWithoutAuditTrailNestedInput
+    portfolio?: SurveyVisitUpdateOneWithoutAuditTrailNestedInput
+  }
+
+  export type AuditTrailUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actorId?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    entity?: EnumAuditEntityFieldUpdateOperationsInput | $Enums.AuditEntity
+    portfolioId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuditTrailCreateManyInput = {
+    id?: string
+    actorId: string
+    action: $Enums.AuditAction
+    entity: $Enums.AuditEntity
+    portfolioId?: string | null
+    description: string
+    createdAt?: Date | string
+  }
+
+  export type AuditTrailUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    entity?: EnumAuditEntityFieldUpdateOperationsInput | $Enums.AuditEntity
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuditTrailUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actorId?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    entity?: EnumAuditEntityFieldUpdateOperationsInput | $Enums.AuditEntity
+    portfolioId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -39802,6 +41305,12 @@ export namespace Prisma {
     none?: RatingWhereInput
   }
 
+  export type AuditTrailListRelationFilter = {
+    every?: AuditTrailWhereInput
+    some?: AuditTrailWhereInput
+    none?: AuditTrailWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -39832,6 +41341,10 @@ export namespace Prisma {
   }
 
   export type RatingOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AuditTrailOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -41422,6 +42935,70 @@ export namespace Prisma {
     _max?: NestedEnumCommentTypeFilter<$PrismaModel>
   }
 
+  export type EnumAuditActionFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuditAction | EnumAuditActionFieldRefInput<$PrismaModel>
+    in?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuditActionFilter<$PrismaModel> | $Enums.AuditAction
+  }
+
+  export type EnumAuditEntityFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuditEntity | EnumAuditEntityFieldRefInput<$PrismaModel>
+    in?: $Enums.AuditEntity[] | ListEnumAuditEntityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuditEntity[] | ListEnumAuditEntityFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuditEntityFilter<$PrismaModel> | $Enums.AuditEntity
+  }
+
+  export type AuditTrailCountOrderByAggregateInput = {
+    id?: SortOrder
+    actorId?: SortOrder
+    action?: SortOrder
+    entity?: SortOrder
+    portfolioId?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AuditTrailMaxOrderByAggregateInput = {
+    id?: SortOrder
+    actorId?: SortOrder
+    action?: SortOrder
+    entity?: SortOrder
+    portfolioId?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AuditTrailMinOrderByAggregateInput = {
+    id?: SortOrder
+    actorId?: SortOrder
+    action?: SortOrder
+    entity?: SortOrder
+    portfolioId?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EnumAuditActionWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuditAction | EnumAuditActionFieldRefInput<$PrismaModel>
+    in?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuditActionWithAggregatesFilter<$PrismaModel> | $Enums.AuditAction
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAuditActionFilter<$PrismaModel>
+    _max?: NestedEnumAuditActionFilter<$PrismaModel>
+  }
+
+  export type EnumAuditEntityWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuditEntity | EnumAuditEntityFieldRefInput<$PrismaModel>
+    in?: $Enums.AuditEntity[] | ListEnumAuditEntityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuditEntity[] | ListEnumAuditEntityFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuditEntityWithAggregatesFilter<$PrismaModel> | $Enums.AuditEntity
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAuditEntityFilter<$PrismaModel>
+    _max?: NestedEnumAuditEntityFilter<$PrismaModel>
+  }
+
   export type ProgramPersonnelCreateNestedManyWithoutUserInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
@@ -41471,6 +43048,13 @@ export namespace Prisma {
     connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
   }
 
+  export type AuditTrailCreateNestedManyWithoutActorInput = {
+    create?: XOR<AuditTrailCreateWithoutActorInput, AuditTrailUncheckedCreateWithoutActorInput> | AuditTrailCreateWithoutActorInput[] | AuditTrailUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: AuditTrailCreateOrConnectWithoutActorInput | AuditTrailCreateOrConnectWithoutActorInput[]
+    createMany?: AuditTrailCreateManyActorInputEnvelope
+    connect?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+  }
+
   export type ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
@@ -41518,6 +43102,13 @@ export namespace Prisma {
     connectOrCreate?: RatingCreateOrConnectWithoutAccreditorInput | RatingCreateOrConnectWithoutAccreditorInput[]
     createMany?: RatingCreateManyAccreditorInputEnvelope
     connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+  }
+
+  export type AuditTrailUncheckedCreateNestedManyWithoutActorInput = {
+    create?: XOR<AuditTrailCreateWithoutActorInput, AuditTrailUncheckedCreateWithoutActorInput> | AuditTrailCreateWithoutActorInput[] | AuditTrailUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: AuditTrailCreateOrConnectWithoutActorInput | AuditTrailCreateOrConnectWithoutActorInput[]
+    createMany?: AuditTrailCreateManyActorInputEnvelope
+    connect?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -41634,6 +43225,20 @@ export namespace Prisma {
     deleteMany?: RatingScalarWhereInput | RatingScalarWhereInput[]
   }
 
+  export type AuditTrailUpdateManyWithoutActorNestedInput = {
+    create?: XOR<AuditTrailCreateWithoutActorInput, AuditTrailUncheckedCreateWithoutActorInput> | AuditTrailCreateWithoutActorInput[] | AuditTrailUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: AuditTrailCreateOrConnectWithoutActorInput | AuditTrailCreateOrConnectWithoutActorInput[]
+    upsert?: AuditTrailUpsertWithWhereUniqueWithoutActorInput | AuditTrailUpsertWithWhereUniqueWithoutActorInput[]
+    createMany?: AuditTrailCreateManyActorInputEnvelope
+    set?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    disconnect?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    delete?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    connect?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    update?: AuditTrailUpdateWithWhereUniqueWithoutActorInput | AuditTrailUpdateWithWhereUniqueWithoutActorInput[]
+    updateMany?: AuditTrailUpdateManyWithWhereWithoutActorInput | AuditTrailUpdateManyWithWhereWithoutActorInput[]
+    deleteMany?: AuditTrailScalarWhereInput | AuditTrailScalarWhereInput[]
+  }
+
   export type ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ProgramPersonnelCreateWithoutUserInput, ProgramPersonnelUncheckedCreateWithoutUserInput> | ProgramPersonnelCreateWithoutUserInput[] | ProgramPersonnelUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutUserInput | ProgramPersonnelCreateOrConnectWithoutUserInput[]
@@ -41730,6 +43335,20 @@ export namespace Prisma {
     update?: RatingUpdateWithWhereUniqueWithoutAccreditorInput | RatingUpdateWithWhereUniqueWithoutAccreditorInput[]
     updateMany?: RatingUpdateManyWithWhereWithoutAccreditorInput | RatingUpdateManyWithWhereWithoutAccreditorInput[]
     deleteMany?: RatingScalarWhereInput | RatingScalarWhereInput[]
+  }
+
+  export type AuditTrailUncheckedUpdateManyWithoutActorNestedInput = {
+    create?: XOR<AuditTrailCreateWithoutActorInput, AuditTrailUncheckedCreateWithoutActorInput> | AuditTrailCreateWithoutActorInput[] | AuditTrailUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: AuditTrailCreateOrConnectWithoutActorInput | AuditTrailCreateOrConnectWithoutActorInput[]
+    upsert?: AuditTrailUpsertWithWhereUniqueWithoutActorInput | AuditTrailUpsertWithWhereUniqueWithoutActorInput[]
+    createMany?: AuditTrailCreateManyActorInputEnvelope
+    set?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    disconnect?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    delete?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    connect?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    update?: AuditTrailUpdateWithWhereUniqueWithoutActorInput | AuditTrailUpdateWithWhereUniqueWithoutActorInput[]
+    updateMany?: AuditTrailUpdateManyWithWhereWithoutActorInput | AuditTrailUpdateManyWithWhereWithoutActorInput[]
+    deleteMany?: AuditTrailScalarWhereInput | AuditTrailScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutProgramHeadInput = {
@@ -42590,6 +44209,13 @@ export namespace Prisma {
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
+  export type AuditTrailCreateNestedManyWithoutPortfolioInput = {
+    create?: XOR<AuditTrailCreateWithoutPortfolioInput, AuditTrailUncheckedCreateWithoutPortfolioInput> | AuditTrailCreateWithoutPortfolioInput[] | AuditTrailUncheckedCreateWithoutPortfolioInput[]
+    connectOrCreate?: AuditTrailCreateOrConnectWithoutPortfolioInput | AuditTrailCreateOrConnectWithoutPortfolioInput[]
+    createMany?: AuditTrailCreateManyPortfolioInputEnvelope
+    connect?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+  }
+
   export type PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput = {
     create?: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
     connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutSurveyVisitInput
@@ -42620,6 +44246,13 @@ export namespace Prisma {
     connectOrCreate?: CommentCreateOrConnectWithoutSurveyVisitInput | CommentCreateOrConnectWithoutSurveyVisitInput[]
     createMany?: CommentCreateManySurveyVisitInputEnvelope
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
+  export type AuditTrailUncheckedCreateNestedManyWithoutPortfolioInput = {
+    create?: XOR<AuditTrailCreateWithoutPortfolioInput, AuditTrailUncheckedCreateWithoutPortfolioInput> | AuditTrailCreateWithoutPortfolioInput[] | AuditTrailUncheckedCreateWithoutPortfolioInput[]
+    connectOrCreate?: AuditTrailCreateOrConnectWithoutPortfolioInput | AuditTrailCreateOrConnectWithoutPortfolioInput[]
+    createMany?: AuditTrailCreateManyPortfolioInputEnvelope
+    connect?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
   }
 
   export type EnumSurveyVisitTypeFieldUpdateOperationsInput = {
@@ -42716,6 +44349,20 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
+  export type AuditTrailUpdateManyWithoutPortfolioNestedInput = {
+    create?: XOR<AuditTrailCreateWithoutPortfolioInput, AuditTrailUncheckedCreateWithoutPortfolioInput> | AuditTrailCreateWithoutPortfolioInput[] | AuditTrailUncheckedCreateWithoutPortfolioInput[]
+    connectOrCreate?: AuditTrailCreateOrConnectWithoutPortfolioInput | AuditTrailCreateOrConnectWithoutPortfolioInput[]
+    upsert?: AuditTrailUpsertWithWhereUniqueWithoutPortfolioInput | AuditTrailUpsertWithWhereUniqueWithoutPortfolioInput[]
+    createMany?: AuditTrailCreateManyPortfolioInputEnvelope
+    set?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    disconnect?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    delete?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    connect?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    update?: AuditTrailUpdateWithWhereUniqueWithoutPortfolioInput | AuditTrailUpdateWithWhereUniqueWithoutPortfolioInput[]
+    updateMany?: AuditTrailUpdateManyWithWhereWithoutPortfolioInput | AuditTrailUpdateManyWithWhereWithoutPortfolioInput[]
+    deleteMany?: AuditTrailScalarWhereInput | AuditTrailScalarWhereInput[]
+  }
+
   export type PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput = {
     create?: XOR<PhaseOneRequirementsCreateWithoutSurveyVisitInput, PhaseOneRequirementsUncheckedCreateWithoutSurveyVisitInput>
     connectOrCreate?: PhaseOneRequirementsCreateOrConnectWithoutSurveyVisitInput
@@ -42772,6 +44419,20 @@ export namespace Prisma {
     update?: CommentUpdateWithWhereUniqueWithoutSurveyVisitInput | CommentUpdateWithWhereUniqueWithoutSurveyVisitInput[]
     updateMany?: CommentUpdateManyWithWhereWithoutSurveyVisitInput | CommentUpdateManyWithWhereWithoutSurveyVisitInput[]
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
+  export type AuditTrailUncheckedUpdateManyWithoutPortfolioNestedInput = {
+    create?: XOR<AuditTrailCreateWithoutPortfolioInput, AuditTrailUncheckedCreateWithoutPortfolioInput> | AuditTrailCreateWithoutPortfolioInput[] | AuditTrailUncheckedCreateWithoutPortfolioInput[]
+    connectOrCreate?: AuditTrailCreateOrConnectWithoutPortfolioInput | AuditTrailCreateOrConnectWithoutPortfolioInput[]
+    upsert?: AuditTrailUpsertWithWhereUniqueWithoutPortfolioInput | AuditTrailUpsertWithWhereUniqueWithoutPortfolioInput[]
+    createMany?: AuditTrailCreateManyPortfolioInputEnvelope
+    set?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    disconnect?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    delete?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    connect?: AuditTrailWhereUniqueInput | AuditTrailWhereUniqueInput[]
+    update?: AuditTrailUpdateWithWhereUniqueWithoutPortfolioInput | AuditTrailUpdateWithWhereUniqueWithoutPortfolioInput[]
+    updateMany?: AuditTrailUpdateManyWithWhereWithoutPortfolioInput | AuditTrailUpdateManyWithWhereWithoutPortfolioInput[]
+    deleteMany?: AuditTrailScalarWhereInput | AuditTrailScalarWhereInput[]
   }
 
   export type SurveyVisitCreateNestedOneWithoutSurveyTeamInput = {
@@ -44248,6 +45909,44 @@ export namespace Prisma {
     update?: XOR<XOR<SurveyVisitUpdateToOneWithWhereWithoutRemarksInput, SurveyVisitUpdateWithoutRemarksInput>, SurveyVisitUncheckedUpdateWithoutRemarksInput>
   }
 
+  export type UserCreateNestedOneWithoutAuditTrailInput = {
+    create?: XOR<UserCreateWithoutAuditTrailInput, UserUncheckedCreateWithoutAuditTrailInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAuditTrailInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type SurveyVisitCreateNestedOneWithoutAuditTrailInput = {
+    create?: XOR<SurveyVisitCreateWithoutAuditTrailInput, SurveyVisitUncheckedCreateWithoutAuditTrailInput>
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutAuditTrailInput
+    connect?: SurveyVisitWhereUniqueInput
+  }
+
+  export type EnumAuditActionFieldUpdateOperationsInput = {
+    set?: $Enums.AuditAction
+  }
+
+  export type EnumAuditEntityFieldUpdateOperationsInput = {
+    set?: $Enums.AuditEntity
+  }
+
+  export type UserUpdateOneRequiredWithoutAuditTrailNestedInput = {
+    create?: XOR<UserCreateWithoutAuditTrailInput, UserUncheckedCreateWithoutAuditTrailInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAuditTrailInput
+    upsert?: UserUpsertWithoutAuditTrailInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAuditTrailInput, UserUpdateWithoutAuditTrailInput>, UserUncheckedUpdateWithoutAuditTrailInput>
+  }
+
+  export type SurveyVisitUpdateOneWithoutAuditTrailNestedInput = {
+    create?: XOR<SurveyVisitCreateWithoutAuditTrailInput, SurveyVisitUncheckedCreateWithoutAuditTrailInput>
+    connectOrCreate?: SurveyVisitCreateOrConnectWithoutAuditTrailInput
+    upsert?: SurveyVisitUpsertWithoutAuditTrailInput
+    disconnect?: SurveyVisitWhereInput | boolean
+    delete?: SurveyVisitWhereInput | boolean
+    connect?: SurveyVisitWhereUniqueInput
+    update?: XOR<XOR<SurveyVisitUpdateToOneWithWhereWithoutAuditTrailInput, SurveyVisitUpdateWithoutAuditTrailInput>, SurveyVisitUncheckedUpdateWithoutAuditTrailInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -44732,6 +46431,40 @@ export namespace Prisma {
     _max?: NestedEnumCommentTypeFilter<$PrismaModel>
   }
 
+  export type NestedEnumAuditActionFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuditAction | EnumAuditActionFieldRefInput<$PrismaModel>
+    in?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuditActionFilter<$PrismaModel> | $Enums.AuditAction
+  }
+
+  export type NestedEnumAuditEntityFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuditEntity | EnumAuditEntityFieldRefInput<$PrismaModel>
+    in?: $Enums.AuditEntity[] | ListEnumAuditEntityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuditEntity[] | ListEnumAuditEntityFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuditEntityFilter<$PrismaModel> | $Enums.AuditEntity
+  }
+
+  export type NestedEnumAuditActionWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuditAction | EnumAuditActionFieldRefInput<$PrismaModel>
+    in?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuditActionWithAggregatesFilter<$PrismaModel> | $Enums.AuditAction
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAuditActionFilter<$PrismaModel>
+    _max?: NestedEnumAuditActionFilter<$PrismaModel>
+  }
+
+  export type NestedEnumAuditEntityWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuditEntity | EnumAuditEntityFieldRefInput<$PrismaModel>
+    in?: $Enums.AuditEntity[] | ListEnumAuditEntityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuditEntity[] | ListEnumAuditEntityFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuditEntityWithAggregatesFilter<$PrismaModel> | $Enums.AuditEntity
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAuditEntityFilter<$PrismaModel>
+    _max?: NestedEnumAuditEntityFilter<$PrismaModel>
+  }
+
   export type ProgramPersonnelCreateWithoutUserInput = {
     id?: string
     assignedAt?: Date | string
@@ -44940,6 +46673,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AuditTrailCreateWithoutActorInput = {
+    id?: string
+    action: $Enums.AuditAction
+    entity: $Enums.AuditEntity
+    description: string
+    createdAt?: Date | string
+    portfolio?: SurveyVisitCreateNestedOneWithoutAuditTrailInput
+  }
+
+  export type AuditTrailUncheckedCreateWithoutActorInput = {
+    id?: string
+    action: $Enums.AuditAction
+    entity: $Enums.AuditEntity
+    portfolioId?: string | null
+    description: string
+    createdAt?: Date | string
+  }
+
+  export type AuditTrailCreateOrConnectWithoutActorInput = {
+    where: AuditTrailWhereUniqueInput
+    create: XOR<AuditTrailCreateWithoutActorInput, AuditTrailUncheckedCreateWithoutActorInput>
+  }
+
+  export type AuditTrailCreateManyActorInputEnvelope = {
+    data: AuditTrailCreateManyActorInput | AuditTrailCreateManyActorInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ProgramPersonnelUpsertWithWhereUniqueWithoutUserInput = {
     where: ProgramPersonnelWhereUniqueInput
     update: XOR<ProgramPersonnelUpdateWithoutUserInput, ProgramPersonnelUncheckedUpdateWithoutUserInput>
@@ -45144,6 +46905,35 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Rating"> | Date | string
   }
 
+  export type AuditTrailUpsertWithWhereUniqueWithoutActorInput = {
+    where: AuditTrailWhereUniqueInput
+    update: XOR<AuditTrailUpdateWithoutActorInput, AuditTrailUncheckedUpdateWithoutActorInput>
+    create: XOR<AuditTrailCreateWithoutActorInput, AuditTrailUncheckedCreateWithoutActorInput>
+  }
+
+  export type AuditTrailUpdateWithWhereUniqueWithoutActorInput = {
+    where: AuditTrailWhereUniqueInput
+    data: XOR<AuditTrailUpdateWithoutActorInput, AuditTrailUncheckedUpdateWithoutActorInput>
+  }
+
+  export type AuditTrailUpdateManyWithWhereWithoutActorInput = {
+    where: AuditTrailScalarWhereInput
+    data: XOR<AuditTrailUpdateManyMutationInput, AuditTrailUncheckedUpdateManyWithoutActorInput>
+  }
+
+  export type AuditTrailScalarWhereInput = {
+    AND?: AuditTrailScalarWhereInput | AuditTrailScalarWhereInput[]
+    OR?: AuditTrailScalarWhereInput[]
+    NOT?: AuditTrailScalarWhereInput | AuditTrailScalarWhereInput[]
+    id?: StringFilter<"AuditTrail"> | string
+    actorId?: StringFilter<"AuditTrail"> | string
+    action?: EnumAuditActionFilter<"AuditTrail"> | $Enums.AuditAction
+    entity?: EnumAuditEntityFilter<"AuditTrail"> | $Enums.AuditEntity
+    portfolioId?: StringNullableFilter<"AuditTrail"> | string | null
+    description?: StringFilter<"AuditTrail"> | string
+    createdAt?: DateTimeFilter<"AuditTrail"> | Date | string
+  }
+
   export type UserCreateWithoutProgramHeadInput = {
     id?: string
     firstName: string
@@ -45162,6 +46952,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairCreateNestedManyWithoutUserInput
     ratings?: RatingCreateNestedManyWithoutAccreditorInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutProgramHeadInput = {
@@ -45182,6 +46973,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
     ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutProgramHeadInput = {
@@ -45267,6 +47059,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUpdateManyWithoutUserNestedInput
     ratings?: RatingUpdateManyWithoutAccreditorNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgramHeadInput = {
@@ -45287,6 +47080,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
     ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type ProgramPersonnelUpsertWithWhereUniqueWithoutProgramInput = {
@@ -45352,6 +47146,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairCreateNestedManyWithoutUserInput
     ratings?: RatingCreateNestedManyWithoutAccreditorInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutProgramPersonnelInput = {
@@ -45372,6 +47167,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
     ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutProgramPersonnelInput = {
@@ -45479,6 +47275,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUpdateManyWithoutUserNestedInput
     ratings?: RatingUpdateManyWithoutAccreditorNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgramPersonnelInput = {
@@ -45499,6 +47296,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
     ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type ProgramUpsertWithoutProgramPersonnelInput = {
@@ -46305,6 +48103,7 @@ export namespace Prisma {
     certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
     remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutLevelInput = {
@@ -46330,6 +48129,7 @@ export namespace Prisma {
     certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
     remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutLevelInput = {
@@ -46489,6 +48289,7 @@ export namespace Prisma {
     certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
     remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutAccreditationInput = {
@@ -46514,6 +48315,7 @@ export namespace Prisma {
     certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
     remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutAccreditationInput = {
@@ -46783,6 +48585,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AuditTrailCreateWithoutPortfolioInput = {
+    id?: string
+    action: $Enums.AuditAction
+    entity: $Enums.AuditEntity
+    description: string
+    createdAt?: Date | string
+    actor: UserCreateNestedOneWithoutAuditTrailInput
+  }
+
+  export type AuditTrailUncheckedCreateWithoutPortfolioInput = {
+    id?: string
+    actorId: string
+    action: $Enums.AuditAction
+    entity: $Enums.AuditEntity
+    description: string
+    createdAt?: Date | string
+  }
+
+  export type AuditTrailCreateOrConnectWithoutPortfolioInput = {
+    where: AuditTrailWhereUniqueInput
+    create: XOR<AuditTrailCreateWithoutPortfolioInput, AuditTrailUncheckedCreateWithoutPortfolioInput>
+  }
+
+  export type AuditTrailCreateManyPortfolioInputEnvelope = {
+    data: AuditTrailCreateManyPortfolioInput | AuditTrailCreateManyPortfolioInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccreditationUpsertWithoutSurveyVisitsInput = {
     update: XOR<AccreditationUpdateWithoutSurveyVisitsInput, AccreditationUncheckedUpdateWithoutSurveyVisitsInput>
     create: XOR<AccreditationCreateWithoutSurveyVisitsInput, AccreditationUncheckedCreateWithoutSurveyVisitsInput>
@@ -46958,6 +48788,22 @@ export namespace Prisma {
     data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutSurveyVisitInput>
   }
 
+  export type AuditTrailUpsertWithWhereUniqueWithoutPortfolioInput = {
+    where: AuditTrailWhereUniqueInput
+    update: XOR<AuditTrailUpdateWithoutPortfolioInput, AuditTrailUncheckedUpdateWithoutPortfolioInput>
+    create: XOR<AuditTrailCreateWithoutPortfolioInput, AuditTrailUncheckedCreateWithoutPortfolioInput>
+  }
+
+  export type AuditTrailUpdateWithWhereUniqueWithoutPortfolioInput = {
+    where: AuditTrailWhereUniqueInput
+    data: XOR<AuditTrailUpdateWithoutPortfolioInput, AuditTrailUncheckedUpdateWithoutPortfolioInput>
+  }
+
+  export type AuditTrailUpdateManyWithWhereWithoutPortfolioInput = {
+    where: AuditTrailScalarWhereInput
+    data: XOR<AuditTrailUpdateManyMutationInput, AuditTrailUncheckedUpdateManyWithoutPortfolioInput>
+  }
+
   export type SurveyVisitCreateWithoutSurveyTeamInput = {
     id?: string
     actualSurveyDate: Date | string
@@ -46981,6 +48827,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutSurveyTeamInput = {
@@ -47006,6 +48853,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutSurveyTeamInput = {
@@ -47031,6 +48879,7 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutAuthorInput
     areaChair?: AreaChairCreateNestedManyWithoutUserInput
     ratings?: RatingCreateNestedManyWithoutAccreditorInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutTeamLeadInput = {
@@ -47051,6 +48900,7 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
     ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutTeamLeadInput = {
@@ -47114,6 +48964,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutPortfolioNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutSurveyTeamInput = {
@@ -47139,6 +48990,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutPortfolioNestedInput
   }
 
   export type UserUpsertWithoutTeamLeadInput = {
@@ -47170,6 +49022,7 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutAuthorNestedInput
     areaChair?: AreaChairUpdateManyWithoutUserNestedInput
     ratings?: RatingUpdateManyWithoutAccreditorNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeamLeadInput = {
@@ -47190,6 +49043,7 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
     ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type AreaChairUpsertWithWhereUniqueWithoutSurveyTeamInput = {
@@ -47226,6 +49080,7 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutAuthorInput
     teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
     ratings?: RatingCreateNestedManyWithoutAccreditorInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutAreaChairInput = {
@@ -47246,6 +49101,7 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
     teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
     ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutAreaChairInput = {
@@ -47334,6 +49190,7 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutAuthorNestedInput
     teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
     ratings?: RatingUpdateManyWithoutAccreditorNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAreaChairInput = {
@@ -47354,6 +49211,7 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
     teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
     ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type SurveyTeamUpsertWithoutAreaChairsInput = {
@@ -47443,6 +49301,7 @@ export namespace Prisma {
     certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
     remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutPhaseOneRequirementsInput = {
@@ -47468,6 +49327,7 @@ export namespace Prisma {
     certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
     remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutPhaseOneRequirementsInput = {
@@ -47549,6 +49409,7 @@ export namespace Prisma {
     certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
     remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutPortfolioNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutPhaseOneRequirementsInput = {
@@ -47574,6 +49435,7 @@ export namespace Prisma {
     certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
     remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutPortfolioNestedInput
   }
 
   export type InstrumentUpsertWithoutPhaseOneRequirementsInput = {
@@ -48713,6 +50575,7 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutAuthorInput
     teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairCreateNestedManyWithoutUserInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutRatingsInput = {
@@ -48733,6 +50596,7 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
     teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutRatingsInput = {
@@ -48802,6 +50666,7 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutAuthorNestedInput
     teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUpdateManyWithoutUserNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRatingsInput = {
@@ -48822,6 +50687,7 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
     teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type EvidenceFileCreateWithoutFileVersionsInput = {
@@ -48901,6 +50767,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
     remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutCertificateInput = {
@@ -48926,6 +50793,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
     remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutCertificateInput = {
@@ -48951,6 +50819,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairCreateNestedManyWithoutUserInput
     ratings?: RatingCreateNestedManyWithoutAccreditorInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutUploadsInput = {
@@ -48971,6 +50840,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
     ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutUploadsInput = {
@@ -49078,6 +50948,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
     remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutPortfolioNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutCertificateInput = {
@@ -49103,6 +50974,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
     remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutPortfolioNestedInput
   }
 
   export type UserUpsertWithoutUploadsInput = {
@@ -49134,6 +51006,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUpdateManyWithoutUserNestedInput
     ratings?: RatingUpdateManyWithoutAccreditorNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUploadsInput = {
@@ -49154,6 +51027,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
     ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type SurveyVisitCreateWithoutPhaseTwoRequirementsInput = {
@@ -49179,6 +51053,7 @@ export namespace Prisma {
     certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
     remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutPhaseTwoRequirementsInput = {
@@ -49204,6 +51079,7 @@ export namespace Prisma {
     certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
     remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutPhaseTwoRequirementsInput = {
@@ -49285,6 +51161,7 @@ export namespace Prisma {
     certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
     remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutPortfolioNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutPhaseTwoRequirementsInput = {
@@ -49310,6 +51187,7 @@ export namespace Prisma {
     certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
     remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutPortfolioNestedInput
   }
 
   export type InstrumentUpsertWithoutPhaseTwoRequirementsInput = {
@@ -50064,6 +51942,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairCreateNestedManyWithoutUserInput
     ratings?: RatingCreateNestedManyWithoutAccreditorInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutCommentsInput = {
@@ -50084,6 +51963,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
     areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
     ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutCommentsInput = {
@@ -50267,6 +52147,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitUncheckedCreateWithoutRemarksInput = {
@@ -50292,6 +52173,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
     certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
     surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
+    auditTrail?: AuditTrailUncheckedCreateNestedManyWithoutPortfolioInput
   }
 
   export type SurveyVisitCreateOrConnectWithoutRemarksInput = {
@@ -50328,6 +52210,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUpdateManyWithoutUserNestedInput
     ratings?: RatingUpdateManyWithoutAccreditorNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -50348,6 +52231,7 @@ export namespace Prisma {
     teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
     areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
     ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type EvidenceFileUpsertWithoutCommentsInput = {
@@ -50567,6 +52451,7 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutPortfolioNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutRemarksInput = {
@@ -50592,6 +52477,227 @@ export namespace Prisma {
     phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
     certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutPortfolioNestedInput
+  }
+
+  export type UserCreateWithoutAuditTrailInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelCreateNestedManyWithoutUserInput
+    programHead?: ProgramCreateNestedManyWithoutProgramHeadInput
+    uploads?: FileVersionCreateNestedManyWithoutUploaderInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    teamLead?: SurveyTeamCreateNestedManyWithoutTeamLeadInput
+    areaChair?: AreaChairCreateNestedManyWithoutUserInput
+    ratings?: RatingCreateNestedManyWithoutAccreditorInput
+  }
+
+  export type UserUncheckedCreateWithoutAuditTrailInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    email: string
+    hashedPassword: string
+    photoURL?: string | null
+    address?: string | null
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    programPersonnel?: ProgramPersonnelUncheckedCreateNestedManyWithoutUserInput
+    programHead?: ProgramUncheckedCreateNestedManyWithoutProgramHeadInput
+    uploads?: FileVersionUncheckedCreateNestedManyWithoutUploaderInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    teamLead?: SurveyTeamUncheckedCreateNestedManyWithoutTeamLeadInput
+    areaChair?: AreaChairUncheckedCreateNestedManyWithoutUserInput
+    ratings?: RatingUncheckedCreateNestedManyWithoutAccreditorInput
+  }
+
+  export type UserCreateOrConnectWithoutAuditTrailInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAuditTrailInput, UserUncheckedCreateWithoutAuditTrailInput>
+  }
+
+  export type SurveyVisitCreateWithoutAuditTrailInput = {
+    id?: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
+    createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
+    selfSurveyStartedAt?: Date | string | null
+    selfSurveyEndedAt?: Date | string | null
+    actualSurveyStartedAt?: Date | string | null
+    actualSurveyEndedAt?: Date | string | null
+    openForActualSurvey?: boolean
+    actualSurveyStatus?: $Enums.SurveyStatus
+    accreditation: AccreditationCreateNestedOneWithoutSurveyVisitsInput
+    level: LevelCreateNestedOneWithoutSurveyVisitsInput
+    phaseOneRequirements?: PhaseOneRequirementsCreateNestedOneWithoutSurveyVisitInput
+    phaseTwoRequirements?: PhaseTwoRequirementsCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamCreateNestedManyWithoutSurveyVisitInput
+    remarks?: CommentCreateNestedManyWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitUncheckedCreateWithoutAuditTrailInput = {
+    id?: string
+    accreditationId: string
+    actualSurveyDate: Date | string
+    type: $Enums.SurveyVisitType
+    targetLevel: string
+    status: $Enums.Progress
+    surveyResultStatus?: $Enums.SurveyResultStatus
+    createdAt?: Date | string
+    allowFileUploads?: boolean
+    allowEdits?: boolean
+    openForSelfSurvey?: boolean
+    selfSurveyStatus?: $Enums.SurveyStatus
+    selfSurveyStartedAt?: Date | string | null
+    selfSurveyEndedAt?: Date | string | null
+    actualSurveyStartedAt?: Date | string | null
+    actualSurveyEndedAt?: Date | string | null
+    openForActualSurvey?: boolean
+    actualSurveyStatus?: $Enums.SurveyStatus
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedCreateNestedOneWithoutSurveyVisitInput
+    certificate?: FileVersionUncheckedCreateNestedOneWithoutSurveyVisitInput
+    surveyTeam?: SurveyTeamUncheckedCreateNestedManyWithoutSurveyVisitInput
+    remarks?: CommentUncheckedCreateNestedManyWithoutSurveyVisitInput
+  }
+
+  export type SurveyVisitCreateOrConnectWithoutAuditTrailInput = {
+    where: SurveyVisitWhereUniqueInput
+    create: XOR<SurveyVisitCreateWithoutAuditTrailInput, SurveyVisitUncheckedCreateWithoutAuditTrailInput>
+  }
+
+  export type UserUpsertWithoutAuditTrailInput = {
+    update: XOR<UserUpdateWithoutAuditTrailInput, UserUncheckedUpdateWithoutAuditTrailInput>
+    create: XOR<UserCreateWithoutAuditTrailInput, UserUncheckedCreateWithoutAuditTrailInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAuditTrailInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAuditTrailInput, UserUncheckedUpdateWithoutAuditTrailInput>
+  }
+
+  export type UserUpdateWithoutAuditTrailInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUpdateManyWithoutUserNestedInput
+    programHead?: ProgramUpdateManyWithoutProgramHeadNestedInput
+    uploads?: FileVersionUpdateManyWithoutUploaderNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    teamLead?: SurveyTeamUpdateManyWithoutTeamLeadNestedInput
+    areaChair?: AreaChairUpdateManyWithoutUserNestedInput
+    ratings?: RatingUpdateManyWithoutAccreditorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutAuditTrailInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    hashedPassword?: StringFieldUpdateOperationsInput | string
+    photoURL?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    programPersonnel?: ProgramPersonnelUncheckedUpdateManyWithoutUserNestedInput
+    programHead?: ProgramUncheckedUpdateManyWithoutProgramHeadNestedInput
+    uploads?: FileVersionUncheckedUpdateManyWithoutUploaderNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    teamLead?: SurveyTeamUncheckedUpdateManyWithoutTeamLeadNestedInput
+    areaChair?: AreaChairUncheckedUpdateManyWithoutUserNestedInput
+    ratings?: RatingUncheckedUpdateManyWithoutAccreditorNestedInput
+  }
+
+  export type SurveyVisitUpsertWithoutAuditTrailInput = {
+    update: XOR<SurveyVisitUpdateWithoutAuditTrailInput, SurveyVisitUncheckedUpdateWithoutAuditTrailInput>
+    create: XOR<SurveyVisitCreateWithoutAuditTrailInput, SurveyVisitUncheckedCreateWithoutAuditTrailInput>
+    where?: SurveyVisitWhereInput
+  }
+
+  export type SurveyVisitUpdateToOneWithWhereWithoutAuditTrailInput = {
+    where?: SurveyVisitWhereInput
+    data: XOR<SurveyVisitUpdateWithoutAuditTrailInput, SurveyVisitUncheckedUpdateWithoutAuditTrailInput>
+  }
+
+  export type SurveyVisitUpdateWithoutAuditTrailInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
+    selfSurveyStartedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    selfSurveyEndedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualSurveyStartedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualSurveyEndedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
+    actualSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
+    accreditation?: AccreditationUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    level?: LevelUpdateOneRequiredWithoutSurveyVisitsNestedInput
+    phaseOneRequirements?: PhaseOneRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
+    remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
+  }
+
+  export type SurveyVisitUncheckedUpdateWithoutAuditTrailInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accreditationId?: StringFieldUpdateOperationsInput | string
+    actualSurveyDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumSurveyVisitTypeFieldUpdateOperationsInput | $Enums.SurveyVisitType
+    targetLevel?: StringFieldUpdateOperationsInput | string
+    status?: EnumProgressFieldUpdateOperationsInput | $Enums.Progress
+    surveyResultStatus?: EnumSurveyResultStatusFieldUpdateOperationsInput | $Enums.SurveyResultStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    allowFileUploads?: BoolFieldUpdateOperationsInput | boolean
+    allowEdits?: BoolFieldUpdateOperationsInput | boolean
+    openForSelfSurvey?: BoolFieldUpdateOperationsInput | boolean
+    selfSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
+    selfSurveyStartedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    selfSurveyEndedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualSurveyStartedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actualSurveyEndedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    openForActualSurvey?: BoolFieldUpdateOperationsInput | boolean
+    actualSurveyStatus?: EnumSurveyStatusFieldUpdateOperationsInput | $Enums.SurveyStatus
+    phaseOneRequirements?: PhaseOneRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    phaseTwoRequirements?: PhaseTwoRequirementsUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
+    surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
   }
 
   export type ProgramPersonnelCreateManyUserInput = {
@@ -50655,6 +52761,15 @@ export namespace Prisma {
     effectiveness?: number | null
     finalRate?: number | null
     NA?: boolean | null
+    createdAt?: Date | string
+  }
+
+  export type AuditTrailCreateManyActorInput = {
+    id?: string
+    action: $Enums.AuditAction
+    entity: $Enums.AuditEntity
+    portfolioId?: string | null
+    description: string
     createdAt?: Date | string
   }
 
@@ -50857,6 +52972,33 @@ export namespace Prisma {
     effectiveness?: NullableIntFieldUpdateOperationsInput | number | null
     finalRate?: NullableFloatFieldUpdateOperationsInput | number | null
     NA?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuditTrailUpdateWithoutActorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    entity?: EnumAuditEntityFieldUpdateOperationsInput | $Enums.AuditEntity
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    portfolio?: SurveyVisitUpdateOneWithoutAuditTrailNestedInput
+  }
+
+  export type AuditTrailUncheckedUpdateWithoutActorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    entity?: EnumAuditEntityFieldUpdateOperationsInput | $Enums.AuditEntity
+    portfolioId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuditTrailUncheckedUpdateManyWithoutActorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    entity?: EnumAuditEntityFieldUpdateOperationsInput | $Enums.AuditEntity
+    portfolioId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -51296,6 +53438,7 @@ export namespace Prisma {
     certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
     remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutPortfolioNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutLevelInput = {
@@ -51321,6 +53464,7 @@ export namespace Prisma {
     certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
     remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutPortfolioNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateManyWithoutLevelInput = {
@@ -51386,6 +53530,7 @@ export namespace Prisma {
     certificate?: FileVersionUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUpdateManyWithoutSurveyVisitNestedInput
     remarks?: CommentUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUpdateManyWithoutPortfolioNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateWithoutAccreditationInput = {
@@ -51411,6 +53556,7 @@ export namespace Prisma {
     certificate?: FileVersionUncheckedUpdateOneWithoutSurveyVisitNestedInput
     surveyTeam?: SurveyTeamUncheckedUpdateManyWithoutSurveyVisitNestedInput
     remarks?: CommentUncheckedUpdateManyWithoutSurveyVisitNestedInput
+    auditTrail?: AuditTrailUncheckedUpdateManyWithoutPortfolioNestedInput
   }
 
   export type SurveyVisitUncheckedUpdateManyWithoutAccreditationInput = {
@@ -51449,6 +53595,15 @@ export namespace Prisma {
     weakFolderId?: string | null
     content: string
     type: $Enums.CommentType
+    createdAt?: Date | string
+  }
+
+  export type AuditTrailCreateManyPortfolioInput = {
+    id?: string
+    actorId: string
+    action: $Enums.AuditAction
+    entity: $Enums.AuditEntity
+    description: string
     createdAt?: Date | string
   }
 
@@ -51508,6 +53663,33 @@ export namespace Prisma {
     weakFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     type?: EnumCommentTypeFieldUpdateOperationsInput | $Enums.CommentType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuditTrailUpdateWithoutPortfolioInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    entity?: EnumAuditEntityFieldUpdateOperationsInput | $Enums.AuditEntity
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    actor?: UserUpdateOneRequiredWithoutAuditTrailNestedInput
+  }
+
+  export type AuditTrailUncheckedUpdateWithoutPortfolioInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actorId?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    entity?: EnumAuditEntityFieldUpdateOperationsInput | $Enums.AuditEntity
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuditTrailUncheckedUpdateManyWithoutPortfolioInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actorId?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    entity?: EnumAuditEntityFieldUpdateOperationsInput | $Enums.AuditEntity
+    description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
