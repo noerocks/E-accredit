@@ -34,6 +34,7 @@ import { Check, Folder } from "lucide-react";
 import { useSidebar } from "@/components/ui/sidebar";
 import { ParameterFolderDTO } from "@/lib/dto/accreditation-instrument";
 import { markAsComplete as markAsCompleteParameter } from "@/lib/action/parameter-folder";
+import { useParams } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -77,6 +78,7 @@ export function DataTable<TData, TValue>({
   React.useEffect(() => {
     setOpen(true);
   }, []);
+  const params = useParams();
   const [pending, startTransition] = React.useTransition();
   const markAsComplete = async () => {
     startTransition(async () => {
@@ -89,7 +91,7 @@ export function DataTable<TData, TValue>({
           .flatMap((folder) => folder.evidenceFiles)
           .every((file) => file.status === "ACCEPTED");
         if (completeEvidence) {
-          await markAsCompleteParameter(row.id);
+          await markAsCompleteParameter(row.id, String(params.id));
         }
       }
       setRowSelection([]);

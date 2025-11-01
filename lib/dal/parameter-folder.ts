@@ -56,6 +56,7 @@ export const getParameterFolderById = unstable_cache(
         },
         areaFolder: {
           include: {
+            area: true,
             taskForce: {
               include: {
                 chairPerson: true,

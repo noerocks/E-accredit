@@ -1,5 +1,6 @@
 import CreateAccreditationDialog from "@/components/admin/accreditation/createAccreditationDialog";
 import PortfolioCards from "@/components/admin/accreditation/portfolio-cards";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getAccreditations } from "@/lib/dal/accreditation";
 import { getInstrumentByName, getInstruments } from "@/lib/dal/instrument";
@@ -20,49 +21,51 @@ const Accreditation = async () => {
     "Criterias"
   );
   return (
-    <div className="max-w-3/4 mx-auto mt-10">
-      <div className="flex justify-between items-center mb-10">
-        <p className="text-3xl flex items-center gap-2">
-          <FileArchive />
-          Survey Visit Portfolios
-        </p>
-        <CreateAccreditationDialog
-          programs={programs}
-          instruments={instruments || []}
-          levels={levels}
-          levelThreePhaseTwoInstrument={levelThreePhaseTwoInstrument}
-        />
-      </div>
-      {filteredAccreditations && (
-        <Tabs defaultValue={filteredAccreditations[0].program.code}>
-          <TabsList className="bg-background border">
-            {filteredAccreditations?.map((accreditation) => (
-              <TabsTrigger
+    <ScrollArea className="h-full">
+      <div className="max-w-3/4 mx-auto mt-10">
+        <div className="flex justify-between items-center mb-10">
+          <p className="text-3xl flex items-center gap-2">
+            <FileArchive />
+            Survey Visit Portfolios
+          </p>
+          <CreateAccreditationDialog
+            programs={programs}
+            instruments={instruments || []}
+            levels={levels}
+            levelThreePhaseTwoInstrument={levelThreePhaseTwoInstrument}
+          />
+        </div>
+        {filteredAccreditations && (
+          <Tabs defaultValue={filteredAccreditations[0].program.code}>
+            <TabsList className="bg-background border">
+              {filteredAccreditations?.map((accreditation) => (
+                <TabsTrigger
+                  value={accreditation.program.code}
+                  key={accreditation.id}
+                >
+                  {accreditation.program.code}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            {filteredAccreditations.map((accreditation) => (
+              <TabsContent
                 value={accreditation.program.code}
                 key={accreditation.id}
               >
-                {accreditation.program.code}
-              </TabsTrigger>
+                <PortfolioCards
+                  program={accreditation.program}
+                  surveyVisits={accreditation.surveyVisits.sort(
+                    (a, b) =>
+                      new Date(b.createdAt).getTime() -
+                      new Date(a.createdAt).getTime()
+                  )}
+                />
+              </TabsContent>
             ))}
-          </TabsList>
-          {filteredAccreditations.map((accreditation) => (
-            <TabsContent
-              value={accreditation.program.code}
-              key={accreditation.id}
-            >
-              <PortfolioCards
-                program={accreditation.program}
-                surveyVisits={accreditation.surveyVisits.sort(
-                  (a, b) =>
-                    new Date(b.createdAt).getTime() -
-                    new Date(a.createdAt).getTime()
-                )}
-              />
-            </TabsContent>
-          ))}
-        </Tabs>
-      )}
-    </div>
+          </Tabs>
+        )}
+      </div>
+    </ScrollArea>
   );
 };
 

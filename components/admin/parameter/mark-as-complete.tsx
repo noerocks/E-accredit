@@ -7,6 +7,7 @@ import { markAsComplete as markAsCompleteSurveyVisit } from "@/lib/action/survey
 import { CheckCircle2, Loader } from "lucide-react";
 import { toast } from "sonner";
 import { useTransition } from "react";
+import { useParams } from "next/navigation";
 
 const MarkAsCompleteButton = ({
   parameterFolderId,
@@ -18,15 +19,22 @@ const MarkAsCompleteButton = ({
   surveyVisitId?: string;
 }) => {
   const [pending, startTransition] = useTransition();
+  const params = useParams();
   const onClick = async () => {
     startTransition(async () => {
       if (parameterFolderId) {
-        const result = await markAsCompleteParameter(parameterFolderId);
+        const result = await markAsCompleteParameter(
+          parameterFolderId,
+          String(params.id)
+        );
         if (result.failure) toast.error(result.failure.error);
         if (result.success) toast.success(result.success.message);
       }
       if (areaFolderId) {
-        const result = await markAsCompleteArea(areaFolderId);
+        const result = await markAsCompleteArea(
+          areaFolderId,
+          String(params.id)
+        );
         if (result.failure) toast.error(result.failure.error);
         if (result.success) toast.success(result.success.message);
       }

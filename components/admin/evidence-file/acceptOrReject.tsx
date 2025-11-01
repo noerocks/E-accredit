@@ -6,14 +6,20 @@ import { Loader } from "lucide-react";
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
 
-const AcceptOrReject = ({ evidenceId }: { evidenceId: string }) => {
+const AcceptOrReject = ({
+  evidenceId,
+  surveyVisitId,
+}: {
+  evidenceId: string;
+  surveyVisitId: string;
+}) => {
   const [pending, startTransition] = useTransition();
   const [currentAction, setCurrentAction] = useState<string | null>(null);
 
   const onClick = async (action: string) => {
     setCurrentAction(action);
     startTransition(async () => {
-      const result = await acceptOrReject(evidenceId, action);
+      const result = await acceptOrReject(evidenceId, action, surveyVisitId);
       if (result.failure) toast.error(result.failure.error);
       if (result.success) toast.success(result.success.message);
       setCurrentAction(null);

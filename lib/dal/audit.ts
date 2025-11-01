@@ -27,6 +27,9 @@ export const getActivitiesBySurveyVisitId = unstable_cache(
       include: {
         actor: true,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
     return activities;
   },

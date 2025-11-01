@@ -120,7 +120,10 @@ const EvidencePage = async ({
               )}
               {(isChairperson || isAdmin) &&
                 evidence?.status === "FOR_REVIEW" && (
-                  <AcceptOrReject evidenceId={evidenceId} />
+                  <AcceptOrReject
+                    evidenceId={evidenceId}
+                    surveyVisitId={surveyVisitId}
+                  />
                 )}
             </div>
           </CardFooter>

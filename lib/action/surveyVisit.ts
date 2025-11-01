@@ -2,6 +2,8 @@
 
 import { revalidateTag } from "next/cache";
 import {
+  AuditAction,
+  AuditEntity,
   Level,
   Progress,
   SurveyResultStatus,
@@ -13,13 +15,28 @@ import { AreaFolderDTO } from "../dto/accreditation-instrument";
 import { resetAreaRatings } from "../dal/rating";
 import { updateAreaFolderById } from "../dal/area-folder";
 import { grantAccreditedStatus } from "./accreditation";
+import { createActivity } from "../dal/audit";
+import { verifySession } from "./session";
+import { formatAccreditationName } from "../utils";
 
 export async function markAsComplete(surveyVisitId: string) {
   try {
+    const { user } = await verifySession();
     const surveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       status: Progress.COMPLETE,
     });
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.PORTFOLIO_REVIEW,
+      entity: AuditEntity.PORTFOLIO,
+      portfolioId: surveyVisitId,
+      description: `Marked as done: ${formatAccreditationName(
+        surveyVisit?.accreditation.program.code!,
+        surveyVisit?.level!
+      )}`,
+    });
+    revalidateTag("activities");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("surveyVisitStructure");
@@ -37,10 +54,29 @@ export async function toggleFileUpload(
   allowFileUploads: boolean
 ) {
   try {
+    const { user } = await verifySession();
+    if (!allowFileUploads) {
+      await createActivity({
+        actorId: user.id,
+        action: AuditAction.PORTFOLIO_REVIEW,
+        entity: AuditEntity.PORTFOLIO,
+        portfolioId: surveyVisitId,
+        description: `Enabled file uploads for this portfolio`,
+      });
+    } else {
+      await createActivity({
+        actorId: user.id,
+        action: AuditAction.PORTFOLIO_REVIEW,
+        entity: AuditEntity.PORTFOLIO,
+        portfolioId: surveyVisitId,
+        description: `Disabled file uploads for this portfolio`,
+      });
+    }
     const surveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       allowFileUploads: !allowFileUploads,
     });
+    revalidateTag("activities");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("surveyVisitStructure");
@@ -59,10 +95,29 @@ export async function toggleFileUpload(
 
 export async function toggleEdit(surveyVisitId: string, allowEdits: boolean) {
   try {
+    const { user } = await verifySession();
     const surveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       allowEdits: !allowEdits,
     });
+    if (!allowEdits) {
+      await createActivity({
+        actorId: user.id,
+        action: AuditAction.PORTFOLIO_REVIEW,
+        entity: AuditEntity.PORTFOLIO,
+        portfolioId: surveyVisitId,
+        description: `Enabled file updates for this portfolio`,
+      });
+    } else {
+      await createActivity({
+        actorId: user.id,
+        action: AuditAction.PORTFOLIO_REVIEW,
+        entity: AuditEntity.PORTFOLIO,
+        portfolioId: surveyVisitId,
+        description: `Disabled file updates for this portfolio`,
+      });
+    }
+    revalidateTag("activities");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("surveyVisitStructure");

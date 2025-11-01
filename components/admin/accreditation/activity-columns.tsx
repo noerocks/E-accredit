@@ -1,5 +1,6 @@
 "use client";
 
+import { DataTableColumnHeader } from "@/components/data-table-column-header";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ActivityDTO } from "@/lib/dto/audit";
 import { screamingSnakeToTitle } from "@/lib/utils";
@@ -50,7 +51,9 @@ export const columns: ColumnDef<ActivityDTO>[] = [
   },
   {
     accessorKey: "createdAt",
-    header: "Date",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Date" />
+    ),
     cell: ({ row }) => {
       return (
         <div>
