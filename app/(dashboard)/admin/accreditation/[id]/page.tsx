@@ -26,7 +26,7 @@ import {
   getSurveyVisitStructureById,
 } from "@/lib/dal/survey-visit";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { Progress, SurveyTeamType } from "@/lib/generated/prisma";
+import { AuditEntity, Progress, SurveyTeamType } from "@/lib/generated/prisma";
 import {
   calculateGrandMean,
   formatAccreditationName,
@@ -43,7 +43,10 @@ const ProgramAccreditationPage = async ({
 }) => {
   const { id } = await params;
   const { user } = await verifySession();
-  const activities = await getActivitiesBySurveyVisitId(id);
+  const activities = await getActivitiesBySurveyVisitId(
+    id,
+    AuditEntity.PORTFOLIO
+  );
   const surveyVisitStructure = await getSurveyVisitStructureById(id);
   const level = surveyVisitStructure?.level;
   const program = surveyVisitStructure?.accreditation.program;

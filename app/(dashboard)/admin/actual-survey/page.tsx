@@ -20,7 +20,8 @@ const ActualSurveysPage = async () => {
       (survey) =>
         !survey.openForSelfSurvey &&
         (survey.surveyResultStatus === "GRANTED" ||
-          survey.surveyResultStatus === "NOT_GRANTED")
+          survey.surveyResultStatus === "NOT_GRANTED" ||
+          survey.surveyResultStatus === "DEFERRED")
     ) ?? []
   ).reduce((group, survey) => {
     const program = survey.accreditation.program;

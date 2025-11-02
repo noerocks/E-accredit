@@ -90,7 +90,9 @@ export const columns: ColumnDef<AreaFolderDTO>[] = [
       );
       const ratings = indicators
         ?.map((indicator) => indicator.ratings)
-        .filter((rating) => rating);
+        .filter((ratings) =>
+          ratings?.find((rating) => rating.type === "EXTERNAL")
+        );
       const complete =
         ratings.length === indicators?.length &&
         areaFolder.weaknesses.find(
@@ -100,6 +102,7 @@ export const columns: ColumnDef<AreaFolderDTO>[] = [
               (strengths) => strengths.type === "ACTUAL_SURVEY"
             )
         );
+      console.log(ratings.length === indicators.length);
       return <div>{complete ? "Complete" : "On Going"}</div>;
     },
   },

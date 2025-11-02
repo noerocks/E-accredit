@@ -1,8 +1,10 @@
 import { DataTable } from "@/components/admin/accreditation/data-table";
+import { DataTable as ActivityDataTable } from "@/components/admin/accreditation/activity-data-table";
 import SurveyResults from "@/components/admin/actual-survey/results";
 import EndSurveyButton from "@/components/admin/self-survey/end-survey-button";
 import SurveyTeam from "@/components/admin/self-survey/survey-team";
 import { columns } from "@/components/admin/self-survey/survey-visit/columns";
+import { columns as activityColumns } from "@/components/admin/accreditation/activity-columns";
 import {
   Card,
   CardContent,
@@ -21,7 +23,9 @@ import {
 } from "@/lib/dal/survey-visit";
 import { getUsersByRole } from "@/lib/dal/user";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
+import { ActivityDTO } from "@/lib/dto/audit";
 import {
+  AuditEntity,
   Role,
   SurveyTeam as SurveyTeamSchema,
   SurveyTeamType,
@@ -30,6 +34,7 @@ import { formatAccreditationName } from "@/lib/utils";
 import { Level, User } from "@prisma/client";
 import clsx from "clsx";
 import { Check, CircleDot, SearchCheck } from "lucide-react";
+import { getActivitiesBySurveyVisitId } from "@/lib/dal/audit";
 
 const SelfSurveyPage = async ({
   params,
@@ -88,6 +93,10 @@ const SelfSurveyPage = async ({
     (team) => team.type === "EXTERNAL"
   );
   const surveyStatus = surveyVisit?.selfSurveyStatus;
+  const activities = await getActivitiesBySurveyVisitId(
+    id,
+    AuditEntity.SELF_SURVEY
+  );
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
@@ -138,6 +147,7 @@ const SelfSurveyPage = async ({
         <Tabs defaultValue="area">
           <TabsList className="bg-background border">
             <TabsTrigger value="area">Area Ratings</TabsTrigger>
+            <TabsTrigger value="activity">Activity Log</TabsTrigger>
             {surveyStatus === "COMPLETE" && (
               <TabsTrigger value="results">Overall Survey Results</TabsTrigger>
             )}
@@ -152,6 +162,17 @@ const SelfSurveyPage = async ({
               </CardContent>
             </Card>
           </TabsContent>
+          <TabsContent value="activity">
+            <Card className="bg-background">
+              <CardContent>
+                <ActivityDataTable
+                  columns={activityColumns}
+                  data={(activities as unknown as ActivityDTO[]) || []}
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="activity"></TabsContent>
           <TabsContent value="results">
             <SurveyResults
               areaFolders={areaFolders as unknown as AreaFolderDTO[]}

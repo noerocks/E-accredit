@@ -139,6 +139,7 @@ export async function toggleSelfSurvey(
   openForSelfSurvey: boolean
 ) {
   try {
+    const { user } = await verifySession();
     const surveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       openForSelfSurvey: !openForSelfSurvey,
@@ -147,6 +148,18 @@ export async function toggleSelfSurvey(
       selfSurveyStatus: SurveyStatus.ON_GOING,
       selfSurveyStartedAt: new Date(),
     });
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.SURVEY_START,
+      entity: AuditEntity.PORTFOLIO,
+      portfolioId: surveyVisitId,
+      description: `Opened for self survey: ${formatAccreditationName(
+        surveyVisit?.accreditation.program.code!,
+        surveyVisit?.level!
+      )}`,
+    });
+    revalidateTag("accreditations");
+    revalidateTag("activities");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("evidenceFiles");
@@ -164,6 +177,7 @@ export async function toggleActualSurvey(
   openForActualSurvey: boolean
 ) {
   try {
+    const { user } = await verifySession();
     const surveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       openForActualSurvey: !openForActualSurvey,
@@ -172,6 +186,18 @@ export async function toggleActualSurvey(
       actualSurveyStatus: SurveyStatus.ON_GOING,
       actualSurveyStartedAt: new Date(),
     });
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.SURVEY_START,
+      entity: AuditEntity.PORTFOLIO,
+      portfolioId: surveyVisitId,
+      description: `Opened for actual survey: ${formatAccreditationName(
+        surveyVisit?.accreditation.program.code!,
+        surveyVisit?.level!
+      )}`,
+    });
+    revalidateTag("accreditations");
+    revalidateTag("activities");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("evidenceFiles");
@@ -186,12 +212,32 @@ export async function toggleActualSurvey(
 
 export async function endSelfSurvey(surveyVisitId: string) {
   try {
+    const { user } = await verifySession();
     const surveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       selfSurveyStatus: SurveyStatus.COMPLETE,
       openForSelfSurvey: false,
       selfSurveyEndedAt: new Date(),
     });
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.SURVEY_END,
+      entity: AuditEntity.SELF_SURVEY,
+      portfolioId: surveyVisitId,
+      description: `Closed self-survey: ${formatAccreditationName(
+        surveyVisit?.accreditation.program.code!,
+        surveyVisit?.level!
+      )}`,
+    });
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.FILE_UPLOAD,
+      entity: AuditEntity.SELF_SURVEY,
+      portfolioId: surveyVisitId,
+      description: `Generated Self Survey Report PDF`,
+    });
+    revalidateTag("accreditations");
+    revalidateTag("activities");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("evidenceFiles");
@@ -206,11 +252,24 @@ export async function endSelfSurvey(surveyVisitId: string) {
 
 export async function endActualSurvey(surveyVisitId: string) {
   try {
+    const { user } = await verifySession();
     const surveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       actualSurveyStatus: SurveyStatus.COMPLETE,
       actualSurveyEndedAt: new Date(),
     });
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.SURVEY_END,
+      entity: AuditEntity.ACTUAL_SURVEY,
+      portfolioId: surveyVisitId,
+      description: `Closed actual-survey: ${formatAccreditationName(
+        surveyVisit?.accreditation.program.code!,
+        surveyVisit?.level!
+      )}`,
+    });
+    revalidateTag("accreditations");
+    revalidateTag("activities");
     revalidateTag("parameterFolder");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
@@ -232,13 +291,17 @@ export async function scheduleActualSurveyRevisit(
   if (!surveyVisitId || !failedAreas || !revisitDate)
     return { failure: { error: "Invalid input" } };
   try {
+    const { user } = await verifySession();
     const surveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       actualSurveyEndedAt: null,
       actualSurveyDate: revisitDate,
       type: SurveyVisitType.REVISIT,
       surveyResultStatus: SurveyResultStatus.DEFERRED,
-      actualSurveyStatus: SurveyStatus.ON_GOING,
+      actualSurveyStatus: SurveyStatus.PENDING,
+      openForActualSurvey: false,
+      allowEdits: true,
+      allowFileUploads: true,
     });
     await Promise.all(
       failedAreas.map(async (areaFolder) => {
@@ -246,6 +309,18 @@ export async function scheduleActualSurveyRevisit(
         await resetAreaRatings(areaFolder.id);
       })
     );
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.SURVEY_END,
+      entity: AuditEntity.ACTUAL_SURVEY,
+      portfolioId: surveyVisitId,
+      description: `Scheduled for revisit: ${formatAccreditationName(
+        surveyVisit?.accreditation.program.code!,
+        surveyVisit?.level!
+      )}`,
+    });
+    revalidateTag("accreditations");
+    revalidateTag("activities");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("evidenceFiles");
@@ -269,6 +344,7 @@ export async function grantPhaseOne(
 ) {
   if (!surveyVisitId) return { failure: { error: "Invalid input" } };
   try {
+    const { user } = await verifySession();
     const surveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       surveyResultStatus: SurveyResultStatus.GRANTED,
@@ -280,6 +356,15 @@ export async function grantPhaseOne(
       surveyVisitId,
       level
     );
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.SURVEY_END,
+      entity: AuditEntity.ACTUAL_SURVEY,
+      portfolioId: surveyVisitId,
+      description: `Passed phase one. Qualified for phase two.`,
+    });
+    revalidateTag("activities");
+    revalidateTag("accreditations");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("evidenceFiles");
@@ -307,6 +392,7 @@ export async function denyPhaseTwo(
       actualSurveyStatus: SurveyStatus.COMPLETE,
       actualSurveyEndedAt: new Date(),
     });
+    revalidateTag("accreditations");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("evidenceFiles");

@@ -288,7 +288,8 @@ export type SurveyResultStatus = (typeof SurveyResultStatus)[keyof typeof Survey
 
 export const AuditEntity: {
   PORTFOLIO: 'PORTFOLIO',
-  SURVEY: 'SURVEY',
+  SELF_SURVEY: 'SELF_SURVEY',
+  ACTUAL_SURVEY: 'ACTUAL_SURVEY',
   SYSTEM: 'SYSTEM'
 };
 

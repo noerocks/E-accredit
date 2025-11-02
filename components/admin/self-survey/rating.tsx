@@ -40,7 +40,7 @@ const Rating = ({
     { numeric: 1, descriptive: "Functioning poorly" },
     { numeric: 0, descriptive: "Not functioning" },
   ];
-  const { evidenceId } = useParams();
+  const { id, evidenceId } = useParams();
   const pathName = usePathname();
   const root = pathName
     .split("/")
@@ -116,6 +116,7 @@ const Rating = ({
           type: surveyType,
           accreditorId: user.id,
           NA,
+          portfolioId: String(id!),
         });
         if (result?.failure) toast.error(result.failure.error);
         if (result.success) toast.success(result.success.message);
@@ -136,6 +137,7 @@ const Rating = ({
             adequacy: parsedAdequacy,
             effectiveness: parsedEffectiveness,
             finalRate,
+            portfolioId: String(id!),
           });
           if (result?.failure) toast.error(result.failure.error);
           if (result.success) toast.success(result.success.message);
@@ -150,6 +152,7 @@ const Rating = ({
             accreditorId: user.id,
             adequacy: parsedAdequacy,
             finalRate: parsedAdequacy,
+            portfolioId: String(id!),
           });
           if (result?.failure) toast.error(result.failure.error);
           if (result.success) toast.success(result.success.message);
@@ -164,6 +167,7 @@ const Rating = ({
             accreditorId: user.id,
             effectiveness: parsedEffectiveness,
             finalRate: parsedEffectiveness,
+            portfolioId: String(id!),
           });
           if (result?.failure) toast.error(result.failure.error);
           if (result.success) toast.success(result.success.message);

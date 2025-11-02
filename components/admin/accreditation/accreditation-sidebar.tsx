@@ -67,7 +67,10 @@ const AccreditationSidebar = ({
     instrumentFolder &&
     instrumentFolder.areaFolders
       ?.filter((area) => {
-        if (surveyResultStatus === "DEFERRED") {
+        if (
+          surveyResultStatus === "DEFERRED" &&
+          base.at(-2) === "actual-survey"
+        ) {
           return area.revisit;
         }
         return true;

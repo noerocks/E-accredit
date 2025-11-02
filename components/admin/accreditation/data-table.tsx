@@ -34,6 +34,7 @@ import { Check, Folder } from "lucide-react";
 import { useSidebar } from "@/components/ui/sidebar";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
 import { markAsComplete as markAsCompleteArea } from "@/lib/action/area-folder";
+import { useParams } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -77,6 +78,7 @@ export function DataTable<TData, TValue>({
   React.useEffect(() => {
     setOpen(true);
   }, []);
+  const params = useParams();
   const [pending, startTransition] = React.useTransition();
   const markAsComplete = async () => {
     startTransition(async () => {
@@ -91,7 +93,7 @@ export function DataTable<TData, TValue>({
             (parameter) => parameter.status === "COMPLETE"
           );
         if (completeEvidence) {
-          await markAsCompleteArea(row.id);
+          await markAsCompleteArea(row.id, String(params.id));
         }
       }
       setRowSelection([]);

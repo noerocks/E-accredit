@@ -7,12 +7,16 @@ import {
   resetRatingById,
   updateRatingById,
 } from "../dal/rating";
-import { SurveyTeamType } from "../generated/prisma";
+import { AuditAction, AuditEntity, SurveyTeamType } from "../generated/prisma";
+import { createActivity } from "../dal/audit";
+import { verifySession } from "./session";
+import { getEvidenceFileById } from "../dal/evidence";
 
 export async function giveRating({
   evidenceFileId,
   type,
   accreditorId,
+  portfolioId,
   adequacy = null,
   effectiveness = null,
   finalRate = null,
@@ -21,6 +25,7 @@ export async function giveRating({
   evidenceFileId: string;
   type: SurveyTeamType;
   accreditorId: string;
+  portfolioId: string;
   adequacy?: number | null;
   effectiveness?: number | null;
   finalRate?: number | null;
@@ -41,7 +46,9 @@ export async function giveRating({
       },
     };
   try {
+    const { user } = await verifySession();
     const ratedEvidence = await evidenceFileIsRated(evidenceFileId, type);
+    const evidenceFile = await getEvidenceFileById(evidenceFileId);
     if (!ratedEvidence) {
       const rating = await createNewRating({
         evidenceFileId,
@@ -52,6 +59,24 @@ export async function giveRating({
         finalRate,
         NA,
       });
+      if (type === "INTERNAL") {
+        await createActivity({
+          actorId: user.id,
+          action: AuditAction.RATE,
+          entity: AuditEntity.SELF_SURVEY,
+          portfolioId: portfolioId,
+          description: `Rated evidence file in ${evidenceFile.indicatorFolder?.parameterFolder.areaFolder.area.label} > ${evidenceFile.indicatorFolder?.parameterFolder.parameter.label} > ${evidenceFile.indicator?.label}`,
+        });
+      } else if (type === "EXTERNAL") {
+        await createActivity({
+          actorId: user.id,
+          action: AuditAction.RATE,
+          entity: AuditEntity.ACTUAL_SURVEY,
+          portfolioId: portfolioId,
+          description: `Rated evidence file in ${evidenceFile.indicatorFolder?.parameterFolder.areaFolder.area.label} > ${evidenceFile.indicatorFolder?.parameterFolder.parameter.label} > ${evidenceFile.indicator?.label}`,
+        });
+      }
+      revalidateTag("activities");
       revalidateTag("evidenceFiles");
       revalidateTag("areaFolder");
       revalidateTag("parameterFolder");
@@ -66,6 +91,24 @@ export async function giveRating({
         finalRate,
         NA,
       });
+      if (type === "INTERNAL") {
+        await createActivity({
+          actorId: user.id,
+          action: AuditAction.RATE,
+          entity: AuditEntity.SELF_SURVEY,
+          portfolioId: portfolioId,
+          description: `Edited rating in ${evidenceFile.indicatorFolder?.parameterFolder.areaFolder.area.label} > ${evidenceFile.indicatorFolder?.parameterFolder.parameter.label} > ${evidenceFile.indicator?.label}`,
+        });
+      } else if (type === "EXTERNAL") {
+        await createActivity({
+          actorId: user.id,
+          action: AuditAction.RATE,
+          entity: AuditEntity.ACTUAL_SURVEY,
+          portfolioId: portfolioId,
+          description: `Edited rating in ${evidenceFile.indicatorFolder?.parameterFolder.areaFolder.area.label} > ${evidenceFile.indicatorFolder?.parameterFolder.parameter.label} > ${evidenceFile.indicator?.label}`,
+        });
+      }
+      revalidateTag("activities");
       revalidateTag("evidenceFiles");
       revalidateTag("areaFolder");
       revalidateTag("parameterFolder");

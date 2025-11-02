@@ -34,6 +34,7 @@ import { Check, File, X } from "lucide-react";
 import { useSidebar } from "@/components/ui/sidebar";
 import { EvidenceFileDTO } from "@/lib/dto/accreditation-instrument";
 import { acceptOrReject as acceptOrRejectAction } from "@/lib/action/evidence";
+import { useParams } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -70,6 +71,7 @@ export function DataTable<TData, TValue>({
     },
   });
   const { setOpen } = useSidebar();
+  const params = useParams();
   React.useEffect(() => {
     setOpen(true);
   }, []);
@@ -82,7 +84,7 @@ export function DataTable<TData, TValue>({
       for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
         if (row.status === "FOR_REVIEW") {
-          await acceptOrRejectAction(row.id, action);
+          await acceptOrRejectAction(row.id, action, String(params.id));
         }
       }
       setRowSelection([]);

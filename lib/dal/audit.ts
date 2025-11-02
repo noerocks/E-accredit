@@ -19,10 +19,11 @@ export async function createActivity(data: {
 }
 
 export const getActivitiesBySurveyVisitId = unstable_cache(
-  async (id: string) => {
+  async (id: string, entity: AuditEntity) => {
     const activities = await prisma.auditTrail.findMany({
       where: {
         portfolioId: id,
+        entity,
       },
       include: {
         actor: true,

@@ -93,7 +93,9 @@ export const columns: ColumnDef<AreaFolderDTO>[] = [
       );
       const ratings = indicators
         ?.map((indicator) => indicator.ratings)
-        .filter((rating) => rating);
+        .filter((ratings) =>
+          ratings?.find((rating) => rating.type === "INTERNAL")
+        );
       const complete =
         ratings.length === indicators?.length &&
         areaFolder.weaknesses.find(

@@ -164,12 +164,27 @@ export async function createNewVersion({
       surveyVisitId,
       level
     );
+    const status = screamingSnakeToTitle(
+      surveyVisit?.level?.label === "PRELIMINARY_SURVEY_VISIT"
+        ? "CANDIDATE"
+        : surveyVisit?.level?.label!
+    )
+      ?.split(" ")
+      .map((word, i) => (i === 1 ? word.toUpperCase() : word))
+      .join(" ");
     await createActivity({
       actorId: user.id,
       action: AuditAction.FILE_UPLOAD,
-      entity: AuditEntity.SURVEY,
+      entity: AuditEntity.ACTUAL_SURVEY,
       portfolioId: surveyVisitId,
       description: `Uploaded an accreditation certificate to ${surveyVisit?.accreditation.program.code}`,
+    });
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.SURVEY_END,
+      entity: AuditEntity.ACTUAL_SURVEY,
+      portfolioId: surveyVisitId,
+      description: `${status} status has been granted`,
     });
   }
   revalidateTag("activities");

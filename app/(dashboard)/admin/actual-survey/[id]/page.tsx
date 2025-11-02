@@ -1,7 +1,9 @@
 import { DataTable } from "@/components/admin/accreditation/data-table";
+import { DataTable as ActivityDataTable } from "@/components/admin/accreditation/activity-data-table";
 import NextSteps from "@/components/admin/actual-survey/next-steps";
 import SurveyResults from "@/components/admin/actual-survey/results";
 import { columns } from "@/components/admin/actual-survey/survey-visit/columns";
+import { columns as activityColumns } from "@/components/admin/accreditation/activity-columns";
 import EndSurveyButton from "@/components/admin/self-survey/end-survey-button";
 import SurveyTeam from "@/components/admin/self-survey/survey-team";
 import {
@@ -15,6 +17,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { verifySession } from "@/lib/action/session";
+import { getActivitiesBySurveyVisitId } from "@/lib/dal/audit";
 import { getInstrumentStructureById } from "@/lib/dal/instrument";
 import {
   getSurveyVisitById,
@@ -23,6 +26,7 @@ import {
 import { getUsersByRole } from "@/lib/dal/user";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
 import {
+  AuditEntity,
   Role,
   SurveyTeam as SurveyTeamSchema,
   SurveyTeamType,
@@ -38,6 +42,7 @@ import {
   CircleSlash,
   SearchCheck,
 } from "lucide-react";
+import { ActivityDTO } from "@/lib/dto/audit";
 
 const ActualSurveyPage = async ({
   params,
@@ -98,6 +103,10 @@ const ActualSurveyPage = async ({
   const accreditationId = surveyVisitStructure?.accreditationId;
   const surveyType = surveyVisit?.type;
   const surveyResultStatus = surveyVisit?.surveyResultStatus;
+  const activities = await getActivitiesBySurveyVisitId(
+    id,
+    AuditEntity.ACTUAL_SURVEY
+  );
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
@@ -182,6 +191,7 @@ const ActualSurveyPage = async ({
         <Tabs defaultValue="area">
           <TabsList className="bg-background border">
             <TabsTrigger value="area">Area Ratings</TabsTrigger>
+            <TabsTrigger value="activities">Activity Log</TabsTrigger>
             {surveyVisitEnded && (
               <>
                 <TabsTrigger value="results">
@@ -197,6 +207,16 @@ const ActualSurveyPage = async ({
                 <DataTable
                   columns={columns}
                   data={(areaFolders as unknown as AreaFolderDTO[]) || []}
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="activities">
+            <Card className="bg-background">
+              <CardContent>
+                <ActivityDataTable
+                  columns={activityColumns}
+                  data={(activities as unknown as ActivityDTO[]) || []}
                 />
               </CardContent>
             </Card>

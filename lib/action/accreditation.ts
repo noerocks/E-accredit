@@ -7,6 +7,8 @@ import {
   AccreditationStatus,
   Area,
   AreaFileType,
+  AuditAction,
+  AuditEntity,
   Category,
   FileStatus,
   Level,
@@ -39,7 +41,9 @@ import {
 import { createPhaseTwoAreaFolder } from "../dal/phase-two-area-folder";
 import { createManySurveyTeam } from "../dal/survey-team";
 import { updateAccreditationById } from "../dal/accreditation";
-import { screamingSnakeToTitle } from "../utils";
+import { formatAccreditationName, screamingSnakeToTitle } from "../utils";
+import { verifySession } from "./session";
+import { createActivity } from "../dal/audit";
 
 export async function createSurveyVisit(
   program: ProgramDTO | undefined,
@@ -63,7 +67,6 @@ export async function createSurveyVisit(
     level.id,
     Progress.IN_PROGRESS
   );
-  revalidateTag("accreditations");
   if (!surveyVisit) throw new Error("Error in creating survey visit");
   const instrumentStructure = await getInstrumentStructureById(instrument.id);
   try {
@@ -185,6 +188,7 @@ export async function createSurveyVisit(
           ]);
         });
     }
+    revalidateTag("accreditations");
     return { success: { message: "Portfolio is initialized successfully" } };
   } catch (error) {
     const e = error as Error;
@@ -219,6 +223,7 @@ export async function grantAccreditedStatus(
       endsAt,
       status: AccreditationStatus.ACTIVE,
     });
+    revalidateTag("accreditations");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("evidenceFiles");
@@ -249,6 +254,7 @@ export async function denyAccreditationStatus(
       failure: { error: "Invalid Input" },
     };
   try {
+    const { user } = await verifySession();
     const prevSurveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       surveyResultStatus: SurveyResultStatus.NOT_GRANTED,
@@ -256,12 +262,24 @@ export async function denyAccreditationStatus(
       actualSurveyStatus: SurveyStatus.COMPLETE,
       actualSurveyEndedAt: new Date(),
     });
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.SURVEY_END,
+      entity: AuditEntity.ACTUAL_SURVEY,
+      portfolioId: prevSurveyVisit?.id,
+      description: `Scheduled for full revisit: ${formatAccreditationName(
+        prevSurveyVisit?.accreditation.program.code!,
+        prevSurveyVisit?.level!
+      )}`,
+    });
     const newSurveyVisit = await createSurveyVisit(
       prevSurveyVisit?.accreditation.program as unknown as ProgramDTO,
       prevSurveyVisit?.level,
       prevSurveyVisit?.phaseOneRequirements?.instrument,
       actualSurveyDate
     );
+    revalidateTag("accreditations");
+    revalidateTag("activities");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");
     revalidateTag("evidenceFiles");
