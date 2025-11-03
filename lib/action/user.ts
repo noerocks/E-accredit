@@ -29,6 +29,7 @@ export async function rejectUser(
         message: "Unauthorized action",
       };
     }
+    revalidateTag("userCount");
     revalidateTag("users");
     return {
       status: "success",
@@ -51,6 +52,7 @@ export async function acceptUser(id: string | undefined, role: Role) {
     console.log(id, role);
     const user = await updateRole(id, role);
     revalidateTag("users");
+    revalidateTag("userCount");
     return {
       status: "success",
       message: "User accepted successfuly",
@@ -89,6 +91,7 @@ export async function createAndUpdateUser(
         hashedPassword,
       });
     }
+    revalidateTag("userCount");
     revalidateTag("users");
     return {
       success: {
@@ -135,6 +138,7 @@ export async function deleteUser(id: string) {
   if (!id) return null;
   try {
     const user = await deleteUserDAL(id);
+    revalidateTag("userCount");
     revalidateTag("users");
     return { success: { message: "User deleted successfully" } };
   } catch (error) {

@@ -267,3 +267,33 @@ export const getAllPendingSurveyVisitsByInstrumentId = unstable_cache(
     tags: ["accreditations"],
   }
 );
+
+export const getOpenForSelfSurveyCount = unstable_cache(
+  async () => {
+    const openForSelfSurveyCount = await prisma.surveyVisit.count({
+      where: {
+        openForSelfSurvey: true,
+      },
+    });
+    return openForSelfSurveyCount;
+  },
+  ["getOpenForSelfSurveyCount"],
+  {
+    tags: ["openForSelfSurveyCount"],
+  }
+);
+
+export const getOpenForActualSurveyCount = unstable_cache(
+  async () => {
+    const openForActualSurveyCount = await prisma.surveyVisit.count({
+      where: {
+        openForActualSurvey: true,
+      },
+    });
+    return openForActualSurveyCount;
+  },
+  ["getOpenForActualSurveyCount"],
+  {
+    tags: ["openForActualSurveyCount"],
+  }
+);

@@ -26,12 +26,12 @@ export async function createProgram(
     await createAccreditation(program.id, AccreditationStatus.UNACCREDITED);
     revalidateTag("accreditations");
     revalidateTag("programs");
+    revalidateTag("programCount");
     return {
       status: "success",
       message: "Program created successfuly",
     };
   } catch (error) {
-    console.log((error as Error).message);
     const e = error as PrismaClientKnownRequestError;
     if (e.code === "P2002") {
       return {

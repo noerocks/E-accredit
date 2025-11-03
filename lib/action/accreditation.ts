@@ -223,6 +223,8 @@ export async function grantAccreditedStatus(
       endsAt,
       status: AccreditationStatus.ACTIVE,
     });
+    revalidateTag("getActiveAccreditationsCount");
+    revalidateTag("surveyVisitSurvey");
     revalidateTag("accreditations");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");

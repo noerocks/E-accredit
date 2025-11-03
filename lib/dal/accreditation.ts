@@ -66,3 +66,18 @@ export const getAccreditations = unstable_cache(
     tags: ["accreditations"],
   }
 );
+
+export const getActiveAccreditationsCount = unstable_cache(
+  async () => {
+    const activeAccreditationsCount = await prisma.accreditation.count({
+      where: {
+        status: "ACTIVE",
+      },
+    });
+    return activeAccreditationsCount;
+  },
+  ["getActiveAccreditationsCount"],
+  {
+    tags: ["activeAccreditationsCount"],
+  }
+);

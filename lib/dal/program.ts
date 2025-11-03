@@ -115,3 +115,14 @@ export async function getProgramheadById(id: string) {
   });
   return programHead;
 }
+
+export const getProgramCount = unstable_cache(
+  async () => {
+    const programCount = await prisma.program.count();
+    return programCount;
+  },
+  ["getProgramCount"],
+  {
+    tags: ["programCount"],
+  }
+);

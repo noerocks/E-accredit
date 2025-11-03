@@ -211,3 +211,18 @@ export async function deleteUser(id: string) {
   });
   return user;
 }
+
+export const getUserCount = unstable_cache(
+  async () => {
+    const userCount = await prisma.user.count({
+      where: {
+        NOT: [{ role: "PENDING" }],
+      },
+    });
+    return userCount;
+  },
+  ["getUserCount"],
+  {
+    tags: ["userCount"],
+  }
+);

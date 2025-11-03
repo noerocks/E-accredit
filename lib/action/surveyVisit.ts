@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidateTag } from "next/cache";
+import { revalidateTag, unstable_cache } from "next/cache";
 import {
   AuditAction,
   AuditEntity,
@@ -158,6 +158,8 @@ export async function toggleSelfSurvey(
         surveyVisit?.level!
       )}`,
     });
+    revalidateTag("openForActualSurveyCount");
+    revalidateTag("openForSelfSurveyCount");
     revalidateTag("accreditations");
     revalidateTag("activities");
     revalidateTag("parameterFolder");
@@ -236,6 +238,8 @@ export async function endSelfSurvey(surveyVisitId: string) {
       portfolioId: surveyVisitId,
       description: `Generated Self Survey Report PDF`,
     });
+    revalidateTag("openForActualSurveyCount");
+    revalidateTag("openForSelfSurveyCount");
     revalidateTag("accreditations");
     revalidateTag("activities");
     revalidateTag("parameterFolder");
