@@ -17,7 +17,7 @@ import { updateAreaFolderById } from "../dal/area-folder";
 import { grantAccreditedStatus } from "./accreditation";
 import { createActivity } from "../dal/audit";
 import { verifySession } from "./session";
-import { formatAccreditationName } from "../utils";
+import { formatAccreditationName, screamingSnakeToTitle } from "../utils";
 
 export async function markAsComplete(surveyVisitId: string) {
   try {
@@ -385,6 +385,7 @@ export async function denyPhaseTwo(
   if (!surveyVisitId || !accreditationId || !level)
     return { failure: { error: "Invalid input" } };
   try {
+    const { user } = await verifySession();
     const surveyVisit = await updateSurveyVisitById({
       id: surveyVisitId,
       surveyResultStatus: SurveyResultStatus.NOT_GRANTED,
@@ -392,6 +393,20 @@ export async function denyPhaseTwo(
       actualSurveyStatus: SurveyStatus.COMPLETE,
       actualSurveyEndedAt: new Date(),
     });
+    let status =
+      level?.label === "PRELIMINARY_SURVEY_VISIT" ? "CANDIDATE" : level?.label;
+    status = screamingSnakeToTitle(status!)
+      ?.split(" ")
+      .map((word, i) => (i === 1 ? word.toUpperCase() : word))
+      .join(" ");
+    await createActivity({
+      actorId: user.id,
+      action: AuditAction.SURVEY_END,
+      entity: AuditEntity.ACTUAL_SURVEY,
+      portfolioId: surveyVisitId,
+      description: `Denied ${status} status`,
+    });
+    revalidateTag("activities");
     revalidateTag("accreditations");
     revalidateTag("parameterFolder");
     revalidateTag("areaFolder");

@@ -1,10 +1,13 @@
 import AccreditationSettings from "@/components/admin/accreditation/accreditation-settings";
+import { columns } from "@/components/admin/accreditation/activity-columns";
+import { DataTable } from "@/components/admin/accreditation/activity-data-table";
 import Banner from "@/components/admin/accreditation/banner";
 import SurveyVisitStatus from "@/components/admin/accreditation/survey-visit-status";
 import TargetLevel from "@/components/admin/accreditation/target-level";
 import MarkAsCompleteButton from "@/components/admin/parameter/mark-as-complete";
 import {
   Card,
+  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -12,10 +15,11 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { verifySession } from "@/lib/action/session";
+import { getActivitiesBySurveyVisitId } from "@/lib/dal/audit";
 import { getInstrumentStructureById } from "@/lib/dal/instrument";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { Progress, SurveyTeamType } from "@/lib/generated/prisma";
+import { AuditEntity, Progress, SurveyTeamType } from "@/lib/generated/prisma";
 import {
   calculateGrandMean,
   formatAccreditationName,
@@ -80,6 +84,10 @@ const PhaseTwoPortfolio = async ({
       ?.flatMap((area) => area.areaFiles)
       .every((file) => file.status === "SUBMITTED") &&
     surveyVisitStructure?.status !== "COMPLETE";
+  const activities = await getActivitiesBySurveyVisitId(
+    id,
+    AuditEntity.PORTFOLIO
+  );
   return (
     <ScrollArea className="h-full">
       <Banner surveyVisitId={id} />
@@ -136,6 +144,11 @@ const PhaseTwoPortfolio = async ({
           <TargetLevel level={level!} />
           <SurveyVisitStatus surveyStatus={surveyStatus} />
         </div>
+        <Card className="bg-background">
+          <CardContent>
+            <DataTable columns={columns} data={activities} />
+          </CardContent>
+        </Card>
       </div>
     </ScrollArea>
   );

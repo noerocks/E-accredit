@@ -1,3 +1,5 @@
+import { columns } from "@/components/admin/accreditation/activity-columns";
+import { DataTable } from "@/components/admin/accreditation/activity-data-table";
 import Banner from "@/components/admin/accreditation/banner";
 import DenyStatusButton from "@/components/admin/actual-survey/deny-button";
 import RecommendationsForm from "@/components/admin/area/recommendations-form";
@@ -15,8 +17,9 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { verifySession } from "@/lib/action/session";
+import { getActivitiesBySurveyVisitId } from "@/lib/dal/audit";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
-import { Progress } from "@/lib/generated/prisma";
+import { AuditEntity, Progress } from "@/lib/generated/prisma";
 import { formatAccreditationName, screamingSnakeToTitle } from "@/lib/utils";
 import clsx from "clsx";
 import {
@@ -80,6 +83,10 @@ const PhaseTwoSurvey = async ({
   const surveyVisitEnded =
     surveyVisitStructure?.actualSurveyStatus === "COMPLETE";
   const surveyResultStatus = surveyVisitStructure?.surveyResultStatus;
+  const activities = await getActivitiesBySurveyVisitId(
+    id,
+    AuditEntity.ACTUAL_SURVEY
+  );
   return (
     <ScrollArea className="h-full">
       <div className="max-w-4/5 mx-auto my-10 flex flex-col gap-5">
@@ -158,6 +165,7 @@ const PhaseTwoSurvey = async ({
               )}
               Remarks
             </TabsTrigger>
+            <TabsTrigger value="activity">Activity Log</TabsTrigger>
           </TabsList>
           <TabsContent value="grant" className="flex flex-col gap-2">
             <Card className="bg-background">
@@ -257,6 +265,13 @@ These criteria are as follows:`}
                   defaultContent={remarks?.content}
                   surveyStatus={surveyVisitStructure?.actualSurveyStatus}
                 />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="activity">
+            <Card className="bg-background">
+              <CardContent>
+                <DataTable columns={columns} data={activities} />
               </CardContent>
             </Card>
           </TabsContent>

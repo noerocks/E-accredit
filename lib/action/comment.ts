@@ -12,6 +12,8 @@ import {
 import { revalidateTag } from "next/cache";
 import { getAreaFolderById } from "../dal/area-folder";
 import { createActivity } from "../dal/audit";
+import { formatAccreditationName } from "../utils";
+import { getSurveyVisitStructureById } from "../dal/survey-visit";
 
 export async function createNewComment({
   authorId,
@@ -252,6 +254,9 @@ export async function createNewComment({
     }
     if (surveyVisitId) {
       const remarks = await getRemarksBySurveyVisitId(surveyVisitId);
+      const surveyVisitStructure = await getSurveyVisitStructureById(
+        surveyVisitId
+      );
       if (!remarks) {
         const newRemarks = await createNewCommentDAL({
           authorId,
@@ -259,6 +264,17 @@ export async function createNewComment({
           type,
           surveyVisitId,
         });
+        await createActivity({
+          actorId: authorId,
+          action: AuditAction.COMMENT,
+          entity: AuditEntity.ACTUAL_SURVEY,
+          portfolioId: surveyVisitId,
+          description: `Submitted remarks for ${formatAccreditationName(
+            surveyVisitStructure?.accreditation.program.code!,
+            surveyVisitStructure?.level!
+          )}`,
+        });
+        revalidateTag("activities");
         revalidateTag("comments");
         revalidateTag("evidenceFiles");
         revalidateTag("areaFolder");
@@ -270,6 +286,17 @@ export async function createNewComment({
         id: remarks?.id,
         content,
       });
+      await createActivity({
+        actorId: authorId,
+        action: AuditAction.COMMENT,
+        entity: AuditEntity.ACTUAL_SURVEY,
+        portfolioId: surveyVisitId,
+        description: `Updated remarks for ${formatAccreditationName(
+          surveyVisitStructure?.accreditation.program.code!,
+          surveyVisitStructure?.level!
+        )}`,
+      });
+      revalidateTag("activities");
       revalidateTag("comments");
       revalidateTag("evidenceFiles");
       revalidateTag("areaFolder");

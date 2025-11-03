@@ -48,6 +48,14 @@ export const columns: ColumnDef<ActivityDTO>[] = [
   {
     accessorKey: "description",
     header: "Description",
+    cell: ({ row }) => {
+      const activity = row.original;
+      return (
+        <div className="max-w-[380px] truncate" title={activity.description}>
+          {activity.description}
+        </div>
+      );
+    },
   },
   {
     accessorKey: "createdAt",
