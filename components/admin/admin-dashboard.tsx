@@ -1,5 +1,5 @@
 import { getProgramCount } from "@/lib/dal/program";
-import { getUserCount } from "@/lib/dal/user";
+import { getUserById, getUserCount } from "@/lib/dal/user";
 import { ScrollArea } from "../ui/scroll-area";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { getActiveAccreditationsCount } from "@/lib/dal/accreditation";
@@ -7,8 +7,12 @@ import {
   getOpenForActualSurveyCount,
   getOpenForSelfSurveyCount,
 } from "@/lib/dal/survey-visit";
-import { Award, icons, Landmark, SearchCheck, Users } from "lucide-react";
-import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import { Award, Landmark, SearchCheck, Users } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { getLoginActivities } from "@/lib/dal/audit";
+import { DataTable } from "./accreditation/activity-data-table";
+import { columns } from "./accreditation/activity-columns";
+import { verifySession } from "@/lib/action/session";
 
 const AdminDashboard = async () => {
   const userCount = await getUserCount();
@@ -16,6 +20,10 @@ const AdminDashboard = async () => {
   const activeAccreditionsCount = await getActiveAccreditationsCount();
   const openForSelfSurveyCount = await getOpenForSelfSurveyCount();
   const openForActualSurveyCount = await getOpenForActualSurveyCount();
+  const logInActivities = await getLoginActivities();
+  const { user } = await verifySession();
+  const admin = await getUserById(user.id);
+  console.log(admin);
   const sectionCards = [
     {
       count: userCount,
@@ -50,7 +58,7 @@ const AdminDashboard = async () => {
           {sectionCards.map((card) => (
             <Card className="flex-1" key={card.label}>
               <CardHeader>
-                <CardTitle className="text-lg text-muted-foreground">
+                <CardTitle className="text-sm text-muted-foreground">
                   {card.label}
                 </CardTitle>
               </CardHeader>
@@ -63,10 +71,17 @@ const AdminDashboard = async () => {
             </Card>
           ))}
         </div>
-        <Tabs>
+        <Tabs defaultValue="activity" className="flex-3">
           <TabsList className="bg-background border">
-            <TabsTrigger value="activity">Activity</TabsTrigger>
+            <TabsTrigger value="activity">User Session Log</TabsTrigger>
           </TabsList>
+          <TabsContent value="activity">
+            <Card className="bg-background">
+              <CardContent>
+                <DataTable columns={columns} data={logInActivities} />
+              </CardContent>
+            </Card>
+          </TabsContent>
         </Tabs>
       </div>
     </ScrollArea>

@@ -20,7 +20,7 @@ import { Input } from "@/components/ui/input";
 import { deleteUser } from "@/lib/action/user";
 import { UsersDTO } from "@/lib/dto/user";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TriangleAlert } from "lucide-react";
+import { Loader, TriangleAlert } from "lucide-react";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -94,7 +94,16 @@ const DeleteUserDialog = ({
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
             </DialogClose>
-            <Button variant="destructive">Delete</Button>
+            <Button variant="destructive" disabled={pending}>
+              {pending ? (
+                <>
+                  <Loader className="animate-spin" />
+                  Deleting...
+                </>
+              ) : (
+                "Delete"
+              )}
+            </Button>
           </DialogFooter>
         </form>
       </Form>

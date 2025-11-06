@@ -114,7 +114,7 @@ const AcceptUserDialog = ({
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
             </DialogClose>
-            <Button>
+            <Button disabled={pending}>
               {pending ? <Spinner message="Approving..." /> : "Confirm"}
             </Button>
           </DialogFooter>

@@ -14,6 +14,9 @@ import { CreateNewUserFormSchema } from "../zod-definitions";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
 import { deleteUser as deleteUserDAL } from "../dal/user";
+import { sendEmail } from "./email";
+import { AcceptUserEmail } from "@/components/admin/user/accept-user-email";
+import { screamingSnakeToTitle } from "../utils";
 
 export async function rejectUser(
   userID: string | undefined,
@@ -49,8 +52,16 @@ export async function rejectUser(
 export async function acceptUser(id: string | undefined, role: Role) {
   if (!id || !role) return { status: "error", message: "Invalid form data" };
   try {
-    console.log(id, role);
     const user = await updateRole(id, role);
+    if (!user) return { failure: { error: "Can't update user role" } };
+    await sendEmail({
+      to: user.email,
+      subject: "Account Approval",
+      react: AcceptUserEmail({
+        name: `${user.firstName} ${user.lastName}`,
+        role: screamingSnakeToTitle(role),
+      }),
+    });
     revalidateTag("users");
     revalidateTag("userCount");
     return {

@@ -90,7 +90,13 @@ export const getUserProfile = cache(
 export const getUsers = unstable_cache(
   async (): Promise<UsersDTO[] | []> => {
     try {
-      const users = await prisma.user.findMany();
+      const users = await prisma.user.findMany({
+        where: {
+          NOT: {
+            role: "PENDING",
+          },
+        },
+      });
       return users.map((user) => ({
         id: user.id,
         firstName: user.firstName,
@@ -155,8 +161,6 @@ export const getPendingUsers = unstable_cache(
 
 export async function rejectUser(id: string) {
   const session = await verifySession();
-  if (!session) return null;
-  if (session.user.role !== "ADMIN") return { unauthorized: true };
   const user = await prisma.user.delete({
     where: {
       id,
@@ -167,8 +171,6 @@ export async function rejectUser(id: string) {
 
 export async function updateRole(id: string, role: Role) {
   const session = await verifySession();
-  if (!session) return null;
-  if (session.user.role !== "ADMIN") return { unauthorized: true };
   const user = await prisma.user.update({
     where: {
       id: id,
@@ -224,5 +226,20 @@ export const getUserCount = unstable_cache(
   ["getUserCount"],
   {
     tags: ["userCount"],
+  }
+);
+
+export const getUserById = unstable_cache(
+  async (id: string) => {
+    const user = await prisma.user.findUnique({
+      where: {
+        id,
+      },
+    });
+    return user;
+  },
+  ["getUserById"],
+  {
+    tags: ["users"],
   }
 );

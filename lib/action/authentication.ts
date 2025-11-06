@@ -45,10 +45,9 @@ export async function login({
     actorId: user.id,
     action: AuditAction.LOGIN,
     entity: AuditEntity.SYSTEM,
-    description: `${screamingSnakeToTitle(user.role)} ${
-      user.email
-    } logged in to the Accreditation System`,
+    description: `Logged in to the Accreditation System`,
   });
+  revalidateTag("activities");
   redirect(accessControl[user.role][0]);
 }
 
@@ -124,10 +123,9 @@ export async function logout() {
     actorId: user.id,
     action: AuditAction.LOGOUT,
     entity: AuditEntity.SYSTEM,
-    description: `${screamingSnakeToTitle(user.role)} ${
-      user.email
-    } logged out from the Accreditation System`,
+    description: `Logged out from the Accreditation System`,
   });
+  revalidateTag("activities");
   await deleteSession();
   redirect("/login");
 }

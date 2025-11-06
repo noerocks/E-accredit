@@ -39,3 +39,24 @@ export const getActivitiesBySurveyVisitId = unstable_cache(
     tags: ["activities"],
   }
 );
+
+export const getLoginActivities = unstable_cache(
+  async () => {
+    const activities = await prisma.auditTrail.findMany({
+      where: {
+        entity: AuditEntity.SYSTEM,
+      },
+      include: {
+        actor: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    return activities;
+  },
+  ["getLoginActivities"],
+  {
+    tags: ["activities"],
+  }
+);
