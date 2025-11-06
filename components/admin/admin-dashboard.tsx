@@ -29,26 +29,31 @@ const AdminDashboard = async () => {
       count: userCount,
       label: "Active Users",
       icon: <Users />,
-      color: "text-blue-500",
+      style: "text-blue-500 p-3 bg-blue-500/20 rounded-md",
     },
-    { count: programCount, label: "Programs", icon: <Landmark /> },
+    {
+      count: programCount,
+      label: "Programs",
+      icon: <Landmark />,
+      style: "text-red-500 p-3 bg-red-500/20 rounded-md",
+    },
     {
       count: activeAccreditionsCount,
       label: "Active Accreditations",
       icon: <Award />,
-      color: "text-yellow-500",
+      style: "text-yellow-500 p-3 bg-yellow-500/20 rounded-md",
     },
     {
       count: openForSelfSurveyCount,
       label: "Open Self Survey",
       icon: <SearchCheck />,
-      color: "text-green-400",
+      style: "text-green-400 p-3 bg-green-400/20 rounded-md",
     },
     {
       count: openForActualSurveyCount,
       label: "Open Actual Survey",
       icon: <SearchCheck />,
-      color: "text-green-500",
+      style: "text-green-500 p-3 bg-green-500/20 rounded-md",
     },
   ];
   return (
@@ -64,8 +69,8 @@ const AdminDashboard = async () => {
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-between">
-                  <p className={card.color}>{card.icon}</p>
-                  <p className="text-3xl">{card.count}</p>
+                  <p className={card.style}>{card.icon}</p>
+                  <p className="text-2xl">{card.count}</p>
                 </div>
               </CardContent>
             </Card>

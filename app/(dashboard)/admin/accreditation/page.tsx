@@ -22,7 +22,7 @@ const Accreditation = async () => {
   );
   return (
     <ScrollArea className="h-full">
-      <div className="max-w-3/4 mx-auto mt-10">
+      <div className="max-w-3/4 mx-auto my-10">
         <div className="flex justify-between items-center mb-10">
           <p className="text-3xl flex items-center gap-2">
             <FileArchive />

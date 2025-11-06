@@ -1,3 +1,4 @@
+import EmptySurvey from "@/components/admin/self-survey/empty-survey";
 import SelfSurveyCards from "@/components/admin/self-survey/self-survey-cards";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -20,11 +21,14 @@ const SelfSurveysPage = async () => {
         survey.selfSurveyStatus === "COMPLETE" &&
         survey.level.phase !== "PHASE_2"
     ) ?? []
-  ).reduce((groups, survey) => {
-    const program = survey.accreditation.program;
-    (groups[program.code] = groups[program.code] ?? []).push(survey);
-    return groups;
-  }, {} as Record<string, SurveyVisitDisplayDTO[]>);
+  ).reduce(
+    (groups, survey) => {
+      const program = survey.accreditation.program;
+      (groups[program.code] = groups[program.code] ?? []).push(survey);
+      return groups;
+    },
+    {} as Record<string, SurveyVisitDisplayDTO[]>
+  );
   const programCodes = Object.keys(doneSurveyVisits);
   return (
     <ScrollArea className="h-full">
@@ -41,14 +45,18 @@ const SelfSurveysPage = async () => {
             <TabsTrigger value="history">Survey History</TabsTrigger>
           </TabsList>
           <TabsContent value="open">
-            <SelfSurveyCards
-              surveyVisits={openSurveyVisits.sort(
-                (a, b) =>
-                  new Date(b.createdAt).getTime() -
-                  new Date(a.createdAt).getTime()
-              )}
-              surveyType={SurveyTeamType.INTERNAL}
-            />
+            {openSurveyVisits.length === 0 ? (
+              <EmptySurvey surveyType="self survey" />
+            ) : (
+              <SelfSurveyCards
+                surveyVisits={openSurveyVisits.sort(
+                  (a, b) =>
+                    new Date(b.createdAt).getTime() -
+                    new Date(a.createdAt).getTime()
+                )}
+                surveyType={SurveyTeamType.INTERNAL}
+              />
+            )}
           </TabsContent>
           <TabsContent value="history">
             {programCodes && (

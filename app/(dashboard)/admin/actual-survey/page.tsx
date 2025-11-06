@@ -5,6 +5,7 @@ import { SurveyTeamType } from "@/lib/generated/prisma";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SearchCheck } from "lucide-react";
 import { SurveyVisitDisplayDTO } from "@/lib/dto/survey-visit";
+import EmptySurvey from "@/components/admin/self-survey/empty-survey";
 
 const ActualSurveysPage = async () => {
   const surveyVisits = await getAllSurveyVisit();
@@ -23,11 +24,14 @@ const ActualSurveysPage = async () => {
           survey.surveyResultStatus === "NOT_GRANTED" ||
           survey.surveyResultStatus === "DEFERRED")
     ) ?? []
-  ).reduce((group, survey) => {
-    const program = survey.accreditation.program;
-    (group[program.code] = group[program.code] ?? []).push(survey);
-    return group;
-  }, {} as Record<string, SurveyVisitDisplayDTO[]>);
+  ).reduce(
+    (group, survey) => {
+      const program = survey.accreditation.program;
+      (group[program.code] = group[program.code] ?? []).push(survey);
+      return group;
+    },
+    {} as Record<string, SurveyVisitDisplayDTO[]>
+  );
   const programCodes = Object.keys(doneSurveyVisits);
 
   return (
@@ -45,14 +49,18 @@ const ActualSurveysPage = async () => {
             <TabsTrigger value="history">Survey History</TabsTrigger>
           </TabsList>
           <TabsContent value="open">
-            <SelfSurveyCards
-              surveyVisits={openSurveyVisits.sort(
-                (a, b) =>
-                  new Date(b.createdAt).getTime() -
-                  new Date(a.createdAt).getTime()
-              )}
-              surveyType={SurveyTeamType.EXTERNAL}
-            />
+            {openSurveyVisits.length === 0 ? (
+              <EmptySurvey surveyType="actual survey" />
+            ) : (
+              <SelfSurveyCards
+                surveyVisits={openSurveyVisits.sort(
+                  (a, b) =>
+                    new Date(b.createdAt).getTime() -
+                    new Date(a.createdAt).getTime()
+                )}
+                surveyType={SurveyTeamType.EXTERNAL}
+              />
+            )}
           </TabsContent>
           <TabsContent value="history">
             {programCodes && (
