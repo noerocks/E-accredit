@@ -60,14 +60,16 @@ const DashboardSidebar = async () => {
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href={"/admin/users"}>
-                  <Users className="text-muted-foreground" />
-                  <span className="whitespace-nowrap">Users</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+            {user?.role === "ADMIN" && (
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link href={"/admin/users"}>
+                    <Users className="text-muted-foreground" />
+                    <span className="whitespace-nowrap">Users</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            )}
           </SidebarMenu>
         </SidebarGroup>
         <SidebarGroup>

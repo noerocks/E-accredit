@@ -79,6 +79,7 @@ export const getUserProfile = cache(
         email: user.email,
         fullName: `${user.firstName} ${user.lastName}`,
         photoURL: user?.photoURL,
+        role: user.role,
       };
     } catch (error) {
       console.log("Failed to fetch user");

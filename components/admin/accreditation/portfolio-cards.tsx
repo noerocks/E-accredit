@@ -12,8 +12,9 @@ import { Program } from "@/lib/generated/prisma";
 import { formatAccreditationName } from "@/lib/utils";
 import clsx from "clsx";
 import {
+  Calendar,
   CheckCircle,
-  CheckCircle2,
+  CircleDot,
   CircleSlash,
   FolderOpen,
   Loader,
@@ -42,16 +43,24 @@ const PortfolioCards = ({
           <Card
             key={visit.id}
             className={clsx("basis-[calc(33.33%-1rem)]", {
-              "border-green-500 bg-green-500/5":
+              "border-blue-500 bg-blue-500/5":
                 visit.openForActualSurvey || visit.openForSelfSurvey,
             })}
           >
             <CardHeader>
               <CardTitle className="text-xl flex flex-col gap-2">
-                {visit.openForActualSurvey ||
-                  (visit.openForSelfSurvey && (
-                    <ScanEye size={20} className="self-end text-green-500" />
-                  ))}
+                {visit.openForActualSurvey && (
+                  <p className="flex items-center gap-2 justify-end text-xs text-blue-500">
+                    Actual Survey Ongoing
+                    <ScanEye size={20} />
+                  </p>
+                )}
+                {visit.openForSelfSurvey && (
+                  <p className="flex items-center gap-2 justify-end text-xs text-blue-500">
+                    Self Survey Ongoing
+                    <ScanEye size={20} />
+                  </p>
+                )}
                 {formatAccreditationName(program.code, visit.level)}
               </CardTitle>
               <CardDescription>{program.name}</CardDescription>
@@ -60,7 +69,10 @@ const PortfolioCards = ({
               <div className="flex flex-col gap-1 mb-2">
                 <p>Self Survey</p>
                 <div className="flex justify-between items-center">
-                  <p className="text-sm text-muted-foreground">Status</p>
+                  <p className="text-sm text-muted-foreground flex items-center gap-1">
+                    <CircleDot size={15} />
+                    Status
+                  </p>
                   <p
                     className={clsx(
                       "flex items-center gap-1 text-sm px-2 py-1 border rounded-full",
@@ -84,7 +96,10 @@ const PortfolioCards = ({
                   </p>
                 </div>
                 <div className="flex justify-between items-center">
-                  <p className="text-sm text-muted-foreground">Start Date</p>
+                  <p className="text-sm text-muted-foreground flex items-center gap-1">
+                    <Calendar size={15} />
+                    Start Date
+                  </p>
                   <p className="text-sm">
                     {new Date(visit.selfSurveyStartedAt!).toLocaleDateString(
                       "en-US",
@@ -97,7 +112,10 @@ const PortfolioCards = ({
                   </p>
                 </div>
                 <div className="flex justify-between items-center">
-                  <p className="text-sm text-muted-foreground">End Date</p>
+                  <p className="text-sm text-muted-foreground flex items-center gap-1">
+                    <Calendar size={15} />
+                    End Date
+                  </p>
                   <p className="text-sm">
                     {new Date(visit.selfSurveyEndedAt!).toLocaleDateString(
                       "en-US",
@@ -114,7 +132,10 @@ const PortfolioCards = ({
               <div className="flex flex-col gap-1">
                 <p>Actual Survey</p>
                 <div className="flex justify-between items-center">
-                  <p className="text-sm text-muted-foreground">Status</p>
+                  <p className="text-sm text-muted-foreground flex items-center gap-1">
+                    <CircleDot size={15} />
+                    Status
+                  </p>
                   <p
                     className={clsx(
                       "flex items-center gap-1 text-sm px-2 py-1 border rounded-full",
@@ -152,7 +173,10 @@ const PortfolioCards = ({
                   </p>
                 </div>
                 <div className="flex justify-between items-center">
-                  <p className="text-sm text-muted-foreground">Start Date</p>
+                  <p className="text-sm text-muted-foreground flex items-center gap-1">
+                    <Calendar size={15} />
+                    Start Date
+                  </p>
                   <p className="text-sm">
                     {visit.actualSurveyStartedAt
                       ? new Date(
@@ -166,7 +190,10 @@ const PortfolioCards = ({
                   </p>
                 </div>
                 <div className="flex justify-between items-center">
-                  <p className="text-sm text-muted-foreground">End Date</p>
+                  <p className="text-sm text-muted-foreground flex items-center gap-1">
+                    <Calendar size={15} />
+                    End Date
+                  </p>
                   <p className="text-sm">
                     {visit.actualSurveyEndedAt
                       ? new Date(visit.actualSurveyEndedAt!).toLocaleDateString(

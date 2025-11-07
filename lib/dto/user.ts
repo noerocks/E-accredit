@@ -4,6 +4,7 @@ export type UserProfileDTO = {
   email: string;
   fullName: string;
   photoURL: string | null;
+  role: Role;
 };
 
 export type UsersDTO = {

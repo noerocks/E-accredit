@@ -34,13 +34,13 @@ const InstrumentSidebar = ({
   const router = useRouter();
   const onDoubleClick = (e: React.MouseEvent<HTMLUListElement>) => {
     const target = e.target as HTMLElement;
-    const button = target.closest<HTMLButtonElement>("[data-id]");
+    const button = target.closest<HTMLButtonElement>("[data-type]");
     if (!button || target.tagName !== "BUTTON") return null;
     const { id, type } = button.dataset;
     router.replace(
-      `/admin/instruments/${String(
-        params.id
-      )}/${type}/${id}?${searchParams.toString()}`
+      `/admin/instruments/${String(params.id)}/${type}${
+        id ? `/${id}` : ""
+      }?${searchParams.toString()}`
     );
   };
   return (
@@ -79,10 +79,22 @@ const InstrumentSidebar = ({
       <SidebarContent>
         <ScrollArea className="h-full">
           <SidebarGroup>
+            <SidebarGroupLabel>Documents</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu onDoubleClick={onDoubleClick}>
+                <SidebarMenuItem>
+                  <SidebarMenuButton data-type={"pdf"}>
+                    📄 PDF File
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+          <SidebarGroup>
             <SidebarGroupLabel>Areas</SidebarGroupLabel>
             <CreateAreaDialog />
             <SidebarGroupContent>
-              <SidebarMenu onDoubleClick={onDoubleClick}>
+              <SidebarMenu>
                 {instrument?.area
                   .sort((a, b) => a.label.localeCompare(b.label))
                   .map((item, index) => (

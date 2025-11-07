@@ -9,9 +9,7 @@ const CertificatePage = async ({
   params: Promise<{ id: string }>;
 }) => {
   const { id } = await params;
-  console.log(id);
   const surveyVisitStructure = await getSurveyVisitStructureById(id);
-  console.log(surveyVisitStructure);
   const level = surveyVisitStructure?.level;
   let surveyVisitId = surveyVisitStructure?.id;
   if (level?.rank === 4 || level?.rank === 2) {

@@ -48,8 +48,9 @@ const SelfSurveyCards = ({
                   .split(" ")
                   .join("+")}`}
               >
-                <Button size="icon" variant="outline">
+                <Button variant="outline">
                   <FolderOpen />
+                  Open
                 </Button>
               </Link>
             </CardContent>
