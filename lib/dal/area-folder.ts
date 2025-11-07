@@ -36,6 +36,41 @@ export const getPhaseTwoAreaFolderById = unstable_cache(
       },
       include: {
         area: true,
+        taskForce: {
+          include: {
+            chairPerson: {
+              include: {
+                user: true,
+              },
+            },
+            taskForceMember: {
+              include: {
+                programPersonnel: {
+                  include: {
+                    user: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        phaseTwoFolder: {
+          include: {
+            phaseTwoRequirements: {
+              include: {
+                surveyVisit: {
+                  include: {
+                    accreditation: {
+                      include: {
+                        program: true,
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
         areaFiles: {
           include: {
             fileVersions: {

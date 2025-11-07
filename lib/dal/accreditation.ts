@@ -40,6 +40,28 @@ export const getAccreditations = unstable_cache(
         surveyVisits: {
           include: {
             level: true,
+            phaseOneRequirements: {
+              include: {
+                instrumentFolder: {
+                  include: {
+                    areaFolders: {
+                      include: {
+                        taskForce: {
+                          include: {
+                            chairPerson: true,
+                            taskForceMember: {
+                              include: {
+                                programPersonnel: true,
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
           },
         },
       },

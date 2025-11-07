@@ -30056,6 +30056,7 @@ export namespace Prisma {
     phaseTwoFolderId?: boolean
     areaId?: boolean
     phaseTwoFolder?: boolean | PhaseTwoFolderDefaultArgs<ExtArgs>
+    taskForce?: boolean | PhaseTwoAreaFolder$taskForceArgs<ExtArgs>
     area?: boolean | AreaDefaultArgs<ExtArgs>
     areaFiles?: boolean | PhaseTwoAreaFolder$areaFilesArgs<ExtArgs>
     _count?: boolean | PhaseTwoAreaFolderCountOutputTypeDefaultArgs<ExtArgs>
@@ -30086,6 +30087,7 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phaseTwoFolderId" | "areaId", ExtArgs["result"]["phaseTwoAreaFolder"]>
   export type PhaseTwoAreaFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     phaseTwoFolder?: boolean | PhaseTwoFolderDefaultArgs<ExtArgs>
+    taskForce?: boolean | PhaseTwoAreaFolder$taskForceArgs<ExtArgs>
     area?: boolean | AreaDefaultArgs<ExtArgs>
     areaFiles?: boolean | PhaseTwoAreaFolder$areaFilesArgs<ExtArgs>
     _count?: boolean | PhaseTwoAreaFolderCountOutputTypeDefaultArgs<ExtArgs>
@@ -30103,6 +30105,7 @@ export namespace Prisma {
     name: "PhaseTwoAreaFolder"
     objects: {
       phaseTwoFolder: Prisma.$PhaseTwoFolderPayload<ExtArgs>
+      taskForce: Prisma.$TaskForcePayload<ExtArgs> | null
       area: Prisma.$AreaPayload<ExtArgs>
       areaFiles: Prisma.$AreaFilePayload<ExtArgs>[]
     }
@@ -30505,6 +30508,7 @@ export namespace Prisma {
   export interface Prisma__PhaseTwoAreaFolderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     phaseTwoFolder<T extends PhaseTwoFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PhaseTwoFolderDefaultArgs<ExtArgs>>): Prisma__PhaseTwoFolderClient<$Result.GetResult<Prisma.$PhaseTwoFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    taskForce<T extends PhaseTwoAreaFolder$taskForceArgs<ExtArgs> = {}>(args?: Subset<T, PhaseTwoAreaFolder$taskForceArgs<ExtArgs>>): Prisma__TaskForceClient<$Result.GetResult<Prisma.$TaskForcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     area<T extends AreaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AreaDefaultArgs<ExtArgs>>): Prisma__AreaClient<$Result.GetResult<Prisma.$AreaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     areaFiles<T extends PhaseTwoAreaFolder$areaFilesArgs<ExtArgs> = {}>(args?: Subset<T, PhaseTwoAreaFolder$areaFilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AreaFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -30932,6 +30936,25 @@ export namespace Prisma {
      * Limit how many PhaseTwoAreaFolders to delete.
      */
     limit?: number
+  }
+
+  /**
+   * PhaseTwoAreaFolder.taskForce
+   */
+  export type PhaseTwoAreaFolder$taskForceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskForce
+     */
+    select?: TaskForceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskForce
+     */
+    omit?: TaskForceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskForceInclude<ExtArgs> | null
+    where?: TaskForceWhereInput
   }
 
   /**
@@ -32178,18 +32201,21 @@ export namespace Prisma {
   export type TaskForceMinAggregateOutputType = {
     id: string | null
     areaFolderId: string | null
+    phaseTwoAreaFolderId: string | null
     chairPersonId: string | null
   }
 
   export type TaskForceMaxAggregateOutputType = {
     id: string | null
     areaFolderId: string | null
+    phaseTwoAreaFolderId: string | null
     chairPersonId: string | null
   }
 
   export type TaskForceCountAggregateOutputType = {
     id: number
     areaFolderId: number
+    phaseTwoAreaFolderId: number
     chairPersonId: number
     _all: number
   }
@@ -32198,18 +32224,21 @@ export namespace Prisma {
   export type TaskForceMinAggregateInputType = {
     id?: true
     areaFolderId?: true
+    phaseTwoAreaFolderId?: true
     chairPersonId?: true
   }
 
   export type TaskForceMaxAggregateInputType = {
     id?: true
     areaFolderId?: true
+    phaseTwoAreaFolderId?: true
     chairPersonId?: true
   }
 
   export type TaskForceCountAggregateInputType = {
     id?: true
     areaFolderId?: true
+    phaseTwoAreaFolderId?: true
     chairPersonId?: true
     _all?: true
   }
@@ -32288,7 +32317,8 @@ export namespace Prisma {
 
   export type TaskForceGroupByOutputType = {
     id: string
-    areaFolderId: string
+    areaFolderId: string | null
+    phaseTwoAreaFolderId: string | null
     chairPersonId: string | null
     _count: TaskForceCountAggregateOutputType | null
     _min: TaskForceMinAggregateOutputType | null
@@ -32312,8 +32342,10 @@ export namespace Prisma {
   export type TaskForceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     areaFolderId?: boolean
+    phaseTwoAreaFolderId?: boolean
     chairPersonId?: boolean
-    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    areaFolder?: boolean | TaskForce$areaFolderArgs<ExtArgs>
+    phaseTwoAreaFolder?: boolean | TaskForce$phaseTwoAreaFolderArgs<ExtArgs>
     chairPerson?: boolean | TaskForce$chairPersonArgs<ExtArgs>
     taskForceMember?: boolean | TaskForce$taskForceMemberArgs<ExtArgs>
     _count?: boolean | TaskForceCountOutputTypeDefaultArgs<ExtArgs>
@@ -32322,51 +32354,61 @@ export namespace Prisma {
   export type TaskForceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     areaFolderId?: boolean
+    phaseTwoAreaFolderId?: boolean
     chairPersonId?: boolean
-    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    areaFolder?: boolean | TaskForce$areaFolderArgs<ExtArgs>
+    phaseTwoAreaFolder?: boolean | TaskForce$phaseTwoAreaFolderArgs<ExtArgs>
     chairPerson?: boolean | TaskForce$chairPersonArgs<ExtArgs>
   }, ExtArgs["result"]["taskForce"]>
 
   export type TaskForceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     areaFolderId?: boolean
+    phaseTwoAreaFolderId?: boolean
     chairPersonId?: boolean
-    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    areaFolder?: boolean | TaskForce$areaFolderArgs<ExtArgs>
+    phaseTwoAreaFolder?: boolean | TaskForce$phaseTwoAreaFolderArgs<ExtArgs>
     chairPerson?: boolean | TaskForce$chairPersonArgs<ExtArgs>
   }, ExtArgs["result"]["taskForce"]>
 
   export type TaskForceSelectScalar = {
     id?: boolean
     areaFolderId?: boolean
+    phaseTwoAreaFolderId?: boolean
     chairPersonId?: boolean
   }
 
-  export type TaskForceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "areaFolderId" | "chairPersonId", ExtArgs["result"]["taskForce"]>
+  export type TaskForceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "areaFolderId" | "phaseTwoAreaFolderId" | "chairPersonId", ExtArgs["result"]["taskForce"]>
   export type TaskForceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    areaFolder?: boolean | TaskForce$areaFolderArgs<ExtArgs>
+    phaseTwoAreaFolder?: boolean | TaskForce$phaseTwoAreaFolderArgs<ExtArgs>
     chairPerson?: boolean | TaskForce$chairPersonArgs<ExtArgs>
     taskForceMember?: boolean | TaskForce$taskForceMemberArgs<ExtArgs>
     _count?: boolean | TaskForceCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TaskForceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    areaFolder?: boolean | TaskForce$areaFolderArgs<ExtArgs>
+    phaseTwoAreaFolder?: boolean | TaskForce$phaseTwoAreaFolderArgs<ExtArgs>
     chairPerson?: boolean | TaskForce$chairPersonArgs<ExtArgs>
   }
   export type TaskForceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    areaFolder?: boolean | AreaFolderDefaultArgs<ExtArgs>
+    areaFolder?: boolean | TaskForce$areaFolderArgs<ExtArgs>
+    phaseTwoAreaFolder?: boolean | TaskForce$phaseTwoAreaFolderArgs<ExtArgs>
     chairPerson?: boolean | TaskForce$chairPersonArgs<ExtArgs>
   }
 
   export type $TaskForcePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TaskForce"
     objects: {
-      areaFolder: Prisma.$AreaFolderPayload<ExtArgs>
+      areaFolder: Prisma.$AreaFolderPayload<ExtArgs> | null
+      phaseTwoAreaFolder: Prisma.$PhaseTwoAreaFolderPayload<ExtArgs> | null
       chairPerson: Prisma.$ProgramPersonnelPayload<ExtArgs> | null
       taskForceMember: Prisma.$TaskForceMemberPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      areaFolderId: string
+      areaFolderId: string | null
+      phaseTwoAreaFolderId: string | null
       chairPersonId: string | null
     }, ExtArgs["result"]["taskForce"]>
     composites: {}
@@ -32762,7 +32804,8 @@ export namespace Prisma {
    */
   export interface Prisma__TaskForceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    areaFolder<T extends AreaFolderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AreaFolderDefaultArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    areaFolder<T extends TaskForce$areaFolderArgs<ExtArgs> = {}>(args?: Subset<T, TaskForce$areaFolderArgs<ExtArgs>>): Prisma__AreaFolderClient<$Result.GetResult<Prisma.$AreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    phaseTwoAreaFolder<T extends TaskForce$phaseTwoAreaFolderArgs<ExtArgs> = {}>(args?: Subset<T, TaskForce$phaseTwoAreaFolderArgs<ExtArgs>>): Prisma__PhaseTwoAreaFolderClient<$Result.GetResult<Prisma.$PhaseTwoAreaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     chairPerson<T extends TaskForce$chairPersonArgs<ExtArgs> = {}>(args?: Subset<T, TaskForce$chairPersonArgs<ExtArgs>>): Prisma__ProgramPersonnelClient<$Result.GetResult<Prisma.$ProgramPersonnelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     taskForceMember<T extends TaskForce$taskForceMemberArgs<ExtArgs> = {}>(args?: Subset<T, TaskForce$taskForceMemberArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskForceMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -32796,6 +32839,7 @@ export namespace Prisma {
   interface TaskForceFieldRefs {
     readonly id: FieldRef<"TaskForce", 'String'>
     readonly areaFolderId: FieldRef<"TaskForce", 'String'>
+    readonly phaseTwoAreaFolderId: FieldRef<"TaskForce", 'String'>
     readonly chairPersonId: FieldRef<"TaskForce", 'String'>
   }
     
@@ -33015,7 +33059,7 @@ export namespace Prisma {
     /**
      * The data needed to create a TaskForce.
      */
-    data: XOR<TaskForceCreateInput, TaskForceUncheckedCreateInput>
+    data?: XOR<TaskForceCreateInput, TaskForceUncheckedCreateInput>
   }
 
   /**
@@ -33190,6 +33234,44 @@ export namespace Prisma {
      * Limit how many TaskForces to delete.
      */
     limit?: number
+  }
+
+  /**
+   * TaskForce.areaFolder
+   */
+  export type TaskForce$areaFolderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AreaFolder
+     */
+    select?: AreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AreaFolder
+     */
+    omit?: AreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AreaFolderInclude<ExtArgs> | null
+    where?: AreaFolderWhereInput
+  }
+
+  /**
+   * TaskForce.phaseTwoAreaFolder
+   */
+  export type TaskForce$phaseTwoAreaFolderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PhaseTwoAreaFolder
+     */
+    select?: PhaseTwoAreaFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PhaseTwoAreaFolder
+     */
+    omit?: PhaseTwoAreaFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PhaseTwoAreaFolderInclude<ExtArgs> | null
+    where?: PhaseTwoAreaFolderWhereInput
   }
 
   /**
@@ -37009,6 +37091,7 @@ export namespace Prisma {
   export const TaskForceScalarFieldEnum: {
     id: 'id',
     areaFolderId: 'areaFolderId',
+    phaseTwoAreaFolderId: 'phaseTwoAreaFolderId',
     chairPersonId: 'chairPersonId'
   };
 
@@ -38912,6 +38995,7 @@ export namespace Prisma {
     phaseTwoFolderId?: StringFilter<"PhaseTwoAreaFolder"> | string
     areaId?: IntFilter<"PhaseTwoAreaFolder"> | number
     phaseTwoFolder?: XOR<PhaseTwoFolderScalarRelationFilter, PhaseTwoFolderWhereInput>
+    taskForce?: XOR<TaskForceNullableScalarRelationFilter, TaskForceWhereInput> | null
     area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
     areaFiles?: AreaFileListRelationFilter
   }
@@ -38921,6 +39005,7 @@ export namespace Prisma {
     phaseTwoFolderId?: SortOrder
     areaId?: SortOrder
     phaseTwoFolder?: PhaseTwoFolderOrderByWithRelationInput
+    taskForce?: TaskForceOrderByWithRelationInput
     area?: AreaOrderByWithRelationInput
     areaFiles?: AreaFileOrderByRelationAggregateInput
   }
@@ -38933,6 +39018,7 @@ export namespace Prisma {
     phaseTwoFolderId?: StringFilter<"PhaseTwoAreaFolder"> | string
     areaId?: IntFilter<"PhaseTwoAreaFolder"> | number
     phaseTwoFolder?: XOR<PhaseTwoFolderScalarRelationFilter, PhaseTwoFolderWhereInput>
+    taskForce?: XOR<TaskForceNullableScalarRelationFilter, TaskForceWhereInput> | null
     area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
     areaFiles?: AreaFileListRelationFilter
   }, "id">
@@ -39036,18 +39122,22 @@ export namespace Prisma {
     OR?: TaskForceWhereInput[]
     NOT?: TaskForceWhereInput | TaskForceWhereInput[]
     id?: StringFilter<"TaskForce"> | string
-    areaFolderId?: StringFilter<"TaskForce"> | string
+    areaFolderId?: StringNullableFilter<"TaskForce"> | string | null
+    phaseTwoAreaFolderId?: StringNullableFilter<"TaskForce"> | string | null
     chairPersonId?: StringNullableFilter<"TaskForce"> | string | null
-    areaFolder?: XOR<AreaFolderScalarRelationFilter, AreaFolderWhereInput>
+    areaFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
+    phaseTwoAreaFolder?: XOR<PhaseTwoAreaFolderNullableScalarRelationFilter, PhaseTwoAreaFolderWhereInput> | null
     chairPerson?: XOR<ProgramPersonnelNullableScalarRelationFilter, ProgramPersonnelWhereInput> | null
     taskForceMember?: TaskForceMemberListRelationFilter
   }
 
   export type TaskForceOrderByWithRelationInput = {
     id?: SortOrder
-    areaFolderId?: SortOrder
+    areaFolderId?: SortOrderInput | SortOrder
+    phaseTwoAreaFolderId?: SortOrderInput | SortOrder
     chairPersonId?: SortOrderInput | SortOrder
     areaFolder?: AreaFolderOrderByWithRelationInput
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderOrderByWithRelationInput
     chairPerson?: ProgramPersonnelOrderByWithRelationInput
     taskForceMember?: TaskForceMemberOrderByRelationAggregateInput
   }
@@ -39055,18 +39145,21 @@ export namespace Prisma {
   export type TaskForceWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     areaFolderId?: string
+    phaseTwoAreaFolderId?: string
     AND?: TaskForceWhereInput | TaskForceWhereInput[]
     OR?: TaskForceWhereInput[]
     NOT?: TaskForceWhereInput | TaskForceWhereInput[]
     chairPersonId?: StringNullableFilter<"TaskForce"> | string | null
-    areaFolder?: XOR<AreaFolderScalarRelationFilter, AreaFolderWhereInput>
+    areaFolder?: XOR<AreaFolderNullableScalarRelationFilter, AreaFolderWhereInput> | null
+    phaseTwoAreaFolder?: XOR<PhaseTwoAreaFolderNullableScalarRelationFilter, PhaseTwoAreaFolderWhereInput> | null
     chairPerson?: XOR<ProgramPersonnelNullableScalarRelationFilter, ProgramPersonnelWhereInput> | null
     taskForceMember?: TaskForceMemberListRelationFilter
-  }, "id" | "areaFolderId">
+  }, "id" | "areaFolderId" | "phaseTwoAreaFolderId">
 
   export type TaskForceOrderByWithAggregationInput = {
     id?: SortOrder
-    areaFolderId?: SortOrder
+    areaFolderId?: SortOrderInput | SortOrder
+    phaseTwoAreaFolderId?: SortOrderInput | SortOrder
     chairPersonId?: SortOrderInput | SortOrder
     _count?: TaskForceCountOrderByAggregateInput
     _max?: TaskForceMaxOrderByAggregateInput
@@ -39078,7 +39171,8 @@ export namespace Prisma {
     OR?: TaskForceScalarWhereWithAggregatesInput[]
     NOT?: TaskForceScalarWhereWithAggregatesInput | TaskForceScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"TaskForce"> | string
-    areaFolderId?: StringWithAggregatesFilter<"TaskForce"> | string
+    areaFolderId?: StringNullableWithAggregatesFilter<"TaskForce"> | string | null
+    phaseTwoAreaFolderId?: StringNullableWithAggregatesFilter<"TaskForce"> | string | null
     chairPersonId?: StringNullableWithAggregatesFilter<"TaskForce"> | string | null
   }
 
@@ -40856,6 +40950,7 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderCreateInput = {
     id?: string
     phaseTwoFolder: PhaseTwoFolderCreateNestedOneWithoutPhaseTwoAreaFoldersInput
+    taskForce?: TaskForceCreateNestedOneWithoutPhaseTwoAreaFolderInput
     area: AreaCreateNestedOneWithoutPhaseTwoAreaFoldersInput
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseTwoAreaFolderInput
   }
@@ -40864,12 +40959,14 @@ export namespace Prisma {
     id?: string
     phaseTwoFolderId: string
     areaId: number
+    taskForce?: TaskForceUncheckedCreateNestedOneWithoutPhaseTwoAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseTwoAreaFolderInput
   }
 
   export type PhaseTwoAreaFolderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoFolder?: PhaseTwoFolderUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
+    taskForce?: TaskForceUpdateOneWithoutPhaseTwoAreaFolderNestedInput
     area?: AreaUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
     areaFiles?: AreaFileUpdateManyWithoutPhaseTwoAreaFolderNestedInput
   }
@@ -40878,6 +40975,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    taskForce?: TaskForceUncheckedUpdateOneWithoutPhaseTwoAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderNestedInput
   }
 
@@ -40975,35 +41073,40 @@ export namespace Prisma {
 
   export type TaskForceCreateInput = {
     id?: string
-    areaFolder: AreaFolderCreateNestedOneWithoutTaskForceInput
+    areaFolder?: AreaFolderCreateNestedOneWithoutTaskForceInput
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderCreateNestedOneWithoutTaskForceInput
     chairPerson?: ProgramPersonnelCreateNestedOneWithoutChairPersonInput
     taskForceMember?: TaskForceMemberCreateNestedManyWithoutTaskForceInput
   }
 
   export type TaskForceUncheckedCreateInput = {
     id?: string
-    areaFolderId: string
+    areaFolderId?: string | null
+    phaseTwoAreaFolderId?: string | null
     chairPersonId?: string | null
     taskForceMember?: TaskForceMemberUncheckedCreateNestedManyWithoutTaskForceInput
   }
 
   export type TaskForceUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    areaFolder?: AreaFolderUpdateOneRequiredWithoutTaskForceNestedInput
+    areaFolder?: AreaFolderUpdateOneWithoutTaskForceNestedInput
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderUpdateOneWithoutTaskForceNestedInput
     chairPerson?: ProgramPersonnelUpdateOneWithoutChairPersonNestedInput
     taskForceMember?: TaskForceMemberUpdateManyWithoutTaskForceNestedInput
   }
 
   export type TaskForceUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    areaFolderId?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     chairPersonId?: NullableStringFieldUpdateOperationsInput | string | null
     taskForceMember?: TaskForceMemberUncheckedUpdateManyWithoutTaskForceNestedInput
   }
 
   export type TaskForceCreateManyInput = {
     id?: string
-    areaFolderId: string
+    areaFolderId?: string | null
+    phaseTwoAreaFolderId?: string | null
     chairPersonId?: string | null
   }
 
@@ -41013,7 +41116,8 @@ export namespace Prisma {
 
   export type TaskForceUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    areaFolderId?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     chairPersonId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -42834,18 +42938,21 @@ export namespace Prisma {
   export type TaskForceCountOrderByAggregateInput = {
     id?: SortOrder
     areaFolderId?: SortOrder
+    phaseTwoAreaFolderId?: SortOrder
     chairPersonId?: SortOrder
   }
 
   export type TaskForceMaxOrderByAggregateInput = {
     id?: SortOrder
     areaFolderId?: SortOrder
+    phaseTwoAreaFolderId?: SortOrder
     chairPersonId?: SortOrder
   }
 
   export type TaskForceMinOrderByAggregateInput = {
     id?: SortOrder
     areaFolderId?: SortOrder
+    phaseTwoAreaFolderId?: SortOrder
     chairPersonId?: SortOrder
   }
 
@@ -45512,6 +45619,12 @@ export namespace Prisma {
     connect?: PhaseTwoFolderWhereUniqueInput
   }
 
+  export type TaskForceCreateNestedOneWithoutPhaseTwoAreaFolderInput = {
+    create?: XOR<TaskForceCreateWithoutPhaseTwoAreaFolderInput, TaskForceUncheckedCreateWithoutPhaseTwoAreaFolderInput>
+    connectOrCreate?: TaskForceCreateOrConnectWithoutPhaseTwoAreaFolderInput
+    connect?: TaskForceWhereUniqueInput
+  }
+
   export type AreaCreateNestedOneWithoutPhaseTwoAreaFoldersInput = {
     create?: XOR<AreaCreateWithoutPhaseTwoAreaFoldersInput, AreaUncheckedCreateWithoutPhaseTwoAreaFoldersInput>
     connectOrCreate?: AreaCreateOrConnectWithoutPhaseTwoAreaFoldersInput
@@ -45523,6 +45636,12 @@ export namespace Prisma {
     connectOrCreate?: AreaFileCreateOrConnectWithoutPhaseTwoAreaFolderInput | AreaFileCreateOrConnectWithoutPhaseTwoAreaFolderInput[]
     createMany?: AreaFileCreateManyPhaseTwoAreaFolderInputEnvelope
     connect?: AreaFileWhereUniqueInput | AreaFileWhereUniqueInput[]
+  }
+
+  export type TaskForceUncheckedCreateNestedOneWithoutPhaseTwoAreaFolderInput = {
+    create?: XOR<TaskForceCreateWithoutPhaseTwoAreaFolderInput, TaskForceUncheckedCreateWithoutPhaseTwoAreaFolderInput>
+    connectOrCreate?: TaskForceCreateOrConnectWithoutPhaseTwoAreaFolderInput
+    connect?: TaskForceWhereUniqueInput
   }
 
   export type AreaFileUncheckedCreateNestedManyWithoutPhaseTwoAreaFolderInput = {
@@ -45538,6 +45657,16 @@ export namespace Prisma {
     upsert?: PhaseTwoFolderUpsertWithoutPhaseTwoAreaFoldersInput
     connect?: PhaseTwoFolderWhereUniqueInput
     update?: XOR<XOR<PhaseTwoFolderUpdateToOneWithWhereWithoutPhaseTwoAreaFoldersInput, PhaseTwoFolderUpdateWithoutPhaseTwoAreaFoldersInput>, PhaseTwoFolderUncheckedUpdateWithoutPhaseTwoAreaFoldersInput>
+  }
+
+  export type TaskForceUpdateOneWithoutPhaseTwoAreaFolderNestedInput = {
+    create?: XOR<TaskForceCreateWithoutPhaseTwoAreaFolderInput, TaskForceUncheckedCreateWithoutPhaseTwoAreaFolderInput>
+    connectOrCreate?: TaskForceCreateOrConnectWithoutPhaseTwoAreaFolderInput
+    upsert?: TaskForceUpsertWithoutPhaseTwoAreaFolderInput
+    disconnect?: TaskForceWhereInput | boolean
+    delete?: TaskForceWhereInput | boolean
+    connect?: TaskForceWhereUniqueInput
+    update?: XOR<XOR<TaskForceUpdateToOneWithWhereWithoutPhaseTwoAreaFolderInput, TaskForceUpdateWithoutPhaseTwoAreaFolderInput>, TaskForceUncheckedUpdateWithoutPhaseTwoAreaFolderInput>
   }
 
   export type AreaUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput = {
@@ -45560,6 +45689,16 @@ export namespace Prisma {
     update?: AreaFileUpdateWithWhereUniqueWithoutPhaseTwoAreaFolderInput | AreaFileUpdateWithWhereUniqueWithoutPhaseTwoAreaFolderInput[]
     updateMany?: AreaFileUpdateManyWithWhereWithoutPhaseTwoAreaFolderInput | AreaFileUpdateManyWithWhereWithoutPhaseTwoAreaFolderInput[]
     deleteMany?: AreaFileScalarWhereInput | AreaFileScalarWhereInput[]
+  }
+
+  export type TaskForceUncheckedUpdateOneWithoutPhaseTwoAreaFolderNestedInput = {
+    create?: XOR<TaskForceCreateWithoutPhaseTwoAreaFolderInput, TaskForceUncheckedCreateWithoutPhaseTwoAreaFolderInput>
+    connectOrCreate?: TaskForceCreateOrConnectWithoutPhaseTwoAreaFolderInput
+    upsert?: TaskForceUpsertWithoutPhaseTwoAreaFolderInput
+    disconnect?: TaskForceWhereInput | boolean
+    delete?: TaskForceWhereInput | boolean
+    connect?: TaskForceWhereUniqueInput
+    update?: XOR<XOR<TaskForceUpdateToOneWithWhereWithoutPhaseTwoAreaFolderInput, TaskForceUpdateWithoutPhaseTwoAreaFolderInput>, TaskForceUncheckedUpdateWithoutPhaseTwoAreaFolderInput>
   }
 
   export type AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderNestedInput = {
@@ -45702,6 +45841,12 @@ export namespace Prisma {
     connect?: AreaFolderWhereUniqueInput
   }
 
+  export type PhaseTwoAreaFolderCreateNestedOneWithoutTaskForceInput = {
+    create?: XOR<PhaseTwoAreaFolderCreateWithoutTaskForceInput, PhaseTwoAreaFolderUncheckedCreateWithoutTaskForceInput>
+    connectOrCreate?: PhaseTwoAreaFolderCreateOrConnectWithoutTaskForceInput
+    connect?: PhaseTwoAreaFolderWhereUniqueInput
+  }
+
   export type ProgramPersonnelCreateNestedOneWithoutChairPersonInput = {
     create?: XOR<ProgramPersonnelCreateWithoutChairPersonInput, ProgramPersonnelUncheckedCreateWithoutChairPersonInput>
     connectOrCreate?: ProgramPersonnelCreateOrConnectWithoutChairPersonInput
@@ -45722,12 +45867,24 @@ export namespace Prisma {
     connect?: TaskForceMemberWhereUniqueInput | TaskForceMemberWhereUniqueInput[]
   }
 
-  export type AreaFolderUpdateOneRequiredWithoutTaskForceNestedInput = {
+  export type AreaFolderUpdateOneWithoutTaskForceNestedInput = {
     create?: XOR<AreaFolderCreateWithoutTaskForceInput, AreaFolderUncheckedCreateWithoutTaskForceInput>
     connectOrCreate?: AreaFolderCreateOrConnectWithoutTaskForceInput
     upsert?: AreaFolderUpsertWithoutTaskForceInput
+    disconnect?: AreaFolderWhereInput | boolean
+    delete?: AreaFolderWhereInput | boolean
     connect?: AreaFolderWhereUniqueInput
     update?: XOR<XOR<AreaFolderUpdateToOneWithWhereWithoutTaskForceInput, AreaFolderUpdateWithoutTaskForceInput>, AreaFolderUncheckedUpdateWithoutTaskForceInput>
+  }
+
+  export type PhaseTwoAreaFolderUpdateOneWithoutTaskForceNestedInput = {
+    create?: XOR<PhaseTwoAreaFolderCreateWithoutTaskForceInput, PhaseTwoAreaFolderUncheckedCreateWithoutTaskForceInput>
+    connectOrCreate?: PhaseTwoAreaFolderCreateOrConnectWithoutTaskForceInput
+    upsert?: PhaseTwoAreaFolderUpsertWithoutTaskForceInput
+    disconnect?: PhaseTwoAreaFolderWhereInput | boolean
+    delete?: PhaseTwoAreaFolderWhereInput | boolean
+    connect?: PhaseTwoAreaFolderWhereUniqueInput
+    update?: XOR<XOR<PhaseTwoAreaFolderUpdateToOneWithWhereWithoutTaskForceInput, PhaseTwoAreaFolderUpdateWithoutTaskForceInput>, PhaseTwoAreaFolderUncheckedUpdateWithoutTaskForceInput>
   }
 
   export type ProgramPersonnelUpdateOneWithoutChairPersonNestedInput = {
@@ -47207,13 +47364,15 @@ export namespace Prisma {
 
   export type TaskForceCreateWithoutChairPersonInput = {
     id?: string
-    areaFolder: AreaFolderCreateNestedOneWithoutTaskForceInput
+    areaFolder?: AreaFolderCreateNestedOneWithoutTaskForceInput
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderCreateNestedOneWithoutTaskForceInput
     taskForceMember?: TaskForceMemberCreateNestedManyWithoutTaskForceInput
   }
 
   export type TaskForceUncheckedCreateWithoutChairPersonInput = {
     id?: string
-    areaFolderId: string
+    areaFolderId?: string | null
+    phaseTwoAreaFolderId?: string | null
     taskForceMember?: TaskForceMemberUncheckedCreateNestedManyWithoutTaskForceInput
   }
 
@@ -47356,7 +47515,8 @@ export namespace Prisma {
     OR?: TaskForceScalarWhereInput[]
     NOT?: TaskForceScalarWhereInput | TaskForceScalarWhereInput[]
     id?: StringFilter<"TaskForce"> | string
-    areaFolderId?: StringFilter<"TaskForce"> | string
+    areaFolderId?: StringNullableFilter<"TaskForce"> | string | null
+    phaseTwoAreaFolderId?: StringNullableFilter<"TaskForce"> | string | null
     chairPersonId?: StringNullableFilter<"TaskForce"> | string | null
   }
 
@@ -47636,12 +47796,14 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderCreateWithoutAreaInput = {
     id?: string
     phaseTwoFolder: PhaseTwoFolderCreateNestedOneWithoutPhaseTwoAreaFoldersInput
+    taskForce?: TaskForceCreateNestedOneWithoutPhaseTwoAreaFolderInput
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseTwoAreaFolderInput
   }
 
   export type PhaseTwoAreaFolderUncheckedCreateWithoutAreaInput = {
     id?: string
     phaseTwoFolderId: string
+    taskForce?: TaskForceUncheckedCreateNestedOneWithoutPhaseTwoAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseTwoAreaFolderInput
   }
 
@@ -49686,12 +49848,14 @@ export namespace Prisma {
 
   export type TaskForceCreateWithoutAreaFolderInput = {
     id?: string
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderCreateNestedOneWithoutTaskForceInput
     chairPerson?: ProgramPersonnelCreateNestedOneWithoutChairPersonInput
     taskForceMember?: TaskForceMemberCreateNestedManyWithoutTaskForceInput
   }
 
   export type TaskForceUncheckedCreateWithoutAreaFolderInput = {
     id?: string
+    phaseTwoAreaFolderId?: string | null
     chairPersonId?: string | null
     taskForceMember?: TaskForceMemberUncheckedCreateNestedManyWithoutTaskForceInput
   }
@@ -49944,12 +50108,14 @@ export namespace Prisma {
 
   export type TaskForceUpdateWithoutAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderUpdateOneWithoutTaskForceNestedInput
     chairPerson?: ProgramPersonnelUpdateOneWithoutChairPersonNestedInput
     taskForceMember?: TaskForceMemberUpdateManyWithoutTaskForceNestedInput
   }
 
   export type TaskForceUncheckedUpdateWithoutAreaFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     chairPersonId?: NullableStringFieldUpdateOperationsInput | string | null
     taskForceMember?: TaskForceMemberUncheckedUpdateManyWithoutTaskForceNestedInput
   }
@@ -51262,6 +51428,7 @@ export namespace Prisma {
 
   export type PhaseTwoAreaFolderCreateWithoutPhaseTwoFolderInput = {
     id?: string
+    taskForce?: TaskForceCreateNestedOneWithoutPhaseTwoAreaFolderInput
     area: AreaCreateNestedOneWithoutPhaseTwoAreaFoldersInput
     areaFiles?: AreaFileCreateNestedManyWithoutPhaseTwoAreaFolderInput
   }
@@ -51269,6 +51436,7 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderUncheckedCreateWithoutPhaseTwoFolderInput = {
     id?: string
     areaId: number
+    taskForce?: TaskForceUncheckedCreateNestedOneWithoutPhaseTwoAreaFolderInput
     areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseTwoAreaFolderInput
   }
 
@@ -51334,6 +51502,25 @@ export namespace Prisma {
   export type PhaseTwoFolderCreateOrConnectWithoutPhaseTwoAreaFoldersInput = {
     where: PhaseTwoFolderWhereUniqueInput
     create: XOR<PhaseTwoFolderCreateWithoutPhaseTwoAreaFoldersInput, PhaseTwoFolderUncheckedCreateWithoutPhaseTwoAreaFoldersInput>
+  }
+
+  export type TaskForceCreateWithoutPhaseTwoAreaFolderInput = {
+    id?: string
+    areaFolder?: AreaFolderCreateNestedOneWithoutTaskForceInput
+    chairPerson?: ProgramPersonnelCreateNestedOneWithoutChairPersonInput
+    taskForceMember?: TaskForceMemberCreateNestedManyWithoutTaskForceInput
+  }
+
+  export type TaskForceUncheckedCreateWithoutPhaseTwoAreaFolderInput = {
+    id?: string
+    areaFolderId?: string | null
+    chairPersonId?: string | null
+    taskForceMember?: TaskForceMemberUncheckedCreateNestedManyWithoutTaskForceInput
+  }
+
+  export type TaskForceCreateOrConnectWithoutPhaseTwoAreaFolderInput = {
+    where: TaskForceWhereUniqueInput
+    create: XOR<TaskForceCreateWithoutPhaseTwoAreaFolderInput, TaskForceUncheckedCreateWithoutPhaseTwoAreaFolderInput>
   }
 
   export type AreaCreateWithoutPhaseTwoAreaFoldersInput = {
@@ -51415,6 +51602,31 @@ export namespace Prisma {
   export type PhaseTwoFolderUncheckedUpdateWithoutPhaseTwoAreaFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoRequirementsId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TaskForceUpsertWithoutPhaseTwoAreaFolderInput = {
+    update: XOR<TaskForceUpdateWithoutPhaseTwoAreaFolderInput, TaskForceUncheckedUpdateWithoutPhaseTwoAreaFolderInput>
+    create: XOR<TaskForceCreateWithoutPhaseTwoAreaFolderInput, TaskForceUncheckedCreateWithoutPhaseTwoAreaFolderInput>
+    where?: TaskForceWhereInput
+  }
+
+  export type TaskForceUpdateToOneWithWhereWithoutPhaseTwoAreaFolderInput = {
+    where?: TaskForceWhereInput
+    data: XOR<TaskForceUpdateWithoutPhaseTwoAreaFolderInput, TaskForceUncheckedUpdateWithoutPhaseTwoAreaFolderInput>
+  }
+
+  export type TaskForceUpdateWithoutPhaseTwoAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolder?: AreaFolderUpdateOneWithoutTaskForceNestedInput
+    chairPerson?: ProgramPersonnelUpdateOneWithoutChairPersonNestedInput
+    taskForceMember?: TaskForceMemberUpdateManyWithoutTaskForceNestedInput
+  }
+
+  export type TaskForceUncheckedUpdateWithoutPhaseTwoAreaFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    chairPersonId?: NullableStringFieldUpdateOperationsInput | string | null
+    taskForceMember?: TaskForceMemberUncheckedUpdateManyWithoutTaskForceNestedInput
   }
 
   export type AreaUpsertWithoutPhaseTwoAreaFoldersInput = {
@@ -51503,6 +51715,7 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderCreateWithoutAreaFilesInput = {
     id?: string
     phaseTwoFolder: PhaseTwoFolderCreateNestedOneWithoutPhaseTwoAreaFoldersInput
+    taskForce?: TaskForceCreateNestedOneWithoutPhaseTwoAreaFolderInput
     area: AreaCreateNestedOneWithoutPhaseTwoAreaFoldersInput
   }
 
@@ -51510,6 +51723,7 @@ export namespace Prisma {
     id?: string
     phaseTwoFolderId: string
     areaId: number
+    taskForce?: TaskForceUncheckedCreateNestedOneWithoutPhaseTwoAreaFolderInput
   }
 
   export type PhaseTwoAreaFolderCreateOrConnectWithoutAreaFilesInput = {
@@ -51640,6 +51854,7 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderUpdateWithoutAreaFilesInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoFolder?: PhaseTwoFolderUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
+    taskForce?: TaskForceUpdateOneWithoutPhaseTwoAreaFolderNestedInput
     area?: AreaUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
   }
 
@@ -51647,6 +51862,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    taskForce?: TaskForceUncheckedUpdateOneWithoutPhaseTwoAreaFolderNestedInput
   }
 
   export type FileVersionUpsertWithWhereUniqueWithoutAreaFileInput = {
@@ -51712,6 +51928,25 @@ export namespace Prisma {
   export type AreaFolderCreateOrConnectWithoutTaskForceInput = {
     where: AreaFolderWhereUniqueInput
     create: XOR<AreaFolderCreateWithoutTaskForceInput, AreaFolderUncheckedCreateWithoutTaskForceInput>
+  }
+
+  export type PhaseTwoAreaFolderCreateWithoutTaskForceInput = {
+    id?: string
+    phaseTwoFolder: PhaseTwoFolderCreateNestedOneWithoutPhaseTwoAreaFoldersInput
+    area: AreaCreateNestedOneWithoutPhaseTwoAreaFoldersInput
+    areaFiles?: AreaFileCreateNestedManyWithoutPhaseTwoAreaFolderInput
+  }
+
+  export type PhaseTwoAreaFolderUncheckedCreateWithoutTaskForceInput = {
+    id?: string
+    phaseTwoFolderId: string
+    areaId: number
+    areaFiles?: AreaFileUncheckedCreateNestedManyWithoutPhaseTwoAreaFolderInput
+  }
+
+  export type PhaseTwoAreaFolderCreateOrConnectWithoutTaskForceInput = {
+    where: PhaseTwoAreaFolderWhereUniqueInput
+    create: XOR<PhaseTwoAreaFolderCreateWithoutTaskForceInput, PhaseTwoAreaFolderUncheckedCreateWithoutTaskForceInput>
   }
 
   export type ProgramPersonnelCreateWithoutChairPersonInput = {
@@ -51794,6 +52029,31 @@ export namespace Prisma {
     weaknesses?: CommentUncheckedUpdateManyWithoutWeakFolderNestedInput
   }
 
+  export type PhaseTwoAreaFolderUpsertWithoutTaskForceInput = {
+    update: XOR<PhaseTwoAreaFolderUpdateWithoutTaskForceInput, PhaseTwoAreaFolderUncheckedUpdateWithoutTaskForceInput>
+    create: XOR<PhaseTwoAreaFolderCreateWithoutTaskForceInput, PhaseTwoAreaFolderUncheckedCreateWithoutTaskForceInput>
+    where?: PhaseTwoAreaFolderWhereInput
+  }
+
+  export type PhaseTwoAreaFolderUpdateToOneWithWhereWithoutTaskForceInput = {
+    where?: PhaseTwoAreaFolderWhereInput
+    data: XOR<PhaseTwoAreaFolderUpdateWithoutTaskForceInput, PhaseTwoAreaFolderUncheckedUpdateWithoutTaskForceInput>
+  }
+
+  export type PhaseTwoAreaFolderUpdateWithoutTaskForceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseTwoFolder?: PhaseTwoFolderUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
+    area?: AreaUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
+    areaFiles?: AreaFileUpdateManyWithoutPhaseTwoAreaFolderNestedInput
+  }
+
+  export type PhaseTwoAreaFolderUncheckedUpdateWithoutTaskForceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
+    areaId?: IntFieldUpdateOperationsInput | number
+    areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderNestedInput
+  }
+
   export type ProgramPersonnelUpsertWithoutChairPersonInput = {
     update: XOR<ProgramPersonnelUpdateWithoutChairPersonInput, ProgramPersonnelUncheckedUpdateWithoutChairPersonInput>
     create: XOR<ProgramPersonnelCreateWithoutChairPersonInput, ProgramPersonnelUncheckedCreateWithoutChairPersonInput>
@@ -51860,13 +52120,15 @@ export namespace Prisma {
 
   export type TaskForceCreateWithoutTaskForceMemberInput = {
     id?: string
-    areaFolder: AreaFolderCreateNestedOneWithoutTaskForceInput
+    areaFolder?: AreaFolderCreateNestedOneWithoutTaskForceInput
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderCreateNestedOneWithoutTaskForceInput
     chairPerson?: ProgramPersonnelCreateNestedOneWithoutChairPersonInput
   }
 
   export type TaskForceUncheckedCreateWithoutTaskForceMemberInput = {
     id?: string
-    areaFolderId: string
+    areaFolderId?: string | null
+    phaseTwoAreaFolderId?: string | null
     chairPersonId?: string | null
   }
 
@@ -51915,13 +52177,15 @@ export namespace Prisma {
 
   export type TaskForceUpdateWithoutTaskForceMemberInput = {
     id?: StringFieldUpdateOperationsInput | string
-    areaFolder?: AreaFolderUpdateOneRequiredWithoutTaskForceNestedInput
+    areaFolder?: AreaFolderUpdateOneWithoutTaskForceNestedInput
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderUpdateOneWithoutTaskForceNestedInput
     chairPerson?: ProgramPersonnelUpdateOneWithoutChairPersonNestedInput
   }
 
   export type TaskForceUncheckedUpdateWithoutTaskForceMemberInput = {
     id?: StringFieldUpdateOperationsInput | string
-    areaFolderId?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     chairPersonId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -53033,7 +53297,8 @@ export namespace Prisma {
 
   export type TaskForceCreateManyChairPersonInput = {
     id?: string
-    areaFolderId: string
+    areaFolderId?: string | null
+    phaseTwoAreaFolderId?: string | null
   }
 
   export type TaskForceMemberCreateManyProgramPersonnelInput = {
@@ -53043,19 +53308,22 @@ export namespace Prisma {
 
   export type TaskForceUpdateWithoutChairPersonInput = {
     id?: StringFieldUpdateOperationsInput | string
-    areaFolder?: AreaFolderUpdateOneRequiredWithoutTaskForceNestedInput
+    areaFolder?: AreaFolderUpdateOneWithoutTaskForceNestedInput
+    phaseTwoAreaFolder?: PhaseTwoAreaFolderUpdateOneWithoutTaskForceNestedInput
     taskForceMember?: TaskForceMemberUpdateManyWithoutTaskForceNestedInput
   }
 
   export type TaskForceUncheckedUpdateWithoutChairPersonInput = {
     id?: StringFieldUpdateOperationsInput | string
-    areaFolderId?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
     taskForceMember?: TaskForceMemberUncheckedUpdateManyWithoutTaskForceNestedInput
   }
 
   export type TaskForceUncheckedUpdateManyWithoutChairPersonInput = {
     id?: StringFieldUpdateOperationsInput | string
-    areaFolderId?: StringFieldUpdateOperationsInput | string
+    areaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    phaseTwoAreaFolderId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TaskForceMemberUpdateWithoutProgramPersonnelInput = {
@@ -53243,12 +53511,14 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoFolder?: PhaseTwoFolderUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
+    taskForce?: TaskForceUpdateOneWithoutPhaseTwoAreaFolderNestedInput
     areaFiles?: AreaFileUpdateManyWithoutPhaseTwoAreaFolderNestedInput
   }
 
   export type PhaseTwoAreaFolderUncheckedUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     phaseTwoFolderId?: StringFieldUpdateOperationsInput | string
+    taskForce?: TaskForceUncheckedUpdateOneWithoutPhaseTwoAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderNestedInput
   }
 
@@ -54217,6 +54487,7 @@ export namespace Prisma {
 
   export type PhaseTwoAreaFolderUpdateWithoutPhaseTwoFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    taskForce?: TaskForceUpdateOneWithoutPhaseTwoAreaFolderNestedInput
     area?: AreaUpdateOneRequiredWithoutPhaseTwoAreaFoldersNestedInput
     areaFiles?: AreaFileUpdateManyWithoutPhaseTwoAreaFolderNestedInput
   }
@@ -54224,6 +54495,7 @@ export namespace Prisma {
   export type PhaseTwoAreaFolderUncheckedUpdateWithoutPhaseTwoFolderInput = {
     id?: StringFieldUpdateOperationsInput | string
     areaId?: IntFieldUpdateOperationsInput | number
+    taskForce?: TaskForceUncheckedUpdateOneWithoutPhaseTwoAreaFolderNestedInput
     areaFiles?: AreaFileUncheckedUpdateManyWithoutPhaseTwoAreaFolderNestedInput
   }
 

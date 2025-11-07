@@ -28,11 +28,13 @@ const TaskForce = ({
   programPersonnel,
   taskForce,
   areaFolderId,
+  phaseTwoAreaFolderId,
   isAdmin,
 }: {
   programPersonnel: ProgramPersonnelDTO[] | null;
   taskForce: TaskforceDTO | null | undefined;
-  areaFolderId: string | undefined;
+  areaFolderId?: string | undefined;
+  phaseTwoAreaFolderId?: string | undefined;
   isAdmin: boolean;
 }) => {
   const [pending, startTransition] = useTransition();
@@ -40,7 +42,12 @@ const TaskForce = ({
     const member = taskForce?.taskForceMember.find(
       (member) => member.programPersonnelId === id
     );
-    const result = await assignChairpersonAction(id, areaFolderId, member?.id);
+    const result = await assignChairpersonAction({
+      personnelId: id,
+      areaFolderId,
+      phaseTwoAreaFolderId,
+      memberId: member?.id,
+    });
   };
   const toggleAssignMember = async (personnelId: string, checked: boolean) => {
     if (checked) {
@@ -107,34 +114,36 @@ const TaskForce = ({
             </Select>
           </CardContent>
         </Card>
-        <Card className="bg-background rounded-md">
-          <CardHeader>
-            <CardTitle className="text-sm text-muted-foreground text-balance text-center">
-              Members
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-2">
-            <div className="flex flex-col gap-1">
-              {programPersonnel
-                ?.filter(
-                  (personnel) => personnel.id !== taskForce?.chairPerson?.id
-                )
-                .map((personnel) => (
-                  <div className="flex items-center gap-2" key={personnel.id}>
-                    <Checkbox
-                      onCheckedChange={toggleAssignMember.bind(
-                        null,
-                        personnel.id
-                      )}
-                      checked={isMember(personnel.id)}
-                      disabled={pending || !isAdmin}
-                    />
-                    <p className="text-sm">{`${personnel.user.firstName} ${personnel.user.lastName}`}</p>
-                  </div>
-                ))}
-            </div>
-          </CardContent>
-        </Card>
+        {areaFolderId && (
+          <Card className="bg-background rounded-md">
+            <CardHeader>
+              <CardTitle className="text-sm text-muted-foreground text-balance text-center">
+                Members
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-2">
+              <div className="flex flex-col gap-1">
+                {programPersonnel
+                  ?.filter(
+                    (personnel) => personnel.id !== taskForce?.chairPerson?.id
+                  )
+                  .map((personnel) => (
+                    <div className="flex items-center gap-2" key={personnel.id}>
+                      <Checkbox
+                        onCheckedChange={toggleAssignMember.bind(
+                          null,
+                          personnel.id
+                        )}
+                        checked={isMember(personnel.id)}
+                        disabled={pending || !isAdmin}
+                      />
+                      <p className="text-sm">{`${personnel.user.firstName} ${personnel.user.lastName}`}</p>
+                    </div>
+                  ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </SheetContent>
     </Sheet>
   );

@@ -2,6 +2,7 @@ import CreateAccreditationDialog from "@/components/admin/accreditation/createAc
 import PortfolioCards from "@/components/admin/accreditation/portfolio-cards";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { verifySession } from "@/lib/action/session";
 import { getAccreditations } from "@/lib/dal/accreditation";
 import { getInstrumentByName, getInstruments } from "@/lib/dal/instrument";
 import { getLevels } from "@/lib/dal/levels";
@@ -9,6 +10,7 @@ import { getPrograms } from "@/lib/dal/program";
 import { FileArchive } from "lucide-react";
 
 const Accreditation = async () => {
+  const { user } = await verifySession();
   const programs = await getPrograms();
   const instruments = await getInstruments();
   const levels = await getLevels();
@@ -35,35 +37,45 @@ const Accreditation = async () => {
             levelThreePhaseTwoInstrument={levelThreePhaseTwoInstrument}
           />
         </div>
-        {filteredAccreditations && (
-          <Tabs defaultValue={filteredAccreditations[0].program.code}>
-            <TabsList className="bg-background border">
-              {filteredAccreditations?.map((accreditation) => (
-                <TabsTrigger
-                  value={accreditation.program.code}
-                  key={accreditation.id}
-                >
-                  {accreditation.program.code}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-            {filteredAccreditations.map((accreditation) => (
-              <TabsContent
-                value={accreditation.program.code}
-                key={accreditation.id}
-              >
-                <PortfolioCards
-                  program={accreditation.program}
-                  surveyVisits={accreditation.surveyVisits.sort(
-                    (a, b) =>
-                      new Date(b.createdAt).getTime() -
-                      new Date(a.createdAt).getTime()
-                  )}
-                />
-              </TabsContent>
-            ))}
-          </Tabs>
-        )}
+        <Tabs defaultValue="all">
+          <TabsList className="bg-background border">
+            <TabsTrigger value="all">All Portfolios</TabsTrigger>
+            {user.role === "ACCREDITATION_OFFICER" && (
+              <TabsTrigger value="assignments">My Assignments</TabsTrigger>
+            )}
+          </TabsList>
+          <TabsContent value="all">
+            {filteredAccreditations && (
+              <Tabs defaultValue={filteredAccreditations[0].program.code}>
+                <TabsList className="bg-background border">
+                  {filteredAccreditations?.map((accreditation) => (
+                    <TabsTrigger
+                      value={accreditation.program.code}
+                      key={accreditation.id}
+                    >
+                      {accreditation.program.code}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+                {filteredAccreditations.map((accreditation) => (
+                  <TabsContent
+                    value={accreditation.program.code}
+                    key={accreditation.id}
+                  >
+                    <PortfolioCards
+                      program={accreditation.program}
+                      surveyVisits={accreditation.surveyVisits.sort(
+                        (a, b) =>
+                          new Date(b.createdAt).getTime() -
+                          new Date(a.createdAt).getTime()
+                      )}
+                    />
+                  </TabsContent>
+                ))}
+              </Tabs>
+            )}
+          </TabsContent>
+        </Tabs>
       </div>
     </ScrollArea>
   );

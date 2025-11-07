@@ -1,4 +1,5 @@
 import Banner from "@/components/admin/accreditation/banner";
+import TaskForce from "@/components/admin/accreditation/taskforce";
 import { columns } from "@/components/admin/area-file/columns";
 import { DataTable } from "@/components/admin/area-file/data-table";
 import {
@@ -10,10 +11,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { verifySession } from "@/lib/action/session";
 import {
   getAreaFolderById,
   getPhaseTwoAreaFolderById,
 } from "@/lib/dal/area-folder";
+import { getProgramPersonnelByProgramId } from "@/lib/dal/program-personnel";
 import { AreaFileDTO } from "@/lib/dto/accreditation-instrument";
 import { Progress } from "@/lib/generated/prisma";
 import { screamingSnakeToTitle } from "@/lib/utils";
@@ -28,8 +31,14 @@ const PhaseTwoAreaPage = async ({
   searchParams: Promise<{ ["phase-two"]: string }>;
 }) => {
   const { id, areaId } = await params;
+  const { user } = await verifySession();
+  const isAdmin = user.role === "ADMIN";
   const query = await searchParams;
   const areaFolder = await getPhaseTwoAreaFolderById(areaId);
+  const programId =
+    areaFolder?.phaseTwoFolder.phaseTwoRequirements?.surveyVisit?.accreditation
+      .programId;
+  const programPersonnel = await getProgramPersonnelByProgramId(programId!);
   const area = areaFolder?.area;
   const complete = areaFolder?.areaFiles.every(
     (file) => file.status === "SUBMITTED"
@@ -66,6 +75,12 @@ const PhaseTwoAreaPage = async ({
                 {complete ? "Complete" : "In Progress"}
               </p>
             </div>
+            <TaskForce
+              programPersonnel={programPersonnel}
+              taskForce={areaFolder?.taskForce}
+              phaseTwoAreaFolderId={areaFolder?.id}
+              isAdmin={isAdmin}
+            />
           </CardFooter>
         </Card>
         <Card className="bg-background">

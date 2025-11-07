@@ -29,17 +29,6 @@ const PhaseTwoAreaFile = async ({
 }) => {
   const { id, areaFileId } = await params;
   const surveyVisitStructure = await getSurveyVisitStructureById(id);
-  const level = surveyVisitStructure?.level;
-  const phaseOnePortfolio = await getSurveyVisitStructureById(
-    surveyVisitStructure?.accreditation.surveyVisits.find(
-      (survey) =>
-        survey.level.label === level?.label && survey.level.phase === "PHASE_1"
-    )?.id!
-  );
-  const chairPerson =
-    phaseOnePortfolio?.phaseOneRequirements?.instrumentFolder?.areaFolders
-      ?.flatMap((area) => area.taskForce?.chairPerson)
-      .filter(Boolean);
   const session = await verifySession();
   const user = session.user;
   const isAdmin = user.role === "ADMIN";
@@ -55,9 +44,8 @@ const PhaseTwoAreaFile = async ({
     areaFileId: areaFile?.id,
     type: CommentType.TASKFORCE,
   });
-  const isChairPerson = Boolean(
-    chairPerson?.find((chair) => chair?.userId === user.id)
-  );
+  const isChairPerson =
+    areaFile?.phaseTwoAreaFolder?.taskForce?.chairPerson?.userId === user.id;
   return (
     <ScrollArea className="h-full">
       <Banner surveyVisitId={id} />

@@ -120,7 +120,9 @@ export async function createSurveyVisit(
               ]
             : []),
         ]);
-        const taskforce = await createTaskforce(areaFolder.id);
+        const taskforce = await createTaskforce({
+          areaFolderId: areaFolder.id,
+        });
         area.parameter.forEach(async (parameter) => {
           const parameterFolder = await createParameterFolder(
             areaFolder.id,
@@ -174,6 +176,9 @@ export async function createSurveyVisit(
           );
           if (!areaFolder)
             throw new Error("Error in creating phase two area folder");
+          const taskForce = await createTaskforce({
+            phaseTwoAreaFolderId: areaFolder.id,
+          });
           const areaFiles = await createManyAreaFiles([
             {
               phaseTwoAreaFolderId: areaFolder.id,

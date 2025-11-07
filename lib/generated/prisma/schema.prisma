@@ -415,6 +415,7 @@ model PhaseTwoAreaFolder {
   id               String         @id @default(uuid())
   phaseTwoFolder   PhaseTwoFolder @relation(fields: [phaseTwoFolderId], references: [id], onDelete: Cascade)
   phaseTwoFolderId String
+  taskForce        TaskForce?
   area             Area           @relation(fields: [areaId], references: [id], onDelete: Cascade)
   areaId           Int
   areaFiles        AreaFile[]
@@ -435,12 +436,14 @@ model AreaFile {
 }
 
 model TaskForce {
-  id              String            @id @default(uuid())
-  areaFolder      AreaFolder        @relation(fields: [areaFolderId], references: [id], onDelete: Cascade)
-  areaFolderId    String            @unique
-  chairPerson     ProgramPersonnel? @relation(fields: [chairPersonId], references: [id], onDelete: Cascade)
-  chairPersonId   String?
-  taskForceMember TaskForceMember[]
+  id                   String              @id @default(uuid())
+  areaFolder           AreaFolder?         @relation(fields: [areaFolderId], references: [id], onDelete: Cascade)
+  areaFolderId         String?             @unique
+  phaseTwoAreaFolder   PhaseTwoAreaFolder? @relation(fields: [phaseTwoAreaFolderId], references: [id], onDelete: Cascade)
+  phaseTwoAreaFolderId String?             @unique
+  chairPerson          ProgramPersonnel?   @relation(fields: [chairPersonId], references: [id], onDelete: Cascade)
+  chairPersonId        String?
+  taskForceMember      TaskForceMember[]
 }
 
 model TaskForceMember {

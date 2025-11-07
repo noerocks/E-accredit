@@ -4,17 +4,27 @@ import { revalidateTag } from "next/cache";
 import { assignChairperson as assignChairpersonDAL } from "../dal/taskforce";
 import { deleteMember } from "./member";
 
-export async function assignChairperson(
-  personnelId: string,
-  areaFolderId: string | undefined,
-  memberId: string | undefined
-) {
-  if (!personnelId || !areaFolderId)
+export async function assignChairperson({
+  personnelId,
+  areaFolderId = null,
+  phaseTwoAreaFolderId = null,
+  memberId,
+}: {
+  personnelId: string;
+  areaFolderId?: string | null;
+  phaseTwoAreaFolderId?: string | null;
+  memberId: string | undefined;
+}) {
+  if (!personnelId || (!areaFolderId && !phaseTwoAreaFolderId))
     return { failure: { error: "Invalid input" } };
   if (memberId) {
     await deleteMember(memberId);
   }
-  const taskforce = await assignChairpersonDAL(personnelId, areaFolderId);
+  const taskforce = await assignChairpersonDAL({
+    personnelId,
+    areaFolderId,
+    phaseTwoAreaFolderId,
+  });
   revalidateTag("areaFolder");
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");
