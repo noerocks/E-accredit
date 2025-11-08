@@ -35,6 +35,7 @@ export type AreaFolderDTO = AreaFolder & {
 export type PhaseTwoAreaFolderDTO = PhaseTwoAreaFolder & {
   area: Area;
   areaFiles: AreaFile[];
+  taskForce: TaskforceDTO | null;
 };
 export type ParameterFolderDTO = ParameterFolder & {
   parameter: Parameter;

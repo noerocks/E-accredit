@@ -58,6 +58,7 @@ const SelfSurveysPage = async () => {
               />
             )}
           </TabsContent>
+          <hr />
           <TabsContent value="history">
             {programCodes && (
               <Tabs defaultValue={programCodes[0]}>

@@ -77,7 +77,7 @@ const Accreditation = async () => {
           </TabsList>
           <hr />
           <TabsContent value="all">
-            {filteredAccreditations && (
+            {filteredAccreditations.length > 0 && (
               <Tabs defaultValue={filteredAccreditations[0].program.code}>
                 <TabsList className="bg-background border">
                   {filteredAccreditations?.map((accreditation) => (
@@ -111,7 +111,7 @@ const Accreditation = async () => {
           </TabsContent>
           {user.role === "ACCREDITATION_OFFICER" && (
             <TabsContent value="assignments">
-              {assignedAccreditations && (
+              {assignedAccreditations.length > 0 && (
                 <Tabs defaultValue={assignedAccreditations[0].program.code}>
                   <TabsList className="bg-background border">
                     {assignedAccreditations?.map((accreditation) => (

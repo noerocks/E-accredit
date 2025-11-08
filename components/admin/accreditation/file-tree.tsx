@@ -18,15 +18,8 @@ import {
   PhaseTwoAreaFolderDTO,
 } from "@/lib/dto/accreditation-instrument";
 import { AreaFileType, Category } from "@/lib/generated/prisma";
-import {
-  Check,
-  ChevronRight,
-  File,
-  FileCheck,
-  FileQuestion,
-  Folder,
-  X,
-} from "lucide-react";
+import clsx from "clsx";
+import { Check, ChevronRight, X } from "lucide-react";
 import { useParams, usePathname } from "next/navigation";
 
 type TreeNode =
@@ -70,7 +63,7 @@ const areaFileType = {
   [AreaFileType.NARRATIVE_PROFILE]: "Narrative Profile",
 };
 
-const FileTree = ({ item }: { item: TreeNode }) => {
+const FileTree = ({ item, userId }: { item: TreeNode; userId?: string }) => {
   const params = useParams();
   const pathName = usePathname();
   const root = pathName
@@ -78,10 +71,20 @@ const FileTree = ({ item }: { item: TreeNode }) => {
     .filter((segment) => segment)
     .at(1);
   if (isAreaFolder(item)) {
+    const isChairperson = item.taskForce.chairPerson?.user.id === userId;
+    const isMember = item.taskForce.taskForceMember.some(
+      (member) => member.programPersonnel.userId === userId
+    );
     return (
       <SidebarMenuItem>
         <Collapsible
-          className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90"
+          className={clsx(
+            "group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90",
+            {
+              "bg-green-500/5": isChairperson,
+              "bg-yellow-500/5": isMember,
+            }
+          )}
           defaultOpen
         >
           <SidebarMenuButton data-id={item.id} data-type={"area"}>
@@ -89,6 +92,12 @@ const FileTree = ({ item }: { item: TreeNode }) => {
               <ChevronRight className="transition-transform" />
             </CollapsibleTrigger>
             {`📁 ${item.area.label}`}
+            {isChairperson && (
+              <p className="text-sm text-muted-foreground">Chairperson</p>
+            )}
+            {isMember && (
+              <p className="text-sm text-muted-foreground">Taskforce Member</p>
+            )}
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
@@ -117,10 +126,16 @@ const FileTree = ({ item }: { item: TreeNode }) => {
     );
   }
   if (isPhaseTwoAreaFolder(item)) {
+    const isChairperson = item.taskForce?.chairPerson?.user.id === userId;
     return (
       <SidebarMenuItem>
         <Collapsible
-          className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90"
+          className={clsx(
+            "group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90",
+            {
+              "bg-green-500/5": isChairperson,
+            }
+          )}
           defaultOpen
         >
           <SidebarMenuButton data-id={item.id} data-type={"area"}>
@@ -130,6 +145,9 @@ const FileTree = ({ item }: { item: TreeNode }) => {
             <p className="flex-1 truncate w-[10px] pointer-events-none">
               {`📁 ${item.area.label}`}
             </p>
+            {isChairperson && (
+              <p className="text-sm text-muted-foreground">Chairperson</p>
+            )}
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>

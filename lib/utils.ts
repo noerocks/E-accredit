@@ -5,7 +5,7 @@ import {
   AreaFolderDTO,
   ParameterFolderDTO,
 } from "./dto/accreditation-instrument";
-import { SurveyTeamType } from "./generated/prisma";
+import { Level, SurveyTeamType } from "./generated/prisma";
 import { RatingDTO, SurveyVisitDTO } from "./dto/survey-visit";
 import { Area } from "@prisma/client";
 import { SafeLevel, SurveyVisitWithSafeLevel } from "./dto/accreditation";
@@ -233,3 +233,12 @@ export function getHighestLevel(surveyVisits: SurveyVisitWithSafeLevel[]) {
     } as SurveyVisitWithSafeLevel
   );
 }
+
+export const getStatusFromLevel = (level: LevelDTO) => {
+  return `${screamingSnakeToTitle(
+    level?.label === "PRELIMINARY_SURVEY_VISIT" ? "CANDIDATE" : level?.label
+  )
+    ?.split(" ")
+    .map((word, i) => (i === 1 ? word.toUpperCase() : word))
+    .join(" ")} Status`;
+};

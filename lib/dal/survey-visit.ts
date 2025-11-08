@@ -145,6 +145,24 @@ export const getSurveyVisitStructureById = unstable_cache(
                   include: {
                     area: true,
                     areaFiles: true,
+                    taskForce: {
+                      include: {
+                        chairPerson: {
+                          include: {
+                            user: true,
+                          },
+                        },
+                        taskForceMember: {
+                          include: {
+                            programPersonnel: {
+                              include: {
+                                user: true,
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
                   },
                 },
               },

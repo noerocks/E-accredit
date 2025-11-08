@@ -35,12 +35,14 @@ const AccreditationSidebar = ({
   selfSurveyStatus,
   surveyVisitId,
   surveyResultStatus,
+  userId,
 }: {
   instrumentFolder: PhaseOneInstrumentDTO | null | undefined;
   phaseTwoFolder: PhaseTwoInstrumentDTO | null | undefined;
   selfSurveyStatus: SurveyStatus | undefined;
   surveyVisitId: string;
   surveyResultStatus?: SurveyResultStatus | undefined;
+  userId?: string;
 }) => {
   const pathName = usePathname();
   const base = pathName
@@ -132,7 +134,7 @@ const AccreditationSidebar = ({
             <SidebarMenu onDoubleClick={onDoubleClick}>
               {phaseOneAreaFolders &&
                 phaseOneAreaFolders.map((area) => (
-                  <FileTree key={area.id} item={area} />
+                  <FileTree key={area.id} item={area} userId={userId} />
                 ))}
               {phaseTwoFolder &&
                 phaseTwoFolder.phaseTwoAreaFolders.map((areaFolder) => (
@@ -145,6 +147,7 @@ const AccreditationSidebar = ({
                         label: areaFolder.area.description,
                       },
                     }}
+                    userId={userId}
                   />
                 ))}
             </SidebarMenu>
