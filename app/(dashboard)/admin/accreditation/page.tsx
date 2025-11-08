@@ -7,6 +7,7 @@ import { getAccreditations } from "@/lib/dal/accreditation";
 import { getInstrumentByName, getInstruments } from "@/lib/dal/instrument";
 import { getLevels } from "@/lib/dal/levels";
 import { getPrograms } from "@/lib/dal/program";
+import { SurveyVisitWithSafeLevel } from "@/lib/dto/accreditation";
 import { FileArchive } from "lucide-react";
 
 const Accreditation = async () => {
@@ -17,6 +18,36 @@ const Accreditation = async () => {
   const accreditations = await getAccreditations();
   const filteredAccreditations = accreditations?.filter(
     (accreditation) => accreditation.surveyVisits.length > 0
+  );
+  const assignedAccreditations = filteredAccreditations.filter(
+    (accreditation) => {
+      return accreditation.surveyVisits.some((visit) => {
+        if (visit.phaseOneRequirements) {
+          return visit.phaseOneRequirements.instrumentFolder?.areaFolders.some(
+            (area) => {
+              return (
+                area.taskForce?.chairPerson?.user.id === user.id ||
+                area.taskForce?.taskForceMember.some((member) => {
+                  return member.programPersonnel.user.id === user.id;
+                })
+              );
+            }
+          );
+        }
+        if (visit.phaseTwoRequirements) {
+          return visit.phaseTwoRequirements.phaseTwoFolder?.phaseTwoAreaFolders.some(
+            (area) => {
+              return (
+                area.taskForce?.chairPerson?.user.id === user.id ||
+                area.taskForce?.taskForceMember.some((member) => {
+                  return member.programPersonnel.user.id === user.id;
+                })
+              );
+            }
+          );
+        }
+      });
+    }
   );
   const levelThreePhaseTwoInstrument = await getInstrumentByName(
     "Level III Phase 2",
@@ -44,6 +75,7 @@ const Accreditation = async () => {
               <TabsTrigger value="assignments">My Assignments</TabsTrigger>
             )}
           </TabsList>
+          <hr />
           <TabsContent value="all">
             {filteredAccreditations && (
               <Tabs defaultValue={filteredAccreditations[0].program.code}>
@@ -64,17 +96,93 @@ const Accreditation = async () => {
                   >
                     <PortfolioCards
                       program={accreditation.program}
-                      surveyVisits={accreditation.surveyVisits.sort(
-                        (a, b) =>
-                          new Date(b.createdAt).getTime() -
-                          new Date(a.createdAt).getTime()
-                      )}
+                      surveyVisits={
+                        accreditation.surveyVisits.sort(
+                          (a, b) =>
+                            new Date(b.createdAt).getTime() -
+                            new Date(a.createdAt).getTime()
+                        ) as unknown as SurveyVisitWithSafeLevel[]
+                      }
                     />
                   </TabsContent>
                 ))}
               </Tabs>
             )}
           </TabsContent>
+          {user.role === "ACCREDITATION_OFFICER" && (
+            <TabsContent value="assignments">
+              {assignedAccreditations && (
+                <Tabs defaultValue={assignedAccreditations[0].program.code}>
+                  <TabsList className="bg-background border">
+                    {assignedAccreditations?.map((accreditation) => (
+                      <TabsTrigger
+                        value={accreditation.program.code}
+                        key={accreditation.id}
+                      >
+                        {accreditation.program.code}
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
+                  {assignedAccreditations.map((accreditation) => (
+                    <TabsContent
+                      value={accreditation.program.code}
+                      key={accreditation.id}
+                    >
+                      <PortfolioCards
+                        program={accreditation.program}
+                        surveyVisits={
+                          accreditation.surveyVisits
+                            .filter((visit) => {
+                              if (visit.phaseOneRequirements) {
+                                return visit.phaseOneRequirements.instrumentFolder?.areaFolders.some(
+                                  (area) => {
+                                    return (
+                                      area.taskForce?.chairPerson?.user.id ===
+                                        user.id ||
+                                      area.taskForce?.taskForceMember.some(
+                                        (member) => {
+                                          return (
+                                            member.programPersonnel.user.id ===
+                                            user.id
+                                          );
+                                        }
+                                      )
+                                    );
+                                  }
+                                );
+                              }
+                              if (visit.phaseTwoRequirements) {
+                                return visit.phaseTwoRequirements.phaseTwoFolder?.phaseTwoAreaFolders.some(
+                                  (area) => {
+                                    return (
+                                      area.taskForce?.chairPerson?.user.id ===
+                                        user.id ||
+                                      area.taskForce?.taskForceMember.some(
+                                        (member) => {
+                                          return (
+                                            member.programPersonnel.user.id ===
+                                            user.id
+                                          );
+                                        }
+                                      )
+                                    );
+                                  }
+                                );
+                              }
+                            })
+                            .sort(
+                              (a, b) =>
+                                new Date(b.createdAt).getTime() -
+                                new Date(a.createdAt).getTime()
+                            ) as unknown as SurveyVisitWithSafeLevel[]
+                        }
+                      />
+                    </TabsContent>
+                  ))}
+                </Tabs>
+              )}
+            </TabsContent>
+          )}
         </Tabs>
       </div>
     </ScrollArea>

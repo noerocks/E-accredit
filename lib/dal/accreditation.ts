@@ -32,7 +32,7 @@ export async function updateAccreditationById(data: Partial<Accreditation>) {
 }
 
 export const getAccreditations = unstable_cache(
-  async (): Promise<AccreditationDisplayDTO[] | null> => {
+  async () => {
     const accreditations = await prisma.accreditation.findMany({
       include: {
         program: true,
@@ -48,10 +48,48 @@ export const getAccreditations = unstable_cache(
                       include: {
                         taskForce: {
                           include: {
-                            chairPerson: true,
+                            chairPerson: {
+                              include: {
+                                user: true,
+                              },
+                            },
                             taskForceMember: {
                               include: {
-                                programPersonnel: true,
+                                programPersonnel: {
+                                  include: {
+                                    user: true,
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            phaseTwoRequirements: {
+              include: {
+                phaseTwoFolder: {
+                  include: {
+                    phaseTwoAreaFolders: {
+                      include: {
+                        taskForce: {
+                          include: {
+                            chairPerson: {
+                              include: {
+                                user: true,
+                              },
+                            },
+                            taskForceMember: {
+                              include: {
+                                programPersonnel: {
+                                  include: {
+                                    user: true,
+                                  },
+                                },
                               },
                             },
                           },

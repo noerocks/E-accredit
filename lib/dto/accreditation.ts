@@ -1,6 +1,8 @@
 import {
   Accreditation,
   Level,
+  PhaseOneRequirements,
+  PhaseTwoRequirements,
   Program,
   SurveyVisit,
 } from "../generated/prisma";
@@ -13,7 +15,11 @@ export type SafeLevel = Omit<
   requiredAreaMean: number;
 };
 
-export type SurveyVisitWithSafeLevel = SurveyVisit & { level: SafeLevel };
+export type SurveyVisitWithSafeLevel = SurveyVisit & {
+  level: SafeLevel;
+  phaseTwoRequirements: PhaseTwoRequirements;
+  phaseOneRequirements: PhaseOneRequirements;
+};
 
 export type AccreditationDisplayDTO = Accreditation & {
   program: Program;
