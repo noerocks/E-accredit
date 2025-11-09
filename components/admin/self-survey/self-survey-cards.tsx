@@ -9,7 +9,7 @@ import {
 import { SurveyVisitDisplayDTO } from "@/lib/dto/survey-visit";
 import { SurveyTeamType } from "@/lib/generated/prisma";
 import { formatAccreditationName } from "@/lib/utils";
-import { FolderOpen } from "lucide-react";
+import { Calendar, FolderOpen } from "lucide-react";
 import Link from "next/link";
 
 const SelfSurveyCards = ({
@@ -26,6 +26,14 @@ const SelfSurveyCards = ({
       {surveyVisits?.map((surveyVisit) => {
         const program = surveyVisit.accreditation.program;
         const level = surveyVisit.level;
+        const startedAt =
+          surveyType === "INTERNAL"
+            ? surveyVisit.selfSurveyStartedAt
+            : surveyVisit.actualSurveyStartedAt;
+        const endedAt =
+          surveyType === "INTERNAL"
+            ? surveyVisit.selfSurveyEndedAt
+            : surveyVisit.actualSurveyEndedAt;
         return (
           <Card key={surveyVisit.id} className="basis-[calc(33.33%-1rem)]">
             <CardHeader>
@@ -34,7 +42,37 @@ const SelfSurveyCards = ({
               </CardTitle>
               <CardDescription>{program.name}</CardDescription>
             </CardHeader>
-            <CardContent className="flex justify-end">
+            <CardContent className="flex flex-col gap-5">
+              <div className="flex flex-col gap-2">
+                <div className="flex justify-between">
+                  <p className="text-sm text-muted-foreground flex items-center gap-1">
+                    <Calendar size={15} />
+                    Started at
+                  </p>
+                  <p className="text-sm">
+                    {startedAt
+                      ? `${new Date(startedAt!).toLocaleDateString(
+                          "en-US"
+                        )} - ${new Date(startedAt!).toLocaleTimeString(
+                          "en-US"
+                        )}`
+                      : "--"}
+                  </p>
+                </div>
+                <div className="flex justify-between">
+                  <p className="text-sm text-muted-foreground flex items-center gap-1">
+                    <Calendar size={15} />
+                    Ended at
+                  </p>
+                  <p className="text-sm">
+                    {endedAt
+                      ? `${new Date(endedAt!).toLocaleDateString(
+                          "en-US"
+                        )} - ${new Date(endedAt!).toLocaleTimeString("en-US")}`
+                      : "--"}
+                  </p>
+                </div>
+              </div>
               <Link
                 href={`/admin/${
                   level.phase === "PHASE_2"
@@ -47,6 +85,7 @@ const SelfSurveyCards = ({
                 }=${formatAccreditationName(program.code, surveyVisit.level)
                   .split(" ")
                   .join("+")}`}
+                className="self-end"
               >
                 <Button variant="outline">
                   <FolderOpen />

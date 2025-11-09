@@ -1,4 +1,4 @@
-const AccreditationOfficerDashboard = () => {
+const AccreditationOfficerDashboard = async () => {
   return (
     <div>
       <p>Accreditation Officer</p>

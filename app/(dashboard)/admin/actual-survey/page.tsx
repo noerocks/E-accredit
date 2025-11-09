@@ -48,6 +48,7 @@ const ActualSurveysPage = async () => {
             <TabsTrigger value="open">Open For Survey</TabsTrigger>
             <TabsTrigger value="history">Survey History</TabsTrigger>
           </TabsList>
+          <hr />
           <TabsContent value="open">
             {openSurveyVisits.length === 0 ? (
               <EmptySurvey surveyType="actual survey" />

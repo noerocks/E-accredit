@@ -1,4 +1,5 @@
 import AccreditationSidebar from "@/components/admin/accreditation/accreditation-sidebar";
+import { verifySession } from "@/lib/action/session";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
 import { PhaseOneInstrumentDTO } from "@/lib/dto/accreditation-instrument";
 
@@ -10,6 +11,7 @@ const ActualSurveyLayout = async ({
   params: Promise<{ id: string }>;
 }) => {
   const { id } = await params;
+  const { user } = await verifySession();
   const surveyVisitStructure = await getSurveyVisitStructureById(id);
   const surveyResultStatus = surveyVisitStructure?.surveyResultStatus;
   return (
@@ -25,6 +27,7 @@ const ActualSurveyLayout = async ({
         surveyResultStatus={surveyResultStatus}
         selfSurveyStatus={surveyVisitStructure?.selfSurveyStatus}
         surveyVisitId={id}
+        userId={user.id}
       />
       <div className="flex-1 h-full overflow-auto">{children}</div>
     </div>

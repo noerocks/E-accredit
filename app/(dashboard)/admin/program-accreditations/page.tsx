@@ -1,3 +1,4 @@
+import EmptyAccreditationPrograms from "@/components/admin/accreditation/empty-program-accreditations";
 import ProgramAccreditationCards from "@/components/admin/accreditation/program-accreditations-cards";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -43,13 +44,21 @@ const ProgramAccreditationsPage = async () => {
             ))}
           </TabsList>
           {filteredAndSortedLevels.map((level) => (
-            <TabsContent value={level.label} key={level.id}>
-              {accreditationsByLevel[level.label]?.map((accreditation) => (
-                <ProgramAccreditationCards
-                  programAccreditation={accreditation}
-                  key={accreditation.id}
-                />
-              ))}
+            <TabsContent
+              value={level.label}
+              key={level.id}
+              className="flex flex-wrap gap-5"
+            >
+              {accreditationsByLevel[level.label]?.length > 0 ? (
+                accreditationsByLevel[level.label]?.map((accreditation) => (
+                  <ProgramAccreditationCards
+                    programAccreditation={accreditation}
+                    key={accreditation.id}
+                  />
+                ))
+              ) : (
+                <EmptyAccreditationPrograms />
+              )}
             </TabsContent>
           ))}
         </Tabs>

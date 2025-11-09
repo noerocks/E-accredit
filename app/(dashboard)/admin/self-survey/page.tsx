@@ -44,6 +44,7 @@ const SelfSurveysPage = async () => {
             <TabsTrigger value="open">Open For Survey</TabsTrigger>
             <TabsTrigger value="history">Survey History</TabsTrigger>
           </TabsList>
+          <hr />
           <TabsContent value="open">
             {openSurveyVisits.length === 0 ? (
               <EmptySurvey surveyType="self survey" />
@@ -58,7 +59,6 @@ const SelfSurveysPage = async () => {
               />
             )}
           </TabsContent>
-          <hr />
           <TabsContent value="history">
             {programCodes && (
               <Tabs defaultValue={programCodes[0]}>
