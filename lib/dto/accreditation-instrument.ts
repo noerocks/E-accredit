@@ -1,5 +1,6 @@
 import {
   Area,
+  AreaChair,
   AreaFile,
   AreaFolder,
   Comment,
@@ -13,7 +14,7 @@ import {
   PhaseTwoAreaFolder,
   PhaseTwoFolder,
 } from "../generated/prisma";
-import { RatingDTO } from "./survey-visit";
+import { AreaChairDTO, RatingDTO } from "./survey-visit";
 import { TaskforceDTO } from "./taskforce";
 
 export type PhaseTwoInstrumentDTO = PhaseTwoFolder & {
@@ -24,6 +25,7 @@ export type PhaseOneInstrumentDTO = InstrumentFolder & {
   areaFolders: AreaFolderDTO[];
 };
 export type AreaFolderDTO = AreaFolder & {
+  areaChair: AreaChairDTO[];
   area: Area;
   strengths: Comment[];
   weaknesses: Comment[];

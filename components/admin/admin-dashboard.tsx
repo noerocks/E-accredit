@@ -65,10 +65,16 @@ const AdminDashboard = async () => {
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 m-10">
-        <p className="flex items-center gap-2 text-2xl">
-          <LayoutDashboard />
-          Admin Dashboard
-        </p>
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <p className="text-muted-foreground">Welcome to your dashboard</p>
+            <p>{user.name}</p>
+          </div>
+          <p className="flex items-center gap-2 text-lg text-muted-foreground">
+            <LayoutDashboard size={15} />
+            Admin Dashboard
+          </p>
+        </div>
         <div className="flex gap-5">
           {sectionCards.map((card) => (
             <Card className="flex-1" key={card.label}>

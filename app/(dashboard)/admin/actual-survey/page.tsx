@@ -6,9 +6,29 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { SearchCheck } from "lucide-react";
 import { SurveyVisitDisplayDTO } from "@/lib/dto/survey-visit";
 import EmptySurvey from "@/components/admin/self-survey/empty-survey";
+import { verifySession } from "@/lib/action/session";
 
 const ActualSurveysPage = async () => {
+  const { user } = await verifySession();
   const surveyVisits = await getAllSurveyVisit();
+  const assignedSurveyVisit = (
+    surveyVisits?.filter((visit) =>
+      visit.surveyTeam.find(
+        (team) =>
+          team.type === "EXTERNAL" &&
+          (team.teamLeadId === user.id ||
+            team.areaChairs.some((chair) => chair.userId === user.id))
+      )
+    ) ?? []
+  ).reduce(
+    (group, survey) => {
+      const program = survey.accreditation.program;
+      (group[program.code] = group[program.code] ?? []).push(survey);
+      return group;
+    },
+    {} as Record<string, SurveyVisitDisplayDTO[]>
+  );
+  const assignedProgramCodes = Object.keys(assignedSurveyVisit);
   const openSurveyVisits =
     surveyVisits?.filter(
       (survey) =>
@@ -33,7 +53,6 @@ const ActualSurveysPage = async () => {
     {} as Record<string, SurveyVisitDisplayDTO[]>
   );
   const programCodes = Object.keys(doneSurveyVisits);
-
   return (
     <ScrollArea className="h-full">
       <div className="max-w-3/4 mx-auto my-10">
@@ -46,6 +65,9 @@ const ActualSurveysPage = async () => {
         <Tabs defaultValue="open">
           <TabsList className="bg-background border">
             <TabsTrigger value="open">Open For Survey</TabsTrigger>
+            {user.role === "ACCREDITOR" && (
+              <TabsTrigger value="assignments">My Assignments</TabsTrigger>
+            )}
             <TabsTrigger value="history">Survey History</TabsTrigger>
           </TabsList>
           <hr />
@@ -63,6 +85,33 @@ const ActualSurveysPage = async () => {
               />
             )}
           </TabsContent>
+          {user.role === "ACCREDITOR" && (
+            <TabsContent value="assignments">
+              {assignedProgramCodes && (
+                <Tabs defaultValue={assignedProgramCodes[0]}>
+                  <TabsList className="bg-background border">
+                    {assignedProgramCodes.map((code) => (
+                      <TabsTrigger value={code} key={code}>
+                        {code}
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
+                  {assignedProgramCodes.map((code) => (
+                    <TabsContent value={code} key={code}>
+                      <SelfSurveyCards
+                        surveyVisits={assignedSurveyVisit[code].sort(
+                          (a, b) =>
+                            new Date(b.createdAt).getTime() -
+                            new Date(a.createdAt).getTime()
+                        )}
+                        surveyType={SurveyTeamType.EXTERNAL}
+                      />
+                    </TabsContent>
+                  ))}
+                </Tabs>
+              )}
+            </TabsContent>
+          )}
           <TabsContent value="history">
             {programCodes && (
               <Tabs defaultValue={programCodes[0]}>

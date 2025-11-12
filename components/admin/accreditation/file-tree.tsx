@@ -75,6 +75,8 @@ const FileTree = ({ item, userId }: { item: TreeNode; userId?: string }) => {
     const isMember = item.taskForce.taskForceMember.some(
       (member) => member.programPersonnel.userId === userId
     );
+    const isExternalAreaChair =
+      item.areaChair?.find((chair) => chair.userId === userId) !== undefined;
     return (
       <SidebarMenuItem>
         <Collapsible
@@ -83,6 +85,7 @@ const FileTree = ({ item, userId }: { item: TreeNode; userId?: string }) => {
             {
               "bg-green-500/5": isChairperson,
               "bg-yellow-500/5": isMember,
+              "bg-blue-500/5": isExternalAreaChair,
             }
           )}
           defaultOpen
@@ -97,6 +100,11 @@ const FileTree = ({ item, userId }: { item: TreeNode; userId?: string }) => {
             )}
             {isMember && (
               <p className="text-sm text-muted-foreground">Taskforce Member</p>
+            )}
+            {isExternalAreaChair && (
+              <p className="text-sm text-muted-foreground">
+                External Area chair
+              </p>
             )}
           </SidebarMenuButton>
           <CollapsibleContent>

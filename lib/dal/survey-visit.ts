@@ -65,6 +65,11 @@ export const getSurveyVisitStructureById = unstable_cache(
         id,
       },
       include: {
+        surveyTeam: {
+          include: {
+            teamLead: true,
+          },
+        },
         certificate: true,
         remarks: true,
         accreditation: {
@@ -88,6 +93,11 @@ export const getSurveyVisitStructureById = unstable_cache(
               include: {
                 areaFolders: {
                   include: {
+                    areaChair: {
+                      include: {
+                        surveyTeam: true,
+                      },
+                    },
                     strengths: true,
                     weaknesses: true,
                     recommendations: true,
@@ -244,7 +254,12 @@ export const getAllSurveyVisit = unstable_cache(
   async (): Promise<SurveyVisitDisplayDTO[] | null> => {
     const surveyVisit = await prisma.surveyVisit.findMany({
       include: {
-        surveyTeam: true,
+        surveyTeam: {
+          include: {
+            teamLead: true,
+            areaChairs: true,
+          },
+        },
         accreditation: {
           include: {
             program: true,

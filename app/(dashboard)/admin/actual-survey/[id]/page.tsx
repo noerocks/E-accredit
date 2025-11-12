@@ -40,9 +40,11 @@ import {
   CheckCircle2,
   CircleDot,
   CircleSlash,
+  Info,
   SearchCheck,
 } from "lucide-react";
 import { ActivityDTO } from "@/lib/dto/audit";
+import { Alert, AlertTitle } from "@/components/ui/alert";
 
 const ActualSurveyPage = async ({
   params,
@@ -110,6 +112,14 @@ const ActualSurveyPage = async ({
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
+        {isCoordinator && user.role === "ACCREDITOR" && (
+          <Alert className="bg-blue-500/5 border-blue-500 text-blue-500">
+            <Info />
+            <AlertTitle>
+              You are assigned as external coordinator for this survey visit
+            </AlertTitle>
+          </Alert>
+        )}
         <p className="flex items-center gap-2 text-2xl">
           <SearchCheck />
           Actual Survey
