@@ -14,6 +14,7 @@ export type SurveyVisitDTO = SurveyVisit & { surveyTeam: SurveyTeamDTO[] };
 export type SurveyTeamDTO = SurveyTeam & { areaChairs: AreaChair[] };
 
 export type SurveyVisitDisplayDTO = SurveyVisit & {
+  surveyTeam: SurveyTeam[];
   accreditation: Accreditation & {
     program: Program;
   };

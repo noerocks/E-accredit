@@ -25,6 +25,7 @@ export async function assignAreaChair(
       surveyTeamId,
       areaFolderId
     );
+    revalidateTag("surveyVisitSurvey");
     revalidateTag("evidenceFiles");
     revalidateTag("areaFolder");
     revalidateTag("parameterFolder");
@@ -48,6 +49,7 @@ export async function assignCoordinator(
       id: surveyTeamId,
       teamLeadId: userId,
     });
+    revalidateTag("surveyVisitSurvey");
     revalidateTag("evidenceFiles");
     revalidateTag("areaFolder");
     revalidateTag("parameterFolder");

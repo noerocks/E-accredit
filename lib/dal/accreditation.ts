@@ -35,7 +35,11 @@ export const getAccreditations = unstable_cache(
   async () => {
     const accreditations = await prisma.accreditation.findMany({
       include: {
-        program: true,
+        program: {
+          include: {
+            programHead: true,
+          },
+        },
         level: true,
         surveyVisits: {
           include: {

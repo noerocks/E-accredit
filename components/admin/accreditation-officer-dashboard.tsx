@@ -1,4 +1,11 @@
-import { FileUp, Layers, LayoutDashboard, User, UserStar } from "lucide-react";
+import {
+  FileUp,
+  Landmark,
+  Layers,
+  LayoutDashboard,
+  User,
+  UserStar,
+} from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
 import { getAllAreaFolders } from "@/lib/dal/area-folder";
 import { verifySession } from "@/lib/action/session";
@@ -9,6 +16,7 @@ import { getActivitiesByUserId } from "@/lib/dal/audit";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { DataTable } from "./accreditation/activity-data-table";
 import { columns } from "./accreditation/activity-columns";
+import { getPrograms } from "@/lib/dal/program";
 
 const AccreditationOfficerDashboard = async () => {
   const { user } = await verifySession();
@@ -16,6 +24,10 @@ const AccreditationOfficerDashboard = async () => {
   const phaseTwoAreaFolders = await getAllPhaseTwoAreaFolders();
   const fileVersions = await getAllFileVersions();
   const activities = await getActivitiesByUserId(user.id);
+  const programs = await getPrograms();
+  const assignedProgramsCount = programs.filter(
+    (program) => program.programHead?.id === user.id
+  ).length;
   const fileUploadsCount = fileVersions.filter(
     (file) => file.uploader?.id === user.id
   ).length;
@@ -52,6 +64,12 @@ const AccreditationOfficerDashboard = async () => {
       label: "Assigned Areas",
       icon: <Layers />,
       style: "text-purple-500 p-3 bg-purple-500/20 rounded-md",
+    },
+    {
+      count: assignedProgramsCount,
+      label: "Assigned Programs",
+      icon: <Landmark />,
+      style: "text-red-500 p-3 bg-red-500/20 rounded-md",
     },
     {
       count: fileUploadsCount,

@@ -244,6 +244,7 @@ export const getAllSurveyVisit = unstable_cache(
   async (): Promise<SurveyVisitDisplayDTO[] | null> => {
     const surveyVisit = await prisma.surveyVisit.findMany({
       include: {
+        surveyTeam: true,
         accreditation: {
           include: {
             program: true,

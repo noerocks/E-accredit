@@ -213,6 +213,11 @@ export const getAllAreaFolders = unstable_cache(
   async () => {
     const areaFolders = await prisma.areaFolder.findMany({
       include: {
+        areaChair: {
+          include: {
+            user: true,
+          },
+        },
         area: true,
         taskForce: {
           include: {

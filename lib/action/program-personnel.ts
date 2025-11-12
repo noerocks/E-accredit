@@ -31,6 +31,7 @@ export async function AddProgramPersonnel(
         message: "Unauthorized action",
       };
     }
+    revalidateTag("accreditations");
     revalidateTag("programPersonnel");
     return {
       status: "success",
@@ -61,6 +62,7 @@ export async function removeProgramPersonnel(personnelId: string | undefined) {
         status: "error",
         message: "Unauthorized action",
       };
+    revalidateTag("accreditations");
     revalidateTag("programPersonnel");
     return {
       status: "success",
@@ -91,6 +93,7 @@ export async function assignProgramHead(
     await deleteProgramPersonnelById(personnelId);
   }
   const program = await assignProgramHeadDAL(userId, programId);
+  revalidateTag("accreditations");
   revalidateTag("programs");
   revalidateTag("programPersonnel");
 }

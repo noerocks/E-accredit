@@ -1,5 +1,6 @@
 import CreateAccreditationDialog from "@/components/admin/accreditation/createAccreditationDialog";
 import PortfolioCards from "@/components/admin/accreditation/portfolio-cards";
+import { Alert, AlertTitle } from "@/components/ui/alert";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { verifySession } from "@/lib/action/session";
@@ -8,7 +9,7 @@ import { getInstrumentByName, getInstruments } from "@/lib/dal/instrument";
 import { getLevels } from "@/lib/dal/levels";
 import { getPrograms } from "@/lib/dal/program";
 import { SurveyVisitWithSafeLevel } from "@/lib/dto/accreditation";
-import { FileArchive } from "lucide-react";
+import { FileArchive, Info } from "lucide-react";
 
 const Accreditation = async () => {
   const { user } = await verifySession();
@@ -21,32 +22,34 @@ const Accreditation = async () => {
   );
   const assignedAccreditations = filteredAccreditations.filter(
     (accreditation) => {
-      return accreditation.surveyVisits.some((visit) => {
-        if (visit.phaseOneRequirements) {
-          return visit.phaseOneRequirements.instrumentFolder?.areaFolders.some(
-            (area) => {
-              return (
-                area.taskForce?.chairPerson?.user.id === user.id ||
-                area.taskForce?.taskForceMember.some((member) => {
-                  return member.programPersonnel.user.id === user.id;
-                })
-              );
-            }
-          );
-        }
-        if (visit.phaseTwoRequirements) {
-          return visit.phaseTwoRequirements.phaseTwoFolder?.phaseTwoAreaFolders.some(
-            (area) => {
-              return (
-                area.taskForce?.chairPerson?.user.id === user.id ||
-                area.taskForce?.taskForceMember.some((member) => {
-                  return member.programPersonnel.user.id === user.id;
-                })
-              );
-            }
-          );
-        }
-      });
+      return (
+        accreditation.surveyVisits.some((visit) => {
+          if (visit.phaseOneRequirements) {
+            return visit.phaseOneRequirements.instrumentFolder?.areaFolders.some(
+              (area) => {
+                return (
+                  area.taskForce?.chairPerson?.user.id === user.id ||
+                  area.taskForce?.taskForceMember.some((member) => {
+                    return member.programPersonnel.user.id === user.id;
+                  })
+                );
+              }
+            );
+          }
+          if (visit.phaseTwoRequirements) {
+            return visit.phaseTwoRequirements.phaseTwoFolder?.phaseTwoAreaFolders.some(
+              (area) => {
+                return (
+                  area.taskForce?.chairPerson?.user.id === user.id ||
+                  area.taskForce?.taskForceMember.some((member) => {
+                    return member.programPersonnel.user.id === user.id;
+                  })
+                );
+              }
+            );
+          }
+        }) || accreditation.program.programHead?.id === user.id
+      );
     }
   );
   const levelThreePhaseTwoInstrument = await getInstrumentByName(
@@ -89,23 +92,25 @@ const Accreditation = async () => {
                     </TabsTrigger>
                   ))}
                 </TabsList>
-                {filteredAccreditations.map((accreditation) => (
-                  <TabsContent
-                    value={accreditation.program.code}
-                    key={accreditation.id}
-                  >
-                    <PortfolioCards
-                      program={accreditation.program}
-                      surveyVisits={
-                        accreditation.surveyVisits.sort(
-                          (a, b) =>
-                            new Date(b.createdAt).getTime() -
-                            new Date(a.createdAt).getTime()
-                        ) as unknown as SurveyVisitWithSafeLevel[]
-                      }
-                    />
-                  </TabsContent>
-                ))}
+                {filteredAccreditations.map((accreditation) => {
+                  return (
+                    <TabsContent
+                      value={accreditation.program.code}
+                      key={accreditation.id}
+                    >
+                      <PortfolioCards
+                        program={accreditation.program}
+                        surveyVisits={
+                          accreditation.surveyVisits.sort(
+                            (a, b) =>
+                              new Date(b.createdAt).getTime() -
+                              new Date(a.createdAt).getTime()
+                          ) as unknown as SurveyVisitWithSafeLevel[]
+                        }
+                      />
+                    </TabsContent>
+                  );
+                })}
               </Tabs>
             )}
           </TabsContent>
@@ -123,62 +128,79 @@ const Accreditation = async () => {
                       </TabsTrigger>
                     ))}
                   </TabsList>
-                  {assignedAccreditations.map((accreditation) => (
-                    <TabsContent
-                      value={accreditation.program.code}
-                      key={accreditation.id}
-                    >
-                      <PortfolioCards
-                        program={accreditation.program}
-                        surveyVisits={
-                          accreditation.surveyVisits
-                            .filter((visit) => {
-                              if (visit.phaseOneRequirements) {
-                                return visit.phaseOneRequirements.instrumentFolder?.areaFolders.some(
-                                  (area) => {
-                                    return (
-                                      area.taskForce?.chairPerson?.user.id ===
-                                        user.id ||
-                                      area.taskForce?.taskForceMember.some(
-                                        (member) => {
-                                          return (
-                                            member.programPersonnel.user.id ===
-                                            user.id
-                                          );
-                                        }
-                                      )
-                                    );
-                                  }
-                                );
-                              }
-                              if (visit.phaseTwoRequirements) {
-                                return visit.phaseTwoRequirements.phaseTwoFolder?.phaseTwoAreaFolders.some(
-                                  (area) => {
-                                    return (
-                                      area.taskForce?.chairPerson?.user.id ===
-                                        user.id ||
-                                      area.taskForce?.taskForceMember.some(
-                                        (member) => {
-                                          return (
-                                            member.programPersonnel.user.id ===
-                                            user.id
-                                          );
-                                        }
-                                      )
-                                    );
-                                  }
-                                );
-                              }
-                            })
-                            .sort(
-                              (a, b) =>
-                                new Date(b.createdAt).getTime() -
-                                new Date(a.createdAt).getTime()
-                            ) as unknown as SurveyVisitWithSafeLevel[]
-                        }
-                      />
-                    </TabsContent>
-                  ))}
+                  {assignedAccreditations.map((accreditation) => {
+                    const isProgramHead =
+                      accreditation.program.programHead?.id === user.id;
+                    return (
+                      <TabsContent
+                        value={accreditation.program.code}
+                        key={accreditation.id}
+                      >
+                        {isProgramHead && (
+                          <Alert className="bg-blue-500/5 border-blue-500 text-blue-500 mb-2">
+                            <Info />
+                            <AlertTitle>
+                              You are assigned as head in this program
+                            </AlertTitle>
+                          </Alert>
+                        )}
+                        <PortfolioCards
+                          program={accreditation.program}
+                          surveyVisits={
+                            accreditation.surveyVisits
+                              .filter((visit) => {
+                                if (
+                                  accreditation.program.programHead?.id ===
+                                  user.id
+                                )
+                                  return true;
+                                if (visit.phaseOneRequirements) {
+                                  return visit.phaseOneRequirements.instrumentFolder?.areaFolders.some(
+                                    (area) => {
+                                      return (
+                                        area.taskForce?.chairPerson?.user.id ===
+                                          user.id ||
+                                        area.taskForce?.taskForceMember.some(
+                                          (member) => {
+                                            return (
+                                              member.programPersonnel.user
+                                                .id === user.id
+                                            );
+                                          }
+                                        )
+                                      );
+                                    }
+                                  );
+                                }
+                                if (visit.phaseTwoRequirements) {
+                                  return visit.phaseTwoRequirements.phaseTwoFolder?.phaseTwoAreaFolders.some(
+                                    (area) => {
+                                      return (
+                                        area.taskForce?.chairPerson?.user.id ===
+                                          user.id ||
+                                        area.taskForce?.taskForceMember.some(
+                                          (member) => {
+                                            return (
+                                              member.programPersonnel.user
+                                                .id === user.id
+                                            );
+                                          }
+                                        )
+                                      );
+                                    }
+                                  );
+                                }
+                              })
+                              .sort(
+                                (a, b) =>
+                                  new Date(b.createdAt).getTime() -
+                                  new Date(a.createdAt).getTime()
+                              ) as unknown as SurveyVisitWithSafeLevel[]
+                          }
+                        />
+                      </TabsContent>
+                    );
+                  })}
                 </Tabs>
               )}
             </TabsContent>

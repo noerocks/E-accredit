@@ -12,6 +12,7 @@ import { SurveyVisitWithSafeLevel } from "@/lib/dto/accreditation";
 import { Program } from "@/lib/generated/prisma";
 import { formatAccreditationName } from "@/lib/utils";
 import clsx from "clsx";
+import { formatDistanceToNow } from "date-fns";
 import {
   Calendar,
   CheckCircle,
