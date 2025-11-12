@@ -33,8 +33,9 @@ import {
 import { formatAccreditationName } from "@/lib/utils";
 import { Level, User } from "@prisma/client";
 import clsx from "clsx";
-import { Check, CircleDot, SearchCheck } from "lucide-react";
+import { Check, CircleDot, Info, SearchCheck } from "lucide-react";
 import { getActivitiesBySurveyVisitId } from "@/lib/dal/audit";
+import { Alert, AlertTitle } from "@/components/ui/alert";
 
 const SelfSurveyPage = async ({
   params,
@@ -100,6 +101,14 @@ const SelfSurveyPage = async ({
   return (
     <ScrollArea className="h-full">
       <div className="flex flex-col gap-5 max-w-5/6 mx-auto my-10">
+        {isProgramHead && (
+          <Alert className="bg-blue-500/5 border-blue-500 text-blue-500">
+            <Info />
+            <AlertTitle>
+              You are assigned as internal coordinator for this survey visit
+            </AlertTitle>
+          </Alert>
+        )}
         <p className="flex items-center gap-2 text-2xl">
           <SearchCheck />
           Self Survey
