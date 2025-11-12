@@ -208,3 +208,36 @@ export async function updateAreaFolderById(data: Partial<AreaFolder>) {
   });
   return areaFolder;
 }
+
+export const getAllAreaFolders = unstable_cache(
+  async () => {
+    const areaFolders = await prisma.areaFolder.findMany({
+      include: {
+        area: true,
+        taskForce: {
+          include: {
+            chairPerson: {
+              include: {
+                user: true,
+              },
+            },
+            taskForceMember: {
+              include: {
+                programPersonnel: {
+                  include: {
+                    user: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+    return areaFolders;
+  },
+  ["getAllAreaFolders"],
+  {
+    tags: ["areaFolder"],
+  }
+);

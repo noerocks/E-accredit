@@ -60,3 +60,24 @@ export const getLoginActivities = unstable_cache(
     tags: ["activities"],
   }
 );
+
+export const getActivitiesByUserId = unstable_cache(
+  async (userId: string) => {
+    const activities = await prisma.auditTrail.findMany({
+      where: {
+        actorId: userId,
+      },
+      include: {
+        actor: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    return activities;
+  },
+  ["getActivitiesByUserId"],
+  {
+    tags: ["activities"],
+  }
+);

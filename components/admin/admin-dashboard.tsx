@@ -7,7 +7,14 @@ import {
   getOpenForActualSurveyCount,
   getOpenForSelfSurveyCount,
 } from "@/lib/dal/survey-visit";
-import { Award, Landmark, SearchCheck, Users } from "lucide-react";
+import {
+  Award,
+  Landmark,
+  LayoutDashboard,
+  Megaphone,
+  SearchCheck,
+  Users,
+} from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { getLoginActivities } from "@/lib/dal/audit";
 import { DataTable } from "./accreditation/activity-data-table";
@@ -23,7 +30,6 @@ const AdminDashboard = async () => {
   const logInActivities = await getLoginActivities();
   const { user } = await verifySession();
   const admin = await getUserById(user.id);
-  console.log(admin);
   const sectionCards = [
     {
       count: userCount,
@@ -57,8 +63,12 @@ const AdminDashboard = async () => {
     },
   ];
   return (
-    <ScrollArea className="h-full p-5">
-      <div className="flex flex-col gap-5">
+    <ScrollArea className="h-full">
+      <div className="flex flex-col gap-5 m-10">
+        <p className="flex items-center gap-2 text-2xl">
+          <LayoutDashboard />
+          Admin Dashboard
+        </p>
         <div className="flex gap-5">
           {sectionCards.map((card) => (
             <Card className="flex-1" key={card.label}>
@@ -76,7 +86,7 @@ const AdminDashboard = async () => {
             </Card>
           ))}
         </div>
-        <Tabs defaultValue="activity" className="flex-3">
+        <Tabs defaultValue="activity">
           <TabsList className="bg-background border">
             <TabsTrigger value="activity">User Session Log</TabsTrigger>
           </TabsList>

@@ -1,3 +1,4 @@
+import { revalidateTag } from "next/cache";
 import { verifySession } from "../action/session";
 import { prisma } from "../prisma";
 
@@ -21,6 +22,8 @@ export async function createMember(
       },
     },
   });
+  revalidateTag("areaFolders");
+  revalidateTag("accreditations");
   return member;
 }
 
@@ -32,5 +35,7 @@ export async function deleteMember(memberId: string) {
       id: memberId,
     },
   });
+  revalidateTag("areaFolders");
+  revalidateTag("accreditations");
   return member;
 }

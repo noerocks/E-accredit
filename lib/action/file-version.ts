@@ -187,6 +187,7 @@ export async function createNewVersion({
       description: `${status} status has been granted`,
     });
   }
+  revalidateTag("fileVersions");
   revalidateTag("activities");
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");

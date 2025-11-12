@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { verifySession } from "../action/session";
 import {
   FileStatus,
@@ -189,3 +190,18 @@ export async function getCertificateFileBySurveyVisitId(surveyVisitId: string) {
   });
   return surveyVisit?.certificate;
 }
+
+export const getAllFileVersions = unstable_cache(
+  async () => {
+    const fileVersions = await prisma.fileVersion.findMany({
+      include: {
+        uploader: true,
+      },
+    });
+    return fileVersions;
+  },
+  ["getAllFileVersions"],
+  {
+    tags: ["fileVersions"],
+  }
+);

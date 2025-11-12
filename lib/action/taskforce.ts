@@ -25,6 +25,7 @@ export async function assignChairperson({
     areaFolderId,
     phaseTwoAreaFolderId,
   });
+  revalidateTag("accreditations");
   revalidateTag("areaFolder");
   revalidateTag("evidenceFiles");
   revalidateTag("parameterFolder");
