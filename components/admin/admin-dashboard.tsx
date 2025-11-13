@@ -16,10 +16,14 @@ import {
   Users,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { getLoginActivities } from "@/lib/dal/audit";
+import {
+  getAllActivitiesWithInsights,
+  getLoginActivities,
+} from "@/lib/dal/audit";
 import { DataTable } from "./accreditation/activity-data-table";
 import { columns } from "./accreditation/activity-columns";
 import { verifySession } from "@/lib/action/session";
+import ActivityLineChart from "./activitity-chart";
 
 const AdminDashboard = async () => {
   const userCount = await getUserCount();
@@ -30,6 +34,7 @@ const AdminDashboard = async () => {
   const logInActivities = await getLoginActivities();
   const { user } = await verifySession();
   const admin = await getUserById(user.id);
+  const { chartData, insights } = await getAllActivitiesWithInsights();
   const sectionCards = [
     {
       count: userCount,
@@ -92,6 +97,12 @@ const AdminDashboard = async () => {
             </Card>
           ))}
         </div>
+        <ActivityLineChart
+          data={chartData}
+          totalActions={insights.totalActions}
+          busiestDay={insights.busiestDay}
+          mostActiveUser={insights.mostActiveUser}
+        />
         <Tabs defaultValue="activity">
           <TabsList className="bg-background border">
             <TabsTrigger value="activity">User Session Log</TabsTrigger>

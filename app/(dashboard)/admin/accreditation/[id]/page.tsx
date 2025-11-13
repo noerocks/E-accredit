@@ -35,6 +35,7 @@ import {
 import clsx from "clsx";
 import { CircleDot, FileArchive } from "lucide-react";
 import { ActivityDTO } from "@/lib/dto/audit";
+import { SurveyVisitDisplayDTO } from "@/lib/dto/survey-visit";
 
 const ProgramAccreditationPage = async ({
   params,
@@ -103,6 +104,13 @@ const ProgramAccreditationPage = async ({
               level!
             )}`}</CardTitle>
             <CardDescription>{program?.name}</CardDescription>
+            <p>{`Deadline: ${new Date(
+              surveyVisitStructure?.actualSurveyDate!
+            ).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}`}</p>
           </CardHeader>
           <CardFooter className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -129,7 +137,11 @@ const ProgramAccreditationPage = async ({
               )}
             </div>
             {surveyVisitStructure?.status === "COMPLETE" && (
-              <MigrateFiles surveyVisitPortfolios={surveyVisits!} />
+              <MigrateFiles
+                surveyVisitPortfolios={
+                  surveyVisits as unknown as SurveyVisitDisplayDTO[]
+                }
+              />
             )}
           </CardFooter>
         </Card>
