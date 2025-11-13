@@ -3,12 +3,13 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import { ModeToggle } from "./mode-toggle";
 import Link from "next/link";
 
-const Header = () => {
+const Header = async () => {
   const navs = [
     { label: "Home", link: "#home" },
     { label: "About", link: "#about" },
     { label: "Features", link: "#features" },
   ];
+
   return (
     <header className="flex justify-between items-center py-5 px-50 sticky bg-secondary top-0 dark:shadow-background/5 shadow-lg shadow-foreground/5 border-b-8 border-b-yellow-500 z-20">
       <div className="flex items-center gap-2">
@@ -21,7 +22,13 @@ const Header = () => {
         <ul className="flex gap-10">
           {navs.map((nav) => (
             <li key={nav.link}>
-              <a href={nav.link}>{nav.label}</a>
+              <a
+                href={nav.link}
+                className="relative group text-foreground font-medium transition-colors hover:text-blue-500"
+              >
+                {nav.label}
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-500 transition-all group-hover:w-full"></span>
+              </a>
             </li>
           ))}
         </ul>
