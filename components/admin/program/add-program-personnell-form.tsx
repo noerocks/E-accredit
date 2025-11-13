@@ -28,15 +28,18 @@ import { toast } from "sonner";
 import z from "zod";
 import { AddProgramPersonnel } from "@/lib/action/program-personnel";
 import { UsersDTO } from "@/lib/dto/user";
+import { SessionPayload } from "@/lib/definitions";
 
 const AddProgramPersonnelForm = ({
   programId,
   accreditationOfficers,
   programHeadUserId,
+  user,
 }: {
   programId: string;
   accreditationOfficers: UsersDTO[] | null;
   programHeadUserId: string | undefined;
+  user: SessionPayload;
 }) => {
   const form = useForm<z.infer<typeof AddProgramPersonnelFormSchema>>({
     resolver: zodResolver(AddProgramPersonnelFormSchema),
@@ -61,48 +64,55 @@ const AddProgramPersonnelForm = ({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name="userId"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Add Program Personnel</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Choose accreditation officer" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  {accreditationOfficers
-                    ?.filter((officer) => officer.id !== programHeadUserId)
-                    .map((officer) => (
-                      <SelectItem
-                        value={officer.id}
-                        key={officer.id}
-                      >{`${officer.firstName} ${officer.lastName}`}</SelectItem>
-                    ))}
-                </SelectContent>
-              </Select>
-              <FormDescription>
-                Assign an accreditation officer to this program
-              </FormDescription>
-              <FormMessage />
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button variant="outline">Cancel</Button>
-                </DialogClose>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button>
-                      <UserPlus /> Add
-                    </Button>
-                  </TooltipTrigger>
-                </Tooltip>
-              </DialogFooter>
-            </FormItem>
-          )}
-        />
+        {user.role === "ADMIN" && (
+          <FormField
+            control={form.control}
+            name="userId"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Add Program Personnel</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Choose accreditation officer" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {accreditationOfficers
+                      ?.filter((officer) => officer.id !== programHeadUserId)
+                      .map((officer) => (
+                        <SelectItem
+                          value={officer.id}
+                          key={officer.id}
+                        >{`${officer.firstName} ${officer.lastName}`}</SelectItem>
+                      ))}
+                  </SelectContent>
+                </Select>
+                <FormDescription>
+                  Assign an accreditation officer to this program
+                </FormDescription>
+                <FormMessage />
+                {user.role === "ADMIN" && (
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline">Cancel</Button>
+                    </DialogClose>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button>
+                          <UserPlus /> Add
+                        </Button>
+                      </TooltipTrigger>
+                    </Tooltip>
+                  </DialogFooter>
+                )}
+              </FormItem>
+            )}
+          />
+        )}
       </form>
     </Form>
   );

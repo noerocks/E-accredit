@@ -36,14 +36,14 @@ const InstrumentPage = async ({
           <p className="text-3xl">{instrument?.name}</p>
           <div className="flex justify-between items-center">
             <p className="text-foreground">{instrument?.accreditingBody}</p>
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
               <Button variant="outline" size="icon">
                 <Pencil />
               </Button>
               <DeleteInstrumentDialog
                 instrument={{ id: instrument?.id, name: instrument?.name }}
               />
-            </div>
+            </div> */}
           </div>
         </CardContent>
       </Card>

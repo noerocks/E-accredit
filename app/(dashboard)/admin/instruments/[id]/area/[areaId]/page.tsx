@@ -31,18 +31,18 @@ const AreaPage = async ({
       </p>
       <Card>
         <CardContent className="flex flex-col gap-5">
-          <p className="text-3xl">{`${area?.label}: ${area?.description}`}</p>
+          <p className="text-2xl">{`${area?.label}: ${area?.description}`}</p>
           <div className="flex justify-between items-center">
-            <p className="text-foreground">{instrument?.name}</p>
+            <p className="text-muted-foreground">{instrument?.name}</p>
             <div className="flex items-center gap-2">
-              <Pencil size={20} />
+              {/* <Pencil size={20} />
               <DeleteAreaDialog
                 area={{
                   id: area?.id,
                   label: area?.label,
                   instrumentId: area?.instrumentId,
                 }}
-              />
+              /> */}
             </div>
           </div>
         </CardContent>

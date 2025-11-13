@@ -9,7 +9,8 @@ const publicRoutes = ["/", "/login", "/register"];
 export default async function middleware(req: NextRequest) {
   const pathName = req.nextUrl.pathname;
   const session = (await cookies()).get("session")?.value;
-  const isPublicRoute = publicRoutes.includes(pathName);
+  const isPublicRoute =
+    publicRoutes.includes(pathName) || pathName.includes("public-portfolio");
   const payload = await decrypt(session);
   const role = payload?.role as Role;
   if (!session && !isPublicRoute) {

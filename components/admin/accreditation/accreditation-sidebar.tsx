@@ -45,10 +45,11 @@ const AccreditationSidebar = ({
   userId?: string;
 }) => {
   const pathName = usePathname();
-  const base = pathName
+  let base = pathName
     .split("/")
     .filter((segment) => segment !== "")
     .slice(0, 3);
+  const isPublicPortfolio = base.includes("public-portfolio");
   const params = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -60,7 +61,7 @@ const AccreditationSidebar = ({
     if (!button || target.tagName !== "BUTTON") return null;
     const { id, type } = button.dataset;
     router.replace(
-      `/${base.join("/")}/${type}${
+      `/${isPublicPortfolio ? base.slice(0, 2).join("/") : base.join("/")}/${isPublicPortfolio ? "file" : type}${
         id ? `/${id}` : ""
       }?${searchParams.toString()}`
     );
@@ -91,7 +92,13 @@ const AccreditationSidebar = ({
               File Explorer
             </SidebarMenuButton>
             <SidebarMenuAction asChild>
-              <Link href={`/${base.join("/")}?${searchParams.toString()}`}>
+              <Link
+                href={
+                  isPublicPortfolio
+                    ? "/"
+                    : `/${base.join("/")}?${searchParams.toString()}`
+                }
+              >
                 <Home />
               </Link>
             </SidebarMenuAction>
@@ -101,34 +108,35 @@ const AccreditationSidebar = ({
       <SidebarContent>
         <ScrollArea className="h-full">
           {(surveyResultStatus === "GRANTED" ||
-            selfSurveyStatus == "COMPLETE") && (
-            <SidebarGroup>
-              <SidebarGroupLabel>Survey Reports</SidebarGroupLabel>
-              <SidebarMenu>
-                {surveyResultStatus === "GRANTED" && (
-                  <SidebarMenuItem>
-                    <SidebarMenuButton
-                      onDoubleClick={onDoubleClick}
-                      data-type={"certificate"}
-                    >
-                      {`📄 Accreditation Certificate`}
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                )}
-                {selfSurveyStatus === "COMPLETE" && (
-                  <SidebarMenuItem>
-                    <SidebarMenuButton
-                      onDoubleClick={onDoubleClick}
-                      data-id={surveyVisitId}
-                      data-type={"report"}
-                    >
-                      {`📄 Self Survey PDF`}
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                )}
-              </SidebarMenu>
-            </SidebarGroup>
-          )}
+            selfSurveyStatus == "COMPLETE") &&
+            !isPublicPortfolio && (
+              <SidebarGroup>
+                <SidebarGroupLabel>Survey Reports</SidebarGroupLabel>
+                <SidebarMenu>
+                  {surveyResultStatus === "GRANTED" && (
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        onDoubleClick={onDoubleClick}
+                        data-type={"certificate"}
+                      >
+                        {`📄 Accreditation Certificate`}
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )}
+                  {selfSurveyStatus === "COMPLETE" && (
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        onDoubleClick={onDoubleClick}
+                        data-id={surveyVisitId}
+                        data-type={"report"}
+                      >
+                        {`📄 Self Survey PDF`}
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )}
+                </SidebarMenu>
+              </SidebarGroup>
+            )}
           <SidebarGroup>
             <SidebarGroupLabel>Areas</SidebarGroupLabel>
             <SidebarMenu onDoubleClick={onDoubleClick}>

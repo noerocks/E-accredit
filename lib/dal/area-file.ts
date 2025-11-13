@@ -19,8 +19,6 @@ export async function createManyAreaFiles(
 }
 
 export async function getAreaFileById(id: string) {
-  const session = await verifySession();
-  if (!session) return null;
   const areaFile = await prisma.areaFile.findUnique({
     where: {
       id,

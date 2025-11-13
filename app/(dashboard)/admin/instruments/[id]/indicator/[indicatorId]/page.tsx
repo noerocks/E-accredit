@@ -38,20 +38,20 @@ const IndicatorPage = async ({
       </p>
       <Card>
         <CardContent className="flex flex-col gap-5">
-          <p className="text-3xl">
+          <p className="text-2xl">
             {`${indicator?.label}: ${indicator?.description}`}
           </p>
           <div className="flex justify-between items-center">
-            <p className="text-foreground">{`${parameter?.label}: ${parameter?.description}`}</p>
+            <p className="text-muted-foreground">{`${parameter?.label}: ${parameter?.description}`}</p>
             <div className="flex items-center gap-2">
-              <Pencil size={20} />
+              {/* <Pencil size={20} />
               <DeleteIndicatorDialog
                 indicator={{
                   id: indicator?.id,
                   label: indicator?.label,
                   parameterId: indicator?.parameterId,
                 }}
-              />
+              /> */}
             </div>
           </div>
         </CardContent>
@@ -71,8 +71,8 @@ const IndicatorPage = async ({
                   {index === 0 ? <Tag /> : <SearchCheck />}
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">{data.value}</p>
-                  <p>{data.label}</p>
+                  <p className="text-xl font-bold">{data.value}</p>
+                  <p className="text-muted-foreground">{data.label}</p>
                 </div>
               </CardContent>
             </Card>

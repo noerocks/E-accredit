@@ -2,6 +2,7 @@ import CreateProgramDialog from "@/components/admin/program/create-program-dialo
 import ProgramPersonnelList from "@/components/admin/program/program-personell-list";
 import ProgramsCards from "@/components/admin/program/programs-cards";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { verifySession } from "@/lib/action/session";
 import { getPrograms } from "@/lib/dal/program";
 import { getUsersByRole } from "@/lib/dal/user";
 import { Role } from "@/lib/generated/prisma";
@@ -12,6 +13,7 @@ const ProgramsPage = async ({
 }: {
   searchParams: Promise<{ id: string }>;
 }) => {
+  const { user } = await verifySession();
   const params = await searchParams;
   const programs = await getPrograms();
   const education = programs.filter(
@@ -30,7 +32,7 @@ const ProgramsPage = async ({
           <Landmark />
           Programs
         </p>
-        <CreateProgramDialog />
+        {user.role === "ADMIN" && <CreateProgramDialog />}
       </div>
       <Tabs defaultValue="technology">
         <TabsList className="bg-background border">
@@ -42,6 +44,7 @@ const ProgramsPage = async ({
             <ProgramPersonnelList
               params={params}
               accreditationOfficers={accreditationOfficers}
+              user={user}
             />
           </ProgramsCards>
         </TabsContent>
@@ -50,6 +53,7 @@ const ProgramsPage = async ({
             <ProgramPersonnelList
               params={params}
               accreditationOfficers={accreditationOfficers}
+              user={user}
             />
           </ProgramsCards>
         </TabsContent>

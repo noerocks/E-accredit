@@ -4,13 +4,16 @@ import { getProgramPersonnelByProgramId } from "@/lib/dal/program-personnel";
 import ProgramPersonnel from "./program-personnel";
 import AssignProgramHead from "./assignProgramHead";
 import { getProgramById } from "@/lib/dal/program";
+import { SessionPayload } from "@/lib/definitions";
 
 const ProgramPersonnelList = async ({
   params,
   accreditationOfficers,
+  user,
 }: {
   params: { id: string };
   accreditationOfficers: UsersDTO[] | null;
+  user: SessionPayload;
 }) => {
   const programPersonnel = await getProgramPersonnelByProgramId(params.id);
   const program = await getProgramById(params.id);
@@ -21,14 +24,16 @@ const ProgramPersonnelList = async ({
         accreditationOfficers={accreditationOfficers}
         programHeadUserId={program?.programHead?.id}
         programPersonnel={programPersonnel}
+        user={user}
       />
       {programPersonnel && programPersonnel.length > 0 && (
-        <ProgramPersonnel programPersonnel={programPersonnel} />
+        <ProgramPersonnel programPersonnel={programPersonnel} user={user} />
       )}
       <AddProgramPersonnelForm
         programId={params.id}
         accreditationOfficers={accreditationOfficers}
         programHeadUserId={program?.programHead?.id}
+        user={user}
       />
     </div>
   );

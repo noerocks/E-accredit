@@ -94,7 +94,7 @@ const InstrumentSidebar = ({
             <SidebarGroupLabel>Areas</SidebarGroupLabel>
             <CreateAreaDialog />
             <SidebarGroupContent>
-              <SidebarMenu>
+              <SidebarMenu onDoubleClick={onDoubleClick}>
                 {instrument?.area
                   .sort((a, b) => a.label.localeCompare(b.label))
                   .map((item, index) => (

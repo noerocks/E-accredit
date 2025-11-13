@@ -65,12 +65,14 @@ const Accreditation = async () => {
             <FileArchive />
             Survey Visit Portfolios
           </p>
-          <CreateAccreditationDialog
-            programs={programs}
-            instruments={instruments || []}
-            levels={levels}
-            levelThreePhaseTwoInstrument={levelThreePhaseTwoInstrument}
-          />
+          {user.role === "ADMIN" && (
+            <CreateAccreditationDialog
+              programs={programs}
+              instruments={instruments || []}
+              levels={levels}
+              levelThreePhaseTwoInstrument={levelThreePhaseTwoInstrument}
+            />
+          )}
         </div>
         <Tabs defaultValue="all">
           <TabsList className="bg-background border">

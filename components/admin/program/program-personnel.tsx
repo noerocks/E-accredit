@@ -8,6 +8,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { removeProgramPersonnel } from "@/lib/action/program-personnel";
+import { SessionPayload } from "@/lib/definitions";
 import { ProgramPersonnelDTO } from "@/lib/dto/program-personnel";
 
 import { Minus } from "lucide-react";
@@ -15,8 +16,10 @@ import { toast } from "sonner";
 
 const ProgramPersonnel = ({
   programPersonnel,
+  user,
 }: {
   programPersonnel: ProgramPersonnelDTO[] | null;
+  user: SessionPayload;
 }) => {
   const onClick = async (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
@@ -45,19 +48,21 @@ const ProgramPersonnel = ({
         {programPersonnel?.map((personnel) => (
           <div className="flex justify-between items-center" key={personnel.id}>
             <p className="text-sm">{`${personnel.user.firstName} ${personnel.user.lastName}`}</p>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="destructive"
-                  className="h-6 w-6"
-                  data-action="remove"
-                  data-id={personnel.id}
-                >
-                  <Minus />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Remove personnel</TooltipContent>
-            </Tooltip>
+            {user.role === "ADMIN" && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="destructive"
+                    className="h-6 w-6"
+                    data-action="remove"
+                    data-id={personnel.id}
+                  >
+                    <Minus />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Remove personnel</TooltipContent>
+              </Tooltip>
+            )}
           </div>
         ))}
       </Card>

@@ -43,20 +43,20 @@ const ParameterPage = async ({
       </p>
       <Card>
         <CardContent className="flex flex-col gap-5">
-          <p className="text-3xl">
+          <p className="text-2xl">
             {`${parameter?.label}: ${parameter?.description}`}
           </p>
           <div className="flex justify-between items-center">
-            <p className="text-foreground">{`${area?.label}: ${area?.description}`}</p>
+            <p className="text-muted-foreground">{`${area?.label}: ${area?.description}`}</p>
             <div className="flex items-center gap-2">
-              <Pencil size={20} />
+              {/* <Pencil size={20} />
               <DeleteParameterDialog
                 parameter={{
                   id: parameter?.id,
                   label: parameter?.label,
                   areaId: parameter?.areaId,
                 }}
-              />
+              /> */}
             </div>
           </div>
         </CardContent>
