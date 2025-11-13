@@ -1,5 +1,6 @@
 import CreateAccreditationDialog from "@/components/admin/accreditation/createAccreditationDialog";
 import PortfolioCards from "@/components/admin/accreditation/portfolio-cards";
+import NoAssignments from "@/components/admin/self-survey/no-assignments";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -116,7 +117,7 @@ const Accreditation = async () => {
           </TabsContent>
           {user.role === "ACCREDITATION_OFFICER" && (
             <TabsContent value="assignments">
-              {assignedAccreditations.length > 0 && (
+              {assignedAccreditations.length > 0 ? (
                 <Tabs defaultValue={assignedAccreditations[0].program.code}>
                   <TabsList className="bg-background border">
                     {assignedAccreditations?.map((accreditation) => (
@@ -202,6 +203,8 @@ const Accreditation = async () => {
                     );
                   })}
                 </Tabs>
+              ) : (
+                <NoAssignments />
               )}
             </TabsContent>
           )}

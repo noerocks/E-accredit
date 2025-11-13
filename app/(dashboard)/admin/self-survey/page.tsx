@@ -1,4 +1,5 @@
 import EmptySurvey from "@/components/admin/self-survey/empty-survey";
+import NoAssignments from "@/components/admin/self-survey/no-assignments";
 import SelfSurveyCards from "@/components/admin/self-survey/self-survey-cards";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -88,7 +89,7 @@ const SelfSurveysPage = async () => {
           {(user.role === "ACCREDITOR" ||
             user.role === "ACCREDITATION_OFFICER") && (
             <TabsContent value="assignments">
-              {assignedProgramCodes && (
+              {assignedProgramCodes.length > 0 ? (
                 <Tabs defaultValue={assignedProgramCodes[0]}>
                   <TabsList className="bg-background border">
                     {assignedProgramCodes.map((code) => (
@@ -110,11 +111,13 @@ const SelfSurveysPage = async () => {
                     </TabsContent>
                   ))}
                 </Tabs>
+              ) : (
+                <NoAssignments />
               )}
             </TabsContent>
           )}
           <TabsContent value="history">
-            {programCodes && (
+            {programCodes.length > 0 && (
               <Tabs defaultValue={programCodes[0]}>
                 <TabsList className="bg-background border">
                   {programCodes.map((code) => (
