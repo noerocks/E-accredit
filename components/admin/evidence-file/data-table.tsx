@@ -33,11 +33,12 @@ import {
 import { UsersDTO } from "@/lib/dto/user";
 import { Clock } from "lucide-react";
 import { toast } from "sonner";
-import { changeActiveVersion } from "@/lib/action/file-version";
+import { changeFileVersionStatus } from "@/lib/action/file-version";
 import { deleteVersionById } from "@/lib/action/file-version";
 import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { getSurveyVisitById } from "@/lib/dal/survey-visit";
 import { useRouter } from "next/navigation";
+import { FileVersionStatus } from "@/lib/generated/prisma";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -115,13 +116,29 @@ export function DataTable<TData, TValue>({
       }
       case "setAsActive": {
         if (!id) break;
-        const result = await changeActiveVersion(
+        const result = await changeFileVersionStatus(
           id,
           fileId,
           fileType,
           parameterFolderId,
           areaFolderId,
-          String(surveyVisitId)
+          String(surveyVisitId),
+          FileVersionStatus.ACTIVE
+        );
+        if (result.failure) toast.error(result.failure.error);
+        if (result.success) toast.success(result.success.message);
+        break;
+      }
+      case "archive": {
+        if (!id) break;
+        const result = await changeFileVersionStatus(
+          id,
+          fileId,
+          fileType,
+          parameterFolderId,
+          areaFolderId,
+          String(surveyVisitId),
+          FileVersionStatus.ARCHIVED
         );
         if (result.failure) toast.error(result.failure.error);
         if (result.success) toast.success(result.success.message);

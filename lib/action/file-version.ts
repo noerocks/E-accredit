@@ -80,7 +80,6 @@ export async function createNewVersion({
     };
   if (evidenceFileId) {
     const evidence = await getEvidenceFileById(evidenceFileId);
-    await resetAllEvidenceVersionStatus(evidenceFileId);
     const evidenceFileVersion = await createNewEvidenceFileVersion(
       name,
       uploaderEmail,
@@ -113,7 +112,6 @@ export async function createNewVersion({
     });
   } else if (areaFileId) {
     const file = await getAreaFileById(areaFileId);
-    await resetAllAreaFileVersionStatus(areaFileId);
     const areaFileVersion = await createNewAreaFileVersion(
       name,
       uploaderEmail,
@@ -302,7 +300,6 @@ export async function migrateFiles(
           return {
             failure: { error: "Error in fetching destination area file" },
           };
-        await resetAllAreaFileVersionStatus(destinationAreaFile.id);
         await createNewAreaFileVersion(
           name,
           user.email,
@@ -333,7 +330,6 @@ export async function migrateFiles(
           return {
             failure: { error: "Error in fetching destination evidence file" },
           };
-        await resetAllEvidenceVersionStatus(destinationEvidenceFile.id);
         await createNewEvidenceFileVersion(
           name,
           user.email,
@@ -359,13 +355,14 @@ export async function migrateFiles(
   }
 }
 
-export async function changeActiveVersion(
+export async function changeFileVersionStatus(
   id: string | undefined,
   fileId: string | undefined,
   fileType: "Evidence" | "AreaFile",
   parameterFolderId: string | undefined,
   areaFolderId: string | undefined,
-  surveyVisitId: string | undefined
+  surveyVisitId: string | undefined,
+  status: FileVersionStatus
 ) {
   const { user } = await verifySession();
   if (!id || !fileId || !fileType)
@@ -376,9 +373,8 @@ export async function changeActiveVersion(
   switch (fileType) {
     case "Evidence": {
       const file = await getEvidenceFileById(fileId);
-      await resetAllEvidenceVersionStatus(fileId);
       const evidenceVersion = await updateVersionById(id, {
-        status: FileVersionStatus.ACTIVE,
+        status,
       });
       await createActivity({
         actorId: user.id,
@@ -428,9 +424,8 @@ export async function changeActiveVersion(
           } in criteria: ${areaFile.phaseTwoAreaFolder.area.description}`,
         });
       }
-      await resetAllAreaFileVersionStatus(fileId);
       const areaFileVersion = await updateVersionById(id, {
-        status: FileVersionStatus.ACTIVE,
+        status,
       });
       break;
     }

@@ -168,6 +168,16 @@ export const columns: ColumnDef<FileVersion>[] = [
               Set as Active
             </DropdownMenuItem>
             <DropdownMenuItem
+              data-action="archive"
+              data-id={version.id}
+              disabled={
+                version.status === "ARCHIVED" || version.status === "REJECTED"
+              }
+            >
+              <Archive />
+              Archive
+            </DropdownMenuItem>
+            <DropdownMenuItem
               data-action="delete"
               data-id={version.id}
               disabled={version.status === "ACTIVE"}

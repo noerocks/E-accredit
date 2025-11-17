@@ -1,6 +1,7 @@
 import AccreditorSidebar from "@/components/admin/self-survey/accreditor-sidebar";
 import PDFViewer from "@/components/pdf-viewer";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { verifySession } from "@/lib/action/session";
 import { getEvidenceFileById } from "@/lib/dal/evidence";
 import { getRatingByEvidenceFileId } from "@/lib/dal/rating";
@@ -20,9 +21,9 @@ const EvidencePage = async ({
     evidenceId,
     SurveyTeamType.EXTERNAL
   );
-  const activeFile = evidenceFile?.fileVersions?.find(
-    (file) => file.status === "ACTIVE"
-  );
+  const activeFiles =
+    evidenceFile?.fileVersions?.filter((file) => file.status === "ACTIVE") ||
+    [];
   const comments = evidenceFile?.comments?.filter(
     (comment) => comment.type === "ACTUAL_SURVEY"
   );
@@ -41,7 +42,20 @@ const EvidencePage = async ({
           <CheckCircle size={15} />
           {`${indicator?.label}: ${indicator?.description}`}
         </p>
-        <PDFViewer fileUrl={activeFile?.objectUrl!} />
+        <Tabs defaultValue={activeFiles[0].id} className="p-2">
+          <TabsList className="bg-background border">
+            {activeFiles.map((file) => (
+              <TabsTrigger value={file.id} key={file.id}>
+                {file.name}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          {activeFiles.map((file) => (
+            <TabsContent value={file.id} key={file.id}>
+              <PDFViewer fileUrl={file?.objectUrl!} />
+            </TabsContent>
+          ))}
+        </Tabs>
       </ScrollArea>
       <AccreditorSidebar
         comments={comments || []}

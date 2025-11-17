@@ -108,7 +108,7 @@ const EvidencePage = async ({
                 evidenceFileId={evidence?.id}
                 comments={comments}
               />
-              {(isMember || isAdmin) && (
+              {(isMember || isAdmin || isChairperson) && (
                 <UploadFileForm
                   indicator={indicator}
                   evidenceFileId={evidenceId}
