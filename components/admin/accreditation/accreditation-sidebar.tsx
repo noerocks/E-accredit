@@ -33,6 +33,7 @@ const AccreditationSidebar = ({
   instrumentFolder,
   phaseTwoFolder,
   selfSurveyStatus,
+  actualSurveyStatus,
   surveyVisitId,
   surveyResultStatus,
   userId,
@@ -40,6 +41,7 @@ const AccreditationSidebar = ({
   instrumentFolder: PhaseOneInstrumentDTO | null | undefined;
   phaseTwoFolder: PhaseTwoInstrumentDTO | null | undefined;
   selfSurveyStatus: SurveyStatus | undefined;
+  actualSurveyStatus: SurveyStatus | undefined;
   surveyVisitId: string;
   surveyResultStatus?: SurveyResultStatus | undefined;
   userId?: string;
@@ -108,7 +110,8 @@ const AccreditationSidebar = ({
       <SidebarContent>
         <ScrollArea className="h-full">
           {(surveyResultStatus === "GRANTED" ||
-            selfSurveyStatus == "COMPLETE") &&
+            selfSurveyStatus == "COMPLETE" ||
+            actualSurveyStatus === "COMPLETE") &&
             !isPublicPortfolio && (
               <SidebarGroup>
                 <SidebarGroupLabel>Survey Reports</SidebarGroupLabel>
@@ -131,6 +134,17 @@ const AccreditationSidebar = ({
                         data-type={"report"}
                       >
                         {`📄 Self Survey PDF`}
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )}
+                  {actualSurveyStatus === "COMPLETE" && (
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        onDoubleClick={onDoubleClick}
+                        data-id={surveyVisitId}
+                        data-type={"actual-report"}
+                      >
+                        {`📄 Actual Survey PDF`}
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   )}

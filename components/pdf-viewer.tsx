@@ -52,7 +52,7 @@ const PDFViewer = ({
 
   return (
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-      <div className="h-full p-3">
+      <div className="h-full">
         {pdfUrl && (
           <Viewer
             fileUrl={pdfUrl}

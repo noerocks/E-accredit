@@ -4,14 +4,14 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { getInstrumentStructureById } from "@/lib/dal/instrument";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { SurveyTeamType } from "@/lib/generated/prisma";
+import { CommentType, SurveyTeamType } from "@/lib/generated/prisma";
 
 const ReportPage = async ({
   params,
   searchParams,
 }: {
   params: Promise<{ reportId: string }>;
-  searchParams: Promise<{ ["self-survey"]: string }>;
+  searchParams: Promise<{ ["actual-survey"]: string }>;
 }) => {
   const { reportId } = await params;
   const query = await searchParams;
@@ -35,10 +35,11 @@ const ReportPage = async ({
         <PDFViewer
           pdfComponent={
             <SelfSurveyReportPDF
-              surveyName={query["self-survey"]}
+              surveyName={query["actual-survey"]}
               areaFolders={areaFolders as unknown as AreaFolderDTO[]}
               dateEnded={surveyVisit?.selfSurveyEndedAt}
               surveyType={SurveyTeamType.INTERNAL}
+              commentType={CommentType.SELF_SURVEY}
             />
           }
         />

@@ -42,7 +42,7 @@ const EvidencePage = async ({
           <CheckCircle size={15} />
           {`${indicator?.label}: ${indicator?.description}`}
         </p>
-        <Tabs defaultValue={activeFiles[0].id} className="p-2">
+        <Tabs defaultValue={activeFiles[0].id}>
           <TabsList className="bg-background border">
             {activeFiles.map((file) => (
               <TabsTrigger value={file.id} key={file.id}>

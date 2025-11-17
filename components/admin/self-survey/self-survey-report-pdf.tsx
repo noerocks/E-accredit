@@ -1,9 +1,10 @@
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { SurveyTeamType } from "@/lib/generated/prisma";
+import { CommentType, SurveyTeamType } from "@/lib/generated/prisma";
 import {
   calculateAreaMean,
   calculateGrandMean,
   calculateWeightedAreaMean,
+  screamingSnakeToTitle,
 } from "@/lib/utils";
 import {
   Document,
@@ -19,11 +20,13 @@ const SelfSurveyReportPDF = ({
   surveyName,
   dateEnded,
   surveyType,
+  commentType,
 }: {
   areaFolders: AreaFolderDTO[];
   surveyName: string;
   dateEnded: Date | null | undefined;
   surveyType: SurveyTeamType;
+  commentType: CommentType;
 }) => {
   const grandWeightedMean = calculateGrandMean(areaFolders, surveyType);
   const styles = StyleSheet.create({
@@ -135,7 +138,9 @@ const SelfSurveyReportPDF = ({
       <Page style={styles.cover}>
         <Image src={"/letterhead.png"} style={styles.letterhead} />
         <View style={styles.centeredColumn}>
-          <Text style={styles.reportTitle}>Self Survey Report</Text>
+          <Text
+            style={styles.reportTitle}
+          >{`${screamingSnakeToTitle(commentType)} Report`}</Text>
           <Text style={styles.reportSubtitle}>{surveyName}</Text>
         </View>
         <Text style={styles.paragraph}>
@@ -158,13 +163,13 @@ const SelfSurveyReportPDF = ({
             surveyType
           );
           const strengths = areaFolder.strengths.find(
-            (s) => s.type === "SELF_SURVEY"
+            (s) => s.type === commentType
           );
           const weaknesses = areaFolder.weaknesses.find(
-            (w) => w.type === "SELF_SURVEY"
+            (w) => w.type === commentType
           );
           const recommendations = areaFolder.recommendations.find(
-            (r) => r.type === "SELF_SURVEY"
+            (r) => r.type === commentType
           );
           return (
             <Page key={area.id} style={styles.contentPage}>
@@ -204,26 +209,26 @@ const SelfSurveyReportPDF = ({
                           const adequacy = evidence.ratings
                             ? evidence.ratings.find(
                                 (rating) =>
-                                  rating.adequacy && rating.type === "INTERNAL"
+                                  rating.adequacy && rating.type === surveyType
                               )?.adequacy
                             : null;
                           const effectiveness = evidence.ratings
                             ? evidence.ratings.find(
                                 (rating) =>
                                   rating.effectiveness &&
-                                  rating.type === "INTERNAL"
+                                  rating.type === surveyType
                               )?.effectiveness
                             : null;
                           const NA = evidence.ratings
                             ? evidence.ratings.find(
                                 (rating) =>
-                                  rating.NA && rating.type === "INTERNAL"
+                                  rating.NA && rating.type === surveyType
                               )?.NA
                             : null;
                           const finalRate = evidence.ratings
                             ? evidence.ratings.find(
                                 (rating) =>
-                                  rating.finalRate && rating.type === "INTERNAL"
+                                  rating.finalRate && rating.type === surveyType
                               )?.finalRate
                             : null;
 

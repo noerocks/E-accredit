@@ -3,6 +3,7 @@ import { Alert, AlertTitle } from "@/components/ui/alert";
 import { verifySession } from "@/lib/action/session";
 import { getSurveyVisitStructureById } from "@/lib/dal/survey-visit";
 import { PhaseOneInstrumentDTO } from "@/lib/dto/accreditation-instrument";
+import { SurveyResultStatus } from "@/lib/generated/prisma";
 import { Info } from "lucide-react";
 
 const ActualSurveyLayout = async ({
@@ -32,6 +33,7 @@ const ActualSurveyLayout = async ({
         }
         surveyResultStatus={surveyResultStatus}
         selfSurveyStatus={surveyVisitStructure?.selfSurveyStatus}
+        actualSurveyStatus={surveyVisitStructure?.actualSurveyStatus}
         surveyVisitId={id}
         userId={user.id}
       />

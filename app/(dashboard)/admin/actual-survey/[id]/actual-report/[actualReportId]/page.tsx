@@ -10,12 +10,12 @@ const ReportPage = async ({
   params,
   searchParams,
 }: {
-  params: Promise<{ reportId: string }>;
-  searchParams: Promise<{ ["self-survey"]: string }>;
+  params: Promise<{ actualReportId: string }>;
+  searchParams: Promise<{ ["actual-survey"]: string }>;
 }) => {
-  const { reportId } = await params;
+  const { actualReportId } = await params;
   const query = await searchParams;
-  const surveyVisit = await getSurveyVisitStructureById(reportId);
+  const surveyVisit = await getSurveyVisitStructureById(actualReportId);
   const areaFolders =
     surveyVisit?.phaseOneRequirements.instrumentFolder.areaFolders;
   const instrument = await getInstrumentStructureById(
@@ -35,11 +35,11 @@ const ReportPage = async ({
         <PDFViewer
           pdfComponent={
             <SelfSurveyReportPDF
-              surveyName={query["self-survey"]}
+              surveyName={query["actual-survey"]}
               areaFolders={areaFolders as unknown as AreaFolderDTO[]}
-              dateEnded={surveyVisit?.selfSurveyEndedAt}
-              surveyType={SurveyTeamType.INTERNAL}
-              commentType={CommentType.SELF_SURVEY}
+              dateEnded={surveyVisit?.actualSurveyEndedAt}
+              surveyType={SurveyTeamType.EXTERNAL}
+              commentType={CommentType.ACTUAL_SURVEY}
             />
           }
         />

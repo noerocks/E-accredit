@@ -24,6 +24,7 @@ const SelfSurveyLayout = async ({
           surveyVisitStructure?.phaseTwoRequirements?.phaseTwoFolder
         }
         selfSurveyStatus={surveyVisitStructure?.selfSurveyStatus}
+        actualSurveyStatus={surveyVisitStructure?.actualSurveyStatus}
         surveyVisitId={id}
         surveyResultStatus={surveyVisitStructure?.surveyResultStatus}
         userId={user.id}
