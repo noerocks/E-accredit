@@ -61,6 +61,9 @@ const AreaPage = async ({
   const weaknesses = areaFolder?.weaknesses.find(
     (weaknesses) => weaknesses.type === "ACTUAL_SURVEY"
   );
+  const improvements = areaFolder?.improvements.find(
+    (improvements) => improvements.type === "ACTUAL_SURVEY"
+  );
   const complete =
     ratings?.length === indicators?.length && strengths && weaknesses;
   const parameters = areaFolder?.parameterFolders.sort((a, b) =>
@@ -98,11 +101,6 @@ const AreaPage = async ({
               <CircleDot size={15} />
               {complete ? "Rating Complete" : "On Going"}
             </p>
-            <Accreditors
-              accreditors={accreditors}
-              surveyVisit={surveyVisit}
-              areaFolderId={areaFolder?.id}
-            />
           </CardFooter>
         </Card>
         <Tabs defaultValue="ratings">
@@ -123,6 +121,14 @@ const AreaPage = async ({
                 <Check className="text-green-500" />
               )}
               Weaknesses
+            </TabsTrigger>
+            <TabsTrigger value="improvements">
+              {!improvements ? (
+                <X className="text-red-500" />
+              ) : (
+                <Check className="text-green-500" />
+              )}
+              Area Needs Improvements
             </TabsTrigger>
             <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
           </TabsList>
@@ -167,6 +173,24 @@ const AreaPage = async ({
                   user={user}
                   weakFolderId={areaFolder?.id}
                   defaultContent={weaknesses?.content}
+                  surveyStatus={surveyStatus!}
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="improvements">
+            <Card className="bg-background">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <TrendingDown size={20} />
+                  Area Needs Improvements
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <RecommendationsForm
+                  user={user}
+                  improvementsId={areaFolder?.id}
+                  defaultContent={improvements?.content}
                   surveyStatus={surveyStatus!}
                 />
               </CardContent>

@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -7,7 +6,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { AreaFolderDTO } from "@/lib/dto/accreditation-instrument";
-import { Calendar } from "lucide-react";
 import ScheduleRevisit from "./schedule-revisit";
 import { SurveyResultStatus } from "@/lib/generated/prisma";
 

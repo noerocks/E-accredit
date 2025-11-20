@@ -1,5 +1,3 @@
-import Accreditors from "@/components/admin/accreditation/accreditors";
-import Banner from "@/components/admin/accreditation/banner";
 import { DataTable } from "@/components/admin/area/data-table";
 import RecommendationsForm from "@/components/admin/area/recommendations-form";
 import { columns } from "@/components/admin/self-survey/area/columns";
@@ -27,6 +25,7 @@ import {
   MessageCircleMore,
   TrendingDown,
   TrendingUp,
+  Wrench,
   X,
 } from "lucide-react";
 
@@ -61,6 +60,9 @@ const AreaPage = async ({
   );
   const weaknesses = areaFolder?.weaknesses.find(
     (weaknesses) => weaknesses.type === "SELF_SURVEY"
+  );
+  const improvements = areaFolder?.improvements.find(
+    (improvements) => improvements.type === "SELF_SURVEY"
   );
   const complete =
     ratings?.length === indicators?.length && strengths && weaknesses;
@@ -99,11 +101,6 @@ const AreaPage = async ({
               <CircleDot size={15} />
               {complete ? "Rating Complete" : "On Going"}
             </p>
-            <Accreditors
-              accreditors={accreditors}
-              surveyVisit={surveyVisit}
-              areaFolderId={areaFolder?.id}
-            />
           </CardFooter>
         </Card>
         <Tabs defaultValue="ratings">
@@ -124,6 +121,14 @@ const AreaPage = async ({
                 <Check className="text-green-500" />
               )}
               Weaknesses
+            </TabsTrigger>
+            <TabsTrigger value="improvements">
+              {!improvements ? (
+                <X className="text-red-500" />
+              ) : (
+                <Check className="text-green-500" />
+              )}
+              Area Needs Improvements
             </TabsTrigger>
             <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
           </TabsList>
@@ -168,6 +173,24 @@ const AreaPage = async ({
                   user={user}
                   weakFolderId={areaFolder?.id}
                   defaultContent={weaknesses?.content}
+                  surveyStatus={surveyStatus!}
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="improvements">
+            <Card className="bg-background">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Wrench size={20} />
+                  Area Needs Improvements
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <RecommendationsForm
+                  user={user}
+                  improvementsId={areaFolder?.id}
+                  defaultContent={improvements?.content}
                   surveyStatus={surveyStatus!}
                 />
               </CardContent>

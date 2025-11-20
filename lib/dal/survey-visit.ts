@@ -100,6 +100,7 @@ export const getSurveyVisitStructureById = unstable_cache(
                     },
                     strengths: true,
                     weaknesses: true,
+                    improvements: true,
                     recommendations: true,
                     taskForce: {
                       include: {

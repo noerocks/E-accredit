@@ -115,6 +115,11 @@ const AreaFolderPage = async ({
                 areaFolderId={areaFolder?.id}
                 isAdmin={isAdmin}
               />
+              <Accreditors
+                accreditors={accreditors}
+                surveyVisit={surveyVisit}
+                areaFolderId={areaFolder?.id}
+              />
             </div>
           </CardFooter>
         </Card>

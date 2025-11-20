@@ -3,6 +3,7 @@
 import { AuditAction, AuditEntity, CommentType } from "../generated/prisma";
 import {
   createNewComment as createNewCommentDAL,
+  getImprovementsByAreaFolderId,
   getRecommendationByAreaFolderId,
   getRemarksBySurveyVisitId,
   getStrengthsByAreaFolderId,
@@ -24,6 +25,7 @@ export async function createNewComment({
   recommendedFolderId,
   strongFolderId,
   weakFolderId,
+  improvementsId,
   surveyVisitId,
 }: {
   authorId: string;
@@ -34,6 +36,7 @@ export async function createNewComment({
   recommendedFolderId?: string;
   strongFolderId?: string;
   weakFolderId?: string;
+  improvementsId?: string;
   surveyVisitId?: string;
 }) {
   if (!authorId || !content || !type)
@@ -252,11 +255,83 @@ export async function createNewComment({
       revalidateTag("surveyVisitStructure");
       return { success: { message: "Comment updated successfully" } };
     }
+    if (improvementsId) {
+      const areaFolder = await getAreaFolderById(improvementsId);
+      const improvements = await getImprovementsByAreaFolderId(
+        improvementsId,
+        type
+      );
+      if (!improvements) {
+        const newImprovements = await createNewCommentDAL({
+          authorId,
+          content,
+          type,
+          improvementsId,
+        });
+        if (type === "SELF_SURVEY") {
+          await createActivity({
+            actorId: authorId,
+            action: AuditAction.COMMENT,
+            entity: AuditEntity.SELF_SURVEY,
+            portfolioId:
+              areaFolder?.instrumentFolder.phaseOneRequirements?.surveyVisit
+                ?.id,
+            description: `Identified improvements in ${areaFolder?.area.label}`,
+          });
+        } else if (type === "ACTUAL_SURVEY") {
+          await createActivity({
+            actorId: authorId,
+            action: AuditAction.COMMENT,
+            entity: AuditEntity.ACTUAL_SURVEY,
+            portfolioId:
+              areaFolder?.instrumentFolder.phaseOneRequirements?.surveyVisit
+                ?.id,
+            description: `Identified improvements in ${areaFolder?.area.label}`,
+          });
+        }
+        revalidateTag("activities");
+        revalidateTag("comments");
+        revalidateTag("evidenceFiles");
+        revalidateTag("areaFolder");
+        revalidateTag("parameterFolder");
+        revalidateTag("surveyVisitStructure");
+        return { success: { message: "Comment created successfully" } };
+      }
+      const updatedComment = updateCommentById({
+        id: improvements?.id,
+        content,
+      });
+      if (type === "SELF_SURVEY") {
+        await createActivity({
+          actorId: authorId,
+          action: AuditAction.COMMENT,
+          entity: AuditEntity.SELF_SURVEY,
+          portfolioId:
+            areaFolder?.instrumentFolder.phaseOneRequirements?.surveyVisit?.id,
+          description: `Updated improvements in ${areaFolder?.area.label}`,
+        });
+      } else if (type === "ACTUAL_SURVEY") {
+        await createActivity({
+          actorId: authorId,
+          action: AuditAction.COMMENT,
+          entity: AuditEntity.ACTUAL_SURVEY,
+          portfolioId:
+            areaFolder?.instrumentFolder.phaseOneRequirements?.surveyVisit?.id,
+          description: `Updated improvements in ${areaFolder?.area.label}`,
+        });
+      }
+      revalidateTag("activities");
+      revalidateTag("comments");
+      revalidateTag("evidenceFiles");
+      revalidateTag("areaFolder");
+      revalidateTag("parameterFolder");
+      revalidateTag("surveyVisitStructure");
+      return { success: { message: "Comment updated successfully" } };
+    }
     if (surveyVisitId) {
       const remarks = await getRemarksBySurveyVisitId(surveyVisitId);
-      const surveyVisitStructure = await getSurveyVisitStructureById(
-        surveyVisitId
-      );
+      const surveyVisitStructure =
+        await getSurveyVisitStructureById(surveyVisitId);
       if (!remarks) {
         const newRemarks = await createNewCommentDAL({
           authorId,

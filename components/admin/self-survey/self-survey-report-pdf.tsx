@@ -168,6 +168,9 @@ const SelfSurveyReportPDF = ({
           const weaknesses = areaFolder.weaknesses.find(
             (w) => w.type === commentType
           );
+          const improvements = areaFolder.improvements.find(
+            (w) => w.type === commentType
+          );
           const recommendations = areaFolder.recommendations.find(
             (r) => r.type === commentType
           );
@@ -281,6 +284,13 @@ const SelfSurveyReportPDF = ({
                 <Text style={styles.narrativeTitle}>Weaknesses</Text>
                 <Text style={styles.paragraph}>
                   {weaknesses ? weaknesses.content : "None"}
+                </Text>
+
+                <Text style={styles.narrativeTitle}>
+                  Area Needs Improvements
+                </Text>
+                <Text style={styles.paragraph}>
+                  {improvements ? improvements.content : "None"}
                 </Text>
 
                 <Text style={styles.narrativeTitle}>Recommendations</Text>

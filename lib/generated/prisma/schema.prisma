@@ -330,6 +330,7 @@ model AreaFolder {
   recommendations    Comment[]         @relation("recommendations")
   strengths          Comment[]         @relation("strengths")
   weaknesses         Comment[]         @relation("weaknesses")
+  improvements       Comment[]         @relation("improvements")
 }
 
 model ParameterFolder {
@@ -468,6 +469,8 @@ model Comment {
   strongFolderId      String?
   weakFolder          AreaFolder?   @relation(name: "weaknesses", fields: [weakFolderId], references: [id], onDelete: Cascade)
   weakFolderId        String?
+  improvementFolder   AreaFolder?   @relation(name: "improvements", fields: [improvementFolderId], references: [id], onDelete: Cascade)
+  improvementFolderId String?
   surveyVisit         SurveyVisit?  @relation(fields: [surveyVisitId], references: [id], onDelete: Cascade)
   surveyVisitId       String?
   content             String

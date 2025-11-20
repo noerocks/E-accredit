@@ -29,6 +29,7 @@ const RecommendationsForm = ({
   recommendedFolderId,
   strongFolderId,
   weakFolderId,
+  improvementsId,
   defaultContent,
   surveyStatus,
   surveyVisitId,
@@ -37,6 +38,7 @@ const RecommendationsForm = ({
   recommendedFolderId?: string | undefined;
   strongFolderId?: string | undefined;
   weakFolderId?: string | undefined;
+  improvementsId?: string | undefined;
   defaultContent: string | undefined;
   surveyStatus?: SurveyStatus;
   surveyVisitId?: string | undefined;
@@ -79,10 +81,12 @@ const RecommendationsForm = ({
   const messageType = recommendedFolderId
     ? "Recommendations"
     : strongFolderId
-    ? "Strengths"
-    : weakFolderId
-    ? "Weaknesses"
-    : "Remarks";
+      ? "Strengths"
+      : weakFolderId
+        ? "Weaknesses"
+        : improvementsId
+          ? "Improvements"
+          : "Remarks";
   const onSubmit = (data: z.infer<typeof RecommendationsFormSchema>) => {
     startTransition(async () => {
       const result = await createNewComment({
@@ -92,6 +96,7 @@ const RecommendationsForm = ({
         recommendedFolderId,
         strongFolderId,
         weakFolderId,
+        improvementsId,
         surveyVisitId,
       });
       if (result?.failure) toast.error(result.failure.error);

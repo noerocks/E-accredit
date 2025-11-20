@@ -29,6 +29,7 @@ export type AreaFolderDTO = AreaFolder & {
   area: Area;
   strengths: Comment[];
   weaknesses: Comment[];
+  improvements: Comment[];
   recommendations: Comment[];
   parameterFolders: ParameterFolderDTO[];
   areaFiles: AreaFile[];
